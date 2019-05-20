@@ -49,11 +49,11 @@ export declare class UnitxApi extends UqApi {
 export declare function setCenterUrl(url: string): void;
 export declare let centerToken: string | undefined;
 export declare function setCenterToken(userId: number, t?: string): void;
-export declare abstract class CenterApi extends ApiBase {
+export declare abstract class CenterApiBase extends ApiBase {
     constructor(path: string, showWaiting?: boolean);
     protected getHttpChannel(): Promise<HttpChannel>;
 }
-export declare class UqTokenApi extends CenterApi {
+export declare class UqTokenApi extends CenterApiBase {
     private local;
     uq(params: {
         unit: number;
@@ -62,7 +62,7 @@ export declare class UqTokenApi extends CenterApi {
     }): Promise<any>;
 }
 export declare const uqTokenApi: UqTokenApi;
-export declare class CallCenterApi extends CenterApi {
+export declare class CallCenterApi extends CenterApiBase {
     directCall(url: string, method: string, body: any): Promise<any>;
 }
 export declare const callCenterapi: CallCenterApi;
@@ -82,7 +82,7 @@ export interface UqService {
     urlDebug: string;
     token: string;
 }
-export declare class CenterAppApi extends CenterApi {
+export declare class CenterAppApi extends CenterApiBase {
     private cachedUqs;
     uqs(appOwner: string, appName: string): Promise<App>;
     private uqsPure;

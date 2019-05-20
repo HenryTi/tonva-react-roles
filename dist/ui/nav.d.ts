@@ -19,12 +19,12 @@ export interface StackItem {
     confirmClose?: () => Promise<boolean>;
     disposer?: () => void;
 }
-export interface State {
+export interface NavViewState {
     stack: StackItem[];
     wait: 0 | 1 | 2;
     fetchError: FetchError;
 }
-export declare class NavView extends React.Component<Props, State> {
+export declare class NavView extends React.Component<Props, NavViewState> {
     private stack;
     private htmlTitle;
     private waitCount;

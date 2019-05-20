@@ -1,12 +1,12 @@
 import * as React from 'react';
-export interface Action {
+export interface DropdownAction {
     icon?: string;
     caption?: string;
     action?: () => void;
 }
 export interface DropdownActionsProps {
     icon?: string;
-    actions: Action[];
+    actions: DropdownAction[];
     isRight?: boolean;
 }
 export interface DropdownActionsState {

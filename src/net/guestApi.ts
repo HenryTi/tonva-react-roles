@@ -1,7 +1,7 @@
 import { decodeGuestToken } from '../user';
-import { CenterApi } from './uqApi';
+import { CenterApiBase } from './uqApi';
 
-export class GuestApi extends CenterApi {
+export class GuestApi extends CenterApiBase {
     async guest(): Promise<any> {
         //let guest = nav.local.guest.get();
         let ret = await this.get('', {});

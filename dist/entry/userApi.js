@@ -6,10 +6,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { CenterApi } from '../net';
+import { CenterApiBase } from '../net';
 import { decodeUserToken } from '../user';
 //import { nav } from '../ui';
-export class UserApi extends CenterApi {
+export class UserApi extends CenterApiBase {
     login(params) {
         return __awaiter(this, void 0, void 0, function* () {
             //(params as any).device = nav.local.device.get();

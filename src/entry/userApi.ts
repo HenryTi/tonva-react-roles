@@ -1,8 +1,8 @@
-import {CenterApi} from '../net';
+import {CenterApiBase} from '../net';
 import {User, decodeUserToken} from '../user';
 //import { nav } from '../ui';
 
-export class UserApi extends CenterApi {
+export class UserApi extends CenterApiBase {
     async login(params: {user: string, pwd: string, guest: number}): Promise<any> {
         //(params as any).device = nav.local.device.get();
         let ret = await this.get('login', params);

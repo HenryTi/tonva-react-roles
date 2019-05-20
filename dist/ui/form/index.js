@@ -1,4 +1,4 @@
 export { Form } from './form';
-export { Field } from './field';
+export { FormField } from './field';
 export { Context, RowContext } from './context';
 //# sourceMappingURL=index.js.map

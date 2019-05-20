@@ -1,4 +1,4 @@
-import {CenterApi as CenterApiBase} from '../net';
+import {CenterApiBase} from '../net';
 
 //
 

@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { VSheetView } from './vSheetView';
 import { SheetData } from './cSheet';
-export interface State {
+export interface SheetStateFlows {
     flows: any;
     data: any;
 }

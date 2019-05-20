@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { CenterApi as CenterApiBase } from '../net';
+import { CenterApiBase } from '../net';
 //
 export class CenterApi extends CenterApiBase {
     userAppUnits(app) {

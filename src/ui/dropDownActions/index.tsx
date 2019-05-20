@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-export interface Action {
+export interface DropdownAction {
     icon?: string;
     caption?: string;
     action?: () => void;
@@ -9,7 +9,7 @@ export interface Action {
 
 export interface DropdownActionsProps {
     icon?: string;
-    actions: Action[];
+    actions: DropdownAction[];
     isRight?: boolean;
 }
 

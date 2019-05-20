@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { factory } from './widgets';
 import { ContextContainer } from './context';
-export class Field extends React.Component {
+export class FormField extends React.Component {
     render() {
         let { name, children } = this.props;
         let context = this.context;
@@ -18,5 +18,5 @@ export class Field extends React.Component {
         return content;
     }
 }
-Field.contextType = ContextContainer;
+FormField.contextType = ContextContainer;
 //# sourceMappingURL=field.js.map

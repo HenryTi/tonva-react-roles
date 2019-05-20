@@ -45,13 +45,13 @@ export interface StackItem {
     confirmClose?: ()=>Promise<boolean>;
     disposer?: ()=>void;
 }
-export interface State {
+export interface NavViewState {
     stack: StackItem[];
     wait: 0|1|2;
     fetchError: FetchError
 }
 
-export class NavView extends React.Component<Props, State> {
+export class NavView extends React.Component<Props, NavViewState> {
     private stack: StackItem[];
     private htmlTitle: string;
     private waitCount: number = 0;

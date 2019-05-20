@@ -1,4 +1,4 @@
-import { CenterApi as CenterApiBase } from '../net';
+import { CenterApiBase } from '../net';
 export declare class CenterApi extends CenterApiBase {
     userAppUnits(app: number): Promise<any[]>;
 }

@@ -405,7 +405,7 @@ function getCenterChannel() {
         return centerChannel;
     return centerChannel = new HttpChannel(true, centerHost, centerToken);
 }
-export class CenterApi extends ApiBase {
+export class CenterApiBase extends ApiBase {
     constructor(path, showWaiting) {
         super(path, showWaiting);
     }
@@ -418,7 +418,7 @@ export class CenterApi extends ApiBase {
     }
 }
 const uqTokens = 'uqTokens';
-export class UqTokenApi extends CenterApi {
+export class UqTokenApi extends CenterApiBase {
     uq(params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -472,14 +472,14 @@ export class UqTokenApi extends CenterApi {
     }
 }
 export const uqTokenApi = new UqTokenApi('tv/tie/', undefined);
-export class CallCenterApi extends CenterApi {
+export class CallCenterApi extends CenterApiBase {
     directCall(url, method, body) {
         return this.call(url, method, body);
     }
 }
 export const callCenterapi = new CallCenterApi('', undefined);
 const appUqs = 'appUqs';
-export class CenterAppApi extends CenterApi {
+export class CenterAppApi extends CenterApiBase {
     uqs(appOwner, appName) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret;

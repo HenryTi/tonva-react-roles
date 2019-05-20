@@ -6,7 +6,7 @@ export interface FieldProps {
     name: string;
 }
 
-export class Field extends React.Component<FieldProps> {
+export class FormField extends React.Component<FieldProps> {
     static contextType = ContextContainer;
     render() {
         let {name, children } = this.props;

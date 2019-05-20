@@ -3,7 +3,7 @@ import { Page } from '../../../ui';
 import { VSheetView } from './vSheetView';
 import { CSheet, SheetUI, SheetData } from './cSheet';
 
-export interface State {
+export interface SheetStateFlows {
     flows: any;
     data: any;
 }

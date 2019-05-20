@@ -1,5 +1,5 @@
-import { CenterApi } from '../net';
-export declare class UserApi extends CenterApi {
+import { CenterApiBase } from '../net';
+export declare class UserApi extends CenterApiBase {
     login(params: {
         user: string;
         pwd: string;
