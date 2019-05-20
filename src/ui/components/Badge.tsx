@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {observer} from 'mobx-react';
 import classNames from 'classnames';
-import '../css/va-badge.css';
+import '../../css/va-badge.css';
 
 export interface BadgeProps {
     className?: string;

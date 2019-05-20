@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {observer} from 'mobx-react';
-import * as classNames from 'classnames';
-import '../css/va-lmr.css';
+import classNames from 'classnames';
+import '../../css/va-lmr.css';
 
 export interface LMRProps {
     className?: string | string[];

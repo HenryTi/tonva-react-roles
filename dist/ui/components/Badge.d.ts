@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../css/va-badge.css';
+import '../../css/va-badge.css';
 export interface BadgeProps {
     className?: string;
     badge?: string | number;

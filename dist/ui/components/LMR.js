@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import * as classNames from 'classnames';
-import '../css/va-lmr.css';
+import classNames from 'classnames';
+import '../../css/va-lmr.css';
 let LMR = class LMR extends React.Component {
     render() {
         let { className, left, children, right, onClick } = this.props;

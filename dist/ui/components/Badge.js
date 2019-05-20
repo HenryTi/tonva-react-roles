@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
-import '../css/va-badge.css';
+import '../../css/va-badge.css';
 let Badge = class Badge extends React.Component {
     render() {
         let { className, badge, size, color, badgeAlign, badgeVertical, children } = this.props;

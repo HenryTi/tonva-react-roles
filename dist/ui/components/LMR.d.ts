@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../css/va-lmr.css';
+import '../../css/va-lmr.css';
 export interface LMRProps {
     className?: string | string[];
     left?: string | JSX.Element;
