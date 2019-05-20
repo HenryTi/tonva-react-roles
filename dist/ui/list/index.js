@@ -10,7 +10,7 @@ import { observer } from 'mobx-react';
 import { Clickable } from './clickable';
 import { Static } from './static';
 import { Selectable } from './selectable';
-import "../css/va-list.css";
+import "../../css/va-list.css";
 let List = class List extends React.Component {
     constructor(props) {
         super(props);
