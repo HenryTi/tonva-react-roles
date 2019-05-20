@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { nav, Page } from '../ui';
-import userApi from './userApi';
+import { userApi } from './userApi';
 import '../css/va-form.css';
 
 export interface Props {

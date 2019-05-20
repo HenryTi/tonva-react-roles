@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { nav, Page } from '../ui';
-import userApi from './userApi';
+import { userApi } from './userApi';
 import '../css/va-form.css';
 export default class RegSuccess extends React.Component {
     failed() {

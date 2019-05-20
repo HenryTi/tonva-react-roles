@@ -61,6 +61,5 @@ export class UserApi extends CenterApiBase {
         });
     }
 }
-const userApi = new UserApi('tv/user/', undefined);
-export default userApi;
+export const userApi = new UserApi('tv/user/', undefined);
 //# sourceMappingURL=userApi.js.map

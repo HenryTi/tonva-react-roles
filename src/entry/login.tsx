@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {nav, Page, Form, Schema, UiSchema, UiTextItem, UiPasswordItem, Context, UiButton, resLang, StringSchema} from '../ui';
 import { RegisterController, ForgetController } from './register';
-import userApi from './userApi';
+import { userApi } from './userApi';
 import { LoginRes, loginRes } from './res';
 import { tonvaTop, getSender } from './tools';
 import { User } from '../user';

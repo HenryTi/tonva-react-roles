@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observable } from 'mobx';
 import { VPage, Page, Form, ItemSchema, UiSchema, StringSchema, UiTextItem, UiPasswordItem, ButtonSchema, Edit, ImageSchema, nav, UiImageItem } from '../ui';
-import userApi from './userApi';
+import { userApi } from './userApi';
 
 export class EditMeInfo extends React.Component {
     private schema:ItemSchema[] = [

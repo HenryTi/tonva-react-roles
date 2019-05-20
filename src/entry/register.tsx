@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, VPage, UiCustom, UiInputItem, NumSchema, View} from '../ui';
-import userApi from './userApi';
+import { userApi } from './userApi';
 import '../css/va-form.css';
 import { RegisterRes, registerRes } from './res';
 import { tonvaTop, getSender } from './tools';
