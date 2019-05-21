@@ -10,18 +10,24 @@ function renderDate(date:Date|string, withTime:boolean) {
     let now = new Date();
     let tick = now.getTime() - d.getTime();
     let nDate=now.getDate();
-    let _date=d.getDate(), hour=d.getHours(), minute=d.getMinutes(), month=d.getMonth()+1;
+    let _date=d.getDate(), hour=d.getHours(), minute=d.getMinutes(), month=d.getMonth()+1, year=d.getFullYear();
+    let nowYear = now.getFullYear();
     let hm = withTime === true? ' ' + hour + ((minute<10?':0':':') + minute) : '';
-    if (tick < -24*3600*1000) return d.getFullYear()+'年'+month+'月'+_date+'日 ' + hm;
+    if (tick < -24*3600*1000) {
+        if (year === nowYear)
+            return month+'月'+_date+'日' + hm;
+        else
+            return year+'年'+month+'月'+_date+'日' + hm;
+    }
     if (tick < 24*3600*1000) {
         return _date!==nDate? 
             (tick < 0? '明天 ' : '昨天 ') + hm 
             : hm;
     }
-    if (tick < 365*24*3600*1000) {
-        return month+'月'+_date+'日 ';
+    if (year === nowYear) {
+        return month+'月'+_date+'日';
     }
-    return d.getFullYear()+'年'+month+'月'+_date+'日';
+    return year+'年'+month+'月'+_date+'日';
 }
 
 
