@@ -86,6 +86,7 @@ export interface PageProps extends ScrollProps {
     sideBar?: JSX.Element;
     footer?: JSX.Element;
     tabs?: Tab[];
+    tabPosition?: 'top' | 'bottom';
     logout?: boolean | (()=>Promise<void>);
     headerClassName?: string;
 }
@@ -126,9 +127,13 @@ export class Page extends React.Component<PageProps, PageState> {
 
     async componentDidMount() {
         if (this.tabs === undefined) return;
-        let t0 = this.state.tabs[0];
-        if (t0 === undefined) return;
-        await this.onTabClick(t0);
+        let t0 = this.state.tabs.find(v => v.isSelected === true);
+        if (t0 === undefined) {
+            t0 = this.state.tabs[0];
+            if (t0 === undefined) return;
+        }
+        await t0.load && await t0.load();
+        //await this.onTabClick(t0);
     }
 
     private async onTabClick(tab: TabState) {
@@ -159,7 +164,7 @@ export class Page extends React.Component<PageProps, PageState> {
     }
 
     private renderTabs(footer: JSX.Element) {
-        const {header, back, right, keepHeader, headerClassName} = this.props;
+        const {header, back, right, keepHeader, headerClassName, tabPosition} = this.props;
         let cur = this.state.cur;
         let tabs = <div>{
                 this.state.tabs.map((tab, index) => {
@@ -194,6 +199,7 @@ export class Page extends React.Component<PageProps, PageState> {
 
         return <article className='page-container'>
             {pageHeader}
+            {tabPosition==='top' && tabs}
             <section className="position-relative">
             {this.props.sideBar}
             {
@@ -213,7 +219,7 @@ export class Page extends React.Component<PageProps, PageState> {
                 })
             }
             </section>
-            {tabs}
+            {tabPosition!=='top' && tabs}
             {footer}
         </article>;
     }

@@ -79,6 +79,8 @@ export class Tuid extends Entity {
         let { mainFields } = this.schema;
         if (mainFields !== undefined) {
             for (let mf of mainFields) {
+                if (!mf)
+                    continue;
                 let f = this.fields.find(v => v.name === mf.name);
                 if (f === undefined)
                     continue;

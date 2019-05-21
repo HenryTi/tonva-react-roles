@@ -63,7 +63,7 @@ const Tv = observer(({tuidValue, ui, x, nullUI}:Props) => {
         case 'object':
             let divObj = boxIdContent(tuidValue, ui, x);
             if (divObj !== undefined) return divObj;
-            return nullUI();
+            return nullUI === undefined? <>id null</>: nullUI();
         case 'number':
             return <>id...{tuidValue}</>;
     }

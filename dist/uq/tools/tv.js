@@ -71,7 +71,7 @@ const Tv = observer(({ tuidValue, ui, x, nullUI }) => {
             let divObj = boxIdContent(tuidValue, ui, x);
             if (divObj !== undefined)
                 return divObj;
-            return nullUI();
+            return nullUI === undefined ? React.createElement(React.Fragment, null, "id null") : nullUI();
         case 'number':
             return React.createElement(React.Fragment, null,
                 "id...",

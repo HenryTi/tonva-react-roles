@@ -101,10 +101,14 @@ let Page = class Page extends React.Component {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.tabs === undefined)
                 return;
-            let t0 = this.state.tabs[0];
-            if (t0 === undefined)
-                return;
-            yield this.onTabClick(t0);
+            let t0 = this.state.tabs.find(v => v.isSelected === true);
+            if (t0 === undefined) {
+                t0 = this.state.tabs[0];
+                if (t0 === undefined)
+                    return;
+            }
+            (yield t0.load) && (yield t0.load());
+            //await this.onTabClick(t0);
         });
     }
     onTabClick(tab) {
@@ -136,7 +140,7 @@ let Page = class Page extends React.Component {
     onTouchStart(evt) {
     }
     renderTabs(footer) {
-        const { header, back, right, keepHeader, headerClassName } = this.props;
+        const { header, back, right, keepHeader, headerClassName, tabPosition } = this.props;
         let cur = this.state.cur;
         let tabs = React.createElement("div", null, this.state.tabs.map((tab, index) => {
             const { icon, isSelected, title, redDot } = tab;
@@ -164,6 +168,7 @@ let Page = class Page extends React.Component {
             React.createElement(PageHeader, { back: back, center: keepHeader === true ? header : (cur && (cur.header || cur.title)), right: right, className: headerClassName });
         return React.createElement("article", { className: 'page-container' },
             pageHeader,
+            tabPosition === 'top' && tabs,
             React.createElement("section", { className: "position-relative" },
                 this.props.sideBar,
                 this.state.tabs.map((tab, index) => {
@@ -173,7 +178,7 @@ let Page = class Page extends React.Component {
                         return React.createElement(ScrollView, { key: index, className: classNames({ invisible: isSelected === false }), onScroll: tab.onScroll, onScrollTop: tab.onScrollTop, onScrollBottom: tab.onScrollBottom }, (typeof content) === 'function' ? content() : content);
                     }
                 })),
-            tabs,
+            tabPosition !== 'top' && tabs,
             footer);
     }
     renderSingle(footer) {
