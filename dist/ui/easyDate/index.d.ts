@@ -5,3 +5,6 @@ export interface EasyDateProps {
 export declare class EasyDate extends React.Component<EasyDateProps> {
     render(): string;
 }
+export declare class EasyTime extends React.Component<EasyDateProps> {
+    render(): string;
+}

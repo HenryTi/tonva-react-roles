@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-//const radioStyle:React.CSSProperties = {width:'2em', height:'1.2em'};
+const radioStyle = { display: 'flex' };
 export class RadioWidget extends Widget {
     constructor() {
         super(...arguments);
@@ -23,6 +23,11 @@ export class RadioWidget extends Widget {
         for (let i in this.inputs)
             this.inputs[i].disabled = value;
     }
+    /*
+    protected onInputChange = (evt: React.ChangeEvent<any>) => {
+        this.changeValue(evt.target.value, true);
+    }
+    */
     render() {
         let { defaultValue, list } = this.ui;
         let { isRow, inNode } = this.context;
@@ -31,26 +36,16 @@ export class RadioWidget extends Widget {
             rowKey = this.context.rowKey;
         }
         let cn = classNames(this.className, 'form-radio-inline');
-        return React.createElement("span", { className: cn }, list.map((v, index) => {
+        return React.createElement("span", { className: cn, style: radioStyle }, list.map((v, index) => {
             let { value, title } = v;
             let name = this.name;
             if (rowKey !== undefined)
                 name += '-' + rowKey;
             return React.createElement("label", { key: index, className: "form-radio-inline" },
-                React.createElement("input", { ref: input => this.inputs[index] = input, type: "radio", name: name, value: value, defaultChecked: (this.defaultValue || defaultValue) === value }),
+                React.createElement("input", { ref: input => this.inputs[index] = input, type: "radio", name: name, value: value, defaultChecked: (this.defaultValue || defaultValue) === value, onChange: this.onInputChange }),
                 title || value);
             //</span>
         }));
     }
 }
-/*
-<div className="form-control d-flex border-0"><input
-ref={(input)=>this.input = input}
-className={classNames(this.className, 'align-self-center')}
-type="checkbox"
-style={{maxHeight:"1.2em"}}
-defaultValue={this.defaultValue}
-onChange={this.onChange} />
-</div>
-*/ 
 //# sourceMappingURL=radioWidget.js.map

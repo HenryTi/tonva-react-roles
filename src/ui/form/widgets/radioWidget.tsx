@@ -6,7 +6,8 @@ import { UiRadio } from '../../schema';
 import { RowContext } from '../context';
 
 
-//const radioStyle:React.CSSProperties = {width:'2em', height:'1.2em'};
+const radioStyle:React.CSSProperties = {display: 'flex'};
+
 export class RadioWidget extends Widget {
     protected inputs: {[index:number]: HTMLInputElement} = {};
     protected ui: UiRadio;
@@ -26,6 +27,12 @@ export class RadioWidget extends Widget {
         for (let i in this.inputs) this.inputs[i].disabled = value
     }
 
+    /*
+    protected onInputChange = (evt: React.ChangeEvent<any>) => {
+        this.changeValue(evt.target.value, true);
+    }
+    */
+
     render() {
         let {defaultValue, list} = this.ui;
         let {isRow, inNode} = this.context;
@@ -34,14 +41,15 @@ export class RadioWidget extends Widget {
             rowKey = (this.context as RowContext).rowKey;
         }
         let cn = classNames(this.className, 'form-radio-inline');
-        return <span className={cn}>
+        return <span className={cn} style={radioStyle}>
                 {list.map((v,index) => {
                     let {value, title} = v;
                     let name = this.name;
                     if (rowKey !== undefined) name += '-' + rowKey;
                     return <label key={index} className="form-radio-inline">
                         <input ref={input=>this.inputs[index]=input} type="radio" name={name}
-                            value={value} defaultChecked={(this.defaultValue || defaultValue)===value} />
+                            value={value} defaultChecked={(this.defaultValue || defaultValue)===value}
+                            onChange={this.onInputChange} />
                         {title || value}
                     </label>;
                     //</span>
@@ -49,13 +57,3 @@ export class RadioWidget extends Widget {
             </span>;
     }
 }
-/*
-<div className="form-control d-flex border-0"><input
-ref={(input)=>this.input = input}
-className={classNames(this.className, 'align-self-center')}
-type="checkbox"
-style={{maxHeight:"1.2em"}}
-defaultValue={this.defaultValue} 
-onChange={this.onChange} />
-</div>
-*/
