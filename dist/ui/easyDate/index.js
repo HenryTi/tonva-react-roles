@@ -18,7 +18,7 @@ function renderDate(date, withTime) {
     if (tick < 24 * 3600 * 1000) {
         return _date !== nDate ?
             (tick < 0 ? '明天 ' : '昨天 ') + hm
-            : hm;
+            : withTime === true ? hm : '今天';
     }
     if (year === nowYear) {
         return month + '月' + _date + '日';
