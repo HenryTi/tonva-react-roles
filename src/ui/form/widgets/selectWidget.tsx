@@ -18,8 +18,9 @@ export class SelectWidget extends SelectBaseWidget {
     setDisabled(value:boolean) {this.select.disabled = this.disabled = value}
 
     render() {
+        let {list} = this.ui;
         if (this.readOnly === true) {
-            let option = this.items.find(v => v.value === this.value);
+            let option = list.find(v => v.value === this.value);
             let title = (option === undefined)? '(???)' : option.title;
             return <span className="form-control w-min-6c">{title}</span>;
         }
@@ -28,7 +29,7 @@ export class SelectWidget extends SelectBaseWidget {
             className={classNames(this.className, 'form-control')}
             defaultValue={this.defaultValue} 
             onChange={this.onInputChange}>
-            {this.items.map((v,index) => {
+            {list.map((v,index) => {
                 let {title, value} = v;
                 let cn:string;
                 //if (value === undefined || value === null) cn = 'text-light small';

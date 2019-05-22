@@ -35,7 +35,7 @@ export class RadioWidget extends SelectBaseWidget {
         }
         let cn = classNames(this.className);
         return <div className={cn} style={autoHeight}>
-            {this.items.map((v,index) => {
+            {this.ui.list.map((v,index) => {
                 let {value, title} = v;
                 let name = this.name;
                 if (rowKey !== undefined) name += '-' + rowKey;

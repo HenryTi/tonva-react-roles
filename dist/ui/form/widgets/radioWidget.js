@@ -32,7 +32,7 @@ export class RadioWidget extends SelectBaseWidget {
             rowKey = this.context.rowKey;
         }
         let cn = classNames(this.className);
-        return React.createElement("div", { className: cn, style: autoHeight }, this.items.map((v, index) => {
+        return React.createElement("div", { className: cn, style: autoHeight }, this.ui.list.map((v, index) => {
             let { value, title } = v;
             let name = this.name;
             if (rowKey !== undefined)

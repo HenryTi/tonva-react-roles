@@ -377,10 +377,6 @@
         "version": "5cf2ff7c94608c90bbcb8b3cfd8091c1ae7247e7a98ac5acfca550c4863094b6",
         "signature": "4cd1040a08b7875daf8f19bac1a46561af1fa8b134b282cd60c02f4c6ec8eb13"
       },
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts": {
-        "version": "6e3017c85594828fe07b3f7293f0a2e0cf20bf21c7bf0a0b40e3587c37ef598b",
-        "signature": "987f8487769c18c41e489b758814f5454af7eb88b1fbeae4c80cc171fbe4aee8"
-      },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/field.tsx": {
         "version": "d7c92cadd90c8f9d1f8e3de13ecc1a34df53a8ed7abdf4bfa02d0cd12d7031af",
         "signature": "20c5ad493ce4b284554aaeb5ca9bba6a1d35d8f2c747d1ffceafc816a46a8874"
@@ -426,15 +422,15 @@
         "signature": "340aef313ff8eaa1cb11115f397e4c8b9aaca8d33aad2f1f1ec6e617a288636f"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/selectbasewidget.tsx": {
-        "version": "eb2eb300feaaa8777a0b7af8639fc3f91e4469dfe0ad980e52c72c0a2cf46adf",
-        "signature": "738b4a1ebd9d35e8377b3e0257fc73551a02b02b7772acbda8e8d1d230b6d642"
+        "version": "1d09900286fbf8ed013c5f57e81918e3449cfe45af818f4603097cbb1bf1c663",
+        "signature": "74445afba35333a71d8c2b8a1cfa9141a3fefca7ce6ee781c96824348993aeef"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/selectwidget.tsx": {
-        "version": "7126efa95602119a8e47f0e20f3d2792683469a6e6832f6b60abf468499d3054",
+        "version": "17372dd350374c88c5f32b7ac449e22cb19ed75afb10deda390f99562a6ffcd1",
         "signature": "0d3d57b9f0692ec0c230cd89f30891dfccfbb9299570b7f50c6047b2f8d85420"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/radiowidget.tsx": {
-        "version": "4292d1b7b6e3f4035628a8b93c72c34b969ef5ad83a44bc18c4d5af64f5ba485",
+        "version": "346bc2461c27bdbcb829ceebb9d175409e81d42dc2b02ca67716e5ee8326484a",
         "signature": "1ba1ff385dd301cb3ff9616a183f4fff208539ed2baa1dd6a414f0468701757b"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/rangewidget.tsx": {
@@ -493,13 +489,17 @@
         "version": "5ab29a546a5988e90e80471674aace384e5dbc04b598425deda703185dddf3ac",
         "signature": "6f4ca923a9b975358e0b2910324761dc6fd97cdc4eb77d4f6d9c7091e681710e"
       },
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts": {
+        "version": "6e3017c85594828fe07b3f7293f0a2e0cf20bf21c7bf0a0b40e3587c37ef598b",
+        "signature": "987f8487769c18c41e489b758814f5454af7eb88b1fbeae4c80cc171fbe4aee8"
+      },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/uischema.ts": {
-        "version": "16644d016dc7e8839d8e39f9681dfdb82558fd91706f1b113d2508ff26d8d2f8",
-        "signature": "39a8f5cc7e8bf8b2087ea55da02ff1adcdac70afc4c6f24900aedccee2967443"
+        "version": "41cb76cdbc218a6d3e1827362ea4cd714733e3a3c562388b7a55e27589851286",
+        "signature": "78d51908c36beca9cce2d7826e1f57267e2726e5481c77956ee252a4f9b62b9b"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/index.ts": {
-        "version": "c458fb52f5c3e4dd20da1b323b2c7d8c8ad68c262c72090dd5a4b7978c3935b4",
-        "signature": "c458fb52f5c3e4dd20da1b323b2c7d8c8ad68c262c72090dd5a4b7978c3935b4"
+        "version": "78e10af51af6b2d050922e7d491eca0f38ce510ed3ab4ba86bf38e4c1e0ea051",
+        "signature": "a2ff0801b9d3d5711e8029d59409ce7b39fd35d72303dbd6495fa1495ea97a4d"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/index.ts": {
         "version": "31144f2faec365ac154c9897c0704c8d8d13c1b27c7d30b824d9ddc76b4eb73b",
@@ -510,15 +510,15 @@
         "signature": "6e7b2ebd15016ca0a130718a12dd5e13c6afa9267efe0b03ae410716c53c2cd3"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectbaseitemedit.tsx": {
-        "version": "d5e4ee22fd819ead9f7337b0d7e3f4456e37cad2a40b60f16b499c8b7ea2d23b",
-        "signature": "70d11397ae89386d3c845bfcd49f7844ad22bda84104c991ebca7a881ae0ed08"
+        "version": "8ca48afaed8c7fb4823e70b1c553086a7617c74741ab4b04e95d947c0f0939be",
+        "signature": "b22fc1db9dbc2aa653d1c3f9aaa2a50a76070c3b2854914411a2ebc08706d0bd"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/radioitemedit.tsx": {
-        "version": "1dadabf5027b15a5b42174e70e4dfa33df859e71e8c90af48d2b2f911d31eb33",
+        "version": "4803ca0b0c775688e58060060b502d504de2832bc8ebb21145ba3338515df8fe",
         "signature": "5baf2b920b169d1d1ebcdae36270ddcd1a3ba40d075ecb1ecce723d765c001b5"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx": {
-        "version": "0438434d8d8e3a18d2d13c2d35578264c676960e30188c5823ac9d1803eab9de",
+        "version": "f9e19a778c217615391c2d8563c3ebdaafd59ffcc09494ce55a94801174c3293",
         "signature": "cdc39d86d31f9347ac780b231dc0c3c634cb353e858e2a0cdb890339df8e269d"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/schema.ts": {
@@ -1586,8 +1586,8 @@
         "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/index.ts"
       ],
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/index.ts": [
-        "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts",
-        "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/uischema.ts"
+        "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/uischema.ts",
+        "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts"
       ],
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/index.ts": [
         "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/form.tsx",
@@ -3550,7 +3550,6 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/nav.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/vm.tsx",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/field.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/formres.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/rules/index.ts",
@@ -3579,13 +3578,13 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/widgets/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/form.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/context.tsx",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/schema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/uischema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/stringitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectbaseitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/radioitemedit.tsx",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/schema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/uischema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/edit.tsx",
@@ -3721,7 +3720,8 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/inspector.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx"
     ]
   },
   "version": "3.4.5"

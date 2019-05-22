@@ -31,8 +31,8 @@ export class RadioItemEdit extends SelectItemBaseEdit {
                 this.verifyValue();
                 if (this.error === undefined) resolve(this.newValue);
             }}>保存</button>;
-        let content = this.items?
-        this.items.map((v, index:number) => {
+        let content = list?
+        list.map((v, index:number) => {
                 let {title, value} = v;
                 return <label key={index} className="px-3 py-2 cursor-pointer">
                     <input name={name} type="radio" value={value} 

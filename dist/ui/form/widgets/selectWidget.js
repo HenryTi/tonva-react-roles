@@ -19,12 +19,13 @@ export class SelectWidget extends SelectBaseWidget {
     setReadOnly(value) { this.select.disabled = this.readOnly = !value; }
     setDisabled(value) { this.select.disabled = this.disabled = value; }
     render() {
+        let { list } = this.ui;
         if (this.readOnly === true) {
-            let option = this.items.find(v => v.value === this.value);
+            let option = list.find(v => v.value === this.value);
             let title = (option === undefined) ? '(???)' : option.title;
             return React.createElement("span", { className: "form-control w-min-6c" }, title);
         }
-        return React.createElement("select", { ref: (select) => this.select = select, className: classNames(this.className, 'form-control'), defaultValue: this.defaultValue, onChange: this.onInputChange }, this.items.map((v, index) => {
+        return React.createElement("select", { ref: (select) => this.select = select, className: classNames(this.className, 'form-control'), defaultValue: this.defaultValue, onChange: this.onInputChange }, list.map((v, index) => {
             let { title, value } = v;
             let cn;
             //if (value === undefined || value === null) cn = 'text-light small';

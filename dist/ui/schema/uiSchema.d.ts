@@ -57,11 +57,10 @@ export interface UiCheckItem extends UiItem {
     trueValue?: any;
     falseValue?: any;
 }
-export interface UiSelectValue {
+export interface UiSelectItem {
     value: any;
     title: string;
 }
-export declare type UiSelectItem = UiSelectValue | string;
 export interface UiSelectBase extends UiItem {
     rules?: FieldRule | FieldRule[];
     defaultValue: any;
