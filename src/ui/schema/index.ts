@@ -3,7 +3,7 @@ import { UiSelectItem } from './uiSchema';
 export * from './schema';
 export * from './uiSchema';
 
-export function toUiSelectValues(items: string[]):UiSelectItem[] {
+export function toUiSelectItems(items: string[]):UiSelectItem[] {
     let ret:UiSelectItem[] = [];
     for (let item of items) {
         let p = item.indexOf(':');

@@ -1,4 +1,4 @@
-export function toUiSelectValues(items) {
+export function toUiSelectItems(items) {
     let ret = [];
     for (let item of items) {
         let p = item.indexOf(':');

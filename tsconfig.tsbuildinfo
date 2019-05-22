@@ -498,8 +498,8 @@
         "signature": "78d51908c36beca9cce2d7826e1f57267e2726e5481c77956ee252a4f9b62b9b"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/schema/index.ts": {
-        "version": "78e10af51af6b2d050922e7d491eca0f38ce510ed3ab4ba86bf38e4c1e0ea051",
-        "signature": "a2ff0801b9d3d5711e8029d59409ce7b39fd35d72303dbd6495fa1495ea97a4d"
+        "version": "49fe1e33c035cef27cc3e492988fc5d6a5d75afeda97af367320fd9847d6c418",
+        "signature": "777cfe2011ffbe157e0bc9b3a22f946c4524ccb55c172c1a18ca7da07e32c403"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/index.ts": {
         "version": "31144f2faec365ac154c9897c0704c8d8d13c1b27c7d30b824d9ddc76b4eb73b",
@@ -3585,6 +3585,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/stringitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectbaseitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/radioitemedit.tsx",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/schema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/form/uischema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/edit.tsx",
@@ -3720,8 +3721,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/inspector.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.4.5"
