@@ -1,12 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { TextWidget } from './textWidget';
 import { Widget } from './widget';
 import { UiRadio } from '../../schema';
 import { RowContext } from '../context';
 
-
-const radioStyle:React.CSSProperties = {display: 'flex'};
+//const radioStyle:React.CSSProperties = {display: 'flex'};
 
 export class RadioWidget extends Widget {
     protected inputs: {[index:number]: HTMLInputElement} = {};
@@ -27,33 +25,27 @@ export class RadioWidget extends Widget {
         for (let i in this.inputs) this.inputs[i].disabled = value
     }
 
-    /*
-    protected onInputChange = (evt: React.ChangeEvent<any>) => {
-        this.changeValue(evt.target.value, true);
-    }
-    */
-
     render() {
-        let {defaultValue, list} = this.ui;
+        let {defaultValue, list, radioClassName} = this.ui;
         let {isRow, inNode} = this.context;
         let rowKey:number;
         if (isRow === true) {
             rowKey = (this.context as RowContext).rowKey;
         }
-        let cn = classNames(this.className, 'form-radio-inline');
-        return <span className={cn} style={radioStyle}>
-                {list.map((v,index) => {
-                    let {value, title} = v;
-                    let name = this.name;
-                    if (rowKey !== undefined) name += '-' + rowKey;
-                    return <label key={index} className="form-radio-inline">
-                        <input ref={input=>this.inputs[index]=input} type="radio" name={name}
-                            value={value} defaultChecked={(this.defaultValue || defaultValue)===value}
-                            onChange={this.onInputChange} />
-                        {title || value}
-                    </label>;
-                    //</span>
-                })}
-            </span>;
+        let cn = classNames(this.className);
+        return <div className={cn}>
+            {list.map((v,index) => {
+                let {value, title} = v;
+                let name = this.name;
+                if (rowKey !== undefined) name += '-' + rowKey;
+                return <label key={index} className={classNames('form-radio-inline', radioClassName)}>
+                    <input ref={input=>this.inputs[index]=input} type="radio" name={name}
+                        value={value} defaultChecked={(this.defaultValue || defaultValue)===value}
+                        onChange={this.onInputChange} />
+                    {title || value}
+                </label>;
+                //</span>
+            })}
+        </div>;
     }
 }

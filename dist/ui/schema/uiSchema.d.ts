@@ -70,6 +70,7 @@ export interface UiSelect extends UiSelectBase {
 }
 export interface UiRadio extends UiSelectBase {
     widget: 'radio';
+    radioClassName?: string;
 }
 export interface UiItemCollection {
     [field: string]: UiItem;
