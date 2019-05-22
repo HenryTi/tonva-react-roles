@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem, UiRadio } from '../schema';
+import { UiRadio } from '../schema';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { ItemEdit } from './itemEdit';
+import { SelectItemBaseEdit } from './selectBaseItemEdit';
 
-export class RadioItemEdit extends ItemEdit {
+export class RadioItemEdit extends SelectItemBaseEdit {
     protected uiItem: UiRadio;
     protected async internalStart():Promise<any> {
         return new Promise<any>((resolve, reject) => {
@@ -32,8 +31,8 @@ export class RadioItemEdit extends ItemEdit {
                 this.verifyValue();
                 if (this.error === undefined) resolve(this.newValue);
             }}>保存</button>;
-        let content = list?
-            list.map((v, index:number) => {
+        let content = this.items?
+        this.items.map((v, index:number) => {
                 let {title, value} = v;
                 return <label key={index} className="px-3 py-2 cursor-pointer">
                     <input name={name} type="radio" value={value} 

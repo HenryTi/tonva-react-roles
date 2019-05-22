@@ -23,6 +23,9 @@ export class ItemEdit {
         let { name } = itemSchema;
         this.name = name;
         this.label = label;
+        this.init();
+    }
+    init() {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {

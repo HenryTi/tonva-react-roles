@@ -3,10 +3,11 @@ import classNames from 'classnames';
 import { Widget } from './widget';
 import { UiRadio } from '../../schema';
 import { RowContext } from '../context';
+import { SelectBaseWidget } from './selectBaseWidget';
 
 //const radioStyle:React.CSSProperties = {display: 'flex'};
 const autoHeight:React.CSSProperties = {height: 'auto'};
-export class RadioWidget extends Widget {
+export class RadioWidget extends SelectBaseWidget {
     protected inputs: {[index:number]: HTMLInputElement} = {};
     protected ui: UiRadio;
 
@@ -26,7 +27,7 @@ export class RadioWidget extends Widget {
     }
 
     render() {
-        let {defaultValue, list, radioClassName} = this.ui;
+        let {defaultValue, radioClassName} = this.ui;
         let {isRow, inNode} = this.context;
         let rowKey:number;
         if (isRow === true) {
@@ -34,7 +35,7 @@ export class RadioWidget extends Widget {
         }
         let cn = classNames(this.className);
         return <div className={cn} style={autoHeight}>
-            {list.map((v,index) => {
+            {this.items.map((v,index) => {
                 let {value, title} = v;
                 let name = this.name;
                 if (rowKey !== undefined) name += '-' + rowKey;

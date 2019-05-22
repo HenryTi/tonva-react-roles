@@ -10,8 +10,8 @@ import * as React from 'react';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { ItemEdit } from './itemEdit';
-export class RadioItemEdit extends ItemEdit {
+import { SelectItemBaseEdit } from './selectBaseItemEdit';
+export class RadioItemEdit extends SelectItemBaseEdit {
     constructor() {
         super(...arguments);
         this.onChange = (value) => {
@@ -28,8 +28,8 @@ export class RadioItemEdit extends ItemEdit {
                     if (this.error === undefined)
                         resolve(this.newValue);
                 } }, "\u4FDD\u5B58");
-            let content = list ?
-                list.map((v, index) => {
+            let content = this.items ?
+                this.items.map((v, index) => {
                     let { title, value } = v;
                     return React.createElement("label", { key: index, className: "px-3 py-2 cursor-pointer" },
                         React.createElement("input", { name: name, type: "radio", value: value, onClick: () => this.onChange(value), defaultChecked: value === defaultValue }),

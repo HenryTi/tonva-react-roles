@@ -10,10 +10,10 @@ import * as React from 'react';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { ItemEdit } from './itemEdit';
-export class SelectItemEdit extends ItemEdit {
-    constructor() {
-        super(...arguments);
+import { SelectItemBaseEdit } from './selectBaseItemEdit';
+export class SelectItemEdit extends SelectItemBaseEdit {
+    constructor(itemSchema, uiItem, label, value) {
+        super(itemSchema, uiItem, label, value);
         this.onChange = (value) => {
             this.newValue = value;
             let preValue = this.value;
@@ -21,9 +21,8 @@ export class SelectItemEdit extends ItemEdit {
         };
         this.page = observer((props) => {
             let { resolve, reject } = props;
-            let { list } = this.uiItem;
-            let content = list ?
-                list.map((v, index) => {
+            let content = this.items ?
+                this.items.map((v, index) => {
                     let { title, value } = v;
                     return React.createElement("div", { key: index, className: "px-3 py-2 cursor-pointer bg-white mb-1", onClick: () => { this.onChange(value); resolve(this.newValue); } }, title || value);
                 })

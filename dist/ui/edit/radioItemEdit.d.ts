@@ -1,6 +1,6 @@
 import { UiRadio } from '../schema';
-import { ItemEdit } from './itemEdit';
-export declare class RadioItemEdit extends ItemEdit {
+import { SelectItemBaseEdit } from './selectBaseItemEdit';
+export declare class RadioItemEdit extends SelectItemBaseEdit {
     protected uiItem: UiRadio;
     protected internalStart(): Promise<any>;
     private onChange;

@@ -3,11 +3,16 @@ import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem, UiSelect } from '../s
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { ItemEdit } from './itemEdit';
+import { SelectItemBaseEdit } from './selectBaseItemEdit';
 
-export class SelectItemEdit extends ItemEdit {
+export class SelectItemEdit extends SelectItemBaseEdit {
     protected uiItem: UiSelect;
+
+    constructor(itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {
+        super(itemSchema, uiItem, label, value);
+
+    }
+
     protected async internalStart():Promise<any> {
         return new Promise<any>((resolve, reject) => {
             let element = React.createElement(this.page, {resolve:resolve, reject:reject});
@@ -23,9 +28,8 @@ export class SelectItemEdit extends ItemEdit {
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
         let {resolve, reject} = props;
-        let {list} = this.uiItem;
-        let content = list?
-            list.map((v, index:number) => {
+        let content = this.items?
+            this.items.map((v, index:number) => {
                 let {title, value} = v;
                 return <div key={index} className="px-3 py-2 cursor-pointer bg-white mb-1" onClick={()=>{this.onChange(value); resolve(this.newValue)}}>
                     {title || value}

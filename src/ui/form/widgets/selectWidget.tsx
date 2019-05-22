@@ -1,10 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { observable } from 'mobx';
-import { Widget } from './widget';
 import { UiSelect } from '../../schema';
+import { SelectBaseWidget } from './selectBaseWidget';
 
-export class SelectWidget extends Widget {
+export class SelectWidget extends SelectBaseWidget {
     protected select: HTMLSelectElement;
     protected ui: UiSelect;
     @observable protected readOnly: boolean;
@@ -19,7 +19,7 @@ export class SelectWidget extends Widget {
 
     render() {
         if (this.readOnly === true) {
-            let option = this.ui.list.find(v => v.value === this.value);
+            let option = this.items.find(v => v.value === this.value);
             let title = (option === undefined)? '(???)' : option.title;
             return <span className="form-control w-min-6c">{title}</span>;
         }
@@ -28,7 +28,7 @@ export class SelectWidget extends Widget {
             className={classNames(this.className, 'form-control')}
             defaultValue={this.defaultValue} 
             onChange={this.onInputChange}>
-            {this.ui.list.map((v,index) => {
+            {this.items.map((v,index) => {
                 let {title, value} = v;
                 let cn:string;
                 //if (value === undefined || value === null) cn = 'text-light small';
