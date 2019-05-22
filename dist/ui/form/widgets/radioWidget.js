@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
 //const radioStyle:React.CSSProperties = {display: 'flex'};
+const autoHeight = { height: 'auto' };
 export class RadioWidget extends Widget {
     constructor() {
         super(...arguments);
@@ -31,7 +32,7 @@ export class RadioWidget extends Widget {
             rowKey = this.context.rowKey;
         }
         let cn = classNames(this.className);
-        return React.createElement("div", { className: cn }, list.map((v, index) => {
+        return React.createElement("div", { className: cn, style: autoHeight }, list.map((v, index) => {
             let { value, title } = v;
             let name = this.name;
             if (rowKey !== undefined)

@@ -5,7 +5,7 @@ import { UiRadio } from '../../schema';
 import { RowContext } from '../context';
 
 //const radioStyle:React.CSSProperties = {display: 'flex'};
-
+const autoHeight:React.CSSProperties = {height: 'auto'};
 export class RadioWidget extends Widget {
     protected inputs: {[index:number]: HTMLInputElement} = {};
     protected ui: UiRadio;
@@ -33,7 +33,7 @@ export class RadioWidget extends Widget {
             rowKey = (this.context as RowContext).rowKey;
         }
         let cn = classNames(this.className);
-        return <div className={cn}>
+        return <div className={cn} style={autoHeight}>
             {list.map((v,index) => {
                 let {value, title} = v;
                 let name = this.name;
