@@ -15,10 +15,12 @@ export declare class IdCache {
     cacheValue(val: any): boolean;
     protected getIdFromObj(val: any): number;
     cacheIds(): Promise<void>;
+    private cacheIdValues;
     protected divName: string;
     protected loadIds(): Promise<any[]>;
     protected unpackTuidIds(values: any[] | string): any[];
     protected cacheTuidFieldValues(tuidValue: any): void;
+    getObjFromId<T>(id: number): Promise<T>;
 }
 export declare class IdDivCache extends IdCache {
     private div;

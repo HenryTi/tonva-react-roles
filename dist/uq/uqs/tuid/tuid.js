@@ -74,6 +74,11 @@ export class TuidLocal extends Tuid {
         return new BoxId(this, id);
     }
     valueFromId(id) { return this.idCache.getValue(id); }
+    getObjFromId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.idCache.getObjFromId(id);
+        });
+    }
     cacheIds() {
         this.idCache.cacheIds();
         if (this.divs === undefined)
@@ -201,6 +206,11 @@ export class TuidImport extends Tuid {
     useId(id) { this.tuidLocal.useId(id); }
     boxId(id) { return this.tuidLocal.boxId(id); }
     valueFromId(id) { return this.tuidLocal.valueFromId(id); }
+    getObjFromId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.getObjFromId(id);
+        });
+    }
     get hasDiv() { return this.tuidLocal.hasDiv; }
     div(name) { return this.tuidLocal.div(name); }
     load(id) {

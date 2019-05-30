@@ -113,14 +113,19 @@ export class IdCache {
             if (this.waitingIds.length === 0)
                 return;
             let tuidValues = yield this.loadIds();
-            if (tuidValues !== undefined) {
-                let tuids = this.unpackTuidIds(tuidValues);
-                for (let tuidValue of tuids) {
-                    if (this.cacheValue(tuidValue) === false)
-                        continue;
-                    this.cacheTuidFieldValues(tuidValue);
-                    //this.afterCacheValue(tuidValue);
-                }
+            yield this.cacheIdValues(tuidValues);
+        });
+    }
+    cacheIdValues(tuidValues) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (tuidValues === undefined)
+                return;
+            let tuids = this.unpackTuidIds(tuidValues);
+            for (let tuidValue of tuids) {
+                if (this.cacheValue(tuidValue) === false)
+                    continue;
+                this.cacheTuidFieldValues(tuidValue);
+                //this.afterCacheValue(tuidValue);
             }
         });
     }
@@ -135,6 +140,20 @@ export class IdCache {
     }
     cacheTuidFieldValues(tuidValue) {
         this.tuidLocal.cacheTuidFieldValues(tuidValue);
+    }
+    getObjFromId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let val = this.cache.get(id);
+            switch (typeof val) {
+                case 'object': return val;
+                case 'number':
+                    this.cache.set(id, id);
+                    break;
+            }
+            let ret = yield this.tuidLocal.loadTuidIds(this.divName, [id]);
+            yield this.cacheIdValues(ret);
+            return this.cache.get(id);
+        });
     }
 }
 export class IdDivCache extends IdCache {

@@ -109,13 +109,16 @@ export class IdCache {
     async cacheIds():Promise<void> {
         if (this.waitingIds.length === 0) return;
         let tuidValues = await this.loadIds();
-        if (tuidValues !== undefined) {
-            let tuids = this.unpackTuidIds(tuidValues);
-            for (let tuidValue of tuids) {
-                if (this.cacheValue(tuidValue) === false) continue;
-                this.cacheTuidFieldValues(tuidValue);
-                //this.afterCacheValue(tuidValue);
-            }
+        await this.cacheIdValues(tuidValues);
+    }
+
+    private async cacheIdValues(tuidValues: any[]) {
+        if (tuidValues === undefined) return;
+        let tuids = this.unpackTuidIds(tuidValues);
+        for (let tuidValue of tuids) {
+            if (this.cacheValue(tuidValue) === false) continue;
+            this.cacheTuidFieldValues(tuidValue);
+            //this.afterCacheValue(tuidValue);
         }
     }
     protected divName:string = undefined;
@@ -128,6 +131,17 @@ export class IdCache {
     }
     protected cacheTuidFieldValues(tuidValue: any) {
         this.tuidLocal.cacheTuidFieldValues(tuidValue);
+    }
+
+    async getObjFromId<T>(id:number):Promise<T> {
+        let val = this.cache.get(id);
+        switch (typeof val) {
+            case 'object': return val;
+            case 'number': this.cache.set(id, id); break;
+        }
+        let ret = await this.tuidLocal.loadTuidIds(this.divName, [id]);
+        await this.cacheIdValues(ret);
+        return this.cache.get(id);
     }
 }
 

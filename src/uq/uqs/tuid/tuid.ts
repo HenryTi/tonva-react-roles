@@ -43,6 +43,7 @@ export abstract class Tuid extends Entity {
     abstract useId(id:number):void;
     abstract boxId(id:number):BoxId;
     abstract valueFromId(id:number):any;
+    abstract async getObjFromId<T>(id:number):Promise<T>;
     cacheIds() {}
     isImport = false;
     abstract get hasDiv():boolean;// {return this.divs!==undefined}
@@ -95,6 +96,10 @@ export class TuidLocal extends Tuid {
         return new BoxId(this, id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
+    async getObjFromId<T>(id:number):Promise<T> {
+        return await this.idCache.getObjFromId<T>(id);
+    }
+
     cacheIds() {
         this.idCache.cacheIds();
         if (this.divs === undefined) return;
@@ -208,6 +213,9 @@ export class TuidImport extends Tuid {
     useId(id:number) {this.tuidLocal.useId(id);}
     boxId(id:number):BoxId {return this.tuidLocal.boxId(id);}
     valueFromId(id:number) {return this.tuidLocal.valueFromId(id)}
+    async getObjFromId<T>(id:number):Promise<T> {
+        return await this.tuidLocal.getObjFromId<T>(id);
+    }
     get hasDiv():boolean {return this.tuidLocal.hasDiv}
     div(name:string):TuidDiv {return this.tuidLocal.div(name)}
     async load(id:number|BoxId):Promise<any> {

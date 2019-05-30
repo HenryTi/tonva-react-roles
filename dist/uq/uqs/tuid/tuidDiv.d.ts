@@ -24,6 +24,7 @@ export declare class TuidDiv extends Entity {
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
+    getObjFromId<T>(id: number): Promise<T>;
     cacheIds(): Promise<void>;
     cacheTuidFieldValues(values: any): void;
     unpackTuidIds(values: any[] | string): any[];

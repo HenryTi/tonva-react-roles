@@ -12,6 +12,7 @@ export declare class BoxId {
     isUndefined(): boolean;
     ui(): TvTemplet;
     res(): any;
+    getObj<T>(): Promise<T>;
 }
 export declare class BoxDivId extends BoxId {
     private div;
@@ -21,4 +22,5 @@ export declare class BoxDivId extends BoxId {
     isUndefined(): boolean;
     ui(): TvTemplet;
     res(): any;
+    getObj<T>(): Promise<T>;
 }

@@ -22,6 +22,7 @@ export declare abstract class Tuid extends Entity {
     abstract useId(id: number): void;
     abstract boxId(id: number): BoxId;
     abstract valueFromId(id: number): any;
+    abstract getObjFromId<T>(id: number): Promise<T>;
     cacheIds(): void;
     isImport: boolean;
     abstract readonly hasDiv: boolean;
@@ -43,6 +44,7 @@ export declare class TuidLocal extends Tuid {
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
+    getObjFromId<T>(id: number): Promise<T>;
     cacheIds(): void;
     cacheTuids(defer: number): void;
     readonly hasDiv: boolean;
@@ -68,6 +70,7 @@ export declare class TuidImport extends Tuid {
     useId(id: number): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
+    getObjFromId<T>(id: number): Promise<T>;
     readonly hasDiv: boolean;
     div(name: string): TuidDiv;
     load(id: number | BoxId): Promise<any>;

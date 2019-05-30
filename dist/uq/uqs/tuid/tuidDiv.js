@@ -54,6 +54,11 @@ export class TuidDiv extends Entity {
     valueFromId(id) {
         return this.idCache.getValue(id);
     }
+    getObjFromId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.idCache.getObjFromId(id);
+        });
+    }
     cacheIds() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.idCache.cacheIds();

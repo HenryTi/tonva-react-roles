@@ -50,6 +50,10 @@ export class BoxId {
     isUndefined(): boolean {return this.tuid === undefined}
     ui(): TvTemplet {return this.tuid.ui}
     res(): any {return this.tuid.res}
+
+    async getObj<T>(): Promise<T> {
+        return await this.tuid.getObjFromId<T>(this.id);
+    }
 }
 
 export class BoxDivId extends BoxId {
@@ -63,6 +67,11 @@ export class BoxDivId extends BoxId {
     isUndefined(): boolean {return this.div === undefined}
     ui(): TvTemplet {return this.div.ui}
     res(): any {return this.div.res}
+
+    async getObj<T>(): Promise<T> {
+        return await this.div.getObjFromId<T>(this.id);
+    }
+
 /*
     render(ui:TvTemplet, x:any):JSX.Element {
         if (this.id === undefined || this.id === null) return;
