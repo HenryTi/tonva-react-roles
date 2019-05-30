@@ -11,7 +11,7 @@ export function toUiSelectItems(items) {
         }
         else {
             val = Number(item.substr(0, pos));
-            title = item.substr(pos);
+            title = item.substr(pos + 1);
         }
         ret.push({ value: val, title: title });
     }

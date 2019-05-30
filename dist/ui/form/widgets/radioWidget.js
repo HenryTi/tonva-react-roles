@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-const radioStyle = { display: 'flex' };
+const radioStyle = { height: 'auto' };
 export class RadioWidget extends Widget {
     constructor() {
         super(...arguments);
@@ -35,7 +35,7 @@ export class RadioWidget extends Widget {
         if (isRow === true) {
             rowKey = this.context.rowKey;
         }
-        let cn = classNames(this.className, 'form-radio-inline');
+        let cn = classNames(this.className, 'py-0');
         return React.createElement("span", { className: cn, style: radioStyle }, list.map((v, index) => {
             let { value, title } = v;
             let name = this.name;

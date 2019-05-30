@@ -6,7 +6,7 @@ import { UiRadio } from '../../schema';
 import { RowContext } from '../context';
 
 
-const radioStyle:React.CSSProperties = {display: 'flex'};
+const radioStyle:React.CSSProperties = {height: 'auto'};
 
 export class RadioWidget extends Widget {
     protected inputs: {[index:number]: HTMLInputElement} = {};
@@ -40,7 +40,7 @@ export class RadioWidget extends Widget {
         if (isRow === true) {
             rowKey = (this.context as RowContext).rowKey;
         }
-        let cn = classNames(this.className, 'form-radio-inline');
+        let cn = classNames(this.className, 'py-0');
         return <span className={cn} style={radioStyle}>
                 {list.map((v,index) => {
                     let {value, title} = v;
