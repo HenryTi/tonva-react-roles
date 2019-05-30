@@ -78,10 +78,14 @@ export interface UiCheckItem extends UiItem {
     falseValue?: any;
 }
 
+export interface UiSelectListItem {
+    value:any;
+    title:string;
+}
 export interface UiSelectBase extends UiItem {
     rules?: FieldRule | FieldRule[];
     defaultValue: any;
-    list: {value:any, title:string}[];
+    list: UiSelectListItem[];
 }
 
 export interface UiSelect extends UiSelectBase {
