@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Widget } from './widget';
 import { UiSelect } from '../../schema';
-import { SelectBaseWidget } from './selectBaseWidget';
-export declare class SelectWidget extends SelectBaseWidget {
+export declare class SelectWidget extends Widget {
     protected select: HTMLSelectElement;
     protected ui: UiSelect;
     protected readOnly: boolean;

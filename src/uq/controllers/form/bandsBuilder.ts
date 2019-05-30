@@ -1,5 +1,5 @@
 import { VBand, VFieldBand, VArrBand, VFieldsBand, VSubmitBand, FieldRes } from "./vBand";
-import { Field, ArrFields } from "../../entities";
+import { Field, ArrFields } from "../../uqs";
 import { VForm, FormOptions } from "./vForm";
 import { FormItems, FieldUI, FormItem } from "../formUI";
 import { VSubmit } from "./vSubmit";

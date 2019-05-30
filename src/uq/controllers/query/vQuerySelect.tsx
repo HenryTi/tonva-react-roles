@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Page, FA, SearchBox, List } from '../../../ui';
 import { PageItems } from '../../../pageItems';
-import { Query } from '../../entities';
+import { Query } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { QueryUI, CQuerySelect } from './cQuery';
 import { DefaultRow } from './defaultRow';

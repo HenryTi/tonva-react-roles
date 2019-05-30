@@ -23,7 +23,7 @@ export class VTuidField extends VField {
             if (this.readonly === true) {
                 if (!this.value)
                     return;
-                yield this.tuid.showInfo(this.value.id);
+                yield this.tuid.showInfo(); //this.value.id);
                 return;
             }
             let id;
@@ -39,9 +39,11 @@ export class VTuidField extends VField {
         this.view = observer(() => {
             let { placeHolder } = this.fieldRes;
             let disabled = false;
-            let { _ownerField } = this.field;
-            if (_ownerField !== undefined) {
-                let { name, arr } = _ownerField;
+            //let {_ownerField} = this.field;
+            let { _tuid } = this.field;
+            let { ownerField } = _tuid;
+            if (ownerField !== undefined) {
+                let { name, arr } = ownerField;
                 disabled = this.vForm.getValue(name) === null;
             }
             let content;
@@ -57,11 +59,8 @@ export class VTuidField extends VField {
             if (this.readonly === true) {
                 return React.createElement("div", { className: "form-control form-control-plaintext border border-info rounded bg-light cursor-pointer", onClick: this.onClick }, content);
             }
-            let redDot;
             let { required } = this.fieldUI;
-            if (required === true || this.field.null === false) {
-                redDot = React.createElement(RedMark, null);
-            }
+            let redDot = (required === true || this.field.null === false) && React.createElement(RedMark, null);
             return React.createElement(React.Fragment, null,
                 redDot,
                 React.createElement("button", { className: "form-control btn btn-outline-info", type: "button", disabled: disabled, style: buttonStyle, onClick: this.onClick }, content));

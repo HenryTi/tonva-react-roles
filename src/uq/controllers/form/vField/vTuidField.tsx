@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { tv } from '../../../tools';
-import { Field, Tuid } from '../../../entities';
+import { Field, Tuid, TuidBox } from '../../../uqs';
 import { VField, RedMark } from "./vField";
 import { FieldUI } from '../../formUI';
 import { VForm, FieldInput, FormMode } from '../vForm';
@@ -17,7 +17,7 @@ const buttonStyle:React.CSSProperties = {
 export class VTuidField extends VField {
     protected vForm: VForm;
     protected input: FieldInput;
-    protected tuid: Tuid;
+    protected tuid: TuidBox;
 
     constructor(vForm: VForm, field:Field, fieldUI: FieldUI, fieldRes:FieldRes) {
         super(vForm, field, fieldUI, fieldRes);
@@ -29,7 +29,7 @@ export class VTuidField extends VField {
     onClick = async () => {
         if (this.readonly === true) {
             if (!this.value) return;
-            await this.tuid.showInfo(this.value.id);
+            await this.tuid.showInfo(); //this.value.id);
             return;
         }
         let id:number;
@@ -45,9 +45,11 @@ export class VTuidField extends VField {
     protected view = observer(() => {
         let {placeHolder} = this.fieldRes;
         let disabled:boolean = false;
-        let {_ownerField} = this.field;
-        if (_ownerField !== undefined) {
-            let {name, arr} = _ownerField;
+        //let {_ownerField} = this.field;
+        let {_tuid} = this.field;
+        let {ownerField} = _tuid;
+        if (ownerField !== undefined) {
+            let {name, arr} = ownerField;
             disabled = this.vForm.getValue(name) === null;
         }
         let content;
@@ -68,11 +70,8 @@ export class VTuidField extends VField {
                 {content}
             </div>;
         }
-        let redDot;
         let {required} = this.fieldUI;
-        if (required === true || this.field.null === false) {
-            redDot = <RedMark />;
-        }
+        let redDot = (required === true || this.field.null === false) && <RedMark />;
         return <>
             {redDot}
             <button className="form-control btn btn-outline-info"

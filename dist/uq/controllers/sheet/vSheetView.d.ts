@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { CSheet, SheetUI, SheetData } from './cSheet';

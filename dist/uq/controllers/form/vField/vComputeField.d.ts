@@ -1,5 +1,5 @@
 import { VField } from './vField';
-import { Field } from '../../../entities';
+import { Field } from '../../../uqs';
 import { VForm } from '../vForm';
 import { FieldRes } from '../vBand';
 export declare class VComputeField extends VField {

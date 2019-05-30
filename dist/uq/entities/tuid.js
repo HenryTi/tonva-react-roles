@@ -173,6 +173,16 @@ export class Tuid extends Entity {
         this.queue.push(id);
         return;
     }
+    assureId(boxed) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (typeof boxed !== 'object')
+                return;
+            let { id, obj } = boxed;
+            if (obj !== undefined)
+                return;
+            yield this._cacheIds([id]);
+        });
+    }
     proxied(name, id) {
         return __awaiter(this, void 0, void 0, function* () {
             let proxyTuid = this.entities.getTuid(name, undefined);
@@ -246,7 +256,12 @@ export class Tuid extends Entity {
     }
     cacheIds() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.waitingIds.length === 0)
+            yield this._cacheIds(this.waitingIds);
+        });
+    }
+    _cacheIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (ids.length === 0)
                 return;
             let name, arr;
             if (this.owner === undefined) {
@@ -257,7 +272,7 @@ export class Tuid extends Entity {
                 arr = this.name;
             }
             let api = this.getApiFrom();
-            let tuids = yield api.tuidIds(name, arr, this.waitingIds);
+            let tuids = yield api.tuidIds(name, arr, ids);
             tuids = this.unpackTuidIds(tuids);
             for (let tuidValue of tuids) {
                 if (this.cacheValue(tuidValue) === false)

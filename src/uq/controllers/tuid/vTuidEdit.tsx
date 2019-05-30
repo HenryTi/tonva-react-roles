@@ -3,7 +3,7 @@ import { Page, FA } from '../../../ui';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { CTuidMain, TuidUI } from './cTuid';
-import { TuidMain, Tuid } from '../../entities';
+import { Tuid } from '../../uqs';
 
 export type TypeVTuidEdit = typeof VTuidEdit;
 

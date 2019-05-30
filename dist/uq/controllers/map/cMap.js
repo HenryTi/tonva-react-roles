@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import _ from 'lodash';
 import { CEntity } from "../CVEntity";
-import { fieldDefaultValue } from "../../entities";
+import { fieldDefaultValue } from "../../uqs";
 import { VMapMain } from "./vMain";
 import { observable } from "mobx";
 import { PureJSONContent } from '../form/viewModel';
@@ -86,7 +86,7 @@ export class CMap extends CEntity {
             yield this.entity.actions.add.submit(data);
             let rowIndex = children.findIndex(v => v.box.id === id);
             if (rowIndex < 0) {
-                children.push(this.createItem(item, tuid, idBox, idx, values));
+                children.push(this.createItem(item, tuid.tuid, idBox, idx, values));
             }
             else {
                 let { fields } = this.entity;
@@ -107,8 +107,8 @@ export class CMap extends CEntity {
         this.removeClick = (item) => __awaiter(this, void 0, void 0, function* () {
             let keyField = this.keyFields[item.keyIndex];
             let tuid = keyField._tuid;
-            let cTuidMain = this.cUq.cTuidMain(tuid.Main);
-            let label = cTuidMain.getLable(tuid);
+            let cTuidMain = this.cUq.cTuidMain(tuid.tuid);
+            let label = cTuidMain.getLable(tuid.tuid);
             let confirmDelete = this.res.confirmDelete
                 || _.template('do you really want to remove ${label}?');
             if (confirm(confirmDelete({ label: label })) === false)
@@ -183,7 +183,7 @@ export class CMap extends CEntity {
         for (let i = 0; i < keysLen; i++) {
             let key = this.keyFields[i];
             let { name } = key;
-            let tuid = key._tuid;
+            let tuidBox = key._tuid;
             let val = row[name];
             if (val === undefined)
                 break;
@@ -192,7 +192,7 @@ export class CMap extends CEntity {
                 if (id === 0)
                     continue;
                 if (p === undefined || p.box.id !== id) {
-                    ret = p = this.createItem(undefined, tuid, val, i, row);
+                    ret = p = this.createItem(undefined, tuidBox.tuid, val, i, row);
                 }
                 continue;
             }
@@ -206,18 +206,19 @@ export class CMap extends CEntity {
                 }
             }
             if (id > 0) {
-                children.push(p = this.createItem(p, tuid, val, i, row));
+                children.push(p = this.createItem(p, tuidBox.tuid, val, i, row));
             }
         }
         return ret;
     }
     searchOnKey(keyField, param) {
         return __awaiter(this, void 0, void 0, function* () {
-            let { _tuid, _ownerField } = keyField;
-            let cTuidSelect = this.cUq.cTuidSelect(_tuid);
+            let { _tuid } = keyField;
+            let { tuid, ownerField } = _tuid;
+            let cTuidSelect = this.cUq.cTuidSelect(tuid);
             let callParam = param;
-            if (_ownerField !== undefined) {
-                callParam = param[_ownerField.name];
+            if (ownerField !== undefined) {
+                callParam = param[ownerField.name];
                 if (typeof callParam === 'object') {
                     callParam = callParam.id;
                 }

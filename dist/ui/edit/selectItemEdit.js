@@ -10,10 +10,10 @@ import * as React from 'react';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { SelectItemBaseEdit } from './selectBaseItemEdit';
-export class SelectItemEdit extends SelectItemBaseEdit {
-    constructor(itemSchema, uiItem, label, value) {
-        super(itemSchema, uiItem, label, value);
+import { ItemEdit } from './itemEdit';
+export class SelectItemEdit extends ItemEdit {
+    constructor() {
+        super(...arguments);
         this.onChange = (value) => {
             this.newValue = value;
             let preValue = this.value;

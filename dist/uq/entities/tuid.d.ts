@@ -1,4 +1,4 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { Entity } from './entity';
 import { Entities } from './entities';
 import { CUq, CTuidMain, CTuidEdit, CTuidInfo, CTuidSelect } from '../controllers';
@@ -28,7 +28,7 @@ export declare abstract class Tuid extends Entity {
     abstract readonly Main: Tuid;
     private buildIdBoxer;
     boxId(id: number): BoxId;
-    getTuidContent(): React.StatelessComponent<any>;
+    getTuidContent(): any;
     getIdFromObj(item: any): number;
     setSchema(schema: any): void;
     buildFieldsTuid(): void;
@@ -38,12 +38,14 @@ export declare abstract class Tuid extends Entity {
     valueFromFieldName(fieldName: string, obj: any): BoxId | any;
     resetCache(id: number): void;
     useId(id: number, defer?: boolean): void;
+    assureId(boxed: any): Promise<void>;
     proxied(name: string, id: number): Promise<any>;
     cacheValue(val: any): boolean;
     protected afterCacheId(tuidValue: any): void;
     from(): Tuid;
     private unpackTuidIds;
     cacheIds(): Promise<void>;
+    private _cacheIds;
     protected cacheDivIds(): Promise<void>;
     load(id: number): Promise<any>;
     getDiv(divName: string): TuidDiv;

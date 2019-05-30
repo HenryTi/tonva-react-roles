@@ -4,7 +4,7 @@ import { jsonStringify } from '../../tools';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { CAction, ActionUI } from './cAction';
-import { Action } from '../../entities';
+import { Action } from '../../uqs';
 
 export class VActionMain extends VEntity<Action, ActionUI, CAction> {
     protected vForm: VForm;

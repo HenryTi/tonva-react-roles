@@ -26,7 +26,7 @@ export class VTuidSelect extends VEntity {
         this.renderMainRow = (item, index) => React.createElement(this.mainRowContent, Object.assign({}, item));
         this.clickMainRow = (item) => __awaiter(this, void 0, void 0, function* () {
             this.ceasePage();
-            if (this.controller.entity.owner === undefined) {
+            if (this.controller.entity.hasDiv === undefined) {
                 this.returnCall(item);
                 return;
             }

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { VEntity } from '../CVEntity';
-import { Tuid } from '../../entities';
+import { Tuid } from '../../uqs';
 import { CTuid, TuidUI } from './cTuid';
 export declare class VTuidSelect extends VEntity<Tuid, TuidUI, CTuid<Tuid>> {
     protected mainRowContent: (row: any) => JSX.Element;

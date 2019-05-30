@@ -1,5 +1,5 @@
 import { CEntity, EntityUI } from "../CVEntity";
-import { History } from "../../entities";
+import { History } from "../../uqs";
 import { VHistoryMain } from "./vHistoryMain";
 export interface HistoryUI extends EntityUI {
     CHistory?: typeof CHistory;

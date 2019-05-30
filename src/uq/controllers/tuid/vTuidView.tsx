@@ -3,12 +3,12 @@ import { FA, Page } from '../../../ui';
 import { jsonStringify } from '../../tools';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
-import { TuidMain } from '../../entities';
+import { Tuid } from '../../uqs';
 import { TuidUI, CTuidMain } from './cTuid';
 
 export type TypeVTuidView = typeof VTuidView;
 
-export class VTuidView extends VEntity<TuidMain, TuidUI, CTuidMain> {
+export class VTuidView extends VEntity<Tuid, TuidUI, CTuidMain> {
     vForm: VForm;
     id: number;
 

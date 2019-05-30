@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { VEntity } from "../CVEntity";
 import { MapUI, CMap } from "./cMap";
-import { Map } from "../../entities";
+import { Map } from "../../uqs";
 import { Page } from "../../../ui";
 import { VForm } from '../form';
 

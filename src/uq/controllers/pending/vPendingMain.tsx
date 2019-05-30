@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TuidMain, Pending, Entity } from '../../entities';
+import { Pending } from '../../uqs';
 import { Page } from '../../../ui';
 import { VEntity } from '../CVEntity';
 import { CPending, PendingUI } from './cPending';

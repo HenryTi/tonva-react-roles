@@ -1,5 +1,5 @@
 import { CEntity, EntityUI } from "../CVEntity";
-import { Book } from "../../entities";
+import { Book } from "../../uqs";
 import { VBookMain } from "./vBookMain";
 export interface BookUI extends EntityUI {
     CBook?: typeof CBook;

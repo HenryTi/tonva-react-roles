@@ -3,7 +3,7 @@ import { IObservableArray, observable } from 'mobx';
 import _ from 'lodash';
 import { Page, nav, List, FA, Muted } from '../../../ui';
 import { ViewModel, RowContent, TypeContent, JSONContent } from './viewModel';
-import { ArrFields, Field } from '../../entities';
+import { ArrFields, Field } from '../../uqs';
 import { VForm, FieldInputs, FormMode } from './vForm';
 import { FormArr } from '../formUI';
 

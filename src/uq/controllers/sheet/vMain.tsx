@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Page, List, Muted, LMR } from '../../../ui';
 import { VEntity } from '../CVEntity';
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { CSheet, SheetUI } from './cSheet';
 
 export class VSheetMain extends VEntity<Sheet, SheetUI, CSheet> {

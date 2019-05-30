@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { PageItems } from '../../../pageItems';
-import { Query } from '../../entities';
+import { Query } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { QueryUI, CQuerySelect } from './cQuery';
 export declare class VQuerySelect extends VEntity<Query, QueryUI, CQuerySelect> {

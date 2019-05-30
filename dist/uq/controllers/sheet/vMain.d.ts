@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { VEntity } from '../CVEntity';
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { CSheet, SheetUI } from './cSheet';
 export declare class VSheetMain extends VEntity<Sheet, SheetUI, CSheet> {
     open(): Promise<void>;

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Book } from '../../entities';
+import { Book } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CBook, BookUI } from './cBook';
 export declare class VBookMain extends VEntity<Book, BookUI, CBook> {

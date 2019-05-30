@@ -1,6 +1,6 @@
 export * from './CApp';
 export * from './startApp';
-export * from './uq';
+export * from './cUq';
 export * from './action';
 export * from './tuid';
 export * from './sheet';

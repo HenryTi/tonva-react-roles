@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { IObservableArray } from 'mobx';
 import { ViewModel, TypeContent } from './viewModel';
-import { ArrFields } from '../../entities';
+import { ArrFields } from '../../uqs';
 import { VForm, FormMode } from './vForm';
 export declare type ArrEditRow = (initValues: any, onRowChanged: (rowValues: any) => void) => Promise<void>;
 export declare class VArr extends ViewModel {

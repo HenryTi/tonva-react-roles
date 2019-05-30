@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Page, nav, List, Muted, FA, LMR, EasyDate } from '../../../ui';
 import { VEntity } from '../CVEntity';
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { CSheet, SheetUI } from './cSheet';
 
 export class VSheetList extends VEntity<Sheet, SheetUI, CSheet> {

@@ -1,4 +1,4 @@
-import { Sheet } from "../../entities";
+import { Sheet } from "../../uqs";
 import { SheetUI, CSheet } from "./cSheet";
 import { VEntity } from "../CVEntity";
 

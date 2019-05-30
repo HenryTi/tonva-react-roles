@@ -7,8 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import * as React from 'react';
 import classNames from 'classnames';
 import { observable } from 'mobx';
-import { SelectBaseWidget } from './selectBaseWidget';
-export class SelectWidget extends SelectBaseWidget {
+import { Widget } from './widget';
+export class SelectWidget extends Widget {
     constructor() {
         super(...arguments);
         this.onInputChange = (evt) => {
@@ -19,13 +19,12 @@ export class SelectWidget extends SelectBaseWidget {
     setReadOnly(value) { this.select.disabled = this.readOnly = !value; }
     setDisabled(value) { this.select.disabled = this.disabled = value; }
     render() {
-        let { list } = this.ui;
         if (this.readOnly === true) {
-            let option = list.find(v => v.value === this.value);
+            let option = this.ui.list.find(v => v.value === this.value);
             let title = (option === undefined) ? '(???)' : option.title;
             return React.createElement("span", { className: "form-control w-min-6c" }, title);
         }
-        return React.createElement("select", { ref: (select) => this.select = select, className: classNames(this.className, 'form-control'), defaultValue: this.defaultValue, onChange: this.onInputChange }, list.map((v, index) => {
+        return React.createElement("select", { ref: (select) => this.select = select, className: classNames(this.className, 'form-control'), defaultValue: this.defaultValue, onChange: this.onInputChange }, this.ui.list.map((v, index) => {
             let { title, value } = v;
             let cn;
             //if (value === undefined || value === null) cn = 'text-light small';

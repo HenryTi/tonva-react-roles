@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { CApp } from './controllers';
-export * from './entities';
+export * from './uqs';
 export * from './controllers';
 export * from './centerApi';
 export * from './tools';

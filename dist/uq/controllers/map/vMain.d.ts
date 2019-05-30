@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Map } from '../../entities';
+import { Map } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CMap, MapItem, MapUI } from './cMap';
 export declare class VMapMain extends VEntity<Map, MapUI, CMap> {

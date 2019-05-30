@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Controller, VPage, View } from '../../ui';
-import { Entity, Field, TuidMain } from '../entities';
-import { CUq } from './uq/cUq';
+import { Entity, Field } from '../uqs';
+import { CUq } from './cUq/cUq';
 import { VForm, FieldInputs, FieldCall, FormOptions, FormMode } from './form';
 import { CQuerySelect } from './query';
 import { FormUI, FieldTuidUI } from './formUI';
@@ -102,21 +102,23 @@ export abstract class CEntity<T extends Entity, UI extends EntityUI> extends Con
         for (let field of fields) {
             let {name, _tuid} = field;
             if (_tuid === undefined) continue;
+            let {tuid} = _tuid;
             let fieldUI = formUI && formUI.items && formUI.items[name] as FieldTuidUI;
             ret[name] = {
                 select: this.buildSelect(field, arr, fieldUI),
                 content: this.buildContent(field, arr),
-                placeHolder: this.cUq.getTuidPlaceHolder(_tuid),
+                placeHolder: this.cUq.getTuidPlaceHolder(tuid),
             };
         }
     }
 
     protected buildSelect(field:Field, arr:string, fieldUI: FieldTuidUI):FieldCall {
         return async (form:VForm, field:Field, values:any):Promise<any> => {
-            let {_tuid, _ownerField} = field;
-            let cTuidSelect = await (_tuid as TuidMain).cSelectFrom();
+            let {_tuid } = field;
+            let {tuid, ownerField} = _tuid;
+            let cTuidSelect = undefined; // await tuid.cSelectFrom();
             let param:any = undefined;
-            if (_ownerField !== undefined) param = form.getValue(_ownerField.name);
+            if (ownerField !== undefined) param = form.getValue(ownerField.name);
             if (fieldUI && fieldUI.autoList === true) {
                 console.log('select search set param=empty string');
                 param = '';

@@ -22,6 +22,10 @@ export declare abstract class Entity {
     setSchema(schema: any): void;
     buildFieldsTuid(): void;
     schemaStringify(): string;
+    assureTuidFields(obj: any): Promise<void>;
+    assureArrTuidFields(arr: string, obj: any): Promise<void>;
+    assureRetTuidFields(ret: string, obj: any): Promise<void>;
+    private _assureTuidFields;
     tuidFromField(field: Field): Tuid;
     tuidFromName(fieldName: string, arrName?: string): Tuid;
     protected buildParams(params: any): any;

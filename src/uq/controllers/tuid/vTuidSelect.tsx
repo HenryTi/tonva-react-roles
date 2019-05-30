@@ -1,6 +1,6 @@
 import { nav, Page, SearchBox, List } from '../../../ui';
 import { VEntity } from '../CVEntity';
-import { Tuid } from '../../entities';
+import { Tuid } from '../../uqs';
 import { CTuid, TuidUI } from './cTuid';
 import React from 'react';
 import { RowContent } from '../form/viewModel';
@@ -54,7 +54,7 @@ export class VTuidSelect extends VEntity<Tuid, TuidUI, CTuid<Tuid>> {
     renderMainRow = (item:any, index:number):JSX.Element => <this.mainRowContent {...item} />;
     clickMainRow = async (item:any) => {
         this.ceasePage();
-        if (this.controller.entity.owner === undefined) {
+        if (this.controller.entity.hasDiv === undefined) {
             this.returnCall(item);
             return;
         }

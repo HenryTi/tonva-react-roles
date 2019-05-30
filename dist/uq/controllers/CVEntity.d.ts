@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { VPage } from '../../ui';
-import { Entity, Field } from '../entities';
-import { CUq } from './uq/cUq';
+import { Entity, Field } from '../uqs';
+import { CUq } from './cUq/cUq';
 import { VForm, FieldCall, FormMode } from './form';
 import { CQuerySelect } from './query';
 import { FormUI, FieldTuidUI } from './formUI';

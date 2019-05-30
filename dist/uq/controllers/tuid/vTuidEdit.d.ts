@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { VEntity } from '../CVEntity';
 import { CTuidMain, TuidUI } from './cTuid';
-import { Tuid } from '../../entities';
+import { Tuid } from '../../uqs';
 export declare type TypeVTuidEdit = typeof VTuidEdit;
 export declare class VTuidEdit extends VEntity<Tuid, TuidUI, CTuidMain> {
     private vForm;

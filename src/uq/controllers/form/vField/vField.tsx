@@ -6,7 +6,7 @@ import { FA } from '../../../../ui';
 import { ViewModel } from "../viewModel";
 import { VForm, FormMode } from '../vForm';
 import { Rule, RuleRequired, RuleInt, RuleNum, RuleMin, RuleMax } from '../rule';
-import { Field } from '../../../entities';
+import { Field } from '../../../uqs';
 import { FieldRes } from '../vBand';
 import { FieldUI, FieldInputUI, FieldStringUI, FieldNumberUI } from '../../formUI';
 

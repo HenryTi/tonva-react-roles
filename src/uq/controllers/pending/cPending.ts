@@ -1,5 +1,5 @@
 import { CEntity, EntityUI } from "../CVEntity";
-import { Pending } from "../../entities";
+import { Pending } from "../../uqs";
 import { VPendingMain } from "./vPendingMain";
 
 export interface PendingUI extends EntityUI {

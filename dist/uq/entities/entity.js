@@ -82,6 +82,45 @@ export class Entity {
             return value;
         }, 4);
     }
+    assureTuidFields(obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this._assureTuidFields(this.fields, obj);
+        });
+    }
+    assureArrTuidFields(arr, obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.arrFields === undefined)
+                return;
+            let fs = this.arrFields.find(v => v.name === arr);
+            if (fs === undefined)
+                return;
+            yield this._assureTuidFields(fs.fields, obj);
+        });
+    }
+    assureRetTuidFields(ret, obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.returns === undefined)
+                return;
+            let fs = this.returns.find(v => v.name === ret);
+            if (fs === undefined)
+                return;
+            yield this._assureTuidFields(fs.fields, obj);
+        });
+    }
+    _assureTuidFields(fields, obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (typeof obj !== 'object')
+                return;
+            if (fields === undefined)
+                return;
+            for (let f of fields) {
+                let { _tuid } = f;
+                if (_tuid === undefined)
+                    continue;
+                yield _tuid.assureId(obj[f.name]);
+            }
+        });
+    }
     tuidFromField(field) {
         let { _tuid, tuid } = field;
         if (tuid === undefined)

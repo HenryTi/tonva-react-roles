@@ -1,5 +1,5 @@
 import { VField, VIntField, VDecField, VStringField, VTextField, VDateTimeField, VDateField } from './vField';
-import { Field } from '../../../entities';
+import { Field } from '../../../uqs';
 import { FieldRes } from '../vBand';
 import { VForm } from '../vForm';
 import { FieldUI } from '../../formUI';

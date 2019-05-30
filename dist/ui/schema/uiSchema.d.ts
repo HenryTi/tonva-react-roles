@@ -57,21 +57,19 @@ export interface UiCheckItem extends UiItem {
     trueValue?: any;
     falseValue?: any;
 }
-export interface UiSelectItem {
-    value: any;
-    title: string;
-}
 export interface UiSelectBase extends UiItem {
     rules?: FieldRule | FieldRule[];
     defaultValue: any;
-    list: UiSelectItem[];
+    list: {
+        value: any;
+        title: string;
+    }[];
 }
 export interface UiSelect extends UiSelectBase {
     widget: 'select';
 }
 export interface UiRadio extends UiSelectBase {
     widget: 'radio';
-    radioClassName?: string;
 }
 export interface UiItemCollection {
     [field: string]: UiItem;

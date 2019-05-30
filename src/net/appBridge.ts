@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {nav} from '../ui';
 import {uid} from '../uid';
-import {uqTokenApi as uqTokenApi, callCenterapi, CenterAppApi, AppUq, centerToken, App, setCenterToken} from './uqApi';
+import {uqTokenApi as uqTokenApi, callCenterapi, CenterAppApi, UqData, centerToken, UqAppData, setCenterToken} from './uqApi';
 import {setSubAppWindow} from './wsChannel';
 import { host } from './host';
 
@@ -249,7 +249,8 @@ export async function buildAppUq(uq:string, uqOwner:string, uqName:string):Promi
 }
 
 export function appUq(uq:string):UqToken {
-    return uqTokens[uq];
+    let uts = uqTokens;
+    return uts[uq];
 }
 /*
 export async function appUq(uq:string, uqOwner:string, uqName:string): Promise<UqToken> {

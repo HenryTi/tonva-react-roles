@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ViewModel } from "../viewModel";
 import { VForm } from '../vForm';
 import { Rule } from '../rule';
-import { Field } from '../../../entities';
+import { Field } from '../../../uqs';
 import { FieldRes } from '../vBand';
 import { FieldUI, FieldInputUI, FieldStringUI, FieldNumberUI } from '../../formUI';
 export declare abstract class VField extends ViewModel {

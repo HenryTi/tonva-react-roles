@@ -24,9 +24,6 @@ export abstract class ItemEdit {
         let {name} = itemSchema;
         this.name = name;
         this.label = label;
-        this.init();
-    }
-    protected init() {
     }
     async start():Promise<any> {
         return await this.internalStart();

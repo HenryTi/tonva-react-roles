@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { History } from '../../entities';
+import { History } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CHistory, HistoryUI } from './cHistory';
 export declare class VHistoryMain extends VEntity<History, HistoryUI, CHistory> {

@@ -9,10 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { SearchBox, List, Page } from '../../../ui';
-import { jsonStringify } from '../../tools';
 import { VEntity } from '../CVEntity';
 import { RowContent } from '../form/viewModel';
-export class VTuidMainListBase extends VEntity {
+export class VTuidListBase extends VEntity {
     constructor() {
         super(...arguments);
         this.onSearch = (key) => __awaiter(this, void 0, void 0, function* () {
@@ -29,24 +28,23 @@ export class VTuidMainListBase extends VEntity {
         };
         this.view = observer(() => {
             let header = React.createElement(SearchBox, { className: "mx-1 w-100", initKey: '', onSearch: this.onSearch, placeholder: '搜索' + this.label });
-            let { owner } = this.entity;
+            /*
+            let {owner} = this.entity;
             let ownerTop;
             if (owner !== undefined) {
                 let ownerObj = owner.valueFromId(this.ownerId);
-                ownerTop = React.createElement("div", null,
-                    "owner: ",
-                    jsonStringify(ownerObj));
+                ownerTop = <div>owner: {jsonStringify(ownerObj)}</div>;
             }
+            */
             return React.createElement(Page, { header: header },
-                ownerTop,
                 React.createElement(List, { items: this.controller.PageItems.items, item: { render: this.renderRow, onClick: this.clickRow, key: this.rowKey }, before: '搜索' + this.label + '资料' }));
         });
     }
     open(param) {
         return __awaiter(this, void 0, void 0, function* () {
             this.rowContent = this.ui.rowContent || RowContent;
-            if (this.entity.owner !== undefined)
-                this.ownerId = Number(param);
+            //if (this.entity.owner !== undefined) 
+            this.ownerId = Number(param);
             // 初始查询, key是空的
             //await this.onSearch('');
             yield this.controller.searchMain('');
@@ -61,68 +59,73 @@ export class VTuidMainListBase extends VEntity {
         this.onSelected(item);
     }
 }
-export class VTuidMainList extends VTuidMainListBase {
+export class VTuidList extends VTuidListBase {
     onSelected(item) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.controller.isFrom === false)
+            if (this.controller.isImport === false)
                 this.event('edit', item.id);
             else
                 this.event('info', item.id);
         });
     }
 }
-export class VTuidDivListBase extends VEntity {
-    constructor() {
-        super(...arguments);
-        this.onSearch = (key) => __awaiter(this, void 0, void 0, function* () {
-            yield this.controller.searchMain(key);
-            //await this.PageItems.first(key);
-        });
-        this.renderRow = (item, index) => {
-            return React.createElement("div", { className: "px-3 py-2" }, jsonStringify(item));
-        };
-        this.clickRow = (item) => {
-            this.callOnSelected(item);
-        };
-        this.view = observer(() => {
-            let header = React.createElement(SearchBox, { className: "mx-1 w-100", initKey: '', onSearch: this.onSearch, placeholder: '搜索' + this.label });
-            let { owner } = this.entity;
-            let ownerTop;
-            if (owner !== undefined) {
-                let ownerObj = owner.valueFromId(this.ownerId);
-                ownerTop = React.createElement("div", null,
-                    "owner: ",
-                    jsonStringify(ownerObj));
-            }
-            return React.createElement(Page, { header: header },
-                ownerTop,
-                React.createElement(List, { items: this.controller.PageItems.items, item: { render: this.renderRow, onClick: this.clickRow }, before: '搜索' + this.label + '资料' }));
-        });
+/*
+export abstract class VTuidDivListBase  extends VPage<CTuidDiv> {
+    protected ownerId: number;
+
+    async open(param?:any) {
+        //this.PageItems = new TuidPageItems(this.entity);
+        if (this.entity.owner !== undefined) this.ownerId = Number(param);
+        // 初始查询, key是空的
+        //await this.onSearch('');
+        await this.controller.searchMain('');
+        this.openPage(this.view);
     }
-    open(param) {
-        return __awaiter(this, void 0, void 0, function* () {
-            //this.PageItems = new TuidPageItems(this.entity);
-            if (this.entity.owner !== undefined)
-                this.ownerId = Number(param);
-            // 初始查询, key是空的
-            //await this.onSearch('');
-            yield this.controller.searchMain('');
-            this.openPage(this.view);
-        });
+
+    onSearch = async (key:string) => {
+        await this.controller.searchMain(key);
+        //await this.PageItems.first(key);
     }
-    callOnSelected(item) {
+    renderRow = (item:any, index:number):JSX.Element => {
+        return <div className="px-3 py-2">{jsonStringify(item)}</div>;
+    }
+
+    protected abstract onSelected(item:any): Promise<void>;
+    private callOnSelected(item:any) {
         if (this.onSelected === undefined) {
             alert('onSelect is undefined');
             return;
         }
         this.onSelected(item);
     }
+    clickRow = (item:any) => {
+        this.callOnSelected(item);
+    }
+
+    protected view = observer(() => {
+        let header = <SearchBox className="mx-1 w-100"
+            initKey={''}
+            onSearch={this.onSearch} placeholder={'搜索'+this.label} />;
+        let {owner} = this.entity;
+        let ownerTop;
+        if (owner !== undefined) {
+            let ownerObj = owner.valueFromId(this.ownerId);
+            ownerTop = <div>owner: {jsonStringify(ownerObj)}</div>;
+        }
+        return <Page header={header}>
+            {ownerTop}
+            <List
+                items={this.controller.PageItems.items}
+                item={{render: this.renderRow, onClick: this.clickRow}}
+                before={'搜索'+this.label+'资料'} />
+        </Page>;
+    });
 }
+
 export class VTuidDivList extends VTuidDivListBase {
-    onSelected(item) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.event('edit', item.id);
-        });
+    protected async onSelected(item:any) {
+        this.event('edit', item.id);
     }
 }
+*/ 
 //# sourceMappingURL=vTuidList.js.map

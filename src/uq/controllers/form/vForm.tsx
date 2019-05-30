@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { observer } from "mobx-react";
 import { VBand } from './vBand';
 import { BandsBuilder } from './bandsBuilder';
-import { Field, ArrFields } from '../../entities';
+import { Field, ArrFields } from '../../uqs';
 import { computed, observable, IObservableObject, IObservableValue } from 'mobx';
 import { VArr } from './vArr';
 import { FormUI, FormUIBase, FormItems } from '../formUI';

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Query } from '../../entities';
+import { Query } from '../../uqs';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { QueryUI, CQuery } from './cQuery';

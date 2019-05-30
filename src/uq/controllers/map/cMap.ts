@@ -1,7 +1,6 @@
-import React from 'react';
 import _ from 'lodash';
 import { CEntity, EntityUI } from "../CVEntity";
-import { Map, Tuid, BoxId, Field, TuidMain, fieldDefaultValue } from "../../entities";
+import { Map, Tuid, BoxId, Field, fieldDefaultValue } from "../../uqs";
 import { VMapMain } from "./vMain";
 import { observable } from "mobx";
 import { PureJSONContent } from '../form/viewModel';
@@ -89,14 +88,14 @@ export class CMap extends CEntity<Map, MapUI> {
         for (let i=0;i<keysLen;i++) {
             let key = this.keyFields[i];
             let {name} = key;
-            let tuid = key._tuid;
+            let tuidBox = key._tuid;
             let val:BoxId = row[name];
             if (val === undefined) break;
             let {id} = val;
             if (i === 0) {
                 if (id === 0) continue;
                 if (p === undefined || p.box.id !== id) {
-                    ret = p = this.createItem(undefined, tuid, val, i, row);
+                    ret = p = this.createItem(undefined, tuidBox.tuid, val, i, row);
                 }
                 continue;
             }
@@ -110,18 +109,19 @@ export class CMap extends CEntity<Map, MapUI> {
                 }
             }
             if (id > 0) {
-                children.push(p = this.createItem(p, tuid, val, i, row));
+                children.push(p = this.createItem(p, tuidBox.tuid, val, i, row));
             }
         }
         return ret;
     }
 
     async searchOnKey(keyField:Field, param):Promise<number> {
-        let {_tuid, _ownerField} = keyField;
-        let cTuidSelect = this.cUq.cTuidSelect(_tuid);
+        let {_tuid} = keyField;
+        let {tuid, ownerField} = _tuid;
+        let cTuidSelect = this.cUq.cTuidSelect(tuid);
         let callParam = param;
-        if (_ownerField !== undefined) {
-            callParam = param[_ownerField.name];
+        if (ownerField !== undefined) {
+            callParam = param[ownerField.name];
             if (typeof callParam === 'object') {
                 callParam = callParam.id;
             }
@@ -189,7 +189,7 @@ export class CMap extends CEntity<Map, MapUI> {
         await this.entity.actions.add.submit(data);
         let rowIndex = children.findIndex(v => v.box.id === id);
         if (rowIndex < 0) {
-            children.push(this.createItem(item, tuid, idBox, idx, values));
+            children.push(this.createItem(item, tuid.tuid, idBox, idx, values));
         }
         else {
             let {fields} = this.entity;
@@ -211,8 +211,8 @@ export class CMap extends CEntity<Map, MapUI> {
     removeClick = async(item:MapItem) => {
         let keyField = this.keyFields[item.keyIndex];
         let tuid = keyField._tuid;
-        let cTuidMain = this.cUq.cTuidMain(tuid.Main as TuidMain);
-        let label = cTuidMain.getLable(tuid);
+        let cTuidMain = this.cUq.cTuidMain(tuid.tuid);
+        let label = cTuidMain.getLable(tuid.tuid);
         let confirmDelete:_.TemplateExecutor = 
             this.res.confirmDelete 
             || _.template('do you really want to remove ${label}?');

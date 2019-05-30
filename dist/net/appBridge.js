@@ -242,7 +242,8 @@ export function buildAppUq(uq, uqOwner, uqName) {
     });
 }
 export function appUq(uq) {
-    return uqTokens[uq];
+    let uts = uqTokens;
+    return uts[uq];
 }
 const brideCenterApis = {};
 export function bridgeCenterApi(url, method, body) {

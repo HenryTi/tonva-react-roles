@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Pending } from '../../entities';
+import { Pending } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CPending, PendingUI } from './cPending';
 export declare class VPendingMain extends VEntity<Pending, PendingUI, CPending> {

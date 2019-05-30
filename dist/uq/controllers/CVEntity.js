@@ -97,21 +97,23 @@ export class CEntity extends ControllerUq {
             let { name, _tuid } = field;
             if (_tuid === undefined)
                 continue;
+            let { tuid } = _tuid;
             let fieldUI = formUI && formUI.items && formUI.items[name];
             ret[name] = {
                 select: this.buildSelect(field, arr, fieldUI),
                 content: this.buildContent(field, arr),
-                placeHolder: this.cUq.getTuidPlaceHolder(_tuid),
+                placeHolder: this.cUq.getTuidPlaceHolder(tuid),
             };
         }
     }
     buildSelect(field, arr, fieldUI) {
         return (form, field, values) => __awaiter(this, void 0, void 0, function* () {
-            let { _tuid, _ownerField } = field;
-            let cTuidSelect = yield _tuid.cSelectFrom();
+            let { _tuid } = field;
+            let { tuid, ownerField } = _tuid;
+            let cTuidSelect = undefined; // await tuid.cSelectFrom();
             let param = undefined;
-            if (_ownerField !== undefined)
-                param = form.getValue(_ownerField.name);
+            if (ownerField !== undefined)
+                param = form.getValue(ownerField.name);
             if (fieldUI && fieldUI.autoList === true) {
                 console.log('select search set param=empty string');
                 param = '';

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import className from 'classnames';
 import { Page, List, LMR, FA } from '../../../ui';
 import { tv } from '../../tools';
-import { Map } from '../../entities';
+import { Map } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CMap, MapItem, MapKey, MapUI } from './cMap';
 import { PureJSONContent } from '../form/viewModel';

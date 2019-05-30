@@ -1,5 +1,5 @@
 import { CEntity, EntityUI } from "../CVEntity";
-import { Action } from "../../entities";
+import { Action } from "../../uqs";
 import { VActionMain } from "./vActionMain";
 
 export interface ActionUI extends EntityUI {

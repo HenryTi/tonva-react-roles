@@ -1,16 +1,16 @@
 import _ from 'lodash';
-import { TypeVPage } from '../../../ui';
 import { CEntity, EntityUI } from "../CVEntity";
-import { TuidMain, Tuid, TuidDiv } from "../../entities";
+import { Tuid, TuidDiv } from "../../uqs";
 import { VTuidMain } from './vTuidMain';
 import { VTuidEdit } from './vTuidEdit';
 import { VTuidSelect } from './vTuidSelect';
-import { CUq } from "../uq/cUq";
-import { CLink } from "../link";
+import { CUq } from "../cUq/cUq";
+//import { CLink } from "../link";
 import { VTuidInfo } from "./vTuidInfo";
 import { TuidPageItems } from "./pageItems";
-import { VTuidMainList } from './vTuidList';
+import { VTuidList } from './vTuidList';
 import { PageItems } from '../../../pageItems';
+//import { Controller } from 'ui';
 
 export interface TuidUI extends EntityUI {
     CTuidMain?: typeof CTuidMain;
@@ -34,7 +34,7 @@ export abstract class CTuid<T extends Tuid> extends CEntity<T, TuidUI> {
     PageItems:PageItems<any>;
 
     protected buildPageItems():PageItems<any> {
-        return new TuidPageItems(this.entity.owner || this.entity);
+        return new TuidPageItems(this.entity);
     }
 
     async searchMain(key:string) {
@@ -50,39 +50,30 @@ export abstract class CTuid<T extends Tuid> extends CEntity<T, TuidUI> {
     }
 }
 
-export abstract class CTuidBase extends CTuid<TuidMain> {
-    constructor(cUq: CUq, entity: TuidMain, ui: TuidUI, res:any) {
+export abstract class CTuidBase extends CTuid<Tuid> {
+    constructor(cUq: CUq, entity:Tuid, ui: TuidUI, res:any) {
         super(cUq, entity, ui, res);
-        //let tuid = this.entity;
-        //this.proxies = tuid.proxies;
-        if (this.proxies !== undefined) {
-            this.proxyLinks = [];
-            for (let i in this.proxies) {
-                let link = this.cUq.linkFromName('tuid', i);
-                this.proxyLinks.push(link);
-            }
-        }
     }
-
+    
     from():CTuidBase {
-        let ret = this.entity.cFrom();
+        let ret = this; // this.entity.cFrom();
         if (ret === undefined) return this;
         return ret;
     }
 
     cUqFrom():CUq {
-        return this.entity.cUqFrom();
+        return this.cUq; // this.entity.cUqFrom();
     }
     cEditFrom(): CTuidEdit {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq; // this.entity.cUqFrom();
         return cUq.cTuidEditFromName(this.entity.name);
     }
     cInfoFrom(): CTuidInfo {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq; // this.entity.cUqFrom();
         return cUq.cTuidInfoFromName(this.entity.name);
     }
     cSelectFrom(): CTuidSelect {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq;// this.entity.cUqFrom();
         return cUq.cTuidSelectFromName(this.entity.name);
     }
 
@@ -100,16 +91,14 @@ export abstract class CTuidBase extends CTuid<TuidMain> {
         return name;
     }
 
-    proxies: {[name:string]: TuidMain};
-    proxyLinks: CLink[];
-    isFrom: boolean;
+    isImport: boolean;
 
     protected get VTuidMain():typeof VTuidMain {return VTuidMain}
     protected get VTuidEdit():typeof VTuidEdit {return VTuidEdit}
-    protected get VTuidList():typeof VTuidMainList {return VTuidMainList}
+    protected get VTuidList():typeof VTuidList {return VTuidList}
 
     protected async internalStart(param?:any):Promise<void> {
-        this.isFrom = this.entity.schemaFrom !== undefined;
+        this.isImport = this.entity.isImport;
         await this.openVPage(this.VTuidMain);
     }
 
@@ -174,7 +163,7 @@ export abstract class CTuidBase extends CTuid<TuidMain> {
 
 export class CTuidMain extends CTuidBase {
     protected async internalStart(param?:any):Promise<void> {
-        this.isFrom = this.entity.schemaFrom !== undefined;
+        this.isImport = this.entity.isImport;
         await this.openVPage(this.VTuidMain);
     }
 
@@ -182,7 +171,7 @@ export class CTuidMain extends CTuidBase {
 
 export class CTuidEdit extends CTuidBase {
     protected async internalStart(id:number):Promise<void> {
-        this.isFrom = this.entity.schemaFrom !== undefined;
+        this.isImport = this.entity.isImport;
         if (typeof(id) === 'number') {
             await this.onEdit(id);
         }
@@ -198,14 +187,14 @@ export class CTuidEdit extends CTuidBase {
 
 export class CTuidList extends CTuidBase {
     protected async internalStart(id:number):Promise<void> {
-        this.isFrom = this.entity.schemaFrom !== undefined;
+        this.isImport = this.entity.isImport;
         await this.openVPage(this.VTuidList);
     }
 }
 
-export class CTuidDiv extends CTuid<TuidDiv> {
+export class CTuidDiv extends CTuid<Tuid> {
     protected async internalStart():Promise<void> {
-        alert('tuid div: ' + this.entity.name);
+        alert('tuid div: ' + '??');
     }
 }
 

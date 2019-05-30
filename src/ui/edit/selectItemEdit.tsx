@@ -3,16 +3,11 @@ import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem, UiSelect } from '../s
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { SelectItemBaseEdit } from './selectBaseItemEdit';
+import { observable } from 'mobx';
+import { ItemEdit } from './itemEdit';
 
-export class SelectItemEdit extends SelectItemBaseEdit {
+export class SelectItemEdit extends ItemEdit {
     protected uiItem: UiSelect;
-
-    constructor(itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {
-        super(itemSchema, uiItem, label, value);
-
-    }
-
     protected async internalStart():Promise<any> {
         return new Promise<any>((resolve, reject) => {
             let element = React.createElement(this.page, {resolve:resolve, reject:reject});

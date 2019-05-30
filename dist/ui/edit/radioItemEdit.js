@@ -10,8 +10,8 @@ import * as React from 'react';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { SelectItemBaseEdit } from './selectBaseItemEdit';
-export class RadioItemEdit extends SelectItemBaseEdit {
+import { ItemEdit } from './itemEdit';
+export class RadioItemEdit extends ItemEdit {
     constructor() {
         super(...arguments);
         this.onChange = (value) => {

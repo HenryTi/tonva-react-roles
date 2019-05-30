@@ -1,7 +1,7 @@
 /// <reference types="react" />
+import { Widget } from './widget';
 import { UiRadio } from '../../schema';
-import { SelectBaseWidget } from './selectBaseWidget';
-export declare class RadioWidget extends SelectBaseWidget {
+export declare class RadioWidget extends Widget {
     protected inputs: {
         [index: number]: HTMLInputElement;
     };

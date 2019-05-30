@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { BoxId, Tuid } from "../entities";
+import { BoxId, Tuid } from "../uqs";
 import { PureJSONContent } from '../controllers';
-import { FA } from '../../ui';
 
-type TvTemplet = (values?:any, x?:any) => JSX.Element;
+export type TvTemplet = (values?:any, x?:any) => JSX.Element;
 
 interface Props {
     tuidValue: number|BoxId, 
@@ -14,10 +13,27 @@ interface Props {
 }
 
 function boxIdContent(bi: number|BoxId, ui:TvTemplet, x:any) {
-    if (typeof bi === 'number') return <>{bi}</>;
-    let {id, _$tuid, _$com} = bi as BoxId;
+    let logContent:any;
+    switch(typeof bi) {
+        case 'undefined': logContent = <>boxId undefined</>; break;
+        case 'number': logContent = <>id:{bi}</>; break;
+    }
+    if (typeof (bi as any).render !== 'function') {
+        if (ui === undefined) {
+            logContent = PureJSONContent(bi, x);
+        }
+        else {
+            return ui(bi, x);
+        }
+    }
+    if (logContent !== undefined) {
+        return <del className="text-danger">{logContent}</del>;
+    }
+    return (bi as any).render(ui, x);
+    /*
+    let {id, _$tuid, _$com} = bi;
     if (id === undefined || id === null) return;
-    let t:Tuid = _$tuid;
+    let t:TuidBase = _$tuid;
     if (t === undefined) {
         if (ui !== undefined) return ui(bi, x);
         return PureJSONContent(bi, x);
@@ -39,6 +55,7 @@ function boxIdContent(bi: number|BoxId, ui:TvTemplet, x:any) {
         return <>{id}</>;
     }
     return React.createElement(com, val);
+    */
 }
 
 const Tv = observer(({tuidValue, ui, x, nullUI}:Props) => {

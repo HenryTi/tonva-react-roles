@@ -1,6 +1,6 @@
 import React from 'react';
 import { VField } from './vField';
-import { Field } from '../../../entities';
+import { Field } from '../../../uqs';
 import { VForm } from '../vForm';
 import { observer } from 'mobx-react';
 import { FieldRes } from '../vBand';

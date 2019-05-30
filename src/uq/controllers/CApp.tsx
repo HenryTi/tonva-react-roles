@@ -1,9 +1,10 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { List, LMR, FA, Page, nav, Controller, TypeVPage, VPage, resLang, NavSettings} from '../../ui';
-import { loadAppUqs, appInFrame, getExHash, isDevelopment, App} from '../../net';
-import { CUq, UqUI } from './uq';
+import { loadAppUqs, appInFrame, getExHash, isDevelopment, UqAppData, UqData} from '../../net';
+import { CUq, UqUI } from './cUq';
 import { centerApi } from '../centerApi';
+import { UqApp } from '../uqs';
 
 export interface RoleAppUI {
     CApp?: typeof CApp;
@@ -19,26 +20,21 @@ export interface AppUI extends RoleAppUI, NavSettings {
 }
 
 export class CApp extends Controller {
-    private appOwner:string;
-    private appName:string;
+    //private appOwner:string;
+    //private appName:string;
+    name: string;
+    uqApp: UqApp;
     private cImportUqs: {[uq:string]: CUq} = {};
     protected ui:AppUI;
-    id: number;
     appUnits:any[];
 
     constructor(ui:AppUI) {
         super(resLang(ui && ui.res));
         nav.setSettings(ui);
-        let tonvaApp = ui.appName;
-        if (tonvaApp === undefined) {
+        this.name = ui.appName;
+        if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
-        let parts = tonvaApp.split('/');
-        if (parts.length !== 2) {
-            throw 'tonvaApp name must be / separated, owner/app';
-        }
-        this.appOwner = parts[0];
-        this.appName = parts[1];
         if (ui.uqs === undefined) ui.uqs = {};
         this.ui = ui;
         this.caption = this.res.caption || 'Tonva';
@@ -47,18 +43,21 @@ export class CApp extends Controller {
     readonly caption: string; // = 'View Model 版的 Uq App';
     cUqCollection: {[uq:string]: CUq} = {};
 
+    /*
     async startDebug() {
         let appName = this.appOwner + '/' + this.appName;
         let cApp = new CApp({appName: appName, uqs:{}} );
         let keepNavBackButton = true;
         await cApp.start(keepNavBackButton);    
     }
+    */
 
-    protected async loadUqs(app:App): Promise<string[]> {
+    /*
+    protected async loadUqs(uqAppData:UqAppData): Promise<string[]> {
         let retErrors:string[] = [];
         let unit = appInFrame.unit;
         //let app = await loadAppUqs(this.appOwner, this.appName);
-        let {id, uqs} = app;
+        let {id, uqs} = uqAppData;
         this.id = id;
 
         let promises: PromiseLike<string>[] = [];
@@ -72,7 +71,7 @@ export class CApp extends Controller {
             let cUq = this.newCUq(uq, uqId, access, uqUI || {});
             this.cUqCollection[uq] = cUq;
             promises.push(cUq.loadSchema());
-            promiseChecks.push(cUq.entities.uqApi.checkAccess());
+            promiseChecks.push(cUq.uq.uqApi.checkAccess());
         }
         let results = await Promise.all(promises);
         Promise.all(promiseChecks).then((checks) => {
@@ -95,7 +94,8 @@ export class CApp extends Controller {
         if (retErrors.length === 0) return;
         return retErrors;
     }
-
+    */
+    /*
     private async buildRoleAppUI():Promise<AppUI> {
         if (!this.ui) return undefined;
         let {hashParam} = nav;
@@ -112,6 +112,7 @@ export class CApp extends Controller {
         _.merge(ret, roleAppUI);
         return ret;
     }
+    */
 
     getImportUq(uqOwner:string, uqName:string):CUq {
         let uq = uqOwner + '/' + uqName;
@@ -132,8 +133,8 @@ export class CApp extends Controller {
         return cUq;
     }
 
-    protected newCUq(uq:string, uqId:number, access:string, ui:any) {
-        let cUq = new (this.ui.CUq || CUq)(this, uq, this.id, uqId, access, ui);        
+    protected newCUq(uqData: UqData, uqUI: UqUI) {
+        let cUq = new (this.ui.CUq || CUq)(this, uqData, uqUI);
         Object.setPrototypeOf(cUq.x, this.x);
         return cUq;
     }
@@ -153,41 +154,42 @@ export class CApp extends Controller {
     protected get VAppMain():TypeVPage<CApp> {return (this.ui&&this.ui.main) || VAppMain}
     protected async beforeStart():Promise<boolean> {
         try {
-            let app = await loadAppUqs(this.appOwner, this.appName);
+            let retErrors = await this.load();
+            //let app = await loadAppUqs(this.appOwner, this.appName);
             // if (isDevelopment === true) {
             // 这段代码原本打算只是在程序员调试方式下使用，实际上，也可以开放给普通用户，production方式下
-                let {predefinedUnit} = appInFrame;
-                let {id} = app;
-                this.id = id;
-                let {user} = nav;
-                if (user !== undefined && user.id > 0) {
-                    this.appUnits = await centerApi.userAppUnits(this.id);
-                    switch (this.appUnits.length) {
-                        case 0:
+            let {predefinedUnit} = appInFrame;
+            //let {id} = app;
+            //this.id = id;
+            let {user} = nav;
+            if (user !== undefined && user.id > 0) {
+                this.appUnits = await centerApi.userAppUnits(this.uqApp.id);
+                switch (this.appUnits.length) {
+                    case 0:
+                        this.showUnsupport(predefinedUnit);
+                        return false;
+                    case 1:
+                        let appUnit = this.appUnits[0].id;
+                        if (appUnit === undefined || appUnit < 0 || 
+                            predefinedUnit !== undefined && appUnit != predefinedUnit)
+                        {
                             this.showUnsupport(predefinedUnit);
                             return false;
-                        case 1:
-                            let appUnit = this.appUnits[0].id;
-                            if (appUnit === undefined || appUnit < 0 || 
-                                predefinedUnit !== undefined && appUnit != predefinedUnit)
-                            {
-                                this.showUnsupport(predefinedUnit);
-                                return false;
-                            }
-                            appInFrame.unit = appUnit;
+                        }
+                        appInFrame.unit = appUnit;
+                        break;
+                    default:
+                        if (predefinedUnit>0 && this.appUnits.find(v => v.id===predefinedUnit) !== undefined) {
+                            appInFrame.unit = predefinedUnit;
                             break;
-                        default:
-                            if (predefinedUnit>0 && this.appUnits.find(v => v.id===predefinedUnit) !== undefined) {
-                                appInFrame.unit = predefinedUnit;
-                                break;
-                            }
-                            nav.push(<this.selectUnitPage />)
-                            return false;
-                    }
+                        }
+                        nav.push(<this.selectUnitPage />)
+                        return false;
                 }
+            }
             //}
 
-            let retErrors = await this.loadUqs(app);
+            //let retErrors = await this.loadUqs(app);
             if (retErrors !== undefined) {
                 this.openPage(<Page header="ERROR">
                     <div className="m-3">
@@ -207,6 +209,59 @@ export class CApp extends Controller {
             </Page>);
             return false;
         }
+    }
+
+    private async load(): Promise<string[]> {
+        this.uqApp = new UqApp(this.name);
+        let {appOwner, appName} = this.uqApp;
+        let uqAppData = await loadAppUqs(appOwner, appName);
+        let {id, uqs} = uqAppData;
+        this.uqApp.id = id;
+
+        let retErrors:string[] = [];
+
+        let promiseInits: PromiseLike<void>[] = [];
+        let promises: PromiseLike<string>[] = [];
+        let promiseChecks: PromiseLike<boolean>[] = [];
+        for (let uqData of uqs) {
+            let {id, uqOwner, uqName, access} = uqData;
+            let uqFullName = uqOwner + '/' + uqName;
+            let uqUI = this.ui.uqs[uqFullName] as UqUI || {};
+            let cUq = this.newCUq(uqData, uqUI);
+            this.cUqCollection[uqFullName] = cUq;
+            this.uqApp.addUq(cUq.uq);
+            promiseInits.push(cUq.init());
+        }
+        await Promise.all(promiseInits);
+
+        for (let i in this.cUqCollection) {
+            let cUq = this.cUqCollection[i];
+            promises.push(cUq.loadEntities());
+            promiseChecks.push(cUq.checkEntities());
+        }
+        let results = await Promise.all(promises);
+        Promise.all(promiseChecks).then((checks) => {
+            for (let c of checks) {
+                if (c === false) {
+                    //debugger;
+                    //nav.start();
+                    //return;
+                }
+            }
+        });
+        for (let result of results)
+        {
+            let retError = result; // await cUq.loadSchema();
+            if (retError !== undefined) {
+                retErrors.push(retError);
+                continue;
+            }
+        }
+        if (retErrors.length === 0) {
+            this.uqApp.setTuidImportsLocal();
+            return;
+        }
+        return retErrors;
     }
 
     protected async internalStart(param:any) {
@@ -230,26 +285,26 @@ export class CApp extends Controller {
         this.clearPrevPages();
         let {user} = nav;
         let userName:string = user? user.name : '[未登录]';
+        let {appOwner, appName} = this.uqApp;
         this.openPage(<Page header="APP无法运行" logout={true}>
             <div className="m-3 text-danger container">
                 <div className="form-group row">
-                    <div className="col-2">登录用户: </div>
-                    <div className="col">{userName}</div>
+                    <div className="col-sm-3 font-weight-bold">登录用户</div>
+                    <div className="col-sm text-body">{userName}</div>
                 </div>
                 <div className="form-group row">
-                    <div className="col-2">App:</div>
-                    <div className="col">{`${this.appOwner}/${this.appName}`}</div>
+                    <div className="col-sm-3 font-weight-bold">App</div>
+                    <div className="col-sm text-body">{`${appOwner}/${appName}`}</div>
                 </div>
                 <div className="form-group row">
-                    <div className="col-2">预设小号:</div>
-                    <div className="col">{predefinedUnit || <small className="text-muted">[无预设小号]</small>}</div>
+                    <div className="col-sm-3 font-weight-bold">预设小号</div>
+                    <div className="col-sm text-body">{predefinedUnit || <small className="">[无预设小号]</small>}</div>
                 </div>
                 <div className="form-group row">
-                    <div className="col-2">
-                        <FA name="exclamation-triangle" />
+                    <div className="col-sm-3 font-weight-bold">
+                        可能原因<FA name="exclamation-triangle" />
                     </div>
-                    <div className="col">
-                        <div className="text-muted">无法运行可能原因：</div>
+                    <div className="col-sm text-body">
                         <ul className="p-0">
                             <li>没有小号运行 {this.ui.appName}</li>
                             <li>用户 <b>{userName}</b> 没有加入任何一个运行{this.ui.appName}的小号</li>
@@ -260,18 +315,15 @@ export class CApp extends Controller {
                         </ul>
                     </div>
                 </div>
-                {
-                    predefinedUnit || 
-                    <div className="form-group row">
-                    <div className="col-2"></div>
-                    <div className="col">
+                <div className="form-group row">
+                    <div className="col-sm-3 font-weight-bold">小号{predefinedUnit}</div>
+                    <div className="col-sm text-body">
                         预设小号定义在 public/unit.json 文件中。
                         定义了这个文件的程序，只能由url直接启动。
                         用户第一次访问app之后，会缓存在localStorage里。<br/>
                         如果要删去缓存的预定义Unit，logout然后再login。
                     </div>
                 </div>
-                }
             </div>
         </Page>)
     }
@@ -305,7 +357,7 @@ export class CApp extends Controller {
     private getCUqFromId(uqId:number): CUq {
         for (let i in this.cUqCollection) {
             let cUq = this.cUqCollection[i];
-            if (cUq.id === uqId) return cUq;
+            if (cUq.uq.id === uqId) return cUq;
         }
         return;
     }

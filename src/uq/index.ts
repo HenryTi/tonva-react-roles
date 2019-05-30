@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CApp, AppUI } from './controllers';
-export * from './entities';
+export * from './uqs';
 export * from './controllers';
 export * from './centerApi';
 export * from './tools';

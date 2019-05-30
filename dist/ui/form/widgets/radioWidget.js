@@ -1,9 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { SelectBaseWidget } from './selectBaseWidget';
-//const radioStyle:React.CSSProperties = {display: 'flex'};
-const autoHeight = { height: 'auto' };
-export class RadioWidget extends SelectBaseWidget {
+import { Widget } from './widget';
+const radioStyle = { display: 'flex' };
+export class RadioWidget extends Widget {
     constructor() {
         super(...arguments);
         this.inputs = {};
@@ -24,20 +23,25 @@ export class RadioWidget extends SelectBaseWidget {
         for (let i in this.inputs)
             this.inputs[i].disabled = value;
     }
+    /*
+    protected onInputChange = (evt: React.ChangeEvent<any>) => {
+        this.changeValue(evt.target.value, true);
+    }
+    */
     render() {
-        let { defaultValue, radioClassName } = this.ui;
+        let { defaultValue, list } = this.ui;
         let { isRow, inNode } = this.context;
         let rowKey;
         if (isRow === true) {
             rowKey = this.context.rowKey;
         }
-        let cn = classNames(this.className);
-        return React.createElement("div", { className: cn, style: autoHeight }, this.ui.list.map((v, index) => {
+        let cn = classNames(this.className, 'form-radio-inline');
+        return React.createElement("span", { className: cn, style: radioStyle }, list.map((v, index) => {
             let { value, title } = v;
             let name = this.name;
             if (rowKey !== undefined)
                 name += '-' + rowKey;
-            return React.createElement("label", { key: index, className: classNames('form-radio-inline', radioClassName) },
+            return React.createElement("label", { key: index, className: "form-radio-inline" },
                 React.createElement("input", { ref: input => this.inputs[index] = input, type: "radio", name: name, value: value, defaultChecked: (this.defaultValue || defaultValue) === value, onChange: this.onInputChange }),
                 title || value);
             //</span>

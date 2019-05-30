@@ -135,8 +135,11 @@ export class UqApi extends ApiBase {
             if (channel !== undefined)
                 return channel;
             let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
-            this.token = uqToken.token;
-            channel = new HttpChannel(false, uqToken.url, uqToken.token, channelUI);
+            if (!uqToken)
+                debugger;
+            let { url, token } = uqToken;
+            this.token = token;
+            channel = new HttpChannel(false, url, token, channelUI);
             return channels[this.uq] = channel;
         });
     }
@@ -238,18 +241,6 @@ export class UqApi extends ApiBase {
                 else
                     url += '$';
                 let ret = yield this.post(url, ids);
-                return ret;
-            }
-            catch (e) {
-                console.error(e);
-            }
-        });
-    }
-    proxied(name, proxy, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let url = 'tuid-proxy/' + name + '/' + proxy + '/' + id;
-                let ret = yield this.get(url);
                 return ret;
             }
             catch (e) {

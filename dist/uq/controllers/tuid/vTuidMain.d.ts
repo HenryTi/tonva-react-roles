@@ -1,9 +1,9 @@
 /// <reference types="react" />
-import { TuidMain } from '../../entities';
+import { Tuid } from '../../uqs';
 import { CLink } from '../link';
 import { VEntity } from '../CVEntity';
 import { CTuidMain, TuidUI } from './cTuid';
-export declare class VTuidMain extends VEntity<TuidMain, TuidUI, CTuidMain> {
+export declare class VTuidMain extends VEntity<Tuid, TuidUI, CTuidMain> {
     protected controller: CTuidMain;
     onNew: () => Promise<void>;
     onList: () => Promise<void>;

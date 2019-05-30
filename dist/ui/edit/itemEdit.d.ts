@@ -9,7 +9,6 @@ export declare abstract class ItemEdit {
     protected isChanged: boolean;
     protected newValue: any;
     constructor(itemSchema: ItemSchema, uiItem: UiItem, label: string, value: any);
-    protected init(): void;
     start(): Promise<any>;
     protected abstract internalStart(): Promise<any>;
     end(): Promise<any>;

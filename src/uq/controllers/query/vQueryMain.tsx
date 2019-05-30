@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Page, List, FA } from '../../../ui';
-import { TuidMain, Query, Entity } from '../../entities';
+import { Query } from '../../uqs';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { QueryUI, CQuery } from './cQuery';

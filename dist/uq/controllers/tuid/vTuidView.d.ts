@@ -1,10 +1,10 @@
 /// <reference types="react" />
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
-import { TuidMain } from '../../entities';
+import { Tuid } from '../../uqs';
 import { TuidUI, CTuidMain } from './cTuid';
 export declare type TypeVTuidView = typeof VTuidView;
-export declare class VTuidView extends VEntity<TuidMain, TuidUI, CTuidMain> {
+export declare class VTuidView extends VEntity<Tuid, TuidUI, CTuidMain> {
     vForm: VForm;
     id: number;
     protected buildForm(param: any): void;

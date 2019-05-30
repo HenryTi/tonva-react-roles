@@ -2,7 +2,7 @@ import { IObservableArray, observable } from "mobx";
 import { postWsToTop } from "../../../net";
 import { TypeVPage, VPage } from '../../../ui';
 import { PageItems } from '../../../pageItems'
-import { Sheet, StateCount } from "../../entities";
+import { Sheet, StateCount } from "../../uqs";
 import { CEntity, EntityUI, VEntity } from "../CVEntity";
 import { VSheetMain } from "./vMain";
 import { VSheetNew } from "./vNew";
@@ -149,7 +149,7 @@ export class CSheet extends CEntity<Sheet, SheetUI> {
                 action: '$sheet',
                 msg: {
                     id: sheetId,
-                    uq: this.cUq.id,
+                    uq: this.cUq.uq.id,
                     state: sheetData.brief.state
                 }
             }

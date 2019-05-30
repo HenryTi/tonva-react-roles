@@ -25,7 +25,6 @@ export declare class UqApi extends ApiBase {
     tuidArrSave(name: string, arr: string, owner: number, params: any): Promise<any>;
     tuidArrPos(name: string, arr: string, owner: number, id: number, order: number): Promise<any>;
     tuidIds(name: string, arr: string, ids: number[]): Promise<any[]>;
-    proxied(name: string, proxy: string, id: number): Promise<any>;
     sheetSave(name: string, data: object): Promise<any>;
     sheetAction(name: string, data: object): Promise<any>;
     stateSheets(name: string, data: object): Promise<any>;
@@ -66,17 +65,17 @@ export declare class CallCenterApi extends CenterApiBase {
     directCall(url: string, method: string, body: any): Promise<any>;
 }
 export declare const callCenterapi: CallCenterApi;
-export interface App {
+export interface UqAppData {
     id: number;
-    uqs: AppUq[];
+    uqs: UqData[];
 }
-export interface AppUq {
+export interface UqData {
     id: number;
     uqOwner: string;
     uqName: string;
     access: string;
 }
-export interface UqService {
+export interface UqServiceData {
     id: number;
     url: string;
     urlDebug: string;
@@ -84,13 +83,13 @@ export interface UqService {
 }
 export declare class CenterAppApi extends CenterApiBase {
     private cachedUqs;
-    uqs(appOwner: string, appName: string): Promise<App>;
+    uqs(appOwner: string, appName: string): Promise<UqAppData>;
     private uqsPure;
     checkUqs(appOwner: string, appName: string): Promise<boolean>;
-    unitxUq(unit: number): Promise<UqService>;
+    unitxUq(unit: number): Promise<UqServiceData>;
     changePassword(param: {
         orgPassword: string;
         newPassword: string;
     }): Promise<any>;
 }
-export declare function loadAppUqs(appOwner: string, appName: string): Promise<App>;
+export declare function loadAppUqs(appOwner: string, appName: string): Promise<UqAppData>;

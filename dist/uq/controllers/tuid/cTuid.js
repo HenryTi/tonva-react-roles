@@ -11,12 +11,13 @@ import { CEntity } from "../CVEntity";
 import { VTuidMain } from './vTuidMain';
 import { VTuidEdit } from './vTuidEdit';
 import { VTuidSelect } from './vTuidSelect';
+//import { CLink } from "../link";
 import { VTuidInfo } from "./vTuidInfo";
 import { TuidPageItems } from "./pageItems";
-import { VTuidMainList } from './vTuidList';
+import { VTuidList } from './vTuidList';
 export class CTuid extends CEntity {
     buildPageItems() {
-        return new TuidPageItems(this.entity.owner || this.entity);
+        return new TuidPageItems(this.entity);
     }
     searchMain(key) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -37,35 +38,26 @@ export class CTuid extends CEntity {
 export class CTuidBase extends CTuid {
     constructor(cUq, entity, ui, res) {
         super(cUq, entity, ui, res);
-        //let tuid = this.entity;
-        //this.proxies = tuid.proxies;
-        if (this.proxies !== undefined) {
-            this.proxyLinks = [];
-            for (let i in this.proxies) {
-                let link = this.cUq.linkFromName('tuid', i);
-                this.proxyLinks.push(link);
-            }
-        }
     }
     from() {
-        let ret = this.entity.cFrom();
+        let ret = this; // this.entity.cFrom();
         if (ret === undefined)
             return this;
         return ret;
     }
     cUqFrom() {
-        return this.entity.cUqFrom();
+        return this.cUq; // this.entity.cUqFrom();
     }
     cEditFrom() {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq; // this.entity.cUqFrom();
         return cUq.cTuidEditFromName(this.entity.name);
     }
     cInfoFrom() {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq; // this.entity.cUqFrom();
         return cUq.cTuidInfoFromName(this.entity.name);
     }
     cSelectFrom() {
-        let cUq = this.entity.cUqFrom();
+        let cUq = this.cUq; // this.entity.cUqFrom();
         return cUq.cTuidSelectFromName(this.entity.name);
     }
     getLable(tuid) {
@@ -85,10 +77,10 @@ export class CTuidBase extends CTuid {
     }
     get VTuidMain() { return VTuidMain; }
     get VTuidEdit() { return VTuidEdit; }
-    get VTuidList() { return VTuidMainList; }
+    get VTuidList() { return VTuidList; }
     internalStart(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.isFrom = this.entity.schemaFrom !== undefined;
+            this.isImport = this.entity.isImport;
             yield this.openVPage(this.VTuidMain);
         });
     }
@@ -167,7 +159,7 @@ export class CTuidBase extends CTuid {
 export class CTuidMain extends CTuidBase {
     internalStart(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.isFrom = this.entity.schemaFrom !== undefined;
+            this.isImport = this.entity.isImport;
             yield this.openVPage(this.VTuidMain);
         });
     }
@@ -175,7 +167,7 @@ export class CTuidMain extends CTuidBase {
 export class CTuidEdit extends CTuidBase {
     internalStart(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.isFrom = this.entity.schemaFrom !== undefined;
+            this.isImport = this.entity.isImport;
             if (typeof (id) === 'number') {
                 yield this.onEdit(id);
             }
@@ -193,7 +185,7 @@ export class CTuidEdit extends CTuidBase {
 export class CTuidList extends CTuidBase {
     internalStart(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.isFrom = this.entity.schemaFrom !== undefined;
+            this.isImport = this.entity.isImport;
             yield this.openVPage(this.VTuidList);
         });
     }
@@ -201,7 +193,7 @@ export class CTuidList extends CTuidBase {
 export class CTuidDiv extends CTuid {
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
-            alert('tuid div: ' + this.entity.name);
+            alert('tuid div: ' + '??');
         });
     }
 }

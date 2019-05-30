@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Page } from '../../../ui';
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';
 import { SheetUI, CSheet } from './cSheet';

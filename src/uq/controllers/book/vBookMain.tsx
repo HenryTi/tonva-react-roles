@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TuidMain, Book, Entity } from '../../entities';
+import { Book } from '../../uqs';
 import { Page } from '../../../ui';
 import { VEntity } from '../CVEntity';
 import { CBook, BookUI } from './cBook';

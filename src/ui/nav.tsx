@@ -5,7 +5,7 @@ import {Page} from './page';
 import {netToken} from '../net/netToken';
 import FetchErrorView from './fetchErrorView';
 import {FetchError} from '../fetchError';
-import {appUrl, setAppInFrame, logoutUqTokens, getExHash, getExHashPos} from '../net/appBridge';
+import {appUrl, setAppInFrame, getExHash, getExHashPos} from '../net/appBridge';
 import {LocalData} from '../local';
 import {guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host} from '../net';
 import { WsBase, wsBridge } from '../net/wsChannel';

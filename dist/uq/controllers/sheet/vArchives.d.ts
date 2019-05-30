@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { VEntity } from '../CVEntity';
-import { Sheet } from '../../entities';
+import { Sheet } from '../../uqs';
 import { SheetUI, CSheet } from './cSheet';
 export declare class VArchives extends VEntity<Sheet, SheetUI, CSheet> {
     list: any[];

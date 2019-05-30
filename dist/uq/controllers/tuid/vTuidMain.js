@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { Page, SearchBox, List, Muted, LMR } from '../../../ui';
+import { Page, SearchBox, LMR } from '../../../ui';
 import { VEntity } from '../CVEntity';
 export class VTuidMain extends VEntity {
     constructor() {
@@ -30,23 +30,15 @@ export class VTuidMain extends VEntity {
         });
     }
     get view() {
-        let { label, proxyLinks, isFrom } = this.controller;
+        let { label, isImport } = this.controller;
         let newButton;
-        if (isFrom === false)
+        if (isImport === false)
             newButton = React.createElement("button", { className: "btn btn-outline-success ml-2", onClick: this.onNew }, "\u65B0\u589E");
-        let content;
-        if (proxyLinks === undefined) {
-            let right = React.createElement(React.Fragment, null,
-                newButton,
-                React.createElement("button", { className: "btn btn-outline-info ml-2", onClick: this.onList }, "\u5168\u90E8"));
-            content = React.createElement(LMR, { className: 'm-3', right: right },
-                React.createElement(SearchBox, { className: "w-100", size: "md", onSearch: this.onSearch, placeholder: '搜索' + label }));
-        }
-        else {
-            content = React.createElement(List, { className: "my-2", header: React.createElement(Muted, null,
-                    label,
-                    " \u4EE3\u7406\u4E0B\u5217Tuid"), items: proxyLinks, item: { render: this.entityRender, onClick: this.entityClick } });
-        }
+        let right = React.createElement(React.Fragment, null,
+            newButton,
+            React.createElement("button", { className: "btn btn-outline-info ml-2", onClick: this.onList }, "\u5168\u90E8"));
+        let content = React.createElement(LMR, { className: 'm-3', right: right },
+            React.createElement(SearchBox, { className: "w-100", size: "md", onSearch: this.onSearch, placeholder: '搜索' + label }));
         return () => React.createElement(Page, { header: label }, content);
     }
 }

@@ -1,7 +1,8 @@
 /// <reference types="react" />
 import { Controller, TypeVPage, NavSettings } from '../../ui';
-import { App } from '../../net';
-import { CUq, UqUI } from './uq';
+import { UqData } from '../../net';
+import { CUq, UqUI } from './cUq';
+import { UqApp } from '../uqs';
 export interface RoleAppUI {
     CApp?: typeof CApp;
     CUq?: typeof CUq;
@@ -18,26 +19,23 @@ export interface AppUI extends RoleAppUI, NavSettings {
     };
 }
 export declare class CApp extends Controller {
-    private appOwner;
-    private appName;
+    name: string;
+    uqApp: UqApp;
     private cImportUqs;
     protected ui: AppUI;
-    id: number;
     appUnits: any[];
     constructor(ui: AppUI);
     readonly caption: string;
     cUqCollection: {
         [uq: string]: CUq;
     };
-    startDebug(): Promise<void>;
-    protected loadUqs(app: App): Promise<string[]>;
-    private buildRoleAppUI;
     getImportUq(uqOwner: string, uqName: string): CUq;
-    protected newCUq(uq: string, uqId: number, access: string, ui: any): CUq;
+    protected newCUq(uqData: UqData, uqUI: UqUI): CUq;
     readonly cUqArr: CUq[];
     getCUq(uq: string): CUq;
     protected readonly VAppMain: TypeVPage<CApp>;
     protected beforeStart(): Promise<boolean>;
+    private load;
     protected internalStart(param: any): Promise<void>;
     render(): JSX.Element;
     protected clearPrevPages(): void;

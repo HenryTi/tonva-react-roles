@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { FA, SearchBox, List, Page } from '../../../ui';
-import { PageItems } from '../../../pageItems';
+import { FA, SearchBox, List, Page, VPage } from '../../../ui';
 import { jsonStringify } from '../../tools';
-import { TuidMain, Entity, Tuid, TuidDiv } from '../../entities';
+import { Tuid, TuidDiv } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { TuidUI, CTuidMain, CTuidDiv } from './cTuid';
 import { JSONContent, RowContent } from '../form/viewModel';
 
-export abstract class VTuidMainListBase  extends VEntity<TuidMain, TuidUI, CTuidMain> {
+export abstract class VTuidListBase  extends VEntity<Tuid, TuidUI, CTuidMain> {
     protected rowContent: (row:any) => JSX.Element;
     protected ownerId: number;
 
     async open(param?:any) {
         this.rowContent = this.ui.rowContent || RowContent;
-        if (this.entity.owner !== undefined) this.ownerId = Number(param);
+        //if (this.entity.owner !== undefined) 
+        this.ownerId = Number(param);
         // 初始查询, key是空的
         //await this.onSearch('');
         await this.controller.searchMain('');
@@ -46,14 +46,16 @@ export abstract class VTuidMainListBase  extends VEntity<TuidMain, TuidUI, CTuid
         let header = <SearchBox className="mx-1 w-100"
             initKey={''}
             onSearch={this.onSearch} placeholder={'搜索'+this.label} />;
+        /*
         let {owner} = this.entity;
         let ownerTop;
         if (owner !== undefined) {
             let ownerObj = owner.valueFromId(this.ownerId);
             ownerTop = <div>owner: {jsonStringify(ownerObj)}</div>;
         }
+        */
         return <Page header={header}>
-            {ownerTop}
+            {/*ownerTop*/}
             <List
                 items={this.controller.PageItems.items}
                 item={{render: this.renderRow, onClick: this.clickRow, key:this.rowKey}}
@@ -62,16 +64,16 @@ export abstract class VTuidMainListBase  extends VEntity<TuidMain, TuidUI, CTuid
     });
 }
 
-export class VTuidMainList extends VTuidMainListBase {
+export class VTuidList extends VTuidListBase {
     protected async onSelected(item:any) {
-        if (this.controller.isFrom === false)
+        if (this.controller.isImport === false)
             this.event('edit', item.id);
         else
             this.event('info', item.id);
     }
 }
-
-export abstract class VTuidDivListBase  extends VEntity<TuidDiv, TuidUI, CTuidDiv> {
+/*
+export abstract class VTuidDivListBase  extends VPage<CTuidDiv> {
     protected ownerId: number;
 
     async open(param?:any) {
@@ -128,3 +130,4 @@ export class VTuidDivList extends VTuidDivListBase {
         this.event('edit', item.id);
     }
 }
+*/

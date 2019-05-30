@@ -1,2 +1,1 @@
-;
 //# sourceMappingURL=uiSchema.js.map

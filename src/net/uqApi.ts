@@ -143,11 +143,12 @@ export class UqApi extends ApiBase {
         let channel = channels[this.uq];
         if (channel !== undefined) return channel;
         let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
-        this.token = uqToken.token;
-        channel = new HttpChannel(false, uqToken.url, uqToken.token, channelUI);
+        if (!uqToken) debugger;
+        let {url, token} = uqToken;
+        this.token = token;
+        channel = new HttpChannel(false, url, token, channelUI);
         return channels[this.uq] = channel;
     }
-
 
     async update():Promise<string> {
         return await this.get('update');
@@ -225,17 +226,6 @@ export class UqApi extends ApiBase {
             if (arr !== undefined) url += arr;
             else url += '$';
             let ret = await this.post(url, ids);
-            return ret;
-        }
-        catch (e) {
-            console.error(e);
-        }
-    }
-
-    async proxied(name:string, proxy:string, id:number):Promise<any> {
-        try {
-            let url = 'tuid-proxy/' + name + '/' + proxy + '/' + id;
-            let ret = await this.get(url);
             return ret;
         }
         catch (e) {
@@ -454,19 +444,19 @@ export class CallCenterApi extends CenterApiBase {
 }
 export const callCenterapi = new CallCenterApi('', undefined);
 
-export interface App {
+export interface UqAppData {
     id: number;
-    uqs: AppUq[];
+    uqs: UqData[];
 }
 
-export interface AppUq {
+export interface UqData {
     id: number;
     uqOwner: string;
     uqName: string;
     access: string;
 }
 
-export interface UqService {
+export interface UqServiceData {
     id: number;
     url: string;
     urlDebug: string;
@@ -476,8 +466,8 @@ export interface UqService {
 const appUqs = 'appUqs';
 
 export class CenterAppApi extends CenterApiBase {
-    private cachedUqs: App;
-    async uqs(appOwner:string, appName:string):Promise<App> {
+    private cachedUqs: UqAppData;
+    async uqs(appOwner:string, appName:string):Promise<UqAppData> {
         let ret:any;
         let ls = localStorage.getItem(appUqs);
         if (ls !== null) {
@@ -496,7 +486,7 @@ export class CenterAppApi extends CenterApiBase {
         }
         return this.cachedUqs = _.cloneDeep(ret);
     }
-    private async uqsPure(appOwner:string, appName:string):Promise<App> {
+    private async uqsPure(appOwner:string, appName:string):Promise<UqAppData> {
         return await this.get('tie/app-uqs', {appOwner:appOwner, appName:appName});
     }
     async checkUqs(appOwner:string, appName:string):Promise<boolean> {
@@ -511,7 +501,7 @@ export class CenterAppApi extends CenterApiBase {
         }
         return true;
     }
-    async unitxUq(unit:number):Promise<UqService> {
+    async unitxUq(unit:number):Promise<UqServiceData> {
         return await this.get('tie/unitx-uq', {unit:unit});
     }
     async changePassword(param: {orgPassword:string, newPassword:string}) {
@@ -519,7 +509,7 @@ export class CenterAppApi extends CenterApiBase {
     }
 }
 
-export async function loadAppUqs(appOwner:string, appName:string): Promise<App> {
+export async function loadAppUqs(appOwner:string, appName:string): Promise<UqAppData> {
     let centerAppApi = new CenterAppApi('tv/', undefined);
     //let unit = meInFrame.unit;
     let ret = await centerAppApi.uqs(appOwner, appName);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { VBand } from './vBand';
-import { Field, ArrFields } from '../../entities';
+import { Field, ArrFields } from '../../uqs';
 import { VArr } from './vArr';
 import { FormUI, FormUIBase, FormItems } from '../formUI';
 import { VField } from './vField';

@@ -1,17 +1,36 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { PureJSONContent } from '../controllers';
-import { FA } from '../../ui';
 function boxIdContent(bi, ui, x) {
-    if (typeof bi === 'number')
-        return React.createElement(React.Fragment, null, bi);
-    let { id, _$tuid, _$com } = bi;
-    if (id === undefined || id === null)
-        return;
-    let t = _$tuid;
-    if (t === undefined) {
-        if (ui !== undefined)
+    let logContent;
+    switch (typeof bi) {
+        case 'undefined':
+            logContent = React.createElement(React.Fragment, null, "boxId undefined");
+            break;
+        case 'number':
+            logContent = React.createElement(React.Fragment, null,
+                "id:",
+                bi);
+            break;
+    }
+    if (typeof bi.render !== 'function') {
+        if (ui === undefined) {
+            logContent = PureJSONContent(bi, x);
+        }
+        else {
             return ui(bi, x);
+        }
+    }
+    if (logContent !== undefined) {
+        return React.createElement("del", { className: "text-danger" }, logContent);
+    }
+    return bi.render(ui, x);
+    /*
+    let {id, _$tuid, _$com} = bi;
+    if (id === undefined || id === null) return;
+    let t:TuidBase = _$tuid;
+    if (t === undefined) {
+        if (ui !== undefined) return ui(bi, x);
         return PureJSONContent(bi, x);
     }
     let com = ui || _$com;
@@ -20,27 +39,18 @@ function boxIdContent(bi, ui, x) {
     }
     let val = t.valueFromId(id);
     if (val === undefined) {
-        return React.createElement(React.Fragment, null,
-            "[",
-            React.createElement(FA, { className: "text-danger", name: "bug" }),
-            " no ",
-            t.name,
-            " on id=",
-            id,
-            "]");
+        return <>[<FA className="text-danger" name="bug" /> no {t.name} on id={id}]</>;
     }
     switch (typeof val) {
-        case 'number':
-            val = { id: val };
-            break;
+        case 'number': val = {id: val}; break;
     }
     if (ui !== undefined) {
         let ret = ui(val, x);
-        if (ret !== undefined)
-            return ret;
-        return React.createElement(React.Fragment, null, id);
+        if (ret !== undefined) return ret;
+        return <>{id}</>;
     }
     return React.createElement(com, val);
+    */
 }
 const Tv = observer(({ tuidValue, ui, x, nullUI }) => {
     if (tuidValue === undefined) {
