@@ -21,17 +21,19 @@ export class Map extends Entity {
         this.uq.buildFieldTuid(this.keys = keys);
         //let t = this.schemaStringify();
         for (let i in actions) {
-            let schema = actions[i];
-            let { name } = schema;
+            let actionSchema = actions[i];
+            let { name } = actionSchema;
             let action = this.uq.newAction(name, undefined);
-            action.setSchema(schema);
+            action.setSchema(actionSchema);
+            action.buildFieldsTuid();
             this.actions[i] = action;
         }
         for (let i in queries) {
-            let schema = queries[i];
-            let { name } = schema;
+            let querySchema = queries[i];
+            let { name } = querySchema;
             let query = this.uq.newQuery(name, undefined);
-            query.setSchema(schema);
+            query.setSchema(querySchema);
+            query.buildFieldsTuid();
             this.queries[i] = query;
         }
     }

@@ -49,6 +49,7 @@ export class TuidLocal extends Tuid {
                 let tuidDiv = new TuidDiv(this.uq, this, name);
                 this.divs[name] = tuidDiv;
                 tuidDiv.setSchema(arr);
+                tuidDiv.buildFieldsTuid();
             }
         }
     }

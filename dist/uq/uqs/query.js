@@ -19,8 +19,8 @@ export class Query extends Entity {
     setSchema(schema) {
         super.setSchema(schema);
         let { returns } = schema;
-        this.returns = returns;
-        this.isPaged = returns.find(v => v.name === '$page') !== undefined;
+        //this.returns = returns;
+        this.isPaged = returns && returns.find(v => v.name === '$page') !== undefined;
     }
     resetPage(size, params) {
         this.pageStart = undefined;

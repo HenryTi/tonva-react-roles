@@ -20,10 +20,11 @@ export class TuidDiv extends Entity {
     }
     ;
     get owner() { return this.tuid; }
-    setSchema(schema) {
+    /*
+    setSchema(schema:any) {
         super.setSchema(schema);
         this.buildFieldsTuid();
-    }
+    }*/
     setUIRes(ui, res) {
         this.ui = ui && ui.content;
         this.res = res;

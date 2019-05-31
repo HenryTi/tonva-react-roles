@@ -15,7 +15,6 @@ export declare class TuidDiv extends Entity {
     res: any;
     constructor(uq: Uq, tuid: TuidLocal, name: string);
     readonly owner: TuidLocal;
-    setSchema(schema: any): void;
     setUIRes(ui: any, res: any): void;
     buildFieldsTuid(): void;
     buildTuidBox(ownerField: Field): TuidBox;
