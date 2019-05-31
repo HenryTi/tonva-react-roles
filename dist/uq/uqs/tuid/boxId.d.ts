@@ -5,22 +5,22 @@ import { TvTemplet } from '../../tools';
 export declare class BoxId {
     readonly id: number;
     protected tuid: Tuid;
+    readonly obj: any;
     constructor(tuid: Tuid, id: number);
     render(ui: TvTemplet, x: any): JSX.Element;
     boxName(): string;
-    valueFromId(): any;
     isUndefined(): boolean;
     ui(): TvTemplet;
     res(): any;
-    getObj<T>(): Promise<T>;
+    assure(): Promise<void>;
 }
 export declare class BoxDivId extends BoxId {
     private div;
     constructor(tuid: Tuid, div: TuidDiv, id: number);
+    readonly obj: any;
     boxName(): string;
-    valueFromId(): any;
     isUndefined(): boolean;
     ui(): TvTemplet;
     res(): any;
-    getObj<T>(): Promise<T>;
+    assure(): Promise<void>;
 }

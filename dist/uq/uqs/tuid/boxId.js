@@ -9,6 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { PureJSONContent } from '../../controllers';
 export class BoxId {
+    get obj() {
+        return this.tuid.valueFromId(this.id);
+    }
     constructor(tuid, id) {
         this.tuid = tuid;
         this.id = id;
@@ -17,7 +20,7 @@ export class BoxId {
         if (this.id === undefined || this.id === null)
             return;
         let boxName = this.boxName(); // this.tuid.name;
-        let val = this.valueFromId(); // this.tuid.valueFromId(this.id);
+        let val = this.obj; // this.tuid.valueFromId(this.id);
         if (this.isUndefined() === true) {
             if (ui !== undefined)
                 return ui(val, x);
@@ -49,13 +52,13 @@ export class BoxId {
         return PureJSONContent(val);
     }
     boxName() { return this.tuid.name; }
-    valueFromId() { return this.tuid.valueFromId(this.id); }
+    //valueFromId(): any {return this.tuid.valueFromId(this.id)}
     isUndefined() { return this.tuid === undefined; }
     ui() { return this.tuid.ui; }
     res() { return this.tuid.res; }
-    getObj() {
+    assure() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.tuid.getObjFromId(this.id);
+            yield this.tuid.assureBox(this.id);
         });
     }
 }
@@ -64,14 +67,17 @@ export class BoxDivId extends BoxId {
         super(tuid, id);
         this.div = div;
     }
+    get obj() {
+        return this.div.valueFromId(this.id);
+    }
     boxName() { return this.div.name; }
-    valueFromId() { return this.div.valueFromId(this.id); }
+    //valueFromId(): any {return this.div.valueFromId(this.id)}
     isUndefined() { return this.div === undefined; }
     ui() { return this.div.ui; }
     res() { return this.div.res; }
-    getObj() {
+    assure() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.div.getObjFromId(this.id);
+            yield this.div.assureBox(this.id);
         });
     }
 }

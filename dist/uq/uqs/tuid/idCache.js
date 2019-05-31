@@ -141,18 +141,17 @@ export class IdCache {
     cacheTuidFieldValues(tuidValue) {
         this.tuidLocal.cacheTuidFieldValues(tuidValue);
     }
-    getObjFromId(id) {
+    assureObj(id) {
         return __awaiter(this, void 0, void 0, function* () {
             let val = this.cache.get(id);
             switch (typeof val) {
-                case 'object': return val;
+                case 'object': return;
                 case 'number':
                     this.cache.set(id, id);
                     break;
             }
             let ret = yield this.tuidLocal.loadTuidIds(this.divName, [id]);
             yield this.cacheIdValues(ret);
-            return this.cache.get(id);
         });
     }
 }

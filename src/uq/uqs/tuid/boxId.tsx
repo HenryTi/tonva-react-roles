@@ -13,6 +13,9 @@ export class BoxId {
     //_$tuid?: TuidBase;
     //getObj: ()=>any;
     protected tuid: Tuid;
+    get obj():any {
+        return this.tuid.valueFromId(this.id);
+    }
 
     constructor(tuid: Tuid, id: number) {
         this.tuid = tuid;
@@ -22,7 +25,7 @@ export class BoxId {
     render(ui:TvTemplet, x:any):JSX.Element {
         if (this.id === undefined || this.id === null) return;
         let boxName = this.boxName(); // this.tuid.name;
-        let val = this.valueFromId(); // this.tuid.valueFromId(this.id);
+        let val = this.obj; // this.tuid.valueFromId(this.id);
         if (this.isUndefined() === true) {
             if (ui !== undefined) return ui(val, x);
             return PureJSONContent(val, x);
@@ -46,13 +49,13 @@ export class BoxId {
     }
 
     boxName():string {return this.tuid.name}
-    valueFromId(): any {return this.tuid.valueFromId(this.id)}
+    //valueFromId(): any {return this.tuid.valueFromId(this.id)}
     isUndefined(): boolean {return this.tuid === undefined}
     ui(): TvTemplet {return this.tuid.ui}
     res(): any {return this.tuid.res}
 
-    async getObj<T>(): Promise<T> {
-        return await this.tuid.getObjFromId<T>(this.id);
+    async assure(): Promise<void> {
+        await this.tuid.assureBox(this.id);
     }
 }
 
@@ -62,14 +65,17 @@ export class BoxDivId extends BoxId {
         super(tuid, id);
         this.div = div;
     }
+    get obj():any {
+        return this.div.valueFromId(this.id);
+    }
     boxName():string {return this.div.name}
-    valueFromId(): any {return this.div.valueFromId(this.id)}
+    //valueFromId(): any {return this.div.valueFromId(this.id)}
     isUndefined(): boolean {return this.div === undefined}
     ui(): TvTemplet {return this.div.ui}
     res(): any {return this.div.res}
 
-    async getObj<T>(): Promise<T> {
-        return await this.div.getObjFromId<T>(this.id);
+    async assure(): Promise<void> {
+        await this.div.assureBox(this.id);
     }
 
 /*

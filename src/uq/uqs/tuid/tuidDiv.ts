@@ -64,8 +64,8 @@ export class TuidDiv extends Entity {
         return this.idCache.getValue(id)
     }
 
-    async getObjFromId<T>(id:number):Promise<T> {
-        return await this.idCache.getObjFromId<T>(id);
+    async assureBox(id:number):Promise<void> {
+        await this.idCache.assureObj(id);
     }
 
     async cacheIds() {
