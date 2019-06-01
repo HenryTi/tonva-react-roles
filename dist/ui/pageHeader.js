@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { nav, mobileHeaderStyle } from './nav';
+import { nav /*, mobileHeaderStyle*/ } from './nav';
 export class PageHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -99,7 +99,7 @@ export class PageHeader extends React.Component {
                 right,
                 " ",
                 debugLogout);
-        return React.createElement("header", { className: className, style: mobileHeaderStyle },
+        return React.createElement("header", { className: className },
             pop,
             back,
             React.createElement("div", null, center),

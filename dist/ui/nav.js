@@ -31,9 +31,11 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
 const isMobile = regEx.test(navigator.userAgent);
-export const mobileHeaderStyle = isMobile ? {
-    minHeight: '3em'
+/*
+export const mobileHeaderStyle = isMobile? {
+    minHeight:  '3em'
 } : undefined;
+*/
 const logo = require('../img/logo.svg');
 let logMark;
 const logs = [];
@@ -625,7 +627,7 @@ export class Nav {
                     appUrl(url, unitId, sheet, [apiId, sheetType, sheetId]);
                 console.log('navToApp: %s', JSON.stringify(uh));
                 nav.push(React.createElement("article", { className: 'app-container' },
-                    React.createElement("span", { id: uh.hash, onClick: () => this.back(), style: mobileHeaderStyle },
+                    React.createElement("span", { id: uh.hash, onClick: () => this.back() },
                         React.createElement("i", { className: "fa fa-arrow-left" })),
                     React.createElement("iframe", { src: uh.url })), () => {
                     resolve();

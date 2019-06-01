@@ -22,10 +22,11 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'Opera Mini|IEMobile|Mobile' , 
     'i');
 const isMobile = regEx.test(navigator.userAgent);
+/*
 export const mobileHeaderStyle = isMobile? {
     minHeight:  '3em'
 } : undefined;
-
+*/
 const logo = require('../img/logo.svg');
 let logMark: number;
 const logs:string[] = [];
@@ -657,7 +658,7 @@ export class Nav {
                     appUrl(url, unitId, sheet, [apiId, sheetType, sheetId]);
             console.log('navToApp: %s', JSON.stringify(uh));
             nav.push(<article className='app-container'>
-                <span id={uh.hash} onClick={()=>this.back()} style={mobileHeaderStyle}>
+                <span id={uh.hash} onClick={()=>this.back()} /*style={mobileHeaderStyle}*/>
                     <i className="fa fa-arrow-left" />
                 </span>
                 <iframe src={uh.url} />

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
-import {nav, mobileHeaderStyle} from './nav';
+import {nav/*, mobileHeaderStyle*/} from './nav';
 
 export interface PageHeaderProps {
     back?: 'back' | 'close' | 'none';
@@ -94,7 +94,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         }
         let rightView;
         if (right || debugLogout) rightView = <aside>{right} {debugLogout}</aside>;
-        return <header className={className} style={mobileHeaderStyle}>
+        return <header className={className} /*style={mobileHeaderStyle}*/>
             {pop}
             {back}
             <div>{center}</div>

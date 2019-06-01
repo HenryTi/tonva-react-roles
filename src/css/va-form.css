@@ -4,10 +4,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100%;
   max-width: 860px;
-  width: 100%;
   align-self: center;
+  height: 100%;
 }
 .tab>div:first-child {
   display: flex;
@@ -16,6 +15,15 @@
 .tab>div:last-child {
   display: flex;
   align-items: center;
+}
+.tab-sm>div:last-child {
+  height: 2.5rem;
+}
+.tab-md>div:last-child {
+  height: 3.2rem;
+}
+.tab-lg>div:last-child {
+  height: 4rem;
 }
 .tab>div:last-child, .tab>div:last-child>div {
   display: flex;

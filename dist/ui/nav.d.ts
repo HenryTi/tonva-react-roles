@@ -5,9 +5,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
-export declare const mobileHeaderStyle: {
-    minHeight: string;
-};
 export interface Props {
     onLogined: () => Promise<void>;
     notLogined?: () => Promise<void>;
