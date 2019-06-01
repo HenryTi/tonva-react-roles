@@ -6,6 +6,7 @@ export interface TabProp {
     caption: TabCaption;
     content: () => JSX.Element;
     notify?: IObservableValue<number>;
+    load?: () => Promise<void>;
 }
 export interface TabsProps {
     tabs: TabProp[];

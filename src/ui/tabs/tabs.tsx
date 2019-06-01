@@ -11,6 +11,7 @@ export interface TabProp {
     caption: TabCaption;
     content: () => JSX.Element;
     notify?: IObservableValue<number>;
+    load?: () => Promise<void>;
 }
 
 export interface TabsProps {
@@ -28,12 +29,18 @@ class Tab {
     caption: TabCaption;
     contentBuilder: ()=>JSX.Element;
     notify: IObservableValue<number>;
+    load?: () => Promise<void>;
 
     private _content: JSX.Element;
     get content(): JSX.Element {
         if (this.selected !== true) return this._content;
         if (this._content !== undefined) return this._content;
         return this._content = this.contentBuilder();
+    }
+    async start() {
+        if (this._content !== undefined) return;
+        if (this.load === undefined) return;
+        await this.load();
     }
 }
 
@@ -67,6 +74,7 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
                 tab.caption = v.caption;
                 tab.contentBuilder = v.content;
                 tab.notify = v.notify;
+                tab.load = v.load;
                 return tab;
             }
         ));
@@ -80,7 +88,8 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
         this.selectedTab.selected = true;
     }
 
-    private tabClick = (tab:Tab) => {
+    private tabClick = async (tab:Tab) => {
+        await tab.start();
         this.selectedTab.selected = false;
         tab.selected = true;
         this.selectedTab = tab;
