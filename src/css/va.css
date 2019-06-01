@@ -27,7 +27,7 @@ main * {
     box-sizing: border-box;
 }
 
-body, body>div, ul.va, ul.va>li, ul.va>li>article {
+body, body>div, ul.va, ul.va>li, article.page-container {
     display: flex;
     flex-direction: column;
     height:100%;
@@ -87,17 +87,12 @@ div.red-dot>u.message-dot {
       height: 100%;
       border: none;
   }
-  ul.va>li>article>main {
+  article.page-container>main {
       position: relative;
       flex: 100;
       background-color: #f0f0f0;
       /*overflow-x: hidden;
       overflow-y: auto;*/
-  }
-  ul.va-no>li>article>main{
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
   }
   article.page-container>header {
       display: flex;
@@ -152,19 +147,19 @@ div.red-dot>u.message-dot {
     border: none;
     margin: 0;
   }
-  ul.va>li>article>footer {
+  article.page-container>footer {
     display: flex;
     padding: 2px 1px;
     min-height: 50px;
     border-top: solid 1px lightgray;
     background-color: #f8f8f8;
   }
-  ul.va>li>article>footer>div {
+  article.page-container>footer>div {
     display: flex;
     flex:1;
     flex-direction: row;
   }
-  ul.va>li>article>footer>div>div {
+  article.page-container>footer>div>div {
     display: flex;
     flex-grow: 1;
     justify-content: center;
@@ -177,19 +172,19 @@ div.red-dot>u.message-dot {
     border: solid 1px #f0f0f0;
     font-size: 12px;
   }
-  ul.va>li>article>footer>div>div.cur {
+  article.page-container>footer>div>div.cur {
     color: blue;
     font-weight: bold;
     background-color: white;
     border: solid 1px white;
   }
   
-  ul.va>li>article>section {
+  article.page-container>section {
     position: relative;
     flex: 1;
     background-color: #f0f0f0;
   }
-  ul.va>li>article>section>main {
+  article.page-container>section>main {
     position: absolute;
     left: 0;
     top: 0; 
@@ -198,7 +193,7 @@ div.red-dot>u.message-dot {
     overflow-x: hidden;
     overflow-y: auto;
   } 
-  ul.va>li>article>div {
+  article.page-container>div {
     display: flex;
     padding: 2px 1px;
     min-height: 50px;
@@ -206,7 +201,7 @@ div.red-dot>u.message-dot {
     background-color: #f8f8f8;
     flex-direction: row;
   }
-  ul.va>li>article>div>div {
+  article.page-container>div>div {
     display: flex;
     flex-grow: 1;
     justify-content: center;
@@ -219,7 +214,7 @@ div.red-dot>u.message-dot {
     border: solid 1px #f0f0f0;
     font-size: 12px;
   }
-  ul.va>li>article>div>div.cur {
+  article.page-container>div>div.cur {
     color: blue;
     font-weight: bold;
     background-color: white;

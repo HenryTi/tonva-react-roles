@@ -5,6 +5,9 @@
   flex-direction: column;
   flex: 1;
   height: 100%;
+  max-width: 860px;
+  width: 100%;
+  align-self: center;
 }
 .tab>div:first-child {
   display: flex;
