@@ -52,18 +52,7 @@ let Tabs = class Tabs extends React.Component {
             this.selectedTab = tab;
         });
         let { size, tabs, tabBack, contentBack, sep, selected } = this.props;
-        switch (size) {
-            default:
-            case 'md':
-                this.size = '3.2rem';
-                break;
-            case 'sm':
-                this.size = '4rem';
-                break;
-            case 'lg':
-                this.size = '2.5rem';
-                break;
-        }
+        this.size = size || 'md';
         this.tabs.push(...tabs.map(v => {
             let tab = new Tab();
             tab.name = v.name;
@@ -94,8 +83,9 @@ let Tabs = class Tabs extends React.Component {
         this.selectedTab = tab;
     }
     render() {
-        return React.createElement("div", { className: "tab" },
-            React.createElement("div", { className: this.contentBack, style: { height: 'calc(100% - ' + this.size + ')' } }, this.tabs.map((v, index) => {
+        let cn = classNames('tab', 'tab-' + this.size);
+        return React.createElement("div", { className: cn },
+            React.createElement("div", { className: this.contentBack }, this.tabs.map((v, index) => {
                 let style = {
                     display: v.selected === true ? undefined : 'none'
                 };

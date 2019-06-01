@@ -61,12 +61,7 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
     constructor(props: TabsProps) {
         super(props);
         let {size, tabs, tabBack, contentBack, sep, selected} = this.props;
-        switch (size) {
-            default:
-            case 'md': this.size = '3.2rem'; break;
-            case 'sm': this.size = '4rem'; break;
-            case 'lg': this.size = '2.5rem'; break;
-        }
+        this.size = size || 'md';
         this.tabs.push(...tabs.map(v => {
                 let tab = new Tab();
                 tab.name = v.name;
@@ -104,8 +99,9 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
     }
 
     render() {
-        return <div className="tab">
-            <div className={this.contentBack} style={{height: 'calc(100% - ' + this.size + ')'}}>
+        let cn = classNames('tab', 'tab-' + this.size);
+        return <div className={cn}>
+            <div className={this.contentBack}>
                 {this.tabs.map((v,index) => {
                     let style:React.CSSProperties={
                         display: v.selected===true? undefined : 'none'};
