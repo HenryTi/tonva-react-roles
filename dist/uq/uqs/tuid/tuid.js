@@ -153,8 +153,29 @@ export class TuidLocal extends Tuid {
     }
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = _.clone(props);
-            params["$id"] = id;
+            let { fields } = this.schema;
+            let params = { $id: id };
+            for (let field of fields) {
+                let { name, tuid, type } = field;
+                let val = props[name];
+                if (tuid !== undefined) {
+                    if (typeof val === 'object') {
+                        if (val !== null)
+                            val = val.id;
+                    }
+                }
+                else {
+                    switch (type) {
+                        case 'date':
+                        case 'datetime':
+                            val = new Date(val).toISOString();
+                            val = val.replace('T', ' ');
+                            val = val.replace('Z', '');
+                            break;
+                    }
+                }
+                params[name] = val;
+            }
             let ret = yield this.uqApi.tuidSave(this.name, params);
             return ret;
         });

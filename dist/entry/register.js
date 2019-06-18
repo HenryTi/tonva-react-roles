@@ -356,7 +356,7 @@ class RegSuccess extends VPage {
     constructor() {
         super(...arguments);
         this.page = () => {
-            const { account, successText } = this.controller;
+            const { account, successText, login } = this.controller;
             return (React.createElement(Page, { header: false },
                 React.createElement("div", { className: "container w-max-30c" },
                     React.createElement("form", { className: "my-5" },
@@ -368,7 +368,7 @@ class RegSuccess extends VPage {
                             " ",
                             successText,
                             "\uFF01"),
-                        React.createElement("button", { className: "btn btn-success btn-block", onClick: () => this.controller.login() }, "\u76F4\u63A5\u767B\u5F55")))));
+                        React.createElement("button", { className: "btn btn-success btn-block", type: "button", onClick: login }, "\u76F4\u63A5\u767B\u5F55")))));
         };
     }
     open() {
