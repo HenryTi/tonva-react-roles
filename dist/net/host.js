@@ -35,8 +35,17 @@ const hosts = {
         local: false
     }
 };
-function centerUrlFromHost(host) { return `http://${host}/`; }
-function centerWsFromHost(host) { return `ws://${host}/tv/`; }
+function centerUrlFromHost(host) {
+    if (host.startsWith('https://') === true)
+        return host;
+    return `http://${host}/`;
+}
+function centerWsFromHost(host) {
+    let https = 'https://';
+    if (host.startsWith(https) === true)
+        return 'wss://' + host.substr(https.length);
+    return `ws://${host}/tv/`;
+}
 const fetchOptions = {
     method: "GET",
     mode: "no-cors",
