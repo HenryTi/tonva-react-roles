@@ -36,14 +36,21 @@ const hosts = {
     }
 };
 function centerUrlFromHost(host) {
-    if (host.startsWith('https://') === true)
-        return host;
+    if (host.startsWith('https://') === true) {
+        if (host.endsWith('/'))
+            return host;
+        return host + '/';
+    }
     return `http://${host}/`;
 }
 function centerWsFromHost(host) {
     let https = 'https://';
-    if (host.startsWith(https) === true)
-        return 'wss://' + host.substr(https.length);
+    if (host.startsWith(https) === true) {
+        host = host.substr(https.length);
+        if (host.endsWith('/') === true)
+            host = host.substr(0, host.length - 1);
+        return 'wss://' + host + '/tv/';
+    }
     return `ws://${host}/tv/`;
 }
 const fetchOptions = {
