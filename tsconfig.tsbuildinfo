@@ -658,7 +658,7 @@
         "signature": "eb587749dbbb513ace6fbbab00923bea397c00c6ff310b29d440960ba9ad2cea"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/entity.ts": {
-        "version": "b3d5a07897347798eb4a8c70e1cade9a80ac655ac4eb80b71de87163051555d3",
+        "version": "18c8f9c99c5278d9e6f6a75cd8de522119ce51720324ec5088c0f1275ddddfc9",
         "signature": "d20b227093e2449246a65c6cb219bc0266caf11285e4b97135d0857e0c4f90db"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/tuid/tuidbox.ts": {
@@ -3630,6 +3630,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/page.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/httpchannelui.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/apibase.ts",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/host.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/uqapi.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/wschannel.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/nettoken.ts",
@@ -3719,7 +3720,6 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/left0.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/meinfo.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/index.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/entity.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/tuid/tuidbox.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/tuid/tuiddiv.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tools/jsonstringify.ts",
@@ -3828,7 +3828,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/host.ts"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/uqs/entity.ts"
     ]
   },
   "version": "3.4.5"

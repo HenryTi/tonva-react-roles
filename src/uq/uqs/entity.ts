@@ -312,12 +312,12 @@ export abstract class Entity {
             case 'time':
                 let date = new Date(Number(v));
                 return date;
-            case 'id':
             case 'tinyint':
             case 'smallint':
             case 'int':
-            case 'dec': return Number(v);
             case 'bigint':
+            case 'dec': return Number(v);
+            case 'id':
                 let id = Number(v);
                 let {_tuid} = f;
                 if (_tuid === undefined) return id;
