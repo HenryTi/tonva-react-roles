@@ -316,7 +316,8 @@ export abstract class Entity {
             case 'smallint':
             case 'int':
             case 'bigint':
-            case 'dec': return Number(v);
+            case 'dec':
+                return Number(v);
             case 'id':
                 let id = Number(v);
                 let {_tuid} = f;

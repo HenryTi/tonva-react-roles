@@ -5,7 +5,6 @@ import { TuidDiv } from "./tuidDiv";
 import { Uq, ArrFields, Field, SchemaFrom } from "../uq";
 import { TuidBox } from './tuidBox';
 import { BoxId } from './boxId';
-//import { TuidUI } from 'uq/controllers';
 
 export interface TuidSaveResult {
     id: number;

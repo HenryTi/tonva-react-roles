@@ -6,9 +6,10 @@ export function buildVField(form, field, fieldUI, fieldRes) {
         case 'tinyint':
         case 'smallint':
         case 'int':
+        case 'bigint':
             vField = VIntField;
             break;
-        case 'bigint':
+        case 'id':
             let { _tuid } = field;
             if (_tuid !== undefined)
                 return;
