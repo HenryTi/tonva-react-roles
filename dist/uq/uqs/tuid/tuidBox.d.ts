@@ -1,7 +1,7 @@
-import { BoxId } from "./boxId";
-import { Tuid } from "./tuid";
-import { TuidDiv } from "./tuidDiv";
-import { Field } from "../uq";
+import { BoxId } from './boxId';
+import { Tuid } from './tuid';
+import { TuidDiv } from './tuidDiv';
+import { Field } from '../uq';
 export declare class TuidBox {
     tuid: Tuid;
     ownerField: Field;

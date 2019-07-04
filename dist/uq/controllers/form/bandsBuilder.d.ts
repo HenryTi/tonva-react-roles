@@ -1,5 +1,5 @@
-import { VBand } from "./vBand";
-import { VForm, FormOptions } from "./vForm";
+import { VBand } from './vBand';
+import { VForm, FormOptions } from './vForm';
 export declare class BandsBuilder {
     private vForm;
     private onSubmit;

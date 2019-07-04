@@ -1,4 +1,4 @@
-import { VSheet } from "./vSheet";
+import { VSheet } from './vSheet';
 export declare class VSheetSaved extends VSheet {
     private brief;
     open(brief?: any): Promise<void>;

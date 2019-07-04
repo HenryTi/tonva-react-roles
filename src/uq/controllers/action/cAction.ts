@@ -1,6 +1,6 @@
-import { CEntity, EntityUI } from "../CVEntity";
-import { Action } from "../../uqs";
-import { VActionMain } from "./vActionMain";
+import { CEntity, EntityUI } from '../CVEntity';
+import { Action } from '../../uqs';
+import { VActionMain } from './vActionMain';
 
 export interface ActionUI extends EntityUI {
     CAction?: typeof CAction;

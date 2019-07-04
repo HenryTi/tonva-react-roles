@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { Entity } from "../entity";
-import { IdCache } from "./idCache";
-import { TuidDiv } from "./tuidDiv";
-import { Uq, ArrFields, Field, SchemaFrom } from "../uq";
+import { Entity } from '../entity';
+import { IdCache } from './idCache';
+import { TuidDiv } from './tuidDiv';
+import { Uq, ArrFields, Field, SchemaFrom } from '../uq';
 import { TuidBox } from './tuidBox';
 import { BoxId } from './boxId';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, VPage, UiCustom, UiInputItem, NumSchema, View} from '../ui';
-import { userApi } from './userApi';
+import { userApi, RegisterParameter } from './userApi';
 import '../css/va-form.css';
 import { RegisterRes, registerRes } from './res';
 import { tonvaTop, getSender } from './tools';
@@ -127,18 +127,24 @@ export class RegisterController extends Controller {
     }
 
     async execute() {
-        let params = {
+        let params: RegisterParameter = {
             nick: undefined,
             user: this.account, 
             pwd: this.password,
             country: undefined,
             mobile: undefined,
+            mobileCountry: undefined,
             email: undefined,
             verify: this.verify
         }
         switch (this.type) {
-            case 'mobile': params.mobile = this.account; break;
-            case 'email': params.email = this.account; break;
+            case 'mobile':
+                params.mobile = Number(this.account);
+                params.mobileCountry=86;
+                break;
+            case 'email':
+                params.email = this.account;
+                break;
         }
         let ret = await userApi.register(params);
         if (ret === 0) {
@@ -163,7 +169,6 @@ export class ForgetController extends RegisterController {
         nav.clear();
         this.toSuccess();
         return undefined;
-        //return this.regReturn(ret);
     }
 
     protected accountError(isExists: number) {

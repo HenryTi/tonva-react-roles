@@ -9,7 +9,7 @@ import { computed } from 'mobx';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { FA } from '../../../../ui';
-import { ViewModel } from "../viewModel";
+import { ViewModel } from '../viewModel';
 import { FormMode } from '../vForm';
 import { RuleRequired, RuleInt, RuleNum, RuleMin, RuleMax } from '../rule';
 export class VField extends ViewModel {

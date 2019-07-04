@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PageItems } from '../../pageItems';
-import "../../css/va-list.css";
+import '../../css/va-list.css';
 import { IObservableArray } from 'mobx';
 declare type StaticRow = string | JSX.Element | (() => string | JSX.Element);
 export interface ListProps {

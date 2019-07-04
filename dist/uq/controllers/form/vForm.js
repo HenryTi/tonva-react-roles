@@ -13,7 +13,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 import { BandsBuilder } from './bandsBuilder';
 import { computed, observable } from 'mobx';
 import { FA } from '../../../ui';

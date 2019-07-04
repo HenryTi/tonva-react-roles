@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import _ from 'lodash';
-import { Entity } from "../entity";
-import { IdCache } from "./idCache";
-import { TuidDiv } from "./tuidDiv";
+import { Entity } from '../entity';
+import { IdCache } from './idCache';
+import { TuidDiv } from './tuidDiv';
 import { TuidBox } from './tuidBox';
 import { BoxId } from './boxId';
 export class Tuid extends Entity {

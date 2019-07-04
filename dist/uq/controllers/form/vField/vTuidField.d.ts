@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { Field, TuidBox } from '../../../uqs';
-import { VField } from "./vField";
+import { VField } from './vField';
 import { FieldUI } from '../../formUI';
 import { VForm, FieldInput } from '../vForm';
 import { FieldRes } from '../vBand';

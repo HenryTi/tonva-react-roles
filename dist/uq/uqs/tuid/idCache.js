@@ -6,8 +6,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { observable } from "mobx";
-import { isNumber } from "util";
+import { observable } from 'mobx';
+import { isNumber } from 'util';
 const maxCacheSize = 1000;
 export class IdCache {
     constructor(tuidLocal) {

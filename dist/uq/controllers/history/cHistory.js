@@ -6,8 +6,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { CEntity } from "../CVEntity";
-import { VHistoryMain } from "./vHistoryMain";
+import { CEntity } from '../CVEntity';
+import { VHistoryMain } from './vHistoryMain';
 export class CHistory extends CEntity {
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {

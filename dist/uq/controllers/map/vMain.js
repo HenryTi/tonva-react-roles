@@ -52,7 +52,7 @@ export class VMapMain extends VEntity {
                 }
             }
             else {
-                border = "border-bottom";
+                border = 'border-bottom';
                 let none = keyNone && keyNone(this.x);
                 content = React.createElement(List, { className: "ml-4", items: children, item: { onClick: undefined, render: this.itemRender }, none: none });
             }

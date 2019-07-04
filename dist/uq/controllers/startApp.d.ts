@@ -1,2 +1,2 @@
-import { AppUI } from "./CApp";
+import { AppUI } from './CApp';
 export declare function startApp(ui: AppUI): Promise<void>;

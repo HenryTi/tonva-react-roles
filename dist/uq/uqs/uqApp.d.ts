@@ -1,4 +1,4 @@
-import { Uq } from "./uq";
+import { Uq } from './uq';
 export declare class UqApp {
     name: string;
     id: number;

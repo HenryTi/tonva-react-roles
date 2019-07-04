@@ -6,10 +6,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { IdDivCache } from "./idCache";
-import { TuidBoxDiv } from "./tuidBox";
-import { BoxDivId } from "./boxId";
-import { Entity } from "../entity";
+import { IdDivCache } from './idCache';
+import { TuidBoxDiv } from './tuidBox';
+import { BoxDivId } from './boxId';
+import { Entity } from '../entity';
 export class TuidDiv extends Entity {
     constructor(uq, tuid, name) {
         super(uq, name, 0);

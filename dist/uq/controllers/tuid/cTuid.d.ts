@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import { CEntity, EntityUI } from "../CVEntity";
-import { Tuid } from "../../uqs";
+import { CEntity, EntityUI } from '../CVEntity';
+import { Tuid } from '../../uqs';
 import { VTuidMain } from './vTuidMain';
 import { VTuidEdit } from './vTuidEdit';
 import { VTuidSelect } from './vTuidSelect';
-import { CUq } from "../cUq/cUq";
-import { VTuidInfo } from "./vTuidInfo";
+import { CUq } from '../cUq/cUq';
+import { VTuidInfo } from './vTuidInfo';
 import { VTuidList } from './vTuidList';
 import { PageItems } from '../../../pageItems';
 export interface TuidUI extends EntityUI {

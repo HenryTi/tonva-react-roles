@@ -1,4 +1,4 @@
-//import { loadAppUqs } from "../../net";
+//import { loadAppUqs } from '../../net';
 export class UqApp {
     constructor(tonvaAppName) {
         this.collection = {};

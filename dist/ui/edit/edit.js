@@ -22,8 +22,8 @@ import { SelectItemEdit } from './selectItemEdit';
 let Edit = class Edit extends React.Component {
     constructor(props) {
         super(props);
-        this.defaultSepClassName = "border-top edit-sep-light-gray";
-        this.defaultRowContainerClassName = "d-flex px-3 py-2 bg-white align-items-center";
+        this.defaultSepClassName = 'border-top edit-sep-light-gray';
+        this.defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
         this.renderRow = (itemSchema, value) => {
             let { name, type, required } = itemSchema;
             let divValue;

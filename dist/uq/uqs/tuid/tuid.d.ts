@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { Entity } from "../entity";
-import { TuidDiv } from "./tuidDiv";
-import { Uq, SchemaFrom } from "../uq";
+import { Entity } from '../entity';
+import { TuidDiv } from './tuidDiv';
+import { Uq, SchemaFrom } from '../uq';
 import { TuidBox } from './tuidBox';
 import { BoxId } from './boxId';
 export interface TuidSaveResult {

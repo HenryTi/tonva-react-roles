@@ -1,5 +1,5 @@
-import { BoxId } from "./boxId";
-import { TuidLocal } from "./tuid";
+import { BoxId } from './boxId';
+import { TuidLocal } from './tuid';
 import { TuidDiv } from './tuidDiv';
 export declare class IdCache {
     private queue;

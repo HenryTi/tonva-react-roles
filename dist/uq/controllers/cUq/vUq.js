@@ -1,6 +1,6 @@
-import React from "react";
-import { View, List, Muted } from "../../../ui";
-import { CLink } from "../link";
+import React from 'react';
+import { View, List, Muted } from '../../../ui';
+import { CLink } from '../link';
 export class VUq extends View {
     constructor(cUq) {
         super(cUq);

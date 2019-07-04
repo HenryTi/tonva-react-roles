@@ -6,19 +6,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { observable } from "mobx";
-import { postWsToTop } from "../../../net";
-import { CEntity } from "../CVEntity";
-import { VSheetMain } from "./vMain";
-import { VSheetNew } from "./vNew";
-import { VSheetEdit } from "./vEdit";
-import { VSheetAction } from "./vSheetAction";
-import { VSheetSchema } from "./vSchema";
-import { VArchives } from "./vArchives";
-import { VSheetList } from "./vList";
-import { VArchived } from "./vArchived";
-import { VSheetSaved } from "./vSaved";
-import { VSheetProcessing } from "./vSheetProcessing";
+import { observable } from 'mobx';
+import { postWsToTop } from '../../../net';
+import { CEntity } from '../CVEntity';
+import { VSheetMain } from './vMain';
+import { VSheetNew } from './vNew';
+import { VSheetEdit } from './vEdit';
+import { VSheetAction } from './vSheetAction';
+import { VSheetSchema } from './vSchema';
+import { VArchives } from './vArchives';
+import { VSheetList } from './vList';
+import { VArchived } from './vArchived';
+import { VSheetSaved } from './vSaved';
+import { VSheetProcessing } from './vSheetProcessing';
 export class CSheet extends CEntity {
     constructor() {
         super(...arguments);

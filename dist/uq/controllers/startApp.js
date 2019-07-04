@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { CApp } from "./CApp";
+import { CApp } from './CApp';
 function convertUIKeyToLowercase(obj) {
     for (let i in obj) {
         let v = obj[i];

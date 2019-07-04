@@ -1,10 +1,10 @@
 /// <reference types="react" />
-import { TuidLocal } from "./tuid";
-import { IdDivCache } from "./idCache";
-import { TuidBox } from "./tuidBox";
-import { BoxId } from "./boxId";
-import { Field, Uq } from "../uq";
-import { Entity } from "../entity";
+import { TuidLocal } from './tuid';
+import { IdDivCache } from './idCache';
+import { TuidBox } from './tuidBox';
+import { BoxId } from './boxId';
+import { Field, Uq } from '../uq';
+import { Entity } from '../entity';
 export declare class TuidDiv extends Entity {
     readonly typeName = "div";
     private cacheFields;

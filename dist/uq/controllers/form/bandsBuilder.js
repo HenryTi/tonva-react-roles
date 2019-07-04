@@ -1,8 +1,8 @@
-import { VFieldBand, VArrBand, VSubmitBand } from "./vBand";
-import { VSubmit } from "./vSubmit";
-import { buildVField, VComputeField } from "./vField";
-import { VArr } from "./vArr";
-import { VTuidField } from "./vField/vTuidField";
+import { VFieldBand, VArrBand, VSubmitBand } from './vBand';
+import { VSubmit } from './vSubmit';
+import { buildVField, VComputeField } from './vField';
+import { VArr } from './vArr';
+import { VTuidField } from './vField/vTuidField';
 export class BandsBuilder {
     constructor(vForm, options, onSubmit) {
         this.vForm = vForm;
