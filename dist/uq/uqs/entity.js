@@ -322,7 +322,8 @@ export class Entity {
                 let date = new Date(Number(v));
                 return date;
             case 'date':
-                return new Date(v);
+                let parts = v.split('-');
+                return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
             case 'tinyint':
             case 'smallint':
             case 'int':

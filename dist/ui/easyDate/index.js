@@ -2,13 +2,17 @@ import * as React from 'react';
 function renderDate(date, withTime) {
     if (!date)
         return null;
-    let d = (typeof date === 'string') ? new Date(Date.parse(date)) : date;
     let now = new Date();
-    let tick = now.getTime() - d.getTime();
-    let nDate = now.getDate();
-    let _date = d.getDate(), hour = d.getHours(), minute = d.getMinutes(), month = d.getMonth() + 1, year = d.getFullYear();
-    let nowYear = now.getFullYear();
-    let hm = withTime === true ? ' ' + hour + ((minute < 10 ? ':0' : ':') + minute) : '';
+    let tick, nDate, _date, month, year, hm, nowYear;
+    let d = date;
+    tick = now.getTime() - d.getTime();
+    let hour = d.getHours(), minute = d.getMinutes();
+    nDate = now.getDate();
+    _date = d.getDate();
+    month = d.getMonth() + 1;
+    year = d.getFullYear();
+    nowYear = now.getFullYear();
+    hm = withTime === true ? ' ' + hour + ((minute < 10 ? ':0' : ':') + minute) : '';
     if (tick < -24 * 3600 * 1000) {
         if (year === nowYear)
             return month + '月' + _date + '日' + hm;
