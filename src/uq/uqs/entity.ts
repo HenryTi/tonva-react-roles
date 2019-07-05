@@ -308,10 +308,11 @@ export abstract class Entity {
         switch (f.type) {
             default: return v;
             case 'datetime':
-            case 'date':
             case 'time':
                 let date = new Date(Number(v));
                 return date;
+            case 'date':
+                return new Date(v);
             case 'tinyint':
             case 'smallint':
             case 'int':
@@ -322,7 +323,6 @@ export abstract class Entity {
                 let id = Number(v);
                 let {_tuid} = f;
                 if (_tuid === undefined) return id;
-                //_tuid.useId(id, true);
                 return _tuid.boxId(id);
         }
     }

@@ -1,6 +1,6 @@
 {
   "name": "tonva",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "tonva client libs",
   "repository": "henryti/tonva",
   "private": false,
@@ -13,7 +13,6 @@
   "author": "Henry",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
