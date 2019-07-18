@@ -6,6 +6,7 @@ export interface EasyDateProps {
 
 function renderDate(date:Date, withTime:boolean) {
     if (!date) return null;
+    if (typeof date === 'string') date = new Date(date);
 
     let now = new Date();
     let tick:number, nDate:number, _date:number, month:number, year:number, hm:string, nowYear:number;

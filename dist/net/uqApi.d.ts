@@ -77,7 +77,9 @@ export interface UqData {
 }
 export interface UqServiceData {
     id: number;
+    db: string;
     url: string;
+    urlTest: string;
     urlDebug: string;
     token: string;
 }

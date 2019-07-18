@@ -2,6 +2,8 @@ import * as React from 'react';
 function renderDate(date, withTime) {
     if (!date)
         return null;
+    if (typeof date === 'string')
+        date = new Date(date);
     let now = new Date();
     let tick, nDate, _date, month, year, hm, nowYear;
     let d = date;

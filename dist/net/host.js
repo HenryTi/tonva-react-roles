@@ -61,8 +61,9 @@ const fetchOptions = {
     },
 };
 class Host {
-    start() {
+    start(testing) {
         return __awaiter(this, void 0, void 0, function* () {
+            this.testing = testing;
             if (isDevelopment === true) {
                 yield this.tryLocal();
             }
@@ -134,23 +135,65 @@ class Host {
         return resHost;
     }
     getUrlOrDebug(url, urlDebug) {
-        if (isDevelopment !== true)
-            return url;
-        if (!urlDebug)
-            return url;
-        for (let i in hosts) {
-            let host = hosts[i];
-            let { value, local } = host;
-            let hostString = `://${i}/`;
-            let pos = urlDebug.indexOf(hostString);
-            if (pos > 0) {
-                if (local === false)
-                    return url;
-                urlDebug = urlDebug.replace(hostString, `://${value}/`);
-                return urlDebug;
+        if (isDevelopment === true) {
+            if (!urlDebug)
+                urlDebug = 'http://uqhost/';
+            for (let i in hosts) {
+                let host = hosts[i];
+                let { value, local } = host;
+                let hostString = `://${i}/`;
+                let pos = urlDebug.indexOf(hostString);
+                if (pos > 0) {
+                    if (local === false)
+                        return url;
+                    urlDebug = urlDebug.replace(hostString, `://${value}/`);
+                    url = urlDebug;
+                }
             }
         }
         return url;
+    }
+    getUrlOrDebugOrTest(db, url, urlTest, urlDebug) {
+        if (isDevelopment === true) {
+            if (!urlDebug)
+                urlDebug = 'http://uqhost/';
+            for (let i in hosts) {
+                let host = hosts[i];
+                let { value, local } = host;
+                let hostString = `://${i}/`;
+                let pos = urlDebug.indexOf(hostString);
+                if (pos > 0) {
+                    if (local === false)
+                        return url;
+                    urlDebug = urlDebug.replace(hostString, `://${value}/`);
+                    url = urlDebug;
+                }
+            }
+        }
+        if (this.testing === true) {
+            if (!urlTest)
+                urlTest = url;
+            urlTest = urlTest.toLowerCase();
+            let p = urlTest.indexOf('/uq/');
+            if (p >= 0)
+                urlTest = urlTest.substr(0, p + 1);
+            if (urlTest.endsWith('/') === false)
+                urlTest += '/';
+            urlTest += 'uq-test/' + db + '/';
+            return urlTest;
+        }
+        else {
+            if (!url)
+                url = urlTest;
+            url = url.toLowerCase();
+            let p = url.indexOf('/uq/');
+            if (p < 0) {
+                if (url.endsWith('/') === false)
+                    url += '/';
+                url += 'uq/' + db + '/';
+            }
+            return url;
+        }
     }
     localCheck(urlDebug) {
         return __awaiter(this, void 0, void 0, function* () {

@@ -7,22 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { nav /*, mobileHeaderStyle*/ } from './nav';
+import { nav } from './nav';
 export class PageHeader extends React.Component {
     constructor(props) {
         super(props);
         this.logoutClick = () => {
             nav.showLogout(this.logout);
-            /*
-            nav.push(<Page header="安全退出" back="close">
-                <div className="m-5 border border-info bg-white rounded p-3 text-center">
-                    <div>退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号</div>
-                    <div className="mt-3">
-                        <button className="btn btn-danger" onClick={()=>this.logout()}>退出</button>
-                    </div>
-                </div>
-            </Page>);
-            */
         };
         this.logout = () => __awaiter(this, void 0, void 0, function* () {
             let { logout } = this.props;
@@ -93,12 +83,10 @@ export class PageHeader extends React.Component {
             console.log(document.location.href);
             pop = React.createElement("header", { onClick: this.openWindow });
         }
-        let rightView;
-        if (right || debugLogout)
-            rightView = React.createElement("aside", null,
-                right,
-                " ",
-                debugLogout);
+        let rightView = (right || debugLogout) && React.createElement("aside", null,
+            right,
+            " ",
+            debugLogout);
         return React.createElement("header", { className: className },
             pop,
             back,

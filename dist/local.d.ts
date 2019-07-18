@@ -14,6 +14,6 @@ export declare class LocalData {
     user: Data<User>;
     guest: Data<Guest>;
     unit: Data<Unit>;
-    homeTabCur: Data<number>;
+    testing: Data<boolean>;
     logoutClear(): void;
 }

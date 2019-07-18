@@ -24,13 +24,12 @@ export class LocalData {
         this.user = new Data('user');
         this.guest = new Data('guest');
         this.unit = new Data('unit');
-        this.homeTabCur = new Data('homeTabCur');
+        this.testing = new Data('testing');
     }
     logoutClear() {
         [
             this.user,
             this.unit,
-            this.homeTabCur
         ].map(d => d.clear());
     }
 }

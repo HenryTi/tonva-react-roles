@@ -27,6 +27,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
+import { FA } from './components';
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
@@ -48,6 +49,29 @@ export class NavView extends React.Component {
         this.isHistoryBack = false;
         this.clearError = () => {
             this.setState({ fetchError: undefined });
+        };
+        this.clickCount = 0;
+        this.onClick = () => {
+            if (this.clickCount >= 5) {
+                if (Date.now() - this.firstClick.getTime() < 5000) {
+                    nav.reverseTest();
+                }
+                this.clickCount = 0;
+                return;
+            }
+            if (this.clickCount === 0) {
+                this.firstClick = new Date();
+            }
+            ++this.clickCount;
+        };
+        this.onTestClick = () => {
+            nav.testing = false;
+            nav.push(React.createElement(Page, { header: false },
+                React.createElement("div", { className: "m-5 border border-info bg-white rounded p-4 text-center" },
+                    React.createElement("div", null, "\u5F53\u524D\u8FD0\u884C\u5728\u6D4B\u8BD5\u6A21\u5F0F"),
+                    React.createElement("div", { className: "mt-4" },
+                        React.createElement("button", { className: "btn btn-danger", onClick: nav.toNormal }, "\u6B63\u5E38\u6A21\u5F0F"),
+                        React.createElement("button", { className: "btn btn-outline-info ml-3", onClick: () => { nav.testing = true; this.pop(); } }, "\u6D4B\u8BD5\u6A21\u5F0F")))));
         };
         this.back = this.back.bind(this);
         this.navBack = this.navBack.bind(this);
@@ -314,13 +338,17 @@ export class NavView extends React.Component {
         }
         if (fetchError)
             elError = React.createElement(FetchErrorView, Object.assign({ clearError: this.clearError }, fetchError));
-        return (React.createElement("ul", { className: 'va' },
+        let test = nav.testing === true &&
+            React.createElement("span", { className: "cursor-pointer position-absolute", style: { lineHeight: 0 }, onClick: this.onTestClick },
+                React.createElement(FA, { className: "text-warning", name: "info-circle" }));
+        return (React.createElement("ul", { className: "va", onClick: this.onClick },
             stack.map((item, index) => {
                 let { key, view } = item;
                 return React.createElement("li", { key: key, style: index < top ? { visibility: 'hidden' } : undefined }, view);
             }),
             elWait,
-            elError));
+            elError,
+            test));
     }
     refresh() {
         // this.setState({flag: !this.state.flag});
@@ -332,9 +360,19 @@ export class Nav {
     constructor() {
         this.local = new LocalData();
         this.user = undefined;
+        this.resetTest = () => {
+            this.setTesting(!this.testing);
+            //this.pop();
+            this.start();
+        };
+        this.toNormal = () => {
+            this.setTesting(false);
+            this.start();
+        };
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;
+        this.testing = false;
     }
     get guest() {
         let guest = this.local.guest;
@@ -360,6 +398,37 @@ export class Nav {
         if (handlerId === undefined)
             return;
         this.ws.endWsReceive(handlerId);
+    }
+    setTesting(testing) {
+        this.testing = testing;
+        this.local.testing.set(testing);
+    }
+    ;
+    reverseTest() {
+        let m1, m2;
+        if (this.testing === true) {
+            m1 = Nav.testMode;
+            m2 = Nav.normalMode;
+        }
+        else {
+            m1 = Nav.normalMode;
+            m2 = Nav.testMode;
+        }
+        this.push(React.createElement(Page, { back: "close", header: false },
+            React.createElement("div", { className: "m-5 border border-info bg-white rounded p-4 text-center" },
+                React.createElement("div", null,
+                    React.createElement("p", null,
+                        "\u4ECE",
+                        m1,
+                        "\u6A21\u5F0F\u5207\u6362\u5230",
+                        m2,
+                        "\u6A21\u5F0F\u5417?"),
+                    React.createElement("p", { className: "small text-muted" },
+                        "\u6D4B\u8BD5\u6A21\u5F0F\u4E0B\uFF0C\u9875\u9762\u5DE6\u4E0A\u89D2\u4F1A\u6709\u4E00\u4E2A ",
+                        React.createElement(FA, { className: "text-warning", name: "info-circle" }))),
+                React.createElement("div", { className: "mt-4" },
+                    React.createElement("button", { className: "btn btn-danger", onClick: this.resetTest }, "\u5207\u6362"),
+                    React.createElement("button", { className: "btn btn-outline-info ml-3", onClick: () => this.pop() }, "\u53D6\u6D88")))));
     }
     onReceive(msg) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -417,6 +486,8 @@ export class Nav {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                this.testing = this.local.testing.get();
+                yield host.start(this.testing);
                 let hash = document.location.hash;
                 if (hash !== undefined && hash.length > 0) {
                     let pos = getExHashPos();
@@ -426,7 +497,6 @@ export class Nav {
                 }
                 nav.clear();
                 this.startWait();
-                yield host.start();
                 let { url, ws, resHost } = host;
                 this.centerHost = url;
                 this.resUrl = 'http://' + resHost + '/res/';
@@ -653,8 +723,13 @@ export class Nav {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
     }
 }
+Nav.testMode = '测试';
+Nav.normalMode = '正常';
 __decorate([
     observable
 ], Nav.prototype, "user", void 0);
+__decorate([
+    observable
+], Nav.prototype, "testing", void 0);
 export const nav = new Nav();
 //# sourceMappingURL=nav.js.map

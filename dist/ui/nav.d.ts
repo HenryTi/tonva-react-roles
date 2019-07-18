@@ -50,6 +50,10 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     back(confirm?: boolean): Promise<void>;
     confirmBox(message?: string): boolean;
     clearError: () => void;
+    private clickCount;
+    private firstClick;
+    private onClick;
+    private onTestClick;
     render(): JSX.Element;
     private refresh;
 }
@@ -63,6 +67,7 @@ export declare class Nav {
     private local;
     private navSettings;
     user: User;
+    testing: boolean;
     language: string;
     culture: string;
     resUrl: string;
@@ -71,6 +76,12 @@ export declare class Nav {
     set(nav: NavView): void;
     registerReceiveHandler(handler: (message: any) => Promise<void>): number;
     unregisterReceiveHandler(handlerId: number): void;
+    private static testMode;
+    private static normalMode;
+    private setTesting;
+    private resetTest;
+    toNormal: () => void;
+    reverseTest(): void;
     onReceive(msg: any): Promise<void>;
     private getPredefinedUnitName;
     private loadPredefinedUnit;
