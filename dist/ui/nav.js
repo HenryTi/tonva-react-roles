@@ -62,6 +62,10 @@ export class NavView extends React.Component {
             if (this.clickCount === 0) {
                 this.firstClick = new Date();
             }
+            else if (Date.now() - this.firstClick.getTime() >= 5000) {
+                this.clickCount = 0;
+                this.firstClick = new Date();
+            }
             ++this.clickCount;
         };
         this.onTestClick = () => {
