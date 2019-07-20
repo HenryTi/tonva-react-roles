@@ -9,8 +9,8 @@ declare class Host {
     private tryLocal;
     private getCenterHost;
     private getResHost;
-    getUrlOrDebug(url: string, urlDebug: string): string;
-    getUrlOrDebugOrTest(db: string, url: string, urlTest: string, urlDebug: string): string;
+    getUrlOrDebug(url: string, debugHost?: string): string;
+    getUrlOrDebugOrTest(db: string, url: string): string;
     localCheck(urlDebug: string): Promise<boolean>;
 }
 export declare const host: Host;

@@ -2,8 +2,6 @@ export interface UqToken {
     name: string;
     db: string;
     url: string;
-    urlTest: string;
-    urlDebug: string;
     token: string;
 }
 export declare function logoutUqTokens(): void;

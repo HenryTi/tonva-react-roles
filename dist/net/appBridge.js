@@ -62,8 +62,6 @@ window.addEventListener('message', function (evt) {
                     apiName: message.apiName,
                     db: ret.db,
                     url: ret.url,
-                    urlTest: ret.urlTest,
-                    urlDebug: ret.urlDebug,
                     token: ret.token
                 }, "*");
                 break;
@@ -104,7 +102,7 @@ function onReceiveAppApiMessage(hash, apiName) {
     return __awaiter(this, void 0, void 0, function* () {
         let appInFrame = appsInFrame[hash];
         if (appInFrame === undefined)
-            return { name: apiName, db: undefined, url: undefined, urlTest: undefined, urlDebug: undefined, token: undefined };
+            return { name: apiName, db: undefined, url: undefined, token: undefined };
         //let unit = getUnit();
         let { unit, predefinedUnit } = appInFrame;
         unit = unit || predefinedUnit;
@@ -115,28 +113,26 @@ function onReceiveAppApiMessage(hash, apiName) {
         let param = { unit: unit, uqOwner: parts[0], uqName: parts[1] };
         console.log('uqTokenApi.uq onReceiveAppApiMessage', param);
         let ret = yield uqTokenApi.uq(param);
-        let { db, url, urlTest, urlDebug, token } = ret;
-        return { name: apiName, db: db, url: url, urlTest: urlTest, urlDebug: urlDebug, token: token };
+        let { db, url, token } = ret;
+        return { name: apiName, db: db, url: url, token: token };
     });
 }
 function onAppApiReturn(message) {
     return __awaiter(this, void 0, void 0, function* () {
-        let { apiName, db, url, urlTest, urlDebug, token } = message;
+        let { apiName, db, url, token } = message;
         let action = uqTokenActions[apiName];
         if (action === undefined) {
             throw 'error app api return';
             //return;
         }
-        let realUrl = host.getUrlOrDebugOrTest(db, url, urlTest, urlDebug);
-        console.log('onAppApiReturn(message:any): url=' + url + ', debug=' + urlDebug + ', real=' + realUrl);
+        let realUrl = host.getUrlOrDebugOrTest(db, url);
+        console.log('onAppApiReturn(message:any): url=' + url + ', real=' + realUrl);
         //action.url = realUrl;
         //action.token = token;
         action.resolve({
             name: apiName,
             db: db,
             url: realUrl,
-            urlTest: urlTest,
-            urlDebug: urlDebug,
             token: token,
         });
     });
@@ -211,8 +207,8 @@ export function buildAppUq(uq, uqOwner, uqName) {
             let uqToken = yield uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName });
             if (uqToken.token === undefined)
                 uqToken.token = centerToken;
-            let { db, url, urlTest, urlDebug } = uqToken;
-            let realUrl = host.getUrlOrDebugOrTest(db, url, urlTest, urlDebug);
+            let { db, url } = uqToken;
+            let realUrl = host.getUrlOrDebugOrTest(db, url);
             console.log('realUrl: %s', realUrl);
             uqToken.url = realUrl;
             uqTokens[uq] = uqToken;
@@ -225,13 +221,11 @@ export function buildAppUq(uq, uqOwner, uqName) {
         return new Promise((resolve, reject) => {
             uqTokenActions[uq] = {
                 resolve: (at) => __awaiter(this, void 0, void 0, function* () {
-                    let { db, url, urlTest, urlDebug, token } = yield at;
+                    let { db, url, token } = yield at;
                     uqTokens[uq] = {
                         name: uq,
                         db: db,
                         url: url,
-                        urlTest: urlTest,
-                        urlDebug: urlDebug,
                         token: token,
                     };
                     uqTokenActions[uq] = undefined;

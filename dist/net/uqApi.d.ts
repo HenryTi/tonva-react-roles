@@ -79,8 +79,6 @@ export interface UqServiceData {
     id: number;
     db: string;
     url: string;
-    urlTest: string;
-    urlDebug: string;
     token: string;
 }
 export declare class CenterAppApi extends CenterApiBase {
