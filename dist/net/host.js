@@ -147,7 +147,7 @@ class Host {
     }
     getUrlOrDebugOrTest(db, url) {
         url = this.getUrlOrDebug(url);
-        return url + 'uq' + (this.testing === true ? '-test' : '') + '/' + db + '/';
+        return url + 'uq/' + (this.testing === true ? 'test' : 'prod') + '/' + db + '/';
     }
     localCheck(urlDebug) {
         return __awaiter(this, void 0, void 0, function* () {
