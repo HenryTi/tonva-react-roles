@@ -145,9 +145,18 @@ class Host {
             return url;
         return `http://${value}/`;
     }
-    getUrlOrDebugOrTest(db, url) {
+    getUrlOrTest(db, url, urlTest) {
+        let path;
+        if (this.testing === true) {
+            if (urlTest !== '-')
+                url = urlTest;
+            path = 'uq/test/' + db + '/';
+        }
+        else {
+            path = 'uq/prod/' + db + '/';
+        }
         url = this.getUrlOrDebug(url);
-        return url + 'uq/' + (this.testing === true ? 'test' : 'prod') + '/' + db + '/';
+        return url + path;
     }
     localCheck(urlDebug) {
         return __awaiter(this, void 0, void 0, function* () {

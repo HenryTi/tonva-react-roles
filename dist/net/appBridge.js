@@ -119,13 +119,13 @@ function onReceiveAppApiMessage(hash, apiName) {
 }
 function onAppApiReturn(message) {
     return __awaiter(this, void 0, void 0, function* () {
-        let { apiName, db, url, token } = message;
+        let { apiName, db, url, urlTest, token } = message;
         let action = uqTokenActions[apiName];
         if (action === undefined) {
             throw 'error app api return';
             //return;
         }
-        let realUrl = host.getUrlOrDebugOrTest(db, url);
+        let realUrl = host.getUrlOrTest(db, url, urlTest);
         console.log('onAppApiReturn(message:any): url=' + url + ', real=' + realUrl);
         //action.url = realUrl;
         //action.token = token;
@@ -207,8 +207,8 @@ export function buildAppUq(uq, uqOwner, uqName) {
             let uqToken = yield uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName });
             if (uqToken.token === undefined)
                 uqToken.token = centerToken;
-            let { db, url } = uqToken;
-            let realUrl = host.getUrlOrDebugOrTest(db, url);
+            let { db, url, urlTest } = uqToken;
+            let realUrl = host.getUrlOrTest(db, url, urlTest);
             console.log('realUrl: %s', realUrl);
             uqToken.url = realUrl;
             uqTokens[uq] = uqToken;

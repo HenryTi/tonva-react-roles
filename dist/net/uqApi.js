@@ -360,8 +360,8 @@ export class UnitxApi extends UqApi {
             let channelUI = new HttpChannelNavUI();
             let centerAppApi = new CenterAppApi('tv/', undefined);
             let ret = yield centerAppApi.unitxUq(this.unitId);
-            let { token, db, url } = ret;
-            let realUrl = host.getUrlOrDebugOrTest(db, url);
+            let { token, db, url, urlTest } = ret;
+            let realUrl = host.getUrlOrTest(db, url, urlTest);
             this.token = token;
             return new HttpChannel(false, realUrl, token, channelUI);
         });
