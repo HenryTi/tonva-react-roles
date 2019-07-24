@@ -52,6 +52,7 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     clearError: () => void;
     private clickCount;
     private firstClick;
+    private clickRange;
     private onClick;
     private onTestClick;
     render(): JSX.Element;
