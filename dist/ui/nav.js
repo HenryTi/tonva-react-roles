@@ -53,6 +53,7 @@ export class NavView extends React.Component {
         this.clickCount = 0;
         this.firstClick = 0;
         this.clickRange = 3000;
+        this.clickMax = 6;
         this.onClick = () => {
             let now = Date.now();
             if (now - this.firstClick > this.clickRange) {
@@ -61,7 +62,7 @@ export class NavView extends React.Component {
                 return;
             }
             ++this.clickCount;
-            if (this.clickCount >= 5) {
+            if (this.clickCount >= this.clickMax) {
                 nav.reverseTest();
                 this.firstClick = 0;
                 return;

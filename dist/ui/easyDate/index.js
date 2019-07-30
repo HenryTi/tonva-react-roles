@@ -1,9 +1,19 @@
 import * as React from 'react';
-function renderDate(date, withTime) {
-    if (!date)
+function renderDate(vDate, withTime) {
+    if (!vDate)
         return null;
-    if (typeof date === 'string')
-        date = new Date(date);
+    let date;
+    switch (typeof vDate) {
+        default:
+            date = vDate;
+            break;
+        case 'string':
+            date = new Date(vDate);
+            break;
+        case 'number':
+            date = new Date(vDate * 1000);
+            break;
+    }
     let now = new Date();
     let tick, nDate, _date, month, year, hm, nowYear;
     let d = date;
@@ -38,7 +48,7 @@ export class EasyDate extends React.Component {
 }
 export class EasyTime extends React.Component {
     render() {
-        return renderDate(this.props.date, false);
+        return renderDate(this.props.date, true);
     }
 }
 //# sourceMappingURL=index.js.map

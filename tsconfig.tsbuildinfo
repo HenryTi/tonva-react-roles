@@ -394,8 +394,8 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/nav.tsx": {
-        "version": "7d26f1c76296fa06df23771a60060a95d82d54ded57513f5a578945aabbd6c23",
-        "signature": "5cb46ca7849bf925aac882b1358f4d309d678c7b80e76a9197d02195e615b25b"
+        "version": "a89d2d29ebb98a1e231d4f9a5b92849ef9f7db49ce1366ab2db48da9d863fa45",
+        "signature": "44acef16856ebdb24bf38537423884ad98ef740f38078f7a967aea2d02c3dd72"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/vm.tsx": {
         "version": "5cf2ff7c94608c90bbcb8b3cfd8091c1ae7247e7a98ac5acfca550c4863094b6",
@@ -602,8 +602,8 @@
         "signature": "5f5cb554f60db64ec848a29c9bca7c2cbcd7130c2119cfc56b894054e638d79b"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/easydate/index.tsx": {
-        "version": "9d8fc1504ba926550ec41e7870234b1ad80a37e343716d9459bc9d6abfc40a64",
-        "signature": "17cdcdb56275b1f34c774b81fb87eaf9cf0f8e6574abbb35ff88425e78aac336"
+        "version": "e57a446ce791b54367931c7c176b85d318a6fb8d730acc9e7df67118c860793f",
+        "signature": "234c6c5d7d5a90cd41ca719b2ab13dd4778af24fd68e1a4f65928c0ebfdf847d"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/propgrid/propgrid.tsx": {
         "version": "9b7d6783ee3a5bdb32472016e82f0e654956a89ccd7b8080159fe1460769830c",
@@ -3679,7 +3679,6 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/list/selectable.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/list/index.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/dropdownactions/index.tsx",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/easydate/index.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/propgrid/propgrid.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/propgrid/row.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/propgrid/propview.tsx",
@@ -3729,6 +3728,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/stringitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/radioitemedit.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/edit/selectitemedit.tsx",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/easydate/index.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/media.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/ui/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/net/appbridge.ts",

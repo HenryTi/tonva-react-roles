@@ -53,6 +53,7 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     private clickCount;
     private firstClick;
     private clickRange;
+    private clickMax;
     private onClick;
     private onTestClick;
     render(): JSX.Element;
