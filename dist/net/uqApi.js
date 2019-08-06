@@ -293,6 +293,11 @@ export class UqApi extends ApiBase {
             return yield this.post('action/' + name, data);
         });
     }
+    actionReturns(name, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('action/' + name + '/returns', data);
+        });
+    }
     page(name, pageStart, pageSize, params) {
         return __awaiter(this, void 0, void 0, function* () {
             let p;

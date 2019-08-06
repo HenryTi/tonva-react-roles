@@ -8,4 +8,7 @@ export declare class CAction extends CEntity<Action, ActionUI> {
     protected internalStart(): Promise<void>;
     protected readonly VActionMain: typeof VActionMain;
     submit(values: any): Promise<any>;
+    returns(values: any): Promise<{
+        [ret: string]: any[];
+    }>;
 }

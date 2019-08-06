@@ -34,6 +34,7 @@ export declare class UqApi extends ApiBase {
     sheetArchives(name: string, data: object): Promise<any>;
     sheetArchive(name: string, id: number): Promise<any>;
     action(name: string, data: object): Promise<any>;
+    actionReturns(name: string, data: object): Promise<any[][]>;
     page(name: string, pageStart: any, pageSize: number, params: any): Promise<string>;
     query(name: string, params: any): Promise<any>;
     user(): Promise<any>;

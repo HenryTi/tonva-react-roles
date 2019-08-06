@@ -20,5 +20,10 @@ export class CAction extends CEntity {
             return this.entity.submit(values);
         });
     }
+    returns(values) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.entity.submitReturns(values);
+        });
+    }
 }
 //# sourceMappingURL=cAction.js.map

@@ -154,6 +154,8 @@ export class Entity {
         let arrs = this.arrFields; //schema['arrs'];
         if (arrs !== undefined) {
             for (let arr of arrs) {
+                if (arr.isBus === true)
+                    continue;
                 this.packArr(ret, arr.fields, data[arr.name]);
             }
         }

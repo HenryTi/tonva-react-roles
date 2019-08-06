@@ -16,5 +16,19 @@ export class Action extends Entity {
             return yield this.uqApi.action(this.name, { data: text });
         });
     }
+    submitReturns(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.loadSchema();
+            let text = this.pack(data);
+            let result = yield this.uqApi.actionReturns(this.name, { data: text });
+            let len = this.returns.length;
+            let ret = {};
+            for (let i = 0; i < len; i++) {
+                let retSchema = this.returns[i];
+                ret[retSchema.name] = result[i];
+            }
+            return ret;
+        });
+    }
 }
 //# sourceMappingURL=action.js.map
