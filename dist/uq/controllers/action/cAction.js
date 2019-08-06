@@ -20,7 +20,7 @@ export class CAction extends CEntity {
             return this.entity.submit(values);
         });
     }
-    returns(values) {
+    submitReturns(values) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.entity.submitReturns(values);
         });

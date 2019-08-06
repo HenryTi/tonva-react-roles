@@ -58,7 +58,7 @@ export class PageHeader extends React.Component {
                     let { nick, name } = user;
                     debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
                         React.createElement("small", { className: "text-light" }, nick || name),
-                        React.createElement("a", { className: "dropdown-toggle btn btn-secondary btn-sm ml-2", role: "button", onClick: this.logoutClick },
+                        React.createElement("a", { className: "btn ml-2 cursor-pointer", role: "button", onClick: this.logoutClick },
                             React.createElement("i", { className: "fa fa-sign-out" })));
                 }
             }
