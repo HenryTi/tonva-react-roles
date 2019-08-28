@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Controller, resLang } from '../../../ui';
+import { PureJSONContent } from '../../tools';
 import { Uq } from '../../uqs';
 import { CLink } from '../link';
 import { CBook } from '../book';
@@ -15,10 +16,10 @@ import { CAction } from '../action';
 import { CQuery, CQuerySelect } from '../query';
 import { CTuidMain, CTuidInfo, CTuidSelect, CTuidEdit, CTuidList } from '../tuid';
 import { CMap } from '../map';
-import { PureJSONContent } from '../form/viewModel';
 import { VUq } from './vUq';
 import { CHistory } from '../history';
 import { CPending } from '../pending';
+import { TuidWithUIRes, ReactBoxId } from './reactBoxId';
 function lowerPropertyName(entities) {
     if (entities === undefined)
         return;
@@ -29,6 +30,18 @@ export class CUq extends Controller /* implements Uq*/ {
     //constructor(cApp:CApp, uq:string, appId:number, uqId:number, access:string, ui:UqUI) {
     constructor(cApp, uqData, ui) {
         super(resLang(ui.res));
+        this.tuidURs = {};
+        //private schemaLoaded:boolean = false;
+        this.createBoxId = (tuid, id) => {
+            let { name } = tuid;
+            let tuidUR = this.tuidURs[name];
+            if (tuidUR === undefined) {
+                let { ui, res } = this.getUI(tuid);
+                //tuid.setUIRes(ui, res);
+                this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
+            }
+            return new ReactBoxId(tuidUR, id);
+        };
         this.isSysVisible = false;
         this.cApp = cApp;
         //this.id = uqId;
@@ -55,7 +68,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CBook = ui.CBook || CBook;
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
-        this.uq = new Uq(this.cApp.uqApp, uqData);
+        this.uq = new Uq(uqData, this.createBoxId);
         /*
         let token = undefined;
         let uqOwner:string, uqName:string;
@@ -101,7 +114,6 @@ export class CUq extends Controller /* implements Uq*/ {
         return __awaiter(this, void 0, void 0, function* () {
         });
     }
-    //private schemaLoaded:boolean = false;
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.uq.init();
@@ -110,22 +122,24 @@ export class CUq extends Controller /* implements Uq*/ {
     loadEntities() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield this.uq.loadAccess();
+                yield this.uq.loadEntities();
+                /*
                 for (let tuid of this.uq.tuidArr) {
-                    let { ui, res } = this.getUI(tuid);
+                    let {ui, res} = this.getUI(tuid);
                     tuid.setUIRes(ui, res);
                 }
+                */
             }
             catch (err) {
                 return err;
             }
         });
     }
-    checkEntities() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.uq.checkAccess();
-        });
+    /*
+    async checkEntities(): Promise<boolean> {
+        return await this.uq.checkAccess();
     }
+    */
     /*
     private setTuidUI(tuid: Tuid) {
         let {ui, res} = this.getUI(tuid);
@@ -321,9 +335,25 @@ export class CUq extends Controller /* implements Uq*/ {
         let ui, res;
         let { name, typeName } = t;
         if (this.ui !== undefined) {
-            let tUI = this.ui[typeName];
-            if (tUI !== undefined) {
-                ui = tUI[name];
+            if (typeName === 'div') {
+                let tuidDiv = t;
+                let ownerTuid = tuidDiv.owner;
+                let tUIs = this.ui[ownerTuid.typeName];
+                if (tUIs) {
+                    let tUI = tUIs[ownerTuid.name];
+                    if (tUI) {
+                        let divs = tUI.divs;
+                        if (divs) {
+                            ui = divs[name];
+                        }
+                    }
+                }
+            }
+            else {
+                let tUI = this.ui[typeName];
+                if (tUI !== undefined) {
+                    ui = tUI[name];
+                }
             }
         }
         let { entity } = this.res;

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { CenterApiBase } from '../net';
-import { decodeUserToken } from '../user';
+import { decodeUserToken } from '../tool/user';
 ;
 export class UserApi extends CenterApiBase {
     login(params) {

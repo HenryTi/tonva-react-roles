@@ -1,14 +1,17 @@
+import { UqApi } from '../../net';
 import { Uq, Field, ArrFields, FieldMap } from './uq';
 import { Tuid } from './tuid';
-import { UqApi } from '../../net';
+import { EntityCache } from './caches';
 export declare abstract class Entity {
-    protected uq: Uq;
-    protected schema: any;
     private jName;
+    schema: any;
+    ver: number;
     sys?: boolean;
+    readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    protected uqApi: UqApi;
+    readonly cache: EntityCache;
+    readonly uqApi: UqApi;
     abstract readonly typeName: string;
     readonly sName: string;
     fields: Field[];
@@ -19,11 +22,12 @@ export declare abstract class Entity {
     private fieldMaps;
     fieldMap(arr?: string): FieldMap;
     loadSchema(): Promise<void>;
+    clearSchema(): void;
     setSchema(schema: any): void;
     buildFieldsTuid(): void;
     schemaStringify(): string;
     tuidFromName(fieldName: string, arrName?: string): Tuid;
-    protected buildParams(params: any): any;
+    buildParams(params: any): any;
     private buildFieldsParams;
     pack(data: any): string;
     private escape;

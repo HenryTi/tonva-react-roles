@@ -8,11 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import _ from 'lodash';
 import { Entity } from '../entity';
-import { IdCache } from './idCache';
-import { TuidDiv } from './tuidDiv';
-import { TuidBox } from './tuidBox';
-import { BoxId } from './boxId';
+import { IdCache, IdDivCache } from './idCache';
+import { EntityCaller } from '../caller';
 export class Tuid extends Entity {
+    //ui: React.StatelessComponent<any>;
+    //res: any;
     constructor(uq, name, typeId) {
         super(uq, name, typeId);
         this.typeName = 'tuid';
@@ -26,15 +26,17 @@ export class Tuid extends Entity {
     buildTuidBox() {
         return new TuidBox(this);
     }
-    setUIRes(ui, res) {
+    /*
+    setUIRes(ui:any, res:any) {
         //this.ui = (ui as TuidUI).content;
         this.ui = ui.content;
         this.res = res;
     }
+    */
     getIdFromObj(obj) { return obj[this.idName]; }
     cacheIds() { }
 }
-export class TuidLocal extends Tuid {
+export class TuidInner extends Tuid {
     constructor() {
         super(...arguments);
         this.idCache = new IdCache(this);
@@ -53,18 +55,6 @@ export class TuidLocal extends Tuid {
             }
         }
     }
-    setUIRes(ui, res) {
-        super.setUIRes(ui, res);
-        if (this.divs === undefined)
-            return;
-        //let uiDivs = (ui as TuidUI).divs;
-        let uiDivs = ui.divs;
-        if (uiDivs === undefined)
-            return;
-        for (let i in this.divs) {
-            this.divs[i].setUIRes(uiDivs[i], res);
-        }
-    }
     useId(id, defer) {
         this.idCache.useId(id, defer);
     }
@@ -72,7 +62,7 @@ export class TuidLocal extends Tuid {
         if (typeof id === 'object')
             return id;
         this.useId(id);
-        return new BoxId(this, id);
+        return this.uq.createBoxId(this, id);
     }
     valueFromId(id) { return this.idCache.getValue(id); }
     assureBox(id) {
@@ -94,7 +84,8 @@ export class TuidLocal extends Tuid {
     }
     loadTuidIds(divName, ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.uqApi.tuidIds(this.name, divName, ids);
+            //return await this.uqApi.tuidIds(this.name, divName, ids);
+            return yield new IdsCaller(this, { divName: divName, ids: ids }).request();
         });
     }
     load(id) {
@@ -103,7 +94,8 @@ export class TuidLocal extends Tuid {
                 return;
             if (typeof id === 'object')
                 id = id.id;
-            let values = yield this.uqApi.tuidGet(this.name, id);
+            //let values = await this.uqApi.tuidGet(this.name, id);
+            let values = yield new GetCaller(this, id).request();
             if (values === undefined)
                 return;
             for (let f of this.schema.fields) {
@@ -153,15 +145,15 @@ export class TuidLocal extends Tuid {
     }
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            let { fields } = this.schema;
-            let params = { $id: id };
-            for (let field of fields) {
-                let { name, tuid, type } = field;
+            /*
+            let {fields} = this.schema;
+            let params:any = {$id: id};
+            for (let field of fields as Field[]) {
+                let {name, tuid, type} = field;
                 let val = props[name];
                 if (tuid !== undefined) {
                     if (typeof val === 'object') {
-                        if (val !== null)
-                            val = val.id;
+                        if (val !== null) val = val.id;
                     }
                 }
                 else {
@@ -169,15 +161,17 @@ export class TuidLocal extends Tuid {
                         case 'date':
                         case 'datetime':
                             val = new Date(val).toISOString();
-                            val = val.replace('T', ' ');
-                            val = val.replace('Z', '');
+                            val = (val as string).replace('T', ' ');
+                            val = (val as string).replace('Z', '');
                             break;
                     }
                 }
                 params[name] = val;
             }
-            let ret = yield this.uqApi.tuidSave(this.name, params);
+            let ret = await this.uqApi.tuidSave(this.name, params);
             return ret;
+            */
+            return new SaveCaller(this, { id: id, props: props }).request();
         });
     }
     search(key, pageStart, pageSize) {
@@ -188,9 +182,11 @@ export class TuidLocal extends Tuid {
     }
     searchArr(owner, key, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
+            //let api = this.uqApi;
+            //let ret = await api.tuidSearch(this.name, undefined, owner, key, pageStart, pageSize);
+            let params = { arr: undefined, owner: owner, key: key, pageStart: pageStart, pageSize: pageSize };
+            let ret = yield new SearchCaller(this, params).request();
             let { fields } = this.schema;
-            let api = this.uqApi;
-            let ret = yield api.tuidSearch(this.name, undefined, owner, key, pageStart, pageSize);
             for (let row of ret) {
                 this.cacheFieldsInValue(row, fields);
             }
@@ -201,21 +197,105 @@ export class TuidLocal extends Tuid {
         return __awaiter(this, void 0, void 0, function* () {
             if (id === undefined || id === 0)
                 return;
-            let api = this.uqApi;
-            return yield api.tuidArrGet(this.name, arr, owner, id);
+            //let api = this.uqApi;
+            //return await api.tuidArrGet(this.name, arr, owner, id);
+            return yield new LoadArrCaller(this, { arr: arr, owner: owner, id: id }).request();
         });
     }
     saveArr(arr, owner, id, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            let params = _.clone(props);
-            params["$id"] = id;
-            return yield this.uqApi.tuidArrSave(this.name, arr, owner, params);
+            //let params = _.clone(props);
+            //params["$id"] = id;
+            //return await this.uqApi.tuidArrSave(this.name, arr, owner, params);
+            return yield new SaveArrCaller(this, { arr: arr, owner: owner, id: id, props: props }).request();
         });
     }
     posArr(arr, owner, id, order) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.uqApi.tuidArrPos(this.name, arr, owner, id, order);
+            //return await this.uqApi.tuidArrPos(this.name, arr, owner, id, order);
+            return yield new ArrPosCaller(this, { arr: arr, owner: owner, id: id, order: order }).request();
         });
+    }
+}
+class TuidCaller extends EntityCaller {
+}
+class GetCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
+    }
+    get path() { return `tuid/${this.entity.name}/${this.params}`; }
+}
+class IdsCaller extends TuidCaller {
+    get path() {
+        let { divName } = this.params;
+        return `tuidids/${this.entity.name}/${divName !== undefined ? divName : '$'}`;
+    }
+    buildParams() { return this.params.ids; }
+}
+class SaveCaller extends TuidCaller {
+    get path() { return `tuid/${this.entity.name}`; }
+    buildParams() {
+        let { fields } = this.entity.schema;
+        let { id, props } = this.params;
+        let params = { $id: id };
+        for (let field of fields) {
+            let { name, tuid, type } = field;
+            let val = props[name];
+            if (tuid !== undefined) {
+                if (typeof val === 'object') {
+                    if (val !== null)
+                        val = val.id;
+                }
+            }
+            else {
+                switch (type) {
+                    case 'date':
+                    case 'datetime':
+                        val = new Date(val).toISOString();
+                        val = val.replace('T', ' ');
+                        val = val.replace('Z', '');
+                        break;
+                }
+            }
+            params[name] = val;
+        }
+        return params;
+    }
+}
+class SearchCaller extends TuidCaller {
+    get path() { return `'tuids/${this.entity.name}`; }
+}
+class LoadArrCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
+    }
+    get path() {
+        let { arr, owner, id } = this.params;
+        return `tuid-arr/${this.entity.name}/${owner}/${arr}/${id}`;
+    }
+}
+class SaveArrCaller extends TuidCaller {
+    get path() {
+        let { arr, owner } = this.params;
+        return `tuid-arr/${this.entity.name}/${owner}/${arr}/`;
+    }
+    buildParams() {
+        let { id, props } = this.params;
+        let params = _.clone(props);
+        params['$id'] = id;
+        return params;
+    }
+}
+class ArrPosCaller extends TuidCaller {
+    get path() {
+        let { arr, owner } = this.params;
+        return `tuid-arr-pos/${this.entity.name}/${owner}/${arr}/`;
+    }
+    buildParams() {
+        let { id, order } = this.params;
+        return { bid: id, $order: order };
     }
 }
 export class TuidImport extends Tuid {
@@ -269,6 +349,112 @@ export class TuidImport extends Tuid {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.tuidLocal.posArr(arr, owner, id, order);
         });
+    }
+}
+// field._tuid 用这个接口
+// Tuid, TuidDiv 实现这个接口
+export class TuidBox {
+    constructor(tuid) {
+        this.ownerField = undefined;
+        this.tuid = tuid;
+    }
+    boxId(id) {
+        return this.tuid.boxId(id);
+    }
+    getIdFromObj(obj) {
+        return this.tuid.getIdFromObj(obj);
+    }
+    useId(id) {
+        return this.tuid.useId(id);
+    }
+    showInfo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            alert('showInfo not implemented');
+        });
+    }
+}
+export class TuidDiv extends TuidInner /* Entity*/ {
+    //ui: React.StatelessComponent<any>;
+    //res: any;
+    constructor(uq, tuid, name) {
+        super(uq, name, 0);
+        this.typeName = 'div';
+        this.tuid = tuid;
+        this.idName = 'id';
+        this.idCache = new IdDivCache(tuid, this);
+    }
+    get owner() { return this.tuid; }
+    /*
+    setSchema(schema:any) {
+        super.setSchema(schema);
+        this.buildFieldsTuid();
+    }*/
+    /*
+    setUIRes(ui:any, res:any) {
+        this.ui = ui && ui.content;
+        this.res = res;
+    }
+    */
+    buildFieldsTuid() {
+        super.buildFieldsTuid();
+        let { mainFields } = this.schema;
+        if (mainFields === undefined)
+            debugger;
+        this.uq.buildFieldTuid(this.cacheFields = mainFields);
+    }
+    buildTuidDivBox(ownerField) {
+        return new TuidBoxDiv(this.tuid, this, ownerField);
+    }
+    getIdFromObj(obj) { return obj[this.idName]; }
+    cacheValue(value) {
+        this.idCache.cacheValue(value);
+    }
+    useId(id, defer) {
+        this.idCache.useId(id, defer);
+    }
+    /*
+    boxId(id:number):BoxId {
+        if (typeof id === 'object') return id;
+        this.useId(id);
+        //return new BoxDivId(this.tuid, this, id);
+        return this.tuid.boxDivId(this, id);
+    }
+    */
+    valueFromId(id) {
+        return this.idCache.getValue(id);
+    }
+    assureBox(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.assureObj(id);
+        });
+    }
+    cacheIds() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.cacheIds();
+        });
+    }
+    cacheTuidFieldValues(values) {
+        let fields = this.schema.fields;
+        this.cacheFieldsInValue(values, fields);
+    }
+    unpackTuidIds(values) {
+        return this.unpackTuidIdsOfFields(values, this.cacheFields);
+    }
+}
+export class TuidBoxDiv extends TuidBox {
+    constructor(tuid, div, ownerField) {
+        super(tuid);
+        this.div = div;
+        this.ownerField = ownerField;
+    }
+    boxId(id) {
+        return this.div.boxId(id);
+    }
+    getIdFromObj(obj) {
+        return this.div.getIdFromObj(obj);
+    }
+    useId(id) {
+        return this.div.useId(id);
     }
 }
 //# sourceMappingURL=tuid.js.map

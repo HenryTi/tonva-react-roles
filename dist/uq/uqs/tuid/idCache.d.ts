@@ -1,12 +1,11 @@
-import { BoxId } from './boxId';
-import { TuidLocal } from './tuid';
-import { TuidDiv } from './tuidDiv';
+import { BoxId } from '../boxId';
+import { TuidInner, TuidDiv } from './tuid';
 export declare class IdCache {
     private queue;
     private cache;
     protected waitingIds: number[];
-    protected tuidLocal: TuidLocal;
-    constructor(tuidLocal: TuidLocal);
+    protected tuidInner: TuidInner;
+    constructor(tuidLocal: TuidInner);
     useId(id: number, defer?: boolean): void;
     private moveToHead;
     getValue(id: number): any;
@@ -25,7 +24,7 @@ export declare class IdCache {
 export declare class IdDivCache extends IdCache {
     private div;
     protected divName: string;
-    constructor(tuidLocal: TuidLocal, div: TuidDiv);
+    constructor(tuidLocal: TuidInner, div: TuidDiv);
     protected getIdFromObj(val: any): number;
     protected unpackTuidIds(values: any[] | string): any[];
     protected cacheTuidFieldValues(tuidValue: any): void;

@@ -27,5 +27,10 @@ export class HttpChannelNavUI {
             yield nav.onError(error);
         });
     }
+    showUpgradeUq(uq, version) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield nav.showUpgradeUq(uq, version);
+        });
+    }
 }
 //# sourceMappingURL=httpChannelUI.js.map

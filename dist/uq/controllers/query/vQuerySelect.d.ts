@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 import { Query } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { QueryUI, CQuerySelect } from './cQuery';

@@ -4,7 +4,7 @@ import { List, LMR, FA, Page, nav, Controller, TypeVPage, VPage, resLang, NavSet
 import { loadAppUqs, appInFrame, getExHash, isDevelopment, UqAppData, UqData} from '../../net';
 import { CUq, UqUI } from './cUq';
 import { centerApi } from '../centerApi';
-import { UqApp } from '../uqs';
+import { Uqs } from '../uqs';
 
 export interface RoleAppUI {
     CApp?: typeof CApp;
@@ -15,15 +15,15 @@ export interface RoleAppUI {
 }
 
 export interface AppUI extends RoleAppUI, NavSettings {
-    appName: string; // 格式: owner/appName
+    appName: string;        // 格式: owner/appName
+    version: string;        // 版本变化，缓存的uqs才会重载
     roles?: {[role:string]: RoleAppUI | (()=>Promise<RoleAppUI>)};
 }
 
 export class CApp extends Controller {
-    //private appOwner:string;
-    //private appName:string;
-    name: string;
-    uqApp: UqApp;
+    readonly name: string;
+    readonly version: string;
+    readonly uqApp: Uqs;
     private cImportUqs: {[uq:string]: CUq} = {};
     protected ui:AppUI;
     appUnits:any[];
@@ -32,9 +32,11 @@ export class CApp extends Controller {
         super(resLang(ui && ui.res));
         nav.setSettings(ui);
         this.name = ui.appName;
+        this.version = ui.version;
         if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
+        this.uqApp = new Uqs(this.name);
         if (ui.uqs === undefined) ui.uqs = {};
         this.ui = ui;
         this.caption = this.res.caption || 'Tonva';
@@ -43,77 +45,6 @@ export class CApp extends Controller {
     readonly caption: string; // = 'View Model 版的 Uq App';
     cUqCollection: {[uq:string]: CUq} = {};
 
-    /*
-    async startDebug() {
-        let appName = this.appOwner + '/' + this.appName;
-        let cApp = new CApp({appName: appName, uqs:{}} );
-        let keepNavBackButton = true;
-        await cApp.start(keepNavBackButton);    
-    }
-    */
-
-    /*
-    protected async loadUqs(uqAppData:UqAppData): Promise<string[]> {
-        let retErrors:string[] = [];
-        let unit = appInFrame.unit;
-        //let app = await loadAppUqs(this.appOwner, this.appName);
-        let {id, uqs} = uqAppData;
-        this.id = id;
-
-        let promises: PromiseLike<string>[] = [];
-        let promiseChecks: PromiseLike<boolean>[] = [];
-        let roleAppUI = await this.buildRoleAppUI();
-        this.ui = roleAppUI;
-        for (let appUq of uqs) {
-            let {id:uqId, uqOwner, uqName, access} = appUq;
-            let uq = uqOwner + '/' + uqName;
-            let uqUI = roleAppUI && roleAppUI.uqs && roleAppUI.uqs[uq];
-            let cUq = this.newCUq(uq, uqId, access, uqUI || {});
-            this.cUqCollection[uq] = cUq;
-            promises.push(cUq.loadSchema());
-            promiseChecks.push(cUq.uq.uqApi.checkAccess());
-        }
-        let results = await Promise.all(promises);
-        Promise.all(promiseChecks).then((checks) => {
-            for (let c of checks) {
-                if (c === false) {
-                    //debugger;
-                    //nav.start();
-                    //return;
-                }
-            }
-        });
-        for (let result of results)
-        {
-            let retError = result; // await cUq.loadSchema();
-            if (retError !== undefined) {
-                retErrors.push(retError);
-                continue;
-            }
-        }
-        if (retErrors.length === 0) return;
-        return retErrors;
-    }
-    */
-    /*
-    private async buildRoleAppUI():Promise<AppUI> {
-        if (!this.ui) return undefined;
-        let {hashParam} = nav;
-        if (!hashParam) return this.ui;
-        let {roles} = this.ui;
-        let roleAppUI = roles && roles[hashParam];
-        if (!roleAppUI) return this.ui;
-        let ret:AppUI = {} as any;
-        for (let i in this.ui) {
-            if (i === 'roles') continue;
-            ret[i] = this.ui[i];
-        }
-        if (typeof roleAppUI === 'function') roleAppUI = await roleAppUI();
-        _.merge(ret, roleAppUI);
-        return ret;
-    }
-    */
-
     getImportUq(uqOwner:string, uqName:string):CUq {
         let uq = uqOwner + '/' + uqName;
         let cUq = this.cImportUqs[uq];
@@ -121,15 +52,6 @@ export class CApp extends Controller {
         let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
         let uqId = -1; // unknown
         this.cImportUqs[uq] = cUq = this.getCUq(uq);
-        //this.newCUq(uq, uqId, undefined, ui || {});
-        /*
-        let retError = await cUq.loadSchema();
-        if (retError !== undefined) {
-            console.error(retError);
-            debugger;
-            return;
-        }
-        */
         return cUq;
     }
 
@@ -187,9 +109,6 @@ export class CApp extends Controller {
                         return false;
                 }
             }
-            //}
-
-            //let retErrors = await this.loadUqs(app);
             if (retErrors !== undefined) {
                 this.openPage(<Page header="ERROR">
                     <div className="m-3">
@@ -212,9 +131,13 @@ export class CApp extends Controller {
     }
 
     private async load(): Promise<string[]> {
-        this.uqApp = new UqApp(this.name);
         let {appOwner, appName} = this.uqApp;
-        let uqAppData = await loadAppUqs(appOwner, appName);
+        let uqAppData = this.uqApp.uqAppCache.get();
+        if (!uqAppData || uqAppData.version !== this.version) {
+            uqAppData = await loadAppUqs(appOwner, appName);
+            uqAppData.version = this.version;
+            this.uqApp.uqAppCache.set(uqAppData);
+        }
         let {id, uqs} = uqAppData;
         this.uqApp.id = id;
 
@@ -237,9 +160,10 @@ export class CApp extends Controller {
         for (let i in this.cUqCollection) {
             let cUq = this.cUqCollection[i];
             promises.push(cUq.loadEntities());
-            promiseChecks.push(cUq.checkEntities());
+            //promiseChecks.push(cUq.checkEntities());
         }
         let results = await Promise.all(promises);
+        /*
         Promise.all(promiseChecks).then((checks) => {
             for (let c of checks) {
                 if (c === false) {
@@ -249,6 +173,7 @@ export class CApp extends Controller {
                 }
             }
         });
+        */
         for (let result of results)
         {
             let retError = result; // await cUq.loadSchema();

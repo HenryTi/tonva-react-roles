@@ -10,6 +10,11 @@ export function Image(props) {
     if (src.startsWith(':') === true) {
         src = nav.resUrl + src.substr(1);
     }
-    return React.createElement("img", { src: src, className: className, style: style, onError: evt => evt.currentTarget.src = altImage });
+    return React.createElement("img", { src: src, className: className, style: style, onError: evt => {
+            if (altImage)
+                evt.currentTarget.src = altImage;
+            else
+                evt.currentTarget.src = 'https://tv.jkchemical.com/imgs/0001.png';
+        } });
 }
 //# sourceMappingURL=image.js.map

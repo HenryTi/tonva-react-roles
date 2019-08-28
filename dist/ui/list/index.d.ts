@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PageItems } from '../../pageItems';
+import { PageItems } from '../../tool/pageItems';
 import '../../css/va-list.css';
 import { IObservableArray } from 'mobx';
 declare type StaticRow = string | JSX.Element | (() => string | JSX.Element);
@@ -23,9 +23,12 @@ export interface ListProps {
 }
 export declare class List extends React.Component<ListProps> {
     private listBase;
+    private selectable;
     constructor(props: ListProps);
     _$scroll: (direct: "top" | "bottom") => void;
     componentWillUpdate(nextProps: ListProps, nextState: any, nextContext: any): void;
+    selectAll(): void;
+    unselectAll(): void;
     readonly selectedItems: any[];
     render(): JSX.Element;
 }

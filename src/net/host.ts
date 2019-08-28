@@ -33,12 +33,16 @@ const hosts:{[name:string]:HostValue} = {
     }
 }
 
-function centerUrlFromHost(host:string) {
+function urlFromHost(host:string):string {
     if (host.startsWith('https://') === true) {
         if (host.endsWith('/')) return host;
         return host + '/';
     }
     return `http://${host}/`;
+}
+
+function centerUrlFromHost(host:string):string {
+    return urlFromHost(host);
 }
 function centerWsFromHost(host:string) {
     let https = 'https://';
@@ -48,6 +52,10 @@ function centerWsFromHost(host:string) {
         return 'wss://' + host + '/tv/';
     }
     return `ws://${host}/tv/`
+}
+export function resUrlFromHost(host:string) {
+    let url = urlFromHost(host);
+    return url + 'res/';
 }
 
 const fetchOptions = {
@@ -192,3 +200,10 @@ async function localCheck(url:string):Promise<boolean> {
         return false;
     }
 }
+
+/*
+export interface IUqForChannel {
+    uq: string;
+    uqVersion: number;
+}
+*/

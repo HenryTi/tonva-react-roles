@@ -1,5 +1,5 @@
 import {CenterApiBase} from '../net';
-import {User, decodeUserToken} from '../user';
+import {User, decodeUserToken} from '../tool/user';
 //import { nav } from '../ui';
 
 export interface RegisterParameter {

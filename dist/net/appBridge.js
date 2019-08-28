@@ -8,14 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import _ from 'lodash';
 import { nav } from '../ui';
-import { uid } from '../uid';
+import { uid } from '../tool/uid';
 import { uqTokenApi as uqTokenApi, callCenterapi, centerToken, setCenterToken } from './uqApi';
 import { setSubAppWindow } from './wsChannel';
 import { host } from './host';
 const uqTokens = {};
 export function logoutUqTokens() {
-    for (let i in uqTokens)
+    for (let i in uqTokens) {
         uqTokens[i] = undefined;
+    }
 }
 const appsInFrame = {};
 class AppInFrameClass {

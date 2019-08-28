@@ -1,4 +1,4 @@
-import {HttpChannel} from './net/httpChannel';
+import {HttpChannel} from './httpChannel';
 
 export interface FetchError {
     channel: HttpChannel;

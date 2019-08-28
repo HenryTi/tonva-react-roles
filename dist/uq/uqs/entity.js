@@ -6,16 +6,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { EntityCache } from './caches';
 const tab = '\t';
 const ln = '\n';
 export class Entity {
     constructor(uq, name, typeId) {
+        this.ver = 0;
         //getApiFrom() {return this.entities.uqApi;}
         this.fieldMaps = {};
         this.uq = uq;
         this.name = name;
         this.typeId = typeId;
         this.sys = this.name.indexOf('$') >= 0;
+        this.cache = new EntityCache(this);
         this.uqApi = this.uq.uqApi;
     }
     get sName() { return this.jName || this.name; }
@@ -50,20 +53,28 @@ export class Entity {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.schema !== undefined)
                 return;
-            let schema = yield this.uq.loadEntitySchema(this.name);
+            let schema = this.cache.get();
+            if (!schema) {
+                schema = yield this.uq.loadEntitySchema(this.name);
+            }
             this.setSchema(schema);
             this.buildFieldsTuid();
         });
     }
+    // 如果要在setSchema里面保存cache，必须先调用clearSchema
+    clearSchema() {
+        this.schema = undefined;
+    }
     setSchema(schema) {
         if (schema === undefined)
             return;
-        if (this.schema !== undefined)
-            return;
-        this.schema = schema;
-        let { name } = schema;
+        let { name, version } = schema;
+        this.ver = version || 0;
         if (name !== this.name)
             this.jName = name;
+        //if (this.schema === undefined) 
+        this.cache.set(schema);
+        this.schema = schema;
         //this.buildFieldsTuid();
     }
     buildFieldsTuid() {
@@ -151,10 +162,9 @@ export class Entity {
         let fields = this.fields;
         if (fields !== undefined)
             this.packRow(ret, fields, data);
-        let arrs = this.arrFields; //schema['arrs'];
+        let arrs = this.arrFields;
         if (arrs !== undefined) {
             for (let arr of arrs) {
-                //if (arr.isBus === true) continue;
                 this.packArr(ret, arr.fields, data[arr.name]);
             }
         }
@@ -320,7 +330,8 @@ export class Entity {
             default: return v;
             case 'datetime':
             case 'time':
-                let date = new Date(Number(v));
+                let n = Number(v);
+                let date = isNaN(n) === true ? new Date(v) : new Date(n);
                 return date;
             case 'date':
                 let parts = v.split('-');

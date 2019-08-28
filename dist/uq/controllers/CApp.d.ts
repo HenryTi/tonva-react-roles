@@ -2,7 +2,7 @@
 import { Controller, TypeVPage, NavSettings } from '../../ui';
 import { UqData } from '../../net';
 import { CUq, UqUI } from './cUq';
-import { UqApp } from '../uqs';
+import { Uqs } from '../uqs';
 export interface RoleAppUI {
     CApp?: typeof CApp;
     CUq?: typeof CUq;
@@ -14,13 +14,15 @@ export interface RoleAppUI {
 }
 export interface AppUI extends RoleAppUI, NavSettings {
     appName: string;
+    version: string;
     roles?: {
         [role: string]: RoleAppUI | (() => Promise<RoleAppUI>);
     };
 }
 export declare class CApp extends Controller {
-    name: string;
-    uqApp: UqApp;
+    readonly name: string;
+    readonly version: string;
+    readonly uqApp: Uqs;
     private cImportUqs;
     protected ui: AppUI;
     appUnits: any[];

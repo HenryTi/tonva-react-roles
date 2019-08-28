@@ -23,8 +23,8 @@ export declare class RegisterController extends Controller {
     toVerify(account: string): void;
     toPassword(): void;
     toSuccess(): void;
-    login(): void;
-    regReturn(registerReturn: number): string;
+    login: () => Promise<void>;
+    private regReturn;
     checkAccount(): Promise<string>;
     protected accountError(isExists: number): string;
     execute(): Promise<string>;

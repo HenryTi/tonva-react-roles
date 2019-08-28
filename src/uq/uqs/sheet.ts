@@ -1,5 +1,6 @@
 import { Entity } from './entity';
-import { PageItems } from '../../pageItems';
+import { PageItems } from '../../tool/pageItems';
+import { EntityCaller } from './caller';
 
 export interface SheetState {
     name: string;
@@ -63,12 +64,18 @@ export class Sheet extends Entity {
         }
     }*/
     async save(discription:string, data:any):Promise<any> {
+        /*
         await this.loadSchema();
         let {id} = this.uq;
         let text = this.pack(data);
 
-        let ret = await this.uqApi.sheetSave(this.name, {app: id, discription: discription, data:text});
+        let ret = await this.uqApi.sheetSave(this.name, );
         return ret;
+        */
+        let {id} = this.uq;
+        //let text = this.pack(data);
+        let params = {app: id, discription: discription, data:data};
+        return await new SaveCaller(this, params).request();
         /*
         let {id, state} = ret;
         if (id > 0) this.changeStateCount(state, 1);
@@ -76,8 +83,11 @@ export class Sheet extends Entity {
         */
     }
     async action(id:number, flow:number, state:string, action:string) {
+        /*
         await this.loadSchema();
         return await this.uqApi.sheetAction(this.name, {id:id, flow:flow, state:state, action:action});
+        */
+        return await new ActionCaller(this, {id:id, flow:flow, state:state, action:action}).request();
     }
     private unpack(data:any):any {
         //if (this.schema === undefined) await this.loadSchema();
@@ -92,31 +102,47 @@ export class Sheet extends Entity {
         }
     }
     async getSheet(id:number):Promise<any> {
+        /*
         await this.loadSchema();
         let ret = await this.uqApi.getSheet(this.name, id);
+        */
+        let ret = await new GetSheetCaller(this, id).request();
         if (ret[0].length === 0) return await this.getArchive(id);
         return this.unpack(ret);
     }
     async getArchive(id:number):Promise<any> {
+        /*
         await this.loadSchema();
         let ret = await this.uqApi.sheetArchive(this.name, id)
+        return this.unpack(ret);
+        */
+        let ret = await new SheetArchiveCaller(this, id).request();
         return this.unpack(ret);
     }
 
     async getArchives(pageStart:number, pageSize:number) {
+        /*
         await this.loadSchema();
         let ret = await this.uqApi.sheetArchives(this.name, {pageStart:pageStart, pageSize:pageSize});
         return ret;
+        */
+        let params = {pageStart:pageStart, pageSize:pageSize};
+        return await new SheetArchivesCaller(this, params).request();
     }
 
     async getStateSheets(state:string, pageStart:number, pageSize:number):Promise<any[]> {
+        /*
         await this.loadSchema();
         let ret = await this.uqApi.stateSheets(this.name, {state:state, pageStart:pageStart, pageSize:pageSize});
         return ret;
+        */
+        let params = {state:state, pageStart:pageStart, pageSize:pageSize};
+        return await new StateSheetsCaller(this, params).request();
     }
     createPageStateItems<T>(): PageStateItems<T> {return new PageStateItems<T>(this);}
 
     async stateSheetCount():Promise<StateCount[]> {
+        /*
         await this.loadSchema();
         let ret:StateCount[] = await this.uqApi.stateSheetCount(this.name);
         return this.states.map(s => {
@@ -125,11 +151,95 @@ export class Sheet extends Entity {
             if (r !== undefined) count = r.count;
             return {state: n, count: count} 
         });
+        */
+        return await new StateSheetCountCaller(this, undefined).request();
     }
 
     async mySheets(state:string, pageStart:number, pageSize:number):Promise<any[]> {
+        /*
         await this.loadSchema();
         let ret = await this.uqApi.mySheets(this.name, {state:state, pageStart:pageStart, pageSize:pageSize});
+        return ret;
+        */
+        let params = {state:state, pageStart:pageStart, pageSize:pageSize};
+        return await new MySheetsCaller(this, params).request();
+    }
+}
+
+
+abstract class SheetCaller extends EntityCaller<any> {
+    protected entity: Sheet;
+    protected readonly suffix:string;
+    get path():string {return `sheet/${this.entity.name}/${this.suffix}`;}
+}
+
+class SaveCaller extends SheetCaller {
+    protected readonly params:{app:number; discription:string; data:any};
+    get path():string {return `sheet/${this.entity.name}`;}
+    buildParams() {
+        let {app, discription, data} = this.params;
+        return {
+            app: app,
+            discription: discription,
+            data: this.entity.pack(data)
+        };
+    }
+}
+
+class ActionCaller extends SheetCaller {
+    method = 'PUT';
+    get path():string {return `sheet/${this.entity.name}`;}
+}
+
+class GetSheetCaller extends SheetCaller {
+    protected readonly params: number;  // id
+    method = 'GET';
+    //private id:number;
+    //protected readonly suffix = 'archive';
+    buildParams() {}
+    get path():string {return `sheet/${this.entity.name}/get/${this.params}`;}
+}
+
+class SheetArchiveCaller extends SheetCaller {
+    protected readonly params: number;  // id
+    method = 'GET';
+    //protected readonly suffix = 'archive';
+    buildParams() {}
+    get path():string {return `sheet/${this.entity.name}/archive/${this.params}`;}
+}
+
+class SheetArchivesCaller extends SheetCaller {
+    protected readonly suffix = 'archives';
+}
+
+class StateSheetsCaller extends SheetCaller {
+    protected readonly suffix = 'states';
+}
+
+class StateSheetCountCaller extends SheetCaller {
+    method = 'GET';
+    protected readonly suffix = 'statecount';
+    xresult():any {
+        let {states} = this.entity;
+        return states.map(s => {
+            let n = s.name, count = 0;
+            let r = (this.result as any[]).find(v => v.state === n);
+            if (r !== undefined) count = r.count;
+            return {state: n, count: count} 
+        });
+    }
+}
+
+class MySheetsCaller extends SheetCaller {
+    protected readonly suffix = 'my-sheets';
+    xresult():any {
+        let {returns} = this.entity;
+        let len = returns.length;
+        let ret:{[r:string]:any[]} = {};
+        for (let i=0; i<len; i++) {
+            let retSchema = returns[i];
+            ret[retSchema.name] = this.result[i];
+        }
         return ret;
     }
 }

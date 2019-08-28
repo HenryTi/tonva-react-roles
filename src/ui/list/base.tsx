@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IObservableArray, computed } from 'mobx';
-import { PageItems } from '../../pageItems';
+import { PageItems } from '../../tool/pageItems';
 import {List} from './index';
 
 export abstract class ListBase {
@@ -31,7 +31,7 @@ export abstract class ListBase {
     }
     get selectedItems():any[] { return; }
     updateProps(nextProps:any) {}
-    abstract render(item:any, index:number):JSX.Element;
+    abstract render: (item:any, index:number) => JSX.Element;
     protected renderContent(item:any, index:number) {
         let {render} = this.list.props.item;
         if (render === undefined) return <div className="px-3 py-2">{JSON.stringify(item)}</div>;

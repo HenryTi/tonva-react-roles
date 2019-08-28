@@ -7,6 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { Entity } from './entity';
+import { ActionSubmitCaller } from './action';
+import { EntityCaller, QueryPageCaller, QueryQueryCaller } from './caller';
 export class Map extends Entity {
     constructor() {
         super(...arguments);
@@ -39,32 +41,53 @@ export class Map extends Entity {
     }
     add(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            return yield this.actions.add.submit(param);
+            /*
+            await this.loadSchema();
+            return await this.actions.add.submit(param);
+            */
+            let ret = yield new AddCaller(this, param).request();
+            return ret;
         });
     }
     del(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            return yield this.actions.del.submit(param);
+            /*
+            await this.loadSchema();
+            return await this.actions.del.submit(param);
+            */
+            let ret = yield new DelCaller(this, param).request();
+            return ret;
         });
     }
     all() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            return yield this.queries.all.query({});
+            /*
+            await this.loadSchema();
+            return await this.queries.all.query({});
+            */
+            let ret = yield new AllCaller(this, undefined).request();
+            return ret;
         });
     }
     page(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            return yield this.queries.page.page(param, pageStart, pageSize);
+            /*
+            await this.loadSchema();
+            return await this.queries.page.page(param, pageStart, pageSize);
+            */
+            let ret = yield new PageCaller(this, { pageStart: pageStart, pageSize: pageSize, param: param }).request();
+            return ret;
         });
     }
     query(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            return yield this.queries.query.query(param);
+            /*
+            await this.loadSchema();
+            return await this.queries.query.query(param);
+            */
+            let qc = new QueryCaller(this, param);
+            let ret = yield qc.request();
+            return ret;
         });
     }
     table(params) {
@@ -88,6 +111,129 @@ export class Map extends Entity {
             for (let i in ret)
                 return ret[i];
         });
+    }
+}
+class MapCaller extends EntityCaller {
+    get path() { return; }
+    /*
+    async request(): Promise<any> {
+        await this.entity.loadSchema();
+        let caller = this.getCaller(this.params);
+        await this.entity.uqApi.xcall(caller);
+        return this.xresult();
+    }
+    */
+    innerCall() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let caller = this.getCaller(this.params);
+            yield this.entity.uqApi.xcall(caller);
+            let res = caller.xresult();
+            this.result = res;
+        });
+    }
+    buildParams() {
+        let p = super.buildParams();
+        return p;
+    }
+}
+class AddCaller extends MapCaller {
+    getCaller(param) {
+        return new MapAddCaller(this.entity, this.entity.actions.add, param);
+    }
+}
+class DelCaller extends MapCaller {
+    getCaller(param) {
+        return new MapDelCaller(this.entity, this.entity.actions.add, param);
+    }
+}
+class AllCaller extends MapCaller {
+    getCaller(param) {
+        return new MapAllCaller(this.entity, this.entity.queries.all, param);
+    }
+}
+class PageCaller extends MapCaller {
+    getCaller(param) {
+        return new MapPageCaller(this.entity, this.entity.queries.page, param);
+    }
+}
+class QueryCaller extends MapCaller {
+    getCaller(param) {
+        return new MapQueryCaller(this.entity, this.entity.queries.query, param);
+    }
+}
+class MapAddCaller extends ActionSubmitCaller {
+    constructor(map, action, params) {
+        super(action, params);
+        this.map = map;
+    }
+    get path() { return `map/${this.map.name}/add`; }
+    get headers() {
+        let { ver, uq } = this.map;
+        let { uqVersion } = uq;
+        return {
+            uq: `${uqVersion}`,
+            en: `${ver}`,
+        };
+    }
+}
+class MapDelCaller extends ActionSubmitCaller {
+    constructor(map, action, params) {
+        super(action, params);
+        this.map = map;
+    }
+    get path() { return `map/${this.map.name}/del`; }
+    get headers() {
+        let { ver, uq } = this.map;
+        let { uqVersion } = uq;
+        return {
+            uq: `${uqVersion}`,
+            en: `${ver}`,
+        };
+    }
+}
+class MapAllCaller extends QueryPageCaller {
+    constructor(map, query, params) {
+        super(query, params);
+        this.map = map;
+    }
+    get path() { return `map/${this.map.name}/all`; }
+    get headers() {
+        let { ver, uq } = this.map;
+        let { uqVersion } = uq;
+        return {
+            uq: `${uqVersion}`,
+            en: `${ver}`,
+        };
+    }
+}
+class MapPageCaller extends QueryPageCaller {
+    constructor(map, query, params) {
+        super(query, params);
+        this.map = map;
+    }
+    get path() { return `map/${this.map.name}/page`; }
+    get headers() {
+        let { ver, uq } = this.map;
+        let { uqVersion } = uq;
+        return {
+            uq: `${uqVersion}`,
+            en: `${ver}`,
+        };
+    }
+}
+class MapQueryCaller extends QueryQueryCaller {
+    constructor(map, query, params) {
+        super(query, params);
+        this.map = map;
+    }
+    get path() { return `map/${this.map.name}/query`; }
+    get headers() {
+        let { ver, uq } = this.map;
+        let { uqVersion } = uq;
+        return {
+            uq: `${uqVersion}`,
+            en: `${ver}`,
+        };
     }
 }
 //# sourceMappingURL=map.js.map

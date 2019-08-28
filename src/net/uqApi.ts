@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {HttpChannel} from './httpChannel';
+import {HttpChannel, CenterHttpChannel, UqHttpChannel} from './httpChannel';
 import {HttpChannelNavUI} from './httpChannelUI';
 import {appUq, logoutUqTokens, buildAppUq} from './appBridge';
 import {ApiBase} from './apiBase';
@@ -26,7 +26,7 @@ interface UqLocals {
     unit: number;
     uqs: {[uq:string]: UqLocal};
 }
-
+/*
 const uqLocalEntities = 'uqLocalEntities';
 class CacheUqLocals {
     private local:UqLocals;
@@ -35,7 +35,7 @@ class CacheUqLocals {
         try {
             let {uqOwner, uqName} = uqApi;
             if (this.local === undefined) {
-                let ls = localStorage.getItem(uqLocalEntities);
+                let ls = null; // localStorage.getItem(uqLocalEntities);
                 if (ls !== null) {
                     this.local = JSON.parse(ls);
                 }
@@ -69,7 +69,7 @@ class CacheUqLocals {
             }
             if (ret === undefined) {
                 ret = await uqApi.__loadAccess();
-                this.saveLocal(un, ret);
+                //this.saveLocal(un, ret);
             }
             return _.cloneDeep(ret);
         }
@@ -109,11 +109,13 @@ class CacheUqLocals {
 }
 
 const localUqs = new CacheUqLocals;
+*/
 export class UqApi extends ApiBase {
     private access:string[];
     uqOwner: string;
     uqName: string;
     uq: string;
+    //uqVersion: number;
 
     constructor(basePath: string, uqOwner: string, uqName: string, access:string[], showWaiting?: boolean) {
         super(basePath, showWaiting);
@@ -125,6 +127,8 @@ export class UqApi extends ApiBase {
         this.access = access;
         this.showWaiting = showWaiting;
     }
+
+    //setUqVersion(uqVersion:number) {this.uqVersion = undefined}
 
     async init() {
         await buildAppUq(this.uq, this.uqOwner, this.uqName);
@@ -143,17 +147,22 @@ export class UqApi extends ApiBase {
         let channel = channels[this.uq];
         if (channel !== undefined) return channel;
         let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
-        if (!uqToken) debugger;
+        if (!uqToken) {
+            debugger;
+            await this.init();
+            uqToken = appUq(this.uq);
+        }
         let {url, token} = uqToken;
         this.token = token;
-        channel = new HttpChannel(false, url, token, channelUI);
+        channel = new UqHttpChannel(url, token, channelUI);
         return channels[this.uq] = channel;
     }
 
-    async update():Promise<string> {
+    /*async update():Promise<string> {
         return await this.get('update');
-    }
+    }*/
 
+    /*
     async __loadAccess():Promise<any> {
         let acc = this.access === undefined?
             '' :
@@ -161,26 +170,33 @@ export class UqApi extends ApiBase {
         let ret = await this.get('access', {acc:acc});
         return ret;
     }
-
+    */
     async loadAccess():Promise<any> {
-        return await localUqs.loadAccess(this);
+        //return await localUqs.loadAccess(this);
+        let acc = this.access === undefined?
+            '' :
+            this.access.join('|');
+        let ret = await this.get('access', {acc:acc});
+        return ret;
     }
 
-    async loadEntities():Promise<any> {
+    /*async loadEntities():Promise<any> {
         return await this.get('entities');
-    }
+    }*/
 
+    /*
     async checkAccess():Promise<boolean> {
         return await localUqs.checkAccess(this);
     }
+    */
 
     async schema(name:string):Promise<any> {
         return await this.get('schema/' + name);
     }
 
-    async schemas(names:string[]):Promise<any[]> {
+    /*async schemas(names:string[]):Promise<any[]> {
         return await this.post('schema', names);
-    }
+    }*/
 
     async tuidGet(name:string, id:number):Promise<any> {
         return await this.get('tuid/' + name + '/' + id);
@@ -190,7 +206,7 @@ export class UqApi extends ApiBase {
         return await this.get('tuid-all/' + name + '/');
     }
 
-    async tuidSave(name:string, params):Promise<any> {
+    async tuidSave(name:string, params:any):Promise<any> {
         return await this.post('tuid/' + name, params);
     }
 
@@ -210,7 +226,7 @@ export class UqApi extends ApiBase {
     async tuidArrGetAll(name:string, arr:string, owner:number):Promise<any[]> {
         return await this.get('tuid-arr-all/' + name + '/' + owner + '/' + arr + '/');
     }
-    async tuidArrSave(name:string, arr:string, owner:number, params):Promise<any> {
+    async tuidArrSave(name:string, arr:string, owner:number, params:any):Promise<any> {
         return await this.post('tuid-arr/' + name + '/' + owner + '/' + arr + '/', params);
     }
     async tuidArrPos(name:string, arr:string, owner:number, id:number, order:number):Promise<any> {
@@ -233,39 +249,39 @@ export class UqApi extends ApiBase {
         }
     }
 
-    async sheetSave(name:string, data:object):Promise<any> {
+    /*async sheetSave(name:string, data:object):Promise<any> {
         return await this.post('sheet/' + name, data);
-    }
+    }*/
 
-    async sheetAction(name:string, data:object) {
+    /*async sheetAction(name:string, data:object) {
         return await this.put('sheet/' + name, data);
-    }
+    }*/
 
-    async stateSheets(name:string, data:object) {
+    /*async stateSheets(name:string, data:object) {
         return await this.post('sheet/' + name + '/states', data);
-    }
+    }*/
 
-    async stateSheetCount(name:string):Promise<any> {
+    /*async stateSheetCount(name:string):Promise<any> {
         return await this.get('sheet/' + name + '/statecount');
-    }
+    }*/
 
-    async mySheets(name:string, data:object) {
+    /*async mySheets(name:string, data:object) {
         return await this.post('sheet/' + name + '/my-sheets', data);
-    }
+    }*/
 
-    async getSheet(name:string, id:number):Promise<any> {
+    /*async getSheet(name:string, id:number):Promise<any> {
         return await this.get('sheet/' + name + '/get/' + id);
-    }
+    }*/
 
-    async sheetArchives(name:string, data:object):Promise<any> {
+    /*async sheetArchives(name:string, data:object):Promise<any> {
         return await this.post('sheet/' + name + '/archives', data);
     }
 
     async sheetArchive(name:string, id:number):Promise<any> {
         return await this.get('sheet/' + name + '/archive/' + id);
-    }
+    }*/
 
-    async action(name:string, data:object):Promise<any> {
+    /*async action(name:string, data:object):Promise<any> {
         return await this.post('action/' + name, data);
     }
 
@@ -288,6 +304,7 @@ export class UqApi extends ApiBase {
         let ret = await this.post('query/' + name, params);
         return ret;
     }
+    */
 /*
     async history(name:string, pageStart:any, pageSize:number, params:any):Promise<string> {
         let p = _.clone(params);
@@ -305,9 +322,9 @@ export class UqApi extends ApiBase {
         return ret;
     }
 */
-    async user():Promise<any> {
+    /*async user():Promise<any> {
         return await this.get('user');
-    }
+    }*/
 }
 
 let channels:{[unitId:number]: HttpChannel} = {};
@@ -336,7 +353,7 @@ export class UnitxApi extends UqApi {
         let {token, db, url, urlTest} = ret;
         let realUrl = host.getUrlOrTest(db, url, urlTest);
         this.token = token;
-        return new HttpChannel(false, realUrl, token, channelUI);
+        return new UqHttpChannel(realUrl, token, channelUI);
     }
 }
 
@@ -365,11 +382,11 @@ let centerChannelUI:HttpChannel;
 let centerChannel:HttpChannel;
 function getCenterChannelUI():HttpChannel {
     if (centerChannelUI !== undefined) return centerChannelUI;
-    return centerChannelUI = new HttpChannel(true, centerHost, centerToken, new HttpChannelNavUI());
+    return centerChannelUI = new CenterHttpChannel(centerHost, centerToken, new HttpChannelNavUI());
 }
 function getCenterChannel():HttpChannel {
     if (centerChannel !== undefined) return centerChannel;
-    return centerChannel = new HttpChannel(true, centerHost, centerToken);
+    return centerChannel = new CenterHttpChannel(centerHost, centerToken);
 }
 
 export abstract class CenterApiBase extends ApiBase {
@@ -452,6 +469,7 @@ export const callCenterapi = new CallCenterApi('', undefined);
 
 export interface UqAppData {
     id: number;
+    version: string;        // AppUI version
     uqs: UqData[];
 }
 

@@ -2,11 +2,11 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import className from 'classnames';
 import { Page, List, LMR, FA } from '../../../ui';
-import { tv } from '../../tools';
+import { PureJSONContent } from '../../tools';
 import { Map } from '../../uqs';
 import { VEntity } from '../CVEntity';
 import { CMap, MapItem, MapKey, MapUI } from './cMap';
-import { PureJSONContent } from '../form/viewModel';
+import { tv } from '../cUq';
 
 export class VMapMain extends VEntity<Map, MapUI, CMap> {
     private isFrom: boolean;

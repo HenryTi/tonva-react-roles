@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { CEntity, EntityUI } from '../CVEntity';
 import { Map, Tuid, BoxId, Field } from '../../uqs';
+import { CEntity, EntityUI } from '../CVEntity';
 import { VMapMain } from './vMain';
 export interface MapKey {
     content: (values: any, x?: any) => JSX.Element;

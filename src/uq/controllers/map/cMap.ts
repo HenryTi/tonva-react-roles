@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import { CEntity, EntityUI } from '../CVEntity';
-import { Map, Tuid, BoxId, Field, fieldDefaultValue } from '../../uqs';
-import { VMapMain } from './vMain';
 import { observable } from 'mobx';
-import { PureJSONContent } from '../form/viewModel';
+import { Map, Tuid, BoxId, Field, fieldDefaultValue } from '../../uqs';
+import { PureJSONContent } from '../../tools';
+import { CEntity, EntityUI } from '../CVEntity';
+import { VMapMain } from './vMain';
 import { VInputValues } from './inputValues';
 
 export interface MapKey {

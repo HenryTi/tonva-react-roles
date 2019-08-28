@@ -20,7 +20,7 @@ let List = class List extends React.Component {
         let { item } = this.props;
         let { onClick, onSelect } = item;
         if (onSelect !== undefined)
-            this.listBase = new Selectable(this);
+            this.selectable = this.listBase = new Selectable(this);
         else if (onClick !== undefined)
             this.listBase = new Clickable(this);
         else
@@ -28,6 +28,14 @@ let List = class List extends React.Component {
     }
     componentWillUpdate(nextProps, nextState, nextContext) {
         this.listBase.updateProps(nextProps);
+    }
+    selectAll() {
+        if (this.selectable)
+            this.selectable.selectAll();
+    }
+    unselectAll() {
+        if (this.selectable)
+            this.selectable.unselectAll();
     }
     get selectedItems() {
         return this.listBase.selectedItems;

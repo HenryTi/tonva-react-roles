@@ -28,7 +28,7 @@ export class LocalData {
     user = new Data<User>('user');
     guest = new Data<Guest>('guest');
     unit = new Data<Unit>('unit');
-    testing = new Data<boolean>('testing');
+    //testing = new Data<boolean>('testing');
 
     logoutClear() {
         [

@@ -1,2 +1,2 @@
 export * from './jsonStringify';
-export * from './tv';
+export * from './pureJsonContent';

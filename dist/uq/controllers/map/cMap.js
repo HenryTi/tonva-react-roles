@@ -7,11 +7,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import _ from 'lodash';
-import { CEntity } from '../CVEntity';
-import { fieldDefaultValue } from '../../uqs';
-import { VMapMain } from './vMain';
 import { observable } from 'mobx';
-import { PureJSONContent } from '../form/viewModel';
+import { fieldDefaultValue } from '../../uqs';
+import { PureJSONContent } from '../../tools';
+import { CEntity } from '../CVEntity';
+import { VMapMain } from './vMain';
 import { VInputValues } from './inputValues';
 export class MapItem {
     constructor(parent, tuid, box, keyIndex) {

@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 export class TuidPageItems extends PageItems {
     constructor(tuid) {
         super(true);

@@ -1,4 +1,4 @@
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 import { Tuid } from '../../uqs';
 
 export class TuidPageItems<T> extends PageItems<T> {

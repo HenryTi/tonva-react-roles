@@ -1,18 +1,21 @@
+import { UqApi } from '../../net';
 import { Uq, Field, ArrFields, FieldMap } from './uq';
 import { Tuid } from './tuid';
-import { UqApi } from '../../net';
+import { EntityCache } from './caches';
 
 const tab = '\t';
 const ln = '\n';
 
 export abstract class Entity {
-    protected uq: Uq;
-    protected schema: any;
     private jName: string;
+    schema: any;
+    ver: number = 0;
     sys?: boolean;
+    readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    protected uqApi: UqApi;
+    readonly cache: EntityCache;
+    readonly uqApi: UqApi;
     abstract get typeName(): string;
     get sName():string {return this.jName || this.name}
     fields: Field[];
@@ -24,6 +27,7 @@ export abstract class Entity {
         this.name = name;
         this.typeId = typeId;
         this.sys = this.name.indexOf('$') >= 0;
+        this.cache = new EntityCache(this);
         this.uqApi = this.uq.uqApi;
     }
 
@@ -56,17 +60,27 @@ export abstract class Entity {
 
     public async loadSchema():Promise<void> {
         if (this.schema !== undefined) return;
-        let schema = await this.uq.loadEntitySchema(this.name);
+        let schema = this.cache.get();
+        if (!schema) {
+            schema = await this.uq.loadEntitySchema(this.name);
+        }
         this.setSchema(schema);
         this.buildFieldsTuid();
     }
 
+    // 如果要在setSchema里面保存cache，必须先调用clearSchema
+    public clearSchema() {
+        this.schema = undefined;
+    }
+
     public setSchema(schema:any) {
         if (schema === undefined) return;
-        if (this.schema !== undefined) return;
-        this.schema = schema;
-        let {name} = schema;
+        let {name, version} = schema;
+        this.ver = version || 0;
         if (name !== this.name) this.jName = name;
+        //if (this.schema === undefined) 
+        this.cache.set(schema);
+        this.schema = schema;
         //this.buildFieldsTuid();
     }
 
@@ -103,7 +117,7 @@ export abstract class Entity {
         return getTuid(fn, arr.fields);
     }
 
-    protected buildParams(params:any):any {
+    buildParams(params:any):any {
         let result = {};
         let fields = this.fields;
         if (fields !== undefined) this.buildFieldsParams(result, fields, params);
@@ -146,10 +160,9 @@ export abstract class Entity {
         let ret:string[] = [];
         let fields = this.fields;
         if (fields !== undefined) this.packRow(ret, fields, data);
-        let arrs = this.arrFields; //schema['arrs'];
+        let arrs = this.arrFields; 
         if (arrs !== undefined) {
             for (let arr of arrs) {
-                //if (arr.isBus === true) continue;
                 this.packArr(ret, arr.fields, data[arr.name]);
             }
         }
@@ -310,7 +323,8 @@ export abstract class Entity {
             default: return v;
             case 'datetime':
             case 'time':
-                let date = new Date(Number(v));
+                let n = Number(v);
+                let date = isNaN(n) === true? new Date(v) : new Date(n);
                 return date;
             case 'date':
                 let parts = v.split('-');

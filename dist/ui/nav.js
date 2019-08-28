@@ -18,8 +18,8 @@ import { Page } from './page';
 import { netToken } from '../net/netToken';
 import FetchErrorView from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
-import { LocalData } from '../local';
-import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host } from '../net';
+import { LocalData } from '../tool/local';
+import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host, resUrlFromHost } from '../net';
 import { wsBridge } from '../net/wsChannel';
 import { resOptions } from './res';
 import { Loading } from './loading';
@@ -46,36 +46,12 @@ export class NavView extends React.Component {
     constructor(props) {
         super(props);
         this.waitCount = 0;
+        this.upgradeUq = () => {
+            nav.start();
+        };
         this.isHistoryBack = false;
         this.clearError = () => {
             this.setState({ fetchError: undefined });
-        };
-        this.clickCount = 0;
-        this.firstClick = 0;
-        this.clickRange = 3000;
-        this.clickMax = 6;
-        this.onClick = () => {
-            let now = Date.now();
-            if (now - this.firstClick > this.clickRange) {
-                this.clickCount = 1;
-                this.firstClick = now;
-                return;
-            }
-            ++this.clickCount;
-            if (this.clickCount >= this.clickMax) {
-                nav.reverseTest();
-                this.firstClick = 0;
-                return;
-            }
-        };
-        this.onTestClick = () => {
-            nav.testing = false;
-            nav.push(React.createElement(Page, { header: false },
-                React.createElement("div", { className: "m-5 border border-info bg-white rounded p-4 text-center" },
-                    React.createElement("div", null, "\u5F53\u524D\u8FD0\u884C\u5728\u6D4B\u8BD5\u6A21\u5F0F"),
-                    React.createElement("div", { className: "mt-4" },
-                        React.createElement("button", { className: "btn btn-danger", onClick: nav.toNormal }, "\u6B63\u5E38\u6A21\u5F0F"),
-                        React.createElement("button", { className: "btn btn-outline-info ml-3", onClick: () => { nav.testing = true; this.pop(); } }, "\u6D4B\u8BD5\u6A21\u5F0F")))));
         };
         this.back = this.back.bind(this);
         this.navBack = this.navBack.bind(this);
@@ -147,6 +123,19 @@ export class NavView extends React.Component {
             this.setState({
                 fetchError: fetchError,
             });
+        });
+    }
+    showUpgradeUq(uq, version) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.show(React.createElement(Page, { header: false },
+                React.createElement("div", null,
+                    "UQ\u5347\u7EA7\u4E86\uFF0C\u8BF7\u70B9\u51FB\u6309\u94AE\u5347\u7EA7 ",
+                    React.createElement("br", null),
+                    React.createElement("small", { className: "text-muted" },
+                        uq,
+                        " ver-",
+                        version),
+                    React.createElement("button", { className: "btn btn-primary", onClick: this.upgradeUq }, "\u5347\u7EA7"))));
         });
     }
     show(view, disposer) {
@@ -324,6 +313,40 @@ export class NavView extends React.Component {
     confirmBox(message) {
         return window.confirm(message);
     }
+    /*
+    private clickCount = 0;
+    private firstClick: number = 0;
+    private clickRange = 3000;
+    private clickMax = 6;
+    private onClick = () => {
+        let now = Date.now();
+        if (now - this.firstClick > this.clickRange) {
+            this.clickCount = 1;
+            this.firstClick = now;
+            return;
+        }
+        ++this.clickCount;
+        if (this.clickCount >= this.clickMax) {
+            nav.reverseTest();
+            this.firstClick = 0;
+            return;
+        }
+    }
+    */
+    /*
+    private onTestClick = () => {
+        nav.testing = false;
+        nav.push(<Page header={false}>
+            <div className="m-5 border border-info bg-white rounded p-4 text-center">
+                <div>当前运行在测试模式</div>
+                <div className="mt-4">
+                    <button className="btn btn-danger" onClick={nav.toNormal}>正常模式</button>
+                    <button className="btn btn-outline-info ml-3" onClick={()=>{nav.testing=true;this.pop()}}>测试模式</button>
+                </div>
+            </div>
+        </Page>);
+    }
+    */
     render() {
         const { wait, fetchError } = this.state;
         let stack = this.state.stack;
@@ -343,9 +366,10 @@ export class NavView extends React.Component {
         if (fetchError)
             elError = React.createElement(FetchErrorView, Object.assign({ clearError: this.clearError }, fetchError));
         let test = nav.testing === true &&
-            React.createElement("span", { className: "cursor-pointer position-absolute", style: { lineHeight: 0 }, onClick: this.onTestClick },
+            React.createElement("span", { className: "cursor-pointer position-absolute", style: { lineHeight: 0 } },
                 React.createElement(FA, { className: "text-warning", name: "info-circle" }));
-        return (React.createElement("ul", { className: "va", onClick: this.onClick },
+        //onClick={this.onClick}
+        return (React.createElement("ul", { className: "va" },
             stack.map((item, index) => {
                 let { key, view } = item;
                 return React.createElement("li", { key: key, style: index < top ? { visibility: 'hidden' } : undefined }, view);
@@ -364,15 +388,7 @@ export class Nav {
     constructor() {
         this.local = new LocalData();
         this.user = undefined;
-        this.resetTest = () => {
-            this.setTesting(!this.testing);
-            //this.pop();
-            this.start();
-        };
-        this.toNormal = () => {
-            this.setTesting(false);
-            this.start();
-        };
+        this.arrs = ['/test', '/test/'];
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;
@@ -403,13 +419,24 @@ export class Nav {
             return;
         this.ws.endWsReceive(handlerId);
     }
-    setTesting(testing) {
+    /*
+    private static testMode = '测试';
+    private static normalMode = '正常';
+    private setTesting(testing:boolean) {
         this.testing = testing;
         this.local.testing.set(testing);
+    };
+    private resetTest = () => {
+        this.setTesting(!this.testing);
+        //this.pop();
+        this.start();
     }
-    ;
+    toNormal = () => {
+        this.setTesting(false);
+        this.start();
+    }
     reverseTest() {
-        let m1, m2;
+        let m1:string, m2:string;
         if (this.testing === true) {
             m1 = Nav.testMode;
             m2 = Nav.normalMode;
@@ -418,22 +445,21 @@ export class Nav {
             m1 = Nav.normalMode;
             m2 = Nav.testMode;
         }
-        this.push(React.createElement(Page, { back: "close", header: false },
-            React.createElement("div", { className: "m-5 border border-info bg-white rounded p-4 text-center" },
-                React.createElement("div", null,
-                    React.createElement("p", null,
-                        "\u4ECE",
-                        m1,
-                        "\u6A21\u5F0F\u5207\u6362\u5230",
-                        m2,
-                        "\u6A21\u5F0F\u5417?"),
-                    React.createElement("p", { className: "small text-muted" },
-                        "\u6D4B\u8BD5\u6A21\u5F0F\u4E0B\uFF0C\u9875\u9762\u5DE6\u4E0A\u89D2\u4F1A\u6709\u4E00\u4E2A ",
-                        React.createElement(FA, { className: "text-warning", name: "info-circle" }))),
-                React.createElement("div", { className: "mt-4" },
-                    React.createElement("button", { className: "btn btn-danger", onClick: this.resetTest }, "\u5207\u6362"),
-                    React.createElement("button", { className: "btn btn-outline-info ml-3", onClick: () => this.pop() }, "\u53D6\u6D88")))));
+
+        this.push(<Page back="close" header={false}>
+            <div className="m-5 border border-info bg-white rounded p-4 text-center">
+                <div>
+                    <p>从{m1}模式切换到{m2}模式吗?</p>
+                    <p className="small text-muted">测试模式下，页面左上角会有一个 <FA className="text-warning" name="info-circle" /></p>
+                </div>
+                <div className="mt-4">
+                    <button className="btn btn-danger" onClick={this.resetTest}>切换</button>
+                    <button className="btn btn-outline-info ml-3" onClick={()=>this.pop()}>取消</button>
+                </div>
+            </div>
+        </Page>);
     }
+    */
     onReceive(msg) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.ws === undefined)
@@ -444,8 +470,8 @@ export class Nav {
     getPredefinedUnitName() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let unitRes = yield fetch('unit.json', {});
-                //if (unitRes)
+                let unitJsonPath = this.unitJsonPath();
+                let unitRes = yield fetch(unitJsonPath, {});
                 let res = yield unitRes.json();
                 return res.unit;
             }
@@ -487,10 +513,33 @@ export class Nav {
     setSettings(settings) {
         this.navSettings = settings;
     }
+    unitJsonPath() {
+        let { href } = document.location;
+        href = href.toLowerCase();
+        for (let item of this.arrs) {
+            if (href.endsWith(item) === true) {
+                href = href.substr(0, href.length - item.length);
+                break;
+            }
+        }
+        if (href.endsWith('/') === true || href.endsWith('\\') === true) {
+            href = href.substr(0, href.length - 1);
+        }
+        return href + '/unit.json';
+    }
+    isTesting() {
+        let { pathname } = document.location;
+        let pn = pathname.toLowerCase();
+        for (let item of this.arrs) {
+            if (pn.endsWith(item) === true)
+                return true;
+        }
+        return false;
+    }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                this.testing = this.local.testing.get();
+                this.testing = this.isTesting();
                 yield host.start(this.testing);
                 let hash = document.location.hash;
                 if (hash !== undefined && hash.length > 0) {
@@ -503,7 +552,7 @@ export class Nav {
                 this.startWait();
                 let { url, ws, resHost } = host;
                 this.centerHost = url;
-                this.resUrl = 'http://' + resHost + '/res/';
+                this.resUrl = resUrlFromHost(resHost);
                 this.wsHost = ws;
                 setCenterUrl(url);
                 let guest = this.local.guest.get();
@@ -571,8 +620,6 @@ export class Nav {
     logined(user, callback) {
         return __awaiter(this, void 0, void 0, function* () {
             logoutApis();
-            let ws = this.ws = new WSChannel(this.wsHost, user.token);
-            ws.connect();
             console.log("logined: %s", JSON.stringify(user));
             this.user = user;
             this.saveLocalUser();
@@ -584,6 +631,10 @@ export class Nav {
                 yield this.showAppView();
             }
         });
+    }
+    wsConnect() {
+        let ws = this.ws = new WSChannel(this.wsHost, this.user.token);
+        ws.connect();
     }
     loginTop(defaultTop) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
@@ -649,6 +700,11 @@ export class Nav {
     onError(error) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.nav.onError(error);
+        });
+    }
+    showUpgradeUq(uq, version) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.nav.showUpgradeUq(uq, version);
         });
     }
     show(view, disposer) {
@@ -727,13 +783,8 @@ export class Nav {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
     }
 }
-Nav.testMode = '测试';
-Nav.normalMode = '正常';
 __decorate([
     observable
 ], Nav.prototype, "user", void 0);
-__decorate([
-    observable
-], Nav.prototype, "testing", void 0);
 export const nav = new Nav();
 //# sourceMappingURL=nav.js.map

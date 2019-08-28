@@ -9,22 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { bridgeCenterApi, isBridged } from './appBridge';
 import { nav } from '../ui/nav';
 import { isDevelopment } from './host';
-export function httpGet(url, params) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let channel = new HttpChannel(false, url, undefined, undefined);
-        let ret = yield channel.get('', params);
-        return ret;
-    });
+/*
+export async function httpGet(url:string, params?:any):Promise<any> {
+    let channel = new HttpChannel(false, url, undefined, undefined);
+    let ret = await channel.get('', params);
+    return ret;
 }
-export function httpPost(url, params) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let channel = new HttpChannel(false, url, undefined, undefined);
-        let ret = yield channel.post('', params);
-        return ret;
-    });
+
+export async function httpPost(url:string, params?:any):Promise<any> {
+    let channel = new HttpChannel(false, url, undefined, undefined);
+    let ret = await channel.post('', params);
+    return ret;
 }
+*/
+const methodsWithBody = ['POST', 'PUT'];
 export class HttpChannel {
-    constructor(isCenter, hostUrl, apiToken, ui) {
+    constructor(hostUrl, apiToken, ui) {
         this.startWait = () => {
             if (this.ui !== undefined)
                 this.ui.startWait();
@@ -39,7 +39,6 @@ export class HttpChannel {
             if (this.ui !== undefined)
                 yield this.ui.showError(error);
         });
-        this.isCenter = isCenter;
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
@@ -47,6 +46,24 @@ export class HttpChannel {
     }
     used() {
         this.post('', {});
+    }
+    xcall(urlPrefix, caller) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let options = this.buildOptions();
+            let { headers, path, method } = caller;
+            if (headers !== undefined) {
+                let h = options.headers;
+                for (let i in headers) {
+                    h.append(i, encodeURI(headers[i]));
+                }
+            }
+            options.method = method;
+            let p = caller.buildParams();
+            if (methodsWithBody.indexOf(method) >= 0 && p !== undefined) {
+                options.body = JSON.stringify(p);
+            }
+            return yield this.innerFetch(urlPrefix + path, options);
+        });
     }
     get(url, params = undefined) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -123,18 +140,24 @@ export class HttpChannel {
                         clearTimeout(timeOutHandler);
                         that.endWait();
                         if (retJson.ok === true) {
-                            return resolve(retJson.res);
+                            let { res } = retJson;
+                            if (res === undefined) {
+                                res = {
+                                    $uq: retJson.$uq
+                                };
+                            }
+                            return resolve(res);
                         }
-                        if (retJson.error === undefined) {
+                        let retError = retJson.error;
+                        if (retError === undefined) {
                             yield that.showError(buildError('not valid tonva json'));
                         }
                         else {
-                            yield that.showError(buildError(retJson.error));
-                            reject(retJson.error);
+                            yield that.showError(buildError(retError));
+                            reject(retError);
                         }
-                        //throw retJson.error;
                     })).catch((error) => __awaiter(this, void 0, void 0, function* () {
-                        yield that.showError(buildError(error.message));
+                        yield that.showError(buildError(error));
                     }));
                 }
                 else {
@@ -146,7 +169,8 @@ export class HttpChannel {
             }
             catch (error) {
                 if (typeof error === 'string') {
-                    if (error.toLowerCase().startsWith('unauthorized') === true) {
+                    let err = error.toLowerCase();
+                    if (err.startsWith('unauthorized') === true) {
                         nav.logout();
                         return;
                     }
@@ -154,16 +178,6 @@ export class HttpChannel {
                 yield this.showError(buildError(error.message));
             }
             ;
-        });
-    }
-    innerFetch(url, options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let u = this.hostUrl + url;
-            if (this.isCenter === true && this.apiToken === undefined && isBridged())
-                return yield bridgeCenterApi(u, options.method, options.body);
-            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(u, options, resolve, reject);
-            }));
         });
     }
     callFetch(url, method, body) {
@@ -177,6 +191,15 @@ export class HttpChannel {
         });
     }
     buildOptions() {
+        let headers = this.buildHeaders();
+        let options = {
+            headers: headers,
+            method: undefined,
+            body: undefined,
+        };
+        return options;
+    }
+    buildHeaders() {
         let { language, culture } = nav;
         let headers = new Headers();
         //headers.append('Access-Control-Allow-Origin', '*');
@@ -188,10 +211,36 @@ export class HttpChannel {
         if (this.apiToken) {
             headers.append('Authorization', this.apiToken);
         }
-        let options = {
-            headers: headers,
-        };
-        return options;
+        return headers;
+    }
+}
+export class CenterHttpChannel extends HttpChannel {
+    innerFetch(url, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let u = this.hostUrl + url;
+            if (this.apiToken === undefined && isBridged())
+                return yield bridgeCenterApi(u, options.method, options.body);
+            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                yield this.fetch(u, options, resolve, reject);
+            }));
+        });
+    }
+}
+export class UqHttpChannel extends HttpChannel {
+    /*
+    private uqForChannel: IUqForChannel;
+    constructor(hostUrl: string, apiToken:string, uqForChannel: IUqForChannel, ui?: HttpChannelUI) {
+        super(hostUrl, apiToken, ui);
+        this.uqForChannel = uqForChannel;
+    }
+    */
+    innerFetch(url, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let u = this.hostUrl + url;
+            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                yield this.fetch(u, options, resolve, reject);
+            }));
+        });
     }
 }
 //# sourceMappingURL=httpChannel.js.map

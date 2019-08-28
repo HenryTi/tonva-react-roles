@@ -1,23 +1,18 @@
-/// <reference types="react" />
 import { Entity } from '../entity';
-import { TuidDiv } from './tuidDiv';
-import { Uq, SchemaFrom } from '../uq';
-import { TuidBox } from './tuidBox';
-import { BoxId } from './boxId';
+import { Uq, Field, SchemaFrom } from '../uq';
+import { BoxId } from '../boxId';
+import { IdCache, IdDivCache } from './idCache';
 export interface TuidSaveResult {
     id: number;
     inId: number;
 }
 export declare abstract class Tuid extends Entity {
-    readonly typeName = "tuid";
-    private idName;
+    readonly typeName: string;
+    protected idName: string;
     unique: string[];
-    ui: React.StatelessComponent<any>;
-    res: any;
     constructor(uq: Uq, name: string, typeId: number);
     setSchema(schema: any): void;
     buildTuidBox(): TuidBox;
-    setUIRes(ui: any, res: any): void;
     getIdFromObj(obj: any): number;
     abstract useId(id: number): void;
     abstract boxId(id: number): BoxId;
@@ -35,12 +30,11 @@ export declare abstract class Tuid extends Entity {
     abstract saveArr(arr: string, owner: number, id: number, props: any): Promise<void>;
     abstract posArr(arr: string, owner: number, id: number, order: number): Promise<void>;
 }
-export declare class TuidLocal extends Tuid {
-    private idCache;
-    private cacheFields;
+export declare class TuidInner extends Tuid {
     private divs;
+    protected cacheFields: Field[];
+    protected idCache: IdCache;
     setSchema(schema: any): void;
-    setUIRes(ui: any, res: any): void;
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
@@ -64,7 +58,7 @@ export declare class TuidLocal extends Tuid {
 export declare class TuidImport extends Tuid {
     private tuidLocal;
     constructor(uq: Uq, name: string, typeId: number, from: SchemaFrom);
-    setFrom(tuidLocal: TuidLocal): void;
+    setFrom(tuidLocal: TuidInner): void;
     readonly from: SchemaFrom;
     isImport: boolean;
     useId(id: number): void;
@@ -80,4 +74,40 @@ export declare class TuidImport extends Tuid {
     loadArr(arr: string, owner: number, id: number): Promise<any>;
     saveArr(arr: string, owner: number, id: number, props: any): Promise<void>;
     posArr(arr: string, owner: number, id: number, order: number): Promise<void>;
+}
+export declare class TuidBox {
+    tuid: Tuid;
+    ownerField: Field;
+    constructor(tuid: Tuid);
+    boxId(id: number): BoxId;
+    getIdFromObj(obj: any): number;
+    useId(id: number): void;
+    showInfo(): Promise<void>;
+}
+export declare class TuidDiv extends TuidInner {
+    readonly typeName: string;
+    protected cacheFields: Field[];
+    protected tuid: TuidInner;
+    protected idName: string;
+    protected idCache: IdDivCache;
+    constructor(uq: Uq, tuid: TuidInner, name: string);
+    readonly owner: TuidInner;
+    buildFieldsTuid(): void;
+    buildTuidDivBox(ownerField: Field): TuidBoxDiv;
+    getIdFromObj(obj: any): number;
+    cacheValue(value: any): void;
+    useId(id: number, defer?: boolean): void;
+    valueFromId(id: number): any;
+    assureBox(id: number): Promise<void>;
+    cacheIds(): Promise<void>;
+    cacheTuidFieldValues(values: any): void;
+    unpackTuidIds(values: any[] | string): any[];
+}
+export declare class TuidBoxDiv extends TuidBox {
+    ownerField: Field;
+    private div;
+    constructor(tuid: Tuid, div: TuidDiv, ownerField: Field);
+    boxId(id: number): BoxId;
+    getIdFromObj(obj: any): number;
+    useId(id: number): void;
 }

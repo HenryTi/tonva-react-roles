@@ -1,9 +1,11 @@
 import {bridgeCenterApi, isBridged} from './appBridge';
-import {FetchError} from '../fetchError';
+import {FetchError} from './fetchError';
 import {HttpChannelUI} from './httpChannelUI';
 import {nav} from '../ui/nav';
 import { isDevelopment } from './host';
+import { Caller } from './caller';
 
+/*
 export async function httpGet(url:string, params?:any):Promise<any> {
     let channel = new HttpChannel(false, url, undefined, undefined);
     let ret = await channel.get('', params);
@@ -15,16 +17,17 @@ export async function httpPost(url:string, params?:any):Promise<any> {
     let ret = await channel.post('', params);
     return ret;
 }
+*/
 
-export class HttpChannel {
-    private isCenter: boolean;
-    private hostUrl: string;
-    private apiToken: string;
-    private ui?: HttpChannelUI;
+const methodsWithBody = ['POST', 'PUT'];
+
+export abstract class HttpChannel {
     private timeout: number;
+    protected ui?: HttpChannelUI;
+    protected hostUrl: string;
+    protected apiToken: string;
 
-    constructor(isCenter: boolean, hostUrl: string, apiToken:string, ui?: HttpChannelUI) {
-        this.isCenter = isCenter;
+    constructor(hostUrl: string, apiToken:string, ui?: HttpChannelUI) {
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
@@ -46,6 +49,23 @@ export class HttpChannel {
 
     used() {
         this.post('', {});
+    }
+
+    async xcall(urlPrefix:string, caller:Caller<any>): Promise<void> {
+        let options = this.buildOptions();
+        let {headers, path, method} = caller;
+        if (headers !== undefined) {
+            let h = options.headers;
+            for (let i in headers) {
+                h.append(i, encodeURI(headers[i]));
+            }
+        }
+        options.method = method;
+        let p = caller.buildParams();
+        if (methodsWithBody.indexOf(method) >= 0 && p !== undefined) {
+            options.body = JSON.stringify(p)
+        }
+        return await this.innerFetch(urlPrefix + path, options);
     }
 
     async get(url: string, params: any = undefined): Promise<any> {
@@ -90,7 +110,7 @@ export class HttpChannel {
         let that = this;
         this.startWait();
         let path = url;
-        function buildError(err: string) {
+        function buildError(err: any) {
             return {
                 channel: that,
                 url: path,
@@ -116,18 +136,24 @@ export class HttpChannel {
                     clearTimeout(timeOutHandler);
                     that.endWait();
                     if (retJson.ok === true) {
-                        return resolve(retJson.res);
+                        let {res} = retJson;
+                        if (res === undefined) {
+                            res = {
+                                $uq: retJson.$uq
+                            }
+                        }
+                        return resolve(res);
                     }
-                    if (retJson.error === undefined) {
+                    let retError = retJson.error;
+                    if (retError === undefined) {
                         await that.showError(buildError('not valid tonva json'));
                     }
                     else {
-                        await that.showError(buildError(retJson.error));
-                        reject(retJson.error);
+                        await that.showError(buildError(retError));
+                        reject(retError);
                     }
-                    //throw retJson.error;
                 }).catch(async error => {
-                    await that.showError(buildError(error.message));
+                    await that.showError(buildError(error));
                 });
             }
             else {
@@ -139,7 +165,8 @@ export class HttpChannel {
         }
         catch(error) {
             if (typeof error === 'string') {
-                if (error.toLowerCase().startsWith('unauthorized') === true) {
+                let err = error.toLowerCase();
+                if (err.startsWith('unauthorized') === true) {
                     nav.logout();
                     return;
                 }
@@ -148,14 +175,7 @@ export class HttpChannel {
         };
     }
 
-    private async innerFetch(url: string, options: any): Promise<any> {
-        let u = this.hostUrl + url;
-        if (this.isCenter === true && this.apiToken === undefined && isBridged())
-            return await bridgeCenterApi(u, options.method, options.body);
-        return await new Promise<any>(async (resolve, reject) => {
-            await this.fetch(u, options, resolve, reject);
-        });
-    }
+    protected abstract async innerFetch(url: string, options: any): Promise<any>;
 
     async callFetch(url:string, method:string, body:any):Promise<any> {
         let options = this.buildOptions();
@@ -166,7 +186,18 @@ export class HttpChannel {
         });
     }
 
-    private buildOptions(): any {
+    private buildOptions(): {method:string; headers:Headers; body:any} {
+        let headers = this.buildHeaders();
+        let options = {
+            headers: headers,
+            method: undefined,
+            body: undefined,
+            // cache: 'no-cache',
+        };
+        return options;
+    }
+
+    protected buildHeaders():Headers {
         let {language, culture} = nav;
         let headers = new Headers();
         //headers.append('Access-Control-Allow-Origin', '*');
@@ -177,10 +208,65 @@ export class HttpChannel {
         if (this.apiToken) { 
             headers.append('Authorization', this.apiToken); 
         }
-        let options = {
-            headers: headers,
-            // cache: 'no-cache',
-        };
-        return options;
+        return headers;
     }
+}
+
+export class CenterHttpChannel extends HttpChannel {
+    protected async innerFetch(url: string, options: any): Promise<any> {
+        let u = this.hostUrl + url;
+        if (this.apiToken === undefined && isBridged())
+            return await bridgeCenterApi(u, options.method, options.body);
+        return await new Promise<any>(async (resolve, reject) => {
+            await this.fetch(u, options, resolve, reject);
+        });
+    }
+}
+
+export class UqHttpChannel extends HttpChannel {
+    /*
+    private uqForChannel: IUqForChannel;
+    constructor(hostUrl: string, apiToken:string, uqForChannel: IUqForChannel, ui?: HttpChannelUI) {
+        super(hostUrl, apiToken, ui);
+        this.uqForChannel = uqForChannel;
+    }
+    */
+    protected async innerFetch(url: string, options: any): Promise<any> {
+        let u = this.hostUrl + url;
+        return await new Promise<any>(async (resolve, reject) => {
+            await this.fetch(u, options, resolve, reject);
+        });
+    }
+
+    /*
+    protected buildHeaders():Headers {
+        let headers = super.buildHeaders();
+        if (this.uqForChannel !== undefined) {
+            let {uqVersion} = this.uqForChannel;
+            if (uqVersion !== undefined) {
+                headers.append('tonva-uq-version', String(uqVersion));
+            }
+        }
+        return headers;
+    }
+
+    protected async showSpecificError(err:string):Promise<boolean> {
+        if (err === 'unmatched uq version') {
+            if (this.ui !== undefined) {
+                let uq:string, uqVersion:number;
+                if (this.uqForChannel !== undefined) {
+                    uq = this.uqForChannel.uq;
+                    uqVersion = this.uqForChannel.uqVersion;
+                }
+                else {
+                    uq = 'undefined uq';
+                    uqVersion = 0;
+                }
+                await this.ui.showUpgradeUq(uq, uqVersion);
+                return true;
+            }
+        }
+        return false;
+    }
+    */
 }

@@ -15,7 +15,7 @@ export class IdCache {
         this.cache = observable.map({}, { deep: false }); // 已经缓冲的
         this.waitingIds = []; // 等待loading的
         this.divName = undefined;
-        this.tuidLocal = tuidLocal;
+        this.tuidInner = tuidLocal;
     }
     useId(id, defer) {
         if (id === undefined || id === 0)
@@ -26,8 +26,7 @@ export class IdCache {
             this.moveToHead(id);
             return;
         }
-        this.tuidLocal.cacheTuids(defer === true ? 70 : 20);
-        //let idVal = this.createID(id);
+        this.tuidInner.cacheTuids(defer === true ? 70 : 20);
         this.cache.set(id, id);
         if (this.waitingIds.findIndex(v => v === id) >= 0) {
             this.moveToHead(id);
@@ -96,7 +95,7 @@ export class IdCache {
         this.cache.set(id, val);
         return true;
     }
-    getIdFromObj(val) { return this.tuidLocal.getIdFromObj(val); }
+    getIdFromObj(val) { return this.tuidInner.getIdFromObj(val); }
     /*
     protected afterCacheValue(tuidValue:any) {
         let {fields} = this.tuidLocal;
@@ -131,15 +130,15 @@ export class IdCache {
     }
     loadIds() {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.tuidLocal.loadTuidIds(this.divName, this.waitingIds);
+            let ret = yield this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
             return ret;
         });
     }
     unpackTuidIds(values) {
-        return this.tuidLocal.unpackTuidIds(values);
+        return this.tuidInner.unpackTuidIds(values);
     }
     cacheTuidFieldValues(tuidValue) {
-        this.tuidLocal.cacheTuidFieldValues(tuidValue);
+        this.tuidInner.cacheTuidFieldValues(tuidValue);
     }
     assureObj(id) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -150,7 +149,7 @@ export class IdCache {
                     this.cache.set(id, id);
                     break;
             }
-            let ret = yield this.tuidLocal.loadTuidIds(this.divName, [id]);
+            let ret = yield this.tuidInner.loadTuidIds(this.divName, [id]);
             yield this.cacheIdValues(ret);
         });
     }

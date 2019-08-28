@@ -9,13 +9,8 @@ export declare class UqApi extends ApiBase {
     constructor(basePath: string, uqOwner: string, uqName: string, access: string[], showWaiting?: boolean);
     init(): Promise<void>;
     protected getHttpChannel(): Promise<HttpChannel>;
-    update(): Promise<string>;
-    __loadAccess(): Promise<any>;
     loadAccess(): Promise<any>;
-    loadEntities(): Promise<any>;
-    checkAccess(): Promise<boolean>;
     schema(name: string): Promise<any>;
-    schemas(names: string[]): Promise<any[]>;
     tuidGet(name: string, id: number): Promise<any>;
     tuidGetAll(name: string): Promise<any[]>;
     tuidSave(name: string, params: any): Promise<any>;
@@ -25,19 +20,6 @@ export declare class UqApi extends ApiBase {
     tuidArrSave(name: string, arr: string, owner: number, params: any): Promise<any>;
     tuidArrPos(name: string, arr: string, owner: number, id: number, order: number): Promise<any>;
     tuidIds(name: string, arr: string, ids: number[]): Promise<any[]>;
-    sheetSave(name: string, data: object): Promise<any>;
-    sheetAction(name: string, data: object): Promise<any>;
-    stateSheets(name: string, data: object): Promise<any>;
-    stateSheetCount(name: string): Promise<any>;
-    mySheets(name: string, data: object): Promise<any>;
-    getSheet(name: string, id: number): Promise<any>;
-    sheetArchives(name: string, data: object): Promise<any>;
-    sheetArchive(name: string, id: number): Promise<any>;
-    action(name: string, data: object): Promise<any>;
-    actionReturns(name: string, data: object): Promise<any[][]>;
-    page(name: string, pageStart: any, pageSize: number, params: any): Promise<string>;
-    query(name: string, params: any): Promise<any>;
-    user(): Promise<any>;
 }
 export declare function logoutUnitxApis(): void;
 export declare class UnitxApi extends UqApi {
@@ -68,6 +50,7 @@ export declare class CallCenterApi extends CenterApiBase {
 export declare const callCenterapi: CallCenterApi;
 export interface UqAppData {
     id: number;
+    version: string;
     uqs: UqData[];
 }
 export interface UqData {

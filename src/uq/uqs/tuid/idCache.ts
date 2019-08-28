@@ -1,8 +1,7 @@
 import { observable } from 'mobx';
 import { isNumber } from 'util';
-import { BoxId } from './boxId';
-import { TuidLocal } from './tuid';
-import { TuidDiv } from './tuidDiv'
+import { BoxId } from '../boxId';
+import { TuidInner, TuidDiv } from './tuid';
 
 const maxCacheSize = 1000;
 
@@ -11,10 +10,10 @@ export class IdCache {
     private cache = observable.map({}, {deep: false});    // 已经缓冲的
 
     protected waitingIds: number[] = [];          // 等待loading的
-    protected tuidLocal: TuidLocal;
+    protected tuidInner: TuidInner;
 
-    constructor(tuidLocal: TuidLocal) {
-        this.tuidLocal = tuidLocal;
+    constructor(tuidLocal: TuidInner) {
+        this.tuidInner = tuidLocal;
     }
 
     useId(id:number, defer?:boolean) {
@@ -24,8 +23,7 @@ export class IdCache {
             this.moveToHead(id);
             return;
         }
-        this.tuidLocal.cacheTuids(defer===true?70:20);
-        //let idVal = this.createID(id);
+        this.tuidInner.cacheTuids(defer===true?70:20);
         this.cache.set(id, id);
         if (this.waitingIds.findIndex(v => v === id) >= 0) {
             this.moveToHead(id);
@@ -94,7 +92,7 @@ export class IdCache {
         this.cache.set(id, val);
         return true;
     }
-    protected getIdFromObj(val:any) {return this.tuidLocal.getIdFromObj(val)}
+    protected getIdFromObj(val:any) {return this.tuidInner.getIdFromObj(val)}
     /*
     protected afterCacheValue(tuidValue:any) {
         let {fields} = this.tuidLocal;
@@ -123,14 +121,14 @@ export class IdCache {
     }
     protected divName:string = undefined;
     protected async loadIds(): Promise<any[]> {
-        let ret = await this.tuidLocal.loadTuidIds(this.divName, this.waitingIds);
+        let ret = await this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
         return ret;
     }
     protected unpackTuidIds(values:any[]|string):any[] {
-        return this.tuidLocal.unpackTuidIds(values);
+        return this.tuidInner.unpackTuidIds(values);
     }
     protected cacheTuidFieldValues(tuidValue: any) {
-        this.tuidLocal.cacheTuidFieldValues(tuidValue);
+        this.tuidInner.cacheTuidFieldValues(tuidValue);
     }
 
     async assureObj(id:number):Promise<void> {
@@ -139,7 +137,7 @@ export class IdCache {
             case 'object': return;
             case 'number': this.cache.set(id, id); break;
         }
-        let ret = await this.tuidLocal.loadTuidIds(this.divName, [id]);
+        let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
         await this.cacheIdValues(ret);
     }
 }
@@ -148,7 +146,7 @@ export class IdDivCache extends IdCache {
     private div: TuidDiv;
     protected divName:string;
 
-    constructor(tuidLocal:TuidLocal, div: TuidDiv) {
+    constructor(tuidLocal:TuidInner, div: TuidDiv) {
         super(tuidLocal);
         this.div = div;
         this.divName = div.name;

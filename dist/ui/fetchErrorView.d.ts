@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FetchError } from '../fetchError';
+import { FetchError } from '../net/fetchError';
 export interface FetchErrorProps extends FetchError {
     clearError: () => void;
 }

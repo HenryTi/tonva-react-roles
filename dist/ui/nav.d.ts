@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { User, Guest } from '../user';
-import { FetchError } from '../fetchError';
+import { User, Guest } from '../tool/user';
+import { FetchError } from '../net/fetchError';
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
@@ -33,6 +33,8 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     startWait(): void;
     endWait(): void;
     onError(fetchError: FetchError): Promise<void>;
+    private upgradeUq;
+    showUpgradeUq(uq: string, version: number): Promise<void>;
     show(view: JSX.Element, disposer?: () => void): number;
     push(view: JSX.Element, disposer?: () => void): number;
     replace(view: JSX.Element, disposer?: () => void): number;
@@ -50,12 +52,6 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     back(confirm?: boolean): Promise<void>;
     confirmBox(message?: string): boolean;
     clearError: () => void;
-    private clickCount;
-    private firstClick;
-    private clickRange;
-    private clickMax;
-    private onClick;
-    private onTestClick;
     render(): JSX.Element;
     private refresh;
 }
@@ -78,23 +74,21 @@ export declare class Nav {
     set(nav: NavView): void;
     registerReceiveHandler(handler: (message: any) => Promise<void>): number;
     unregisterReceiveHandler(handlerId: number): void;
-    private static testMode;
-    private static normalMode;
-    private setTesting;
-    private resetTest;
-    toNormal: () => void;
-    reverseTest(): void;
     onReceive(msg: any): Promise<void>;
     private getPredefinedUnitName;
     private loadPredefinedUnit;
     setSettings(settings?: NavSettings): void;
     hashParam: string;
     private centerHost;
+    private arrs;
+    private unitJsonPath;
+    private isTesting;
     start(): Promise<void>;
     showAppView(): Promise<void>;
     setGuest(guest: Guest): void;
     saveLocalUser(): void;
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
+    wsConnect(): void;
     loginTop(defaultTop: JSX.Element): JSX.Element;
     showLogin(callback?: (user: User) => Promise<void>, withBack?: boolean): Promise<void>;
     showLogout(callback?: () => Promise<void>): Promise<void>;
@@ -104,6 +98,7 @@ export declare class Nav {
     startWait(): void;
     endWait(): void;
     onError(error: FetchError): Promise<void>;
+    showUpgradeUq(uq: string, version: number): Promise<void>;
     show(view: JSX.Element, disposer?: () => void): void;
     push(view: JSX.Element, disposer?: () => void): void;
     replace(view: JSX.Element, disposer?: () => void): void;

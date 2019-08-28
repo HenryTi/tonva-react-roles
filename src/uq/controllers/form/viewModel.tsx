@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { jsonStringify } from '../../tools';
+import { jsonStringify, PureJSONContent } from '../../tools';
 
 export type TypeViewModel = typeof ViewModel;
 export type TypeView = React.StatelessComponent<{vm: ViewModel, className?:string|string[]}>;
@@ -14,9 +14,12 @@ export abstract class ViewModel {
     }
 }
 
+/*
 export const PureJSONContent = (values:any, x?:any) => {
     return <>content: {jsonStringify(values)}</>;
 }
+*/
+
 export const JSONContent = observer(PureJSONContent);
 export const RowContent = 
     (values:any) => <div className="px-3 py-2">{jsonStringify(values)}</div>

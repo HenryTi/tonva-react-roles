@@ -1,6 +1,8 @@
+import _ from 'lodash';
 import {observable, IObservableArray} from 'mobx';
 import {Field, ArrFields} from './uq';
 import {Entity} from './entity';
+import { QueryQueryCaller, QueryPageCaller } from './caller';
 
 export type QueryPageApi = (name:string, pageStart:any, pageSize:number, params:any) => Promise<string>;
 export class Query extends Entity {
@@ -67,16 +69,25 @@ export class Query extends Entity {
     }
 
     async page(params:any, pageStart:any, pageSize:number):Promise<any[]> {
+        /*
         await this.loadSchema();
         let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
-        let data = this.unpackReturns(res);
-        return data.$page;// as any[];
+        */
+        let p = {pageStart:pageStart, pageSize:pageSize+1, params:params};
+        let res = await new QueryPageCaller(this, p).request();
+        //let data = this.unpackReturns(res);
+        //return data.$page;// as any[];
+        return res;
     }
     async query(params:any):Promise<any> {
+        /*
         await this.loadSchema();
         let res = await this.uqApi.query(this.name, this.buildParams(params));
-        let data = this.unpackReturns(res);
-        return data;
+        */
+        let res = await new QueryQueryCaller(this, params).request();
+        //let data = this.unpackReturns(res);
+        //return data;
+        return res;
     }
     async table(params:any): Promise<any[]> {
         let ret = await this.query(params);

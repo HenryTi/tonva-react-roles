@@ -7,7 +7,7 @@ import { VTuidSelect } from './vTuidSelect';
 import { CUq } from '../cUq/cUq';
 import { VTuidInfo } from './vTuidInfo';
 import { VTuidList } from './vTuidList';
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 export interface TuidUI extends EntityUI {
     CTuidMain?: typeof CTuidMain;
     CTuidEdit?: typeof CTuidEdit;

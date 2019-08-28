@@ -7,7 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { CenterApiBase } from '../net';
-//
 export class CenterApi extends CenterApiBase {
     userAppUnits(app) {
         return __awaiter(this, void 0, void 0, function* () {

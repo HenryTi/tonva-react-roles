@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { tv } from '../../../tools';
+import { tv } from '../../cUq';
 import { VField, RedMark } from './vField';
 const buttonStyle = {
     textAlign: 'left',

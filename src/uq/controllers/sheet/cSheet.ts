@@ -1,7 +1,7 @@
 import { IObservableArray, observable } from 'mobx';
 import { postWsToTop } from '../../../net';
 import { TypeVPage, VPage } from '../../../ui';
-import { PageItems } from '../../../pageItems'
+import { PageItems } from '../../../tool/pageItems'
 import { Sheet, StateCount } from '../../uqs';
 import { CEntity, EntityUI, VEntity } from '../CVEntity';
 import { VSheetMain } from './vMain';

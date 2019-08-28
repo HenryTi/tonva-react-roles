@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {observable, has} from 'mobx';
-import {User, Guest/*, UserInNav*/} from '../user';
+import {User, Guest/*, UserInNav*/} from '../tool/user';
 import {Page} from './page';
 import {netToken} from '../net/netToken';
 import FetchErrorView from './fetchErrorView';
-import {FetchError} from '../fetchError';
+import {FetchError} from '../net/fetchError';
 import {appUrl, setAppInFrame, getExHash, getExHashPos} from '../net/appBridge';
-import {LocalData} from '../local';
-import {guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host} from '../net';
+import {LocalData} from '../tool/local';
+import {guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host, resUrlFromHost} from '../net';
 import { WsBase, wsBridge } from '../net/wsChannel';
 import { resOptions } from './res';
 import { Loading } from './loading';
@@ -135,6 +135,20 @@ export class NavView extends React.Component<Props, NavViewState> {
         this.setState({
             fetchError: fetchError,
         });
+    }
+
+    private upgradeUq = () => {
+        nav.start();
+    }
+
+    async showUpgradeUq(uq:string, version:number):Promise<void> {
+        this.show(<Page header={false}>
+            <div>
+                UQ升级了，请点击按钮升级 <br />
+                <small className="text-muted">{uq} ver-{version}</small>
+                <button className="btn btn-primary" onClick={this.upgradeUq}>升级</button>
+            </div>
+        </Page>)
     }
 
     show(view: JSX.Element, disposer?: ()=>void): number {
@@ -309,6 +323,7 @@ export class NavView extends React.Component<Props, NavViewState> {
     clearError = () => {
         this.setState({fetchError: undefined});
     }
+    /*
     private clickCount = 0;
     private firstClick: number = 0;
     private clickRange = 3000;
@@ -327,6 +342,8 @@ export class NavView extends React.Component<Props, NavViewState> {
             return;
         }
     }
+    */
+    /*
     private onTestClick = () => {
         nav.testing = false;
         nav.push(<Page header={false}>
@@ -339,6 +356,7 @@ export class NavView extends React.Component<Props, NavViewState> {
             </div>
         </Page>);
     }
+    */
     render() {
         const {wait, fetchError} = this.state;
         let stack = this.state.stack;
@@ -358,14 +376,14 @@ export class NavView extends React.Component<Props, NavViewState> {
                 //<span className="sr-only">Loading...</span>
         }
         if (fetchError)
-            elError = <FetchErrorView clearError={this.clearError} {...fetchError} />
+            elError = <FetchErrorView clearError={this.clearError} {...fetchError} />;
         let test = nav.testing===true && 
-            <span className="cursor-pointer position-absolute" style={{lineHeight:0}}
-                onClick={this.onTestClick}>
+            <span className="cursor-pointer position-absolute" style={{lineHeight:0}}>
                 <FA className="text-warning" name="info-circle" />
             </span>;
+        //onClick={this.onClick}
         return (
-        <ul className="va" onClick={this.onClick}>
+        <ul className="va">
             {
                 stack.map((item, index) => {
                     let {key, view} = item;
@@ -399,7 +417,7 @@ export class Nav {
     private local: LocalData = new LocalData();
     private navSettings: NavSettings;
     @observable user: User/*InNav*/ = undefined;
-    @observable testing: boolean;
+    testing: boolean;
     language: string;
     culture: string;
     resUrl: string;
@@ -435,6 +453,7 @@ export class Nav {
         this.ws.endWsReceive(handlerId);
     }
 
+    /*
     private static testMode = '测试';
     private static normalMode = '正常';
     private setTesting(testing:boolean) {
@@ -474,6 +493,7 @@ export class Nav {
             </div>
         </Page>);
     }
+    */
 
     async onReceive(msg:any) {
         if (this.ws === undefined) return;
@@ -482,8 +502,8 @@ export class Nav {
 
     private async getPredefinedUnitName() {
         try {
-            let unitRes = await fetch('unit.json', {});
-            //if (unitRes)
+            let unitJsonPath = this.unitJsonPath();
+            let unitRes = await fetch(unitJsonPath, {});
             let res = await unitRes.json();
             return res.unit;
         }
@@ -523,9 +543,32 @@ export class Nav {
 
     hashParam: string;
     private centerHost: string;
+    private arrs = ['/test', '/test/'];
+    private unitJsonPath():string {
+        let {href} = document.location;
+        href = href.toLowerCase();
+        for (let item of this.arrs) {
+            if (href.endsWith(item) === true) {
+                href = href.substr(0, href.length - item.length);
+                break;
+            }
+        }
+        if (href.endsWith('/') === true || href.endsWith('\\') === true) {
+            href = href.substr(0, href.length-1);
+        }
+        return href + '/unit.json';
+    }
+    private isTesting():boolean {
+        let {pathname} = document.location;
+        let pn = pathname.toLowerCase();
+        for (let item of this.arrs) {
+            if (pn.endsWith(item) === true) return true;
+        }
+        return false;
+}
     async start() {
         try {
-            this.testing = this.local.testing.get();
+            this.testing = this.isTesting();
             await host.start(this.testing);
             let hash = document.location.hash;
             if (hash !== undefined && hash.length > 0) {
@@ -537,7 +580,7 @@ export class Nav {
             this.startWait();
             let {url, ws, resHost} = host;
             this.centerHost = url;
-            this.resUrl = 'http://' + resHost + '/res/';
+            this.resUrl = resUrlFromHost( resHost);
             this.wsHost = ws;
             setCenterUrl(url);
             
@@ -610,9 +653,6 @@ export class Nav {
 
     async logined(user: User, callback?: (user:User)=>Promise<void>) {
         logoutApis();
-        let ws:WSChannel = this.ws = new WSChannel(this.wsHost, user.token);
-        ws.connect();
-
         console.log("logined: %s", JSON.stringify(user));
         this.user = user;
         this.saveLocalUser();
@@ -623,6 +663,11 @@ export class Nav {
         else {
             await this.showAppView();
         }
+    }
+
+    wsConnect() {
+        let ws:WSChannel = this.ws = new WSChannel(this.wsHost, this.user.token);
+        ws.connect();
     }
 
     loginTop(defaultTop:JSX.Element) {
@@ -691,6 +736,10 @@ export class Nav {
     async onError(error: FetchError) {
         await this.nav.onError(error);
     }
+    async showUpgradeUq(uq:string, version:number):Promise<void> {
+        await this.nav.showUpgradeUq(uq, version);
+    }
+
     show (view: JSX.Element, disposer?: ()=>void): void {
         this.nav.show(view, disposer);
     }

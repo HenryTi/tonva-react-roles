@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { Page, SearchBox, List } from '../../../ui';
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 import { VEntity } from '../CVEntity';
 import { DefaultRow } from './defaultRow';
 export class VQuerySelect extends VEntity {

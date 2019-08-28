@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { IObservableArray } from 'mobx';
 import { TypeVPage } from '../../../ui';
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 import { Sheet, StateCount } from '../../uqs';
 import { CEntity, EntityUI } from '../CVEntity';
 export interface SheetActionUI {

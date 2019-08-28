@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import {nav} from '../ui';
-import {uid} from '../uid';
+import {uid} from '../tool/uid';
 import {uqTokenApi as uqTokenApi, callCenterapi, CenterAppApi, UqData, centerToken, UqAppData, setCenterToken} from './uqApi';
 import {setSubAppWindow} from './wsChannel';
 import { host } from './host';
@@ -13,7 +13,9 @@ export interface UqToken {
 }
 const uqTokens:{[uqName:string]: UqToken}  = {};
 export function logoutUqTokens() {
-    for (let i in uqTokens) uqTokens[i] = undefined;
+    for (let i in uqTokens) {
+        uqTokens[i] = undefined;
+    }
 }
 
 export interface AppInFrame {

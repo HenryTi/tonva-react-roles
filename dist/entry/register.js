@@ -60,6 +60,14 @@ export class RegisterController extends Controller {
         this.passwordPageCaption = '账号密码';
         this.passwordSubmitCaption = '注册新账号';
         this.successText = '注册成功';
+        this.login = () => __awaiter(this, void 0, void 0, function* () {
+            let retUser = yield userApi.login({ user: this.account, pwd: this.password, guest: nav.guest });
+            if (retUser === undefined) {
+                alert('something wrong!');
+                return;
+            }
+            yield nav.logined(retUser);
+        });
     }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -76,21 +84,13 @@ export class RegisterController extends Controller {
     toSuccess() {
         this.openVPage(RegSuccess);
     }
-    login() {
-        userApi
-            .login({ user: this.account, pwd: this.password, guest: nav.guest })
-            .then((retUser) => __awaiter(this, void 0, void 0, function* () {
-            if (retUser === undefined) {
-                alert('something wrong!');
-                return;
-            }
-            yield nav.logined(retUser);
-        }));
-    }
     regReturn(registerReturn) {
         let msg;
         switch (registerReturn) {
-            default: throw 'unknown return';
+            default:
+                return '服务器发生错误';
+            case 4:
+                return '验证码错误';
             case 0:
                 return;
             case 1:
@@ -147,7 +147,8 @@ export class RegisterController extends Controller {
                 this.toSuccess();
                 return;
             }
-            return this.regReturn(ret);
+            let error = this.regReturn(ret);
+            return error;
         });
     }
 }
@@ -316,13 +317,22 @@ class PasswordPage extends VPage {
         this.onSubmit = (name, context) => __awaiter(this, void 0, void 0, function* () {
             let values = context.form.data;
             let { pwd, rePwd } = values;
+            let error;
             if (!pwd || pwd !== rePwd) {
                 context.setValue('pwd', '');
                 context.setValue('rePwd', '');
-                return '密码错误，请重新输入密码！';
+                error = '密码错误，请重新输入密码！';
+                context.setError('pwd', error);
             }
-            this.controller.password = pwd;
-            return yield this.controller.execute();
+            else {
+                this.controller.password = pwd;
+                error = yield this.controller.execute();
+                if (error !== undefined) {
+                    nav.push(React.createElement(Page, { header: "\u6CE8\u518C\u4E0D\u6210\u529F" },
+                        React.createElement("div", { className: "p-5 text-danger" }, error)));
+                }
+            }
+            return error;
         });
         this.onEnter = (name, context) => __awaiter(this, void 0, void 0, function* () {
             if (name === 'rePwd') {

@@ -1,5 +1,5 @@
 import { Entity } from './entity';
-import { PageItems } from '../../pageItems';
+import { PageItems } from '../../tool/pageItems';
 export interface SheetState {
     name: string;
     actions: SheetAction[];

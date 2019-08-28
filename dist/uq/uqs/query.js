@@ -14,6 +14,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { observable } from 'mobx';
 import { Entity } from './entity';
+import { QueryQueryCaller, QueryPageCaller } from './caller';
 export class Query extends Entity {
     get typeName() { return 'query'; }
     setSchema(schema) {
@@ -74,18 +75,27 @@ export class Query extends Entity {
     }
     page(params, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            let res = yield this.uqApi.page(this.name, pageStart, pageSize + 1, this.buildParams(params));
-            let data = this.unpackReturns(res);
-            return data.$page; // as any[];
+            /*
+            await this.loadSchema();
+            let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
+            */
+            let p = { pageStart: pageStart, pageSize: pageSize + 1, params: params };
+            let res = yield new QueryPageCaller(this, p).request();
+            //let data = this.unpackReturns(res);
+            //return data.$page;// as any[];
+            return res;
         });
     }
     query(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.loadSchema();
-            let res = yield this.uqApi.query(this.name, this.buildParams(params));
-            let data = this.unpackReturns(res);
-            return data;
+            /*
+            await this.loadSchema();
+            let res = await this.uqApi.query(this.name, this.buildParams(params));
+            */
+            let res = yield new QueryQueryCaller(this, params).request();
+            //let data = this.unpackReturns(res);
+            //return data;
+            return res;
         });
     }
     table(params) {

@@ -35,13 +35,16 @@ const hosts = {
         local: false
     }
 };
-function centerUrlFromHost(host) {
+function urlFromHost(host) {
     if (host.startsWith('https://') === true) {
         if (host.endsWith('/'))
             return host;
         return host + '/';
     }
     return `http://${host}/`;
+}
+function centerUrlFromHost(host) {
+    return urlFromHost(host);
 }
 function centerWsFromHost(host) {
     let https = 'https://';
@@ -52,6 +55,10 @@ function centerWsFromHost(host) {
         return 'wss://' + host + '/tv/';
     }
     return `ws://${host}/tv/`;
+}
+export function resUrlFromHost(host) {
+    let url = urlFromHost(host);
+    return url + 'res/';
 }
 const fetchOptions = {
     method: "GET",
@@ -193,4 +200,10 @@ function localCheck(url) {
         }
     });
 }
+/*
+export interface IUqForChannel {
+    uq: string;
+    uqVersion: number;
+}
+*/ 
 //# sourceMappingURL=host.js.map

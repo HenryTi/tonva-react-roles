@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import _ from 'lodash';
-import { HttpChannel } from './httpChannel';
+import { CenterHttpChannel, UqHttpChannel } from './httpChannel';
 import { HttpChannelNavUI } from './httpChannelUI';
 import { appUq, logoutUqTokens, buildAppUq } from './appBridge';
 import { ApiBase } from './apiBase';
@@ -21,90 +21,92 @@ export function logoutApis() {
     logoutUnitxApis();
     logoutUqTokens();
 }
+/*
 const uqLocalEntities = 'uqLocalEntities';
 class CacheUqLocals {
-    loadAccess(uqApi) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let { uqOwner, uqName } = uqApi;
-                if (this.local === undefined) {
-                    let ls = localStorage.getItem(uqLocalEntities);
-                    if (ls !== null) {
-                        this.local = JSON.parse(ls);
-                    }
+    private local:UqLocals;
+
+    async loadAccess(uqApi: UqApi):Promise<any> {
+        try {
+            let {uqOwner, uqName} = uqApi;
+            if (this.local === undefined) {
+                let ls = null; // localStorage.getItem(uqLocalEntities);
+                if (ls !== null) {
+                    this.local = JSON.parse(ls);
                 }
-                if (this.local !== undefined) {
-                    let { user, uqs } = this.local;
-                    if (user !== loginedUserId || uqs === undefined) {
-                        this.local = undefined;
-                    }
-                    else {
-                        for (let i in uqs) {
-                            let ul = uqs[i];
-                            ul.isNet = undefined;
-                        }
-                    }
-                }
-                if (this.local === undefined) {
-                    this.local = {
-                        user: loginedUserId,
-                        unit: undefined,
-                        uqs: {}
-                    };
-                }
-                let ret;
-                let un = uqOwner + '/' + uqName;
-                let uq = this.local.uqs[un];
-                if (uq !== undefined) {
-                    let { value } = uq;
-                    ret = value;
-                }
-                if (ret === undefined) {
-                    ret = yield uqApi.__loadAccess();
-                    this.saveLocal(un, ret);
-                }
-                return _.cloneDeep(ret);
             }
-            catch (err) {
-                this.local = undefined;
-                localStorage.removeItem(uqLocalEntities);
-                throw err;
+            if (this.local !== undefined) {
+                let {user, uqs} = this.local;
+                if (user !== loginedUserId || uqs === undefined) {
+                    this.local = undefined;
+                }
+                else {
+                    for (let i in uqs) {
+                        let ul = uqs[i];
+                        ul.isNet = undefined;
+                    }
+                }
             }
-        });
+            if (this.local === undefined) {
+                this.local = {
+                    user: loginedUserId,
+                    unit: undefined,
+                    uqs: {}
+                };
+            }
+
+            let ret: any;
+            let un = uqOwner+'/'+uqName;
+            let uq = this.local.uqs[un];
+            if (uq !== undefined) {
+                let {value} = uq;
+                ret = value;
+            }
+            if (ret === undefined) {
+                ret = await uqApi.__loadAccess();
+                //this.saveLocal(un, ret);
+            }
+            return _.cloneDeep(ret);
+        }
+        catch (err) {
+            this.local = undefined;
+            localStorage.removeItem(uqLocalEntities);
+            throw err;
+        }
     }
-    saveLocal(uqName, accessValue) {
+
+    private saveLocal(uqName:string, accessValue: any) {
         this.local.uqs[uqName] = {
             value: accessValue,
             isNet: true,
-        };
+        }
         let str = JSON.stringify(this.local);
         localStorage.setItem(uqLocalEntities, str);
     }
-    checkAccess(uqApi) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.local === undefined)
-                return false;
-            let { uqOwner, uqName } = uqApi;
-            let un = uqOwner + '/' + uqName;
-            let uq = this.local.uqs[un];
-            if (uq === undefined)
-                return false;
-            let { isNet, value } = uq;
-            if (isNet === true)
-                return true;
-            let ret = yield uqApi.__loadAccess();
-            let isMatch = _.isMatch(value, ret);
-            if (isMatch === false) {
-                this.saveLocal(un, ret);
-                return false;
-            }
-            uq.isNet = true;
-            return true;
-        });
+
+    async checkAccess(uqApi: UqApi):Promise<boolean> {
+        if (this.local === undefined) return false;
+        let {uqOwner, uqName} = uqApi;
+        let un = uqOwner+'/'+uqName;
+        let uq = this.local.uqs[un];
+        if (uq === undefined) return false;
+        let {isNet, value} = uq;
+        if (isNet === true) return true;
+        let ret = await uqApi.__loadAccess();
+        let isMatch = _.isMatch(value, ret);
+        if (isMatch === false) {
+            this.saveLocal(un, ret);
+            return false;
+        }
+        uq.isNet = true;
+        return true;
     }
 }
+
 const localUqs = new CacheUqLocals;
+*/
 export class UqApi extends ApiBase {
+    //uqVersion: number;
     constructor(basePath, uqOwner, uqName, access, showWaiting) {
         super(basePath, showWaiting);
         if (uqName) {
@@ -115,6 +117,7 @@ export class UqApi extends ApiBase {
         this.access = access;
         this.showWaiting = showWaiting;
     }
+    //setUqVersion(uqVersion:number) {this.uqVersion = undefined}
     init() {
         return __awaiter(this, void 0, void 0, function* () {
             yield buildAppUq(this.uq, this.uqOwner, this.uqName);
@@ -135,21 +138,32 @@ export class UqApi extends ApiBase {
             if (channel !== undefined)
                 return channel;
             let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
-            if (!uqToken)
+            if (!uqToken) {
                 debugger;
+                yield this.init();
+                uqToken = appUq(this.uq);
+            }
             let { url, token } = uqToken;
             this.token = token;
-            channel = new HttpChannel(false, url, token, channelUI);
+            channel = new UqHttpChannel(url, token, channelUI);
             return channels[this.uq] = channel;
         });
     }
-    update() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('update');
-        });
+    /*async update():Promise<string> {
+        return await this.get('update');
+    }*/
+    /*
+    async __loadAccess():Promise<any> {
+        let acc = this.access === undefined?
+            '' :
+            this.access.join('|');
+        let ret = await this.get('access', {acc:acc});
+        return ret;
     }
-    __loadAccess() {
+    */
+    loadAccess() {
         return __awaiter(this, void 0, void 0, function* () {
+            //return await localUqs.loadAccess(this);
             let acc = this.access === undefined ?
                 '' :
                 this.access.join('|');
@@ -157,31 +171,22 @@ export class UqApi extends ApiBase {
             return ret;
         });
     }
-    loadAccess() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield localUqs.loadAccess(this);
-        });
+    /*async loadEntities():Promise<any> {
+        return await this.get('entities');
+    }*/
+    /*
+    async checkAccess():Promise<boolean> {
+        return await localUqs.checkAccess(this);
     }
-    loadEntities() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('entities');
-        });
-    }
-    checkAccess() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield localUqs.checkAccess(this);
-        });
-    }
+    */
     schema(name) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.get('schema/' + name);
         });
     }
-    schemas(names) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('schema', names);
-        });
-    }
+    /*async schemas(names:string[]):Promise<any[]> {
+        return await this.post('schema', names);
+    }*/
     tuidGet(name, id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.get('tuid/' + name + '/' + id);
@@ -248,100 +253,6 @@ export class UqApi extends ApiBase {
             }
         });
     }
-    sheetSave(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('sheet/' + name, data);
-        });
-    }
-    sheetAction(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.put('sheet/' + name, data);
-        });
-    }
-    stateSheets(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('sheet/' + name + '/states', data);
-        });
-    }
-    stateSheetCount(name) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('sheet/' + name + '/statecount');
-        });
-    }
-    mySheets(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('sheet/' + name + '/my-sheets', data);
-        });
-    }
-    getSheet(name, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('sheet/' + name + '/get/' + id);
-        });
-    }
-    sheetArchives(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('sheet/' + name + '/archives', data);
-        });
-    }
-    sheetArchive(name, id) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('sheet/' + name + '/archive/' + id);
-        });
-    }
-    action(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('action/' + name, data);
-        });
-    }
-    actionReturns(name, data) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('action/' + name + '/returns', data);
-        });
-    }
-    page(name, pageStart, pageSize, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let p;
-            switch (typeof params) {
-                case 'undefined':
-                    p = { key: '' };
-                    break;
-                default:
-                    p = _.clone(params);
-                    break;
-            }
-            p['$pageStart'] = pageStart;
-            p['$pageSize'] = pageSize;
-            return yield this.post('query-page/' + name, p);
-        });
-    }
-    query(name, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.post('query/' + name, params);
-            return ret;
-        });
-    }
-    /*
-        async history(name:string, pageStart:any, pageSize:number, params:any):Promise<string> {
-            let p = _.clone(params);
-            p['$pageStart'] = pageStart;
-            p['$pageSize'] = pageSize;
-            let ret = await this.post('history/' + name, p);
-            return ret;
-        }
-    
-        async book(name:string, pageStart:any, pageSize:number, params:any):Promise<string> {
-            let p = _.clone(params);
-            p['$pageStart'] = pageStart;
-            p['$pageSize'] = pageSize;
-            let ret = await this.post('history/' + name, p);
-            return ret;
-        }
-    */
-    user() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('user');
-        });
-    }
 }
 let channels = {};
 export function logoutUnitxApis() {
@@ -368,7 +279,7 @@ export class UnitxApi extends UqApi {
             let { token, db, url, urlTest } = ret;
             let realUrl = host.getUrlOrTest(db, url, urlTest);
             this.token = token;
-            return new HttpChannel(false, realUrl, token, channelUI);
+            return new UqHttpChannel(realUrl, token, channelUI);
         });
     }
 }
@@ -394,12 +305,12 @@ let centerChannel;
 function getCenterChannelUI() {
     if (centerChannelUI !== undefined)
         return centerChannelUI;
-    return centerChannelUI = new HttpChannel(true, centerHost, centerToken, new HttpChannelNavUI());
+    return centerChannelUI = new CenterHttpChannel(centerHost, centerToken, new HttpChannelNavUI());
 }
 function getCenterChannel() {
     if (centerChannel !== undefined)
         return centerChannel;
-    return centerChannel = new HttpChannel(true, centerHost, centerToken);
+    return centerChannel = new CenterHttpChannel(centerHost, centerToken);
 }
 export class CenterApiBase extends ApiBase {
     constructor(path, showWaiting) {

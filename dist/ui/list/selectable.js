@@ -5,11 +5,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import * as React from 'react';
-import { computed } from 'mobx';
+import { observable, computed } from 'mobx';
 import classNames from 'classnames';
 import { ListBase } from './base';
-import { uid } from '../../uid';
+import { uid } from '../../tool/uid';
 export class Selectable extends ListBase {
+    constructor() {
+        super(...arguments);
+        /*
+        set selectedItems(value: any[]) {
+            if (value === undefined) return;
+            if (this._items === undefined) return;
+            let sLen = this._items.length;
+            let list = value.slice();
+            for (let n=0; n<sLen; n++) {
+                let sItem = this._items[n];
+                let len = list.length;
+                if (len === 0) break;
+                let item = sItem.item;
+                for (let i=0; i<len; i++) {
+                    let v = list[i];
+                    if (item === v) {
+                        sItem.selected = true;
+                        value.splice(i, 1);
+                        break;
+                    }
+                }
+            };
+        }
+        */
+        //w-100 mb-0 pl-3
+        //m-0 w-100
+        this.render = (item, index) => {
+            let { className, key, render, onSelect } = this.list.props.item;
+            let { labelId, selected } = item;
+            return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
+                React.createElement("div", { className: "d-flex align-items-center px-3" },
+                    React.createElement("input", { ref: input => {
+                            if (!input)
+                                return;
+                            this.input = input;
+                            input.checked = selected;
+                        }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {
+                            this.onSelect(item, e.target.checked);
+                        } }),
+                    React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, this.renderContent(item.item, index))));
+        };
+    }
     buildItems() {
         console.log('buildItems in selectable.tsx');
         let { items, selectedItems, compare } = this.list.props;
@@ -59,6 +101,14 @@ export class Selectable extends ListBase {
         this.buildItems();
         return this._items;
     }
+    selectAll() {
+        if (this._items)
+            this._items.forEach(v => v.selected = true);
+    }
+    unselectAll() {
+        if (this._items)
+            this._items.forEach(v => v.selected = false);
+    }
     updateProps(nextProps) {
         if (nextProps.selectedItems === this._selectedItems)
             return;
@@ -72,46 +122,10 @@ export class Selectable extends ListBase {
     get selectedItems() {
         return this._items.filter(v => v.selected === true).map(v => v.item);
     }
-    /*
-    set selectedItems(value: any[]) {
-        if (value === undefined) return;
-        if (this._items === undefined) return;
-        let sLen = this._items.length;
-        let list = value.slice();
-        for (let n=0; n<sLen; n++) {
-            let sItem = this._items[n];
-            let len = list.length;
-            if (len === 0) break;
-            let item = sItem.item;
-            for (let i=0; i<len; i++) {
-                let v = list[i];
-                if (item === v) {
-                    sItem.selected = true;
-                    value.splice(i, 1);
-                    break;
-                }
-            }
-        };
-    }
-    */
-    //w-100 mb-0 pl-3
-    //m-0 w-100
-    render(item, index) {
-        let { className, key, render, onSelect } = this.list.props.item;
-        let { labelId, selected } = item;
-        return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
-            React.createElement("div", { className: "d-flex align-items-center px-3" },
-                React.createElement("input", { ref: input => {
-                        if (!input)
-                            return;
-                        this.input = input;
-                        input.checked = selected;
-                    }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {
-                        this.onSelect(item, e.target.checked);
-                    } }),
-                React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, this.renderContent(item.item, index))));
-    }
 }
+__decorate([
+    observable
+], Selectable.prototype, "_items", void 0);
 __decorate([
     computed
 ], Selectable.prototype, "items", null);

@@ -11,7 +11,7 @@ import { List, LMR, FA, Page, nav, Controller, VPage, resLang } from '../../ui';
 import { loadAppUqs, appInFrame, getExHash } from '../../net';
 import { CUq } from './cUq';
 import { centerApi } from '../centerApi';
-import { UqApp } from '../uqs';
+import { Uqs } from '../uqs';
 export class CApp extends Controller {
     constructor(ui) {
         super(resLang(ui && ui.res));
@@ -32,83 +32,16 @@ export class CApp extends Controller {
         };
         nav.setSettings(ui);
         this.name = ui.appName;
+        this.version = ui.version;
         if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
+        this.uqApp = new Uqs(this.name);
         if (ui.uqs === undefined)
             ui.uqs = {};
         this.ui = ui;
         this.caption = this.res.caption || 'Tonva';
     }
-    /*
-    async startDebug() {
-        let appName = this.appOwner + '/' + this.appName;
-        let cApp = new CApp({appName: appName, uqs:{}} );
-        let keepNavBackButton = true;
-        await cApp.start(keepNavBackButton);
-    }
-    */
-    /*
-    protected async loadUqs(uqAppData:UqAppData): Promise<string[]> {
-        let retErrors:string[] = [];
-        let unit = appInFrame.unit;
-        //let app = await loadAppUqs(this.appOwner, this.appName);
-        let {id, uqs} = uqAppData;
-        this.id = id;
-
-        let promises: PromiseLike<string>[] = [];
-        let promiseChecks: PromiseLike<boolean>[] = [];
-        let roleAppUI = await this.buildRoleAppUI();
-        this.ui = roleAppUI;
-        for (let appUq of uqs) {
-            let {id:uqId, uqOwner, uqName, access} = appUq;
-            let uq = uqOwner + '/' + uqName;
-            let uqUI = roleAppUI && roleAppUI.uqs && roleAppUI.uqs[uq];
-            let cUq = this.newCUq(uq, uqId, access, uqUI || {});
-            this.cUqCollection[uq] = cUq;
-            promises.push(cUq.loadSchema());
-            promiseChecks.push(cUq.uq.uqApi.checkAccess());
-        }
-        let results = await Promise.all(promises);
-        Promise.all(promiseChecks).then((checks) => {
-            for (let c of checks) {
-                if (c === false) {
-                    //debugger;
-                    //nav.start();
-                    //return;
-                }
-            }
-        });
-        for (let result of results)
-        {
-            let retError = result; // await cUq.loadSchema();
-            if (retError !== undefined) {
-                retErrors.push(retError);
-                continue;
-            }
-        }
-        if (retErrors.length === 0) return;
-        return retErrors;
-    }
-    */
-    /*
-    private async buildRoleAppUI():Promise<AppUI> {
-        if (!this.ui) return undefined;
-        let {hashParam} = nav;
-        if (!hashParam) return this.ui;
-        let {roles} = this.ui;
-        let roleAppUI = roles && roles[hashParam];
-        if (!roleAppUI) return this.ui;
-        let ret:AppUI = {} as any;
-        for (let i in this.ui) {
-            if (i === 'roles') continue;
-            ret[i] = this.ui[i];
-        }
-        if (typeof roleAppUI === 'function') roleAppUI = await roleAppUI();
-        _.merge(ret, roleAppUI);
-        return ret;
-    }
-    */
     getImportUq(uqOwner, uqName) {
         let uq = uqOwner + '/' + uqName;
         let cUq = this.cImportUqs[uq];
@@ -117,15 +50,6 @@ export class CApp extends Controller {
         let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
         let uqId = -1; // unknown
         this.cImportUqs[uq] = cUq = this.getCUq(uq);
-        //this.newCUq(uq, uqId, undefined, ui || {});
-        /*
-        let retError = await cUq.loadSchema();
-        if (retError !== undefined) {
-            console.error(retError);
-            debugger;
-            return;
-        }
-        */
         return cUq;
     }
     newCUq(uqData, uqUI) {
@@ -179,8 +103,6 @@ export class CApp extends Controller {
                             return false;
                     }
                 }
-                //}
-                //let retErrors = await this.loadUqs(app);
                 if (retErrors !== undefined) {
                     this.openPage(React.createElement(Page, { header: "ERROR" },
                         React.createElement("div", { className: "m-3" },
@@ -199,9 +121,13 @@ export class CApp extends Controller {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.uqApp = new UqApp(this.name);
             let { appOwner, appName } = this.uqApp;
-            let uqAppData = yield loadAppUqs(appOwner, appName);
+            let uqAppData = this.uqApp.uqAppCache.get();
+            if (!uqAppData || uqAppData.version !== this.version) {
+                uqAppData = yield loadAppUqs(appOwner, appName);
+                uqAppData.version = this.version;
+                this.uqApp.uqAppCache.set(uqAppData);
+            }
             let { id, uqs } = uqAppData;
             this.uqApp.id = id;
             let retErrors = [];
@@ -221,9 +147,10 @@ export class CApp extends Controller {
             for (let i in this.cUqCollection) {
                 let cUq = this.cUqCollection[i];
                 promises.push(cUq.loadEntities());
-                promiseChecks.push(cUq.checkEntities());
+                //promiseChecks.push(cUq.checkEntities());
             }
             let results = yield Promise.all(promises);
+            /*
             Promise.all(promiseChecks).then((checks) => {
                 for (let c of checks) {
                     if (c === false) {
@@ -233,6 +160,7 @@ export class CApp extends Controller {
                     }
                 }
             });
+            */
             for (let result of results) {
                 let retError = result; // await cUq.loadSchema();
                 if (retError !== undefined) {

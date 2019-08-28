@@ -9,7 +9,7 @@ import { CUq } from '../cUq/cUq';
 import { VTuidInfo } from './vTuidInfo';
 import { TuidPageItems } from './pageItems';
 import { VTuidList } from './vTuidList';
-import { PageItems } from '../../../pageItems';
+import { PageItems } from '../../../tool/pageItems';
 //import { Controller } from 'ui';
 
 export interface TuidUI extends EntityUI {

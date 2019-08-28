@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { tv } from '../../../tools';
+import { tv } from '../../cUq';
 import { Field, Tuid, TuidBox } from '../../../uqs';
 import { VField, RedMark } from './vField';
 import { FieldUI } from '../../formUI';

@@ -1,13 +1,15 @@
-import {Tuid, TuidDiv, TuidImport, TuidLocal, TuidBox} from './tuid';
+import { UqApi, UqData, UnitxApi, appInFrame } from '../../net';
+import {Tuid, TuidDiv, TuidImport, TuidInner, TuidBox} from './tuid';
 import {Action} from './action';
 import {Sheet} from './sheet';
 import {Query} from './query';
 import {Book} from './book';
 import {History} from './history';
-import { UqApi, UqData, UnitxApi, appInFrame } from '../../net';
 import { Map } from './map';
 import { Pending } from './pending';
-import { UqApp } from './uqApp';
+import { Uqs } from './uqs';
+import { CreateBoxId } from './boxId';
+import { UqCache } from './caches';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
     | 'datetime' | 'date' | 'time';
@@ -40,18 +42,12 @@ export interface Field {
     size?: number;
     owner?: string;
     _tuid: TuidBox;
-    /*
-    _ownerField: Field;
-    _tuid: Tuid;
-    _div: TuidDiv;
-    */
 }
 export interface ArrFields {
     name: string;
     fields: Field[];
     id?: string;
     order?: string;
-    //isBus?: boolean;
 }
 export interface FieldMap {
     [name:string]: Field;
@@ -96,21 +92,29 @@ export class Uq {
     private histories: {[name:string]: History} = {};
     private pendings: {[name:string]: Pending} = {};
     private tuidsCache: TuidsCache;
-    private uqApp: UqApp;
+    private readonly cache: UqCache;
+    readonly createBoxId: CreateBoxId;
+    readonly uqOwner: string;
+    readonly uqName: string;
+    readonly name: string;
+    readonly uqApi: UqApi;
+    readonly id: number;
+    uqVersion: number;
 
-    name: string;
-    uqApi: UqApi;
-    id: number;
-
-    constructor(uqApp: UqApp, uqData: UqData) {
-        this.uqApp = uqApp;
+    constructor(uqData: UqData, createBoxId:CreateBoxId) {
+        this.createBoxId = createBoxId;
+        //this.uqApp = uqApp;
         this.tuidsCache = new TuidsCache(this.tuids);
         let {id, uqOwner, uqName, access} = uqData;
+        this.uqOwner = uqOwner;
+        this.uqName = uqName;
         this.id = id;
         this.name = uqOwner + '/' + uqName;
+        this.uqVersion = 0;
+        this.cache = new UqCache(uqData);
         let hash = document.location.hash;
-        let baseUrl = hash===undefined || hash===''? 
-            'debug/':'tv/';
+        //let baseUrl = hash===undefined || hash===''? 'debug/':'tv/';
+        let baseUrl = 'tv/';
 
         let acc: string[];
         if (access === null || access === undefined || access === '*') {
@@ -127,7 +131,6 @@ export class Uq {
         else {
             this.uqApi = new UqApi(baseUrl, uqOwner, uqName, acc, true);
         }
-        //this.entities = new Uq(this, uqApi, appId);
     }
 
     tuid(name:string):Tuid {return this.tuids[name.toLowerCase()]}
@@ -159,48 +162,40 @@ export class Uq {
     historyArr: History[] = [];
     pendingArr: Pending[] = [];
 
-    /*
-    private schemaLoaded:boolean = false;
-    async loadSchema(): Promise<string> {
-        try {
-            if (this.schemaLoaded === true) return;
-            await this.init();
-            await this.loadAccess();
-            this.schemaLoaded = true;
-        }
-        catch (err) {
-            console.error(err);
-            return err;
-        }
-    }*/
-
     async init() {
         await this.uqApi.init();
     }
 
-    async loadAccess() {
-        let accesses = await this.uqApi.loadAccess();
-        if (accesses === undefined) return;
+    async loadEntities() {
+        let accesses = this.cache.get();
+        if (!accesses) {
+            accesses = await this.uqApi.loadAccess();
+        }
+        if (!accesses) return;
         this.buildEntities(accesses);
     }
-
+    /*
     async loadEntities() {
         let accesses = await this.uqApi.loadEntities();
         this.buildEntities(accesses);
     }
-
-    private buildEntities(entities:any) {
+    */
+    buildEntities(entities:any) {
         if (entities === undefined) {
             debugger;
         }
-        let {access, tuids} = entities;
+        this.cache.set(entities);
+        let {access, tuids, version} = entities;
+        this.uqVersion = version;
         this.buildTuids(tuids);
         this.buildAccess(access);
     }
 
+    /*
     async checkAccess() {
         return await this.uqApi.checkAccess();
     }
+    */
 
     async loadEntitySchema(entityName: string): Promise<any> {
         return await this.uqApi.schema(entityName);
@@ -236,10 +231,6 @@ export class Uq {
                 case 'object': this.fromObj(a, v); break;
             }
         }
-        /*
-        for (let tuid of this.tuidArr) {
-            tuid.setProxies(this);
-        }*/
     }
 
     cacheTuids(defer:number) {
@@ -259,7 +250,7 @@ export class Uq {
         if (from !== undefined)
             tuid = new TuidImport(this, name, id, from);
         else
-            tuid = new TuidLocal(this, name, id);
+            tuid = new TuidInner(this, name, id);
         this.tuids[name] = tuid;
         this.tuidArr.push(tuid);
         return tuid;
@@ -335,26 +326,7 @@ export class Uq {
         let sheet = this.sheets[name];
         if (sheet === undefined) sheet = this.newSheet(name, obj.id);
         sheet.build(obj);
-        /*
-        let states = sheet.states;
-        for (let p in obj) {
-            switch(p) {
-                case '#':
-                case '$': continue;
-                default: states.push(this.createSheetState(p, obj[p])); break;
-            }
-        }*/
     }
-    /*
-    private createSheetState(name:string, obj:object):SheetState {
-        let ret:SheetState = {name:name, actions:[]};
-        let actions = ret.actions;
-        for (let p in obj) {
-            let action:SheetAction = {name: p};
-            actions.push(action);
-        }
-        return ret;
-    }*/
     buildFieldTuid(fields:Field[], mainFields?:Field[]) {
         if (fields === undefined) return;
         for (let f of fields) {
@@ -377,13 +349,11 @@ export class Uq {
                     throw `owner field ${owner} is undefined`;
                 }
             }
-            //f._ownerField = ownerField;
-            //let {arr} = f;
             let {arr, tuid} = f;
             let t = this.getTuid(ownerField._tuid.tuid.name);
             if (t === undefined) continue;
             let div = t.div(arr || tuid);
-            f._tuid = div && div.buildTuidBox(ownerField);
+            f._tuid = div && div.buildTuidDivBox(ownerField);
             if (f._tuid === undefined) {
                 debugger;
                 throw 'owner field ${owner} is not tuid';

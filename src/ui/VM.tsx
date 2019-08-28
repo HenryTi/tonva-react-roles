@@ -1,6 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
-import {User} from '../user';
+import {User} from '../tool/user';
 import {nav} from './nav';
 import {Page} from './page';
 import { isDevelopment } from '../net';

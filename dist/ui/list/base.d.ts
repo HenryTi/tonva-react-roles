@@ -9,6 +9,6 @@ export declare abstract class ListBase {
     readonly loading: boolean;
     readonly selectedItems: any[];
     updateProps(nextProps: any): void;
-    abstract render(item: any, index: number): JSX.Element;
+    abstract render: (item: any, index: number) => JSX.Element;
     protected renderContent(item: any, index: number): JSX.Element;
 }

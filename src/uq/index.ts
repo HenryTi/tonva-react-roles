@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CApp, AppUI } from './controllers';
+import { nav } from '../ui';
 export * from './uqs';
 export * from './controllers';
 export * from './centerApi';
@@ -25,4 +26,8 @@ export async function startApp(ui: AppUI) {
     convertUIKeyToLowercase(ui);
     let cApp = new (ui && ui.CApp || CApp)(ui);
     await cApp.start();
+}
+
+export function wsConnect() {
+    nav.wsConnect();
 }

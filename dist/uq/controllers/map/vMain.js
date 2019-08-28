@@ -10,9 +10,9 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import className from 'classnames';
 import { Page, List, LMR, FA } from '../../../ui';
-import { tv } from '../../tools';
+import { PureJSONContent } from '../../tools';
 import { VEntity } from '../CVEntity';
-import { PureJSONContent } from '../form/viewModel';
+import { tv } from '../cUq';
 export class VMapMain extends VEntity {
     constructor() {
         super(...arguments);

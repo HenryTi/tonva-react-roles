@@ -1,8 +1,9 @@
 import * as React from 'react';
 import _ from 'lodash';
 import { Controller, resLang, nav } from '../../../ui';
-import { UqApi, UnitxApi, appInFrame, UqData } from '../../../net';
-import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv } from '../../uqs';
+import { UqData } from '../../../net';
+import { PureJSONContent } from '../../tools';
+import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv, CreateBoxId, BoxId } from '../../uqs';
 import { CLink } from '../link';
 import { CBook, BookUI } from '../book';
 import { CSheet, SheetUI } from '../sheet';
@@ -11,11 +12,11 @@ import { QueryUI, CQuery, CQuerySelect } from '../query';
 import { CTuidMain, TuidUI, CTuid, CTuidInfo, CTuidSelect, CTuidEdit, CTuidList } from '../tuid';
 import { MapUI, CMap } from '../map';
 import { CEntity, EntityUI } from '../CVEntity';
-import { PureJSONContent } from '../form/viewModel';
 import { VUq } from './vUq';
 import { CHistory, HistoryUI } from '../history';
 import { CPending, PendingUI } from '../pending';
 import { CApp } from '../CApp';
+import { TuidWithUIRes, ReactBoxId } from './reactBoxId';
 
 export type EntityType = 'sheet' | 'action' | 'tuid' | 'query' | 'book' | 'map' | 'history' | 'pending';
 
@@ -51,6 +52,7 @@ function lowerPropertyName(entities: {[name:string]: EntityUI}) {
 
 export class CUq extends Controller /* implements Uq*/ {
     private ui:any;
+    private tuidURs: {[name:string]: TuidWithUIRes} = {};
     private CTuidMain: typeof CTuidMain;
     private CTuidEdit: typeof CTuidEdit;
     private CTuidList: typeof CTuidList;
@@ -94,7 +96,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
 
-        this.uq = new Uq(this.cApp.uqApp, uqData);
+        this.uq = new Uq(uqData, this.createBoxId);
         /*
         let token = undefined;
         let uqOwner:string, uqName:string;
@@ -148,27 +150,40 @@ export class CUq extends Controller /* implements Uq*/ {
     error: string;
     //private schemaLoaded:boolean = false;
     
+    private createBoxId:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{
+        let {name} = tuid;
+        let tuidUR = this.tuidURs[name];
+        if (tuidUR === undefined) {
+            let {ui, res} = this.getUI(tuid);
+            //tuid.setUIRes(ui, res);
+            this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
+        }
+        return new ReactBoxId(tuidUR, id);
+    }
+
     async init():Promise<void> {
         return await this.uq.init();
     }
 
     async loadEntities():Promise<string> {
         try {
-            await this.uq.loadAccess();
+            await this.uq.loadEntities();
+            /*
             for (let tuid of this.uq.tuidArr) {
                 let {ui, res} = this.getUI(tuid);
                 tuid.setUIRes(ui, res);
             }
+            */
         }
         catch (err) {
             return err;
         }
     }
-
+    /*
     async checkEntities(): Promise<boolean> {
         return await this.uq.checkAccess();
     }
-
+    */
     /*
     private setTuidUI(tuid: Tuid) {
         let {ui, res} = this.getUI(tuid);
@@ -348,12 +363,28 @@ export class CUq extends Controller /* implements Uq*/ {
     }
 
     private getUI<T extends Entity, UI extends EntityUI>(t:T):{ui:UI, res:any} {
-        let ui, res;
+        let ui:any, res:any;
         let {name, typeName} = t;
         if (this.ui !== undefined) {
-            let tUI = this.ui[typeName];
-            if (tUI !== undefined) {
-                ui = tUI[name];
+            if (typeName === 'div') {
+                let tuidDiv:TuidDiv = t as unknown as TuidDiv;
+                let ownerTuid = tuidDiv.owner;
+                let tUIs = this.ui[ownerTuid.typeName] as TuidUI;
+                if (tUIs) {
+                    let tUI = tUIs[ownerTuid.name];
+                    if (tUI) {
+                        let divs = tUI.divs;
+                        if (divs) {
+                            ui = divs[name];
+                        }
+                    }
+                }
+            }
+            else {
+                let tUI = this.ui[typeName];
+                if (tUI !== undefined) {
+                    ui = tUI[name];
+                }
             }
         }
         let {entity} = this.res;

@@ -57,6 +57,7 @@ export interface UqUI {
 }
 export declare class CUq extends Controller {
     private ui;
+    private tuidURs;
     private CTuidMain;
     private CTuidEdit;
     private CTuidList;
@@ -76,9 +77,9 @@ export declare class CUq extends Controller {
     res: any;
     uq: Uq;
     error: string;
+    private createBoxId;
     init(): Promise<void>;
     loadEntities(): Promise<string>;
-    checkEntities(): Promise<boolean>;
     getQuerySearch(name: string): Promise<Query>;
     getTuidPlaceHolder(tuid: Tuid): any;
     getNone(): any;
