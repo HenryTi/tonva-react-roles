@@ -3,7 +3,7 @@ export abstract class Caller<T> {
     constructor(params: T) {
         this.params = params;
     }
-    buildParams() {return this.params;}
+    buildParams():any {return this.params;}
     method: string  = 'POST';
     abstract get path(): string;
     get headers(): {[header:string]: string} {return undefined}

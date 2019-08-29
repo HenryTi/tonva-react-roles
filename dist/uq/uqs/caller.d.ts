@@ -6,7 +6,6 @@ export declare abstract class EntityCaller<T> extends Caller<T> {
     private tries;
     protected entity: Entity;
     constructor(entity: Entity, params: T);
-    buildParams(): any;
     request(): Promise<any>;
     protected innerCall(): Promise<void>;
     private innerRequest;
@@ -24,6 +23,7 @@ export declare class QueryQueryCaller extends EntityCaller<any> {
     protected entity: Query;
     readonly path: string;
     xresult(): any;
+    buildParams(): any;
 }
 export declare class QueryPageCaller extends EntityCaller<any> {
     protected readonly params: {

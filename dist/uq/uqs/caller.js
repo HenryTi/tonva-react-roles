@@ -13,7 +13,8 @@ export class EntityCaller extends Caller {
         this.tries = 0;
         this.entity = entity;
     }
-    buildParams() { return this.entity.buildParams(this.params); }
+    //大多的entityCaller都不需要这个
+    //buildParams() {return this.entity.buildParams(this.params);}
     request() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.entity.loadSchema();
@@ -71,6 +72,7 @@ export class QueryQueryCaller extends EntityCaller {
         let data = this.entity.unpackReturns(this.result);
         return data;
     }
+    buildParams() { return this.entity.buildParams(this.params); }
 }
 export class QueryPageCaller extends EntityCaller {
     get path() { return `query-page/${this.entity.name}`; }

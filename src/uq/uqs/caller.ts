@@ -19,7 +19,8 @@ export abstract class EntityCaller<T> extends Caller<T> {
         this.entity = entity;
     }
 
-    buildParams() {return this.entity.buildParams(this.params);}
+    //大多的entityCaller都不需要这个
+    //buildParams() {return this.entity.buildParams(this.params);}
     
     async request(): Promise<any> {
         await this.entity.loadSchema();
@@ -77,6 +78,7 @@ export class QueryQueryCaller extends EntityCaller<any> {
         let data = this.entity.unpackReturns(this.result);
         return data;
     }
+    buildParams() {return this.entity.buildParams(this.params);}
 }
 
 export class QueryPageCaller extends EntityCaller<any> {

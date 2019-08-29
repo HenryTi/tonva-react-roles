@@ -187,12 +187,14 @@ class ActionCaller extends SheetCaller {
     constructor() {
         super(...arguments);
         this.method = 'PUT';
+        //buildParams() {return this.entity.buildParams(this.params);}
     }
     get path() { return `sheet/${this.entity.name}`; }
 }
 class GetSheetCaller extends SheetCaller {
     constructor() {
         super(...arguments);
+        //protected readonly params: number;  // id
         this.method = 'GET';
     }
     //private id:number;

@@ -198,6 +198,7 @@ export class UqApi extends ApiBase {
         return await this.post('schema', names);
     }*/
 
+    /*
     async tuidGet(name:string, id:number):Promise<any> {
         return await this.get('tuid/' + name + '/' + id);
     }
@@ -248,7 +249,7 @@ export class UqApi extends ApiBase {
             console.error(e);
         }
     }
-
+    */
     /*async sheetSave(name:string, data:object):Promise<any> {
         return await this.post('sheet/' + name, data);
     }*/

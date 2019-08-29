@@ -167,14 +167,13 @@ export class Sheet extends Entity {
 }
 
 
-abstract class SheetCaller extends EntityCaller<any> {
+abstract class SheetCaller<T> extends EntityCaller<T> {
     protected entity: Sheet;
     protected readonly suffix:string;
     get path():string {return `sheet/${this.entity.name}/${this.suffix}`;}
 }
 
-class SaveCaller extends SheetCaller {
-    protected readonly params:{app:number; discription:string; data:any};
+class SaveCaller extends SheetCaller<{app:number; discription:string; data:any}> {
     get path():string {return `sheet/${this.entity.name}`;}
     buildParams() {
         let {app, discription, data} = this.params;
@@ -186,13 +185,14 @@ class SaveCaller extends SheetCaller {
     }
 }
 
-class ActionCaller extends SheetCaller {
+class ActionCaller extends SheetCaller<{id:number, flow:number, state:string, action:string}> {
     method = 'PUT';
     get path():string {return `sheet/${this.entity.name}`;}
+    //buildParams() {return this.entity.buildParams(this.params);}
 }
 
-class GetSheetCaller extends SheetCaller {
-    protected readonly params: number;  // id
+class GetSheetCaller extends SheetCaller<number> {
+    //protected readonly params: number;  // id
     method = 'GET';
     //private id:number;
     //protected readonly suffix = 'archive';
@@ -200,7 +200,7 @@ class GetSheetCaller extends SheetCaller {
     get path():string {return `sheet/${this.entity.name}/get/${this.params}`;}
 }
 
-class SheetArchiveCaller extends SheetCaller {
+class SheetArchiveCaller extends SheetCaller<number> {
     protected readonly params: number;  // id
     method = 'GET';
     //protected readonly suffix = 'archive';
@@ -208,15 +208,15 @@ class SheetArchiveCaller extends SheetCaller {
     get path():string {return `sheet/${this.entity.name}/archive/${this.params}`;}
 }
 
-class SheetArchivesCaller extends SheetCaller {
+class SheetArchivesCaller extends SheetCaller<{pageStart:number, pageSize:number}> {
     protected readonly suffix = 'archives';
 }
 
-class StateSheetsCaller extends SheetCaller {
+class StateSheetsCaller extends SheetCaller<{state:string, pageStart:number, pageSize:number}> {
     protected readonly suffix = 'states';
 }
 
-class StateSheetCountCaller extends SheetCaller {
+class StateSheetCountCaller extends SheetCaller<undefined> {
     method = 'GET';
     protected readonly suffix = 'statecount';
     xresult():any {
@@ -230,7 +230,7 @@ class StateSheetCountCaller extends SheetCaller {
     }
 }
 
-class MySheetsCaller extends SheetCaller {
+class MySheetsCaller extends SheetCaller<{state:string, pageStart:number, pageSize:number}> {
     protected readonly suffix = 'my-sheets';
     xresult():any {
         let {returns} = this.entity;

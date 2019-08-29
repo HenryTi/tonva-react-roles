@@ -11,15 +11,6 @@ export declare class UqApi extends ApiBase {
     protected getHttpChannel(): Promise<HttpChannel>;
     loadAccess(): Promise<any>;
     schema(name: string): Promise<any>;
-    tuidGet(name: string, id: number): Promise<any>;
-    tuidGetAll(name: string): Promise<any[]>;
-    tuidSave(name: string, params: any): Promise<any>;
-    tuidSearch(name: string, arr: string, owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
-    tuidArrGet(name: string, arr: string, owner: number, id: number): Promise<any>;
-    tuidArrGetAll(name: string, arr: string, owner: number): Promise<any[]>;
-    tuidArrSave(name: string, arr: string, owner: number, params: any): Promise<any>;
-    tuidArrPos(name: string, arr: string, owner: number, id: number, order: number): Promise<any>;
-    tuidIds(name: string, arr: string, ids: number[]): Promise<any[]>;
 }
 export declare function logoutUnitxApis(): void;
 export declare class UnitxApi extends UqApi {
