@@ -171,24 +171,37 @@ export abstract class Entity {
 
     private escape(row:any, field:Field):any {
         let d = row[field.name];
-        switch (typeof d) {
-            default: return d;
-            case 'object':
-                let tuid = field._tuid;
-                if (tuid === undefined) return d.id;
-                return tuid.getIdFromObj(d);
-            case 'string':
-                let len = d.length;
-                let r = '', p = 0;
-                for (let i=0;i<len;i++) {
-                    let c = d.charCodeAt(i);
-                    switch(c) {
-                        case 9: r += d.substring(p, i) + '\\t'; p = i+1; break;
-                        case 10: r += d.substring(p, i) + '\\n'; p = i+1; break;
-                    }
+        switch (field.type) {
+            case 'datetime':
+                let dt: Date;
+                switch (typeof d) {
+                    default: debugger; throw 'escape datetime field in pack data error: value=' + d;
+                    case 'undefined': return '';
+                    case 'object': dt = (d as Date); break;
+                    case 'string':
+                    case 'number': dt = new Date(d); break;
                 }
-                return r + d.substring(p);
-            case 'undefined': return '';
+                return dt.getTime()/1000;
+            default:
+                switch (typeof d) {
+                    default: return d;
+                    case 'object':
+                        let tuid = field._tuid;
+                        if (tuid === undefined) return d.id;
+                        return tuid.getIdFromObj(d);
+                    case 'string':
+                        let len = d.length;
+                        let r = '', p = 0;
+                        for (let i=0;i<len;i++) {
+                            let c = d.charCodeAt(i);
+                            switch(c) {
+                                case 9: r += d.substring(p, i) + '\\t'; p = i+1; break;
+                                case 10: r += d.substring(p, i) + '\\n'; p = i+1; break;
+                            }
+                        }
+                        return r + d.substring(p);
+                    case 'undefined': return '';
+                }
         }
     }
 
