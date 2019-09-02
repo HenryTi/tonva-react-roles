@@ -7,9 +7,9 @@ export declare abstract class EntityCaller<T> extends Caller<T> {
     protected entity: Entity;
     constructor(entity: Entity, params: T);
     request(): Promise<any>;
-    protected innerCall(): Promise<void>;
-    private innerRequest;
-    xresult(): any;
+    protected innerCall(): Promise<any>;
+    innerRequest(): Promise<any>;
+    xresult(res: any): any;
     readonly headers: {
         [header: string]: string;
     };
@@ -22,7 +22,7 @@ export declare abstract class ActionCaller extends EntityCaller<any> {
 export declare class QueryQueryCaller extends EntityCaller<any> {
     protected entity: Query;
     readonly path: string;
-    xresult(): any;
+    xresult(res: any): any;
     buildParams(): any;
 }
 export declare class QueryPageCaller extends EntityCaller<any> {
@@ -34,5 +34,5 @@ export declare class QueryPageCaller extends EntityCaller<any> {
     protected entity: Query;
     readonly path: string;
     buildParams(): any;
-    xresult(): any;
+    xresult(res: any): any;
 }

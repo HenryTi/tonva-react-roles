@@ -229,11 +229,11 @@ class StateSheetCountCaller extends SheetCaller {
         this.method = 'GET';
         this.suffix = 'statecount';
     }
-    xresult() {
+    xresult(res) {
         let { states } = this.entity;
         return states.map(s => {
             let n = s.name, count = 0;
-            let r = this.result.find(v => v.state === n);
+            let r = res.find(v => v.state === n);
             if (r !== undefined)
                 count = r.count;
             return { state: n, count: count };
@@ -245,13 +245,13 @@ class MySheetsCaller extends SheetCaller {
         super(...arguments);
         this.suffix = 'my-sheets';
     }
-    xresult() {
+    xresult(res) {
         let { returns } = this.entity;
         let len = returns.length;
         let ret = {};
         for (let i = 0; i < len; i++) {
             let retSchema = returns[i];
-            ret[retSchema.name] = this.result[i];
+            ret[retSchema.name] = res[i];
         }
         return ret;
     }

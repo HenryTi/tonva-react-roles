@@ -112,19 +112,11 @@ abstract class MapCaller extends EntityCaller<any> {
 
     protected abstract getCaller(param: any):EntityCaller<any>;
 
-    /*
-    async request(): Promise<any> {
-        await this.entity.loadSchema();
+    protected async innerCall(): Promise<any> {
         let caller = this.getCaller(this.params);
-        await this.entity.uqApi.xcall(caller);
-        return this.xresult();
-    }
-    */
-    protected async innerCall(): Promise<void> {
-        let caller = this.getCaller(this.params);
-        await this.entity.uqApi.xcall(caller);
-        let res = caller.xresult();
-        this.result = res;
+        let res = await this.entity.uqApi.xcall(caller);
+        let ret = caller.xresult(res.res);
+        return {res: ret};
     }
 
     buildParams() {
@@ -171,14 +163,15 @@ class MapAddCaller extends ActionSubmitCaller {
     }
 
     get path():string {return `map/${this.map.name}/add`}
-    get headers(): {[header:string]: string} {
+    get headers(): {[header:string]: string} {return;}
+    /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
         return {
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
-    }
+    }*/
 }
 
 class MapDelCaller extends ActionSubmitCaller {
@@ -189,14 +182,15 @@ class MapDelCaller extends ActionSubmitCaller {
     }
 
     get path():string {return `map/${this.map.name}/del`}
-    get headers(): {[header:string]: string} {
+    get headers(): {[header:string]: string} {return}
+    /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
         return {
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
-    }
+    }*/
 }
 
 class MapAllCaller extends QueryPageCaller {
@@ -207,14 +201,15 @@ class MapAllCaller extends QueryPageCaller {
     }
 
     get path():string {return `map/${this.map.name}/all`}
-    get headers(): {[header:string]: string} {
+    get headers(): {[header:string]: string} {return}
+    /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
         return {
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
-    }
+    }*/
 }
 
 
@@ -226,14 +221,15 @@ class MapPageCaller extends QueryPageCaller {
     }
 
     get path():string {return `map/${this.map.name}/page`}
-    get headers(): {[header:string]: string} {
+    get headers(): {[header:string]: string} {return}
+    /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
         return {
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
-    }
+    }*/
 }
 
 class MapQueryCaller extends QueryQueryCaller {
@@ -244,12 +240,13 @@ class MapQueryCaller extends QueryQueryCaller {
     }
 
     get path():string {return `map/${this.map.name}/query`}
-    get headers(): {[header:string]: string} {
+    get headers(): {[header:string]: string} {return}
+    /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
         return {
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
-    }
+    }*/
 }

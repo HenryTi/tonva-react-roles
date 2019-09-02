@@ -4,6 +4,7 @@ import { Uq, ArrFields, Field, SchemaFrom } from '../uq';
 import { BoxId } from '../boxId';
 import { IdCache, IdDivCache } from './idCache';
 import { EntityCaller } from '../caller';
+import { LocalArr } from '../../../tool';
 
 export interface TuidSaveResult {
     id: number;
@@ -13,9 +14,8 @@ export interface TuidSaveResult {
 export abstract class Tuid extends Entity {
     readonly typeName:string = 'tuid';
     protected idName: string;
+    cached: boolean;
     unique: string[];
-    //ui: React.StatelessComponent<any>;
-    //res: any;
 
     constructor(uq:Uq, name:string, typeId:number) {
         super(uq, name, typeId)
@@ -31,23 +31,17 @@ export abstract class Tuid extends Entity {
         return new TuidBox(this);
     }
 
-    /*
-    setUIRes(ui:any, res:any) {
-        //this.ui = (ui as TuidUI).content;
-        this.ui = ui.content;
-        this.res = res;
-    }
-    */
-
     getIdFromObj(obj:any):number {return obj[this.idName]}
     abstract useId(id:number):void;
     abstract boxId(id:number):BoxId;
     abstract valueFromId(id:number):any;
     abstract async assureBox (id:number): Promise<void>;
     cacheIds() {}
+    modifyIds(ids:any[]) {}
     isImport = false;
     abstract get hasDiv():boolean;// {return this.divs!==undefined}
     abstract div(name:string):TuidDiv;
+    abstract async loadMain(id:number|BoxId):Promise<any>;
     abstract async load(id:number|BoxId):Promise<any>;
     abstract async save(id:number, props:any):Promise<TuidSaveResult>;
     abstract async search(key:string, pageStart:string|number, pageSize:number):Promise<any>;
@@ -60,7 +54,14 @@ export abstract class Tuid extends Entity {
 export class TuidInner extends Tuid {
     private divs: {[div:string]: TuidDiv};
     protected cacheFields: Field[];
-    protected idCache: IdCache = new IdCache(this);
+    protected idCache: IdCache;
+    protected localArr:LocalArr;
+    constructor(uq:Uq, name:string, typeId:number) {
+        super(uq, name, typeId);
+        this.idCache = new IdCache(this);
+        this.localArr = this.cache.arr(this.name + '.whole');
+        this.localArr.removeAll();
+    }
 
     public setSchema(schema:any) {
         super.setSchema(schema);
@@ -95,6 +96,9 @@ export class TuidInner extends Tuid {
         if (this.divs === undefined) return;
         for (let i in this.divs) this.divs[i].cacheIds();
     }
+    async modifyIds(ids:any[]) {
+        await this.idCache.modifyIds(ids);
+    }
     cacheTuids(defer:number) {this.uq.cacheTuids(defer)}
     get hasDiv():boolean {return this.divs!==undefined}
     div(name:string):TuidDiv {
@@ -102,13 +106,31 @@ export class TuidInner extends Tuid {
     }
     async loadTuidIds(divName:string, ids:number[]):Promise<any[]> {
         //return await this.uqApi.tuidIds(this.name, divName, ids);
-        return await new IdsCaller(this, {divName:divName, ids:ids}).request();
+        let ret:any[] = await new IdsCaller(this, {divName:divName, ids:ids}).request();
+        if (ret.length > 0) this.cached = true;
+        return ret;
+    }
+    async loadMain(id:number|BoxId):Promise<any> {
+        if (typeof id === 'object') id = id.id;
+        await this.idCache.assureObj(id);
+        return this.idCache.valueFromId(id);
     }
     async load(id:number|BoxId):Promise<any> {
         if (id === undefined || id === 0) return;
+        //let cacheValue = this.idCache.valueFromId(id); 
+        //if (typeof cacheValue === 'object') return cacheValue;
         if (typeof id === 'object') id = id.id;
-        //let values = await this.uqApi.tuidGet(this.name, id);
-        let values = await new GetCaller(this, id).request();
+        let valuesText = this.localArr.getItem(id);
+        let values: any;
+        if (valuesText) {
+            values = JSON.parse(valuesText);
+        }
+        else {
+            values = await new GetCaller(this, id).request();
+            if (values !== undefined) {
+                this.localArr.setItem(id, JSON.stringify(values));
+            }
+        }
         if (values === undefined) return;
         for (let f of this.schema.fields) {
             let {tuid} = f;
@@ -118,7 +140,6 @@ export class TuidInner extends Tuid {
             let n = f.name;
             values[n] = t.boxId(values[n]);
         }
-        //values._$tuid = this;
         this.idCache.cacheValue(values);
         this.cacheTuidFieldValues(values);
         return values;
@@ -150,7 +171,7 @@ export class TuidInner extends Tuid {
         this.uq.buildFieldTuid(this.cacheFields = mainFields || this.fields);
     }
 
-    unpackTuidIds(values:any[]|string):any[] {
+    unpackTuidIds(values:string[]):any[] {
         return this.unpackTuidIdsOfFields(values, this.cacheFields);
     }
 
@@ -221,6 +242,8 @@ abstract class TuidCaller<T> extends EntityCaller<T> {
     protected entity: Tuid;
 }
 
+// 包含main字段的load id
+// 当前为了兼容，先调用的包含所有字段的内容
 class GetCaller extends TuidCaller<number> {
     method = 'GET';
     get path():string {return `tuid/${this.entity.name}/${this.params}`}
@@ -232,6 +255,9 @@ class IdsCaller extends TuidCaller<{divName:string, ids:number[]}> {
         return `tuidids/${this.entity.name}/${divName !== undefined?divName:'$'}`;
     }
     buildParams():any {return this.params.ids}
+    xresult(res:any):any {
+        return (res as string).split('\n');
+    }
 }
 
 class SaveCaller extends TuidCaller<{id:number, props:any}> {
@@ -251,10 +277,15 @@ class SaveCaller extends TuidCaller<{id:number, props:any}> {
             else {
                 switch (type) {
                     case 'date':
+                        val = this.entity.buildDateTimeParam(val); 
+                        //val = (val as string).replace('T', ' ');
+                        //val = (val as string).replace('Z', '');
+                        break;
                     case 'datetime':
-                        val = new Date(val).toISOString();
-                        val = (val as string).replace('T', ' ');
-                        val = (val as string).replace('Z', '');
+                        val = this.entity.buildDateTimeParam(val);
+                        //val = new Date(val).toISOString();
+                        //val = (val as string).replace('T', ' ');
+                        //val = (val as string).replace('Z', '');
                         break;
                 }
             }
@@ -321,6 +352,10 @@ export class TuidImport extends Tuid {
     }
     get hasDiv():boolean {return this.tuidLocal.hasDiv}
     div(name:string):TuidDiv {return this.tuidLocal.div(name)}
+    async loadMain(id:number|BoxId):Promise<any> {
+        let ret = await this.tuidLocal.loadMain(id);
+        return ret;
+    }
     async load(id:number|BoxId):Promise<any> {
         return await this.tuidLocal.load(id);
     }
@@ -445,7 +480,7 @@ export class TuidDiv extends TuidInner /* Entity*/ {
         this.cacheFieldsInValue(values, fields);
     }
 
-    unpackTuidIds(values:any[]|string):any[] {
+    unpackTuidIds(values:string[]):any[] {
         return this.unpackTuidIdsOfFields(values, this.cacheFields);
     }
 }

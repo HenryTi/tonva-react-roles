@@ -7,5 +7,4 @@ export abstract class Caller<T> {
     method: string  = 'POST';
     abstract get path(): string;
     get headers(): {[header:string]: string} {return undefined}
-    result: any;
 }

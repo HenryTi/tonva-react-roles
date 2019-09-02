@@ -24,25 +24,28 @@ export abstract class EntityCaller<T> extends Caller<T> {
     
     async request(): Promise<any> {
         await this.entity.loadSchema();
-        return await this.innerRequest();
+        let ret = await this.innerRequest();
+        return ret;
     }
 
-    protected async innerCall(): Promise<void> {
-        await this.entity.uqApi.xcall(this);
+    protected async innerCall(): Promise<any> {
+        return await this.entity.uqApi.xcall(this);
     }
 
-    private async innerRequest(): Promise<any> {
-        await this.innerCall();
-        if (typeof this.result === 'object') {
-            let {$uq} = this.result;
-            if ($uq !== undefined) {
-                return await this.retry($uq);
-            }
+    async innerRequest(): Promise<any> {
+        let jsonResult = await this.innerCall();
+        let {$uq, $modify, res} = jsonResult;
+        this.entity.uq.pullModify($modify);
+        if ($uq === undefined) {
+            //if (res === undefined) debugger;
+            let ret = this.xresult(res);
+            //if (ret === undefined) debugger;
+            return ret;
         }
-        return this.xresult();
+        return await this.retry($uq);
     }
 
-    xresult():any {return this.result}
+    xresult(res:any):any {return res}
 
     get headers(): {[header:string]: string} {
         let {ver, uq} = this.entity;
@@ -74,8 +77,8 @@ export abstract class ActionCaller extends EntityCaller<any> {
 export class QueryQueryCaller extends EntityCaller<any> {
     protected entity: Query;
     get path():string {return `query/${this.entity.name}`;}
-    xresult() {
-        let data = this.entity.unpackReturns(this.result);
+    xresult(res:any) {
+        let data = this.entity.unpackReturns(res);
         return data;
     }
     buildParams() {return this.entity.buildParams(this.params);}
@@ -104,8 +107,8 @@ export class QueryPageCaller extends EntityCaller<any> {
         p['$pageSize'] = pageSize;
         return p;
     };
-    xresult() {
-        let data = this.entity.unpackReturns(this.result);
+    xresult(res:any) {
+        let data = this.entity.unpackReturns(res);
         return data.$page;// as any[];
     }
 }

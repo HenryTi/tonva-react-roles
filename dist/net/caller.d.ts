@@ -7,5 +7,4 @@ export declare abstract class Caller<T> {
     readonly headers: {
         [header: string]: string;
     };
-    result: any;
 }

@@ -65,6 +65,12 @@ export class HttpChannel {
             return yield this.innerFetch(urlPrefix + path, options);
         });
     }
+    innerFetchResult(url, options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.innerFetch(url, options);
+            return ret.res;
+        });
+    }
     get(url, params = undefined) {
         return __awaiter(this, void 0, void 0, function* () {
             if (params) {
@@ -82,7 +88,7 @@ export class HttpChannel {
             }
             let options = this.buildOptions();
             options.method = 'GET';
-            return yield this.innerFetch(url, options);
+            return yield this.innerFetchResult(url, options);
         });
     }
     post(url, params) {
@@ -90,7 +96,7 @@ export class HttpChannel {
             let options = this.buildOptions();
             options.method = 'POST';
             options.body = JSON.stringify(params);
-            return yield this.innerFetch(url, options);
+            return yield this.innerFetchResult(url, options);
         });
     }
     put(url, params) {
@@ -98,7 +104,7 @@ export class HttpChannel {
             let options = this.buildOptions();
             options.method = 'PUT';
             options.body = JSON.stringify(params);
-            return yield this.innerFetch(url, options);
+            return yield this.innerFetchResult(url, options);
         });
     }
     delete(url, params) {
@@ -106,7 +112,7 @@ export class HttpChannel {
             let options = this.buildOptions();
             options.method = 'DELETE';
             options.body = JSON.stringify(params);
-            return yield this.innerFetch(url, options);
+            return yield this.innerFetchResult(url, options);
         });
     }
     fetch(url, options, resolve, reject) {
@@ -140,13 +146,23 @@ export class HttpChannel {
                         clearTimeout(timeOutHandler);
                         that.endWait();
                         if (retJson.ok === true) {
-                            let { res } = retJson;
-                            if (res === undefined) {
-                                res = {
-                                    $uq: retJson.$uq
-                                };
+                            if (typeof retJson !== 'object') {
+                                debugger;
                             }
-                            return resolve(res);
+                            else if (Array.isArray(retJson) === true) {
+                                debugger;
+                            }
+                            /*
+                            let json = retJson.res;
+                            if (json === undefined) {
+                                json = {
+                                    $uq: retJson.$uq
+                                }
+                            }
+                            */
+                            //json.$modify = retJson.$modify;
+                            //return resolve(json);
+                            return resolve(retJson);
                         }
                         let retError = retJson.error;
                         if (retError === undefined) {

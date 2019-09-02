@@ -1,15 +1,16 @@
 import { UqApi, UqData, UnitxApi, appInFrame } from '../../net';
-import {Tuid, TuidDiv, TuidImport, TuidInner, TuidBox} from './tuid';
-import {Action} from './action';
-import {Sheet} from './sheet';
-import {Query} from './query';
-import {Book} from './book';
-import {History} from './history';
+import { Tuid, TuidDiv, TuidImport, TuidInner, TuidBox, TuidsCache } from './tuid';
+import { Action } from './action';
+import { Sheet } from './sheet';
+import { Query } from './query';
+import { Book } from './book';
+import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
-import { Uqs } from './uqs';
 import { CreateBoxId } from './boxId';
-import { UqCache } from './caches';
+//import { UqCache } from './caches';
+import { LocalMap, LocalCache } from '../../tool';
+import { Uqs } from './uqs';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
     | 'datetime' | 'date' | 'time';
@@ -56,62 +57,47 @@ export interface SchemaFrom {
     owner:string;
     uq:string;
 }
-
-class TuidsCache {
-    private cacheTimer: any;
-    private tuids: {[name:string]: Tuid};
-    constructor(tuids: {[name:string]: Tuid}) {
-        this.tuids = tuids;
-    }
-
-    cacheTuids(defer:number) {
-        this.clearCacheTimer();
-        this.cacheTimer = setTimeout(this.loadIds, defer);
-    }
-    private clearCacheTimer() {
-        if (this.cacheTimer === undefined) return;
-        clearTimeout(this.cacheTimer);
-        this.cacheTimer = undefined;
-    }
-    private loadIds = () => {
-        this.clearCacheTimer();
-        for (let i in this.tuids) {
-            let tuid = this.tuids[i];
-            tuid.cacheIds();
-        }
-    }
+export interface TuidModify {
+    max: number;
+    seconds: number;
 }
 
 export class Uq {
-    private tuids: {[name:string]: Tuid} = {};
-    private actions: {[name:string]: Action} = {};
-    private sheets: {[name:string]: Sheet} = {};
-    private queries: {[name:string]: Query} = {};
-    private books: {[name:string]: Book} = {};
-    private maps: {[name:string]: Map} = {};
-    private histories: {[name:string]: History} = {};
-    private pendings: {[name:string]: Pending} = {};
-    private tuidsCache: TuidsCache;
-    private readonly cache: UqCache;
+    private readonly actions: {[name:string]: Action} = {};
+    private readonly sheets: {[name:string]: Sheet} = {};
+    private readonly queries: {[name:string]: Query} = {};
+    private readonly books: {[name:string]: Book} = {};
+    private readonly maps: {[name:string]: Map} = {};
+    private readonly histories: {[name:string]: History} = {};
+    private readonly pendings: {[name:string]: Pending} = {};
+    private readonly tuidsCache: TuidsCache;
+    private readonly localAccess: LocalCache<any>;
+    readonly localMap: LocalMap;
+    readonly localModifyMax: LocalCache<TuidModify>;
+    readonly tuids: {[name:string]: Tuid} = {};
+    //readonly entitiesLocalMap: LocalMap; // UqCache;
     readonly createBoxId: CreateBoxId;
     readonly uqOwner: string;
     readonly uqName: string;
     readonly name: string;
     readonly uqApi: UqApi;
     readonly id: number;
+
     uqVersion: number;
 
-    constructor(uqData: UqData, createBoxId:CreateBoxId) {
+    constructor(uqs:Uqs, uqData: UqData, createBoxId:CreateBoxId) {
         this.createBoxId = createBoxId;
         //this.uqApp = uqApp;
-        this.tuidsCache = new TuidsCache(this.tuids);
         let {id, uqOwner, uqName, access} = uqData;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
         this.name = uqOwner + '/' + uqName;
         this.uqVersion = 0;
-        this.cache = new UqCache(uqData);
+        this.localMap = uqs.localMap.map(this.name);
+        this.localModifyMax = this.localMap.child('$modifyMax');
+        this.localAccess = this.localMap.child('$access');
+        //this.entitiesLocalMap = uqs.localMap.map('entities'); // new UqCache(uqData);
         let hash = document.location.hash;
         //let baseUrl = hash===undefined || hash===''? 'debug/':'tv/';
         let baseUrl = 'tv/';
@@ -131,6 +117,7 @@ export class Uq {
         else {
             this.uqApi = new UqApi(baseUrl, uqOwner, uqName, acc, true);
         }
+        this.tuidsCache = new TuidsCache(this);
     }
 
     tuid(name:string):Tuid {return this.tuids[name.toLowerCase()]}
@@ -167,12 +154,15 @@ export class Uq {
     }
 
     async loadEntities() {
-        let accesses = this.cache.get();
+        let accesses = this.localAccess.get();
         if (!accesses) {
             accesses = await this.uqApi.loadAccess();
         }
         if (!accesses) return;
         this.buildEntities(accesses);
+        if (this.uqName === 'common') {
+            this.pullModify(12);
+        }
     }
     /*
     async loadEntities() {
@@ -184,7 +174,7 @@ export class Uq {
         if (entities === undefined) {
             debugger;
         }
-        this.cache.set(entities);
+        this.localAccess.set(entities);
         let {access, tuids, version} = entities;
         this.uqVersion = version;
         this.buildTuids(tuids);
@@ -367,5 +357,9 @@ export class Uq {
             if (fields === undefined) continue;
             this.buildFieldTuid(fields, mainFields);
         }
+    }
+
+    pullModify(modifyMax:number) {
+        this.tuidsCache.pullModify(modifyMax);
     }
 }

@@ -1,7 +1,8 @@
 import { UqApi } from '../../net';
+import { LocalCache } from '../../tool';
 import { Uq, Field, ArrFields, FieldMap } from './uq';
 import { Tuid } from './tuid';
-import { EntityCache } from './caches';
+//import { EntityCache } from './caches';
 
 const tab = '\t';
 const ln = '\n';
@@ -14,7 +15,7 @@ export abstract class Entity {
     readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    readonly cache: EntityCache;
+    readonly cache: LocalCache<any>;
     readonly uqApi: UqApi;
     abstract get typeName(): string;
     get sName():string {return this.jName || this.name}
@@ -27,7 +28,7 @@ export abstract class Entity {
         this.name = name;
         this.typeId = typeId;
         this.sys = this.name.indexOf('$') >= 0;
-        this.cache = new EntityCache(this);
+        this.cache = this.uq.localMap.item<any>(this.name); // new EntityCache(this);
         this.uqApi = this.uq.uqApi;
     }
 
@@ -141,20 +142,51 @@ export abstract class Entity {
 
     private buildFieldsParams(result:any, fields:Field[], params:any) {
         for (let field of fields) {
-            let {name} = field;
+            let {name, type} = field;            
             let d = params[name];
             let val:any;
-            switch (typeof d) {
-                default: val = d; break;
-                case 'object':
-                    let tuid = field._tuid;
-                    if (tuid === undefined) val = d.id;
-                    else val = tuid.getIdFromObj(d);
-                    break;
+            if (type === 'datetime') {
+                val = this.buildDateTimeParam(d);
+            }
+            else {
+                switch (typeof d) {
+                    default: val = d; break;
+                    case 'object':
+                        let tuid = field._tuid;
+                        if (tuid === undefined) val = d.id;
+                        else val = tuid.getIdFromObj(d);
+                        break;
+                }
             }
             result[name] = val;
         }
     }
+
+    buildDateTimeParam(val:any) {
+        let dt: Date;
+        switch (typeof val) {
+            default: debugger; throw 'escape datetime field in pack data error: value=' + val;
+            case 'undefined': return '';
+            case 'object': dt = (val as Date); break;
+            case 'string':
+            case 'number': dt = new Date(val); break;
+        }
+        return dt.getTime()/1000;
+    }
+
+    buildDateParam(val:any) {
+        let dt: Date;
+        switch (typeof val) {
+            default: debugger; throw 'escape datetime field in pack data error: value=' + val;
+            case 'undefined': return '';
+            case 'string': return val;
+            case 'object': dt = (val as Date); break;
+            case 'number': dt = new Date(val); break;
+        }
+        let ret = dt.toISOString();
+        let p = ret.indexOf('T');
+        return p>0? ret.substr(0, p) : ret;
+}
 
     pack(data:any):string {
         let ret:string[] = [];
@@ -173,15 +205,7 @@ export abstract class Entity {
         let d = row[field.name];
         switch (field.type) {
             case 'datetime':
-                let dt: Date;
-                switch (typeof d) {
-                    default: debugger; throw 'escape datetime field in pack data error: value=' + d;
-                    case 'undefined': return '';
-                    case 'object': dt = (d as Date); break;
-                    case 'string':
-                    case 'number': dt = new Date(d); break;
-                }
-                return dt.getTime()/1000;
+                return this.buildDateTimeParam(d);
             default:
                 switch (typeof d) {
                     default: return d;
@@ -235,21 +259,24 @@ export abstract class Entity {
         }
     }
 
-    protected unpackTuidIdsOfFields(values:any[]|string, fields: Field[]):any[] {
+    protected unpackTuidIdsOfFields(values:string[], fields: Field[]):any[] {
         if (fields === undefined) return values as any[];
         //if (this.fields === undefined) return values as any[];
         let ret:any[] = []
-        let len = (values as string).length;
-        let p = 0;
-        while (p<len) {
-            let ch = (values as string).charCodeAt(p);
-            if (ch === 10) {
-                ++p;
-                break;
+        for (let ln of values) {
+            if (!ln) continue;
+            let len = ln.length;
+            let p = 0;
+            while (p<len) {
+                let ch = ln.charCodeAt(p);
+                if (ch === 10) {
+                    ++p;
+                    break;
+                }
+                let row = {};
+                p = this.unpackRow(row, fields, ln, p);
+                ret.push(row);
             }
-            let row = {};
-            p = this.unpackRow(row, fields, values as string, p);
-            ret.push(row);
         }
         return ret;
     }
@@ -270,6 +297,7 @@ export abstract class Entity {
     }
 
     unpackReturns(data:string):any {
+        if (data === undefined) debugger;
         let ret = {} as any;
         //if (schema === undefined || data === undefined) return;
         //let fields = schema.fields;
@@ -308,7 +336,7 @@ export abstract class Entity {
                     p = data.indexOf('\n', c);
                     if (p >= 0) ++p;
                     else p = len;
-                    break;
+                    return p;
                 }
             }
             else if (ch === 10) {
@@ -325,10 +353,16 @@ export abstract class Entity {
                 }
                 ++p;
                 ++i;
-                break;
+                return p;
             }
         }
-        return p;
+        let f = fields[i];
+        let {name} = f;
+        if (ch0 !== 8) {
+            let v = data.substring(c);
+            ret[name] = this.to(ret, v, f);
+        }
+        return len;
     }
 
     private to(ret:any, v:string, f:Field):any {
@@ -337,7 +371,7 @@ export abstract class Entity {
             case 'datetime':
             case 'time':
                 let n = Number(v);
-                let date = isNaN(n) === true? new Date(v) : new Date(n);
+                let date = isNaN(n) === true? new Date(v) : new Date(n*1000);
                 return date;
             case 'date':
                 let parts = v.split('-');

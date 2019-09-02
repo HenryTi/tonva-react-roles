@@ -1,6 +1,7 @@
 import { Uq } from './uq';
 import { TuidImport, TuidInner } from './tuid';
-import { UqAppCache } from './caches';
+import { LocalMap, localDb, LocalCache } from '../../tool';
+import { UqAppData } from '../../net';
 
 export class Uqs {
     private collection: {[uqName: string]: Uq};
@@ -8,19 +9,20 @@ export class Uqs {
     readonly name: string;
     readonly appOwner: string;
     readonly appName: string;
-    readonly uqAppCache: UqAppCache;
+    readonly localMap: LocalMap;
+    readonly localData: LocalCache<UqAppData>;
     id: number;
 
     constructor(tonvaAppName:string) {
         this.collection = {};
-        this.name = name;
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
             throw 'tonvaApp name must be / separated, owner/app';
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
-        this.uqAppCache = new UqAppCache(this.appOwner, this.appName);
+        this.localMap = localDb.map(tonvaAppName); // new UqAppCache(this.appOwner, this.appName);
+        this.localData = this.localMap.child('uqData');
     }
 
     addUq(uq: Uq) {

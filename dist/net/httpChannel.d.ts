@@ -11,6 +11,7 @@ export declare abstract class HttpChannel {
     private showError;
     used(): void;
     xcall(urlPrefix: string, caller: Caller<any>): Promise<void>;
+    private innerFetchResult;
     get(url: string, params?: any): Promise<any>;
     post(url: string, params: any): Promise<any>;
     put(url: string, params: any): Promise<any>;

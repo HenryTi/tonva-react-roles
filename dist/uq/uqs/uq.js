@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { UqApi, UnitxApi, appInFrame } from '../../net';
-import { TuidImport, TuidInner } from './tuid';
+import { TuidImport, TuidInner, TuidsCache } from './tuid';
 import { Action } from './action';
 import { Sheet } from './sheet';
 import { Query } from './query';
@@ -15,7 +15,6 @@ import { Book } from './book';
 import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
-import { UqCache } from './caches';
 export function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':
@@ -34,31 +33,8 @@ export function fieldDefaultValue(type) {
             return '0:00';
     }
 }
-class TuidsCache {
-    constructor(tuids) {
-        this.loadIds = () => {
-            this.clearCacheTimer();
-            for (let i in this.tuids) {
-                let tuid = this.tuids[i];
-                tuid.cacheIds();
-            }
-        };
-        this.tuids = tuids;
-    }
-    cacheTuids(defer) {
-        this.clearCacheTimer();
-        this.cacheTimer = setTimeout(this.loadIds, defer);
-    }
-    clearCacheTimer() {
-        if (this.cacheTimer === undefined)
-            return;
-        clearTimeout(this.cacheTimer);
-        this.cacheTimer = undefined;
-    }
-}
 export class Uq {
-    constructor(uqData, createBoxId) {
-        this.tuids = {};
+    constructor(uqs, uqData, createBoxId) {
         this.actions = {};
         this.sheets = {};
         this.queries = {};
@@ -66,6 +42,7 @@ export class Uq {
         this.maps = {};
         this.histories = {};
         this.pendings = {};
+        this.tuids = {};
         this.tuidArr = [];
         this.actionArr = [];
         this.sheetArr = [];
@@ -76,14 +53,16 @@ export class Uq {
         this.pendingArr = [];
         this.createBoxId = createBoxId;
         //this.uqApp = uqApp;
-        this.tuidsCache = new TuidsCache(this.tuids);
         let { id, uqOwner, uqName, access } = uqData;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
         this.name = uqOwner + '/' + uqName;
         this.uqVersion = 0;
-        this.cache = new UqCache(uqData);
+        this.localMap = uqs.localMap.map(this.name);
+        this.localModifyMax = this.localMap.child('$modifyMax');
+        this.localAccess = this.localMap.child('$access');
+        //this.entitiesLocalMap = uqs.localMap.map('entities'); // new UqCache(uqData);
         let hash = document.location.hash;
         //let baseUrl = hash===undefined || hash===''? 'debug/':'tv/';
         let baseUrl = 'tv/';
@@ -102,6 +81,7 @@ export class Uq {
         else {
             this.uqApi = new UqApi(baseUrl, uqOwner, uqName, acc, true);
         }
+        this.tuidsCache = new TuidsCache(this);
     }
     tuid(name) { return this.tuids[name.toLowerCase()]; }
     tuidDiv(name, div) {
@@ -129,13 +109,16 @@ export class Uq {
     }
     loadEntities() {
         return __awaiter(this, void 0, void 0, function* () {
-            let accesses = this.cache.get();
+            let accesses = this.localAccess.get();
             if (!accesses) {
                 accesses = yield this.uqApi.loadAccess();
             }
             if (!accesses)
                 return;
             this.buildEntities(accesses);
+            if (this.uqName === 'common') {
+                this.pullModify(12);
+            }
         });
     }
     /*
@@ -148,7 +131,7 @@ export class Uq {
         if (entities === undefined) {
             debugger;
         }
-        this.cache.set(entities);
+        this.localAccess.set(entities);
         let { access, tuids, version } = entities;
         this.uqVersion = version;
         this.buildTuids(tuids);
@@ -362,6 +345,9 @@ export class Uq {
                 continue;
             this.buildFieldTuid(fields, mainFields);
         }
+    }
+    pullModify(modifyMax) {
+        this.tuidsCache.pullModify(modifyMax);
     }
 }
 //# sourceMappingURL=uq.js.map

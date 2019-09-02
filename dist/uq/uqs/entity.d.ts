@@ -1,7 +1,7 @@
 import { UqApi } from '../../net';
+import { LocalCache } from '../../tool';
 import { Uq, Field, ArrFields, FieldMap } from './uq';
 import { Tuid } from './tuid';
-import { EntityCache } from './caches';
 export declare abstract class Entity {
     private jName;
     schema: any;
@@ -10,7 +10,7 @@ export declare abstract class Entity {
     readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    readonly cache: EntityCache;
+    readonly cache: LocalCache<any>;
     readonly uqApi: UqApi;
     abstract readonly typeName: string;
     readonly sName: string;
@@ -29,12 +29,14 @@ export declare abstract class Entity {
     tuidFromName(fieldName: string, arrName?: string): Tuid;
     buildParams(params: any): any;
     private buildFieldsParams;
+    buildDateTimeParam(val: any): number | "";
+    buildDateParam(val: any): string;
     pack(data: any): string;
     private escape;
     private packRow;
     private packArr;
     protected cacheFieldsInValue(values: any, fields: Field[]): void;
-    protected unpackTuidIdsOfFields(values: any[] | string, fields: Field[]): any[];
+    protected unpackTuidIdsOfFields(values: string[], fields: Field[]): any[];
     unpackSheet(data: string): any;
     unpackReturns(data: string): any;
     protected unpackRow(ret: any, fields: Field[], data: string, p: number): number;

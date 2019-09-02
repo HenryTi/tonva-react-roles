@@ -11,6 +11,7 @@ export declare class UqApi extends ApiBase {
     protected getHttpChannel(): Promise<HttpChannel>;
     loadAccess(): Promise<any>;
     schema(name: string): Promise<any>;
+    queueModify(start: number, page: number, entities: string): Promise<any>;
 }
 export declare function logoutUnitxApis(): void;
 export declare class UnitxApi extends UqApi {
@@ -40,6 +41,8 @@ export declare class CallCenterApi extends CenterApiBase {
 }
 export declare const callCenterapi: CallCenterApi;
 export interface UqAppData {
+    appName: string;
+    appOwner: string;
     id: number;
     version: string;
     uqs: UqData[];
@@ -58,9 +61,10 @@ export interface UqServiceData {
     token: string;
 }
 export declare class CenterAppApi extends CenterApiBase {
-    private cachedUqs;
+    private local;
     uqs(appOwner: string, appName: string): Promise<UqAppData>;
     private uqsPure;
+    private isOkCheckUqs;
     checkUqs(appOwner: string, appName: string): Promise<boolean>;
     unitxUq(unit: number): Promise<UqServiceData>;
     changePassword(param: {

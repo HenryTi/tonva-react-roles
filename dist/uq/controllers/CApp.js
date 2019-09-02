@@ -122,11 +122,12 @@ export class CApp extends Controller {
     load() {
         return __awaiter(this, void 0, void 0, function* () {
             let { appOwner, appName } = this.uqApp;
-            let uqAppData = this.uqApp.uqAppCache.get();
+            let { localData } = this.uqApp;
+            let uqAppData = localData.get();
             if (!uqAppData || uqAppData.version !== this.version) {
                 uqAppData = yield loadAppUqs(appOwner, appName);
                 uqAppData.version = this.version;
-                this.uqApp.uqAppCache.set(uqAppData);
+                localData.set(uqAppData);
             }
             let { id, uqs } = uqAppData;
             this.uqApp.id = id;

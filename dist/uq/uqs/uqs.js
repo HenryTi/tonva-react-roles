@@ -1,15 +1,15 @@
-import { UqAppCache } from './caches';
+import { localDb } from '../../tool';
 export class Uqs {
     constructor(tonvaAppName) {
         this.collection = {};
-        this.name = name;
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
             throw 'tonvaApp name must be / separated, owner/app';
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
-        this.uqAppCache = new UqAppCache(this.appOwner, this.appName);
+        this.localMap = localDb.map(tonvaAppName); // new UqAppCache(this.appOwner, this.appName);
+        this.localData = this.localMap.child('uqData');
     }
     addUq(uq) {
         this.collection[uq.name] = uq;

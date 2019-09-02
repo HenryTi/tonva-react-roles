@@ -1,3 +1,4 @@
+/*
 import { UqAppData, UqData } from '../../net';
 import { Entity } from './entity';
 
@@ -67,3 +68,4 @@ export class EntityCache extends Cache<Entity> {
         return `entity-${uqOwner}.${uqName}-${name}`;
     }
 }
+*/

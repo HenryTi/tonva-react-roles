@@ -2,6 +2,7 @@ import { Entity } from '../entity';
 import { Uq, Field, SchemaFrom } from '../uq';
 import { BoxId } from '../boxId';
 import { IdCache, IdDivCache } from './idCache';
+import { LocalArr } from '../../../tool';
 export interface TuidSaveResult {
     id: number;
     inId: number;
@@ -9,6 +10,7 @@ export interface TuidSaveResult {
 export declare abstract class Tuid extends Entity {
     readonly typeName: string;
     protected idName: string;
+    cached: boolean;
     unique: string[];
     constructor(uq: Uq, name: string, typeId: number);
     setSchema(schema: any): void;
@@ -19,9 +21,11 @@ export declare abstract class Tuid extends Entity {
     abstract valueFromId(id: number): any;
     abstract assureBox(id: number): Promise<void>;
     cacheIds(): void;
+    modifyIds(ids: any[]): void;
     isImport: boolean;
     abstract readonly hasDiv: boolean;
     abstract div(name: string): TuidDiv;
+    abstract loadMain(id: number | BoxId): Promise<any>;
     abstract load(id: number | BoxId): Promise<any>;
     abstract save(id: number, props: any): Promise<TuidSaveResult>;
     abstract search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
@@ -34,20 +38,24 @@ export declare class TuidInner extends Tuid {
     private divs;
     protected cacheFields: Field[];
     protected idCache: IdCache;
+    protected localArr: LocalArr;
+    constructor(uq: Uq, name: string, typeId: number);
     setSchema(schema: any): void;
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
     assureBox(id: number): Promise<void>;
     cacheIds(): void;
+    modifyIds(ids: any[]): Promise<void>;
     cacheTuids(defer: number): void;
     readonly hasDiv: boolean;
     div(name: string): TuidDiv;
     loadTuidIds(divName: string, ids: number[]): Promise<any[]>;
+    loadMain(id: number | BoxId): Promise<any>;
     load(id: number | BoxId): Promise<any>;
     cacheTuidFieldValues(values: any): void;
     buildFieldsTuid(): void;
-    unpackTuidIds(values: any[] | string): any[];
+    unpackTuidIds(values: string[]): any[];
     save(id: number, props: any): Promise<TuidSaveResult>;
     search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
     searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
@@ -67,6 +75,7 @@ export declare class TuidImport extends Tuid {
     assureBox(id: number): Promise<void>;
     readonly hasDiv: boolean;
     div(name: string): TuidDiv;
+    loadMain(id: number | BoxId): Promise<any>;
     load(id: number | BoxId): Promise<any>;
     save(id: number, props: any): Promise<TuidSaveResult>;
     search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
@@ -101,7 +110,7 @@ export declare class TuidDiv extends TuidInner {
     assureBox(id: number): Promise<void>;
     cacheIds(): Promise<void>;
     cacheTuidFieldValues(values: any): void;
-    unpackTuidIds(values: any[] | string): any[];
+    unpackTuidIds(values: string[]): any[];
 }
 export declare class TuidBoxDiv extends TuidBox {
     ownerField: Field;

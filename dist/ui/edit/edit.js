@@ -57,7 +57,7 @@ let Edit = class Edit extends React.Component {
                     requireFlag),
                 React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, divValue),
                 this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
-                    React.createElement("i", { className: "fa fa-chevron-right" })));
+                    React.createElement("i", { className: "fa fa-angle-right" })));
         };
         this.rowClick = (itemSchema, uiItem, label, value) => __awaiter(this, void 0, void 0, function* () {
             let { onItemChanged, onItemClick, stopEdit } = this.props;

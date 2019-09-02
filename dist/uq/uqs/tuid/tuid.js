@@ -11,8 +11,6 @@ import { Entity } from '../entity';
 import { IdCache, IdDivCache } from './idCache';
 import { EntityCaller } from '../caller';
 export class Tuid extends Entity {
-    //ui: React.StatelessComponent<any>;
-    //res: any;
     constructor(uq, name, typeId) {
         super(uq, name, typeId);
         this.typeName = 'tuid';
@@ -26,20 +24,16 @@ export class Tuid extends Entity {
     buildTuidBox() {
         return new TuidBox(this);
     }
-    /*
-    setUIRes(ui:any, res:any) {
-        //this.ui = (ui as TuidUI).content;
-        this.ui = ui.content;
-        this.res = res;
-    }
-    */
     getIdFromObj(obj) { return obj[this.idName]; }
     cacheIds() { }
+    modifyIds(ids) { }
 }
 export class TuidInner extends Tuid {
-    constructor() {
-        super(...arguments);
+    constructor(uq, name, typeId) {
+        super(uq, name, typeId);
         this.idCache = new IdCache(this);
+        this.localArr = this.cache.arr(this.name + '.whole');
+        this.localArr.removeAll();
     }
     setSchema(schema) {
         super.setSchema(schema);
@@ -77,6 +71,11 @@ export class TuidInner extends Tuid {
         for (let i in this.divs)
             this.divs[i].cacheIds();
     }
+    modifyIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.modifyIds(ids);
+        });
+    }
     cacheTuids(defer) { this.uq.cacheTuids(defer); }
     get hasDiv() { return this.divs !== undefined; }
     div(name) {
@@ -85,17 +84,39 @@ export class TuidInner extends Tuid {
     loadTuidIds(divName, ids) {
         return __awaiter(this, void 0, void 0, function* () {
             //return await this.uqApi.tuidIds(this.name, divName, ids);
-            return yield new IdsCaller(this, { divName: divName, ids: ids }).request();
+            let ret = yield new IdsCaller(this, { divName: divName, ids: ids }).request();
+            if (ret.length > 0)
+                this.cached = true;
+            return ret;
+        });
+    }
+    loadMain(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (typeof id === 'object')
+                id = id.id;
+            yield this.idCache.assureObj(id);
+            return this.idCache.valueFromId(id);
         });
     }
     load(id) {
         return __awaiter(this, void 0, void 0, function* () {
             if (id === undefined || id === 0)
                 return;
+            //let cacheValue = this.idCache.valueFromId(id); 
+            //if (typeof cacheValue === 'object') return cacheValue;
             if (typeof id === 'object')
                 id = id.id;
-            //let values = await this.uqApi.tuidGet(this.name, id);
-            let values = yield new GetCaller(this, id).request();
+            let valuesText = this.localArr.getItem(id);
+            let values;
+            if (valuesText) {
+                values = JSON.parse(valuesText);
+            }
+            else {
+                values = yield new GetCaller(this, id).request();
+                if (values !== undefined) {
+                    this.localArr.setItem(id, JSON.stringify(values));
+                }
+            }
             if (values === undefined)
                 return;
             for (let f of this.schema.fields) {
@@ -108,7 +129,6 @@ export class TuidInner extends Tuid {
                 let n = f.name;
                 values[n] = t.boxId(values[n]);
             }
-            //values._$tuid = this;
             this.idCache.cacheValue(values);
             this.cacheTuidFieldValues(values);
             return values;
@@ -219,6 +239,8 @@ export class TuidInner extends Tuid {
 }
 class TuidCaller extends EntityCaller {
 }
+// 包含main字段的load id
+// 当前为了兼容，先调用的包含所有字段的内容
 class GetCaller extends TuidCaller {
     constructor() {
         super(...arguments);
@@ -232,6 +254,9 @@ class IdsCaller extends TuidCaller {
         return `tuidids/${this.entity.name}/${divName !== undefined ? divName : '$'}`;
     }
     buildParams() { return this.params.ids; }
+    xresult(res) {
+        return res.split('\n');
+    }
 }
 class SaveCaller extends TuidCaller {
     get path() { return `tuid/${this.entity.name}`; }
@@ -251,10 +276,15 @@ class SaveCaller extends TuidCaller {
             else {
                 switch (type) {
                     case 'date':
+                        val = this.entity.buildDateTimeParam(val);
+                        //val = (val as string).replace('T', ' ');
+                        //val = (val as string).replace('Z', '');
+                        break;
                     case 'datetime':
-                        val = new Date(val).toISOString();
-                        val = val.replace('T', ' ');
-                        val = val.replace('Z', '');
+                        val = this.entity.buildDateTimeParam(val);
+                        //val = new Date(val).toISOString();
+                        //val = (val as string).replace('T', ' ');
+                        //val = (val as string).replace('Z', '');
                         break;
                 }
             }
@@ -315,6 +345,12 @@ export class TuidImport extends Tuid {
     }
     get hasDiv() { return this.tuidLocal.hasDiv; }
     div(name) { return this.tuidLocal.div(name); }
+    loadMain(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.tuidLocal.loadMain(id);
+            return ret;
+        });
+    }
     load(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.tuidLocal.load(id);

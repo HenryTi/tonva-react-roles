@@ -19,9 +19,9 @@ export abstract class ApiBase {
 
     protected abstract async getHttpChannel(): Promise<HttpChannel>;
 
-    async xcall(caller:Caller<any>):Promise<void> {
+    async xcall(caller:Caller<any>):Promise<any> {
         let channel = await this.getHttpChannel();
-        caller.result = await channel.xcall(this.path, caller);
+        return await channel.xcall(this.path, caller);
     }
 
     public async call(url:string, method:string, body:any):Promise<any> {

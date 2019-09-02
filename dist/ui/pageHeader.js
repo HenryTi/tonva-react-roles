@@ -71,7 +71,7 @@ export class PageHeader extends React.Component {
                 default:
                 case 'back':
                     back = React.createElement("nav", { onClick: this.back },
-                        React.createElement("i", { className: "fa fa-arrow-left" }));
+                        React.createElement("i", { className: "fa fa-angle-left" }));
                     break;
                 case 'close':
                     back = React.createElement("nav", { onClick: this.back },

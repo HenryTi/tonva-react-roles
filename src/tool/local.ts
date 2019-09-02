@@ -1,5 +1,7 @@
 import {User, Guest, Unit} from './user';
+import { localDb } from './localDb';
 
+/*
 export interface ClearableData {
     clear(): void;
 }
@@ -23,17 +25,17 @@ export class Data<T> implements ClearableData {
         localStorage.removeItem(this.name);
     }
 }
+*/
 
 export class LocalData {
-    user = new Data<User>('user');
-    guest = new Data<Guest>('guest');
-    unit = new Data<Unit>('unit');
-    //testing = new Data<boolean>('testing');
+    user = localDb.child<User>('user');
+    guest = localDb.child<Guest>('guest');
+    unit = localDb.child<Unit>('unit');
 
     logoutClear() {
         [
             this.user,
             this.unit,
-        ].map(d => d.clear());
+        ].forEach(d => d.remove());
     }
 }

@@ -35,13 +35,13 @@ export class ActionSubmitCaller extends ActionCaller {
 }
 class SubmitReturnsCaller extends ActionSubmitCaller {
     get path() { return 'action/' + this.entity.name + '/returns'; }
-    xresult() {
+    xresult(res) {
         let { returns } = this.entity;
         let len = returns.length;
         let ret = {};
         for (let i = 0; i < len; i++) {
             let retSchema = returns[i];
-            ret[retSchema.name] = this.result[i];
+            ret[retSchema.name] = res[i];
         }
         return ret;
     }

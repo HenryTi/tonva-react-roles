@@ -18,7 +18,7 @@ import { Page } from './page';
 import { netToken } from '../net/netToken';
 import FetchErrorView from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
-import { LocalData } from '../tool/local';
+import { LocalData } from '../tool';
 import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host, resUrlFromHost } from '../net';
 import { wsBridge } from '../net/wsChannel';
 import { resOptions } from './res';
@@ -476,7 +476,7 @@ export class Nav {
                 return res.unit;
             }
             catch (err) {
-                this.local.unit.clear();
+                this.local.unit.remove();
                 return;
             }
         });

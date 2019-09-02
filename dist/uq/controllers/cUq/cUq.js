@@ -68,7 +68,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CBook = ui.CBook || CBook;
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
-        this.uq = new Uq(uqData, this.createBoxId);
+        this.uq = new Uq(cApp.uqApp, uqData, this.createBoxId);
         /*
         let token = undefined;
         let uqOwner:string, uqName:string;

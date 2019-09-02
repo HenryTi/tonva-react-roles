@@ -1,16 +1,20 @@
-export class Data {
-    constructor(name) { this.name = name; }
-    get() {
-        if (this.value !== undefined)
-            return this.value;
+import { localDb } from './localDb';
+/*
+export interface ClearableData {
+    clear(): void;
+}
+
+export class Data<T> implements ClearableData {
+    private name: string;
+    private value?: T;
+    constructor(name: string) {this.name = name; }
+    get(): T {
+        if (this.value !== undefined) return this.value;
         let v = localStorage.getItem(this.name);
         return this.value = v === null ? undefined : JSON.parse(v);
     }
-    set(value) {
-        if (!value) {
-            this.clear();
-            return;
-        }
+    set(value: T) {
+        if (!value) { this.clear(); return; }
         this.value = value;
         localStorage.setItem(this.name, JSON.stringify(value));
     }
@@ -19,18 +23,18 @@ export class Data {
         localStorage.removeItem(this.name);
     }
 }
+*/
 export class LocalData {
     constructor() {
-        this.user = new Data('user');
-        this.guest = new Data('guest');
-        this.unit = new Data('unit');
+        this.user = localDb.child('user');
+        this.guest = localDb.child('guest');
+        this.unit = localDb.child('unit');
     }
-    //testing = new Data<boolean>('testing');
     logoutClear() {
         [
             this.user,
             this.unit,
-        ].map(d => d.clear());
+        ].forEach(d => d.remove());
     }
 }
 //# sourceMappingURL=local.js.map

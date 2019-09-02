@@ -93,7 +93,7 @@ export class Edit extends React.Component<EditProps> {
         return <div className={this.rowContainerClassName} onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, value)}>
             <div className="w-6c">{label} {requireFlag}</div>
             <div className="flex-fill d-flex justify-content-end">{divValue}</div>
-            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-chevron-right" /></div>}
+            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
         </div>;
     };
 

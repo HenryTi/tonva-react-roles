@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { EntityCache } from './caches';
+//import { EntityCache } from './caches';
 const tab = '\t';
 const ln = '\n';
 export class Entity {
@@ -18,7 +18,7 @@ export class Entity {
         this.name = name;
         this.typeId = typeId;
         this.sys = this.name.indexOf('$') >= 0;
-        this.cache = new EntityCache(this);
+        this.cache = this.uq.localMap.item(this.name); // new EntityCache(this);
         this.uqApi = this.uq.uqApi;
     }
     get sName() { return this.jName || this.name; }
@@ -139,23 +139,64 @@ export class Entity {
     }
     buildFieldsParams(result, fields, params) {
         for (let field of fields) {
-            let { name } = field;
+            let { name, type } = field;
             let d = params[name];
             let val;
-            switch (typeof d) {
-                default:
-                    val = d;
-                    break;
-                case 'object':
-                    let tuid = field._tuid;
-                    if (tuid === undefined)
-                        val = d.id;
-                    else
-                        val = tuid.getIdFromObj(d);
-                    break;
+            if (type === 'datetime') {
+                val = this.buildDateTimeParam(d);
+            }
+            else {
+                switch (typeof d) {
+                    default:
+                        val = d;
+                        break;
+                    case 'object':
+                        let tuid = field._tuid;
+                        if (tuid === undefined)
+                            val = d.id;
+                        else
+                            val = tuid.getIdFromObj(d);
+                        break;
+                }
             }
             result[name] = val;
         }
+    }
+    buildDateTimeParam(val) {
+        let dt;
+        switch (typeof val) {
+            default:
+                debugger;
+                throw 'escape datetime field in pack data error: value=' + val;
+            case 'undefined': return '';
+            case 'object':
+                dt = val;
+                break;
+            case 'string':
+            case 'number':
+                dt = new Date(val);
+                break;
+        }
+        return dt.getTime() / 1000;
+    }
+    buildDateParam(val) {
+        let dt;
+        switch (typeof val) {
+            default:
+                debugger;
+                throw 'escape datetime field in pack data error: value=' + val;
+            case 'undefined': return '';
+            case 'string': return val;
+            case 'object':
+                dt = val;
+                break;
+            case 'number':
+                dt = new Date(val);
+                break;
+        }
+        let ret = dt.toISOString();
+        let p = ret.indexOf('T');
+        return p > 0 ? ret.substr(0, p) : ret;
     }
     pack(data) {
         let ret = [];
@@ -174,21 +215,7 @@ export class Entity {
         let d = row[field.name];
         switch (field.type) {
             case 'datetime':
-                let dt;
-                switch (typeof d) {
-                    default:
-                        debugger;
-                        throw 'escape datetime field in pack data error: value=' + d;
-                    case 'undefined': return '';
-                    case 'object':
-                        dt = d;
-                        break;
-                    case 'string':
-                    case 'number':
-                        dt = new Date(d);
-                        break;
-                }
-                return dt.getTime() / 1000;
+                return this.buildDateTimeParam(d);
             default:
                 switch (typeof d) {
                     default: return d;
@@ -253,17 +280,21 @@ export class Entity {
             return values;
         //if (this.fields === undefined) return values as any[];
         let ret = [];
-        let len = values.length;
-        let p = 0;
-        while (p < len) {
-            let ch = values.charCodeAt(p);
-            if (ch === 10) {
-                ++p;
-                break;
+        for (let ln of values) {
+            if (!ln)
+                continue;
+            let len = ln.length;
+            let p = 0;
+            while (p < len) {
+                let ch = ln.charCodeAt(p);
+                if (ch === 10) {
+                    ++p;
+                    break;
+                }
+                let row = {};
+                p = this.unpackRow(row, fields, ln, p);
+                ret.push(row);
             }
-            let row = {};
-            p = this.unpackRow(row, fields, values, p);
-            ret.push(row);
         }
         return ret;
     }
@@ -283,6 +314,8 @@ export class Entity {
         return ret;
     }
     unpackReturns(data) {
+        if (data === undefined)
+            debugger;
         let ret = {};
         //if (schema === undefined || data === undefined) return;
         //let fields = schema.fields;
@@ -322,7 +355,7 @@ export class Entity {
                         ++p;
                     else
                         p = len;
-                    break;
+                    return p;
                 }
             }
             else if (ch === 10) {
@@ -339,10 +372,16 @@ export class Entity {
                 }
                 ++p;
                 ++i;
-                break;
+                return p;
             }
         }
-        return p;
+        let f = fields[i];
+        let { name } = f;
+        if (ch0 !== 8) {
+            let v = data.substring(c);
+            ret[name] = this.to(ret, v, f);
+        }
+        return len;
     }
     to(ret, v, f) {
         switch (f.type) {
@@ -350,7 +389,7 @@ export class Entity {
             case 'datetime':
             case 'time':
                 let n = Number(v);
-                let date = isNaN(n) === true ? new Date(v) : new Date(n);
+                let date = isNaN(n) === true ? new Date(v) : new Date(n * 1000);
                 return date;
             case 'date':
                 let parts = v.split('-');

@@ -13,6 +13,7 @@ import { appUq, logoutUqTokens, buildAppUq } from './appBridge';
 import { ApiBase } from './apiBase';
 import { host } from './host';
 import { nav } from '../ui';
+import { localDb } from '../tool';
 let channelUIs = {};
 let channelNoUIs = {};
 export function logoutApis() {
@@ -184,6 +185,11 @@ export class UqApi extends ApiBase {
             return yield this.get('schema/' + name);
         });
     }
+    queueModify(start, page, entities) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('queue-modify', { start: start, page: page, entities: entities });
+        });
+    }
 }
 let channels = {};
 export function logoutUnitxApis() {
@@ -255,36 +261,45 @@ export class CenterApiBase extends ApiBase {
         });
     }
 }
-const uqTokens = 'uqTokens';
+const uqTokensName = 'uqTokens';
 export class UqTokenApi extends CenterApiBase {
+    constructor() {
+        super(...arguments);
+        this.local = localDb.item(uqTokensName);
+    }
     uq(params) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let { unit: unitParam, uqOwner, uqName } = params;
+                let uqTokens = this.local.get();
+                /*
                 if (this.local === undefined) {
                     let ls = localStorage.getItem(uqTokens);
                     if (ls !== null) {
                         this.local = JSON.parse(ls);
                     }
                 }
-                if (this.local !== undefined) {
-                    let { unit, user } = this.local;
-                    if (unit !== unitParam || user !== loginedUserId)
-                        this.local = undefined;
+                */
+                if (uqTokens !== undefined) {
+                    let { unit, user } = uqTokens;
+                    if (unit !== unitParam || user !== loginedUserId) {
+                        this.local.remove();
+                        uqTokens = undefined;
+                    }
                 }
-                if (this.local === undefined) {
-                    this.local = {
+                if (uqTokens === undefined) {
+                    uqTokens = {
                         user: loginedUserId,
                         unit: params.unit,
                         uqs: {}
                     };
                 }
                 let un = uqOwner + '/' + uqName;
-                let nowTick = new Date().getTime();
-                let uq = this.local.uqs[un];
+                let nowTick = Math.floor(Date.now() / 1000);
+                let uq = uqTokens.uqs[un];
                 if (uq !== undefined) {
                     let { tick, value } = uq;
-                    if (value !== undefined && (nowTick - tick) < 24 * 3600 * 1000) {
+                    if (value !== undefined && (nowTick - tick) < 24 * 3600) {
                         return _.clone(value);
                     }
                 }
@@ -296,16 +311,18 @@ export class UqTokenApi extends CenterApiBase {
                     let err = `center get app-uq(unit=${unit}, '${uqOwner}/${uqName}') - not exists or no unit-service`;
                     throw err;
                 }
-                this.local.uqs[un] = {
+                uqTokens.uqs[un] = {
                     tick: nowTick,
                     value: ret,
                 };
-                localStorage.setItem(uqTokens, JSON.stringify(this.local));
+                //localStorage.setItem(uqTokens, JSON.stringify(this.local));
+                this.local.set(uqTokens);
                 return _.clone(ret);
             }
             catch (err) {
-                this.local = undefined;
-                localStorage.removeItem(uqTokens);
+                //this.local = undefined;
+                //localStorage.removeItem(uqTokens);
+                this.local.remove();
                 throw err;
             }
         });
@@ -318,28 +335,31 @@ export class CallCenterApi extends CenterApiBase {
     }
 }
 export const callCenterapi = new CallCenterApi('', undefined);
-const appUqs = 'appUqs';
+const appUqsName = 'appUqs';
 export class CenterAppApi extends CenterApiBase {
+    constructor() {
+        super(...arguments);
+        this.local = localDb.item(appUqsName);
+    }
+    //private cachedUqs: UqAppData;
     uqs(appOwner, appName) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret;
-            let ls = localStorage.getItem(appUqs);
-            if (ls !== null) {
-                let rLs = JSON.parse(ls);
-                let { appOwner: rAppOwner, appName: rAppName, value } = rLs;
+            let appUqs = this.local.get();
+            if (appUqs) {
+                let { appOwner: rAppOwner, appName: rAppName } = appUqs;
                 if (appOwner === rAppOwner && appName === rAppName)
-                    ret = value;
+                    ret = appUqs;
             }
             if (ret === undefined) {
                 ret = yield this.uqsPure(appOwner, appName);
-                let obj = {
-                    appOwner: appOwner,
-                    appName: appName,
-                    value: ret,
-                };
-                localStorage.setItem(appUqs, JSON.stringify(obj));
+                ret.appName = appName;
+                ret.appOwner = appOwner;
+                //localStorage.setItem(JSON.stringify(obj));
+                this.local.set(ret);
             }
-            return this.cachedUqs = _.cloneDeep(ret);
+            //return this.cachedUqs = _.cloneDeep(ret);
+            return ret;
         });
     }
     uqsPure(appOwner, appName) {
@@ -347,10 +367,10 @@ export class CenterAppApi extends CenterApiBase {
             return yield this.get('tie/app-uqs', { appOwner: appOwner, appName: appName });
         });
     }
-    checkUqs(appOwner, appName) {
+    isOkCheckUqs(appOwner, appName) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret = yield this.uqsPure(appOwner, appName);
-            let { id: cachedId, uqs: cachedUqs } = this.cachedUqs;
+            let { id: cachedId, uqs: cachedUqs } = this.local.get(); //.cachedUqs;
             let { id: retId, uqs: retUqs } = ret;
             if (cachedId !== retId)
                 return false;
@@ -362,6 +382,16 @@ export class CenterAppApi extends CenterApiBase {
                     return false;
             }
             return true;
+        });
+    }
+    checkUqs(appOwner, appName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.isOkCheckUqs(appOwner, appName);
+            if (ret === false) {
+                this.local.remove();
+                nav.start();
+            }
+            return ret;
         });
     }
     unitxUq(unit) {
@@ -380,12 +410,15 @@ export function loadAppUqs(appOwner, appName) {
         let centerAppApi = new CenterAppApi('tv/', undefined);
         //let unit = meInFrame.unit;
         let ret = yield centerAppApi.uqs(appOwner, appName);
-        centerAppApi.checkUqs(appOwner, appName).then(v => {
+        yield centerAppApi.checkUqs(appOwner, appName);
+        /*
+        .then(v => {
             if (v === false) {
                 localStorage.removeItem(appUqs);
                 nav.start();
             }
         });
+        */
         return ret;
     });
 }

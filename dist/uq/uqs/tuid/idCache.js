@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { observable } from 'mobx';
 import { isNumber } from 'util';
+import _ from 'lodash';
 const maxCacheSize = 1000;
 export class IdCache {
     constructor(tuidLocal) {
@@ -16,6 +17,10 @@ export class IdCache {
         this.waitingIds = []; // 等待loading的
         this.divName = undefined;
         this.tuidInner = tuidLocal;
+        this.initLocalArr();
+    }
+    initLocalArr() {
+        this.localArr = this.tuidInner.cache.arr(this.tuidInner.name + '.ids');
     }
     useId(id, defer) {
         if (id === undefined || id === 0)
@@ -91,22 +96,10 @@ export class IdCache {
         let index = this.waitingIds.findIndex(v => v === id);
         if (index >= 0)
             this.waitingIds.splice(index, 1);
-        //let cacheVal = this.createID(id, val);
         this.cache.set(id, val);
         return true;
     }
     getIdFromObj(val) { return this.tuidInner.getIdFromObj(val); }
-    /*
-    protected afterCacheValue(tuidValue:any) {
-        let {fields} = this.tuidLocal;
-        if (fields === undefined) return;
-        for (let f of fields) {
-            let {_tuid} = f;
-            if (_tuid === undefined) continue;
-            _tuid.useId(tuidValue[f.name]);
-        }
-    }
-    */
     cacheIds() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.waitingIds.length === 0)
@@ -124,13 +117,29 @@ export class IdCache {
                 if (this.cacheValue(tuidValue) === false)
                     continue;
                 this.cacheTuidFieldValues(tuidValue);
-                //this.afterCacheValue(tuidValue);
             }
+        });
+    }
+    modifyIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let tuidValues = yield this.tuidInner.loadTuidIds(this.divName, ids);
+            let localedValues = tuidValues.filter(v => {
+                let p = v.indexOf('\t');
+                if (p < 0)
+                    p = v.length;
+                let id = Number(v.substr(0, p));
+                let val = this.localArr.getItem(id);
+                return (val !== undefined);
+            });
+            if (localedValues.length === 0)
+                return;
+            yield this.cacheIdValues(localedValues);
         });
     }
     loadIds() {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
+            //let ret = await this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
+            let ret = yield this.loadTuidIdsOrLocal(this.waitingIds);
             return ret;
         });
     }
@@ -149,8 +158,45 @@ export class IdCache {
                     this.cache.set(id, id);
                     break;
             }
-            let ret = yield this.tuidInner.loadTuidIds(this.divName, [id]);
+            //let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
+            let ret = yield this.loadTuidIdsOrLocal([id]);
             yield this.cacheIdValues(ret);
+        });
+    }
+    loadTuidIdsOrLocal(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = [];
+            let netIds = [];
+            for (let id of ids) {
+                let value = this.localArr.getItem(id);
+                if (value === undefined)
+                    netIds.push(id);
+                else
+                    ret.push(value);
+            }
+            let len = netIds.length;
+            if (len > 0) {
+                let netRet = yield this.tuidInner.loadTuidIds(this.divName, netIds);
+                for (let i = 0; i < len; i++) {
+                    //有些id可能没有内容，不会返回
+                    //let id = netIds[i]; 
+                    let row = netRet[i];
+                    if (!row)
+                        continue;
+                    let p = row.indexOf('\t');
+                    if (p < 0)
+                        p = row.length;
+                    let id = Number(row.substr(0, p));
+                    _.remove(netIds, v => v === id);
+                    ret.push(row);
+                    this.localArr.setItem(id, row);
+                }
+                len = netIds.length;
+                for (let i = 0; i < len; i++) {
+                    this.localArr.setItem(netIds[i], '');
+                }
+            }
+            return ret;
         });
     }
 }
@@ -159,6 +205,11 @@ export class IdDivCache extends IdCache {
         super(tuidLocal);
         this.div = div;
         this.divName = div.name;
+        this.localArr = tuidLocal.cache.arr(tuidLocal.name + '.ids.' + this.divName);
+    }
+    initLocalArr() {
+        // 这个不需要，必须去掉
+        // this.localArr = this.tuidInner.cache.arr(this.tuidInner.name + '.ids');
     }
     getIdFromObj(val) { return this.div.getIdFromObj(val); }
     unpackTuidIds(values) {

@@ -219,11 +219,11 @@ class StateSheetsCaller extends SheetCaller<{state:string, pageStart:number, pag
 class StateSheetCountCaller extends SheetCaller<undefined> {
     method = 'GET';
     protected readonly suffix = 'statecount';
-    xresult():any {
+    xresult(res:any):any {
         let {states} = this.entity;
         return states.map(s => {
             let n = s.name, count = 0;
-            let r = (this.result as any[]).find(v => v.state === n);
+            let r = (res as any[]).find(v => v.state === n);
             if (r !== undefined) count = r.count;
             return {state: n, count: count} 
         });
@@ -232,13 +232,13 @@ class StateSheetCountCaller extends SheetCaller<undefined> {
 
 class MySheetsCaller extends SheetCaller<{state:string, pageStart:number, pageSize:number}> {
     protected readonly suffix = 'my-sheets';
-    xresult():any {
+    xresult(res:any):any {
         let {returns} = this.entity;
         let len = returns.length;
         let ret:{[r:string]:any[]} = {};
         for (let i=0; i<len; i++) {
             let retSchema = returns[i];
-            ret[retSchema.name] = this.result[i];
+            ret[retSchema.name] = res[i];
         }
         return ret;
     }

@@ -8,8 +8,10 @@ import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
 import { CreateBoxId } from './boxId';
+import { LocalMap, LocalCache } from '../../tool';
+import { Uqs } from './uqs';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
-export declare function fieldDefaultValue(type: FieldType): "" | 0 | "2000-1-1" | "0:00";
+export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -33,17 +35,25 @@ export interface SchemaFrom {
     owner: string;
     uq: string;
 }
+export interface TuidModify {
+    max: number;
+    seconds: number;
+}
 export declare class Uq {
-    private tuids;
-    private actions;
-    private sheets;
-    private queries;
-    private books;
-    private maps;
-    private histories;
-    private pendings;
-    private tuidsCache;
-    private readonly cache;
+    private readonly actions;
+    private readonly sheets;
+    private readonly queries;
+    private readonly books;
+    private readonly maps;
+    private readonly histories;
+    private readonly pendings;
+    private readonly tuidsCache;
+    private readonly localAccess;
+    readonly localMap: LocalMap;
+    readonly localModifyMax: LocalCache<TuidModify>;
+    readonly tuids: {
+        [name: string]: Tuid;
+    };
     readonly createBoxId: CreateBoxId;
     readonly uqOwner: string;
     readonly uqName: string;
@@ -51,7 +61,7 @@ export declare class Uq {
     readonly uqApi: UqApi;
     readonly id: number;
     uqVersion: number;
-    constructor(uqData: UqData, createBoxId: CreateBoxId);
+    constructor(uqs: Uqs, uqData: UqData, createBoxId: CreateBoxId);
     tuid(name: string): Tuid;
     tuidDiv(name: string, div: string): TuidDiv;
     action(name: string): Action;
@@ -91,4 +101,5 @@ export declare class Uq {
     private buildSheet;
     buildFieldTuid(fields: Field[], mainFields?: Field[]): void;
     buildArrFieldsTuid(arrFields: ArrFields[], mainFields: Field[]): void;
+    pullModify(modifyMax: number): void;
 }

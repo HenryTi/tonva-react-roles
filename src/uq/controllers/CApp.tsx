@@ -132,11 +132,12 @@ export class CApp extends Controller {
 
     private async load(): Promise<string[]> {
         let {appOwner, appName} = this.uqApp;
-        let uqAppData = this.uqApp.uqAppCache.get();
+        let {localData} = this.uqApp;
+        let uqAppData = localData.get();
         if (!uqAppData || uqAppData.version !== this.version) {
             uqAppData = await loadAppUqs(appOwner, appName);
             uqAppData.version = this.version;
-            this.uqApp.uqAppCache.set(uqAppData);
+            localData.set(uqAppData);
         }
         let {id, uqs} = uqAppData;
         this.uqApp.id = id;

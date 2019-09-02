@@ -75,7 +75,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
             switch (this.props.back) {
                 case 'none': back = undefined; break;
                 default:
-                case 'back': back = <nav onClick={this.back}><i className="fa fa-arrow-left" /></nav>; break;
+                case 'back': back = <nav onClick={this.back}><i className="fa fa-angle-left" /></nav>; break;
                 case 'close': back = <nav onClick={this.back}><i className="fa fa-close" /></nav>; break;
             }
         }

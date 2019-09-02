@@ -68,6 +68,11 @@ export abstract class HttpChannel {
         return await this.innerFetch(urlPrefix + path, options);
     }
 
+    private async innerFetchResult(url: string, options: any): Promise<any> {
+        let ret = await this.innerFetch(url, options);
+        return ret.res;
+    }
+
     async get(url: string, params: any = undefined): Promise<any> {
         if (params) {
             let keys = Object.keys(params);
@@ -83,28 +88,28 @@ export abstract class HttpChannel {
         }
         let options = this.buildOptions();
         options.method = 'GET';
-        return await this.innerFetch(url, options);
+        return await this.innerFetchResult(url, options);
     }
 
     async post(url: string, params: any): Promise<any> {
         let options = this.buildOptions();
         options.method = 'POST';
         options.body = JSON.stringify(params);
-        return await this.innerFetch(url, options);
+        return await this.innerFetchResult(url, options);
     }
 
     async put(url: string, params: any): Promise<any> {
         let options = this.buildOptions();
         options.method = 'PUT';
         options.body = JSON.stringify(params);
-        return await this.innerFetch(url, options);
+        return await this.innerFetchResult(url, options);
     }
 
     async delete(url: string, params: any): Promise<any> {
         let options = this.buildOptions();
         options.method = 'DELETE';
         options.body = JSON.stringify(params);
-        return await this.innerFetch(url, options);
+        return await this.innerFetchResult(url, options);
     }
     async fetch(url: string, options: any, resolve:(value?:any)=>any, reject:(reason?:any)=>void):Promise<void> {
         let that = this;
@@ -136,13 +141,23 @@ export abstract class HttpChannel {
                     clearTimeout(timeOutHandler);
                     that.endWait();
                     if (retJson.ok === true) {
-                        let {res} = retJson;
-                        if (res === undefined) {
-                            res = {
+                        if (typeof retJson !== 'object') {
+                            debugger;
+                        }
+                        else if (Array.isArray(retJson) === true) {
+                            debugger;
+                        }
+                        /*
+                        let json = retJson.res;
+                        if (json === undefined) {
+                            json = {
                                 $uq: retJson.$uq
                             }
                         }
-                        return resolve(res);
+                        */
+                        //json.$modify = retJson.$modify;
+                        //return resolve(json);
+                        return resolve(retJson);
                     }
                     let retError = retJson.error;
                     if (retError === undefined) {
