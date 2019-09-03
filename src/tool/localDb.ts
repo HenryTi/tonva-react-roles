@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { Flatted } from './flatten';
 
 class _LocalStorage {
     getItem(key:string) {
@@ -14,42 +15,82 @@ class _LocalStorage {
 
 const __ls = new _LocalStorage; // new Ls;
 
-export class LocalCache<T> {
+/*
+function testCircular(obj:any, objs:object[], circular:any, path:string[]):boolean {
+    for (let i in obj) {
+        let v = obj[i];
+        if (typeof v === 'object') {
+            if (v === null) continue;
+            let len = objs.length;
+            for (let n=0; n<len; n++) {
+                if (objs[n] === v) {
+                    circular[i] = v;
+                    return true;
+                }
+            }
+            objs.push(v)
+            path.push(i);
+            if (testCircular(v, objs, circular, path) === true) return true;
+            path.pop();
+        }
+    }
+    return false;
+}
+*/
+
+export class LocalCache {
     private readonly local: Local;
-    private value: T;
+    //private value: T;
     readonly key: string|number;
 
     constructor(local:Local, key:string|number) {
         this.local = local;
         this.key = key;
     }
-    get():T {
+    get():any {
         try {
-            if (this.value !== undefined) return this.value;            
+            // 下面缓冲的内容不能有，可能会被修改，造成circular引用
+            //if (this.value !== undefined) return this.value;
             let text = this.local.getItem(this.key);
             if (text === null) return;
-            return this.value = JSON.parse(text);
+            //return this.value = 
+            return JSON.parse(text);
         }
         catch (err) {
             this.local.removeItem(this.key);
             return;
         }
     }
-    set(value:T) {
-        this.value = value;
-        this.local.setItem(this.key, JSON.stringify(value));
+    set(value:any) {
+        //this.value = value;
+        let t = JSON.stringify(value);
+        this.local.setItem(this.key, t);
+        /*
+        let text = Flatted.stringify(value, undefined, undefined);
+        let objs:object[] = [];
+        let circular:any = {};
+        let path:string[] = [];
+        try {
+            if (testCircular(value, objs, circular, path) === true) debugger;
+            let t = JSON.stringify(value);
+            this.local.setItem(this.key, t);
+        }
+        catch (e) {
+            let s = null;
+        }
+        */
     }
     remove(local?:Local) {
         if (local === undefined) {
             this.local.removeItem(this.key);
-            this.value = undefined;
+            //this.value = undefined;
         }
         else {
             this.local.removeLocal(local);
         }
     }
-    child<T>(key:string|number):LocalCache<T> {
-        return this.local.child<T>(key);
+    child(key:string|number):LocalCache {
+        return this.local.child(key);
     }
     arr(key:string|number):LocalArr {
         return this.local.arr(key);
@@ -60,7 +101,7 @@ export class LocalCache<T> {
 }
 
 abstract class Local {
-    private readonly caches: {[key:string]:LocalCache<any>};
+    private readonly caches: {[key:string]:LocalCache};
     private readonly locals: {[key:string]:Local};
     protected readonly name: string;
     constructor(name: string) {
@@ -114,11 +155,11 @@ abstract class Local {
         else this.locals[sk] = undefined;
         arr.removeAll();
     }
-    child<T>(key:string|number):LocalCache<T> {
+    child(key:string|number):LocalCache {
         let ks = String(key);
         let ret = this.caches[ks];
         if (ret !== undefined) return ret;
-        return this.caches[ks] =ret = new LocalCache<T>(this, key);
+        return this.caches[ks] =ret = new LocalCache(this, key);
     }
 }
 
@@ -165,8 +206,8 @@ export class LocalArr extends Local {
         __ls.removeItem(this.name);
         this.index.splice(0);
     }
-    item<T>(index:number):LocalCache<T> {
-        return this.child<T>(index);
+    item(index:number):LocalCache {
+        return this.child(index);
     }
 }
 
@@ -230,8 +271,8 @@ export class LocalMap extends Local {
         __ls.removeItem(this.name);
         this.max = 0;
     }
-    item<T>(key:string):LocalCache<T> {
-        return this.child<T>(key);
+    item(key:string):LocalCache {
+        return this.child(key);
     }
 }
 

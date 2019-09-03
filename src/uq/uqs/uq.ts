@@ -71,9 +71,9 @@ export class Uq {
     private readonly histories: {[name:string]: History} = {};
     private readonly pendings: {[name:string]: Pending} = {};
     private readonly tuidsCache: TuidsCache;
-    private readonly localAccess: LocalCache<any>;
+    private readonly localAccess: LocalCache;
     readonly localMap: LocalMap;
-    readonly localModifyMax: LocalCache<TuidModify>;
+    readonly localModifyMax: LocalCache;
     readonly tuids: {[name:string]: Tuid} = {};
     //readonly entitiesLocalMap: LocalMap; // UqCache;
     readonly createBoxId: CreateBoxId;

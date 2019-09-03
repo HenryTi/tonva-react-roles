@@ -15,7 +15,7 @@ export abstract class Entity {
     readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    readonly cache: LocalCache<any>;
+    readonly cache: LocalCache;
     readonly uqApi: UqApi;
     abstract get typeName(): string;
     get sName():string {return this.jName || this.name}
@@ -28,7 +28,7 @@ export abstract class Entity {
         this.name = name;
         this.typeId = typeId;
         this.sys = this.name.indexOf('$') >= 0;
-        this.cache = this.uq.localMap.item<any>(this.name); // new EntityCache(this);
+        this.cache = this.uq.localMap.item(this.name); // new EntityCache(this);
         this.uqApi = this.uq.uqApi;
     }
 
@@ -171,7 +171,7 @@ export abstract class Entity {
             case 'string':
             case 'number': dt = new Date(val); break;
         }
-        return dt.getTime()/1000;
+        return Math.floor(dt.getTime()/1000);
     }
 
     buildDateParam(val:any) {

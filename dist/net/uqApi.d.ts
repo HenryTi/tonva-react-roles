@@ -28,7 +28,7 @@ export declare abstract class CenterApiBase extends ApiBase {
     protected getHttpChannel(): Promise<HttpChannel>;
 }
 export declare class UqTokenApi extends CenterApiBase {
-    private local;
+    private localMap;
     uq(params: {
         unit: number;
         uqOwner: string;

@@ -265,13 +265,37 @@ const uqTokensName = 'uqTokens';
 export class UqTokenApi extends CenterApiBase {
     constructor() {
         super(...arguments);
-        this.local = localDb.item(uqTokensName);
+        this.localMap = localDb.map(uqTokensName);
     }
+    //private uqTokens: UqLocals;
+    /*
+    startInit(unitParam:number) {
+        this.uqTokens = this.local.get();
+        if (this.uqTokens !== undefined) {
+            let {unit, user} = this.uqTokens;
+            if (unit !== unitParam || user !== loginedUserId) {
+                //this.local.remove();
+                this.uqTokens = undefined;
+            }
+        }
+        if (this.uqTokens === undefined) {
+            this.uqTokens = {
+                user: loginedUserId,
+                unit: unitParam,
+                uqs: {}
+            };
+        }
+    }
+    endInit() {
+        this.local.set(this.uqTokens);
+    }
+    */
     uq(params) {
         return __awaiter(this, void 0, void 0, function* () {
+            let { uqOwner, uqName } = params;
+            let un = uqOwner + '/' + uqName;
+            let localCache = this.localMap.child(un);
             try {
-                let { unit: unitParam, uqOwner, uqName } = params;
-                let uqTokens = this.local.get();
                 /*
                 if (this.local === undefined) {
                     let ls = localStorage.getItem(uqTokens);
@@ -280,25 +304,27 @@ export class UqTokenApi extends CenterApiBase {
                     }
                 }
                 */
-                if (uqTokens !== undefined) {
-                    let { unit, user } = uqTokens;
-                    if (unit !== unitParam || user !== loginedUserId) {
-                        this.local.remove();
-                        uqTokens = undefined;
+                let uqToken = localCache.get();
+                if (uqToken !== undefined) {
+                    let { unit, user } = uqToken;
+                    if (unit !== params.unit || user !== loginedUserId) {
+                        localCache.remove();
+                        uqToken = undefined;
                     }
                 }
-                if (uqTokens === undefined) {
-                    uqTokens = {
+                /*
+                if (uqToken === undefined) {
+                    uqToken = {
                         user: loginedUserId,
                         unit: params.unit,
-                        uqs: {}
+                        value: un
                     };
                 }
-                let un = uqOwner + '/' + uqName;
+                */
                 let nowTick = Math.floor(Date.now() / 1000);
-                let uq = uqTokens.uqs[un];
-                if (uq !== undefined) {
-                    let { tick, value } = uq;
+                //let uq = this.uqTokens.uqs[un];
+                if (uqToken !== undefined) {
+                    let { tick, value } = uqToken;
                     if (value !== undefined && (nowTick - tick) < 24 * 3600) {
                         return _.clone(value);
                     }
@@ -311,18 +337,21 @@ export class UqTokenApi extends CenterApiBase {
                     let err = `center get app-uq(unit=${unit}, '${uqOwner}/${uqName}') - not exists or no unit-service`;
                     throw err;
                 }
-                uqTokens.uqs[un] = {
+                uqToken = {
+                    unit: params.unit,
+                    user: loginedUserId,
                     tick: nowTick,
                     value: ret,
                 };
                 //localStorage.setItem(uqTokens, JSON.stringify(this.local));
-                this.local.set(uqTokens);
+                //this.local.set(this.uqTokens);
+                localCache.set(uqToken);
                 return _.clone(ret);
             }
             catch (err) {
                 //this.local = undefined;
                 //localStorage.removeItem(uqTokens);
-                this.local.remove();
+                localCache.remove();
                 throw err;
             }
         });

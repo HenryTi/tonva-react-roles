@@ -260,15 +260,37 @@ class IdsCaller extends TuidCaller<{divName:string, ids:number[]}> {
     }
 }
 
+
 class SaveCaller extends TuidCaller<{id:number, props:any}> {
     get path():string {return `tuid/${this.entity.name}`}
     buildParams():any {
-        let {fields} = this.entity.schema;
+        let {fields, arrs} = this.entity.schema;
         let {id, props} = this.params;
         let params:any = {$id: id};
-        for (let field of fields as Field[]) {
+        this.transParams(params, props, fields);
+        if (arrs !== undefined) {
+            for (let arr of arrs) {
+                let arrName = arr.name;
+                let arrParams = [];
+                let arrFields = arr.fields;
+                let arrValues = props[arrName];
+                if (arrValues !== undefined) {
+                    for (let arrValue of arrValues) {
+                        let row = {};
+                        this.transParams(row, arrValue, arrFields);
+                        arrParams.push(row);
+                    }
+                }
+                params[arrName] = arrParams;
+            }
+        }
+        return params;
+    }
+    private transParams(values:any, params:any, fields:Field[]) {
+        if (params === undefined) return;
+        for (let field of fields) {
             let {name, tuid, type} = field;
-            let val = props[name];
+            let val = params[name];
             if (tuid !== undefined) {
                 if (typeof val === 'object') {
                     if (val !== null) val = val.id;
@@ -277,7 +299,7 @@ class SaveCaller extends TuidCaller<{id:number, props:any}> {
             else {
                 switch (type) {
                     case 'date':
-                        val = this.entity.buildDateTimeParam(val); 
+                        val = this.entity.buildDateParam(val); 
                         //val = (val as string).replace('T', ' ');
                         //val = (val as string).replace('Z', '');
                         break;
@@ -289,9 +311,8 @@ class SaveCaller extends TuidCaller<{id:number, props:any}> {
                         break;
                 }
             }
-            params[name] = val;
+            values[name] = val;
         }
-        return params;
     }
 }
 

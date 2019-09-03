@@ -50,7 +50,7 @@ export declare class Uq {
     private readonly tuidsCache;
     private readonly localAccess;
     readonly localMap: LocalMap;
-    readonly localModifyMax: LocalCache<TuidModify>;
+    readonly localModifyMax: LocalCache;
     readonly tuids: {
         [name: string]: Tuid;
     };

@@ -10,7 +10,7 @@ export class Uqs {
     readonly appOwner: string;
     readonly appName: string;
     readonly localMap: LocalMap;
-    readonly localData: LocalCache<UqAppData>;
+    readonly localData: LocalCache;
     id: number;
 
     constructor(tonvaAppName:string) {

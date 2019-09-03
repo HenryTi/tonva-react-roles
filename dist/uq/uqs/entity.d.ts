@@ -10,7 +10,7 @@ export declare abstract class Entity {
     readonly uq: Uq;
     readonly name: string;
     readonly typeId: number;
-    readonly cache: LocalCache<any>;
+    readonly cache: LocalCache;
     readonly uqApi: UqApi;
     abstract readonly typeName: string;
     readonly sName: string;

@@ -28,9 +28,9 @@ export class Data<T> implements ClearableData {
 */
 
 export class LocalData {
-    user = localDb.child<User>('user');
-    guest = localDb.child<Guest>('guest');
-    unit = localDb.child<Unit>('unit');
+    user = localDb.child('user');
+    guest = localDb.child('guest');
+    unit = localDb.child('unit');
 
     logoutClear() {
         [

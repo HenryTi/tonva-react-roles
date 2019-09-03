@@ -261,12 +261,34 @@ class IdsCaller extends TuidCaller {
 class SaveCaller extends TuidCaller {
     get path() { return `tuid/${this.entity.name}`; }
     buildParams() {
-        let { fields } = this.entity.schema;
+        let { fields, arrs } = this.entity.schema;
         let { id, props } = this.params;
         let params = { $id: id };
+        this.transParams(params, props, fields);
+        if (arrs !== undefined) {
+            for (let arr of arrs) {
+                let arrName = arr.name;
+                let arrParams = [];
+                let arrFields = arr.fields;
+                let arrValues = props[arrName];
+                if (arrValues !== undefined) {
+                    for (let arrValue of arrValues) {
+                        let row = {};
+                        this.transParams(row, arrValue, arrFields);
+                        arrParams.push(row);
+                    }
+                }
+                params[arrName] = arrParams;
+            }
+        }
+        return params;
+    }
+    transParams(values, params, fields) {
+        if (params === undefined)
+            return;
         for (let field of fields) {
             let { name, tuid, type } = field;
-            let val = props[name];
+            let val = params[name];
             if (tuid !== undefined) {
                 if (typeof val === 'object') {
                     if (val !== null)
@@ -276,7 +298,7 @@ class SaveCaller extends TuidCaller {
             else {
                 switch (type) {
                     case 'date':
-                        val = this.entity.buildDateTimeParam(val);
+                        val = this.entity.buildDateParam(val);
                         //val = (val as string).replace('T', ' ');
                         //val = (val as string).replace('Z', '');
                         break;
@@ -288,9 +310,8 @@ class SaveCaller extends TuidCaller {
                         break;
                 }
             }
-            params[name] = val;
+            values[name] = val;
         }
-        return params;
     }
 }
 class SearchCaller extends TuidCaller {

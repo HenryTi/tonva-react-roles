@@ -11,6 +11,28 @@ class _LocalStorage {
     }
 }
 const __ls = new _LocalStorage; // new Ls;
+/*
+function testCircular(obj:any, objs:object[], circular:any, path:string[]):boolean {
+    for (let i in obj) {
+        let v = obj[i];
+        if (typeof v === 'object') {
+            if (v === null) continue;
+            let len = objs.length;
+            for (let n=0; n<len; n++) {
+                if (objs[n] === v) {
+                    circular[i] = v;
+                    return true;
+                }
+            }
+            objs.push(v)
+            path.push(i);
+            if (testCircular(v, objs, circular, path) === true) return true;
+            path.pop();
+        }
+    }
+    return false;
+}
+*/
 export class LocalCache {
     constructor(local, key) {
         this.local = local;
@@ -18,12 +40,13 @@ export class LocalCache {
     }
     get() {
         try {
-            if (this.value !== undefined)
-                return this.value;
+            // 下面缓冲的内容不能有，可能会被修改，造成circular引用
+            //if (this.value !== undefined) return this.value;
             let text = this.local.getItem(this.key);
             if (text === null)
                 return;
-            return this.value = JSON.parse(text);
+            //return this.value = 
+            return JSON.parse(text);
         }
         catch (err) {
             this.local.removeItem(this.key);
@@ -31,13 +54,28 @@ export class LocalCache {
         }
     }
     set(value) {
-        this.value = value;
-        this.local.setItem(this.key, JSON.stringify(value));
+        //this.value = value;
+        let t = JSON.stringify(value);
+        this.local.setItem(this.key, t);
+        /*
+        let text = Flatted.stringify(value, undefined, undefined);
+        let objs:object[] = [];
+        let circular:any = {};
+        let path:string[] = [];
+        try {
+            if (testCircular(value, objs, circular, path) === true) debugger;
+            let t = JSON.stringify(value);
+            this.local.setItem(this.key, t);
+        }
+        catch (e) {
+            let s = null;
+        }
+        */
     }
     remove(local) {
         if (local === undefined) {
             this.local.removeItem(this.key);
-            this.value = undefined;
+            //this.value = undefined;
         }
         else {
             this.local.removeLocal(local);

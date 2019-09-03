@@ -177,7 +177,7 @@ export class Entity {
                 dt = new Date(val);
                 break;
         }
-        return dt.getTime() / 1000;
+        return Math.floor(dt.getTime() / 1000);
     }
     buildDateParam(val) {
         let dt;

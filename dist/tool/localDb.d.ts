@@ -1,12 +1,11 @@
-export declare class LocalCache<T> {
+export declare class LocalCache {
     private readonly local;
-    private value;
     readonly key: string | number;
     constructor(local: Local, key: string | number);
-    get(): T;
-    set(value: T): void;
+    get(): any;
+    set(value: any): void;
     remove(local?: Local): void;
-    child<T>(key: string | number): LocalCache<T>;
+    child(key: string | number): LocalCache;
     arr(key: string | number): LocalArr;
     map(key: string | number): LocalMap;
 }
@@ -25,7 +24,7 @@ declare abstract class Local {
     arr(key: string | number): LocalArr;
     map(key: string | number): LocalMap;
     removeLocal(local: Local): void;
-    child<T>(key: string | number): LocalCache<T>;
+    child(key: string | number): LocalCache;
 }
 export declare class LocalArr extends Local {
     private readonly index;
@@ -35,7 +34,7 @@ export declare class LocalArr extends Local {
     protected keyForSet(key: number): string;
     protected keyForRemove(key: number): string;
     removeAll(): void;
-    item<T>(index: number): LocalCache<T>;
+    item(index: number): LocalCache;
 }
 export declare class LocalMap extends Local {
     private readonly index;
@@ -46,7 +45,7 @@ export declare class LocalMap extends Local {
     protected keyForSet(key: number): string;
     protected keyForRemove(key: string | number): string;
     removeAll(): void;
-    item<T>(key: string): LocalCache<T>;
+    item(key: string): LocalCache;
 }
 export declare const localDb: LocalMap;
 export {};
