@@ -294,7 +294,7 @@ class SaveCaller extends TuidCaller {
     }
 }
 class SearchCaller extends TuidCaller {
-    get path() { return `'tuids/${this.entity.name}`; }
+    get path() { return `tuids/${this.entity.name}`; }
 }
 class LoadArrCaller extends TuidCaller {
     constructor() {

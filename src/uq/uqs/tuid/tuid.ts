@@ -296,7 +296,7 @@ class SaveCaller extends TuidCaller<{id:number, props:any}> {
 }
 
 class SearchCaller extends TuidCaller<{arr:string, owner:number, key:string, pageStart:string|number, pageSize:number}> {
-    get path():string {return `'tuids/${this.entity.name}`}
+    get path():string {return `tuids/${this.entity.name}`}
 }
 
 class LoadArrCaller extends TuidCaller<{arr:string, owner:number, id:number}> {
