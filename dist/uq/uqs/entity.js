@@ -168,7 +168,7 @@ export class Entity {
             default:
                 debugger;
                 throw 'escape datetime field in pack data error: value=' + val;
-            case 'undefined': return '';
+            case 'undefined': return undefined;
             case 'object':
                 dt = val;
                 break;
@@ -185,7 +185,7 @@ export class Entity {
             default:
                 debugger;
                 throw 'escape datetime field in pack data error: value=' + val;
-            case 'undefined': return '';
+            case 'undefined': return undefined;
             case 'string': return val;
             case 'object':
                 dt = val;

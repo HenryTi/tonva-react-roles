@@ -29,7 +29,7 @@ export declare abstract class Entity {
     tuidFromName(fieldName: string, arrName?: string): Tuid;
     buildParams(params: any): any;
     private buildFieldsParams;
-    buildDateTimeParam(val: any): number | "";
+    buildDateTimeParam(val: any): number;
     buildDateParam(val: any): string;
     pack(data: any): string;
     private escape;
