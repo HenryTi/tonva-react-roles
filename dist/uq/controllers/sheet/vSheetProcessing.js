@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import React from 'react';
-import { Page } from '../../../ui';
+import { Page } from '../../ui';
 import { VSheetView } from './vSheetView';
 export class VSheetProcessing extends VSheetView {
     constructor() {

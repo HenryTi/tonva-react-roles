@@ -1,4 +1,4 @@
-import {nav} from '../ui/nav';
+import {nav} from '../components/nav';
 import {FetchError} from './fetchError';
 
 export interface HttpChannelUI {

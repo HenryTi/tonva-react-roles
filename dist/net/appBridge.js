@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import _ from 'lodash';
-import { nav } from '../ui';
+import { nav } from '../components';
 import { uid } from '../tool/uid';
 import { uqTokenApi as uqTokenApi, callCenterapi, centerToken, setCenterToken } from './uqApi';
 import { setSubAppWindow } from './wsChannel';

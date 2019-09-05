@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { Page, List, FA } from '../../../ui';
+import { Page, List, FA } from '../../ui';
 import { VEntity } from '../CVEntity';
 import { DefaultRow } from './defaultRow';
 export class VQueryMain extends VEntity {

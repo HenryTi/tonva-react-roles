@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {nav, Page, Form, Schema, UiSchema, UiTextItem, UiPasswordItem, Context, UiButton, resLang, StringSchema} from '../ui';
+import {nav, Page, Form, Schema, UiSchema, UiTextItem, UiPasswordItem, Context, UiButton, resLang, StringSchema} from '../components';
 import { RegisterController, ForgetController } from './register';
 import { userApi } from './userApi';
 import { LoginRes, loginRes } from './res';

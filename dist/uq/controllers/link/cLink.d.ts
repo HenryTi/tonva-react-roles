@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Controller } from '../../../ui';
+import { Controller } from '../../ui';
 export declare abstract class Link {
     abstract onClick: () => void;
     abstract render(className?: string): JSX.Element;

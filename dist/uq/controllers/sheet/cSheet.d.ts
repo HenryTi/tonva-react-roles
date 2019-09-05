@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { IObservableArray } from 'mobx';
-import { TypeVPage } from '../../../ui';
+import { TypeVPage } from '../../ui';
 import { PageItems } from '../../../tool/pageItems';
-import { Sheet, StateCount } from '../../uqs';
+import { Sheet, StateCount } from '../../uq';
 import { CEntity, EntityUI } from '../CVEntity';
 export interface SheetActionUI {
     label: string;

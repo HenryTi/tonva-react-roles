@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {nav} from '../ui';
+import {nav} from '../components';
 import {uid} from '../tool/uid';
 import {uqTokenApi as uqTokenApi, callCenterapi, CenterAppApi, UqData, centerToken, UqAppData, setCenterToken} from './uqApi';
 import {setSubAppWindow} from './wsChannel';

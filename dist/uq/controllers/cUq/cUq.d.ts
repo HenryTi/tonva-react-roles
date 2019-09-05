@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Controller } from '../../../ui';
+import { Controller } from '../../ui';
 import { UqData } from '../../../net';
-import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv } from '../../uqs';
+import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv } from '../../uq';
 import { CLink } from '../link';
 import { CBook, BookUI } from '../book';
 import { CSheet, SheetUI } from '../sheet';
@@ -13,7 +13,7 @@ import { CEntity, EntityUI } from '../CVEntity';
 import { VUq } from './vUq';
 import { CHistory, HistoryUI } from '../history';
 import { CPending, PendingUI } from '../pending';
-import { CApp } from '../CApp';
+import { CApp } from '../app';
 export declare type EntityType = 'sheet' | 'action' | 'tuid' | 'query' | 'book' | 'map' | 'history' | 'pending';
 export interface UqUI {
     CTuidMain?: typeof CTuidMain;

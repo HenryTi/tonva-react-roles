@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { Page, FA } from '../../../ui';
+import { Page, FA } from '../../ui';
 import { VEntity } from '../CVEntity';
 export class VTuidEdit extends VEntity {
     constructor() {

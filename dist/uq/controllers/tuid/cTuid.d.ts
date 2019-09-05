@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { CEntity, EntityUI } from '../CVEntity';
-import { Tuid } from '../../uqs';
+import { Tuid } from '../../uq';
 import { VTuidMain } from './vTuidMain';
 import { VTuidEdit } from './vTuidEdit';
 import { VTuidSelect } from './vTuidSelect';

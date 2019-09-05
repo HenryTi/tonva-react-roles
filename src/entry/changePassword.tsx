@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VPage, Page, Form, ItemSchema, UiSchema, StringSchema, UiTextItem, UiPasswordItem, Context, ButtonSchema, UiButton, nav } from '../ui';
+import { VPage, Page, Form, ItemSchema, UiSchema, StringSchema, UiTextItem, UiPasswordItem, Context, ButtonSchema, UiButton, nav } from '../components';
 import { CenterAppApi } from '../net';
 
 export class ChangePasswordPage extends React.Component {

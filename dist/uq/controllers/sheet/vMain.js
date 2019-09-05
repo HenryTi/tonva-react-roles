@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { Page, List, Muted, LMR } from '../../../ui';
+import { Page, List, Muted, LMR } from '../../ui';
 import { VEntity } from '../CVEntity';
 export class VSheetMain extends VEntity {
     constructor() {

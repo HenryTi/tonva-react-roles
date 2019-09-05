@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page } from '../ui';
+import { Page } from '../components';
 export default class Forget extends React.Component {
     render() {
         return React.createElement(Page, { header: '\u627E\u56DE\u5BC6\u7801' }, "\u6B63\u5728\u8BBE\u8BA1\u4E2D...");

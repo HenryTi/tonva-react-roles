@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { bridgeCenterApi, isBridged } from './appBridge';
-import { nav } from '../ui/nav';
+import { nav } from '../components/nav';
 import { isDevelopment } from './host';
 /*
 export async function httpGet(url:string, params?:any):Promise<any> {

@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import _ from 'lodash';
-import { Page, nav, List, Muted } from '../../../ui';
+import { Page, nav, List, Muted } from '../../ui';
 import { ViewModel, JSONContent } from './viewModel';
 import { VForm, FormMode } from './vForm';
 export class VArr extends ViewModel {

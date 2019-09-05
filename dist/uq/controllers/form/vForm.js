@@ -16,7 +16,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { BandsBuilder } from './bandsBuilder';
 import { computed, observable } from 'mobx';
-import { FA } from '../../../ui';
+import { FA } from '../../ui';
 export var FormMode;
 (function (FormMode) {
     FormMode[FormMode["new"] = 0] = "new";

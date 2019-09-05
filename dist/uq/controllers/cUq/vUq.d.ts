@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { View } from '../../../ui';
-import { Entity } from '../../uqs';
+import { View } from '../../ui';
+import { Entity } from '../../uq';
 import { CLink } from '../link';
 import { CUq } from './cUq';
 export declare class VUq extends View<CUq> {

@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { Page } from '../../../ui';
-import { jsonStringify } from '../../tools';
+import { Page } from '../../ui';
+import { jsonStringify } from '../tools';
 import { VEntity } from '../CVEntity';
 export class VActionMain extends VEntity {
     constructor() {

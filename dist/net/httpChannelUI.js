@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { nav } from '../ui/nav';
+import { nav } from '../components/nav';
 export class HttpChannelNavUI {
     startWait() {
         nav.startWait();

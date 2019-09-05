@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Page, SearchBox, List } from '../../../ui';
+import { Page, SearchBox, List } from '../../ui';
 import { VEntity } from '../CVEntity';
 import React from 'react';
 import { RowContent } from '../form/viewModel';

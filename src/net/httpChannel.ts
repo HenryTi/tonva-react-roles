@@ -1,7 +1,7 @@
 import {bridgeCenterApi, isBridged} from './appBridge';
 import {FetchError} from './fetchError';
 import {HttpChannelUI} from './httpChannelUI';
-import {nav} from '../ui/nav';
+import {nav} from '../components/nav';
 import { isDevelopment } from './host';
 import { Caller } from './caller';
 

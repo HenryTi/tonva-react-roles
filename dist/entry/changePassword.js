@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { Page, Form, nav } from '../ui';
+import { Page, Form, nav } from '../components';
 import { CenterAppApi } from '../net';
 export class ChangePasswordPage extends React.Component {
     constructor() {

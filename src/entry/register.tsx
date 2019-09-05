@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, VPage, UiCustom, UiInputItem, NumSchema, View} from '../ui';
+import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, VPage, UiCustom, UiInputItem, NumSchema, View} from '../components';
 import { userApi, RegisterParameter } from './userApi';
 import '../css/va-form.css';
 import { RegisterRes, registerRes } from './res';

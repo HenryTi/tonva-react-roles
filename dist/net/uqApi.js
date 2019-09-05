@@ -12,7 +12,7 @@ import { HttpChannelNavUI } from './httpChannelUI';
 import { appUq, logoutUqTokens, buildAppUq } from './appBridge';
 import { ApiBase } from './apiBase';
 import { host } from './host';
-import { nav } from '../ui';
+import { nav } from '../components';
 import { localDb } from '../tool';
 let channelUIs = {};
 let channelNoUIs = {};

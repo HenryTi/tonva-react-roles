@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { nav, mobileRegex, emailRegex } from '../ui';
+import { nav, mobileRegex, emailRegex } from '../components';
 const logo = require('../img/logo.svg');
 export function tonvaTop() {
     return nav.loginTop(React.createElement("div", { className: "d-flex align-items-center" },

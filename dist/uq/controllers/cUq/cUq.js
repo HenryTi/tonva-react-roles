@@ -6,9 +6,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Controller, resLang } from '../../../ui';
-import { PureJSONContent } from '../../tools';
-import { Uq } from '../../uqs';
+import { Controller, resLang } from '../../ui';
+import { PureJSONContent } from '../tools';
+import { Uq } from '../../uq';
 import { CLink } from '../link';
 import { CBook } from '../book';
 import { CSheet } from '../sheet';
@@ -31,13 +31,11 @@ export class CUq extends Controller /* implements Uq*/ {
     constructor(cApp, uqData, ui) {
         super(resLang(ui.res));
         this.tuidURs = {};
-        //private schemaLoaded:boolean = false;
         this.createBoxId = (tuid, id) => {
             let { name } = tuid;
             let tuidUR = this.tuidURs[name];
             if (tuidUR === undefined) {
                 let { ui, res } = this.getUI(tuid);
-                //tuid.setUIRes(ui, res);
                 this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
             }
             return new ReactBoxId(tuidUR, id);
@@ -68,47 +66,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CBook = ui.CBook || CBook;
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
-        this.uq = new Uq(cApp.uqApp, uqData, this.createBoxId);
-        /*
-        let token = undefined;
-        let uqOwner:string, uqName:string;
-        let p = uq.split('/');
-        switch (p.length) {
-            case 1:
-                uqOwner = '$$$';
-                uqName = p[0];
-                break;
-            case 2:
-                uqOwner = p[0];
-                uqName = p[1];
-                break;
-            default:
-                console.log('uq must be uqOwner/uqName format');
-                return;
-        }
-
-        let hash = document.location.hash;
-        let baseUrl = hash===undefined || hash===''?
-            'debug/':'tv/';
-
-        let acc: string[];
-        if (access === null || access === undefined || access === '*') {
-            acc = [];
-        }
-        else {
-            acc = access.split(';').map(v => v.trim()).filter(v => v.length > 0);
-        }
-        let uqApi:UqApi;
-        if (uq === '$$$/$unitx') {
-            // 这里假定，点击home link之后，已经设置unit了
-            // 调用 UnitxApi会自动搜索绑定 unitx service
-            uqApi = new UnitxApi(appInFrame.unit);
-        }
-        else {
-            uqApi = new UqApi(baseUrl, uqOwner, uqName, acc, true);
-        }
-        this.entities = new Uq(this, uqApi, appId);
-        */
+        this.uq = new Uq(cApp.uqs, uqData, this.createBoxId);
     }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -123,56 +81,12 @@ export class CUq extends Controller /* implements Uq*/ {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.uq.loadEntities();
-                /*
-                for (let tuid of this.uq.tuidArr) {
-                    let {ui, res} = this.getUI(tuid);
-                    tuid.setUIRes(ui, res);
-                }
-                */
             }
             catch (err) {
                 return err;
             }
         });
     }
-    /*
-    async checkEntities(): Promise<boolean> {
-        return await this.uq.checkAccess();
-    }
-    */
-    /*
-    private setTuidUI(tuid: Tuid) {
-        let {ui, res} = this.getUI(tuid);
-        tuid.ui = (ui as TuidUI).content;
-        tuid.res = res;
-    }
-    */
-    /*
-    async loadSchema():Promise<string> {
-        try {
-            if (this.schemaLoaded === true) return;
-            await this.loadEntites();
-            if (this.id === undefined) this.id = this.uq.uqId;
-            for (let i in this.ui) {
-                let g = this.ui[i];
-                if (g === undefined) continue;
-                let {caption, collection} = g;
-                if (collection === undefined) continue;
-                for (let j in collection) {
-                    if (this.uq[i](j) === undefined) {
-                        console.warn(i + ':' + '\'' + j + '\' is not uq entity');
-                    }
-                }
-            }
-            this.schemaLoaded = true;
-            return;
-        }
-        catch(err) {
-            console.error(err);
-            return this.error = err;
-        }
-    }
-    */
     getQuerySearch(name) {
         return __awaiter(this, void 0, void 0, function* () {
             let query = this.uq.query(name);

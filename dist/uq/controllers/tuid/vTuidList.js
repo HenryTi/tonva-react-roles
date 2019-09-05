@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { SearchBox, List, Page } from '../../../ui';
+import { SearchBox, List, Page } from '../../ui';
 import { VEntity } from '../CVEntity';
 import { RowContent } from '../form/viewModel';
 export class VTuidListBase extends VEntity {

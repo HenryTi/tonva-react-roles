@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import className from 'classnames';
-import { Page, List, LMR, FA } from '../../../ui';
-import { PureJSONContent } from '../../tools';
+import { Page, List, LMR, FA } from '../../ui';
+import { PureJSONContent } from '../tools';
 import { VEntity } from '../CVEntity';
 import { tv } from '../cUq';
 export class VMapMain extends VEntity {
