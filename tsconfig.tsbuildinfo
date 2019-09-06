@@ -406,7 +406,7 @@
         "signature": "18bc3d3b2fd87d98812469c65ee9fa8d0c29e91395d4d16fa3715bf5ac21adf9"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx": {
-        "version": "bf5f3002ca9ca60bdc56d1ab926082ce4793d733de20e1a6499c3d812ed189c3",
+        "version": "9a214273861d429c020e8b2161e663a0570f51350c84dc032077205f118e1dcf",
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx": {
@@ -3779,7 +3779,6 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/tools.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/register.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/login.tsx",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/vm.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/schema/schema.ts",
@@ -3937,6 +3936,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/app/vapp.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/app/capp.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/app/index.ts",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/startapp.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/callbacks.ts",
@@ -3962,7 +3962,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/factory/startapp.ts"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx"
     ]
   },
   "version": "3.5.2"
