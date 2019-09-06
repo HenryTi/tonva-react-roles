@@ -11,7 +11,7 @@ import { CreateBoxId } from './boxId';
 import { LocalMap, LocalCache } from '../tool';
 import { Uqs } from './uqs';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
+export declare function fieldDefaultValue(type: FieldType): "" | 0 | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -62,6 +62,7 @@ export declare class Uq {
     readonly id: number;
     uqVersion: number;
     constructor(uqs: Uqs, uqData: UqData, createBoxId: CreateBoxId);
+    readonly entities: any;
     tuid(name: string): Tuid;
     tuidDiv(name: string, div: string): TuidDiv;
     action(name: string): Action;
@@ -81,7 +82,7 @@ export declare class Uq {
     historyArr: History[];
     pendingArr: Pending[];
     init(): Promise<void>;
-    loadEntities(): Promise<void>;
+    loadEntities(): Promise<string>;
     buildEntities(entities: any): void;
     loadEntitySchema(entityName: string): Promise<any>;
     getTuid(name: string): Tuid;

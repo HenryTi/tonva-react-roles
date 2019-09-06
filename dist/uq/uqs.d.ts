@@ -10,6 +10,10 @@ export declare class Uqs {
     id: number;
     constructor(tonvaAppName: string);
     addUq(uq: Uq): void;
+    init(uqsData: any): Promise<void>;
+    load(): Promise<string[]>;
+    readonly uqsColl: any;
+    private createBoxId;
     setTuidImportsLocal(): void;
     private setInner;
 }

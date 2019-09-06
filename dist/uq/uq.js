@@ -6,6 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import _ from 'lodash';
 import { UqApi, UnitxApi, appInFrame } from '../net';
 import { TuidImport, TuidInner, TuidsCache } from './tuid';
 import { Action } from './action';
@@ -83,6 +84,9 @@ export class Uq {
         }
         this.tuidsCache = new TuidsCache(this);
     }
+    get entities() {
+        return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids);
+    }
     tuid(name) { return this.tuids[name.toLowerCase()]; }
     tuidDiv(name, div) {
         let tuid = this.tuids[name.toLowerCase()];
@@ -109,15 +113,20 @@ export class Uq {
     }
     loadEntities() {
         return __awaiter(this, void 0, void 0, function* () {
-            let accesses = this.localAccess.get();
-            if (!accesses) {
-                accesses = yield this.uqApi.loadAccess();
+            try {
+                let accesses = this.localAccess.get();
+                if (!accesses) {
+                    accesses = yield this.uqApi.loadAccess();
+                }
+                if (!accesses)
+                    return;
+                this.buildEntities(accesses);
+                if (this.uqName === 'common') {
+                    this.pullModify(12);
+                }
             }
-            if (!accesses)
-                return;
-            this.buildEntities(accesses);
-            if (this.uqName === 'common') {
-                this.pullModify(12);
+            catch (err) {
+                return err;
             }
         });
     }
