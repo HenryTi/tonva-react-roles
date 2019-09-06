@@ -14,6 +14,6 @@ export declare class Uqs {
     load(): Promise<string[]>;
     readonly uqsColl: any;
     private createBoxId;
-    setTuidImportsLocal(): void;
+    setTuidImportsLocal(): string[];
     private setInner;
 }

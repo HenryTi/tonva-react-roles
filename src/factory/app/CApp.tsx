@@ -162,8 +162,10 @@ export class CApp extends Controller {
             }
         }
         if (retErrors.length === 0) {
-            this.uqs.setTuidImportsLocal();
-            return;
+            retErrors.push(...this.uqs.setTuidImportsLocal());
+            if (retErrors.length === 0) {
+                return;
+            }
         }
         return retErrors;
     }

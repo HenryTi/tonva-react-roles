@@ -76,32 +76,37 @@ export class Uqs {
 
     private createBoxId: CreateBoxId;
 
-    setTuidImportsLocal() {
+    setTuidImportsLocal():string[] {
+        let ret:string[] = [];
         for (let i in this.collection) {
             let uq = this.collection[i];
             for (let tuid of uq.tuidArr) {
                 if (tuid.isImport === true) {
-                    this.setInner(tuid as TuidImport);
+                    let error = this.setInner(tuid as TuidImport);
+                    if (error) ret.push(error);
                 }
             }
         }
+        return ret;
     }
 
-    private setInner(tuidImport: TuidImport) {
+    private setInner(tuidImport: TuidImport):string {
         let {from} = tuidImport;
-        let uq = this.collection[from.owner + '/' + from.uq];
+        let fromName = from.owner + '/' + from.uq;
+        let uq = this.collection[fromName];
         if (uq === undefined) {
             //debugger;
-            return;
+            return `setInner(tuidImport: TuidImport): uq ${fromName} is not loaded`;
         }
-        let tuid = uq.tuid(tuidImport.name);
+        let iName = tuidImport.name
+        let tuid = uq.tuid(iName);
         if (tuid === undefined) {
             //debugger;
-            return;
+            return `setInner(tuidImport: TuidImport): uq ${fromName} has no Tuid ${iName}`;
         }
         if (tuid.isImport === true) {
             //debugger;
-            return;
+            return `setInner(tuidImport: TuidImport): uq ${fromName} Tuid ${iName} is import`;
         }
         tuidImport.setFrom(tuid as TuidInner);
     }

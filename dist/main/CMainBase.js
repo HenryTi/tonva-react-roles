@@ -119,9 +119,11 @@ export class CMainBase extends Controller {
             */
             let retErrors = yield this.uqs.load();
             if (retErrors.length === 0) {
-                this.uqs.setTuidImportsLocal();
-                _.merge(this.appUqs, this.uqs.uqsColl);
-                return;
+                retErrors.push(...this.uqs.setTuidImportsLocal());
+                if (retErrors.length === 0) {
+                    _.merge(this.appUqs, this.uqs.uqsColl);
+                    return;
+                }
             }
             return retErrors;
         });
