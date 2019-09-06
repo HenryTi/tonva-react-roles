@@ -68,6 +68,9 @@ export class IdCache {
     getValue(id) {
         return this.cache.get(id);
     }
+    remove(id) {
+        this.cache.delete(id);
+    }
     valueFromId(id) {
         let _id;
         switch (typeof id) {

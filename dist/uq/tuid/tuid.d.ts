@@ -43,6 +43,7 @@ export declare class TuidInner extends Tuid {
     setSchema(schema: any): void;
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
+    removeIdFromCache(id: number): void;
     valueFromId(id: number): any;
     assureBox(id: number): Promise<void>;
     cacheIds(): void;

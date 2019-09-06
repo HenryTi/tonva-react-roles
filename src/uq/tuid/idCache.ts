@@ -73,6 +73,10 @@ export class IdCache {
         return this.cache.get(id);
     }
 
+    remove(id:number) {
+        this.cache.delete(id);
+    }
+
     valueFromId(id:number|BoxId):any {
         let _id:number;
         switch (typeof id) {

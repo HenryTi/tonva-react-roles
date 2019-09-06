@@ -86,6 +86,9 @@ export class TuidInner extends Tuid {
         this.useId(id);
         return this.uq.createBoxId(this, id);
     }
+    removeIdFromCache(id:number) {
+        if (this.idCache) this.idCache.remove(id);
+    }
     valueFromId(id:number) {return this.idCache.getValue(id)}
     async assureBox (id:number):Promise<void> {
         await this.idCache.assureObj(id);
@@ -202,7 +205,9 @@ export class TuidInner extends Tuid {
         let ret = await this.uqApi.tuidSave(this.name, params);
         return ret;
         */
-        return new SaveCaller(this, {id:id, props:props}).request();
+        let ret = new SaveCaller(this, {id:id, props:props}).request();
+        if (id !== undefined) this.idCache.remove(id);
+        return ret;
     }
     async search(key:string, pageStart:string|number, pageSize:number):Promise<any> {
         let ret:any[] = await this.searchArr(undefined, key, pageStart, pageSize);

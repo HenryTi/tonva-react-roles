@@ -12,6 +12,7 @@ export declare class IdCache {
     useId(id: number, defer?: boolean): void;
     private moveToHead;
     getValue(id: number): any;
+    remove(id: number): void;
     valueFromId(id: number | BoxId): any;
     resetCache(id: number): void;
     cacheValue(val: any): boolean;

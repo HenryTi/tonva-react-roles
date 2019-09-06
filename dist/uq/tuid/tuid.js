@@ -58,6 +58,10 @@ export class TuidInner extends Tuid {
         this.useId(id);
         return this.uq.createBoxId(this, id);
     }
+    removeIdFromCache(id) {
+        if (this.idCache)
+            this.idCache.remove(id);
+    }
     valueFromId(id) { return this.idCache.getValue(id); }
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -191,7 +195,10 @@ export class TuidInner extends Tuid {
             let ret = await this.uqApi.tuidSave(this.name, params);
             return ret;
             */
-            return new SaveCaller(this, { id: id, props: props }).request();
+            let ret = new SaveCaller(this, { id: id, props: props }).request();
+            if (id !== undefined)
+                this.idCache.remove(id);
+            return ret;
         });
     }
     search(key, pageStart, pageSize) {
