@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppUI, CApp } from './app';
-import { nav } from 'components';
+//import { nav } from '../components';
 
 function convertUIKeyToLowercase(obj: any) {
     for (let i in obj) {
