@@ -196,8 +196,10 @@ export class TuidInner extends Tuid {
             return ret;
             */
             let ret = new SaveCaller(this, { id: id, props: props }).request();
-            if (id !== undefined)
+            if (id !== undefined) {
                 this.idCache.remove(id);
+                this.localArr.removeItem(id);
+            }
             return ret;
         });
     }

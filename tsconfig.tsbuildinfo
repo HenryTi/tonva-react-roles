@@ -698,7 +698,7 @@
         "signature": "a34529b0bf51498a689b0cbfaffa1be76167318c2d428da6984205254fc46f45"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/tuid.ts": {
-        "version": "763eb5586d023ec01b4f7f2e81aa3f196cab4b7235a948cacd8a7f1637db2829",
+        "version": "bc54ad82624b2604b2b189c9cd37a68ff3e0f75ad8bc1bb18905c538a2257919",
         "signature": "3aed05210f8834fd706d0f6dd4ad526b678088d0130292fdded08e97b723f48d"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/tuidscache.ts": {
@@ -3779,6 +3779,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/tools.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/register.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/login.tsx",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/vm.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/schema/schema.ts",
@@ -3961,8 +3962,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/inspector.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.5.2"
