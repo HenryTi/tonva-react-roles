@@ -12,8 +12,8 @@ import { Page } from '../page';
 import { observer } from 'mobx-react';
 import { ItemEdit } from './itemEdit';
 export class RadioItemEdit extends ItemEdit {
-    constructor() {
-        super(...arguments);
+    constructor(itemSchema, uiItem, label, value) {
+        super(itemSchema, uiItem, label, value);
         this.onChange = (value) => {
             this.newValue = value;
             let preValue = this.value;
@@ -22,7 +22,7 @@ export class RadioItemEdit extends ItemEdit {
         this.page = observer((props) => {
             let { resolve, reject } = props;
             let { name } = this.itemSchema;
-            let { list, defaultValue } = this.uiItem;
+            let { list } = this.uiItem;
             let right = React.createElement("button", { className: "btn btn-sm btn-success", disabled: !this.isChanged, onClick: () => {
                     this.verifyValue();
                     if (this.error === undefined)
@@ -32,7 +32,7 @@ export class RadioItemEdit extends ItemEdit {
                 list.map((v, index) => {
                     let { title, value } = v;
                     return React.createElement("label", { key: index, className: "px-3 py-2 cursor-pointer" },
-                        React.createElement("input", { name: name, type: "radio", value: value, onClick: () => this.onChange(value), defaultChecked: value === defaultValue }),
+                        React.createElement("input", { name: name, type: "radio", value: value, onClick: () => this.onChange(value), defaultChecked: value === this.value }),
                         " ",
                         title || value,
                         " \u00A0");
@@ -42,6 +42,9 @@ export class RadioItemEdit extends ItemEdit {
             return React.createElement(Page, { header: '更改' + this.label, right: right },
                 React.createElement("div", { className: "m-3" }, content));
         });
+        if (this.value === undefined) {
+            this.value = uiItem.defaultValue;
+        }
     }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {

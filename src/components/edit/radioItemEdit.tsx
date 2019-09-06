@@ -1,13 +1,20 @@
 import * as React from 'react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem, UiRadio } from '../schema';
+import { ItemSchema, UiRadio } from '../schema';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
 import { ItemEdit } from './itemEdit';
 
 export class RadioItemEdit extends ItemEdit {
     protected uiItem: UiRadio;
+
+    constructor(itemSchema: ItemSchema, uiItem:UiRadio, label:string, value: any) {
+        super(itemSchema, uiItem, label, value);
+        if (this.value === undefined) {
+            this.value = uiItem.defaultValue;
+        }
+    }
+
     protected async internalStart():Promise<any> {
         return new Promise<any>((resolve, reject) => {
             let element = React.createElement(this.page, {resolve:resolve, reject:reject});
@@ -24,7 +31,7 @@ export class RadioItemEdit extends ItemEdit {
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
         let {resolve, reject} = props;
         let {name} = this.itemSchema;
-        let {list, defaultValue} = this.uiItem;
+        let {list} = this.uiItem;
         let right = <button
             className="btn btn-sm btn-success"
             disabled={!this.isChanged}
@@ -38,7 +45,7 @@ export class RadioItemEdit extends ItemEdit {
                 return <label key={index} className="px-3 py-2 cursor-pointer">
                     <input name={name} type="radio" value={value} 
                         onClick={()=>this.onChange(value)} 
-                        defaultChecked={value === defaultValue} /> {title || value} &nbsp;
+                        defaultChecked={value === this.value} /> {title || value} &nbsp;
                 </label>;
             })
             :
