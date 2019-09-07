@@ -37,7 +37,7 @@ export abstract class Tuid extends Entity {
     abstract valueFromId(id:number):any;
     abstract async assureBox (id:number): Promise<void>;
     cacheIds() {}
-    modifyIds(ids:any[]) {}
+    async modifyIds(ids:any[]) {}
     isImport = false;
     abstract get hasDiv():boolean;// {return this.divs!==undefined}
     abstract div(name:string):TuidDiv;
@@ -85,9 +85,6 @@ export class TuidInner extends Tuid {
         if (typeof id === 'object') return id;
         this.useId(id);
         return this.uq.createBoxId(this, id);
-    }
-    removeIdFromCache(id:number) {
-        if (this.idCache) this.idCache.remove(id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
     async assureBox (id:number):Promise<void> {

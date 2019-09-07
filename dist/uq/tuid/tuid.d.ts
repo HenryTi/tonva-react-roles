@@ -21,7 +21,7 @@ export declare abstract class Tuid extends Entity {
     abstract valueFromId(id: number): any;
     abstract assureBox(id: number): Promise<void>;
     cacheIds(): void;
-    modifyIds(ids: any[]): void;
+    modifyIds(ids: any[]): Promise<void>;
     isImport: boolean;
     abstract readonly hasDiv: boolean;
     abstract div(name: string): TuidDiv;
@@ -43,7 +43,6 @@ export declare class TuidInner extends Tuid {
     setSchema(schema: any): void;
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
-    removeIdFromCache(id: number): void;
     valueFromId(id: number): any;
     assureBox(id: number): Promise<void>;
     cacheIds(): void;

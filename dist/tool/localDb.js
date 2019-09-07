@@ -151,7 +151,7 @@ class Local {
         return this.caches[ks] = ret = new LocalCache(this, key);
     }
 }
-const maxArrSize = 100;
+const maxArrSize = 500;
 export class LocalArr extends Local {
     constructor(name) {
         super(name);

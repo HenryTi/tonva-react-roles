@@ -70,6 +70,8 @@ export class IdCache {
     }
     remove(id) {
         this.cache.delete(id);
+        let index = this.queue.findIndex(v => v === id);
+        this.queue.splice(index, 1);
     }
     valueFromId(id) {
         let _id;
@@ -85,9 +87,7 @@ export class IdCache {
         return this.getValue(_id);
     }
     resetCache(id) {
-        this.cache.delete(id);
-        let index = this.queue.findIndex(v => v === id);
-        this.queue.splice(index, 1);
+        this.remove(id);
         this.useId(id);
     }
     cacheValue(val) {
@@ -125,7 +125,8 @@ export class IdCache {
     }
     modifyIds(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            let tuidValues = yield this.tuidInner.loadTuidIds(this.divName, ids);
+            //let tuidValues:string[] = await this.tuidInner.loadTuidIds(this.divName, ids);
+            let tuidValues = yield this.loadTuidIdsOrLocal(ids);
             let localedValues = tuidValues.filter(v => {
                 let p = v.indexOf('\t');
                 if (p < 0)

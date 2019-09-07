@@ -90,6 +90,7 @@ export class TuidsCache {
                 max: modifyMax,
                 seconds: now,
             };
+            this.uq.localModifyMax.set(this.modifyMax);
         });
     }
 }

@@ -163,7 +163,7 @@ abstract class Local {
     }
 }
 
-const maxArrSize = 100;
+const maxArrSize = 500;
 export class LocalArr extends Local {
     private readonly index: number[];
     constructor(name: string) {

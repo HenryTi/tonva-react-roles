@@ -75,6 +75,8 @@ export class IdCache {
 
     remove(id:number) {
         this.cache.delete(id);
+        let index = this.queue.findIndex(v => v === id);
+        this.queue.splice(index, 1);
     }
 
     valueFromId(id:number|BoxId):any {
@@ -88,9 +90,7 @@ export class IdCache {
     }
 
     resetCache(id:number) {
-        this.cache.delete(id);
-        let index = this.queue.findIndex(v => v === id);
-        this.queue.splice(index, 1);
+        this.remove(id);
         this.useId(id);
     }
 
@@ -120,7 +120,8 @@ export class IdCache {
         }
     }
     async modifyIds(ids:any[]):Promise<void> {
-        let tuidValues:string[] = await this.tuidInner.loadTuidIds(this.divName, ids);
+        //let tuidValues:string[] = await this.tuidInner.loadTuidIds(this.divName, ids);
+        let tuidValues:string[] = await this.loadTuidIdsOrLocal(ids);
         let localedValues = tuidValues.filter(v => {
             let p = v.indexOf('\t');
             if (p<0) p = v.length;

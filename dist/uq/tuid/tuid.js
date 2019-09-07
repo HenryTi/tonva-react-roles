@@ -26,7 +26,9 @@ export class Tuid extends Entity {
     }
     getIdFromObj(obj) { return obj[this.idName]; }
     cacheIds() { }
-    modifyIds(ids) { }
+    modifyIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () { });
+    }
 }
 export class TuidInner extends Tuid {
     constructor(uq, name, typeId) {
@@ -57,10 +59,6 @@ export class TuidInner extends Tuid {
             return id;
         this.useId(id);
         return this.uq.createBoxId(this, id);
-    }
-    removeIdFromCache(id) {
-        if (this.idCache)
-            this.idCache.remove(id);
     }
     valueFromId(id) { return this.idCache.getValue(id); }
     assureBox(id) {
