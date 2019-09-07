@@ -30,7 +30,7 @@ export interface UiImageItem extends UiItem {
 export interface UiIdItem extends UiItem {
     widget: 'id';
     placeholder?: string | JSX.Element;
-    pickId?: (context: Context, name: string, value: number) => Promise<number>;
+    pickId?: (context: Context, name: string, value: number) => Promise<any>;
 }
 export interface UiInputItem extends UiItem {
     placeholder?: string;

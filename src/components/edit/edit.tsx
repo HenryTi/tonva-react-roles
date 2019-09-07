@@ -1,14 +1,14 @@
 import * as React from 'react';
 import _ from 'lodash';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem } from '../schema';
 import { observer } from 'mobx-react';
+import { Schema, UiSchema, ItemSchema, UiItem, UiSelectBase, UiTextItem, UiIdItem, toUiSelectItems } from '../schema';
 import { ItemEdit } from './itemEdit';
 import { StringItemEdit } from './stringItemEdit';
 import { ImageItemEdit } from './imageItemEdit';
 import { Image } from '../image';
 import { RadioItemEdit } from './radioItemEdit';
 import { SelectItemEdit } from './selectItemEdit';
-import { UiSelectBase } from '../form/uiSchema';
+import { IdItemEdit } from './idItemEdit';
 
 export interface EditProps {
     className?: string;
@@ -68,8 +68,34 @@ export class Edit extends React.Component<EditProps> {
         let {name, type, required} = itemSchema;
         let divValue:any;
         let uiItem = this.uiSchema[name];
-        let label:string = (uiItem && uiItem.label) || name;
+        let label:string;
+        if (uiItem === undefined) {
+            label = name;
+        }
+        else {
+            label = uiItem.label;
+            let templet = uiItem.Templet;
+            if (templet !== undefined) {
+                if (typeof templet === 'function')
+                    divValue = <b>{templet(value)}</b>;
+                else
+                    divValue = <b>{templet}</b>;
+            }
+            else if (value !== undefined) {
+                switch (uiItem.widget) {
+                    case 'radio':
+                    case 'select':
+                        let {list} = uiItem as UiSelectBase;
+                        divValue = <b>{list.find(v => v.value === value).title}</b>;
+                        break;
+                    case 'id':
+                        divValue = <b>no templet for {name}={value}</b>
+                        break;
+                }
+            }
+        }
         //let value:any = this.props.data[name];
+        /*
         if (uiItem !== undefined && value) {
             switch (uiItem.widget) {
                 case 'radio':
@@ -77,8 +103,12 @@ export class Edit extends React.Component<EditProps> {
                     let {list} = uiItem as UiSelectBase;
                     divValue = <b>{list.find(v => v.value === value).title}</b>;
                     break;
+                case 'id':
+                    divValue = <b>no templet for {name}={value}</b>
+                    break;
             }
         }
+        */
         if (divValue === undefined) {
             switch (type) {
                 default:
@@ -135,6 +165,7 @@ function createItemEdit(itemSchema: ItemSchema, uiItem:UiItem, label:string, val
     if (uiItem !== undefined) {
         switch (uiItem.widget) {
             default: break;
+            case 'id': itemEdit = IdItemEdit; break;
             case 'text': itemEdit = StringItemEdit; break;
             case 'image': itemEdit = ImageItemEdit; break;
             case 'radio': itemEdit = RadioItemEdit; break;

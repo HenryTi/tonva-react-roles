@@ -42,7 +42,7 @@ export interface UiIdItem extends UiItem {
     widget: 'id';
     placeholder?: string | JSX.Element;
     //Templet?: (context:Context, name:string, value:number) => JSX.Element;
-    pickId?: (context:Context, name:string, value:number) => Promise<number>;
+    pickId?: (context:Context, name:string, value:number) => Promise<any>;
 }
 
 export interface UiInputItem extends UiItem {
