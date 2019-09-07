@@ -52,6 +52,7 @@ export interface UqData {
     uqOwner: string;
     uqName: string;
     access: string;
+    clearTuids: boolean;
 }
 export interface UqServiceData {
     id: number;

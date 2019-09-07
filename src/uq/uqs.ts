@@ -1,8 +1,8 @@
 import { Uq } from './uq';
 import { TuidImport, TuidInner } from './tuid';
 import { LocalMap, localDb, LocalCache } from '../tool';
-import { UqAppData } from '../net';
 import { CreateBoxId } from './boxId';
+import { UqData } from '../net';
 
 export class Uqs {
     private collection: {[uqName: string]: Uq};
@@ -31,7 +31,7 @@ export class Uqs {
         this.collection[uq.name] = uq;
     }
 
-    async init(uqsData:any):Promise<void> {
+    async init(uqsData:UqData[]):Promise<void> {
         let promiseInits: PromiseLike<void>[] = [];
         for (let uqData of uqsData) {
             let {id, uqOwner, uqName, access} = uqData;

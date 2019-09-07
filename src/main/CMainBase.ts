@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Controller, nav } from "../components";
 import { Uq, Tuid, Action, Sheet, Query, Map, Uqs } from "../uq";
-import { appInFrame, loadAppUqs } from "../net";
+import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 
@@ -101,47 +101,17 @@ export abstract class CMainBase extends Controller {
     private async load(): Promise<string[]> {
         let {appOwner, appName} = this.uqs;
         let {localData} = this.uqs;
-        let uqAppData = localData.get();
+        let uqAppData:UqAppData = localData.get();
         if (!uqAppData || uqAppData.version !== this.version) {
             uqAppData = await loadAppUqs(appOwner, appName);
             uqAppData.version = this.version;
             localData.set(uqAppData);
+            // 
+            for (let uq of uqAppData.uqs) uq.clearTuids = true;
         }
         let {id, uqs} = uqAppData;
         this.uqs.id = id;
-
-        //let retErrors:string[] = [];
-        /*
-        let promiseInits: PromiseLike<void>[] = [];
-        let promises: PromiseLike<string>[] = [];
-        for (let uqData of uqs) {
-            let {id, uqOwner, uqName, access} = uqData;
-            let uqFullName = uqOwner + '/' + uqName;
-            let uqUI = this.ui.uqs[uqFullName] as UqUI || {};
-            let cUq = this.newCUq(uqData, uqUI);
-            this.cUqCollection[uqFullName] = cUq;
-            this.uqs.addUq(cUq.uq);
-            promiseInits.push(cUq.init());
-        }
-        await Promise.all(promiseInits);
-        */
         await this.uqs.init(uqs);
-
-        /*
-        for (let i in this.uqs) {
-            let cUq = this.cUqCollection[i];
-            promises.push(cUq.loadEntities());
-        }
-        let results = await Promise.all(promises);
-        for (let result of results)
-        {
-            let retError = result; // await cUq.loadSchema();
-            if (retError !== undefined) {
-                retErrors.push(retError);
-                continue;
-            }
-        }
-        */
         let retErrors = await this.uqs.load();
         if (retErrors.length === 0) {
             retErrors.push(...this.uqs.setTuidImportsLocal());

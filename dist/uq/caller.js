@@ -53,8 +53,8 @@ export class EntityCaller extends Caller {
     retry(schema) {
         return __awaiter(this, void 0, void 0, function* () {
             ++this.tries;
-            if (this.tries > 10)
-                throw 'can not get right uq response schema, 10 tries';
+            if (this.tries > 5)
+                throw 'can not get right uq response schema, 5 tries';
             this.rebuildSchema(schema);
             return yield this.innerRequest();
         });

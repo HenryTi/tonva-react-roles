@@ -1,4 +1,3 @@
-import { UqApi } from "../../net";
 import { Tuid } from "./tuid";
 import { Uq, TuidModify } from '../uq';
 

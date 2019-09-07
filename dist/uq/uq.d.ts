@@ -11,7 +11,7 @@ import { CreateBoxId } from './boxId';
 import { LocalMap, LocalCache } from '../tool';
 import { Uqs } from './uqs';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
+export declare function fieldDefaultValue(type: FieldType): "" | 0 | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -55,6 +55,7 @@ export declare class Uq {
         [name: string]: Tuid;
     };
     readonly createBoxId: CreateBoxId;
+    readonly clearTuids: boolean;
     readonly uqOwner: string;
     readonly uqName: string;
     readonly name: string;

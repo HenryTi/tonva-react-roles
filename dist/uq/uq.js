@@ -53,8 +53,8 @@ export class Uq {
         this.historyArr = [];
         this.pendingArr = [];
         this.createBoxId = createBoxId;
-        //this.uqApp = uqApp;
-        let { id, uqOwner, uqName, access } = uqData;
+        let { id, uqOwner, uqName, access, clearTuids } = uqData;
+        this.clearTuids = clearTuids;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
@@ -63,9 +63,7 @@ export class Uq {
         this.localMap = uqs.localMap.map(this.name);
         this.localModifyMax = this.localMap.child('$modifyMax');
         this.localAccess = this.localMap.child('$access');
-        //this.entitiesLocalMap = uqs.localMap.map('entities'); // new UqCache(uqData);
         let hash = document.location.hash;
-        //let baseUrl = hash===undefined || hash===''? 'debug/':'tv/';
         let baseUrl = 'tv/';
         let acc;
         if (access === null || access === undefined || access === '*') {
