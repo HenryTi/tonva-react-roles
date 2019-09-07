@@ -77,7 +77,7 @@ export class Uq {
     readonly localModifyMax: LocalCache;
     readonly tuids: {[name:string]: Tuid} = {};
     readonly createBoxId: CreateBoxId;
-    readonly clearTuids: boolean;
+    readonly newVersion: boolean;
     readonly uqOwner: string;
     readonly uqName: string;
     readonly name: string;
@@ -88,8 +88,8 @@ export class Uq {
 
     constructor(uqs:Uqs, uqData: UqData, createBoxId:CreateBoxId) {
         this.createBoxId = createBoxId;
-        let {id, uqOwner, uqName, access, clearTuids} = uqData;
-        this.clearTuids = clearTuids;
+        let {id, uqOwner, uqName, access, newVersion: clearTuids} = uqData;
+        this.newVersion = clearTuids;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;

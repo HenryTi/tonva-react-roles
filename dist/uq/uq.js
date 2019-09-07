@@ -53,8 +53,8 @@ export class Uq {
         this.historyArr = [];
         this.pendingArr = [];
         this.createBoxId = createBoxId;
-        let { id, uqOwner, uqName, access, clearTuids } = uqData;
-        this.clearTuids = clearTuids;
+        let { id, uqOwner, uqName, access, newVersion: clearTuids } = uqData;
+        this.newVersion = clearTuids;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;

@@ -55,7 +55,7 @@ export declare class Uq {
         [name: string]: Tuid;
     };
     readonly createBoxId: CreateBoxId;
-    readonly clearTuids: boolean;
+    readonly newVersion: boolean;
     readonly uqOwner: string;
     readonly uqName: string;
     readonly name: string;

@@ -107,7 +107,7 @@ export abstract class CMainBase extends Controller {
             uqAppData.version = this.version;
             localData.set(uqAppData);
             // 
-            for (let uq of uqAppData.uqs) uq.clearTuids = true;
+            for (let uq of uqAppData.uqs) uq.newVersion = true;
         }
         let {id, uqs} = uqAppData;
         this.uqs.id = id;

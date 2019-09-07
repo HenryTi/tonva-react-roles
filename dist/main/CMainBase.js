@@ -85,7 +85,7 @@ export class CMainBase extends Controller {
                 localData.set(uqAppData);
                 // 
                 for (let uq of uqAppData.uqs)
-                    uq.clearTuids = true;
+                    uq.newVersion = true;
             }
             let { id, uqs } = uqAppData;
             this.uqs.id = id;

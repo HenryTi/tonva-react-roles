@@ -35,7 +35,7 @@ export class TuidInner extends Tuid {
         super(uq, name, typeId);
         this.idCache = new IdCache(this);
         this.localArr = this.cache.arr(this.name + '.whole');
-        if (uq.clearTuids === true)
+        if (uq.newVersion === true)
             this.localArr.removeAll();
     }
     setSchema(schema) {
