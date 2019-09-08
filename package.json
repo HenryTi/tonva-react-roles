@@ -1,6 +1,6 @@
 {
   "name": "tonva",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "description": "tonva client libs",
   "repository": "henryti/tonva",
   "private": false,
@@ -15,9 +15,9 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
-    "mobx": "^5.5.2",
-    "mobx-react": "^5.3.6",
+    "lodash": "^4.17.15",
+    "mobx": "^5.13.0",
+    "mobx-react": "^5.4.4",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "typescript": "^3.0.3"
