@@ -1,5 +1,5 @@
 import { Entity } from '../entity';
-import { Uq, Field, SchemaFrom } from '../uq';
+import { UqMan, Field, SchemaFrom } from '../uqMan';
 import { BoxId } from '../boxId';
 import { IdCache, IdDivCache } from './idCache';
 import { LocalArr } from '../../tool';
@@ -12,7 +12,7 @@ export declare abstract class Tuid extends Entity {
     protected idName: string;
     cached: boolean;
     unique: string[];
-    constructor(uq: Uq, name: string, typeId: number);
+    constructor(uq: UqMan, name: string, typeId: number);
     setSchema(schema: any): void;
     buildTuidBox(): TuidBox;
     getIdFromObj(obj: any): number;
@@ -39,7 +39,7 @@ export declare class TuidInner extends Tuid {
     protected cacheFields: Field[];
     protected idCache: IdCache;
     protected localArr: LocalArr;
-    constructor(uq: Uq, name: string, typeId: number);
+    constructor(uq: UqMan, name: string, typeId: number);
     setSchema(schema: any): void;
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
@@ -65,7 +65,7 @@ export declare class TuidInner extends Tuid {
 }
 export declare class TuidImport extends Tuid {
     private tuidLocal;
-    constructor(uq: Uq, name: string, typeId: number, from: SchemaFrom);
+    constructor(uq: UqMan, name: string, typeId: number, from: SchemaFrom);
     setFrom(tuidLocal: TuidInner): void;
     readonly from: SchemaFrom;
     isImport: boolean;
@@ -99,7 +99,7 @@ export declare class TuidDiv extends TuidInner {
     protected tuid: TuidInner;
     protected idName: string;
     protected idCache: IdDivCache;
-    constructor(uq: Uq, tuid: TuidInner, name: string);
+    constructor(uq: UqMan, tuid: TuidInner, name: string);
     readonly owner: TuidInner;
     buildFieldsTuid(): void;
     buildTuidDivBox(ownerField: Field): TuidBoxDiv;

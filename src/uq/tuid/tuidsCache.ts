@@ -1,5 +1,5 @@
 import { Tuid } from "./tuid";
-import { Uq, TuidModify } from '../uq';
+import { UqMan, TuidModify } from '../uqMan';
 
 interface Modify {
     id: number;
@@ -8,12 +8,12 @@ interface Modify {
 }
 
 export class TuidsCache {
-    private readonly uq: Uq;
+    private readonly uq: UqMan;
     //private readonly uqApi: UqApi;
     //private readonly tuids: {[name:string]: Tuid};
     private modifyMax: TuidModify;
     private cacheTimer: any;
-    constructor(uq: Uq) {
+    constructor(uq: UqMan) {
         this.uq = uq;
         //this.uqApi = uq.uqApi;
         //this.tuids = uq.tuids;

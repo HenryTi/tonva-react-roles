@@ -10,7 +10,7 @@ import { nav, Controller, resLang } from '../../components';
 import { loadAppUqs, appInFrame, getExHash } from '../../net';
 import { CUq } from '../cUq';
 import { centerApi } from '../centerApi';
-import { Uqs } from '../../uq';
+import { UQsMan } from '../../uq';
 import { VUnsupportedUnit, VAppMain, VUnitSelect, VErrorsPage, VAppStartError } from './vApp';
 export class CApp extends Controller {
     constructor(ui) {
@@ -23,7 +23,7 @@ export class CApp extends Controller {
         if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
-        this.uqs = new Uqs(this.name);
+        this.uqs = new UQsMan(this.name);
         if (ui.uqs === undefined)
             ui.uqs = {};
         this.ui = ui;

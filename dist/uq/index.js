@@ -1,4 +1,4 @@
-export * from './uq';
+export * from './uqMan';
 export * from './entity';
 export * from './action';
 export * from './query';
@@ -8,5 +8,5 @@ export * from './book';
 export * from './map';
 export * from './history';
 export * from './pending';
-export * from './uqs';
+export * from './uqsMan';
 //# sourceMappingURL=index.js.map

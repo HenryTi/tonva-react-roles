@@ -1,7 +1,7 @@
 import { Controller, TypeVPage, NavSettings } from '../../components';
 import { UqData } from '../../net';
 import { CUq, UqUI } from '../cUq';
-import { Uqs } from '../../uq';
+import { UQsMan } from '../../uq';
 export interface RoleAppUI {
     CApp?: typeof CApp;
     CUq?: typeof CUq;
@@ -24,7 +24,7 @@ export declare class CApp extends Controller {
     protected ui: AppUI;
     readonly name: string;
     readonly version: string;
-    readonly uqs: Uqs;
+    readonly uqs: UQsMan;
     readonly caption: string;
     appUnits: any[];
     constructor(ui: AppUI);

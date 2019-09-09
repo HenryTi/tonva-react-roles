@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { Uq, Tuid, Action, Sheet, Query, Map, Uqs } from "../uq";
+import { UqMan, Tuid, Action, Sheet, Query, Map, UQsMan } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
@@ -32,7 +32,7 @@ export abstract class CAppBase extends Controller {
     protected readonly appUqs: AppUqs;
     protected readonly tvs: TVs;
 
-    readonly uqs: Uqs;
+    readonly uqsMan: UQsMan;
     appUnits:any[];
 
     // appName: owner/name
@@ -46,7 +46,7 @@ export abstract class CAppBase extends Controller {
         this.version = version;
         this.tvs = tvs;
         this.appUqs = {};
-        this.uqs = new Uqs(this.name);
+        this.uqsMan = new UQsMan(this.name);
     }
 
     protected async beforeStart():Promise<boolean> {
@@ -60,7 +60,7 @@ export abstract class CAppBase extends Controller {
             //this.id = id;
             let {user} = nav;
             if (user !== undefined && user.id > 0) {
-                this.appUnits = await centerApi.userAppUnits(this.uqs.id);
+                this.appUnits = await centerApi.userAppUnits(this.uqsMan.id);
                 switch (this.appUnits.length) {
                     case 0:
                         this.showUnsupport(predefinedUnit);
@@ -98,8 +98,8 @@ export abstract class CAppBase extends Controller {
     }
 
     private async load(): Promise<string[]> {
-        let {appOwner, appName} = this.uqs;
-        let {localData} = this.uqs;
+        let {appOwner, appName} = this.uqsMan;
+        let {localData} = this.uqsMan;
         let uqAppData:UqAppData = localData.get();
         if (!uqAppData || uqAppData.version !== this.version) {
             uqAppData = await loadAppUqs(appOwner, appName);
@@ -109,13 +109,13 @@ export abstract class CAppBase extends Controller {
             for (let uq of uqAppData.uqs) uq.newVersion = true;
         }
         let {id, uqs} = uqAppData;
-        this.uqs.id = id;
-        await this.uqs.init(uqs);
-        let retErrors = await this.uqs.load();
+        this.uqsMan.id = id;
+        await this.uqsMan.init(uqs);
+        let retErrors = await this.uqsMan.load();
         if (retErrors.length === 0) {
-            retErrors.push(...this.uqs.setTuidImportsLocal());
+            retErrors.push(...this.uqsMan.setTuidImportsLocal());
             if (retErrors.length === 0) {
-                _.merge(this.appUqs, this.uqs.uqsColl);
+                _.merge(this.appUqs, this.uqsMan.uqsColl);
                 return;
             }
         }

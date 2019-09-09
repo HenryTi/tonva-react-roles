@@ -1,6 +1,6 @@
 import { UqApi } from '../net';
 import { LocalCache } from '../tool';
-import { Uq, Field, ArrFields, FieldMap } from './uq';
+import { UqMan, Field, ArrFields, FieldMap } from './uqMan';
 import { Tuid } from './tuid';
 //import { EntityCache } from './caches';
 
@@ -12,7 +12,7 @@ export abstract class Entity {
     schema: any;
     ver: number = 0;
     sys?: boolean;
-    readonly uq: Uq;
+    readonly uq: UqMan;
     readonly name: string;
     readonly typeId: number;
     readonly cache: LocalCache;
@@ -23,7 +23,7 @@ export abstract class Entity {
     arrFields: ArrFields[];
     returns: ArrFields[];
 
-    constructor(uq:Uq, name:string, typeId:number) {
+    constructor(uq:UqMan, name:string, typeId:number) {
         this.uq = uq;
         this.name = name;
         this.typeId = typeId;

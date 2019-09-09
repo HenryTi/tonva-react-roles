@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Entity } from '../entity';
-import { Uq, ArrFields, Field, SchemaFrom } from '../uq';
+import { UqMan, ArrFields, Field, SchemaFrom } from '../uqMan';
 import { BoxId } from '../boxId';
 import { IdCache, IdDivCache } from './idCache';
 import { EntityCaller } from '../caller';
@@ -17,7 +17,7 @@ export abstract class Tuid extends Entity {
     cached: boolean;
     unique: string[];
 
-    constructor(uq:Uq, name:string, typeId:number) {
+    constructor(uq:UqMan, name:string, typeId:number) {
         super(uq, name, typeId)
     }
 
@@ -56,7 +56,7 @@ export class TuidInner extends Tuid {
     protected cacheFields: Field[];
     protected idCache: IdCache;
     protected localArr:LocalArr;
-    constructor(uq:Uq, name:string, typeId:number) {
+    constructor(uq:UqMan, name:string, typeId:number) {
         super(uq, name, typeId);
         this.idCache = new IdCache(this);
         this.localArr = this.cache.arr(this.name + '.whole');
@@ -360,7 +360,7 @@ class ArrPosCaller extends TuidCaller<{arr:string, owner:number, id:number, orde
 export class TuidImport extends Tuid {
     private tuidLocal: TuidInner;
 
-    constructor(uq:Uq, name:string, typeId:number, from: SchemaFrom) {
+    constructor(uq:UqMan, name:string, typeId:number, from: SchemaFrom) {
         super(uq, name, typeId);
         this.from = from;
     }
@@ -439,7 +439,7 @@ export class TuidDiv extends TuidInner /* Entity*/ {
     //ui: React.StatelessComponent<any>;
     //res: any;
 
-    constructor(uq: Uq, tuid: TuidInner, name: string) {
+    constructor(uq: UqMan, tuid: TuidInner, name: string) {
         super(uq, name, 0);
         this.tuid = tuid;
         this.idName = 'id';

@@ -1,11 +1,11 @@
-import { Uq } from './uq';
+import { UqMan } from './uqMan';
 import { TuidImport, TuidInner } from './tuid';
 import { LocalMap, localDb, LocalCache } from '../tool';
 import { CreateBoxId } from './boxId';
 import { UqData } from '../net';
 
-export class Uqs {
-    private collection: {[uqName: string]: Uq};
+export class UQsMan {
+    private collection: {[uqName: string]: UqMan};
 
     readonly name: string;
     readonly appOwner: string;
@@ -27,7 +27,7 @@ export class Uqs {
     }
 
     // to be removed in the future
-    addUq(uq: Uq) {
+    addUq(uq: UqMan) {
         this.collection[uq.name] = uq;
     }
 
@@ -40,7 +40,7 @@ export class Uqs {
             //let cUq = this.newCUq(uqData, uqUI);
             //this.cUqCollection[uqFullName] = cUq;
             //this.uqs.addUq(cUq.uq);
-            let uq = new Uq(this, uqData, this.createBoxId);
+            let uq = new UqMan(this, uqData, this.createBoxId);
             this.collection[uqFullName] = uq;
             promiseInits.push(uq.init());
         }

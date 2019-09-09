@@ -43,7 +43,7 @@ export class VUnsupportedUnit extends VPage<CAppBase> {
     private page = (predefinedUnit: number) => {
         let {user} = nav;
         let userName:string = user? user.name : '[未登录]';
-        let {appOwner, appName} = this.controller.uqs;
+        let {appOwner, appName} = this.controller.uqsMan;
         return <Page header="APP无法运行" logout={true}>
             <div className="m-3 text-danger container">
                 <div className="form-group row">

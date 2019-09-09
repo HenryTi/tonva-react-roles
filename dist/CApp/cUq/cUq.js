@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { Controller, resLang } from '../../components';
 import { PureJSONContent } from '../tools';
-import { Uq } from '../../uq';
+import { UqMan } from '../../uq';
 import { CLink } from '../link';
 import { CBook } from '../book';
 import { CSheet } from '../sheet';
@@ -66,7 +66,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CBook = ui.CBook || CBook;
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
-        this.uq = new Uq(cApp.uqs, uqData, this.createBoxId);
+        this.uq = new UqMan(cApp.uqs, uqData, this.createBoxId);
     }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {

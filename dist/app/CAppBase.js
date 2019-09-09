@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { Uqs } from "../uq";
+import { UQsMan } from "../uq";
 import { appInFrame, loadAppUqs } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
@@ -24,7 +24,7 @@ export class CAppBase extends Controller {
         this.version = version;
         this.tvs = tvs;
         this.appUqs = {};
-        this.uqs = new Uqs(this.name);
+        this.uqs = new UQsMan(this.name);
     }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { Controller, resLang, nav } from '../../components';
 import { UqData } from '../../net';
 import { PureJSONContent } from '../tools';
-import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv, CreateBoxId, BoxId } from '../../uq';
+import { UqMan, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv, CreateBoxId, BoxId } from '../../uq';
 import { CLink } from '../link';
 import { CBook, BookUI } from '../book';
 import { CSheet, SheetUI } from '../sheet';
@@ -96,7 +96,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
 
-        this.uq = new Uq(cApp.uqs, uqData, this.createBoxId);
+        this.uq = new UqMan(cApp.uqs, uqData, this.createBoxId);
     }
 
     protected async internalStart() {
@@ -104,7 +104,7 @@ export class CUq extends Controller /* implements Uq*/ {
 
     cApp:CApp;
     res: any;
-    uq: Uq;
+    uq: UqMan;
     error: string;
     
     private createBoxId:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{

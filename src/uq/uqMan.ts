@@ -11,7 +11,7 @@ import { Pending } from './pending';
 import { CreateBoxId } from './boxId';
 //import { UqCache } from './caches';
 import { LocalMap, LocalCache } from '../tool';
-import { Uqs } from './uqs';
+import { UQsMan } from './uqsMan';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
     | 'datetime' | 'date' | 'time';
@@ -63,7 +63,7 @@ export interface TuidModify {
     seconds: number;
 }
 
-export class Uq {
+export class UqMan {
     private readonly actions: {[name:string]: Action} = {};
     private readonly sheets: {[name:string]: Sheet} = {};
     private readonly queries: {[name:string]: Query} = {};
@@ -86,7 +86,7 @@ export class Uq {
 
     uqVersion: number;
 
-    constructor(uqs:Uqs, uqData: UqData, createBoxId:CreateBoxId) {
+    constructor(uqs:UQsMan, uqData: UqData, createBoxId:CreateBoxId) {
         this.createBoxId = createBoxId;
         let {id, uqOwner, uqName, access, newVersion: clearTuids} = uqData;
         this.newVersion = clearTuids;

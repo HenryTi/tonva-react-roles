@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Controller } from '../../components';
 import { UqData } from '../../net';
-import { Uq, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv } from '../../uq';
+import { UqMan, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv } from '../../uq';
 import { CLink } from '../link';
 import { CBook, BookUI } from '../book';
 import { CSheet, SheetUI } from '../sheet';
@@ -75,7 +75,7 @@ export declare class CUq extends Controller {
     protected internalStart(): Promise<void>;
     cApp: CApp;
     res: any;
-    uq: Uq;
+    uq: UqMan;
     error: string;
     private createBoxId;
     init(): Promise<void>;

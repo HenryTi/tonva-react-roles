@@ -3,7 +3,7 @@ import { nav, Controller, TypeVPage, resLang, NavSettings} from '../../component
 import { loadAppUqs, appInFrame, getExHash, UqData} from '../../net';
 import { CUq, UqUI } from '../cUq';
 import { centerApi } from '../centerApi';
-import { Uqs } from '../../uq';
+import { UQsMan } from '../../uq';
 import { VUnsupportedUnit, VAppMain, VUnitSelect, VErrorsPage, VAppStartError } from './vApp';
 
 export interface RoleAppUI {
@@ -26,7 +26,7 @@ export class CApp extends Controller {
     protected ui:AppUI;
     readonly name: string;
     readonly version: string;
-    readonly uqs: Uqs;
+    readonly uqs: UQsMan;
     readonly caption: string; // = 'View Model 版的 Uq App';
     appUnits:any[];
 
@@ -38,7 +38,7 @@ export class CApp extends Controller {
         if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
-        this.uqs = new Uqs(this.name);
+        this.uqs = new UQsMan(this.name);
         if (ui.uqs === undefined) ui.uqs = {};
         this.ui = ui;
         this.caption = this.res.caption || 'Tonva';

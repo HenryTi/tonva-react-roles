@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { Controller } from "../components";
-import { Tuid, Action, Sheet, Query, Map, Uqs } from "../uq";
+import { Tuid, Action, Sheet, Query, Map, UQsMan } from "../uq";
 declare type EntityType = Tuid | Action | Sheet | Query | Map;
 interface AppUqs {
     [uqName: string]: {
@@ -23,7 +23,7 @@ export declare abstract class CAppBase extends Controller {
     protected readonly version: string;
     protected readonly appUqs: AppUqs;
     protected readonly tvs: TVs;
-    readonly uqs: Uqs;
+    readonly uqs: UQsMan;
     appUnits: any[];
     constructor(config: AppConfig);
     protected beforeStart(): Promise<boolean>;

@@ -1,7 +1,7 @@
 import { Entity } from './entity';
 import { Action, ActionSubmitCaller } from './action';
 import { Query } from './query';
-import { Field, Uq } from './uq';
+import { Field, UqMan } from './uqMan';
 import { EntityCaller, QueryPageCaller, QueryQueryCaller } from './caller';
 
 interface MapActions {

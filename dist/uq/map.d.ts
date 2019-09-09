@@ -1,7 +1,7 @@
 import { Entity } from './entity';
 import { Action } from './action';
 import { Query } from './query';
-import { Field } from './uq';
+import { Field } from './uqMan';
 interface MapActions {
     add: Action;
     del: Action;

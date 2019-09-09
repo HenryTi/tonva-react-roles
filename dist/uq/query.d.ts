@@ -1,5 +1,5 @@
 import { IObservableArray } from 'mobx';
-import { ArrFields } from './uq';
+import { ArrFields } from './uqMan';
 import { Entity } from './entity';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
 export declare class Query extends Entity {
