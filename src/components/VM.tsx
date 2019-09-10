@@ -80,23 +80,23 @@ export abstract class Controller {
         this.receiveHandlerId = nav.registerReceiveHandler(this.onMessageReceive);
     }
 
-    protected abstract internalStart(param?:any):Promise<void>;
-    async start(param?:any):Promise<void> {
+    protected abstract internalStart(param?:any, ...params:any[]):Promise<void>;
+    async start(param?:any, ...params:any[]):Promise<void> {
         this.disposer = this.dispose.bind(this);
         this.registerReceiveHandler();
         let ret = await this.beforeStart();
         if (ret === false) return;
-        await this.internalStart(param);
+        await this.internalStart(param, ...params);
     }
 
     get isCalling():boolean {return this._resolve_$ !== undefined}
 
     private _resolve_$:((value:any) => void)[];
-    async call<T>(param?:any):Promise<T> {
+    async call<T>(param?:any, ...params:any[]):Promise<T> {
         if (this._resolve_$ === undefined) this._resolve_$ = [];
         return new Promise<T> (async (resolve, reject) => {
             this._resolve_$.push(resolve);
-            await this.start(param);
+            await this.start(param, ...params);
         });
     }
 

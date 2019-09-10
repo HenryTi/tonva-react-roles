@@ -73,24 +73,24 @@ export class Controller {
     registerReceiveHandler() {
         this.receiveHandlerId = nav.registerReceiveHandler(this.onMessageReceive);
     }
-    start(param) {
+    start(param, ...params) {
         return __awaiter(this, void 0, void 0, function* () {
             this.disposer = this.dispose.bind(this);
             this.registerReceiveHandler();
             let ret = yield this.beforeStart();
             if (ret === false)
                 return;
-            yield this.internalStart(param);
+            yield this.internalStart(param, ...params);
         });
     }
     get isCalling() { return this._resolve_$ !== undefined; }
-    call(param) {
+    call(param, ...params) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this._resolve_$ === undefined)
                 this._resolve_$ = [];
             return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
                 this._resolve_$.push(resolve);
-                yield this.start(param);
+                yield this.start(param, ...params);
             }));
         });
     }

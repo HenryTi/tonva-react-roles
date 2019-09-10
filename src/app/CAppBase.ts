@@ -1,37 +1,32 @@
 import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { UqMan, Tuid, Action, Sheet, Query, Map, UQsMan } from "../uq";
+import { UqMan, Tuid, Action, Sheet, Query, Map, UQsMan, TVs } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 
 type EntityType = Tuid | Action | Sheet | Query | Map;
 
-interface AppUqs {
-    [uqName: string]: {
-        [entityName: string]: EntityType;
-    }
-}
+export interface IConstructor<T> {
+    new (...args: any[]): T;
 
-interface TVs {
-    [uqName:string]: {
-        [tuidName: string]: (values: any) => JSX.Element;
-    }
+    // Or enforce default constructor
+    // new (): T;
 }
 
 export interface AppConfig {
     appName: string;        // 格式: owner/appName
     version: string;        // 版本变化，缓存的uqs才会重载
     tvs: TVs;
+    uqNameMap?: {[uqName:string]: string};      // uqName='owner/uq' 映射到内存简单名字：uq, 可以注明映射，也可以自动。有可能重
     loginTop?: JSX.Element;
 }
 
 export abstract class CAppBase extends Controller {
     protected readonly name: string;
     protected readonly version: string;
-    protected readonly appUqs: AppUqs;
-    protected readonly tvs: TVs;
 
+    readonly uqs: any; //IUQs;
     readonly uqsMan: UQsMan;
     appUnits:any[];
 
@@ -44,9 +39,8 @@ export abstract class CAppBase extends Controller {
             throw 'appName like "owner/app" must be defined in MainConfig';
         }
         this.version = version;
-        this.tvs = tvs;
-        this.appUqs = {};
-        this.uqsMan = new UQsMan(this.name);
+        this.uqs = {};
+        this.uqsMan = new UQsMan(this.name, tvs);
     }
 
     protected async beforeStart():Promise<boolean> {
@@ -115,7 +109,20 @@ export abstract class CAppBase extends Controller {
         if (retErrors.length === 0) {
             retErrors.push(...this.uqsMan.setTuidImportsLocal());
             if (retErrors.length === 0) {
-                _.merge(this.appUqs, this.uqsMan.uqsColl);
+                this.uqsMan.writeUQs(this.uqs);
+                /*
+                _.merge(this.uqs, this.uqsMan.uqsColl);
+                for (let i in this.uqs) {
+                    let p = i.indexOf('/');
+                    if (p < 0) continue;
+                    let uq = this.uqs[i];
+                    
+                    let n = i.substr(p+1);
+                    let l = n.toLowerCase();
+                    this.uqs[n] = uq;
+                    if (l !== n) this.uqs[l] = uq;
+                }
+                */
                 return;
             }
         }

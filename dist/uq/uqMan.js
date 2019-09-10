@@ -16,6 +16,7 @@ import { Book } from './book';
 import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
+import { ReactBoxId } from './tuid/reactBoxId';
 export function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':
@@ -35,7 +36,7 @@ export function fieldDefaultValue(type) {
     }
 }
 export class UqMan {
-    constructor(uqs, uqData, createBoxId) {
+    constructor(uqs, uqData, createBoxId, tvs) {
         this.actions = {};
         this.sheets = {};
         this.queries = {};
@@ -44,6 +45,17 @@ export class UqMan {
         this.histories = {};
         this.pendings = {};
         this.tuids = {};
+        this.createBoxIdFromTVs = (tuid, id) => {
+            let { name, sName } = tuid;
+            /*
+            let tuidUR = this.tuidURs[name];
+            if (tuidUR === undefined) {
+                let {ui, res} = this.getUI(tuid);
+                this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
+            }
+            */
+            return new ReactBoxId(id, tuid, this.tvs[name]);
+        };
         this.tuidArr = [];
         this.actionArr = [];
         this.sheetArr = [];
@@ -53,6 +65,10 @@ export class UqMan {
         this.historyArr = [];
         this.pendingArr = [];
         this.createBoxId = createBoxId;
+        if (createBoxId === undefined) {
+            this.createBoxId = this.createBoxIdFromTVs;
+            this.tvs = tvs || {};
+        }
         let { id, uqOwner, uqName, access, newVersion: clearTuids } = uqData;
         this.newVersion = clearTuids;
         this.uqOwner = uqOwner;

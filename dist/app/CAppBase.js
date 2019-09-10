@@ -6,7 +6,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import _ from 'lodash';
 import { Controller, nav } from "../components";
 import { UQsMan } from "../uq";
 import { appInFrame, loadAppUqs } from "../net";
@@ -22,9 +21,8 @@ export class CAppBase extends Controller {
             throw 'appName like "owner/app" must be defined in MainConfig';
         }
         this.version = version;
-        this.tvs = tvs;
-        this.appUqs = {};
-        this.uqs = new UQsMan(this.name);
+        this.uqs = {};
+        this.uqsMan = new UQsMan(this.name, tvs);
     }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -38,7 +36,7 @@ export class CAppBase extends Controller {
                 //this.id = id;
                 let { user } = nav;
                 if (user !== undefined && user.id > 0) {
-                    this.appUnits = yield centerApi.userAppUnits(this.uqs.id);
+                    this.appUnits = yield centerApi.userAppUnits(this.uqsMan.id);
                     switch (this.appUnits.length) {
                         case 0:
                             this.showUnsupport(predefinedUnit);
@@ -76,8 +74,8 @@ export class CAppBase extends Controller {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            let { appOwner, appName } = this.uqs;
-            let { localData } = this.uqs;
+            let { appOwner, appName } = this.uqsMan;
+            let { localData } = this.uqsMan;
             let uqAppData = localData.get();
             if (!uqAppData || uqAppData.version !== this.version) {
                 uqAppData = yield loadAppUqs(appOwner, appName);
@@ -88,13 +86,26 @@ export class CAppBase extends Controller {
                     uq.newVersion = true;
             }
             let { id, uqs } = uqAppData;
-            this.uqs.id = id;
-            yield this.uqs.init(uqs);
-            let retErrors = yield this.uqs.load();
+            this.uqsMan.id = id;
+            yield this.uqsMan.init(uqs);
+            let retErrors = yield this.uqsMan.load();
             if (retErrors.length === 0) {
-                retErrors.push(...this.uqs.setTuidImportsLocal());
+                retErrors.push(...this.uqsMan.setTuidImportsLocal());
                 if (retErrors.length === 0) {
-                    _.merge(this.appUqs, this.uqs.uqsColl);
+                    this.uqsMan.writeUQs(this.uqs);
+                    /*
+                    _.merge(this.uqs, this.uqsMan.uqsColl);
+                    for (let i in this.uqs) {
+                        let p = i.indexOf('/');
+                        if (p < 0) continue;
+                        let uq = this.uqs[i];
+                        
+                        let n = i.substr(p+1);
+                        let l = n.toLowerCase();
+                        this.uqs[n] = uq;
+                        if (l !== n) this.uqs[l] = uq;
+                    }
+                    */
                     return;
                 }
             }

@@ -1,10 +1,10 @@
 import _ from 'lodash';
+import { LocalArr } from '../../tool';
 import { Entity } from '../entity';
 import { UqMan, ArrFields, Field, SchemaFrom } from '../uqMan';
-import { BoxId } from '../boxId';
-import { IdCache, IdDivCache } from './idCache';
 import { EntityCaller } from '../caller';
-import { LocalArr } from '../../tool';
+import { BoxId } from './boxId';
+import { IdCache, IdDivCache } from './idCache';
 
 export interface TuidSaveResult {
     id: number;
@@ -84,7 +84,9 @@ export class TuidInner extends Tuid {
     boxId(id:number):BoxId {
         if (typeof id === 'object') return id;
         this.useId(id);
-        return this.uq.createBoxId(this, id);
+        let {createBoxId} = this.uq;
+        if (!createBoxId) return {id: id} as BoxId;
+        return createBoxId(this, id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
     async assureBox (id:number):Promise<void> {

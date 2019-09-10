@@ -2,7 +2,7 @@ import { observable } from 'mobx';
 import { isNumber } from 'util';
 import _ from 'lodash';
 import { LocalArr } from '../../tool';
-import { BoxId } from '../boxId';
+import { BoxId } from './boxId';
 import { TuidInner, TuidDiv } from './tuid';
 
 const maxCacheSize = 1000;

@@ -9,7 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { UqMan } from './uqMan';
 import { localDb } from '../tool';
 export class UQsMan {
-    constructor(tonvaAppName) {
+    constructor(tonvaAppName, tvs) {
+        this.tvs = tvs || {};
+        this.buildTVs();
         this.collection = {};
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
@@ -24,6 +26,26 @@ export class UQsMan {
     addUq(uq) {
         this.collection[uq.name] = uq;
     }
+    buildTVs() {
+        for (let i in this.tvs) {
+            let uqTVs = this.tvs[i];
+            if (uqTVs === undefined)
+                continue;
+            let l = i.toLowerCase();
+            if (l === i)
+                continue;
+            this.tvs[l] = uqTVs;
+            for (let j in uqTVs) {
+                let en = uqTVs[j];
+                if (en === undefined)
+                    continue;
+                let lj = j.toLowerCase();
+                if (lj === j)
+                    continue;
+                uqTVs[lj] = en;
+            }
+        }
+    }
     init(uqsData) {
         return __awaiter(this, void 0, void 0, function* () {
             let promiseInits = [];
@@ -34,7 +56,7 @@ export class UQsMan {
                 //let cUq = this.newCUq(uqData, uqUI);
                 //this.cUqCollection[uqFullName] = cUq;
                 //this.uqs.addUq(cUq.uq);
-                let uq = new UqMan(this, uqData, this.createBoxId);
+                let uq = new UqMan(this, uqData, undefined, this.tvs[uqFullName] || this.tvs[uqName]);
                 this.collection[uqFullName] = uq;
                 promiseInits.push(uq.init());
             }
@@ -60,12 +82,33 @@ export class UQsMan {
             return retErrors;
         });
     }
-    get uqsColl() {
-        let ret = {};
+    writeUQs(uqs) {
+        /*
+        let ret:any = {};
         for (let i in this.collection) {
             ret[i] = this.collection[i].entities;
         }
         return ret;
+        */
+        //_.merge(this.uqs, this.uqsMan.uqsColl);
+        for (let i in this.collection) {
+            let uqMan = this.collection[i];
+            //let n = uqMan.name;
+            let uqName = uqMan.uqName;
+            let l = uqName.toLowerCase();
+            let entities = uqMan.entities;
+            let keys = Object.keys(entities);
+            for (let key of keys) {
+                let entity = entities[key];
+                let { name, sName } = entity;
+                if (name !== sName)
+                    entities[sName] = entity;
+            }
+            uqs[i] = entities;
+            uqs[uqName] = entities;
+            if (l !== uqName)
+                uqs[l] = entities;
+        }
     }
     setTuidImportsLocal() {
         let ret = [];

@@ -1,11 +1,18 @@
 import { UqMan } from './uqMan';
 import { TuidImport, TuidInner } from './tuid';
 import { LocalMap, localDb, LocalCache } from '../tool';
-import { CreateBoxId } from './boxId';
+import { CreateBoxId } from './tuid/boxId';
 import { UqData } from '../net';
+
+export interface TVs {
+    [uqName:string]: {
+        [tuidName: string]: (values: any) => JSX.Element;
+    }
+}
 
 export class UQsMan {
     private collection: {[uqName: string]: UqMan};
+    private readonly tvs: TVs;
 
     readonly name: string;
     readonly appOwner: string;
@@ -14,7 +21,9 @@ export class UQsMan {
     readonly localData: LocalCache;
     id: number;
 
-    constructor(tonvaAppName:string) {
+    constructor(tonvaAppName:string, tvs:TVs) {
+        this.tvs = tvs || {};
+        this.buildTVs();
         this.collection = {};
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
@@ -31,6 +40,23 @@ export class UQsMan {
         this.collection[uq.name] = uq;
     }
 
+    private buildTVs() {
+        for (let i in this.tvs) {
+            let uqTVs = this.tvs[i];
+            if (uqTVs === undefined) continue;
+            let l = i.toLowerCase();
+            if (l === i) continue;
+            this.tvs[l] = uqTVs;
+            for (let j in uqTVs) {
+                let en = uqTVs[j];
+                if (en === undefined) continue;
+                let lj = j.toLowerCase();
+                if (lj === j) continue;
+                uqTVs[lj] = en;
+            }
+        }
+    }
+
     async init(uqsData:UqData[]):Promise<void> {
         let promiseInits: PromiseLike<void>[] = [];
         for (let uqData of uqsData) {
@@ -40,7 +66,7 @@ export class UQsMan {
             //let cUq = this.newCUq(uqData, uqUI);
             //this.cUqCollection[uqFullName] = cUq;
             //this.uqs.addUq(cUq.uq);
-            let uq = new UqMan(this, uqData, this.createBoxId);
+            let uq = new UqMan(this, uqData, undefined, this.tvs[uqFullName] || this.tvs[uqName]);
             this.collection[uqFullName] = uq;
             promiseInits.push(uq.init());
         }
@@ -66,15 +92,32 @@ export class UQsMan {
         return retErrors;
     }
 
-    get uqsColl() {
+    writeUQs(uqs:any) {
+        /*
         let ret:any = {};
         for (let i in this.collection) {
             ret[i] = this.collection[i].entities;
         }
         return ret;
+        */
+        //_.merge(this.uqs, this.uqsMan.uqsColl);
+        for (let i in this.collection) {
+            let uqMan = this.collection[i];
+            //let n = uqMan.name;
+            let uqName = uqMan.uqName;
+            let l = uqName.toLowerCase();
+            let entities = uqMan.entities;
+            let keys = Object.keys(entities);
+            for (let key of keys) {
+                let entity = entities[key];
+                let {name, sName} = entity;
+                if (name !== sName) entities[sName] = entity;
+            }
+            uqs[i] = entities;
+            uqs[uqName] = entities;
+            if (l !== uqName) uqs[l] = entities;
+        }
     }
-
-    private createBoxId: CreateBoxId;
 
     setTuidImportsLocal():string[] {
         let ret:string[] = [];

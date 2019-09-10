@@ -1,8 +1,8 @@
+import { LocalArr } from '../../tool';
 import { Entity } from '../entity';
 import { UqMan, Field, SchemaFrom } from '../uqMan';
-import { BoxId } from '../boxId';
+import { BoxId } from './boxId';
 import { IdCache, IdDivCache } from './idCache';
-import { LocalArr } from '../../tool';
 export interface TuidSaveResult {
     id: number;
     inId: number;

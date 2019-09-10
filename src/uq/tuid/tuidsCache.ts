@@ -1,5 +1,5 @@
-import { Tuid } from "./tuid";
 import { UqMan, TuidModify } from '../uqMan';
+import { Tuid } from "./tuid";
 
 interface Modify {
     id: number;

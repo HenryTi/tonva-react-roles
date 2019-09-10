@@ -47,7 +47,7 @@ export class VUnsupportedUnit extends VPage {
         this.page = (predefinedUnit) => {
             let { user } = nav;
             let userName = user ? user.name : '[未登录]';
-            let { appOwner, appName } = this.controller.uqs;
+            let { appOwner, appName } = this.controller.uqsMan;
             return React.createElement(Page, { header: "APP\u65E0\u6CD5\u8FD0\u884C", logout: true },
                 React.createElement("div", { className: "m-3 text-danger container" },
                     React.createElement("div", { className: "form-group row" },

@@ -23,11 +23,11 @@ export declare abstract class Controller {
     private onMessageReceive;
     protected beforeStart(): Promise<boolean>;
     protected registerReceiveHandler(): void;
-    protected abstract internalStart(param?: any): Promise<void>;
-    start(param?: any): Promise<void>;
+    protected abstract internalStart(param?: any, ...params: any[]): Promise<void>;
+    start(param?: any, ...params: any[]): Promise<void>;
     readonly isCalling: boolean;
     private _resolve_$;
-    call<T>(param?: any): Promise<T>;
+    call<T>(param?: any, ...params: any[]): Promise<T>;
     vCall<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<any>;
     returnCall(value: any): void;
     openPage(page: JSX.Element): void;

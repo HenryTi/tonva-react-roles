@@ -38,7 +38,7 @@ export class CApp extends Controller {
         if (this.name === undefined) {
             throw 'appName like "owner/app" must be defined in UI';
         }
-        this.uqs = new UQsMan(this.name);
+        this.uqs = new UQsMan(this.name, undefined);
         if (ui.uqs === undefined) ui.uqs = {};
         this.ui = ui;
         this.caption = this.res.caption || 'Tonva';

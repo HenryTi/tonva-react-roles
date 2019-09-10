@@ -96,7 +96,7 @@ export class CUq extends Controller /* implements Uq*/ {
         this.CHistory = ui.CHistory || CHistory;
         this.CPending = ui.CPending || CPending;
 
-        this.uq = new UqMan(cApp.uqs, uqData, this.createBoxId);
+        this.uq = new UqMan(cApp.uqs, uqData, this.createBoxId, undefined);
     }
 
     protected async internalStart() {

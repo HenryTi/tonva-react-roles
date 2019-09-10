@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import _ from 'lodash';
 import { Entity } from '../entity';
-import { IdCache, IdDivCache } from './idCache';
 import { EntityCaller } from '../caller';
+import { IdCache, IdDivCache } from './idCache';
 export class Tuid extends Entity {
     constructor(uq, name, typeId) {
         super(uq, name, typeId);
@@ -59,7 +59,10 @@ export class TuidInner extends Tuid {
         if (typeof id === 'object')
             return id;
         this.useId(id);
-        return this.uq.createBoxId(this, id);
+        let { createBoxId } = this.uq;
+        if (!createBoxId)
+            return { id: id };
+        return createBoxId(this, id);
     }
     valueFromId(id) { return this.idCache.getValue(id); }
     assureBox(id) {

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { UqApi, UqData } from '../net';
 import { Tuid, TuidDiv, TuidBox } from './tuid';
 import { Action } from './action';
@@ -7,7 +8,7 @@ import { Book } from './book';
 import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
-import { CreateBoxId } from './boxId';
+import { CreateBoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
@@ -49,6 +50,7 @@ export declare class UqMan {
     private readonly pendings;
     private readonly tuidsCache;
     private readonly localAccess;
+    private readonly tvs;
     readonly localMap: LocalMap;
     readonly localModifyMax: LocalCache;
     readonly tuids: {
@@ -62,8 +64,11 @@ export declare class UqMan {
     readonly uqApi: UqApi;
     readonly id: number;
     uqVersion: number;
-    constructor(uqs: UQsMan, uqData: UqData, createBoxId: CreateBoxId);
+    constructor(uqs: UQsMan, uqData: UqData, createBoxId: CreateBoxId, tvs: {
+        [entity: string]: (values: any) => JSX.Element;
+    });
     readonly entities: any;
+    private createBoxIdFromTVs;
     tuid(name: string): Tuid;
     tuidDiv(name: string, div: string): TuidDiv;
     action(name: string): Action;

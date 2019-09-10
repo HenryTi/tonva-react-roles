@@ -8,10 +8,11 @@ import { Book } from './book';
 import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
-import { CreateBoxId } from './boxId';
+import { CreateBoxId, BoxId } from './tuid';
 //import { UqCache } from './caches';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
+import { ReactBoxId } from './tuid/reactBoxId';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
     | 'datetime' | 'date' | 'time';
@@ -73,6 +74,7 @@ export class UqMan {
     private readonly pendings: {[name:string]: Pending} = {};
     private readonly tuidsCache: TuidsCache;
     private readonly localAccess: LocalCache;
+    private readonly tvs:{[entity:string]:(values:any)=>JSX.Element};
     readonly localMap: LocalMap;
     readonly localModifyMax: LocalCache;
     readonly tuids: {[name:string]: Tuid} = {};
@@ -86,8 +88,12 @@ export class UqMan {
 
     uqVersion: number;
 
-    constructor(uqs:UQsMan, uqData: UqData, createBoxId:CreateBoxId) {
+    constructor(uqs:UQsMan, uqData: UqData, createBoxId:CreateBoxId, tvs:{[entity:string]:(values:any)=>JSX.Element}) {
         this.createBoxId = createBoxId;
+        if (createBoxId === undefined) {
+            this.createBoxId = this.createBoxIdFromTVs;
+            this.tvs = tvs || {};
+        }
         let {id, uqOwner, uqName, access, newVersion: clearTuids} = uqData;
         this.newVersion = clearTuids;
         this.uqOwner = uqOwner;
@@ -124,6 +130,18 @@ export class UqMan {
             this.actions, this.sheets, this.queries, this.books,
             this.maps, this.histories, this.pendings, this.tuids
         );
+    }
+
+    private createBoxIdFromTVs:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{
+        let {name, sName} = tuid;
+        /*
+        let tuidUR = this.tuidURs[name];
+        if (tuidUR === undefined) {
+            let {ui, res} = this.getUI(tuid);
+            this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
+        }
+        */
+        return new ReactBoxId(id, tuid, this.tvs[name]);
     }
 
     tuid(name:string):Tuid {return this.tuids[name.toLowerCase()]}
