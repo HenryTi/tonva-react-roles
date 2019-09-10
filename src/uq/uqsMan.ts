@@ -1,7 +1,6 @@
 import { UqMan } from './uqMan';
 import { TuidImport, TuidInner } from './tuid';
-import { LocalMap, localDb, LocalCache } from '../tool';
-import { CreateBoxId } from './tuid/boxId';
+import { LocalMap, LocalCache, env } from '../tool';
 import { UqData } from '../net';
 
 export interface TVs {
@@ -31,7 +30,7 @@ export class UQsMan {
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
-        this.localMap = localDb.map(tonvaAppName); // new UqAppCache(this.appOwner, this.appName);
+        this.localMap = env.localDb.map(tonvaAppName);
         this.localData = this.localMap.child('uqData');
     }
 

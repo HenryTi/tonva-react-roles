@@ -388,7 +388,7 @@ export class Nav {
     constructor() {
         this.local = new LocalData();
         this.user = undefined;
-        this.arrs = ['/test', '/test/'];
+        this.arrs = ['/test', '/test/', '-test', '-test/'];
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;

@@ -414,7 +414,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx": {
-        "version": "cb108de20b117330cb0a57a775cec153429d1e07ff4c5e37d7470dd450801f0a",
+        "version": "9007d1b7b9ba7b0e8439c4e4d0ab94d2841fda18eb6732dd2d9f9159caf0791b",
         "signature": "4868e7661fed42ea3bbe897b15d7c166ce9ac0ad726b9c684deb60f904e9e022"
       },
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/vm.tsx": {
@@ -3841,7 +3841,6 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/register.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/login.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/entry/changepassword.tsx",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/vm.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/schema/schema.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/form/field.tsx",
@@ -3912,6 +3911,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/caller.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/idcache.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/tuid.ts",
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/boxid.tsx",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/tuidscache.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/index.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/sheet.ts",
@@ -4026,7 +4026,7 @@
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/node-fetch/index.d.ts",
       "c:/users/henry/tonva/tonva-ui/tonva-libs/node_modules/@types/react-dom/index.d.ts",
-      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/uq/tuid/boxid.tsx"
+      "c:/users/henry/tonva/tonva-ui/tonva-libs/src/components/nav.tsx"
     ]
   },
   "version": "3.5.2"
