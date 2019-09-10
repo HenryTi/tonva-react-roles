@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { User } from '../tool/user';
+import { User } from '../tool';
 export declare abstract class Controller {
     readonly res: any;
     readonly x: any;

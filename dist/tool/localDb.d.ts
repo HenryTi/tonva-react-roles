@@ -47,5 +47,4 @@ export declare class LocalMap extends Local {
     removeAll(): void;
     item(key: string): LocalCache;
 }
-export declare const localDb: LocalMap;
 export {};

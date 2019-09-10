@@ -82,7 +82,6 @@ export declare class Nav {
     private centerHost;
     private arrs;
     private unitJsonPath;
-    private isTesting;
     start(): Promise<void>;
     showAppView(): Promise<void>;
     setGuest(guest: Guest): void;

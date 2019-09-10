@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { UqMan } from './uqMan';
-import { localDb } from '../tool';
+import { env } from '../tool';
 export class UQsMan {
     constructor(tonvaAppName, tvs) {
         this.tvs = tvs || {};
@@ -19,7 +19,7 @@ export class UQsMan {
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
-        this.localMap = localDb.map(tonvaAppName); // new UqAppCache(this.appOwner, this.appName);
+        this.localMap = env.localDb.map(tonvaAppName);
         this.localData = this.localMap.child('uqData');
     }
     // to be removed in the future

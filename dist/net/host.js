@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-export const isDevelopment = process.env.NODE_ENV === 'development';
+import { env } from '../tool';
 const centerHost = process.env['REACT_APP_CENTER_HOST'];
 const centerDebugHost = 'localhost:3000'; //'192.168.86.64';
 const resHost = process.env['REACT_APP_RES_HOST'] || centerHost;
@@ -71,7 +71,7 @@ class Host {
     start(testing) {
         return __awaiter(this, void 0, void 0, function* () {
             this.testing = testing;
-            if (isDevelopment === true) {
+            if (env.isDevelopment === true) {
                 yield this.tryLocal();
             }
             let host = this.getCenterHost();
@@ -123,7 +123,7 @@ class Host {
         if (hash.includes('sheet_debug') === true) {
             return value;
         }
-        if (isDevelopment === true) {
+        if (env.isDevelopment === true) {
             if (local === true)
                 return value;
         }
@@ -135,14 +135,14 @@ class Host {
         if (hash.includes('sheet_debug') === true) {
             return value;
         }
-        if (isDevelopment === true) {
+        if (env.isDevelopment === true) {
             if (local === true)
                 return value;
         }
         return resHost;
     }
     getUrlOrDebug(url, debugHost = 'uqhost') {
-        if (isDevelopment === false)
+        if (env.isDevelopment === false)
             return url;
         let host = hosts[debugHost];
         if (host === undefined)

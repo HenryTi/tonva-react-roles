@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { nav } from './nav';
 import { Page } from './page';
-import { isDevelopment } from '../net';
+import { env } from '../tool';
 export class Controller {
     constructor(res) {
-        this.isDev = isDevelopment;
+        this.isDev = env.isDevelopment;
         this.onMessageReceive = (message) => __awaiter(this, void 0, void 0, function* () {
             yield this.onMessage(message);
         });
@@ -144,7 +144,7 @@ export class View {
         this.res = controller.res;
         this.x = controller.x;
     }
-    get isDev() { return isDevelopment; }
+    get isDev() { return env.isDevelopment; }
     renderVm(vm, param) {
         return (new vm(this.controller)).render(param);
     }

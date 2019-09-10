@@ -1,4 +1,3 @@
-export declare const isDevelopment: boolean;
 export declare function resUrlFromHost(host: string): string;
 declare class Host {
     testing: boolean;

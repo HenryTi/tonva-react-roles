@@ -18,8 +18,8 @@ import { Page } from './page';
 import { netToken } from '../net/netToken';
 import FetchErrorView from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
-import { LocalData } from '../tool';
-import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, isDevelopment, host, resUrlFromHost } from '../net';
+import { LocalData, env } from '../tool';
+import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, host, resUrlFromHost } from '../net';
 import { wsBridge } from '../net/wsChannel';
 import { resOptions } from './res';
 import { Loading } from './loading';
@@ -388,7 +388,7 @@ export class Nav {
     constructor() {
         this.local = new LocalData();
         this.user = undefined;
-        this.arrs = ['/test', '/test/', '-test', '-test/'];
+        this.arrs = ['/test', '/test/'];
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;
@@ -490,7 +490,7 @@ export class Nav {
             let unitName;
             let unit = this.local.unit.get();
             if (unit !== undefined) {
-                if (isDevelopment !== true)
+                if (env.isDevelopment !== true)
                     return unit.id;
                 unitName = yield this.getPredefinedUnitName();
                 if (unitName === undefined)
@@ -527,19 +527,10 @@ export class Nav {
         }
         return href + '/unit.json';
     }
-    isTesting() {
-        let { pathname } = document.location;
-        let pn = pathname.toLowerCase();
-        for (let item of this.arrs) {
-            if (pn.endsWith(item) === true)
-                return true;
-        }
-        return false;
-    }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                this.testing = this.isTesting();
+                this.testing = env.testing;
                 yield host.start(this.testing);
                 let hash = document.location.hash;
                 if (hash !== undefined && hash.length > 0) {

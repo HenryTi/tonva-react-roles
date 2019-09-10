@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { bridgeCenterApi, isBridged } from './appBridge';
 import { nav } from '../components/nav';
-import { isDevelopment } from './host';
+import { env } from '../tool';
 /*
 export async function httpGet(url:string, params?:any):Promise<any> {
     let channel = new HttpChannel(false, url, undefined, undefined);
@@ -42,7 +42,7 @@ export class HttpChannel {
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
-        this.timeout = isDevelopment === true ? 500000 : 5000;
+        this.timeout = env.isDevelopment === true ? 500000 : 5000;
     }
     used() {
         this.post('', {});
