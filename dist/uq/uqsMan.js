@@ -6,8 +6,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { UqMan } from './uqMan';
 import { env } from '../tool';
+import { UqMan } from './uqMan';
 export class UQsMan {
     constructor(tonvaAppName, tvs) {
         this.tvs = tvs || {};
@@ -58,6 +58,10 @@ export class UQsMan {
                 //this.uqs.addUq(cUq.uq);
                 let uq = new UqMan(this, uqData, undefined, this.tvs[uqFullName] || this.tvs[uqName]);
                 this.collection[uqFullName] = uq;
+                let lower = uqFullName.toLowerCase();
+                if (lower !== uqFullName) {
+                    this.collection[lower] = uq;
+                }
                 promiseInits.push(uq.init());
             }
             yield Promise.all(promiseInits);

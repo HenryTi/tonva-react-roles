@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { UqMan } from './uqMan';
 import { LocalMap, LocalCache } from '../tool';
 import { UqData } from '../net';
+import { UqMan } from './uqMan';
 export interface TVs {
     [uqName: string]: {
         [tuidName: string]: (values: any) => JSX.Element;
