@@ -3,7 +3,39 @@ import { BoxId } from './boxId';
 import { Tuid } from './tuid';
 import { observer } from 'mobx-react';
 
-const PureJSONContent = (values:any, x?:any) => <>content: {JSON.stringify(values)}</>;
+const TuidContent = (tuidName:string, values:any, x?:any) => {
+    return <>{tuidName}: {stringify(values)}</>;
+};
+
+function stringify(values: any): string {
+    let s = '{';
+    if (values === undefined) return 'undefined';
+    for (let i in values) {
+        let v = values[i];
+        s += i + ': ';
+        if (v === undefined) {
+            s += 'undefined';
+        }
+        else if (v === null) {
+            s += 'null';
+        }
+        else {
+            switch (typeof v) {
+                default:
+                    s += v;
+                    break;
+                case 'function':
+                    s += 'function';
+                    break;
+                case 'object':
+                    s += '{obj}';
+                    break;
+            }
+        }
+        s += ', ';
+    }
+    return s + '}';
+}
 
 export class ReactBoxId implements BoxId {
     readonly id: number;
@@ -27,7 +59,7 @@ export class ReactBoxId implements BoxId {
         let val = this.obj; // this.tuid.valueFromId(this.id);
         if (this.isUndefined === true) {
             if (ui !== undefined) return ui(val, x);
-            return PureJSONContent(val, x);
+            return TuidContent(boxName, val, x);
         }
         switch (typeof val) {
             case 'undefined':
@@ -49,7 +81,7 @@ export class ReactBoxId implements BoxId {
             }
         }
 
-        return PureJSONContent(val);
+        return TuidContent(boxName, val);
     }
 
     get boxName():string {return this.tuid.name}
@@ -70,7 +102,7 @@ function boxIdContent(bi: number|BoxId, ui:TvTemplet, x:any) {
         default:
             if (typeof boxId.render !== 'function') {
                 if (ui === undefined) {
-                    logContent = PureJSONContent(bi, x);
+                    logContent = TuidContent(bi.boxName, bi, x);
                 }
                 else {
                     return ui(bi, x);

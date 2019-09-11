@@ -12,7 +12,7 @@ import className from 'classnames';
 import { Page, List, LMR, FA } from '../../components';
 import { PureJSONContent } from '../tools';
 import { VEntity } from '../CVEntity';
-import { tv } from '../cUq';
+import { tv } from '../cUq/reactBoxId';
 export class VMapMain extends VEntity {
     constructor() {
         super(...arguments);

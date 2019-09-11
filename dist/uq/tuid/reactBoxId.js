@@ -8,9 +8,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-const PureJSONContent = (values, x) => React.createElement(React.Fragment, null,
-    "content: ",
-    JSON.stringify(values));
+const TuidContent = (tuidName, values, x) => {
+    return React.createElement(React.Fragment, null,
+        tuidName,
+        ": ",
+        stringify(values));
+};
+function stringify(values) {
+    let s = '{';
+    if (values === undefined)
+        return 'undefined';
+    for (let i in values) {
+        let v = values[i];
+        s += i + ': ';
+        if (v === undefined) {
+            s += 'undefined';
+        }
+        else if (v === null) {
+            s += 'null';
+        }
+        else {
+            switch (typeof v) {
+                default:
+                    s += v;
+                    break;
+                case 'function':
+                    s += 'function';
+                    break;
+                case 'object':
+                    s += '{obj}';
+                    break;
+            }
+        }
+        s += ', ';
+    }
+    return s + '}';
+}
 export class ReactBoxId {
     constructor(id, tuid, ui) {
         this.id = id;
@@ -29,7 +62,7 @@ export class ReactBoxId {
         if (this.isUndefined === true) {
             if (ui !== undefined)
                 return ui(val, x);
-            return PureJSONContent(val, x);
+            return TuidContent(boxName, val, x);
         }
         switch (typeof val) {
             case 'undefined':
@@ -59,7 +92,7 @@ export class ReactBoxId {
                     this.id);
             }
         }
-        return PureJSONContent(val);
+        return TuidContent(boxName, val);
     }
     get boxName() { return this.tuid.name; }
     // ui(): TvTemplet {return this.tuid.ui}
@@ -85,7 +118,7 @@ function boxIdContent(bi, ui, x) {
         default:
             if (typeof boxId.render !== 'function') {
                 if (ui === undefined) {
-                    logContent = PureJSONContent(bi, x);
+                    logContent = TuidContent(bi.boxName, bi, x);
                 }
                 else {
                     return ui(bi, x);

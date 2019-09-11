@@ -6,7 +6,7 @@ import { PureJSONContent } from '../tools';
 import { Map } from '../../uq';
 import { VEntity } from '../CVEntity';
 import { CMap, MapItem, MapKey, MapUI } from './cMap';
-import { tv } from '../cUq';
+import { tv } from '../cUq/reactBoxId';
 
 export class VMapMain extends VEntity<Map, MapUI, CMap> {
     private isFrom: boolean;
