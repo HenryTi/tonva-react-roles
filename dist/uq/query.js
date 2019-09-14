@@ -13,8 +13,90 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { observable } from 'mobx';
+import { PageItems } from '../tool';
 import { Entity } from './entity';
 import { QueryQueryCaller, QueryPageCaller } from './caller';
+export class QueryPager extends PageItems {
+    constructor(query, pageSize, firstSize) {
+        super();
+        this.query = query;
+        if (pageSize !== undefined)
+            this.pageSize = pageSize;
+        if (firstSize !== undefined)
+            this.firstSize = firstSize;
+    }
+    onLoad() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let { schema } = this.query;
+            if (schema === undefined)
+                yield this.query.loadSchema();
+        });
+    }
+    load(param, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (pageStart === undefined)
+                pageStart = 0;
+            let ret = yield this.query.page(param, pageStart, pageSize);
+            return ret;
+        });
+    }
+    setPageStart(item) {
+        let { schema } = this.query;
+        if (schema === undefined)
+            return;
+        let $page = schema.returns.find(v => v.name === '$page');
+        if ($page === undefined)
+            return;
+        let { order } = $page;
+        if (order === undefined)
+            return;
+        let { field, type, asc } = order;
+        let start;
+        if (item !== undefined)
+            start = item[field];
+        if (asc === false) {
+            this.appendPosition = 'head';
+            switch (type) {
+                default:
+                case 'tinyint':
+                case 'smallint':
+                case 'int':
+                case 'bigint':
+                case 'dec':
+                    start = 999999999999;
+                    break;
+                case 'date':
+                case 'datetime':
+                    start = undefined;
+                    break; // 会自动使用现在
+                case 'char':
+                    start = '';
+                    break;
+            }
+        }
+        else {
+            this.appendPosition = 'tail';
+            switch (type) {
+                default:
+                case 'tinyint':
+                case 'smallint':
+                case 'int':
+                case 'bigint':
+                case 'dec':
+                    start = 0;
+                    break;
+                case 'date':
+                case 'datetime':
+                    start = '1970-1-1';
+                    break;
+                case 'char':
+                    start = '';
+                    break;
+            }
+        }
+        this.pageStart = start;
+    }
+}
 export class Query extends Entity {
     get typeName() { return 'query'; }
     setSchema(schema) {

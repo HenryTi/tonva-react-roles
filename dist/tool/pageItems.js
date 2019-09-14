@@ -47,7 +47,7 @@ export class PageItems {
         this.param = undefined;
         this.allLoaded = false;
         this._items.clear();
-        this.setPageStart(undefined);
+        //this.setPageStart(undefined);
     }
     append(item) {
         if (this.appendPosition === 'tail')
@@ -63,6 +63,9 @@ export class PageItems {
             yield this.more();
         });
     }
+    onLoad() {
+        return __awaiter(this, void 0, void 0, function* () { });
+    }
     more() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.allLoaded === true)
@@ -70,6 +73,9 @@ export class PageItems {
             if (this.loading === true)
                 return;
             this.loading = true;
+            yield this.onLoad();
+            if (this.pageStart === undefined)
+                this.setPageStart(undefined);
             let pageSize = this.pageSize + 1;
             if (this.isFirst === true) {
                 if (this.firstSize > this.pageSize)

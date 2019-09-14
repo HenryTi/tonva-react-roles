@@ -205,6 +205,12 @@ export class TuidInner extends Tuid {
             return ret;
         });
     }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield new AllCaller(this, {}).request();
+            return ret;
+        });
+    }
     search(key, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret = yield this.searchArr(undefined, key, pageStart, pageSize);
@@ -328,6 +334,13 @@ class SaveCaller extends TuidCaller {
 class SearchCaller extends TuidCaller {
     get path() { return `tuids/${this.entity.name}`; }
 }
+class AllCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
+    }
+    get path() { return `tuid-all/${this.entity.name}`; }
+}
 class LoadArrCaller extends TuidCaller {
     constructor() {
         super(...arguments);
@@ -391,6 +404,11 @@ export class TuidImport extends Tuid {
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.tuidLocal.save(id, props);
+        });
+    }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.all();
         });
     }
     search(key, pageStart, pageSize) {

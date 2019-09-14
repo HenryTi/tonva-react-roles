@@ -360,8 +360,6 @@ export class NavView extends React.Component {
                 elWait = React.createElement("li", { className: "va-wait va-wait2" },
                     React.createElement(Loading, null));
                 break;
-            //<i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-            //<span className="sr-only">Loading...</span>
         }
         if (fetchError)
             elError = React.createElement(FetchErrorView, Object.assign({ clearError: this.clearError }, fetchError));

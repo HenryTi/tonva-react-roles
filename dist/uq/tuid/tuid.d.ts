@@ -27,6 +27,7 @@ export declare abstract class Tuid extends Entity {
     abstract div(name: string): TuidDiv;
     abstract loadMain(id: number | BoxId): Promise<any>;
     abstract load(id: number | BoxId): Promise<any>;
+    abstract all(): Promise<any[]>;
     abstract save(id: number, props: any): Promise<TuidSaveResult>;
     abstract search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
     abstract searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
@@ -57,7 +58,8 @@ export declare class TuidInner extends Tuid {
     buildFieldsTuid(): void;
     unpackTuidIds(values: string[]): any[];
     save(id: number, props: any): Promise<TuidSaveResult>;
-    search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
+    all(): Promise<any[]>;
+    search(key: string, pageStart: string | number, pageSize: number): Promise<any[]>;
     searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
     loadArr(arr: string, owner: number, id: number): Promise<any>;
     saveArr(arr: string, owner: number, id: number, props: any): Promise<any>;
@@ -78,6 +80,7 @@ export declare class TuidImport extends Tuid {
     loadMain(id: number | BoxId): Promise<any>;
     load(id: number | BoxId): Promise<any>;
     save(id: number, props: any): Promise<TuidSaveResult>;
+    all(): Promise<any[]>;
     search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
     searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
     loadArr(arr: string, owner: number, id: number): Promise<any>;

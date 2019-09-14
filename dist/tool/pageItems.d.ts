@@ -22,5 +22,6 @@ export declare abstract class PageItems<T> {
     reset(): void;
     append(item: T): void;
     first(param: any): Promise<void>;
+    protected onLoad(): Promise<void>;
     more(): Promise<void>;
 }

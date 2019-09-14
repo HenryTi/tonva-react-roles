@@ -42,7 +42,7 @@ export abstract class PageItems<T> {
         this.param = undefined;
         this.allLoaded = false;
         this._items.clear();
-        this.setPageStart(undefined);
+        //this.setPageStart(undefined);
     }
 
     append(item:T) {
@@ -59,10 +59,14 @@ export abstract class PageItems<T> {
         await this.more();        
     }
 
+    protected async onLoad(): Promise<void> {}
+
     async more():Promise<void> {
         if (this.allLoaded === true) return;
         if (this.loading === true) return;
         this.loading = true;
+        await this.onLoad();
+        if (this.pageStart === undefined) this.setPageStart(undefined);
         let pageSize = this.pageSize + 1;
         if (this.isFirst === true) {
             if (this.firstSize > this.pageSize) pageSize = this.firstSize+1;

@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import { ListBase } from './base';
+import { List } from './index';
 export interface SelectableItem {
     selected: boolean;
     item: any;
@@ -7,13 +8,14 @@ export interface SelectableItem {
 }
 export declare class Selectable extends ListBase {
     private _items;
-    private _selectedItems;
     private input;
+    private disposer;
+    constructor(list: List);
+    dispose(): void;
     private buildItems;
     readonly items: SelectableItem[];
     selectAll(): void;
     unselectAll(): void;
-    updateProps(nextProps: any): void;
     private onSelect;
     readonly selectedItems: any[];
     render: (item: SelectableItem, index: number) => JSX.Element;

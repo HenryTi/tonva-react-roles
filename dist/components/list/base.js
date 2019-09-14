@@ -37,7 +37,9 @@ export class ListBase {
         return pageItems.loading;
     }
     get selectedItems() { return; }
-    updateProps(nextProps) { }
+    //updateProps(nextProps:any) {}
+    dispose() { }
+    ;
     renderContent(item, index) {
         let { render } = this.list.props.item;
         if (render === undefined)

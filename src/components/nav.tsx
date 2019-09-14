@@ -372,8 +372,6 @@ export class NavView extends React.Component<Props, NavViewState> {
                     <Loading />
                 </li>;
                 break;
-                //<i className="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                //<span className="sr-only">Loading...</span>
         }
         if (fetchError)
             elError = <FetchErrorView clearError={this.clearError} {...fetchError} />;

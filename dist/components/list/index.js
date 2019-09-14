@@ -17,6 +17,9 @@ let List = class List extends React.Component {
         this._$scroll = (direct) => {
             console.log('############### items scroll to ' + direct);
         };
+        this.buildBase();
+    }
+    buildBase() {
         let { item } = this.props;
         let { onClick, onSelect } = item;
         if (onSelect !== undefined)
@@ -26,8 +29,13 @@ let List = class List extends React.Component {
         else
             this.listBase = new Static(this);
     }
-    componentWillUpdate(nextProps, nextState, nextContext) {
-        this.listBase.updateProps(nextProps);
+    /*
+    componentWillUpdate(nextProps:ListProps, nextState, nextContext) {
+        //this.listBase.updateProps(nextProps);
+    }
+    */
+    componentWillUnmount() {
+        this.listBase.dispose();
     }
     selectAll() {
         if (this.selectable)
@@ -43,9 +51,9 @@ let List = class List extends React.Component {
     render() {
         let { className, header, footer, before, loading, none, item, selectedItems } = this.props;
         if (before === undefined)
-            before = 'before';
+            before = '-';
         if (loading === undefined)
-            loading = 'loading';
+            loading = () => React.createElement("i", { className: "fa fa-spinner fa-spin fa-2x fa-fw text-info" });
         if (none === undefined)
             none = 'none';
         //this.listBase.selectedItems = selectedItems;
@@ -60,7 +68,7 @@ let List = class List extends React.Component {
                 case 'object': return React.createElement("li", null, row);
             }
         }
-        let content;
+        let content, waitingMore;
         if (items === null)
             content = staticRow(before, 'before');
         else if (items === undefined)
@@ -72,9 +80,13 @@ let List = class List extends React.Component {
                 return this.listBase.render(item, index);
             });
         }
+        if (isLoading === true && items) {
+            waitingMore = staticRow(loading, 'loading');
+        }
         return React.createElement("ul", { className: classNames('va-list', className) },
             staticRow(header, 'header'),
             content,
+            waitingMore,
             staticRow(footer, 'footer'));
     }
 };

@@ -43,6 +43,7 @@ export abstract class Tuid extends Entity {
     abstract div(name:string):TuidDiv;
     abstract async loadMain(id:number|BoxId):Promise<any>;
     abstract async load(id:number|BoxId):Promise<any>;
+    abstract async all():Promise<any[]>;
     abstract async save(id:number, props:any):Promise<TuidSaveResult>;
     abstract async search(key:string, pageStart:string|number, pageSize:number):Promise<any>;
     abstract async searchArr(owner:number, key:string, pageStart:string|number, pageSize:number):Promise<any>;
@@ -211,7 +212,11 @@ export class TuidInner extends Tuid {
         }
         return ret;
     }
-    async search(key:string, pageStart:string|number, pageSize:number):Promise<any> {
+    async all():Promise<any[]> {
+        let ret: any[] = await new AllCaller(this, {}).request();
+        return ret;
+    }
+    async search(key:string, pageStart:string|number, pageSize:number):Promise<any[]> {
         let ret:any[] = await this.searchArr(undefined, key, pageStart, pageSize);
         return ret;
     }
@@ -327,6 +332,11 @@ class SearchCaller extends TuidCaller<{arr:string, owner:number, key:string, pag
     get path():string {return `tuids/${this.entity.name}`}
 }
 
+class AllCaller extends TuidCaller<{}> {
+    method = 'GET';
+    get path():string {return `tuid-all/${this.entity.name}`}
+}
+
 class LoadArrCaller extends TuidCaller<{arr:string, owner:number, id:number}> {
     method = 'GET';
     get path():string {
@@ -389,6 +399,9 @@ export class TuidImport extends Tuid {
     }
     async save(id:number, props:any):Promise<TuidSaveResult> {
         return await this.tuidLocal.save(id, props);
+    }
+    async all():Promise<any[]> {
+        return await this.tuidLocal.all();
     }
     async search(key:string, pageStart:string|number, pageSize:number):Promise<any> {
         return await this.tuidLocal.search(key, pageStart, pageSize);

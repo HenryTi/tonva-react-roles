@@ -1,7 +1,15 @@
 import { IObservableArray } from 'mobx';
+import { PageItems } from '../tool';
 import { ArrFields } from './uqMan';
 import { Entity } from './entity';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
+export declare class QueryPager<T> extends PageItems<T> {
+    private query;
+    constructor(query: Query, pageSize?: number, firstSize?: number);
+    protected onLoad(): Promise<void>;
+    protected load(param: any, pageStart: any, pageSize: number): Promise<T[]>;
+    protected setPageStart(item: T): void;
+}
 export declare class Query extends Entity {
     readonly typeName: string;
     private pageStart;

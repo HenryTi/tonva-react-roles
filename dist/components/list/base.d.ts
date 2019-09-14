@@ -8,7 +8,7 @@ export declare abstract class ListBase {
     readonly items: any[] | IObservableArray<any>;
     readonly loading: boolean;
     readonly selectedItems: any[];
-    updateProps(nextProps: any): void;
+    dispose(): void;
     abstract render: (item: any, index: number) => JSX.Element;
     protected renderContent(item: any, index: number): JSX.Element;
 }

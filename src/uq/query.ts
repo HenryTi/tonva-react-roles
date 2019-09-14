@@ -1,10 +1,73 @@
 import _ from 'lodash';
 import {observable, IObservableArray} from 'mobx';
+import { PageItems } from '../tool';
 import {Field, ArrFields} from './uqMan';
 import {Entity} from './entity';
 import { QueryQueryCaller, QueryPageCaller } from './caller';
 
 export type QueryPageApi = (name:string, pageStart:any, pageSize:number, params:any) => Promise<string>;
+
+export class QueryPager<T> extends PageItems<T> {
+    private query: Query;
+    constructor(query: Query, pageSize?: number, firstSize?: number) {
+        super();
+        this.query = query;
+        if (pageSize !== undefined) this.pageSize = pageSize;
+        if (firstSize !== undefined) this.firstSize = firstSize;
+    }
+
+    protected async onLoad() {
+        let {schema} = this.query;
+        if (schema === undefined) await this.query.loadSchema();
+    }
+
+    protected async load(param:any, pageStart:any, pageSize:number):Promise<T[]> {
+        if (pageStart === undefined) pageStart = 0;
+        let ret = await this.query.page(param, pageStart, pageSize);
+        return ret;
+    }
+    protected setPageStart(item:T) {
+        let {schema} = this.query;
+        if (schema === undefined) return;
+        let $page = (schema.returns as any[]).find(v => v.name === '$page');
+        if ($page === undefined) return;
+        let {order} = $page;
+        if (order === undefined) return;
+        let {field, type, asc} = order;
+        let start:any;
+        if (item !== undefined) start = item[field];
+        if (asc === false) {
+            this.appendPosition = 'head';
+            switch (type) {
+                default:
+                case 'tinyint':
+                case 'smallint':
+                case 'int':
+                case 'bigint':
+                case 'dec': start = 999999999999; break;
+                case 'date':
+                case 'datetime': start = undefined; break;          // 会自动使用现在
+                case 'char': start = ''; break;
+            }
+        }
+        else {
+            this.appendPosition = 'tail';
+            switch (type) {
+                default:
+                case 'tinyint':
+                case 'smallint':
+                case 'int':
+                case 'bigint':
+                case 'dec': start = 0; break;
+                case 'date':
+                case 'datetime': start = '1970-1-1'; break;
+                case 'char': start = ''; break;
+            }
+        }
+        this.pageStart = start;
+    }
+}
+
 export class Query extends Entity {
     get typeName(): string { return 'query';}
     private pageStart: any;
