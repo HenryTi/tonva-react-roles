@@ -143,18 +143,18 @@ let Page = class Page extends React.Component {
         const { header, back, right, keepHeader, headerClassName, tabPosition } = this.props;
         let cur = this.state.cur;
         let tabs = React.createElement("div", null, this.state.tabs.map((tab, index) => {
-            const { icon, isSelected, title, redDot } = tab;
+            const { icon, isSelected, title, redDot, className } = tab;
             let img, redDotView, cn;
             if (icon !== undefined)
                 img = React.createElement("img", { src: icon });
             if (redDot !== undefined) {
                 let v = redDot.get();
                 if (v < 0) {
-                    cn = classNames('red-dot');
+                    cn = classNames('red-dot', className);
                     redDotView = React.createElement("u", null);
                 }
                 else if (v > 0) {
-                    cn = classNames('red-dot', 'num');
+                    cn = classNames('red-dot', 'num', className);
                     redDotView = React.createElement("u", null, v);
                 }
             }

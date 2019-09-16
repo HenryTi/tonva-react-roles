@@ -6,8 +6,9 @@ export interface ScrollProps {
     onScrollBottom?: () => void;
 }
 export interface Tab extends ScrollProps {
-    title: string;
+    title: string | JSX.Element;
     icon?: string;
+    className?: string;
     content?: JSX.Element | (() => JSX.Element);
     header?: string;
     isSelected?: boolean;

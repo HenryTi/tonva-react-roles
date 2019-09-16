@@ -73,6 +73,12 @@ let Tabs = class Tabs extends React.Component {
             this.selectedTab = this.tabs[0];
         this.selectedTab.selected = true;
     }
+    componentWillMount() {
+        if (this.tabs === undefined || this.tabs.length === 0)
+            return;
+        let tab = this.tabs[0];
+        tab.start();
+    }
     showTab(tabName) {
         let tab = this.tabs.find(v => v.name === tabName);
         if (tab === undefined)
