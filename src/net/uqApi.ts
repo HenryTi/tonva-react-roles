@@ -540,7 +540,7 @@ export class CenterAppApi extends CenterApiBase {
         return await this.get('tie/unitx-uq', {unit:unit});
     }
     async changePassword(param: {orgPassword:string, newPassword:string}) {
-        return await this.post('tie/reset-password', param);
+        return await this.post('tie/change-password', param);
     }
 }
 
