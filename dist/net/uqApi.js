@@ -385,7 +385,7 @@ export class CenterAppApi extends CenterApiBase {
     }
     changePassword(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('tie/reset-password', param);
+            return yield this.post('tie/change-password', param);
         });
     }
 }

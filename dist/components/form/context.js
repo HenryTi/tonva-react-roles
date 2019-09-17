@@ -98,8 +98,14 @@ export class Context {
     submit(buttonName) {
         return __awaiter(this, void 0, void 0, function* () {
             this.checkRules();
-            if (this.hasError === true)
+            if (this.hasError === true) {
+                let err = '';
+                for (let ew of this.errorWidgets) {
+                    err += ew.name + ':\n' + ew.errors.join('\n');
+                }
+                console.error(err);
                 return;
+            }
             let { onButtonClick } = this.form.props;
             if (onButtonClick === undefined) {
                 alert(`button ${buttonName} clicked. you should define form onButtonClick`);

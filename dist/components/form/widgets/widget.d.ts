@@ -5,7 +5,7 @@ import { Context } from '../context';
 import { ItemSchema } from '../../schema';
 import { Rule } from '../rules';
 export declare abstract class Widget {
-    protected name: string;
+    name: string;
     protected context: Context;
     protected fieldProps: FieldProps;
     protected children: React.ReactNode;
@@ -14,7 +14,7 @@ export declare abstract class Widget {
     protected defaultValue: any;
     protected value: any;
     protected rules: Rule[];
-    protected errors: string[];
+    errors: string[];
     protected contextErrors: string[];
     protected readonly hasError: boolean;
     protected readOnly: boolean;

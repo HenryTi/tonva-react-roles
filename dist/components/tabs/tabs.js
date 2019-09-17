@@ -16,6 +16,7 @@ import * as React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
+import '../../css/va-tab.css';
 class Tab {
     get content() {
         if (this.selected !== true)
@@ -44,7 +45,6 @@ export const TabCaptionComponent = (label, icon, color) => React.createElement("
 let Tabs = class Tabs extends React.Component {
     constructor(props) {
         super(props);
-        this.tabs = [];
         this.tabClick = (tab) => __awaiter(this, void 0, void 0, function* () {
             yield tab.start();
             this.selectedTab.selected = false;
@@ -53,7 +53,7 @@ let Tabs = class Tabs extends React.Component {
         });
         let { size, tabs, tabBack, contentBack, sep, selected } = this.props;
         this.size = size || 'md';
-        this.tabs.push(...tabs.map(v => {
+        this.tabs = tabs.map(v => {
             let tab = new Tab();
             tab.name = v.name;
             tab.selected = false;
@@ -62,7 +62,7 @@ let Tabs = class Tabs extends React.Component {
             tab.notify = v.notify;
             tab.load = v.load;
             return tab;
-        }));
+        });
         this.tabBack = tabBack || 'bg-light';
         this.contentBack = contentBack;
         this.sep = sep || 'border-top border-gray';
@@ -74,10 +74,14 @@ let Tabs = class Tabs extends React.Component {
         this.selectedTab.selected = true;
     }
     componentWillMount() {
-        if (this.tabs === undefined || this.tabs.length === 0)
-            return;
-        let tab = this.tabs[0];
-        tab.start();
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.tabs === undefined)
+                return;
+            if (this.tabs.length === 0)
+                return;
+            let tab = this.tabs[0];
+            yield tab.start();
+        });
     }
     showTab(tabName) {
         let tab = this.tabs.find(v => v.name === tabName);
@@ -90,30 +94,36 @@ let Tabs = class Tabs extends React.Component {
     }
     render() {
         let cn = classNames('tab', 'tab-' + this.size);
-        return React.createElement("div", { className: cn },
-            React.createElement("div", { className: this.contentBack }, this.tabs.map((v, index) => {
-                let style = {
-                    display: v.selected === true ? undefined : 'none'
-                };
-                return React.createElement("div", { key: index, style: style }, v.content);
-            })),
-            React.createElement("div", { className: classNames(this.tabBack, this.sep), style: { height: this.size } }, this.tabs.map((v, index) => {
-                let { selected, caption, notify } = v;
-                let notifyCircle;
-                if (notify !== undefined) {
-                    let num = notify.get();
-                    if (num !== undefined) {
-                        if (num > 0)
-                            notifyCircle = React.createElement("u", null, num > 99 ? '99+' : num);
-                        else if (num < 0)
-                            notifyCircle = React.createElement("u", { className: "dot" });
-                    }
+        let content = React.createElement("div", { className: classNames(this.contentBack, 'tab-content') }, this.tabs.map((v, index) => {
+            let style = {
+                display: v.selected === true ? undefined : 'none'
+            };
+            return React.createElement("div", { key: index, style: style }, v.content);
+        }));
+        let tabs = React.createElement("div", { className: classNames(this.tabBack, this.sep, 'tab-tabs') }, this.tabs.map((v, index) => {
+            let { selected, caption, notify } = v;
+            let notifyCircle;
+            if (notify !== undefined) {
+                let num = notify.get();
+                if (num !== undefined) {
+                    if (num > 0)
+                        notifyCircle = React.createElement("u", null, num > 99 ? '99+' : num);
+                    else if (num < 0)
+                        notifyCircle = React.createElement("u", { className: "dot" });
                 }
-                return React.createElement("div", { key: index, className: "", onClick: () => this.tabClick(v) },
-                    React.createElement("div", { className: "align-self-center" },
-                        notifyCircle,
-                        caption(selected)));
-            })));
+            }
+            return React.createElement("div", { key: index, className: "", onClick: () => this.tabClick(v) },
+                React.createElement("div", { className: "align-self-center" },
+                    notifyCircle,
+                    caption(selected)));
+        }));
+        return React.createElement("div", { className: cn }, this.props.tabPosition === 'top' ?
+            React.createElement(React.Fragment, null,
+                tabs,
+                content) :
+            React.createElement(React.Fragment, null,
+                content,
+                tabs));
     }
 };
 __decorate([

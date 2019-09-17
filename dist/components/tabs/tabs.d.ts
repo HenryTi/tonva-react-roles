@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { IObservableValue } from 'mobx/lib/internal';
+import '../../css/va-tab.css';
 export declare type TabCaption = (selected: boolean) => JSX.Element;
 export interface TabProp {
     name: string;
@@ -10,6 +11,7 @@ export interface TabProp {
 }
 export interface TabsProps {
     tabs: TabProp[];
+    tabPosition?: 'top' | 'bottom';
     size?: 'sm' | 'lg' | 'md';
     tabBack?: string;
     contentBack?: string;
@@ -25,7 +27,7 @@ export declare class Tabs extends React.Component<TabsProps> {
     private selectedTab;
     private tabs;
     constructor(props: TabsProps);
-    componentWillMount(): void;
+    componentWillMount(): Promise<void>;
     private tabClick;
     showTab(tabName: string): void;
     render(): JSX.Element;
