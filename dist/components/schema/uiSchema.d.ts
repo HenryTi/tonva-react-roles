@@ -19,6 +19,8 @@ export interface UiItem {
     onChanged?: ChangedHandler;
     rules?: (ContextRule | FieldRule) | (ContextRule | FieldRule)[];
     Templet?: TempletType;
+    discription?: (string | JSX.Element | (() => JSX.Element));
+    discriptionClassName?: string;
 }
 export interface UiCustom extends UiItem {
     widget: 'custom';

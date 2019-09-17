@@ -30,7 +30,7 @@ export class Widget {
                         "\u00A0",
                         React.createElement("span", { className: "text-danger" }, "*"));
             }
-            return form.FieldContainer(label, this.render());
+            return form.FieldContainer(label, this.renderBody());
         });
         this.context = context;
         let { name } = itemSchema;
@@ -165,6 +165,18 @@ export class Widget {
         if (this.context.inNode === false)
             fieldClass = 'form-control';
         return classNames(fieldClass, this.context.form.FieldClass, this.ui && this.ui.className);
+    }
+    renderBody() {
+        let elDiscription;
+        if (this.hasError === false && this.ui) {
+            let { discription, discriptionClassName } = this.ui;
+            if (discriptionClassName === undefined)
+                discriptionClassName = 'small text-muted';
+            elDiscription = React.createElement("span", { className: discriptionClassName }, discription);
+        }
+        return React.createElement(React.Fragment, null,
+            this.render(),
+            elDiscription);
     }
     get label() {
         let label;

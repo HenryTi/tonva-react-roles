@@ -45,6 +45,7 @@ export declare abstract class Widget {
     protected changeValue(newValue: any, fromElement: boolean): void;
     protected readonly className: string;
     protected abstract render(): JSX.Element;
+    protected renderBody(): JSX.Element;
     container: () => JSX.Element;
     protected readonly label: string;
     protected renderTemplet(): JSX.Element | undefined;
