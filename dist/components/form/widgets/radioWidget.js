@@ -8,6 +8,8 @@ export class RadioWidget extends Widget {
         super(...arguments);
         this.inputs = {};
     }
+    get ui() { return this._ui; }
+    ;
     setElementValue(value) {
         for (let i in this.inputs) {
             let input = this.inputs[i];

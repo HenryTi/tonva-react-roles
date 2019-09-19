@@ -11,6 +11,8 @@ export class CheckBoxWidget extends Widget {
             this.context.clearErrors();
         };
     }
+    get ui() { return this._ui; }
+    ;
     init() {
         super.init();
         if (this.ui !== undefined) {

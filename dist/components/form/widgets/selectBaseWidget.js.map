@@ -1,1 +1,1 @@
-{"version":3,"file":"selectBaseWidget.js","sourceRoot":"","sources":["../../../../src/components/form/widgets/selectBaseWidget.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAGlC,MAAM,OAAgB,gBAAiB,SAAQ,MAAM;CAEpD"}
+{"version":3,"file":"selectBaseWidget.js","sourceRoot":"","sources":["../../../../src/components/form/widgets/selectBaseWidget.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAGlC,MAAM,OAAgB,gBAAiB,SAAQ,MAAM;IACjD,IAAc,EAAE,KAAkB,OAAO,IAAI,CAAC,GAAmB,CAAA,CAAA,CAAC;IAAA,CAAC;CACtE"}

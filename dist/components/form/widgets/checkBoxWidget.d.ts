@@ -3,7 +3,7 @@ import { Widget } from './widget';
 import { UiCheckItem } from '../../schema';
 export declare class CheckBoxWidget extends Widget {
     protected input: HTMLInputElement;
-    protected ui: UiCheckItem;
+    protected readonly ui: UiCheckItem;
     protected trueValue: any;
     protected falseValue: any;
     protected init(): void;

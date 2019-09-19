@@ -65,6 +65,8 @@ export class ButtonWidget extends Widget {
                 button);
         });
     }
+    get ui() { return this._ui; }
+    ;
     get label() { return null; }
     render() {
         return React.createElement(this.observerRender, null);

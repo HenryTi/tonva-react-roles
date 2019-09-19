@@ -31,6 +31,8 @@ export class TextWidget extends Widget {
             }
         });
     }
+    get ui() { return this._ui; }
+    ;
     setElementValue(value) {
         if (this.input === null)
             return;

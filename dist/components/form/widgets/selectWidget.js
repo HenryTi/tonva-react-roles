@@ -15,6 +15,8 @@ export class SelectWidget extends Widget {
             this.setDataValue(evt.target.value);
         };
     }
+    get ui() { return this._ui; }
+    ;
     setElementValue(value) { this.select.value = value; }
     setReadOnly(value) { this.select.disabled = this.readOnly = !value; }
     setDisabled(value) { this.select.disabled = this.disabled = value; }

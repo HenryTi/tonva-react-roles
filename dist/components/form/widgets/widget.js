@@ -35,10 +35,10 @@ export class Widget {
         this.context = context;
         let { name } = itemSchema;
         this.name = name;
-        this.itemSchema = itemSchema;
+        this._itemSchema = itemSchema;
         this.fieldProps = fieldProps;
         this.children = children;
-        this.ui = context.getUiItem(name);
+        this._ui = context.getUiItem(name);
         if (this.ui === undefined) {
             this.readOnly = false;
             this.disabled = false;
@@ -54,6 +54,10 @@ export class Widget {
         this.init();
     }
     get hasError() { return (this.errors.length + this.contextErrors.length) > 0; }
+    get itemSchema() { return this._itemSchema; }
+    ;
+    get ui() { return this._ui; }
+    ;
     init() {
         this.rules = [];
         if (this.itemSchema.required === true) {

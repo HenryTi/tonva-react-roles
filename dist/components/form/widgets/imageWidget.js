@@ -45,6 +45,8 @@ export class ImageWidget extends Widget {
                 React.createElement(Image, { src: this.imageSrc, className: "w-4c h-4c" }));
         });
     }
+    get ui() { return this._ui; }
+    ;
     init() {
         super.init();
         this.imageSrc = this.value;

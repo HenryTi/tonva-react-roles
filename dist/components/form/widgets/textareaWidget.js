@@ -8,6 +8,10 @@ export class TextAreaWidget extends Widget {
             this.setValue(evt.currentTarget.value);
         };
     }
+    get itemSchema() { return this._itemSchema; }
+    ;
+    get ui() { return this._ui; }
+    ;
     setElementValue(value) { this.input.value = value; }
     setReadOnly(value) { this.input.readOnly = this.readOnly = value; }
     setDisabled(value) { this.input.disabled = this.disabled = value; }

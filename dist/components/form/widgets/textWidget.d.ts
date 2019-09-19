@@ -3,7 +3,7 @@ import { Widget } from './widget';
 import { UiTextItem } from '../../schema';
 export declare class TextWidget extends Widget {
     protected inputType: string;
-    protected ui: UiTextItem;
+    protected readonly ui: UiTextItem;
     protected input: HTMLInputElement;
     protected setElementValue(value: any): void;
     protected readonly placeholder: string;

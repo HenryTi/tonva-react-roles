@@ -6,6 +6,8 @@ export class NumberWidget extends TextWidget {
         super(...arguments);
         this.inputType = 'number';
     }
+    get itemSchema() { return this._itemSchema; }
+    ;
     buildRules() {
         super.buildRules();
         let res = this.context.form.res;

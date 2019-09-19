@@ -33,6 +33,8 @@ export class IdWidget extends Widget {
             this.checkRules();
         });
     }
+    get ui() { return this._ui; }
+    ;
     setReadOnly(value) { this.readOnly = value; }
     setDisabled(value) { this.disabled = value; }
     render() {

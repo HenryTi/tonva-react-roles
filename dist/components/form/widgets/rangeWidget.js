@@ -6,6 +6,8 @@ export class RangeWidget extends Widget {
         super(...arguments);
         this.inputType = 'range';
     }
+    get ui() { return this._ui; }
+    ;
     setReadOnly(value) { this.input.readOnly = this.readOnly = value; }
     setDisabled(value) { this.input.disabled = this.disabled = value; }
     render() {
