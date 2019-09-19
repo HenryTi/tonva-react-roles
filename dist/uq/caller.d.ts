@@ -18,7 +18,7 @@ export declare abstract class EntityCaller<T> extends Caller<T> {
     private rebuildSchema;
 }
 export declare abstract class ActionCaller extends EntityCaller<any> {
-    protected entity: Action;
+    protected readonly entity: Action;
 }
 export declare class QueryQueryCaller extends EntityCaller<any> {
     protected readonly entity: Query;

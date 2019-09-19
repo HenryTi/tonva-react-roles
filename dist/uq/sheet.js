@@ -171,6 +171,7 @@ export class Sheet extends Entity {
     }
 }
 class SheetCaller extends EntityCaller {
+    get entity() { return this._entity; }
     get path() { return `sheet/${this.entity.name}/${this.suffix}`; }
 }
 class SaveCaller extends SheetCaller {

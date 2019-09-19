@@ -71,6 +71,7 @@ export class EntityCaller extends Caller {
     }
 }
 export class ActionCaller extends EntityCaller {
+    get entity() { return this._entity; }
 }
 export class QueryQueryCaller extends EntityCaller {
     get entity() { return this._entity; }

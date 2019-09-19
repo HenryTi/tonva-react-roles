@@ -115,6 +115,7 @@ export class Map extends Entity {
     }
 }
 class MapCaller extends EntityCaller {
+    get entity() { return this._entity; }
     get path() { return undefined; }
     innerCall() {
         return __awaiter(this, void 0, void 0, function* () {
