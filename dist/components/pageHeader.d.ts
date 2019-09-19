@@ -11,8 +11,6 @@ export interface PageHeaderState {
 }
 export declare class PageHeader extends React.Component<PageHeaderProps, PageHeaderState> {
     constructor(props: PageHeaderProps);
-    navChange(): void;
-    componentWillMount(): void;
     componentWillUnmount(): void;
     back(): Promise<void>;
     openWindow(): void;

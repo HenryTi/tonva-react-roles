@@ -27,7 +27,6 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     private waitCount;
     private waitTimeHandler?;
     constructor(props: any);
-    componentWillMount(): Promise<void>;
     componentDidMount(): Promise<void>;
     readonly level: number;
     startWait(): void;

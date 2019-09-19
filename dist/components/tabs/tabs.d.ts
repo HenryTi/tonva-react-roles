@@ -27,7 +27,7 @@ export declare class Tabs extends React.Component<TabsProps> {
     private selectedTab;
     private tabs;
     constructor(props: TabsProps);
-    componentWillMount(): Promise<void>;
+    componentDidMount(): Promise<void>;
     private tabClick;
     showTab(tabName: string): void;
     render(): JSX.Element;

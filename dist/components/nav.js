@@ -66,13 +66,14 @@ export class NavView extends React.Component {
             fetchError: undefined
         };
     }
-    componentWillMount() {
-        return __awaiter(this, void 0, void 0, function* () {
-            window.addEventListener('popstate', this.navBack);
-        });
+    /*
+    async componentWillMount() {
+        window.addEventListener('popstate', this.navBack);
     }
+    */
     componentDidMount() {
         return __awaiter(this, void 0, void 0, function* () {
+            window.addEventListener('popstate', this.navBack);
             nav.set(this);
             /*
             let start = this.props.start;
@@ -752,6 +753,7 @@ export class Nav {
                 nav.push(React.createElement("article", { className: 'app-container' },
                     React.createElement("span", { id: uh.hash, onClick: () => this.back() },
                         React.createElement("i", { className: "fa fa-arrow-left" })),
+                    // eslint-disable-next-line 
                     React.createElement("iframe", { src: uh.url, title: String(sheetId) })), () => {
                     resolve();
                 });

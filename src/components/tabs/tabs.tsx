@@ -85,8 +85,15 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
         if (this.selectedTab === undefined) this.selectedTab = this.tabs[0];
         this.selectedTab.selected = true;
     }
-
+    /*
     async componentWillMount() {
+        if (this.tabs === undefined) return;
+        if (this.tabs.length === 0) return;
+        let tab = this.tabs[0];
+        await tab.start();
+    }
+    */
+    async componentDidMount() {
         if (this.tabs === undefined) return;
         if (this.tabs.length === 0) return;
         let tab = this.tabs[0];

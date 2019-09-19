@@ -57,7 +57,7 @@ export class DropdownActions extends React.Component {
                         i,
                         " ",
                         caption);
-                return React.createElement("a", { className: "dropdown-item", key: index, href: "#", onClick: (evt) => { evt.preventDefault(); action(); } },
+                return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: (evt) => { evt.preventDefault(); action(); } },
                     i,
                     " ",
                     caption);
