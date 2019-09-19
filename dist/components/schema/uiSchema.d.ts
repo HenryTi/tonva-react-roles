@@ -7,7 +7,7 @@ import { Widget } from '../form/widgets';
 export declare type TypeWidget = new (context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode) => Widget;
 export declare type UiType = 'form' | 'arr' | 'group' | 'button' | 'submit' | 'custom' | 'image' | 'id' | 'text' | 'textarea' | 'password' | 'date' | 'datetime' | 'select' | 'url' | 'email' | 'updown' | 'color' | 'checkbox' | 'checkboxes' | 'radio' | 'range';
 export declare type ChangingHandler = (context: Context, value: any, prev: any) => boolean;
-export declare type ChangedHandler = (context: Context, value: any, prev: any) => void;
+export declare type ChangedHandler = (context: Context, value: any, prev: any) => Promise<void>;
 export interface UiItem {
     widget?: UiType;
     readOnly?: boolean;
