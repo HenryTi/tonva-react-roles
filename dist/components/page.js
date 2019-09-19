@@ -5,10 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -146,7 +147,7 @@ let Page = class Page extends React.Component {
             const { icon, isSelected, title, redDot, className } = tab;
             let img, redDotView, cn;
             if (icon !== undefined)
-                img = React.createElement("img", { src: icon });
+                img = React.createElement("img", { src: icon, alt: "tab icon" });
             if (redDot !== undefined) {
                 let v = redDot.get();
                 if (v < 0) {
@@ -177,6 +178,7 @@ let Page = class Page extends React.Component {
                         tab.isMounted = true;
                         return React.createElement(ScrollView, { key: index, className: classNames({ invisible: isSelected === false }), onScroll: tab.onScroll, onScrollTop: tab.onScrollTop, onScrollBottom: tab.onScrollBottom }, (typeof content) === 'function' ? content() : content);
                     }
+                    return undefined;
                 })),
             tabPosition !== 'top' && tabs,
             footer);

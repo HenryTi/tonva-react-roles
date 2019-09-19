@@ -2,15 +2,17 @@ import { Controller } from "../components";
 import { IConstructor } from "./CAppBase";
 
 export abstract class CBase extends Controller {
-    protected readonly uqs: any;
+    protected readonly _uqs: any;
     readonly cApp: any;
 
     constructor(cApp: any) {
         super(undefined);
         this.cApp = cApp;
-        this.uqs = cApp.uqs;
+        this._uqs = cApp.uqs;
         this.init();
     }
+
+    protected get uqs(): any {return this._uqs}
 
     protected init() {}
 

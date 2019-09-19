@@ -14,12 +14,13 @@ export interface AppConfig {
     loginTop?: JSX.Element;
 }
 export declare abstract class CAppBase extends Controller {
+    protected _uqs: any;
     protected readonly name: string;
     protected readonly version: string;
-    readonly uqs: any;
     readonly uqsMan: UQsMan;
     appUnits: any[];
     constructor(config: AppConfig);
+    readonly uqs: any;
     protected beforeStart(): Promise<boolean>;
     private load;
     private showUnsupport;

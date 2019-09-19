@@ -23,8 +23,32 @@
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": false,
         "experimentalDecorators": true,
-        "skipLibCheck": true    
+        "skipLibCheck": true
     },
+    /*
+    "compilerOptions": {
+        "target": "es5",
+        "lib": [
+          "dom",
+          "dom.iterable",
+          "esnext"
+        ],
+        "outDir": "./dist",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react",
+        "experimentalDecorators": true
+    },
+    */
     "exclude": [
         "node_modules",
         "dist"

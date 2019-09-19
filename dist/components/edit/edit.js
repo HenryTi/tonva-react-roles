@@ -5,14 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 import * as React from 'react';
+//import _ from 'lodash';
 import { observer } from 'mobx-react';
 import { StringItemEdit } from './stringItemEdit';
 import { ImageItemEdit } from './imageItemEdit';
@@ -110,7 +112,7 @@ let Edit = class Edit extends React.Component {
             }
             try {
                 changeValue = yield itemEdit.start();
-                if (changeValue != value) {
+                if (changeValue !== value) {
                     if (onItemChanged === undefined) {
                         alert(`${itemSchema.name} value changed, new: ${changeValue}, pre: ${value}`);
                         this.props.data[itemSchema.name] = changeValue;
@@ -169,12 +171,11 @@ function createItemEdit(itemSchema, uiItem, label, value) {
             case 'image':
                 itemEdit = ImageItemEdit;
                 break;
-            case 'radio':
-                itemEdit = RadioItemEdit;
-                break;
             case 'select':
                 itemEdit = SelectItemEdit;
                 break;
+            case 'radio':
+                return new RadioItemEdit(itemSchema, uiItem, label, value);
         }
     }
     if (itemEdit === undefined) {

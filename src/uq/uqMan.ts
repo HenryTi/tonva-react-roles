@@ -104,7 +104,7 @@ export class UqMan {
         this.localMap = uqs.localMap.map(this.name);
         this.localModifyMax = this.localMap.child('$modifyMax');
         this.localAccess = this.localMap.child('$access');
-        let hash = document.location.hash;
+        //let hash = document.location.hash;
         let baseUrl = 'tv/';
 
         let acc: string[];
@@ -133,7 +133,7 @@ export class UqMan {
     }
 
     private createBoxIdFromTVs:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{
-        let {name, sName} = tuid;
+        let {name} = tuid;
         /*
         let tuidUR = this.tuidURs[name];
         if (tuidUR === undefined) {
@@ -227,7 +227,7 @@ export class UqMan {
     private buildTuids(tuids:any) {
         for (let i in tuids) {
             let schema = tuids[i];
-            let {name, typeId, from} = schema;
+            let {typeId, from} = schema;
             let tuid = this.newTuid(i, typeId, from);
             tuid.sys = true;
         }
@@ -365,7 +365,7 @@ export class UqMan {
                 }
                 if (ownerField === undefined) {
                     debugger;
-                    throw `owner field ${owner} is undefined`;
+                    throw new Error(`owner field ${owner} is undefined`);
                 }
             }
             let {arr, tuid} = f;
@@ -375,7 +375,7 @@ export class UqMan {
             f._tuid = div && div.buildTuidDivBox(ownerField);
             if (f._tuid === undefined) {
                 debugger;
-                throw 'owner field ${owner} is not tuid';
+                throw new Error(`owner field ${owner} is not tuid`);
             }
         }
     }

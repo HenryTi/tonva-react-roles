@@ -141,7 +141,7 @@ export function factory(context, itemSchema, children, fieldProps) {
         }
         //label = uiLabel || name;
     }
-    let { isRow, widgets } = context;
+    let { widgets } = context;
     let widget = new typeWidget(context, itemSchema, fieldProps, children);
     widgets[name] = widget;
     return React.createElement(widget.container, null);

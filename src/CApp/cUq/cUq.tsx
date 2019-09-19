@@ -1,6 +1,6 @@
 import * as React from 'react';
-import _ from 'lodash';
-import { Controller, resLang, nav } from '../../components';
+//import _ from 'lodash';
+import { Controller, resLang } from '../../components';
 import { UqData } from '../../net';
 import { PureJSONContent } from '../tools';
 import { UqMan, Action, Sheet, Query, Book, Map, Entity, Tuid, History, Pending, TuidDiv, CreateBoxId, BoxId } from '../../uq';
@@ -9,7 +9,7 @@ import { CBook, BookUI } from '../book';
 import { CSheet, SheetUI } from '../sheet';
 import { ActionUI, CAction } from '../action';
 import { QueryUI, CQuery, CQuerySelect } from '../query';
-import { CTuidMain, TuidUI, CTuid, CTuidInfo, CTuidSelect, CTuidEdit, CTuidList } from '../tuid';
+import { CTuidMain, TuidUI, CTuidInfo, CTuidSelect, CTuidEdit, CTuidList } from '../tuid';
 import { MapUI, CMap } from '../map';
 import { CEntity, EntityUI } from '../CVEntity';
 import { VUq } from './vUq';
@@ -146,11 +146,11 @@ export class CUq extends Controller /* implements Uq*/ {
     getTuidPlaceHolder(tuid:Tuid) {
         let {tuidPlaceHolder, entity} = this.res;
         let {name} = tuid;
-        let type:string;
+        //let type:string;
         if (entity !== undefined) {
             let en = entity[name];
             if (en !== undefined) {
-                type = en.label;
+                //type = en.label;
             }
         }
         return (tuidPlaceHolder || 'Select');
@@ -314,23 +314,23 @@ export class CUq extends Controller /* implements Uq*/ {
     }
     cTuidMain(tuid:Tuid):CTuidMain {
         let {ui, res} = this.getUI<Tuid, TuidUI>(tuid);
-        return new (ui && ui.CTuidMain || this.CTuidMain)(this, tuid, ui, res);
+        return new ((ui && ui.CTuidMain) || this.CTuidMain)(this, tuid, ui, res);
     }
     cTuidEdit(tuid:Tuid):CTuidEdit {
         let {ui, res} = this.getUI<Tuid, TuidUI>(tuid);
-        return new (ui && ui.CTuidEdit || this.CTuidEdit)(this, tuid, ui, res);
+        return new ((ui && ui.CTuidEdit) || this.CTuidEdit)(this, tuid, ui, res);
     }
     cTuidList(tuid:Tuid):CTuidList {
         let {ui, res} = this.getUI<Tuid, TuidUI>(tuid);
-        return new (ui && ui.CTuidList || this.CTuidList)(this, tuid, ui, res);
+        return new ((ui && ui.CTuidList) || this.CTuidList)(this, tuid, ui, res);
     }
     cTuidSelect(tuid:Tuid):CTuidSelect {
         let {ui, res} = this.getUI<Tuid, TuidUI>(tuid);
-        return new (ui && ui.CTuidSelect || this.CTuidSelect)(this, tuid, ui, res);
+        return new ((ui && ui.CTuidSelect) || this.CTuidSelect)(this, tuid, ui, res);
     }
     cTuidInfo(tuid:Tuid):CTuidInfo {
         let {ui, res} = this.getUI<Tuid, TuidUI>(tuid);
-        return new (ui && ui.CTuidInfo || this.CTuidInfo)(this, tuid, ui, res);
+        return new ((ui && ui.CTuidInfo) || this.CTuidInfo)(this, tuid, ui, res);
     }
 
     cSheet(sheet:Sheet/*, sheetUI?:SheetUI, sheetRes?:any*/):CSheet {
@@ -338,7 +338,7 @@ export class CUq extends Controller /* implements Uq*/ {
         //if (sheetUI !== undefined) ui = sheetUI;
         //if (sheetRes !== undefined) res = sheetRes;
         //return new (ui && ui.CSheet || this.CSheet)(this, sheet, sheetUI, sheetRes);
-        return new (ui && ui.CSheet || this.CSheet)(this, sheet, ui, res);
+        return new ((ui && ui.CSheet) || this.CSheet)(this, sheet, ui, res);
     }
     get sheetLinks() { 
         return this.uq.sheetArr.filter(v => this.isVisible(v)).map(v => {
@@ -348,7 +348,7 @@ export class CUq extends Controller /* implements Uq*/ {
 
     cAction(action:Action):CAction {
         let {ui, res} = this.getUI<Action, ActionUI>(action);
-        return new (ui && ui.CAction || this.CAction)(this, action, ui, res);
+        return new ((ui && ui.CAction) || this.CAction)(this, action, ui, res);
     }
     get actionLinks() { 
         return this.uq.actionArr.filter(v => this.isVisible(v)).map(v => {
@@ -358,13 +358,13 @@ export class CUq extends Controller /* implements Uq*/ {
 
     cQuery(query:Query):CQuery {
         let {ui, res} = this.getUI<Query, QueryUI>(query);
-        return new (ui && ui.CQuery || this.CQuery)(this, query, ui, res);
+        return new ((ui && ui.CQuery) || this.CQuery)(this, query, ui, res);
     }
     cQuerySelect(queryName:string):CQuerySelect {
         let query = this.uq.query(queryName);
         if (query === undefined) return;
         let {ui, res} = this.getUI<Query, QueryUI>(query);
-        return new (ui && ui.CQuerySelect || this.CQuerySelect)(this, query, ui, res);
+        return new ((ui && ui.CQuerySelect) || this.CQuerySelect)(this, query, ui, res);
     }
     get queryLinks() {
         return this.uq.queryArr.filter(v => this.isVisible(v)).map(v => {
@@ -374,7 +374,7 @@ export class CUq extends Controller /* implements Uq*/ {
     
     cBook(book:Book):CBook {
         let {ui, res} = this.getUI<Book, BookUI>(book);
-        return new (ui && ui.CBook || this.CBook)(this, book, ui, res);
+        return new ((ui && ui.CBook) || this.CBook)(this, book, ui, res);
     }
     get bookLinks() { 
         return this.uq.bookArr.filter(v => this.isVisible(v)).map(v => {
@@ -384,7 +384,7 @@ export class CUq extends Controller /* implements Uq*/ {
     
     cHistory(history:History):CHistory {
         let {ui, res} = this.getUI<History, HistoryUI>(history);
-        return new (ui && ui.CHistory || this.CHistory)(this, history, ui, res);
+        return new ((ui && ui.CHistory) || this.CHistory)(this, history, ui, res);
     }
     get historyLinks() { 
         return this.uq.historyArr.filter(v => this.isVisible(v)).map(v => {
@@ -394,7 +394,7 @@ export class CUq extends Controller /* implements Uq*/ {
     
     cPending(pending:Pending):CPending {
         let {ui, res} = this.getUI<Pending, PendingUI>(pending);
-        return new (ui && ui.CPending || this.CPending)(this, pending, ui, res);
+        return new ((ui && ui.CPending) || this.CPending)(this, pending, ui, res);
     }
     get pendingLinks() { 
         return this.uq.pendingArr.filter(v => this.isVisible(v)).map(v => {
@@ -404,7 +404,7 @@ export class CUq extends Controller /* implements Uq*/ {
     
     cMap(map:Map):CMap {
         let {ui, res} = this.getUI<Map, MapUI>(map);
-        return new (ui && ui.CMap || this.CMap)(this, map, ui, res);
+        return new ((ui && ui.CMap) || this.CMap)(this, map, ui, res);
     }
     get mapLinks() { 
         return this.uq.mapArr.filter(v => this.isVisible(v)).map(v => {

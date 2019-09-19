@@ -5,13 +5,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//import _ from 'lodash';
 import { observable } from 'mobx';
 import { PageItems } from '../tool';
 import { Entity } from './entity';
@@ -116,7 +118,7 @@ export class Query extends Entity {
     loadPage() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.pageSize === undefined) {
-                throw 'call resetPage(size:number, params:any) first';
+                throw new Error('call resetPage(size:number, params:any) first');
             }
             let pageStart;
             if (this.pageStart !== undefined) {
@@ -155,6 +157,9 @@ export class Query extends Entity {
             //this.loaded = true;
         });
     }
+    pageCaller(params) {
+        return new QueryPageCaller(this, params);
+    }
     page(params, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             /*
@@ -162,11 +167,14 @@ export class Query extends Entity {
             let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
             */
             let p = { pageStart: pageStart, pageSize: pageSize + 1, params: params };
-            let res = yield new QueryPageCaller(this, p).request();
+            let res = yield this.pageCaller(p).request();
             //let data = this.unpackReturns(res);
             //return data.$page;// as any[];
             return res;
         });
+    }
+    queryCaller(params) {
+        return new QueryQueryCaller(this, params);
     }
     query(params) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -174,7 +182,7 @@ export class Query extends Entity {
             await this.loadSchema();
             let res = await this.uqApi.query(this.name, this.buildParams(params));
             */
-            let res = yield new QueryQueryCaller(this, params).request();
+            let res = yield this.queryCaller(params).request();
             //let data = this.unpackReturns(res);
             //return data;
             return res;

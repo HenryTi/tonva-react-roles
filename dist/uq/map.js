@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -114,7 +115,7 @@ export class Map extends Entity {
     }
 }
 class MapCaller extends EntityCaller {
-    get path() { return; }
+    get path() { return undefined; }
     innerCall() {
         return __awaiter(this, void 0, void 0, function* () {
             let caller = this.getCaller(this.params);
@@ -159,7 +160,7 @@ class MapAddCaller extends ActionSubmitCaller {
         this.map = map;
     }
     get path() { return `map/${this.map.name}/add`; }
-    get headers() { return; }
+    get headers() { return undefined; }
 }
 class MapDelCaller extends ActionSubmitCaller {
     constructor(map, action, params) {
@@ -167,7 +168,7 @@ class MapDelCaller extends ActionSubmitCaller {
         this.map = map;
     }
     get path() { return `map/${this.map.name}/del`; }
-    get headers() { return; }
+    get headers() { return undefined; }
 }
 class MapAllCaller extends QueryPageCaller {
     constructor(map, query, params) {
@@ -175,7 +176,7 @@ class MapAllCaller extends QueryPageCaller {
         this.map = map;
     }
     get path() { return `map/${this.map.name}/all`; }
-    get headers() { return; }
+    get headers() { return undefined; }
 }
 class MapPageCaller extends QueryPageCaller {
     constructor(map, query, params) {
@@ -183,7 +184,7 @@ class MapPageCaller extends QueryPageCaller {
         this.map = map;
     }
     get path() { return `map/${this.map.name}/page`; }
-    get headers() { return; }
+    get headers() { return undefined; }
 }
 class MapQueryCaller extends QueryQueryCaller {
     constructor(map, query, params) {
@@ -191,6 +192,6 @@ class MapQueryCaller extends QueryQueryCaller {
         this.map = map;
     }
     get path() { return `map/${this.map.name}/query`; }
-    get headers() { return; }
+    get headers() { return undefined; }
 }
 //# sourceMappingURL=map.js.map

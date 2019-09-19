@@ -34,6 +34,7 @@ export class MapItem {
     }
 }
 
+/*eslint no-template-curly-in-string: 0*/
 export class CMap extends CEntity<Map, MapUI> {
     isFrom: boolean;
     items:MapItem[];
@@ -99,7 +100,7 @@ export class CMap extends CEntity<Map, MapUI> {
                 }
                 continue;
             }
-            let {children, box} = p;
+            let {children} = p;
             let len = children.length;
             if (len > 0) {
                 let n = children[len-1];
@@ -178,7 +179,7 @@ export class CMap extends CEntity<Map, MapUI> {
             arr1[this.keyFields[keysLast].name] = 0;
             let {fields} = this.entity;
             for (let f of fields) {
-                let {name, type, null:nullable} = f;
+                let {type, null:nullable} = f;
                 if (!(nullable === true)) {
                     //arr1['_' + f.name] = fieldDefaultValue(type);
                     arr1[f.name] = fieldDefaultValue(type);
@@ -216,7 +217,7 @@ export class CMap extends CEntity<Map, MapUI> {
         let confirmDelete:_.TemplateExecutor = 
             this.res.confirmDelete 
             || _.template('do you really want to remove ${label}?');
-        if (confirm(confirmDelete({label:label})) === false) return;
+        if (window.confirm(confirmDelete({label:label})) === false) return;
         let map:Map = this.entity;
         let data = {} as any;
         let arr1 = data['arr1'] = [];

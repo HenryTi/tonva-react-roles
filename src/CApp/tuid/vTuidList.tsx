@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { FA, SearchBox, List, Page, VPage } from '../../components';
-import { jsonStringify } from '../tools';
-import { Tuid, TuidDiv } from '../../uq';
+import { SearchBox, List, Page } from '../../components';
+//import { jsonStringify } from '../tools';
+import { Tuid } from '../../uq';
 import { VEntity } from '../CVEntity';
-import { TuidUI, CTuidMain, CTuidDiv } from './cTuid';
-import { JSONContent, RowContent } from '../form/viewModel';
+import { TuidUI, CTuidMain } from './cTuid';
+import { RowContent } from '../form/viewModel';
 
 export abstract class VTuidListBase  extends VEntity<Tuid, TuidUI, CTuidMain> {
     protected rowContent: (row:any) => JSX.Element;

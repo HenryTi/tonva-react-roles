@@ -10,7 +10,7 @@ class _LocalStorage {
         localStorage.removeItem(key);
     }
 }
-const __ls = new _LocalStorage; // new Ls;
+const __ls = new _LocalStorage(); // new Ls;
 export class LocalCache {
     constructor(local, key) {
         this.local = local;

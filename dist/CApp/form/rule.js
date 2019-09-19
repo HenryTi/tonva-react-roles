@@ -14,7 +14,7 @@ export class RuleRequired extends Rule {
                     return;
                 break;
             case 'number':
-                if (value !== NaN)
+                if (isNaN(value) === true)
                     return;
                 break;
             case 'undefined':
@@ -28,7 +28,7 @@ export class RuleNum extends Rule {
         if (value === undefined || value === null)
             return;
         let n = Number(value);
-        if (n === NaN)
+        if (isNaN(n) === true)
             defy.push('必须是数字');
     }
 }

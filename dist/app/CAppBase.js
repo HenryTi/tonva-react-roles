@@ -1,11 +1,13 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//import _ from 'lodash';
 import { Controller, nav } from "../components";
 import { UQsMan } from "../uq";
 import { appInFrame, loadAppUqs } from "../net";
@@ -18,12 +20,12 @@ export class CAppBase extends Controller {
         let { appName, version, tvs } = config;
         this.name = appName;
         if (appName === undefined) {
-            throw 'appName like "owner/app" must be defined in MainConfig';
+            throw new Error('appName like "owner/app" must be defined in MainConfig');
         }
         this.version = version;
-        this.uqs = {};
         this.uqsMan = new UQsMan(this.name, tvs);
     }
+    get uqs() { return this._uqs; }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -44,7 +46,7 @@ export class CAppBase extends Controller {
                         case 1:
                             let appUnit = this.appUnits[0].id;
                             if (appUnit === undefined || appUnit < 0 ||
-                                predefinedUnit !== undefined && appUnit != predefinedUnit) {
+                                (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
                                 return false;
                             }
@@ -67,7 +69,7 @@ export class CAppBase extends Controller {
                 return true;
             }
             catch (err) {
-                this.openVPage(VStartError);
+                this.openVPage(VStartError, err);
                 return false;
             }
         });
@@ -92,7 +94,7 @@ export class CAppBase extends Controller {
             if (retErrors.length === 0) {
                 retErrors.push(...this.uqsMan.setTuidImportsLocal());
                 if (retErrors.length === 0) {
-                    this.uqsMan.writeUQs(this.uqs);
+                    this._uqs = this.uqsMan.buildUQs();
                     /*
                     _.merge(this.uqs, this.uqsMan.uqsColl);
                     for (let i in this.uqs) {

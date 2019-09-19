@@ -31,7 +31,7 @@ export class IdItemEdit extends ItemEdit {
     private onChange = (value:any) => {
         this.newValue = value;
         let preValue = this.value;
-        this.isChanged = (this.newValue != preValue);
+        this.isChanged = (this.newValue !== preValue);
     }
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {

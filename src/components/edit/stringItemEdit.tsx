@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem } from '../schema';
+import { UiTextItem } from '../schema';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
 import { ItemEdit } from './itemEdit';
 
 export class StringItemEdit extends ItemEdit {
@@ -18,7 +17,7 @@ export class StringItemEdit extends ItemEdit {
     private onChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         this.newValue = evt.target.value;
         let preValue = this.value;
-        this.isChanged = (this.newValue != preValue);
+        this.isChanged = (this.newValue !== preValue);
     }
 
     private onBlur = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +29,7 @@ export class StringItemEdit extends ItemEdit {
     }
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
-        let {resolve, reject} = props;
+        let {resolve} = props;
         let right = <button
             className="btn btn-sm btn-success"
             disabled={!this.isChanged}

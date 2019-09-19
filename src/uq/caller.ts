@@ -1,4 +1,4 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import { Caller } from '../net';
 import { Entity } from './entity';
 import { Action } from './action';
@@ -11,13 +11,15 @@ interface UqResponseSchema {
 
 export abstract class EntityCaller<T> extends Caller<T> {
     private tries: number;
-    protected entity: Entity;
+    protected _entity: Entity;
 
     constructor(entity: Entity, params:T) {
         super(params);
         this.tries = 0;
-        this.entity = entity;
+        this._entity = entity;
     }
+
+    protected get entity(): Entity {return this._entity;}
 
     //大多的entityCaller都不需要这个
     //buildParams() {return this.entity.buildParams(this.params);}
@@ -58,7 +60,7 @@ export abstract class EntityCaller<T> extends Caller<T> {
 
     private async retry(schema: UqResponseSchema) {
         ++this.tries;
-        if (this.tries > 5) throw 'can not get right uq response schema, 5 tries';
+        if (this.tries > 5) throw new Error('can not get right uq response schema, 5 tries');
         this.rebuildSchema(schema);
         return await this.innerRequest();
     }
@@ -75,7 +77,7 @@ export abstract class ActionCaller extends EntityCaller<any> {
 }
 
 export class QueryQueryCaller extends EntityCaller<any> {
-    protected entity: Query;
+    protected get entity(): Query {return this._entity as Query};
     get path():string {return `query/${this.entity.name}`;}
     xresult(res:any) {
         let data = this.entity.unpackReturns(res);
@@ -86,7 +88,7 @@ export class QueryQueryCaller extends EntityCaller<any> {
 
 export class QueryPageCaller extends EntityCaller<any> {
     protected readonly params: {pageStart:any; pageSize:number, params:any};
-    protected entity: Query;
+    protected get entity(): Query {return this._entity as Query};
     get path():string {return `query-page/${this.entity.name}`;}
     buildParams() {
         let {pageStart, pageSize, params} = this.params;

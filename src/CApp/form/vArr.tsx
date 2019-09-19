@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IObservableArray, observable } from 'mobx';
+import { IObservableArray } from 'mobx';
 import _ from 'lodash';
-import { Page, nav, List, FA, Muted } from '../../components';
-import { ViewModel, RowContent, TypeContent, JSONContent } from './viewModel';
-import { ArrFields, Field } from '../../uq';
+import { Page, nav, List, Muted } from '../../components';
+import { ViewModel, TypeContent, JSONContent } from './viewModel';
+import { ArrFields } from '../../uq';
 import { VForm, FieldInputs, FormMode } from './vForm';
 import { FormArr } from '../formUI';
 

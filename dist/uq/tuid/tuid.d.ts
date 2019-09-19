@@ -12,7 +12,6 @@ export declare abstract class Tuid extends Entity {
     protected idName: string;
     cached: boolean;
     unique: string[];
-    constructor(uq: UqMan, name: string, typeId: number);
     setSchema(schema: any): void;
     buildTuidBox(): TuidBox;
     getIdFromObj(obj: any): number;

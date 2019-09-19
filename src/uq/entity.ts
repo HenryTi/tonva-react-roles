@@ -165,7 +165,7 @@ export abstract class Entity {
     buildDateTimeParam(val:any) {
         let dt: Date;
         switch (typeof val) {
-            default: debugger; throw 'escape datetime field in pack data error: value=' + val;
+            default: debugger; throw new Error('escape datetime field in pack data error: value=' + val);
             case 'undefined': return undefined;
             case 'object': dt = (val as Date); break;
             case 'string':
@@ -177,7 +177,7 @@ export abstract class Entity {
     buildDateParam(val:any) {
         let dt: Date;
         switch (typeof val) {
-            default: debugger; throw 'escape datetime field in pack data error: value=' + val;
+            default: debugger; throw new Error('escape datetime field in pack data error: value=' + val);
             case 'undefined': return undefined;
             case 'string': return val;
             case 'object': dt = (val as Date); break;

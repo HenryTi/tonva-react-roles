@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 export class FA extends React.Component {
     render() {
         let { name, className, size, spin, fixWidth, border, pull, pulse, rotate, flip, inverse } = this.props;

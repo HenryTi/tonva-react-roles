@@ -1,3 +1,4 @@
+//import * as React from 'react';
 import { TextWidget } from './textWidget';
 import { RuleNum, RuleInt } from '../rules';
 export class NumberWidget extends TextWidget {

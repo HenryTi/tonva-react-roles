@@ -5,7 +5,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import * as React from 'react';
-import { observable, isObservable, autorun } from 'mobx';
+import { observable, autorun } from 'mobx';
 import classNames from 'classnames';
 import { ListBase } from './base';
 import { uid } from '../../tool/uid';
@@ -40,7 +40,7 @@ export class Selectable extends ListBase {
                 comp = compare;
             }
             let retItems = itemsArray.map(v => {
-                let isObserved = isObservable(v);
+                //let isObserved = isObservable(v);
                 //let obj = isObserved === true? toJS(v) : v;
                 //let obj = v;
                 let selected = selectedItems === undefined ?
@@ -79,7 +79,7 @@ export class Selectable extends ListBase {
         //w-100 mb-0 pl-3
         //m-0 w-100
         this.render = (item, index) => {
-            let { className, key, render, onSelect } = this.list.props.item;
+            let { className, key } = this.list.props.item;
             let { labelId, selected, item: obItem } = item;
             return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
                 React.createElement("div", { className: "d-flex align-items-center px-3" },

@@ -5,10 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -49,9 +50,9 @@ export class Context {
     getArrRowContexts(arrName) {
         if (this.subContexts === undefined)
             this.subContexts = {};
-        let arrRowContexts = this.subContexts[name];
+        let arrRowContexts = this.subContexts[arrName];
         if (arrRowContexts === undefined)
-            this.subContexts[name] = arrRowContexts = {};
+            this.subContexts[arrName] = arrRowContexts = {};
         return arrRowContexts;
     }
     get arrName() { return undefined; }

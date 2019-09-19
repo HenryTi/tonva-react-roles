@@ -29,7 +29,7 @@ export abstract class ListBase {
         if (pageItems.items === undefined) return false;
         return pageItems.loading;
     }
-    get selectedItems():any[] { return; }
+    get selectedItems():any[] { return undefined; }
     //updateProps(nextProps:any) {}
     dispose() {};
     abstract render: (item:any, index:number) => JSX.Element;

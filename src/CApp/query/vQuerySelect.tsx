@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page, FA, SearchBox, List } from '../../components';
+import { Page, SearchBox, List } from '../../components';
 import { PageItems } from '../../tool';
 import { Query } from '../../uq';
 import { VEntity } from '../CVEntity';

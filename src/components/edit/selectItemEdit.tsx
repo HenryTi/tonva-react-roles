@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem, UiSelect } from '../schema';
+import { UiSelect } from '../schema';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
 import { ItemEdit } from './itemEdit';
 
 export class SelectItemEdit extends ItemEdit {
@@ -18,11 +17,11 @@ export class SelectItemEdit extends ItemEdit {
     private onChange = (value:any) => {
         this.newValue = value;
         let preValue = this.value;
-        this.isChanged = (this.newValue != preValue);
+        this.isChanged = (this.newValue !== preValue);
     }
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
-        let {resolve, reject} = props;
+        let {resolve} = props;
         let {list} = this.uiItem;
         let content = list?
             list.map((v, index:number) => {

@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -15,7 +16,7 @@ export class UQsMan {
         this.collection = {};
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
-            throw 'tonvaApp name must be / separated, owner/app';
+            throw new Error('tonvaApp name must be / separated, owner/app');
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
@@ -50,7 +51,7 @@ export class UQsMan {
         return __awaiter(this, void 0, void 0, function* () {
             let promiseInits = [];
             for (let uqData of uqsData) {
-                let { id, uqOwner, uqName, access } = uqData;
+                let { uqOwner, uqName } = uqData;
                 let uqFullName = uqOwner + '/' + uqName;
                 //let uqUI = this.ui.uqs[uqFullName] as UqUI || {};
                 //let cUq = this.newCUq(uqData, uqUI);
@@ -86,15 +87,8 @@ export class UQsMan {
             return retErrors;
         });
     }
-    writeUQs(uqs) {
-        /*
-        let ret:any = {};
-        for (let i in this.collection) {
-            ret[i] = this.collection[i].entities;
-        }
-        return ret;
-        */
-        //_.merge(this.uqs, this.uqsMan.uqsColl);
+    buildUQs() {
+        let uqs = {};
         for (let i in this.collection) {
             let uqMan = this.collection[i];
             //let n = uqMan.name;
@@ -113,6 +107,7 @@ export class UQsMan {
             if (l !== uqName)
                 uqs[l] = entities;
         }
+        return uqs;
     }
     setTuidImportsLocal() {
         let ret = [];

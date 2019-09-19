@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Page, SearchBox, List, Muted, LMR } from '../../components';
-import { Tuid, Entity } from '../../uq';
+import { Page, SearchBox, LMR } from '../../components';
+import { Tuid } from '../../uq';
 import { CLink } from '../link';
 import { VEntity } from '../CVEntity';
 import { CTuidMain, TuidUI } from './cTuid';

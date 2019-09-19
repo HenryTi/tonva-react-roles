@@ -3,9 +3,10 @@ export class CBase extends Controller {
     constructor(cApp) {
         super(undefined);
         this.cApp = cApp;
-        this.uqs = cApp.uqs;
+        this._uqs = cApp.uqs;
         this.init();
     }
+    get uqs() { return this._uqs; }
     init() { }
     newC(type) {
         return new type(this.cApp);

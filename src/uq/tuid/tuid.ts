@@ -17,9 +17,10 @@ export abstract class Tuid extends Entity {
     cached: boolean;
     unique: string[];
 
+    /*
     constructor(uq:UqMan, name:string, typeId:number) {
         super(uq, name, typeId)
-    }
+    }*/
 
     public setSchema(schema:any) {
         super.setSchema(schema);
@@ -251,7 +252,7 @@ export class TuidInner extends Tuid {
 }
 
 abstract class TuidCaller<T> extends EntityCaller<T> {
-    protected entity: Tuid;
+    protected get entity(): Tuid {return this._entity as Tuid};
 }
 
 // 包含main字段的load id

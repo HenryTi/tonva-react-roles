@@ -25,11 +25,11 @@ export class RadioItemEdit extends ItemEdit {
     private onChange = (value: any) => {
         this.newValue = value;
         let preValue = this.value;
-        this.isChanged = (this.newValue != preValue);
+        this.isChanged = (this.newValue !== preValue);
     }
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
-        let {resolve, reject} = props;
+        let {resolve} = props;
         let {name} = this.itemSchema;
         let {list} = this.uiItem;
         let right = <button

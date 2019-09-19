@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {observable, computed, IObservableArray, isObservable, toJS, autorun, IReactionDisposer} from 'mobx';
+import {observable, IObservableArray, autorun, IReactionDisposer} from 'mobx';
 import classNames from 'classnames';
 import {ListBase} from './base';
 import {uid} from '../../tool/uid';
@@ -53,7 +53,7 @@ export class Selectable extends ListBase {
             comp = compare;
         }
         let retItems = itemsArray.map(v => {
-            let isObserved = isObservable(v);
+            //let isObserved = isObservable(v);
             //let obj = isObserved === true? toJS(v) : v;
             //let obj = v;
             let selected = selectedItems === undefined?
@@ -119,7 +119,7 @@ export class Selectable extends ListBase {
     //w-100 mb-0 pl-3
     //m-0 w-100
     render = (item:SelectableItem, index:number):JSX.Element => {
-        let {className, key, render, onSelect} = this.list.props.item;
+        let {className, key} = this.list.props.item;
         let {labelId, selected, item:obItem} = item;
         return <li key={key===undefined?index:key(item)} className={classNames(className)}>
             <div className="d-flex align-items-center px-3">

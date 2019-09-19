@@ -1,5 +1,5 @@
 import * as React from 'react';
-import _ from 'lodash';
+//import _ from 'lodash';
 import {nav} from './nav';
 import {Page} from './page';
 import { User, env } from '../tool';

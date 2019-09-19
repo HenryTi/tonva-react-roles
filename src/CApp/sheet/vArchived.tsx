@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Page } from '../../components';
 import { VSheetView } from './vSheetView';
-import { CSheet, SheetUI, SheetData } from './cSheet';
+import { SheetData } from './cSheet';
 
 export interface SheetStateFlows {
     flows: any;
@@ -25,7 +25,7 @@ export class VArchived extends VSheetView {
 
     protected view = () => {
         let {brief} = this.sheetData;
-        return <Page header={this.label + ':' + '-' + brief.no}>
+        return <Page header={this.label + '-' + brief.no}>
             <this.sheetView />
         </Page>;
     };

@@ -36,7 +36,7 @@ export class ListBase {
             return false;
         return pageItems.loading;
     }
-    get selectedItems() { return; }
+    get selectedItems() { return undefined; }
     //updateProps(nextProps:any) {}
     dispose() { }
     ;

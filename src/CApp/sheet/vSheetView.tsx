@@ -15,7 +15,7 @@ export abstract class VSheetView extends VEntity<Sheet, SheetUI, CSheet> {
     //flows:any[];
 
     flowRow = (item:any, index:number):JSX.Element => {
-        let {date, user, preState, state, action} = item;
+        let {date, state, action} = item;
         if (action === undefined) action = <><FA className="text-primary" name="pencil-square-o" /> 制单</>;
         let to;
         switch (state) {

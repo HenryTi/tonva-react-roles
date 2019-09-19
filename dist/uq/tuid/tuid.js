@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -11,11 +12,15 @@ import { Entity } from '../entity';
 import { EntityCaller } from '../caller';
 import { IdCache, IdDivCache } from './idCache';
 export class Tuid extends Entity {
-    constructor(uq, name, typeId) {
-        super(uq, name, typeId);
+    constructor() {
+        super(...arguments);
         this.typeName = 'tuid';
         this.isImport = false;
     }
+    /*
+    constructor(uq:UqMan, name:string, typeId:number) {
+        super(uq, name, typeId)
+    }*/
     setSchema(schema) {
         super.setSchema(schema);
         let { id } = schema;
@@ -255,6 +260,8 @@ export class TuidInner extends Tuid {
     }
 }
 class TuidCaller extends EntityCaller {
+    get entity() { return this._entity; }
+    ;
 }
 // 包含main字段的load id
 // 当前为了兼容，先调用的包含所有字段的内容

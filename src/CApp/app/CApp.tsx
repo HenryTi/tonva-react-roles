@@ -1,4 +1,4 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import { nav, Controller, TypeVPage, resLang, NavSettings} from '../../components';
 import { loadAppUqs, appInFrame, getExHash, UqData} from '../../net';
 import { CUq, UqUI } from '../cUq';
@@ -36,7 +36,7 @@ export class CApp extends Controller {
         this.name = ui.appName;
         this.version = ui.version;
         if (this.name === undefined) {
-            throw 'appName like "owner/app" must be defined in UI';
+            throw new Error('appName like "owner/app" must be defined in UI');
         }
         this.uqs = new UQsMan(this.name, undefined);
         if (ui.uqs === undefined) ui.uqs = {};
@@ -48,8 +48,8 @@ export class CApp extends Controller {
         let uq = uqOwner + '/' + uqName;
         let cUq = this.cImportUqs[uq];
         if (cUq !== undefined) return cUq;
-        let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
-        let uqId = -1; // unknown
+        //let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
+        //let uqId = -1; // unknown
         this.cImportUqs[uq] = cUq = this.getCUq(uq);
         return cUq;
     }
@@ -92,7 +92,7 @@ export class CApp extends Controller {
                     case 1:
                         let appUnit = this.appUnits[0].id;
                         if (appUnit === undefined || appUnit < 0 || 
-                            predefinedUnit !== undefined && appUnit != predefinedUnit)
+                            (predefinedUnit !== undefined && appUnit !== predefinedUnit))
                         {
                             this.showUnsupport(predefinedUnit);
                             return false;
@@ -139,7 +139,7 @@ export class CApp extends Controller {
         let promiseInits: PromiseLike<void>[] = [];
         let promises: PromiseLike<string>[] = [];
         for (let uqData of uqs) {
-            let {id, uqOwner, uqName, access} = uqData;
+            let {uqOwner, uqName} = uqData;
             let uqFullName = uqOwner + '/' + uqName;
             let uqUI = this.ui.uqs[uqFullName] as UqUI || {};
             let cUq = this.newCUq(uqData, uqUI);

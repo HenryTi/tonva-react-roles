@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Page } from '../../components';
-import { VForm, FormMode } from '../form';
+import { FormMode } from '../form';
 import { VSheetView } from './vSheetView';
 import { SheetData } from './cSheet';
 

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import { KeyValueRes, Res } from '../res';
 
 export interface FormRes extends KeyValueRes {
@@ -9,6 +9,7 @@ export interface FormRes extends KeyValueRes {
     max: string;
 }
 
+/*eslint no-template-curly-in-string: 0*/
 export const formRes:Res<FormRes> = {
     _: {
         required: 'required',

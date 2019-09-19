@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page, List, LMR, FA, EasyDate, Muted } from '../../components';
+import { Page, List, LMR, EasyDate, Muted } from '../../components';
 import { VEntity } from '../CVEntity';
 import { Sheet } from '../../uq';
 import { SheetUI, CSheet } from './cSheet';
@@ -17,7 +17,7 @@ export class VArchives extends VEntity<Sheet, SheetUI, CSheet> {
         this.event('archived', brief);
     }
     archiveRow = (row:any, index:number) => {
-        let {id, no, discription, date} = row;
+        let {date} = row;
         let left = <>
             {row.processing===1? '... ' : ''}
             {row.no} &nbsp; {row.discription}

@@ -2,6 +2,7 @@ import { IObservableArray } from 'mobx';
 import { PageItems } from '../tool';
 import { ArrFields } from './uqMan';
 import { Entity } from './entity';
+import { QueryQueryCaller, QueryPageCaller } from './caller';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
 export declare class QueryPager<T> extends PageItems<T> {
     private query;
@@ -24,7 +25,9 @@ export declare class Query extends Entity {
     resetPage(size: number, params: any): void;
     readonly hasMore: boolean;
     loadPage(): Promise<void>;
+    protected pageCaller(params: any): QueryPageCaller;
     page(params: any, pageStart: any, pageSize: number): Promise<any[]>;
+    protected queryCaller(params: any): QueryQueryCaller;
     query(params: any): Promise<any>;
     table(params: any): Promise<any[]>;
     obj(params: any): Promise<any>;

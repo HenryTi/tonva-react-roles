@@ -31,7 +31,6 @@ export declare abstract class CTuid<T extends Tuid> extends CEntity<T, TuidUI> {
     getDivItems(ownerId: number): Promise<any[]>;
 }
 export declare abstract class CTuidBase extends CTuid<Tuid> {
-    constructor(cUq: CUq, entity: Tuid, ui: TuidUI, res: any);
     from(): CTuidBase;
     cUqFrom(): CUq;
     cEditFrom(): CTuidEdit;

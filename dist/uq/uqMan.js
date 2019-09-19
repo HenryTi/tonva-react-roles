@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -46,7 +47,7 @@ export class UqMan {
         this.pendings = {};
         this.tuids = {};
         this.createBoxIdFromTVs = (tuid, id) => {
-            let { name, sName } = tuid;
+            let { name } = tuid;
             /*
             let tuidUR = this.tuidURs[name];
             if (tuidUR === undefined) {
@@ -79,7 +80,7 @@ export class UqMan {
         this.localMap = uqs.localMap.map(this.name);
         this.localModifyMax = this.localMap.child('$modifyMax');
         this.localAccess = this.localMap.child('$access');
-        let hash = document.location.hash;
+        //let hash = document.location.hash;
         let baseUrl = 'tv/';
         let acc;
         if (access === null || access === undefined || access === '*') {
@@ -176,7 +177,7 @@ export class UqMan {
     buildTuids(tuids) {
         for (let i in tuids) {
             let schema = tuids[i];
-            let { name, typeId, from } = schema;
+            let { typeId, from } = schema;
             let tuid = this.newTuid(i, typeId, from);
             tuid.sys = true;
         }
@@ -344,7 +345,7 @@ export class UqMan {
                 }
                 if (ownerField === undefined) {
                     debugger;
-                    throw `owner field ${owner} is undefined`;
+                    throw new Error(`owner field ${owner} is undefined`);
                 }
             }
             let { arr, tuid } = f;
@@ -355,7 +356,7 @@ export class UqMan {
             f._tuid = div && div.buildTuidDivBox(ownerField);
             if (f._tuid === undefined) {
                 debugger;
-                throw 'owner field ${owner} is not tuid';
+                throw new Error(`owner field ${owner} is not tuid`);
             }
         }
     }

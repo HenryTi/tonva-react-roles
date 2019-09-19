@@ -1,4 +1,4 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import {observable, IObservableArray} from 'mobx';
 import { PageItems } from '../tool';
 import {Field, ArrFields} from './uqMan';
@@ -96,7 +96,7 @@ export class Query extends Entity {
     get hasMore() {return this.more;}
     async loadPage():Promise<void> {
         if (this.pageSize === undefined) {
-            throw 'call resetPage(size:number, params:any) first';
+            throw new Error('call resetPage(size:number, params:any) first');
         }
         let pageStart:any;
         if (this.pageStart !== undefined) {
@@ -131,23 +131,30 @@ export class Query extends Entity {
         //this.loaded = true;
     }
 
+    protected pageCaller(params: any): QueryPageCaller {
+        return new QueryPageCaller(this, params);
+    }
+
     async page(params:any, pageStart:any, pageSize:number):Promise<any[]> {
         /*
         await this.loadSchema();
         let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
         */
         let p = {pageStart:pageStart, pageSize:pageSize+1, params:params};
-        let res = await new QueryPageCaller(this, p).request();
+        let res = await this.pageCaller(p).request();
         //let data = this.unpackReturns(res);
         //return data.$page;// as any[];
         return res;
+    }
+    protected queryCaller(params: any): QueryQueryCaller {
+        return new QueryQueryCaller(this, params);
     }
     async query(params:any):Promise<any> {
         /*
         await this.loadSchema();
         let res = await this.uqApi.query(this.name, this.buildParams(params));
         */
-        let res = await new QueryQueryCaller(this, params).request();
+        let res = await this.queryCaller(params).request();
         //let data = this.unpackReturns(res);
         //return data;
         return res;

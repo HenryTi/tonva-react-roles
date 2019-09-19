@@ -48,7 +48,7 @@ export class VQueryMain extends VEntity<Query, QueryUI, CQuery> {
     </Page>;
 
     protected pageResult = () => {
-        let {name, list} = this.entity;
+        let {list} = this.entity;
         let rightClose = <button
             className="btn btn-outline-success"
             onClick={this.again}>

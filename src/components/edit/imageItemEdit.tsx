@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem } from '../schema';
+import { UiTextItem } from '../schema';
 import { ResUploader } from '../resUploader';
 import { Image } from '../image';
 import { nav } from '../nav';
@@ -30,7 +30,7 @@ export class ImageItemEdit extends ItemEdit {
             return;
         }
         this.resId = ret;
-        this.isChanged = (this.resId != this.value);
+        this.isChanged = (this.resId !== this.value);
     }
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {

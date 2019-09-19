@@ -24,7 +24,6 @@ export declare function setCenterUrl(url: string): void;
 export declare let centerToken: string | undefined;
 export declare function setCenterToken(userId: number, t?: string): void;
 export declare abstract class CenterApiBase extends ApiBase {
-    constructor(path: string, showWaiting?: boolean);
     protected getHttpChannel(): Promise<HttpChannel>;
 }
 export declare class UqTokenApi extends CenterApiBase {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import _ from 'lodash';
+//import _ from 'lodash';
 import { observer } from 'mobx-react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiSelectBase, UiTextItem, UiIdItem, toUiSelectItems } from '../schema';
+import { Schema, UiSchema, ItemSchema, UiItem, UiSelectBase, UiRadio } from '../schema';
 import { ItemEdit } from './itemEdit';
 import { StringItemEdit } from './stringItemEdit';
 import { ImageItemEdit } from './imageItemEdit';
@@ -142,7 +142,7 @@ export class Edit extends React.Component<EditProps> {
         }
         try {
             changeValue = await itemEdit.start();
-            if (changeValue != value) {
+            if (changeValue !== value) {
                 if (onItemChanged === undefined) {
                     alert(`${itemSchema.name} value changed, new: ${changeValue}, pre: ${value}`);
                     this.props.data[itemSchema.name] = changeValue;
@@ -168,8 +168,9 @@ function createItemEdit(itemSchema: ItemSchema, uiItem:UiItem, label:string, val
             case 'id': itemEdit = IdItemEdit; break;
             case 'text': itemEdit = StringItemEdit; break;
             case 'image': itemEdit = ImageItemEdit; break;
-            case 'radio': itemEdit = RadioItemEdit; break;
             case 'select': itemEdit = SelectItemEdit; break;
+            case 'radio': 
+                return new RadioItemEdit(itemSchema, uiItem as UiRadio, label, value);
         }
     }
     if (itemEdit === undefined) {

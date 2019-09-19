@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VPage, Page } from '../../components';
+import { Page } from '../../components';
 import { jsonStringify } from '../tools';
 import { VForm } from '../form';
 import { VEntity } from '../CVEntity';

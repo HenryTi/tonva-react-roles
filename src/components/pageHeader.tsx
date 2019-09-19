@@ -1,5 +1,5 @@
 import * as React from 'react';
-import _ from 'lodash';
+//import _ from 'lodash';
 import {nav} from './nav';
 
 export interface PageHeaderProps {
@@ -50,11 +50,11 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         await nav.logout(undefined);
     }
     render() {
-        let b = this.state.hasBack || self != top;
+        let b = this.state.hasBack || window.self !== window.top;
         let {right, center, logout, className} = this.props;
         let back:any, pop:any, debugLogout:any;
-        if (logout !== undefined && self === top) {
-            if (typeof logout === 'boolean' && logout === true
+        if (logout !== undefined && window.self === window.top) {
+            if ((typeof logout === 'boolean' && logout === true)
                 || typeof logout === 'function')
             {
                 let {user} = nav;
@@ -62,7 +62,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
                     let {nick, name} = user;
                     debugLogout = <div className="d-flex align-items-center">
                         <small className="text-light">{nick || name}</small>
-                        <a className="btn ml-2 cursor-pointer"
+                        <a className="btn ml-2 cursor-pointer" href="#"
                             role="button"
                             onClick={this.logoutClick}>
                             <i className="fa fa-sign-out fa-lg" />
@@ -79,7 +79,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
                 case 'close': back = <nav onClick={this.back}><i className="fa fa-close" /></nav>; break;
             }
         }
-        if (self != top) {
+        if (window.self !== window.top) {
             console.log(document.location.href);
             pop = <header onClick={this.openWindow} />;
         }

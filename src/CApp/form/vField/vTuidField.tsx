@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { tv } from '../../cUq/reactBoxId';
-import { Field, Tuid, TuidBox } from '../../../uq';
+import { Field, TuidBox } from '../../../uq';
 import { VField, RedMark } from './vField';
 import { FieldUI } from '../../formUI';
-import { VForm, FieldInput, FormMode } from '../vForm';
+import { VForm, FieldInput } from '../vForm';
 import { FieldRes } from '../vBand';
 
 const buttonStyle:React.CSSProperties = {
@@ -49,7 +49,7 @@ export class VTuidField extends VField {
         let {_tuid} = this.field;
         let {ownerField} = _tuid;
         if (ownerField !== undefined) {
-            let {name, arr} = ownerField;
+            let {name} = ownerField;
             disabled = this.vForm.getValue(name) === null;
         }
         let content;

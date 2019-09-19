@@ -12,7 +12,7 @@ class _LocalStorage {
     }
 }
 
-const __ls = new _LocalStorage; // new Ls;
+const __ls = new _LocalStorage(); // new Ls;
 
 export class LocalCache {
     private readonly local: Local;

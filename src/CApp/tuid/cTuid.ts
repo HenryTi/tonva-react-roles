@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { CEntity, EntityUI } from '../CVEntity';
-import { Tuid, TuidDiv } from '../../uq';
+import { Tuid } from '../../uq';
 import { VTuidMain } from './vTuidMain';
 import { VTuidEdit } from './vTuidEdit';
 import { VTuidSelect } from './vTuidSelect';
@@ -51,9 +51,10 @@ export abstract class CTuid<T extends Tuid> extends CEntity<T, TuidUI> {
 }
 
 export abstract class CTuidBase extends CTuid<Tuid> {
+    /*
     constructor(cUq: CUq, entity:Tuid, ui: TuidUI, res:any) {
         super(cUq, entity, ui, res);
-    }
+    }*/
     
     from():CTuidBase {
         let ret = this; // this.entity.cFrom();
@@ -194,7 +195,7 @@ export class CTuidList extends CTuidBase {
 
 export class CTuidDiv extends CTuid<Tuid> {
     protected async internalStart():Promise<void> {
-        alert('tuid div: ' + '??');
+        alert('tuid div: ??');
     }
 }
 

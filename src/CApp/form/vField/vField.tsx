@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { computed, action } from 'mobx';
+import { computed } from 'mobx';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { FA } from '../../../components';
@@ -35,8 +35,8 @@ export abstract class VField extends ViewModel {
     protected buildRules() {
         this.rules = [];
         let {required} = this.fieldUI;
-        if (required === true || this.field !== undefined && this.field.null === false) {
-            this.rules.push(new RuleRequired);
+        if (required === true || (this.field !== undefined && this.field.null === false)) {
+            this.rules.push(new RuleRequired());
         }
     }
 
@@ -62,7 +62,7 @@ export abstract class VField extends ViewModel {
     get readonly():boolean {
         let {mode} = this.form;
         return mode === FormMode.readonly || 
-            mode === FormMode.edit && this.fieldUI.editable === false;
+            (mode === FormMode.edit && this.fieldUI.editable === false);
     }
 }
 
@@ -80,7 +80,7 @@ export abstract class VInputControl extends VField {
     protected input: HTMLInputElement;
 
     protected inputType:string;
-    protected get maxLength():number {return}
+    protected get maxLength():number {return undefined}
 
     protected renderError = (className:string) => {
         let {errors} = this.form;
@@ -225,7 +225,7 @@ export abstract class VNumberControl extends VInputControl {
 
     protected buildRules() {
         super.buildRules();
-        this.rules.push(new RuleNum);
+        this.rules.push(new RuleNum());
         let {min, max} = this.fieldUI;
         if (min !== undefined) this.rules.push(new RuleMin(min));
         if (max !== undefined) this.rules.push(new RuleMax(max));
@@ -237,7 +237,7 @@ export abstract class VNumberControl extends VInputControl {
         try {
             if (text.trim().length === 0) return undefined;
             let ret = Number(text);
-            return (ret === NaN)? null : ret;
+            return (isNaN(ret) === true)? null : ret;
         }
         catch {
             return null;
@@ -247,13 +247,13 @@ export abstract class VNumberControl extends VInputControl {
     protected setInputValue() {
         if (!this.input) return;
         let v = this.value;
-        if (this.parse(this.input.value) == v) return;
+        if (this.parse(this.input.value) === v) return;
         this.input.value = v === null || v === undefined? '' : v;
     }
 
     protected onKeyPress = (event:React.KeyboardEvent<HTMLInputElement>) => {
         let ch = event.charCode;
-        if (ch === 8 || ch === 0 || ch === 13 || ch >= 48 && ch <= 57) return;
+        if (ch === 8 || ch === 0 || ch === 13 || (ch >= 48 && ch <= 57)) return;
         if (this.extraChars !== undefined) {
             if (this.extraChars.indexOf(ch) >= 0) {
                 switch (ch) {
@@ -283,7 +283,7 @@ export abstract class VNumberControl extends VInputControl {
 export class VIntField extends VNumberControl {
     protected buildRules() {
         super.buildRules();
-        this.rules.push(new RuleInt);
+        this.rules.push(new RuleInt());
     }
 }
 

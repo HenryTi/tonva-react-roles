@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {observable, has} from 'mobx';
+import {observable} from 'mobx';
 import {User, Guest/*, UserInNav*/} from '../tool/user';
 import {Page} from './page';
 import {netToken} from '../net/netToken';
@@ -18,17 +18,19 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 
+/*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
     'Opera Mini|IEMobile|Mobile' , 
     'i');
 const isMobile = regEx.test(navigator.userAgent);
+*/
 /*
 export const mobileHeaderStyle = isMobile? {
     minHeight:  '3em'
 } : undefined;
 */
-const logo = require('../img/logo.svg');
+//const logo = require('../img/logo.svg');
 let logMark: number;
 const logs:string[] = [];
 
@@ -303,7 +305,7 @@ export class NavView extends React.Component<Props, NavViewState> {
         let len = stack.length;
         if (len === 0) return;
         if (len === 1) {
-            if (self != window.top) {
+            if (window.self !== window.top) {
                 window.top.postMessage({type:'pop-app'}, '*');
             }
             return;
@@ -588,7 +590,7 @@ export class Nav {
                     this.ws = wsBridge;
                     console.log('this.ws = wsBridge in sub frame');
                     //nav.user = {id:0} as User;
-                    if (self !== window.parent) {
+                    if (window.self !== window.parent) {
                         window.parent.postMessage({type:'sub-frame-started', hash: appInFrame.hash}, '*');
                     }
                     // 下面这一句，已经移到 appBridge.ts 里面的 initSubWin，也就是响应从main frame获得user之后开始。
@@ -780,7 +782,7 @@ export class Nav {
                 <span id={uh.hash} onClick={()=>this.back()} /*style={mobileHeaderStyle}*/>
                     <i className="fa fa-arrow-left" />
                 </span>
-                <iframe src={uh.url} />
+                <iframe src={uh.url} title={String(sheetId)} />
             </article>, 
             ()=> {
                 resolve();

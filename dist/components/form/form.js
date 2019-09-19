@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -64,7 +65,7 @@ export class Form extends React.Component {
             return React.createElement("div", { className: cn }, content);
         };
         this.RowSeperator = React.createElement("div", { className: "border border-gray border-top" });
-        let { schema, uiSchema, formData, Container, FieldContainer, FieldClass, ButtonClass, res, } = props;
+        let { schema, uiSchema, Container, FieldContainer, FieldClass, ButtonClass, res, } = props;
         this.Container = Container || this.DefaultContainer;
         this.FieldContainer = FieldContainer || this.DefaultFieldContainer;
         this.FieldClass = FieldClass !== undefined && FieldClass !== '' && FieldClass !== null ? FieldClass : this.DefaultFieldClass;

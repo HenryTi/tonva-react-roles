@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Controller, VPage, View } from '../components';
+import { VPage } from '../components';
 import { Entity, Field } from '../uq';
 import { CUq } from './cUq/cUq';
 import { VForm, FieldInputs, FieldCall, FormOptions, FormMode } from './form';
@@ -115,7 +115,7 @@ export abstract class CEntity<T extends Entity, UI extends EntityUI> extends Con
     protected buildSelect(field:Field, arr:string, fieldUI: FieldTuidUI):FieldCall {
         return async (form:VForm, field:Field, values:any):Promise<any> => {
             let {_tuid } = field;
-            let {tuid, ownerField} = _tuid;
+            let {ownerField} = _tuid;
             let cTuidSelect = undefined; // await tuid.cSelectFrom();
             let param:any = undefined;
             if (ownerField !== undefined) param = form.getValue(ownerField.name);

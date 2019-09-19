@@ -1,4 +1,4 @@
-import { nav, Page, SearchBox, List } from '../../components';
+import { Page, SearchBox, List } from '../../components';
 import { VEntity } from '../CVEntity';
 import { Tuid } from '../../uq';
 import { CTuid, TuidUI } from './cTuid';

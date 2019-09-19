@@ -9,7 +9,7 @@ export class VSheetView extends VEntity {
         //state: string;
         //flows:any[];
         this.flowRow = (item, index) => {
-            let { date, user, preState, state, action } = item;
+            let { date, state, action } = item;
             if (action === undefined)
                 action = React.createElement(React.Fragment, null,
                     React.createElement(FA, { className: "text-primary", name: "pencil-square-o" }),

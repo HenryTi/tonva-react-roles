@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {observable, IReactionDisposer, autorun, isObservable} from 'mobx';
+import {observable, IReactionDisposer, autorun} from 'mobx';
 import classNames from 'classnames';
 import { Schema, ItemSchema, ArrSchema } from '../schema';
 import { UiSchema, TempletType } from '../schema';
 import { factory } from './widgets';
 import 'font-awesome/css/font-awesome.min.css';
-import { ContextContainer, FormContext, Context, RowContext } from './context';
+import { ContextContainer, FormContext, Context } from './context';
 import { FormRes, formRes } from './formRes';
 import { resLang } from '../res';
 
@@ -52,7 +52,7 @@ export class Form extends React.Component<FormProps> {
 
     constructor(props:FormProps) {
         super(props);
-        let {schema, uiSchema, formData, 
+        let {schema, uiSchema, 
             Container, FieldContainer, FieldClass, 
             ButtonClass, res,
         } = props;

@@ -5,10 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -28,16 +29,19 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
+/*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
-    'BlackBerry|Windows Phone|' +
-    'Opera Mini|IEMobile|Mobile', 'i');
+    'BlackBerry|Windows Phone|'  +
+    'Opera Mini|IEMobile|Mobile' ,
+    'i');
 const isMobile = regEx.test(navigator.userAgent);
+*/
 /*
 export const mobileHeaderStyle = isMobile? {
     minHeight:  '3em'
 } : undefined;
 */
-const logo = require('../img/logo.svg');
+//const logo = require('../img/logo.svg');
 let logMark;
 const logs = [];
 ;
@@ -295,7 +299,7 @@ export class NavView extends React.Component {
             if (len === 0)
                 return;
             if (len === 1) {
-                if (self != window.top) {
+                if (window.self !== window.top) {
                     window.top.postMessage({ type: 'pop-app' }, '*');
                 }
                 return;
@@ -557,7 +561,7 @@ export class Nav {
                         this.ws = wsBridge;
                         console.log('this.ws = wsBridge in sub frame');
                         //nav.user = {id:0} as User;
-                        if (self !== window.parent) {
+                        if (window.self !== window.parent) {
                             window.parent.postMessage({ type: 'sub-frame-started', hash: appInFrame.hash }, '*');
                         }
                         // 下面这一句，已经移到 appBridge.ts 里面的 initSubWin，也就是响应从main frame获得user之后开始。
@@ -748,7 +752,7 @@ export class Nav {
                 nav.push(React.createElement("article", { className: 'app-container' },
                     React.createElement("span", { id: uh.hash, onClick: () => this.back() },
                         React.createElement("i", { className: "fa fa-arrow-left" })),
-                    React.createElement("iframe", { src: uh.url })), () => {
+                    React.createElement("iframe", { src: uh.url, title: String(sheetId) })), () => {
                     resolve();
                 });
             });

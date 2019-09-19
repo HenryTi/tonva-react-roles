@@ -17,7 +17,7 @@ export class VSheetSaved extends VSheet {
     actionClick = async (action:any) => {
         this.ceasePage();
         let {id, flow, state} = this.brief;
-        let res = await this.controller.action(id, flow, state, action.name);
+        await this.controller.action(id, flow, state, action.name);
         this.openPage(this.acted);
     }
 

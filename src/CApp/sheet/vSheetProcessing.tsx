@@ -1,5 +1,5 @@
 import React from 'react';
-import { nav, Page } from '../../components';
+import { Page } from '../../components';
 import { VSheetView } from './vSheetView';
 import { SheetData } from './cSheet';
 

@@ -1,12 +1,14 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 import * as React from 'react';
+//import _ from 'lodash';
 import { nav } from './nav';
 export class PageHeader extends React.Component {
     constructor(props) {
@@ -47,18 +49,18 @@ export class PageHeader extends React.Component {
         window.open(document.location.href);
     }
     render() {
-        let b = this.state.hasBack || self != top;
+        let b = this.state.hasBack || window.self !== window.top;
         let { right, center, logout, className } = this.props;
         let back, pop, debugLogout;
-        if (logout !== undefined && self === top) {
-            if (typeof logout === 'boolean' && logout === true
+        if (logout !== undefined && window.self === window.top) {
+            if ((typeof logout === 'boolean' && logout === true)
                 || typeof logout === 'function') {
                 let { user } = nav;
                 if (user !== undefined) {
                     let { nick, name } = user;
                     debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
                         React.createElement("small", { className: "text-light" }, nick || name),
-                        React.createElement("a", { className: "btn ml-2 cursor-pointer", role: "button", onClick: this.logoutClick },
+                        React.createElement("a", { className: "btn ml-2 cursor-pointer", href: "#", role: "button", onClick: this.logoutClick },
                             React.createElement("i", { className: "fa fa-sign-out fa-lg" })));
                 }
             }
@@ -79,7 +81,7 @@ export class PageHeader extends React.Component {
                     break;
             }
         }
-        if (self != top) {
+        if (window.self !== window.top) {
             console.log(document.location.href);
             pop = React.createElement("header", { onClick: this.openWindow });
         }

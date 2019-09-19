@@ -69,12 +69,12 @@ export class List extends React.Component<ListProps> {
         return this.listBase.selectedItems;
     }
     render() {
-        let {className, header, footer, before, loading, none, item, selectedItems} = this.props;
+        let {className, header, footer, before, loading, none} = this.props;
         if (before === undefined) before = '-';
         if (loading === undefined) loading = () => <i className="fa fa-spinner fa-spin fa-2x fa-fw text-info" />;
         if (none === undefined) none = 'none';
         //this.listBase.selectedItems = selectedItems;
-        let {isPaged, items, loading:isLoading} = this.listBase;
+        let {items, loading:isLoading} = this.listBase;
         function staticRow(row:StaticRow, type:string) {
             if (!row) return;
             switch (typeof row) {

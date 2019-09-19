@@ -21,6 +21,6 @@ function convertUIKeyToLowercase(obj: any) {
 // const appName = 'JKDev/jkOrder';
 export async function startApp(ui: AppUI) {
     convertUIKeyToLowercase(ui);
-    let cApp = new (ui && ui.CApp || CApp)(ui);
+    let cApp = new ((ui && ui.CApp) || CApp)(ui);
     await cApp.start();
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form } from './form';
 import { UiSchema, UiArr, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
-import { Widget as Widget } from './widgets/widget';
+import { Widget } from './widgets/widget';
 //import { ArrRow } from './arrRow';
 import { observable, computed } from 'mobx';
 import { ContextRule } from './rules';
@@ -40,8 +40,8 @@ export abstract class Context {
 
     getArrRowContexts(arrName: string) {
         if (this.subContexts === undefined) this.subContexts = {};
-        let arrRowContexts = this.subContexts[name];
-        if (arrRowContexts === undefined) this.subContexts[name] = arrRowContexts = {};
+        let arrRowContexts = this.subContexts[arrName];
+        if (arrRowContexts === undefined) this.subContexts[arrName] = arrRowContexts = {};
         return arrRowContexts;
     }
 

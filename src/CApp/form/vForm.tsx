@@ -1,10 +1,10 @@
 import * as React from 'react';
-import * as _ from 'lodash';
+//import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { VBand } from './vBand';
 import { BandsBuilder } from './bandsBuilder';
 import { Field, ArrFields } from '../../uq';
-import { computed, observable, IObservableObject, IObservableValue } from 'mobx';
+import { computed, observable, IObservableObject } from 'mobx';
 import { VArr } from './vArr';
 import { FormUI, FormUIBase, FormItems } from '../formUI';
 import { VField } from './vField';
@@ -164,7 +164,7 @@ export class VForm {
         }
         if (this.arrs === undefined) return ret;
         for (let arr of this.arrs) {
-            let {name, fields, id, order} = arr;
+            let {name, fields} = arr;
             let list = ret[name] = this.vArrs[name].list.slice();
             for (let row of list) {
                 for (let f of fields) {

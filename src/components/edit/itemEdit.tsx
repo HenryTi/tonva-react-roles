@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiTextItem } from '../schema';
+//import * as React from 'react';
+import { ItemSchema, UiItem } from '../schema';
 import { nav } from '../nav';
-import { Page } from '../page';
-import { observer } from 'mobx-react';
+//import { Page } from '../page';
+//import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { Rule, FieldRule } from '../form/rules';
+import { FieldRule } from '../form/rules';
 
 export abstract class ItemEdit {
     protected name: string;

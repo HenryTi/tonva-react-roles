@@ -5,14 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 import * as React from 'react';
+//import * as _ from 'lodash';
 import { observer } from 'mobx-react';
 import { BandsBuilder } from './bandsBuilder';
 import { computed, observable } from 'mobx';
@@ -137,7 +139,7 @@ export class VForm {
         if (this.arrs === undefined)
             return ret;
         for (let arr of this.arrs) {
-            let { name, fields, id, order } = arr;
+            let { name, fields } = arr;
             let list = ret[name] = this.vArrs[name].list.slice();
             for (let row of list) {
                 for (let f of fields) {

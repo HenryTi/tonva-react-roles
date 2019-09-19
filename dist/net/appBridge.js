@@ -1,15 +1,16 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 import _ from 'lodash';
 import { nav } from '../components';
 import { uid } from '../tool/uid';
-import { uqTokenApi as uqTokenApi, callCenterapi, centerToken, setCenterToken } from './uqApi';
+import { uqTokenApi, callCenterapi, centerToken, setCenterToken } from './uqApi';
 import { setSubAppWindow } from './wsChannel';
 import { host } from './host';
 const uqTokens = {};
@@ -31,7 +32,7 @@ export let appInFrame = new AppInFrameClass();
     param: undefined,
 }*/
 export function isBridged() {
-    return self !== window.parent;
+    return window.self !== window.parent;
 }
 window.addEventListener('message', function (evt) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -123,7 +124,7 @@ function onAppApiReturn(message) {
         let { apiName, db, url, urlTest, token } = message;
         let action = uqTokenActions[apiName];
         if (action === undefined) {
-            throw 'error app api return';
+            throw new Error('error app api return');
             //return;
         }
         let realUrl = host.getUrlOrTest(db, url, urlTest);
@@ -196,7 +197,7 @@ function getUnit() {
     let { unit, predefinedUnit } = appInFrame;
     let realUnit = unit || predefinedUnit;
     if (realUnit === undefined) {
-        throw 'no unit defined in unit.json or not logined in';
+        throw new Error('no unit defined in unit.json or not logined in');
     }
     return realUnit;
 }

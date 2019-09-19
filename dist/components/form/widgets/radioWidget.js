@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+//import { TextWidget } from './textWidget';
 import { Widget } from './widget';
 const radioStyle = { height: 'auto' };
 export class RadioWidget extends Widget {
@@ -30,7 +31,7 @@ export class RadioWidget extends Widget {
     */
     render() {
         let { defaultValue, list } = this.ui;
-        let { isRow, inNode } = this.context;
+        let { isRow } = this.context;
         let rowKey;
         if (isRow === true) {
             rowKey = this.context.rowKey;

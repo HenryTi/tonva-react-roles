@@ -1,4 +1,4 @@
-import { VBand, VFieldBand, VArrBand, VFieldsBand, VSubmitBand, FieldRes } from './vBand';
+import { VBand, VFieldBand, VArrBand, VSubmitBand, FieldRes } from './vBand';
 import { Field, ArrFields } from '../../uq';
 import { VForm, FormOptions } from './vForm';
 import { FormItems, FieldUI, FormItem } from '../formUI';
@@ -145,7 +145,7 @@ export class BandsBuilder {
     }
 
     private bandFromArr(arr: ArrFields):VBand {
-        let {name, fields} = arr;
+        let {name} = arr;
         //let row = JSONContent;
         //let bands:VBand[] = [];
         //this.bandsFromFields(bands, fields, res);

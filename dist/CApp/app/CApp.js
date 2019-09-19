@@ -1,11 +1,13 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//import _ from 'lodash';
 import { nav, Controller, resLang } from '../../components';
 import { loadAppUqs, appInFrame, getExHash } from '../../net';
 import { CUq } from '../cUq';
@@ -21,7 +23,7 @@ export class CApp extends Controller {
         this.name = ui.appName;
         this.version = ui.version;
         if (this.name === undefined) {
-            throw 'appName like "owner/app" must be defined in UI';
+            throw new Error('appName like "owner/app" must be defined in UI');
         }
         this.uqs = new UQsMan(this.name, undefined);
         if (ui.uqs === undefined)
@@ -34,8 +36,8 @@ export class CApp extends Controller {
         let cUq = this.cImportUqs[uq];
         if (cUq !== undefined)
             return cUq;
-        let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
-        let uqId = -1; // unknown
+        //let ui = this.ui && this.ui.uqs && this.ui.uqs[uq];
+        //let uqId = -1; // unknown
         this.cImportUqs[uq] = cUq = this.getCUq(uq);
         return cUq;
     }
@@ -75,7 +77,7 @@ export class CApp extends Controller {
                         case 1:
                             let appUnit = this.appUnits[0].id;
                             if (appUnit === undefined || appUnit < 0 ||
-                                predefinedUnit !== undefined && appUnit != predefinedUnit) {
+                                (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
                                 return false;
                             }
@@ -121,7 +123,7 @@ export class CApp extends Controller {
             let promiseInits = [];
             let promises = [];
             for (let uqData of uqs) {
-                let { id, uqOwner, uqName, access } = uqData;
+                let { uqOwner, uqName } = uqData;
                 let uqFullName = uqOwner + '/' + uqName;
                 let uqUI = this.ui.uqs[uqFullName] || {};
                 let cUq = this.newCUq(uqData, uqUI);

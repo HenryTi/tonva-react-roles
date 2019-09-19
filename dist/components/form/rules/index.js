@@ -41,7 +41,7 @@ export class RuleRequired extends RulePredefined {
                     return;
                 break;
             case 'number':
-                if (value !== NaN)
+                if (isNaN(value) === false)
                     return;
                 break;
             case 'undefined':
@@ -62,7 +62,7 @@ export class RuleNum extends RulePredefined {
         if (value === undefined || value === null)
             return;
         let n = Number(value);
-        if (n === NaN) {
+        if (isNaN(n) === true) {
             defy.push(this.res.number);
         }
         else {

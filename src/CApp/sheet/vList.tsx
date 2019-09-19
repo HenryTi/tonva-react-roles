@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page, nav, List, Muted, FA, LMR, EasyDate } from '../../components';
+import { Page, List, Muted, LMR, EasyDate } from '../../components';
 import { VEntity } from '../CVEntity';
 import { Sheet } from '../../uq';
 import { CSheet, SheetUI } from './cSheet';
@@ -32,7 +32,7 @@ export class VSheetList extends VEntity<Sheet, SheetUI, CSheet> {
     }
 
     protected rowContent = (row:any):JSX.Element => {
-        let {id, no, discription, date, processing} = row;
+        let {no, discription, date, processing} = row;
         let left = <>            
             {no} &nbsp; <Muted>{discription}</Muted> {processing===1? '...' : ''}
         </>;

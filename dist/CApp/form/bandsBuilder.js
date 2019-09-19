@@ -133,7 +133,7 @@ export class BandsBuilder {
         return new VFieldBand(label || name, vField);
     }
     bandFromArr(arr) {
-        let { name, fields } = arr;
+        let { name } = arr;
         //let row = JSONContent;
         //let bands:VBand[] = [];
         //this.bandsFromFields(bands, fields, res);

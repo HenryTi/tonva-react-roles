@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -23,6 +24,7 @@ export class MapItem {
         this.isLeaf = false;
     }
 }
+/*eslint no-template-curly-in-string: 0*/
 export class CMap extends CEntity {
     constructor() {
         super(...arguments);
@@ -75,7 +77,7 @@ export class CMap extends CEntity {
                 arr1[this.keyFields[keysLast].name] = 0;
                 let { fields } = this.entity;
                 for (let f of fields) {
-                    let { name, type, null: nullable } = f;
+                    let { type, null: nullable } = f;
                     if (!(nullable === true)) {
                         //arr1['_' + f.name] = fieldDefaultValue(type);
                         arr1[f.name] = fieldDefaultValue(type);
@@ -111,7 +113,7 @@ export class CMap extends CEntity {
             let label = cTuidMain.getLable(tuid.tuid);
             let confirmDelete = this.res.confirmDelete
                 || _.template('do you really want to remove ${label}?');
-            if (confirm(confirmDelete({ label: label })) === false)
+            if (window.confirm(confirmDelete({ label: label })) === false)
                 return;
             let map = this.entity;
             let data = {};
@@ -196,7 +198,7 @@ export class CMap extends CEntity {
                 }
                 continue;
             }
-            let { children, box } = p;
+            let { children } = p;
             let len = children.length;
             if (len > 0) {
                 let n = children[len - 1];

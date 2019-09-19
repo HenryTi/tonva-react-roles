@@ -1,7 +1,7 @@
 import { Entity } from './entity';
 import { Action, ActionSubmitCaller } from './action';
 import { Query } from './query';
-import { Field, UqMan } from './uqMan';
+import { Field } from './uqMan';
 import { EntityCaller, QueryPageCaller, QueryQueryCaller } from './caller';
 
 interface MapActions {
@@ -108,7 +108,7 @@ export class Map extends Entity {
 
 abstract class MapCaller extends EntityCaller<any> {
     protected entity: Map;
-    get path():string {return;}
+    get path():string {return undefined;}
 
     protected abstract getCaller(param: any):EntityCaller<any>;
 
@@ -163,7 +163,7 @@ class MapAddCaller extends ActionSubmitCaller {
     }
 
     get path():string {return `map/${this.map.name}/add`}
-    get headers(): {[header:string]: string} {return;}
+    get headers(): {[header:string]: string} {return undefined;}
     /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
@@ -182,7 +182,7 @@ class MapDelCaller extends ActionSubmitCaller {
     }
 
     get path():string {return `map/${this.map.name}/del`}
-    get headers(): {[header:string]: string} {return}
+    get headers(): {[header:string]: string} {return undefined}
     /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
@@ -201,7 +201,7 @@ class MapAllCaller extends QueryPageCaller {
     }
 
     get path():string {return `map/${this.map.name}/all`}
-    get headers(): {[header:string]: string} {return}
+    get headers(): {[header:string]: string} {return undefined}
     /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
@@ -221,7 +221,7 @@ class MapPageCaller extends QueryPageCaller {
     }
 
     get path():string {return `map/${this.map.name}/page`}
-    get headers(): {[header:string]: string} {return}
+    get headers(): {[header:string]: string} {return undefined}
     /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;
@@ -240,7 +240,7 @@ class MapQueryCaller extends QueryQueryCaller {
     }
 
     get path():string {return `map/${this.map.name}/query`}
-    get headers(): {[header:string]: string} {return}
+    get headers(): {[header:string]: string} {return undefined}
     /*
         let {ver, uq} = this.map;
         let {uqVersion} = uq;

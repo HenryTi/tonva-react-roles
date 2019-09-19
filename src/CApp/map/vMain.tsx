@@ -5,7 +5,7 @@ import { Page, List, LMR, FA } from '../../components';
 import { PureJSONContent } from '../tools';
 import { Map } from '../../uq';
 import { VEntity } from '../CVEntity';
-import { CMap, MapItem, MapKey, MapUI } from './cMap';
+import { CMap, MapItem, MapUI } from './cMap';
 import { tv } from '../cUq/reactBoxId';
 
 export class VMapMain extends VEntity<Map, MapUI, CMap> {
@@ -21,7 +21,7 @@ export class VMapMain extends VEntity<Map, MapUI, CMap> {
     }
 
     private ItemRow = observer(({item}: {item:MapItem}) => {
-        let {tuid, box, children, isLeaf, keyIndex, values} = item;
+        let {box, children, isLeaf, keyIndex, values} = item;
         let keyUI = this.controller.keyUIs[keyIndex];
         let {content:keyContent, valuesContent, none:keyNone} = keyUI;
         let add:any, remove:any;

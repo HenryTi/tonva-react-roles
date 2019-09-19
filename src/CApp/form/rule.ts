@@ -15,7 +15,7 @@ export class RuleRequired extends Rule {
                 if ((value as string).trim().length > 0) return;
                 break;
             case 'number':
-                if ((value as number) !== NaN) return;
+                if (isNaN(value as number) === true) return;
                 break;
             case 'undefined':
                 break;
@@ -28,7 +28,7 @@ export class RuleNum extends Rule {
     check(defy:string[], value:any) {
         if (value === undefined || value === null) return;
         let n = Number(value);
-        if (n === NaN) defy.push('必须是数字');
+        if (isNaN(n) === true) defy.push('必须是数字');
     }
 }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, VPage, UiCustom, UiInputItem, NumSchema, View} from '../components';
+import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, Controller, 
+    VPage, NumSchema} from '../components';
 import { userApi, RegisterParameter } from './userApi';
 import '../css/va-form.css';
 import { RegisterRes, registerRes } from './res';
@@ -166,7 +167,7 @@ export class ForgetController extends RegisterController {
     successText = '成功修改密码';
 
     async execute() {
-        let ret = await userApi.resetPassword(this.account, this.password, this.verify, this.type);
+        await userApi.resetPassword(this.account, this.password, this.verify, this.type);
         nav.clear();
         this.toSuccess();
         return undefined;
@@ -250,7 +251,7 @@ class VerifyPage extends VPage<RegisterController> {
     ]
 
     private onVerifyChanged = (context:Context, value:any, prev:any) => {
-        context.setDisabled('submit', !value || (value.length != 6));
+        context.setDisabled('submit', !value || (value.length !== 6));
     }
     private uiSchema: UiSchema = {
         items: {

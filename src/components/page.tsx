@@ -171,7 +171,7 @@ export class Page extends React.Component<PageProps, PageState> {
                 this.state.tabs.map((tab, index) => {
                     const {icon, isSelected, title, redDot, className} = tab;
                     let img:any, redDotView:any, cn:any;
-                    if (icon !== undefined) img = <img src={icon} />;
+                    if (icon !== undefined) img = <img src={icon} alt="tab icon" />;
                     if (redDot !== undefined) {
                         let v = redDot.get();
                         if (v < 0) {
@@ -217,6 +217,7 @@ export class Page extends React.Component<PageProps, PageState> {
                             {(typeof content)==='function'? (content as ()=>JSX.Element)():content}
                         </ScrollView>;
                     }
+                    return undefined;
                 })
             }
             </section>

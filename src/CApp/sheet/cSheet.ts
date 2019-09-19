@@ -1,9 +1,9 @@
 import { IObservableArray, observable } from 'mobx';
 import { postWsToTop } from '../../net';
-import { TypeVPage, VPage } from '../../components';
+import { TypeVPage } from '../../components';
 import { PageItems } from '../../tool';
 import { Sheet, StateCount } from '../../uq';
-import { CEntity, EntityUI, VEntity } from '../CVEntity';
+import { CEntity, EntityUI } from '../CVEntity';
 import { VSheetMain } from './vMain';
 import { VSheetNew } from './vNew';
 import { VSheetEdit } from './vEdit';
@@ -54,7 +54,7 @@ export class CSheet extends CEntity<Sheet, SheetUI> {
     }
 
     protected async onMessage(msg: any):Promise<void> {
-        let {type, body, from, to, push} = msg;
+        let {type, body, from, to} = msg;
         if (type === 'sheet') this.onSheet(from, to, body);
     }
     private onSheet(from:number, to:number[], sheetData:any) {

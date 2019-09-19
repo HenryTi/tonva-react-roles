@@ -78,8 +78,8 @@ export abstract class PageItems<T> {
         this.loading = false;
         this.loaded = true;
         let len = ret.length;
-        if (this.isFirst===true && len>this.firstSize ||
-            this.isFirst===false && len>this.pageSize)
+        if ((this.isFirst===true && len>this.firstSize) ||
+            (this.isFirst===false && len>this.pageSize))
         {
             this.allLoaded = false;
             --len;

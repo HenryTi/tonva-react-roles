@@ -28,8 +28,8 @@ export class VField extends ViewModel {
     buildRules() {
         this.rules = [];
         let { required } = this.fieldUI;
-        if (required === true || this.field !== undefined && this.field.null === false) {
-            this.rules.push(new RuleRequired);
+        if (required === true || (this.field !== undefined && this.field.null === false)) {
+            this.rules.push(new RuleRequired());
         }
     }
     get checkRules() {
@@ -54,7 +54,7 @@ export class VField extends ViewModel {
     get readonly() {
         let { mode } = this.form;
         return mode === FormMode.readonly ||
-            mode === FormMode.edit && this.fieldUI.editable === false;
+            (mode === FormMode.edit && this.fieldUI.editable === false);
     }
 }
 __decorate([
@@ -140,7 +140,7 @@ export class VInputControl extends VField {
                 this.renderError(errCN));
         });
     }
-    get maxLength() { return; }
+    get maxLength() { return undefined; }
     /*
     get value() {
         return super.value;
@@ -172,7 +172,7 @@ export class VNumberControl extends VInputControl {
         this.inputType = 'number';
         this.onKeyPress = (event) => {
             let ch = event.charCode;
-            if (ch === 8 || ch === 0 || ch === 13 || ch >= 48 && ch <= 57)
+            if (ch === 8 || ch === 0 || ch === 13 || (ch >= 48 && ch <= 57))
                 return;
             if (this.extraChars !== undefined) {
                 if (this.extraChars.indexOf(ch) >= 0) {
@@ -220,7 +220,7 @@ export class VNumberControl extends VInputControl {
     }
     buildRules() {
         super.buildRules();
-        this.rules.push(new RuleNum);
+        this.rules.push(new RuleNum());
         let { min, max } = this.fieldUI;
         if (min !== undefined)
             this.rules.push(new RuleMin(min));
@@ -232,7 +232,7 @@ export class VNumberControl extends VInputControl {
             if (text.trim().length === 0)
                 return undefined;
             let ret = Number(text);
-            return (ret === NaN) ? null : ret;
+            return (isNaN(ret) === true) ? null : ret;
         }
         catch (_a) {
             return null;
@@ -242,7 +242,7 @@ export class VNumberControl extends VInputControl {
         if (!this.input)
             return;
         let v = this.value;
-        if (this.parse(this.input.value) == v)
+        if (this.parse(this.input.value) === v)
             return;
         this.input.value = v === null || v === undefined ? '' : v;
     }
@@ -265,7 +265,7 @@ export class VNumberControl extends VInputControl {
 export class VIntField extends VNumberControl {
     buildRules() {
         super.buildRules();
-        this.rules.push(new RuleInt);
+        this.rules.push(new RuleInt());
     }
 }
 export class VDecField extends VNumberControl {

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {observer} from 'mobx-react';
-import { Schema, ArrSchema, DataType, ButtonSchema, ItemSchema } from '../../schema';
-import { UiItem, UiArr, UiType, UiButton, TempletType, TypeWidget, UiCustom } from '../../schema';
+import { ArrSchema, DataType, ItemSchema } from '../../schema';
+import { TypeWidget, UiCustom } from '../../schema';
 import { TextWidget } from './textWidget';
 import { TextAreaWidget } from './textareaWidget';
 import { PasswordWidget, UrlWidget, EmailWidget } from './passwordWidget';
@@ -10,7 +9,7 @@ import { NumberWidget } from './numberWidget';
 import { DateWidget, DateTimeWidget, TimeWidget, MonthWidget } from './dateWidget';
 import { CheckBoxWidget } from './checkBoxWidget';
 import { FieldProps } from '../field';
-import { Context, RowContext, FormContext, ContextContainer } from '../context';
+import { Context } from '../context';
 import { SelectWidget } from './selectWidget';
 import { RadioWidget } from './radioWidget';
 import { RangeWidget } from './rangeWidget';
@@ -152,7 +151,7 @@ export function factory(context: Context, itemSchema: ItemSchema, children:React
         //label = uiLabel || name;
     }
     
-    let {isRow, widgets} = context;
+    let {widgets} = context;
     let widget = new typeWidget(context, itemSchema, fieldProps, children);
     widgets[name] = widget;
 

@@ -1,6 +1,6 @@
-import _ from 'lodash';
+//import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { UqMan, Tuid, Action, Sheet, Query, Map, UQsMan, TVs } from "../uq";
+import { Tuid, Action, Sheet, Query, Map, UQsMan, TVs } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
@@ -23,10 +23,11 @@ export interface AppConfig {
 }
 
 export abstract class CAppBase extends Controller {
+    protected _uqs: any;
+
     protected readonly name: string;
     protected readonly version: string;
 
-    readonly uqs: any; //IUQs;
     readonly uqsMan: UQsMan;
     appUnits:any[];
 
@@ -36,12 +37,13 @@ export abstract class CAppBase extends Controller {
         let {appName, version, tvs} = config;
         this.name = appName;
         if (appName === undefined) {
-            throw 'appName like "owner/app" must be defined in MainConfig';
+            throw new Error('appName like "owner/app" must be defined in MainConfig');
         }
         this.version = version;
-        this.uqs = {};
         this.uqsMan = new UQsMan(this.name, tvs);
     }
+
+    get uqs(): any {return this._uqs;}
 
     protected async beforeStart():Promise<boolean> {
         try {
@@ -62,7 +64,7 @@ export abstract class CAppBase extends Controller {
                     case 1:
                         let appUnit = this.appUnits[0].id;
                         if (appUnit === undefined || appUnit < 0 || 
-                            predefinedUnit !== undefined && appUnit != predefinedUnit)
+                            (predefinedUnit !== undefined && appUnit !== predefinedUnit))
                         {
                             this.showUnsupport(predefinedUnit);
                             return false;
@@ -86,7 +88,7 @@ export abstract class CAppBase extends Controller {
             return true;
         }
         catch (err) {
-            this.openVPage(VStartError);
+            this.openVPage(VStartError, err);
             return false;
         }
     }
@@ -109,7 +111,7 @@ export abstract class CAppBase extends Controller {
         if (retErrors.length === 0) {
             retErrors.push(...this.uqsMan.setTuidImportsLocal());
             if (retErrors.length === 0) {
-                this.uqsMan.writeUQs(this.uqs);
+                this._uqs = this.uqsMan.buildUQs();
                 /*
                 _.merge(this.uqs, this.uqsMan.uqsColl);
                 for (let i in this.uqs) {

@@ -19,7 +19,7 @@ export function Image(props: ImageProps) {
     if (src.startsWith(':') === true) {
         src = nav.resUrl + src.substr(1);
     }
-    return <img src={src} className={className} 
+    return <img src={src} className={className} alt="img"
         style={style}
         onError={evt=>{
             if (altImage) evt.currentTarget.src=altImage;

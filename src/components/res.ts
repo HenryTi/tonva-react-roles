@@ -20,8 +20,8 @@ export function setResOptions(lang:string, district:string) {
 
 (function() {
     let lang: string, district: string;
-    let language = navigator.languages && navigator.languages[0] || // Chrome / Firefox
-        navigator.language; // ||   // All browsers
+    let language = (navigator.languages && navigator.languages[0])  // Chrome / Firefox
+        || navigator.language; // ||   // All browsers
     //navigator.userLanguage; // IE <= 10
     if (!language) {
         lang = 'zh';

@@ -1,4 +1,3 @@
-import { StatelessComponent } from 'react';
 import { Context } from '../form/context';
 import { FieldRule, ContextRule } from '../form/rules';
 import { ItemSchema } from './schema';

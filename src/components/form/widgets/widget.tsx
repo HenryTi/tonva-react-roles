@@ -5,7 +5,7 @@ import { FieldProps } from '../field';
 import { Context } from '../context';
 import { ItemSchema } from '../../schema';
 import { Rule, RuleRequired, RuleCustom, FieldRule } from '../rules';
-import { computed, observable, reaction } from 'mobx';
+import { computed, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 export abstract class Widget {

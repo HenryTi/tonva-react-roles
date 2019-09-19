@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form } from './form';
 import { UiSchema, UiArr, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
-import { Widget as Widget } from './widgets/widget';
+import { Widget } from './widgets/widget';
 import { ContextRule } from './rules';
 export declare abstract class Context {
     private subContexts;

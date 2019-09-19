@@ -49,7 +49,7 @@ let List = class List extends React.Component {
         return this.listBase.selectedItems;
     }
     render() {
-        let { className, header, footer, before, loading, none, item, selectedItems } = this.props;
+        let { className, header, footer, before, loading, none } = this.props;
         if (before === undefined)
             before = '-';
         if (loading === undefined)
@@ -57,7 +57,7 @@ let List = class List extends React.Component {
         if (none === undefined)
             none = 'none';
         //this.listBase.selectedItems = selectedItems;
-        let { isPaged, items, loading: isLoading } = this.listBase;
+        let { items, loading: isLoading } = this.listBase;
         function staticRow(row, type) {
             if (!row)
                 return;

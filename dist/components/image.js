@@ -10,7 +10,7 @@ export function Image(props) {
     if (src.startsWith(':') === true) {
         src = nav.resUrl + src.substr(1);
     }
-    return React.createElement("img", { src: src, className: className, style: style, onError: evt => {
+    return React.createElement("img", { src: src, className: className, alt: "img", style: style, onError: evt => {
             if (altImage)
                 evt.currentTarget.src = altImage;
             else

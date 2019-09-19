@@ -18,7 +18,7 @@ export class VSheetAction extends VSheetView {
 
     actionClick = async (action:any) => {
         let {id, flow, state} = this.sheetData.brief;
-        let res = await this.controller.action(id, flow, state, action.name);
+        await this.controller.action(id, flow, state, action.name);
         this.ceasePage();
         this.openPage(this.acted);
         //alert(jsonStringify(res));

@@ -21,7 +21,7 @@ export class CQuery extends CQueryBase {
         await this.openVPage(this.VQueryMain);
     }
 
-    protected get VQueryMain():typeof VQueryMain {return this.ui && this.ui.main || VQueryMain}
+    protected get VQueryMain():typeof VQueryMain {return (this.ui && this.ui.main) || VQueryMain}
 }
 
 export class CQuerySelect extends CQueryBase {

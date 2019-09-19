@@ -26,7 +26,7 @@ export class UQsMan {
         this.collection = {};
         let parts = tonvaAppName.split('/');
         if (parts.length !== 2) {
-            throw 'tonvaApp name must be / separated, owner/app';
+            throw new Error('tonvaApp name must be / separated, owner/app');
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
@@ -59,7 +59,7 @@ export class UQsMan {
     async init(uqsData:UqData[]):Promise<void> {
         let promiseInits: PromiseLike<void>[] = [];
         for (let uqData of uqsData) {
-            let {id, uqOwner, uqName, access} = uqData;
+            let {uqOwner, uqName} = uqData;
             let uqFullName = uqOwner + '/' + uqName;
             //let uqUI = this.ui.uqs[uqFullName] as UqUI || {};
             //let cUq = this.newCUq(uqData, uqUI);
@@ -95,15 +95,8 @@ export class UQsMan {
         return retErrors;
     }
 
-    writeUQs(uqs:any) {
-        /*
-        let ret:any = {};
-        for (let i in this.collection) {
-            ret[i] = this.collection[i].entities;
-        }
-        return ret;
-        */
-        //_.merge(this.uqs, this.uqsMan.uqsColl);
+    buildUQs(): any {
+        let uqs = {};
         for (let i in this.collection) {
             let uqMan = this.collection[i];
             //let n = uqMan.name;
@@ -120,6 +113,7 @@ export class UQsMan {
             uqs[uqName] = entities;
             if (l !== uqName) uqs[l] = entities;
         }
+        return uqs;
     }
 
     setTuidImportsLocal():string[] {
