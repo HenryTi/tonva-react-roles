@@ -29,7 +29,7 @@ export class EditMeInfo extends React.Component {
         let {name} = itemSchema;
         await userApi.userSetProp(name, newValue);
         this.data[name] = newValue;
-        nav.user[name] = newValue;
+        nav.user.name = newValue;
         nav.saveLocalUser();
     }
 

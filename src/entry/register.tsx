@@ -166,7 +166,7 @@ export class ForgetController extends RegisterController {
     passwordSubmitCaption = '提交'; 
     successText = '成功修改密码';
 
-    async execute() {
+    async execute():Promise<any> {
         await userApi.resetPassword(this.account, this.password, this.verify, this.type);
         nav.clear();
         this.toSuccess();

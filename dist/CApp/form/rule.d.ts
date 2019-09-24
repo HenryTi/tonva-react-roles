@@ -1,5 +1,5 @@
 export declare abstract class Rule {
-    abstract check(defy: string[], value: any): any;
+    abstract check(defy: string[], value: any): void;
 }
 export declare class RuleRequired extends Rule {
     check(defy: string[], value: any): void;

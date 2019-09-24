@@ -26,7 +26,9 @@ export class TextAreaWidget extends Widget {
         else {
             cn['required-item'] = this.itemSchema.required === true;
         }
-        return React.createElement("textarea", { ref: (input) => this.input = input, className: classNames(this.className, cn), rows: this.ui && this.ui.rows, maxLength: this.itemSchema.maxLength, defaultValue: this.defaultValue, onChange: this.onInputChange });
+        return React.createElement(React.Fragment, null,
+            React.createElement("textarea", { ref: (input) => this.input = input, className: classNames(this.className, cn), rows: this.ui && this.ui.rows, maxLength: this.itemSchema.maxLength, defaultValue: this.defaultValue, onChange: this.onInputChange }),
+            this.renderErrors());
     }
 }
 //# sourceMappingURL=textareaWidget.js.map

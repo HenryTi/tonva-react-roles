@@ -119,7 +119,7 @@ function boxIdContent(bi, ui, x) {
         default:
             if (typeof boxId.render !== 'function') {
                 if (ui === undefined) {
-                    logContent = TuidContent(bi.boxName, bi, x);
+                    logContent = TuidContent(boxId.boxName, bi, x);
                 }
                 else {
                     return ui(bi, x);

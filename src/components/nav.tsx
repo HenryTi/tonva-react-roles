@@ -61,7 +61,7 @@ export class NavView extends React.Component<Props, NavViewState> {
     private waitCount: number = 0;
     private waitTimeHandler?: NodeJS.Timer;
 
-    constructor(props) {
+    constructor(props:Props) {
         super(props);
         this.back = this.back.bind(this);
         this.navBack = this.navBack.bind(this);

@@ -105,6 +105,20 @@ export class Form extends React.Component {
     initData(formData) {
         if (formData === undefined)
             formData = {};
+        if (this.uiSchema !== undefined) {
+            let { items } = this.uiSchema;
+            if (items !== undefined) {
+                for (let i in items) {
+                    let ui = items[i];
+                    let dv = ui.defaultValue;
+                    if (dv !== undefined) {
+                        if (formData[i] === undefined) {
+                            formData[i] = dv;
+                        }
+                    }
+                }
+            }
+        }
         for (let itemSchema of this.schema) {
             this.initDataItem(itemSchema, this.data, formData);
         }

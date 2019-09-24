@@ -65,7 +65,8 @@ export class PageHeader extends React.Component {
                     let { nick, name } = user;
                     debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
                         React.createElement("small", { className: "text-light" }, nick || name),
-                        React.createElement("a", { className: "btn ml-2 cursor-pointer", href: "#/", role: "button", onClick: this.logoutClick },
+                        // eslint-disable-next-line
+                        React.createElement("a", { className: "btn ml-2 cursor-pointer", href: "#", role: "button", onClick: this.logoutClick },
                             React.createElement("i", { className: "fa fa-sign-out fa-lg" })));
                 }
             }
@@ -89,6 +90,9 @@ export class PageHeader extends React.Component {
         if (window.self !== window.top) {
             console.log(document.location.href);
             pop = React.createElement("header", { onClick: this.openWindow });
+        }
+        if (back === undefined && typeof center === 'string') {
+            center = React.createElement("div", { className: "px-3" }, center);
         }
         let rightView = (right || debugLogout) && React.createElement("aside", null,
             right,

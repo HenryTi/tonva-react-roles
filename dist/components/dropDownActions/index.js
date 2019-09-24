@@ -57,6 +57,7 @@ export class DropdownActions extends React.Component {
                         i,
                         " ",
                         caption);
+                // eslint-disable-next-line
                 return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: (evt) => { evt.preventDefault(); action(); } },
                     i,
                     " ",

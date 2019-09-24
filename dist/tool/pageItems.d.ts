@@ -18,7 +18,7 @@ export declare abstract class PageItems<T> {
     protected pageSize: number;
     protected appendPosition: 'head' | 'tail';
     protected abstract load(param: any, pageStart: any, pageSize: number): Promise<T[]>;
-    protected abstract setPageStart(item: T): any;
+    protected abstract setPageStart(item: T): void;
     reset(): void;
     append(item: T): void;
     first(param: any): Promise<void>;

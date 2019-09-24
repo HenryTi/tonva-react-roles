@@ -26,13 +26,16 @@ class Tab {
             return this._content;
         return this._content = this.contentBuilder();
     }
-    start() {
+    shown() {
         return __awaiter(this, void 0, void 0, function* () {
+            if (this.onShown !== undefined) {
+                yield this.onShown();
+            }
             if (this._content !== undefined)
                 return;
-            if (this.load === undefined)
-                return;
-            yield this.load();
+            if (this.load !== undefined) {
+                yield this.load();
+            }
         });
     }
 }
@@ -47,25 +50,27 @@ let Tabs = class Tabs extends React.Component {
     constructor(props) {
         super(props);
         this.tabClick = (tab) => __awaiter(this, void 0, void 0, function* () {
-            yield tab.start();
+            yield tab.shown();
             this.selectedTab.selected = false;
             tab.selected = true;
             this.selectedTab = tab;
         });
-        let { size, tabs, tabBack, contentBack, sep, selected } = this.props;
+        let { size, tabs, tabBg: tabBack, contentBg: contentBack, sep, selected } = this.props;
         this.size = size || 'md';
         this.tabs = tabs.map(v => {
             let tab = new Tab();
-            tab.name = v.name;
+            let { name, caption, content, notify, load, onShown } = v;
+            tab.name = name;
             tab.selected = false;
-            tab.caption = v.caption;
-            tab.contentBuilder = v.content;
-            tab.notify = v.notify;
-            tab.load = v.load;
+            tab.caption = caption;
+            tab.contentBuilder = content;
+            tab.notify = notify;
+            tab.load = load;
+            tab.onShown = onShown;
             return tab;
         });
-        this.tabBack = tabBack || 'bg-light';
-        this.contentBack = contentBack;
+        this.tabBg = tabBack || 'bg-light';
+        this.contentBg = contentBack;
         this.sep = sep || 'border-top border-gray';
         if (selected !== undefined) {
             this.selectedTab = this.tabs.find(v => v.name === selected);
@@ -89,7 +94,7 @@ let Tabs = class Tabs extends React.Component {
             if (this.tabs.length === 0)
                 return;
             let tab = this.tabs[0];
-            yield tab.start();
+            yield tab.shown();
         });
     }
     showTab(tabName) {
@@ -103,13 +108,13 @@ let Tabs = class Tabs extends React.Component {
     }
     render() {
         let cn = classNames('tab', 'tab-' + this.size);
-        let content = React.createElement("div", { className: classNames(this.contentBack, 'tab-content') }, this.tabs.map((v, index) => {
+        let content = React.createElement("div", { className: classNames(this.contentBg, 'tab-content') }, this.tabs.map((v, index) => {
             let style = {
                 display: v.selected === true ? undefined : 'none'
             };
             return React.createElement("div", { key: index, style: style }, v.content);
         }));
-        let tabs = React.createElement("div", { className: classNames(this.tabBack, this.sep, 'tab-tabs') }, this.tabs.map((v, index) => {
+        let tabs = React.createElement("div", { className: classNames(this.tabBg, this.sep, 'tab-tabs') }, this.tabs.map((v, index) => {
             let { selected, caption, notify } = v;
             let notifyCircle;
             if (notify !== undefined) {

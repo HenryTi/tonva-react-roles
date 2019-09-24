@@ -36,8 +36,16 @@ const hosts = {
         local: false
     }
 };
+const httpArr = ['https://', 'http://'];
+function isAbsoluteUrl(url) {
+    for (let str of httpArr) {
+        if (url.startsWith(str) === true)
+            return true;
+    }
+    return false;
+}
 function urlFromHost(host) {
-    if (host.startsWith('https://') === true) {
+    if (isAbsoluteUrl(host) === true) {
         if (host.endsWith('/'))
             return host;
         return host + '/';
