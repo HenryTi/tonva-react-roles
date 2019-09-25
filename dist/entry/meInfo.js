@@ -16,7 +16,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { observable } from 'mobx';
 import { Page, Edit, nav } from '../components';
-import { userApi } from './userApi';
+import { userApi } from '../net/userApi';
 export class EditMeInfo extends React.Component {
     constructor(props) {
         super(props);

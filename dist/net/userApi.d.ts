@@ -1,4 +1,4 @@
-import { CenterApiBase } from '../net';
+import { CenterApiBase } from '.';
 export interface RegisterParameter {
     nick: string;
     user: string;

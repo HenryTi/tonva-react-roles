@@ -29,6 +29,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
+import { userApi } from '../net';
 /*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
@@ -610,6 +611,13 @@ export class Nav {
     }
     saveLocalUser() {
         this.local.user.set(this.user);
+    }
+    loadMe() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let me = yield userApi.me();
+            this.user.icon = me.icon;
+            this.user.nick = me.nick;
+        });
     }
     logined(user, callback) {
         return __awaiter(this, void 0, void 0, function* () {

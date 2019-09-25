@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { nav, Page, Form, resLang } from '../components';
 import { RegisterController, ForgetController } from './register';
-import { userApi } from './userApi';
+import { userApi } from '../net/userApi';
 import { loginRes } from './res';
 import { tonvaTop, getSender } from './tools';
 const schema = [

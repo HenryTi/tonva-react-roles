@@ -135,6 +135,39 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
             })}
         </div>;        
 
+        let {tabPosition, borderColor} = this.props;
+        let bsCur:React.CSSProperties, bsTab:React.CSSProperties
+        if (borderColor) {
+            bsCur = {
+                borderColor: borderColor,
+                borderStyle: 'solid',
+                borderTopWidth: 1,
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+            }
+            bsTab = {
+                borderColor: borderColor,
+                borderStyle: 'solid',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderLeftWidth: 0,
+                borderRightWidth: 0,
+            }
+            if (tabPosition === 'top') {
+                bsCur.borderBottomWidth = 0;
+                bsCur.borderTopLeftRadius = 10;
+                bsCur.borderTopRightRadius = 10;
+                bsTab.borderTopWidth = 0;
+            }
+            else {
+                bsCur.borderTopWidth = 0;
+                bsCur.borderBottomLeftRadius = 10;
+                bsCur.borderBottomRightRadius = 10;
+                bsTab.borderBottomWidth = 0;
+            }
+        }
+
         let tabs = <div className={classNames(this.tabBg, this.sep, 'tab-tabs')}>
             {this.tabs.map((v,index) => {
                 let {selected, caption, notify} = v;
@@ -146,7 +179,7 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
                         else if (num < 0) notifyCircle = <u className="dot" />;
                     }
                 }
-                return <div key={index} className="" onClick={()=>this.tabClick(v)}>
+                return <div key={index} className="" onClick={()=>this.tabClick(v)} style={selected===true? bsCur:bsTab}>
                     <div className="align-self-center">
                         {notifyCircle}
                         {caption(selected)}
@@ -157,7 +190,7 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
 
         return <div className={cn}>
             {
-                this.props.tabPosition === 'top'? 
+                tabPosition === 'top'? 
                     <>{tabs}{content}</> :
                     <>{content}{tabs}</>
             }

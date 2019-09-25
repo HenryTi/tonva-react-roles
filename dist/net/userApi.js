@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { CenterApiBase } from '../net';
+import { CenterApiBase } from '.';
 import { decodeUserToken } from '../tool/user';
 ;
 export class UserApi extends CenterApiBase {

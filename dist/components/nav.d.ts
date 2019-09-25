@@ -85,6 +85,7 @@ export declare class Nav {
     showAppView(): Promise<void>;
     setGuest(guest: Guest): void;
     saveLocalUser(): void;
+    loadMe(): Promise<void>;
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
     wsConnect(): void;
     loginTop(defaultTop: JSX.Element): JSX.Element;

@@ -67,11 +67,11 @@ export class ReactBoxId {
         }
         switch (typeof val) {
             case 'undefined':
-                return React.createElement("del", { className: "text-black-50" },
+                return React.createElement("span", { className: "text-black-50" },
                     boxName,
                     " undefined");
             case 'number':
-                return React.createElement("del", { className: "text-black-50" },
+                return React.createElement("span", { className: "text-light" },
                     boxName,
                     " ",
                     this.id);

@@ -429,9 +429,9 @@
         "version": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74",
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
-      "./src/entry/userapi.ts": {
-        "version": "969008e694ed0c87d315751c2ca4e3bfa9730b260a5ef2a8ce158f6c8927f1df",
-        "signature": "702dcc32b6905592755c826b37e5c8c2149a6203bf295f1e1b7237c284e530e5"
+      "./src/net/userapi.ts": {
+        "version": "1652487f1647af55bed258205d0e8686f9e16330b038654c69a3e0c205da7732",
+        "signature": "7df19602fdd28d7575535a59949ab8f8f2e3d39bd4faf06b86e8197e66f96785"
       },
       "./src/entry/res/login.ts": {
         "version": "39220cd5924500b07b7f9ef0d64faea72c08c65020c6619e53636505f392806a",
@@ -450,11 +450,11 @@
         "signature": "87dcb27d68c976da37056c28629a8b954f9cedf98cceda4e55cd98e53c24b1ee"
       },
       "./src/entry/register.tsx": {
-        "version": "cd71906a851a60c0b49b66748cafa7c867d8840e3ac6f48fa7d701b18dbc3514",
+        "version": "d6c0dc66dea2537df4340c9a7fa167d585693d1157046d0ecfc20e4012cf2b41",
         "signature": "5efff16328b7894d8860425e01d08c7abf893ac8362d7dbe9b98d11f6d0a68f0"
       },
       "./src/entry/login.tsx": {
-        "version": "dacdfd8dd84f151374fd9643afd555813285082c67854399968c80bc59cce555",
+        "version": "fd990a34f6990d87d40c4b3afec1ddf93dbf0a7d3f3e14a4036eb4849075c006",
         "signature": "18bc3d3b2fd87d98812469c65ee9fa8d0c29e91395d4d16fa3715bf5ac21adf9"
       },
       "./src/entry/changepassword.tsx": {
@@ -462,8 +462,8 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "53eaf3fbb53a412c511a823132ba5df9952aaa6b3f1df6d1c8876707b10ca5a0",
-        "signature": "d0db3b81f7dc813d86c53bcc1d718fb62515c2403b0fc883e737ee5f7419971f"
+        "version": "84c25c966b0b3995e8a206f57dcc739d27fff60ea0abf51807821d3d6b594893",
+        "signature": "6114847dc55ffd5470dd3e838dfca7522f12932c440e2b710ca119b0e5c2f767"
       },
       "./src/components/vm.tsx": {
         "version": "5b02916c2e73a81218c917163ac32f120b36c2f02a8b72b6d158b2f12a078b0a",
@@ -622,7 +622,7 @@
         "signature": "20f5cb15aeb4d68e4d0ba9bb660f9ae40e292356d7d7e50d3ee2e5737e53daec"
       },
       "./src/components/tabs/tabs.tsx": {
-        "version": "62696a957356095990d2fbba1488e387b7aeba12d29d081e78b8354f23764761",
+        "version": "b92d02d0ef1ba902ebf7d1c4744f238b7f2ee2a8847ae7691ecadfbee6255c92",
         "signature": "7f9a99fafc3795c86056ee203bef9c158c4af48692debac43c5be2f038cecbf2"
       },
       "./src/components/tabs/index.tsx": {
@@ -710,16 +710,16 @@
         "signature": "7d1691708c42cfa68f1017a6a0f242bd793fd6b3a18fbfd3ba35cd6b182fbbd5"
       },
       "./src/net/index.ts": {
-        "version": "d3e947a1fe07923743bf5d5f80b67898a6eadbc27981ae4d6d5da7372ab1705d",
-        "signature": "8f844c6b04d949ce777d523b44c7540f9d8e0512d3c44e836256e4d82aec3d8a"
+        "version": "878f6fcb04f9edbfebd97c514a5b9e82075b746bf0d184a166ed6e538e6b583f",
+        "signature": "54fd17cc9e5d96a79680b7a2b5d2afcf35ed95940dcfdd038c36320cb4884d93"
       },
       "./src/entry/meinfo.tsx": {
-        "version": "28d4724886eb628244f36c72e93f00045fbb2a7b5cf14792bf864df19bddd694",
+        "version": "e9388c44dbf43ac1e9766dc408fe0951e05833e680f398bce6a3f6959156363f",
         "signature": "6e5aeabc725c720c6ce9d2b1bc6c81aab4fb08b2e039e380c829daea6c9ff3d5"
       },
       "./src/entry/index.ts": {
-        "version": "38861555eeb759129284e7eedc251a0edd44fd6083ae772bf2461efd780af041",
-        "signature": "eb587749dbbb513ace6fbbab00923bea397c00c6ff310b29d440960ba9ad2cea"
+        "version": "e572c2f21976c238e9773b1efcb90d636c14d5a159c7d555c21a8dc13ecbe698",
+        "signature": "a8b3b736fa42e209d6a32c215470fccec8279479c45460d79fc3288c59b12cd8"
       },
       "./src/uq/entity.ts": {
         "version": "5c4d58d5f08b5b9476a16d8bf1ea689ae50569485663c32d73e87ee5947a8081",
@@ -754,7 +754,7 @@
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
-        "version": "e1cf727022aaabce93eb05ce769640a5a5fdb25aaa09021ee0df9ca15147d5f7",
+        "version": "8eea0086466bb9613cda2c35fa55e9e8363d243ba7aa4bf97713a85794ae5478",
         "signature": "3dbfba1661d4795b72687fe635c89fe93048532f75bb2bb9e9127f1b8e4c91ca"
       },
       "./src/uq/tuid/index.ts": {
@@ -787,7 +787,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "e61bf2ec50c3198539312bb357e0e055f1accf05163c2ee0eb587f0df9664652",
-        "signature": "e96f95694fb895595737c40064b7a227bcac259fd2ed3cd2a9bff5cfff1c8332"
+        "signature": "714cf37350c4d0190b811086a7e96824fe0ffe36e51c01033d75c7d0de37d971"
       },
       "./src/uq/index.ts": {
         "version": "b20883d8fd2a61f444a4b5fe2f2b45e85af5eb8d4a8b325375ad14261d7c1475",
@@ -1157,6 +1157,10 @@
         "version": "af5d0c0daa0f9727c81c125b882e013a7624d1182fda89a1fdd18ae244c5632d",
         "signature": "162af5c6198a399d88d590fde083357eb5dc340e4f1545e9ca1ad580de00f665"
       },
+      "./src/entry/userapi.ts": {
+        "version": "48c93767976176f2ecb4a259427c7730267d4b77b2e2031aebdf1fede16783b5",
+        "signature": "12ea4856a0c4e54e4b8c361b30aeeb863a41d02d269630071bea2c5917b3a1b9"
+      },
       "./src/net/serializejson.ts": {
         "version": "979d2923838827962942ddb3fb898dfc9fbab719be44c39424e1b6d4d32c98f7",
         "signature": "2eab7ad785b4f87ae903fb9799f0b92d153a28e296972a7b1a462a0033e2b072"
@@ -1495,7 +1499,7 @@
         "./src/components/simple/icontext.tsx",
         "./src/components/simple/muted.tsx"
       ],
-      "./src/entry/userapi.ts": [
+      "./src/net/userapi.ts": [
         "./src/net/index.ts",
         "./src/tool/user.ts"
       ],
@@ -1516,7 +1520,7 @@
       "./src/entry/register.tsx": [
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
-        "./src/entry/userapi.ts",
+        "./src/net/userapi.ts",
         "./src/entry/res/index.ts",
         "./src/entry/tools.tsx"
       ],
@@ -1524,7 +1528,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/entry/register.tsx",
-        "./src/entry/userapi.ts",
+        "./src/net/userapi.ts",
         "./src/entry/res/index.ts",
         "./src/entry/tools.tsx",
         "./src/tool/user.ts"
@@ -1960,17 +1964,17 @@
         "./src/net/caller.ts",
         "./src/net/uqapi.ts",
         "./src/net/appbridge.ts",
-        "./src/net/host.ts"
+        "./src/net/host.ts",
+        "./src/net/userapi.ts"
       ],
       "./src/entry/meinfo.tsx": [
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/index.ts",
-        "./src/entry/userapi.ts"
+        "./src/net/userapi.ts"
       ],
       "./src/entry/index.ts": [
-        "./src/entry/meinfo.tsx",
-        "./src/entry/userapi.ts"
+        "./src/entry/meinfo.tsx"
       ],
       "./src/uq/entity.ts": [
         "./src/net/index.ts",
@@ -2678,6 +2682,10 @@
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
+      "./src/entry/userapi.ts": [
+        "./src/net/index.ts",
+        "./src/tool/user.ts"
+      ],
       "./src/res/res.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -2925,7 +2933,7 @@
         "./src/components/simple/icontext.tsx",
         "./src/components/simple/muted.tsx"
       ],
-      "./src/entry/userapi.ts": [
+      "./src/net/userapi.ts": [
         "./src/net/index.ts"
       ],
       "./src/entry/res/login.ts": [
@@ -3226,14 +3234,14 @@
         "./src/net/caller.ts",
         "./src/net/uqapi.ts",
         "./src/net/appbridge.ts",
-        "./src/net/host.ts"
+        "./src/net/host.ts",
+        "./src/net/userapi.ts"
       ],
       "./src/entry/meinfo.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/entry/index.ts": [
-        "./src/entry/meinfo.tsx",
-        "./src/entry/userapi.ts"
+        "./src/entry/meinfo.tsx"
       ],
       "./src/uq/entity.ts": [
         "./src/uq/uqman.ts",
@@ -3781,6 +3789,9 @@
       "./src/entry/forget.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./src/entry/userapi.ts": [
+        "./src/net/index.ts"
+      ],
       "./src/uq/boxid.tsx": [
         "./src/uq/tuid/index.ts"
       ],
@@ -3799,8 +3810,6 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/components/pageheader.tsx",
-      "./src/entry/userapi.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3892,6 +3901,7 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
+      "./src/components/pageheader.tsx",
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
@@ -3907,6 +3917,7 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
+      "./src/net/userapi.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
@@ -4088,6 +4099,7 @@
       "./src/components/simple/image.tsx",
       "./src/components/simple/resuploader.tsx",
       "./src/entry/forget.tsx",
+      "./src/entry/userapi.ts",
       "./src/net/serializejson.ts",
       "./src/res/index.ts",
       "./src/res/res.tsx",

@@ -17,6 +17,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
+import { userApi } from '../net';
 
 /*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
@@ -643,6 +644,12 @@ export class Nav {
 
     saveLocalUser() {
         this.local.user.set(this.user);
+    }
+
+    async loadMe() {
+        let me = await userApi.me();
+        this.user.icon = me.icon;
+        this.user.nick = me.nick;
     }
 
     async logined(user: User, callback?: (user:User)=>Promise<void>) {

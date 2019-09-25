@@ -1,4 +1,4 @@
-import {CenterApiBase} from '../net';
+import {CenterApiBase} from '.';
 import {decodeUserToken} from '../tool/user';
 //import { nav } from '../ui';
 

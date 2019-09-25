@@ -114,6 +114,38 @@ let Tabs = class Tabs extends React.Component {
             };
             return React.createElement("div", { key: index, style: style }, v.content);
         }));
+        let { tabPosition, borderColor } = this.props;
+        let bsCur, bsTab;
+        if (borderColor) {
+            bsCur = {
+                borderColor: borderColor,
+                borderStyle: 'solid',
+                borderTopWidth: 1,
+                borderLeftWidth: 1,
+                borderRightWidth: 1,
+                borderBottomWidth: 1,
+            };
+            bsTab = {
+                borderColor: borderColor,
+                borderStyle: 'solid',
+                borderTopWidth: 1,
+                borderBottomWidth: 1,
+                borderLeftWidth: 0,
+                borderRightWidth: 0,
+            };
+            if (tabPosition === 'top') {
+                bsCur.borderBottomWidth = 0;
+                bsCur.borderTopLeftRadius = 10;
+                bsCur.borderTopRightRadius = 10;
+                bsTab.borderTopWidth = 0;
+            }
+            else {
+                bsCur.borderTopWidth = 0;
+                bsCur.borderBottomLeftRadius = 10;
+                bsCur.borderBottomRightRadius = 10;
+                bsTab.borderBottomWidth = 0;
+            }
+        }
         let tabs = React.createElement("div", { className: classNames(this.tabBg, this.sep, 'tab-tabs') }, this.tabs.map((v, index) => {
             let { selected, caption, notify } = v;
             let notifyCircle;
@@ -126,12 +158,12 @@ let Tabs = class Tabs extends React.Component {
                         notifyCircle = React.createElement("u", { className: "dot" });
                 }
             }
-            return React.createElement("div", { key: index, className: "", onClick: () => this.tabClick(v) },
+            return React.createElement("div", { key: index, className: "", onClick: () => this.tabClick(v), style: selected === true ? bsCur : bsTab },
                 React.createElement("div", { className: "align-self-center" },
                     notifyCircle,
                     caption(selected)));
         }));
-        return React.createElement("div", { className: cn }, this.props.tabPosition === 'top' ?
+        return React.createElement("div", { className: cn }, tabPosition === 'top' ?
             React.createElement(React.Fragment, null,
                 tabs,
                 content) :
