@@ -462,7 +462,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "84c25c966b0b3995e8a206f57dcc739d27fff60ea0abf51807821d3d6b594893",
+        "version": "dd045ca69adc7a9056d57168a5990399e9fab95a7a533263998381a6fd61f761",
         "signature": "6114847dc55ffd5470dd3e838dfca7522f12932c440e2b710ca119b0e5c2f767"
       },
       "./src/components/vm.tsx": {
@@ -1553,6 +1553,7 @@
         "./src/components/res.ts",
         "./src/components/loading.tsx",
         "./src/components/simple/index.ts",
+        "./src/net/userapi.ts",
         "./src/entry/login.tsx",
         "./src/entry/changepassword.tsx"
       ],
@@ -3810,6 +3811,7 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./src/components/nav.tsx",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3925,7 +3927,6 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",

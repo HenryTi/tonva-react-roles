@@ -29,7 +29,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
-import { userApi } from '../net';
+import { userApi } from '../net/userApi';
 /*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
