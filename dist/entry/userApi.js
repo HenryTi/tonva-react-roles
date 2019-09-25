@@ -14,7 +14,7 @@ export class UserApi extends CenterApiBase {
     login(params) {
         return __awaiter(this, void 0, void 0, function* () {
             //(params as any).device = nav.local.device.get();
-            let ret = yield this.get('login', params);
+            let ret = yield this.get('user/login', params);
             switch (typeof ret) {
                 default: return;
                 case 'string': return decodeUserToken(ret);
@@ -33,27 +33,27 @@ export class UserApi extends CenterApiBase {
     }
     register(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('register', params);
+            return yield this.post('user/register', params);
         });
     }
     setVerify(account, type) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('set-verify', { account: account, type: type });
+            return yield this.post('user/set-verify', { account: account, type: type });
         });
     }
     checkVerify(account, verify) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('check-verify', { account: account, verify: verify });
+            return yield this.post('user/check-verify', { account: account, verify: verify });
         });
     }
     isExists(account) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('is-exists', { account: account });
+            return yield this.get('user/is-exists', { account: account });
         });
     }
     resetPassword(account, password, verify, type) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('reset-password', { account: account, password, verify, type });
+            return yield this.post('user/reset-password', { account: account, password, verify, type });
         });
     }
     userSetProp(prop, value) {
@@ -62,5 +62,5 @@ export class UserApi extends CenterApiBase {
         });
     }
 }
-export const userApi = new UserApi('tv/user/', undefined);
+export const userApi = new UserApi('tv/', undefined);
 //# sourceMappingURL=userApi.js.map

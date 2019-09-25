@@ -366,7 +366,7 @@
         "signature": "026cc8c57b36581fc3da28a608c8086d4eeed85c8a04f15189c2116e43c4df1e"
       },
       "./src/components/pageheader.tsx": {
-        "version": "3366462d575648844fa4f2cdd4a7c0431d65c1642d6befe2ed2958ed196b631e",
+        "version": "85358d99928543699a1306156958c81bb2e3284c27576df53e375a490eb916f1",
         "signature": "7385062be3517777f270bab3374ded5d92609bc30e1011f962ddb0fc38b4e3fd"
       },
       "./src/components/page.tsx": {
@@ -430,7 +430,7 @@
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
       "./src/entry/userapi.ts": {
-        "version": "9a295873cbb8767fd097dbcbb52811bd157c196bdd5cf686f094ace3df38a9f5",
+        "version": "969008e694ed0c87d315751c2ca4e3bfa9730b260a5ef2a8ce158f6c8927f1df",
         "signature": "702dcc32b6905592755c826b37e5c8c2149a6203bf295f1e1b7237c284e530e5"
       },
       "./src/entry/res/login.ts": {
@@ -3799,7 +3799,8 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/components/form/widgets/textareawidget.tsx",
+      "./src/components/pageheader.tsx",
+      "./src/entry/userapi.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3891,7 +3892,6 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
-      "./src/components/pageheader.tsx",
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
@@ -3907,7 +3907,6 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
-      "./src/entry/userapi.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
@@ -3923,6 +3922,7 @@
       "./src/components/form/rules/index.ts",
       "./src/components/form/widgets/widget.tsx",
       "./src/components/form/widgets/textwidget.tsx",
+      "./src/components/form/widgets/textareawidget.tsx",
       "./src/components/form/widgets/passwordwidget.tsx",
       "./src/components/form/widgets/numberwidget.tsx",
       "./src/components/form/widgets/updownwidget.tsx",

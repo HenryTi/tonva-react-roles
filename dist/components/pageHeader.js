@@ -66,7 +66,7 @@ export class PageHeader extends React.Component {
                     debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
                         React.createElement("small", { className: "text-light" }, nick || name),
                         // eslint-disable-next-line
-                        React.createElement("a", { className: "btn ml-2 cursor-pointer", href: "#", role: "button", onClick: this.logoutClick },
+                        React.createElement("div", { className: "ml-2 py-2 px-3 cursor-pointer", role: "button", onClick: this.logoutClick },
                             React.createElement("i", { className: "fa fa-sign-out fa-lg" })));
                 }
             }

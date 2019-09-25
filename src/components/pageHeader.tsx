@@ -69,11 +69,11 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
                         <small className="text-light">{nick || name}</small>
                         {
                             // eslint-disable-next-line
-                            <a className="btn ml-2 cursor-pointer" href="#"
+                            <div className="ml-2 py-2 px-3 cursor-pointer"
                                 role="button"
                                 onClick={this.logoutClick}>
                                 <i className="fa fa-sign-out fa-lg" />
-                            </a>
+                            </div>
                         }
                     </div>;
                 }

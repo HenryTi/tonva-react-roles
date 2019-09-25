@@ -16,7 +16,7 @@ export interface RegisterParameter {
 export class UserApi extends CenterApiBase {
     async login(params: {user: string, pwd: string, guest: number}): Promise<any> {
         //(params as any).device = nav.local.device.get();
-        let ret = await this.get('login', params);
+        let ret = await this.get('user/login', params);
         switch (typeof ret) {
             default: return;
             case 'string': return decodeUserToken(ret);
@@ -32,23 +32,23 @@ export class UserApi extends CenterApiBase {
     }
     async register(params: RegisterParameter): Promise<any>
     {
-        return await this.post('register', params);
+        return await this.post('user/register', params);
     }
 
     async setVerify(account:string, type:'mobile'|'email') {
-        return await this.post('set-verify', {account:account, type:type});
+        return await this.post('user/set-verify', {account:account, type:type});
     }
 
     async checkVerify(account:string, verify:string) {
-        return await this.post('check-verify', {account:account, verify:verify});
+        return await this.post('user/check-verify', {account:account, verify:verify});
     }
 
     async isExists(account:string) {
-        return await this.get('is-exists', {account:account});
+        return await this.get('user/is-exists', {account:account});
     }
 
     async resetPassword(account:string, password:string, verify:string, type:'mobile'|'email') {
-        return await this.post('reset-password', {account:account, password, verify, type});
+        return await this.post('user/reset-password', {account:account, password, verify, type});
     }
     
     async userSetProp(prop:string, value:any) {
@@ -56,4 +56,4 @@ export class UserApi extends CenterApiBase {
     }
 }
 
-export const userApi = new UserApi('tv/user/', undefined);
+export const userApi = new UserApi('tv/', undefined);
