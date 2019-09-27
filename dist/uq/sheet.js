@@ -158,6 +158,12 @@ export class Sheet extends Entity {
             return yield new StateSheetCountCaller(this, undefined).request();
         });
     }
+    userSheets(state, user, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { state: state, user: user, pageStart: pageStart, pageSize: pageSize };
+            return yield new UserSheetsCaller(this, params).request();
+        });
+    }
     mySheets(state, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             /*
@@ -242,6 +248,15 @@ class StateSheetCountCaller extends SheetCaller {
         });
     }
 }
+class UserSheetsCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.suffix = 'user-sheets';
+    }
+    xresult(res) {
+        return res;
+    }
+}
 class MySheetsCaller extends SheetCaller {
     constructor() {
         super(...arguments);
@@ -249,16 +264,6 @@ class MySheetsCaller extends SheetCaller {
     }
     xresult(res) {
         return res;
-        /*
-        let {returns} = this.entity;
-        let len = returns.length;
-        let ret:{[r:string]:any[]} = {};
-        for (let i=0; i<len; i++) {
-            let retSchema = returns[i];
-            ret[retSchema.name] = res[i];
-        }
-        return ret;
-        */
     }
 }
 export class PageStateItems extends PageItems {

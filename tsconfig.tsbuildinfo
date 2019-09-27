@@ -758,8 +758,8 @@
         "signature": "5097060a8c9f30a5f03c9ddfe8d2037f1a413b6e9245d6280b1dc8f474ea6a30"
       },
       "./src/uq/sheet.ts": {
-        "version": "b842998db0733224f516b9be67264aa19ea6309feb0bea8459314615cd9b3782",
-        "signature": "4c6841cd8d9ce74a0751aa3c122293414d2b812021163a6a7a2d43ceb4277f94"
+        "version": "28b32960985bcdcb2619d4062e11218aca9a67291d635eba006e840283e25803",
+        "signature": "1e80dea9f6d86c80dbbccbd0e3bdb4d1fbe9bcb7449f03f5fe43d424dfa110fb"
       },
       "./src/uq/book.ts": {
         "version": "c8f2443120bbb1453fdc51cf6202d84e7678ec1c16e2ca38155b3eee8ae72a26",
@@ -1153,17 +1153,9 @@
         "version": "af5d0c0daa0f9727c81c125b882e013a7624d1182fda89a1fdd18ae244c5632d",
         "signature": "162af5c6198a399d88d590fde083357eb5dc340e4f1545e9ca1ad580de00f665"
       },
-      "./src/entry/userapi.ts": {
-        "version": "d0dae49715f3f6cc78fbe40548de36905cfa4a35e217134f89582999663f6757",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
       "./src/net/serializejson.ts": {
         "version": "979d2923838827962942ddb3fb898dfc9fbab719be44c39424e1b6d4d32c98f7",
         "signature": "2eab7ad785b4f87ae903fb9799f0b92d153a28e296972a7b1a462a0033e2b072"
-      },
-      "./src/net/userapi.ts": {
-        "version": "898112f4a907dd22541db67912a057c259dcb59f223cc02efe466c9f30c853e2",
-        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "./src/res/index.ts": {
         "version": "4722d8d76885cfe95234ce068a30f8e0b7a625ce0d5c6dd09457e96af87bd274",
@@ -3795,11 +3787,6 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/app/cappbase.ts",
-      "./src/app/index.ts",
-      "./src/app/cbase.ts",
-      "./src/app/start.ts",
-      "./src/app/vmain.tsx",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -4074,6 +4061,11 @@
       "./src/capp/startapp.ts",
       "./src/capp/index.ts",
       "./src/app/centerapi.ts",
+      "./src/app/vmain.tsx",
+      "./src/app/cappbase.ts",
+      "./src/app/start.ts",
+      "./src/app/cbase.ts",
+      "./src/app/index.ts",
       "./src/index.ts",
       "./src/capp/viewmodel.tsx",
       "./src/components/callbacks.ts",
@@ -4083,9 +4075,7 @@
       "./src/components/simple/image.tsx",
       "./src/components/simple/resuploader.tsx",
       "./src/entry/forget.tsx",
-      "./src/entry/userapi.ts",
       "./src/net/serializejson.ts",
-      "./src/net/userapi.ts",
       "./src/res/index.ts",
       "./src/res/res.tsx",
       "./src/uq/boxid.tsx",
