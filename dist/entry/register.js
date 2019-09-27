@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { nav, Page, Form, resLang, Controller, VPage } from '../components';
-import { userApi } from '../net/userApi';
+import { userApi } from '../net';
 import '../css/va-form.css';
 import { registerRes } from './res';
 import { tonvaTop, getSender } from './tools';
@@ -112,7 +112,7 @@ export class RegisterController extends Controller {
             let error = this.accountError(ret);
             if (error !== undefined)
                 return error;
-            ret = yield userApi.setVerify(this.account, this.type);
+            ret = yield userApi.setVerify(this.account, this.type, nav.oem);
             this.toVerify(this.account);
             return;
         });

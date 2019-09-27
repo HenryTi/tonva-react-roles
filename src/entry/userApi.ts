@@ -1,3 +1,4 @@
+/*
 import {CenterApiBase} from '../net';
 import {decodeUserToken} from '../tool/user';
 //import { nav } from '../ui';
@@ -61,3 +62,4 @@ export class UserApi extends CenterApiBase {
 }
 
 export const userApi = new UserApi('tv/', undefined);
+*/

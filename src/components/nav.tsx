@@ -17,7 +17,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
-import { userApi } from '../net/userApi';
+import { userApi } from '../net';
 
 /*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
@@ -410,6 +410,7 @@ export class NavView extends React.Component<Props, NavViewState> {
 }
 
 export interface NavSettings {
+    oem?: string;
     loginTop?: JSX.Element;
 }
 
@@ -542,6 +543,10 @@ export class Nav {
 
     setSettings(settings?: NavSettings) {
         this.navSettings = settings;
+    }
+
+    get oem():string {
+        return this.navSettings && this.navSettings.oem;
     }
 
     hashParam: string;

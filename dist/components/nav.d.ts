@@ -55,6 +55,7 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     private refresh;
 }
 export interface NavSettings {
+    oem?: string;
     loginTop?: JSX.Element;
 }
 export declare class Nav {
@@ -77,6 +78,7 @@ export declare class Nav {
     private getPredefinedUnitName;
     private loadPredefinedUnit;
     setSettings(settings?: NavSettings): void;
+    readonly oem: string;
     hashParam: string;
     private centerHost;
     private arrs;

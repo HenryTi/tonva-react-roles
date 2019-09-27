@@ -386,8 +386,8 @@
         "signature": "39b695b3b682b3e6e2924a56202a3ee719088a71fcbd587f42aecd8b5c358afd"
       },
       "./src/net/uqapi.ts": {
-        "version": "a61281d0083c9809ad9a12d3f92d5645996a9a4f0d4e4c3c082b3c292bcc2f76",
-        "signature": "58a156f1d4b18b9ec3ac0ca4d4a317f9c2eafe1e4e2726f2ee7d5151ee842778"
+        "version": "1f440ec3ad47d6f48273523114a998c3470604351fe7347ce92bd2be57100fac",
+        "signature": "1ae3a7e8b4cbc1fb9f91427cc7f155b1e621b39beb71365676b640a5bc51445d"
       },
       "./src/net/nettoken.ts": {
         "version": "ae1e1a25312b41898a208000d0a0523ae810b755cb8aff0d4d360c1f3d658508",
@@ -429,10 +429,6 @@
         "version": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74",
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
-      "./src/net/userapi.ts": {
-        "version": "1652487f1647af55bed258205d0e8686f9e16330b038654c69a3e0c205da7732",
-        "signature": "7df19602fdd28d7575535a59949ab8f8f2e3d39bd4faf06b86e8197e66f96785"
-      },
       "./src/entry/res/login.ts": {
         "version": "39220cd5924500b07b7f9ef0d64faea72c08c65020c6619e53636505f392806a",
         "signature": "17247298607bcf57ae5bd712ecf99f765fa09cbe7840ef99186971e7a6340c25"
@@ -450,11 +446,11 @@
         "signature": "87dcb27d68c976da37056c28629a8b954f9cedf98cceda4e55cd98e53c24b1ee"
       },
       "./src/entry/register.tsx": {
-        "version": "d6c0dc66dea2537df4340c9a7fa167d585693d1157046d0ecfc20e4012cf2b41",
+        "version": "12b50f93fe84b22282fb5f316f842d868e17b0b1d3334a5b0c4d0aa4a25ba97d",
         "signature": "5efff16328b7894d8860425e01d08c7abf893ac8362d7dbe9b98d11f6d0a68f0"
       },
       "./src/entry/login.tsx": {
-        "version": "fd990a34f6990d87d40c4b3afec1ddf93dbf0a7d3f3e14a4036eb4849075c006",
+        "version": "ef60db5636b296b1ccfaa9e9905a990bb658ceb54145c69b93b5b79375147f10",
         "signature": "18bc3d3b2fd87d98812469c65ee9fa8d0c29e91395d4d16fa3715bf5ac21adf9"
       },
       "./src/entry/changepassword.tsx": {
@@ -462,8 +458,8 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "dd045ca69adc7a9056d57168a5990399e9fab95a7a533263998381a6fd61f761",
-        "signature": "6114847dc55ffd5470dd3e838dfca7522f12932c440e2b710ca119b0e5c2f767"
+        "version": "17e1e7370c8596c2be839327e6735f59fc58c9dde82b05e740e874a8c09fae3f",
+        "signature": "fcb6392c5a312d8541cf8ce1e5fcf5b5c40ab32c6eeedfc4d28eca2fc316ed61"
       },
       "./src/components/vm.tsx": {
         "version": "5b02916c2e73a81218c917163ac32f120b36c2f02a8b72b6d158b2f12a078b0a",
@@ -710,11 +706,11 @@
         "signature": "7d1691708c42cfa68f1017a6a0f242bd793fd6b3a18fbfd3ba35cd6b182fbbd5"
       },
       "./src/net/index.ts": {
-        "version": "878f6fcb04f9edbfebd97c514a5b9e82075b746bf0d184a166ed6e538e6b583f",
-        "signature": "54fd17cc9e5d96a79680b7a2b5d2afcf35ed95940dcfdd038c36320cb4884d93"
+        "version": "1296192f6579cc770c8b5611ed6dc6a4a073a941bcd3c7f9fc49a5034031c687",
+        "signature": "8f844c6b04d949ce777d523b44c7540f9d8e0512d3c44e836256e4d82aec3d8a"
       },
       "./src/entry/meinfo.tsx": {
-        "version": "e9388c44dbf43ac1e9766dc408fe0951e05833e680f398bce6a3f6959156363f",
+        "version": "8f91f62e4f7b0b3efae25d4fd8f6d4d37013c7923e4a8900f2984f51e921baf0",
         "signature": "6e5aeabc725c720c6ce9d2b1bc6c81aab4fb08b2e039e380c829daea6c9ff3d5"
       },
       "./src/entry/index.ts": {
@@ -1158,12 +1154,16 @@
         "signature": "162af5c6198a399d88d590fde083357eb5dc340e4f1545e9ca1ad580de00f665"
       },
       "./src/entry/userapi.ts": {
-        "version": "48c93767976176f2ecb4a259427c7730267d4b77b2e2031aebdf1fede16783b5",
-        "signature": "12ea4856a0c4e54e4b8c361b30aeeb863a41d02d269630071bea2c5917b3a1b9"
+        "version": "d0dae49715f3f6cc78fbe40548de36905cfa4a35e217134f89582999663f6757",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "./src/net/serializejson.ts": {
         "version": "979d2923838827962942ddb3fb898dfc9fbab719be44c39424e1b6d4d32c98f7",
         "signature": "2eab7ad785b4f87ae903fb9799f0b92d153a28e296972a7b1a462a0033e2b072"
+      },
+      "./src/net/userapi.ts": {
+        "version": "898112f4a907dd22541db67912a057c259dcb59f223cc02efe466c9f30c853e2",
+        "signature": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       "./src/res/index.ts": {
         "version": "4722d8d76885cfe95234ce068a30f8e0b7a625ce0d5c6dd09457e96af87bd274",
@@ -1453,7 +1453,8 @@
         "./src/net/apibase.ts",
         "./src/net/host.ts",
         "./src/components/index.ts",
-        "./src/tool/index.ts"
+        "./src/tool/index.ts",
+        "./src/tool/user.ts"
       ],
       "./src/net/nettoken.ts": [
         "./src/net/uqapi.ts",
@@ -1499,10 +1500,6 @@
         "./src/components/simple/icontext.tsx",
         "./src/components/simple/muted.tsx"
       ],
-      "./src/net/userapi.ts": [
-        "./src/net/index.ts",
-        "./src/tool/user.ts"
-      ],
       "./src/entry/res/login.ts": [
         "./src/components/index.ts"
       ],
@@ -1520,7 +1517,7 @@
       "./src/entry/register.tsx": [
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
-        "./src/net/userapi.ts",
+        "./src/net/index.ts",
         "./src/entry/res/index.ts",
         "./src/entry/tools.tsx"
       ],
@@ -1528,7 +1525,7 @@
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/entry/register.tsx",
-        "./src/net/userapi.ts",
+        "./src/net/index.ts",
         "./src/entry/res/index.ts",
         "./src/entry/tools.tsx",
         "./src/tool/user.ts"
@@ -1553,7 +1550,6 @@
         "./src/components/res.ts",
         "./src/components/loading.tsx",
         "./src/components/simple/index.ts",
-        "./src/net/userapi.ts",
         "./src/entry/login.tsx",
         "./src/entry/changepassword.tsx"
       ],
@@ -1965,14 +1961,13 @@
         "./src/net/caller.ts",
         "./src/net/uqapi.ts",
         "./src/net/appbridge.ts",
-        "./src/net/host.ts",
-        "./src/net/userapi.ts"
+        "./src/net/host.ts"
       ],
       "./src/entry/meinfo.tsx": [
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/index.ts",
-        "./src/net/userapi.ts"
+        "./src/net/index.ts"
       ],
       "./src/entry/index.ts": [
         "./src/entry/meinfo.tsx"
@@ -2683,10 +2678,6 @@
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
-      "./src/entry/userapi.ts": [
-        "./src/net/index.ts",
-        "./src/tool/user.ts"
-      ],
       "./src/res/res.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -2933,9 +2924,6 @@
         "./src/components/simple/fa.tsx",
         "./src/components/simple/icontext.tsx",
         "./src/components/simple/muted.tsx"
-      ],
-      "./src/net/userapi.ts": [
-        "./src/net/index.ts"
       ],
       "./src/entry/res/login.ts": [
         "./src/components/index.ts"
@@ -3235,8 +3223,7 @@
         "./src/net/caller.ts",
         "./src/net/uqapi.ts",
         "./src/net/appbridge.ts",
-        "./src/net/host.ts",
-        "./src/net/userapi.ts"
+        "./src/net/host.ts"
       ],
       "./src/entry/meinfo.tsx": [
         "./node_modules/@types/react/index.d.ts"
@@ -3790,9 +3777,6 @@
       "./src/entry/forget.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
-      "./src/entry/userapi.ts": [
-        "./src/net/index.ts"
-      ],
       "./src/uq/boxid.tsx": [
         "./src/uq/tuid/index.ts"
       ],
@@ -3811,7 +3795,6 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/components/nav.tsx",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3919,7 +3902,6 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
-      "./src/net/userapi.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
@@ -3927,6 +3909,7 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4102,6 +4085,7 @@
       "./src/entry/forget.tsx",
       "./src/entry/userapi.ts",
       "./src/net/serializejson.ts",
+      "./src/net/userapi.ts",
       "./src/res/index.ts",
       "./src/res/res.tsx",
       "./src/uq/boxid.tsx",

@@ -15,6 +15,7 @@ import { ApiBase } from './apiBase';
 import { host } from './host';
 import { nav } from '../components';
 import { env } from '../tool';
+import { decodeUserToken } from '../tool/user';
 let channelUIs = {};
 let channelNoUIs = {};
 export function logoutApis() {
@@ -408,4 +409,63 @@ export function loadAppUqs(appOwner, appName) {
         return ret;
     });
 }
+;
+export class UserApi extends CenterApiBase {
+    login(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //(params as any).device = nav.local.device.get();
+            let ret = yield this.get('user/login', params);
+            switch (typeof ret) {
+                default: return;
+                case 'string': return decodeUserToken(ret);
+                case 'object':
+                    let token = ret.token;
+                    let user = decodeUserToken(token);
+                    let { nick, icon } = ret;
+                    if (nick)
+                        user.nick = nick;
+                    if (icon)
+                        user.icon = icon;
+                    return user;
+            }
+            // !== undefined) return decodeToken(token);
+        });
+    }
+    register(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('user/register', params);
+        });
+    }
+    setVerify(account, type, oem) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('user/set-verify', { account: account, type: type });
+        });
+    }
+    checkVerify(account, verify) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('user/check-verify', { account: account, verify: verify });
+        });
+    }
+    isExists(account) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.get('user/is-exists', { account: account });
+        });
+    }
+    resetPassword(account, password, verify, type) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.post('user/reset-password', { account: account, password, verify, type });
+        });
+    }
+    userSetProp(prop, value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.post('tie/user-set-prop', { prop: prop, value: value });
+        });
+    }
+    me() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.get('tie/me');
+        });
+    }
+}
+export const userApi = new UserApi('tv/', undefined);
 //# sourceMappingURL=uqApi.js.map

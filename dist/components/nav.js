@@ -29,7 +29,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
-import { userApi } from '../net/userApi';
+import { userApi } from '../net';
 /*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
@@ -516,6 +516,9 @@ export class Nav {
     }
     setSettings(settings) {
         this.navSettings = settings;
+    }
+    get oem() {
+        return this.navSettings && this.navSettings.oem;
     }
     unitJsonPath() {
         let { href } = document.location;
