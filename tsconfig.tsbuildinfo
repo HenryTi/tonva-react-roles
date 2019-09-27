@@ -1102,8 +1102,8 @@
         "signature": "1fdc4184d648d96c793b125cb610b66f56caaf867d5a2b8001fe9d9ae126d4a8"
       },
       "./src/app/cappbase.ts": {
-        "version": "ca26ca2dcd495f2651d41d86487b59aa1f8339819b84d5a33574742566729d11",
-        "signature": "ee59e26a63c3fdc0681b0bf3212194d2247b398b4ee030e20a160f317de0dfb7"
+        "version": "b23709150c13094308d137d80aa4e412ab17df42cba6a663edddcf80cce43c03",
+        "signature": "d9a5da06e45aa83a0d31e48dfd75361fd73aedb04fc3e8c70934cdee6cbacf73"
       },
       "./src/app/start.ts": {
         "version": "39920059387be77f4deff154e46ea5e4d69d1c77b917a3566f397e1d7a0b20af",
@@ -3795,6 +3795,11 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./src/app/cappbase.ts",
+      "./src/app/index.ts",
+      "./src/app/cbase.ts",
+      "./src/app/start.ts",
+      "./src/app/vmain.tsx",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -4069,11 +4074,6 @@
       "./src/capp/startapp.ts",
       "./src/capp/index.ts",
       "./src/app/centerapi.ts",
-      "./src/app/vmain.tsx",
-      "./src/app/cappbase.ts",
-      "./src/app/start.ts",
-      "./src/app/cbase.ts",
-      "./src/app/index.ts",
       "./src/index.ts",
       "./src/capp/viewmodel.tsx",
       "./src/components/callbacks.ts",

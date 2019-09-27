@@ -12,6 +12,7 @@ export interface AppConfig {
         [uqName: string]: string;
     };
     loginTop?: JSX.Element;
+    oem?: string;
 }
 export declare abstract class CAppBase extends Controller {
     protected _uqs: any;
