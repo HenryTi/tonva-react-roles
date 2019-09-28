@@ -386,7 +386,7 @@
         "signature": "39b695b3b682b3e6e2924a56202a3ee719088a71fcbd587f42aecd8b5c358afd"
       },
       "./src/net/uqapi.ts": {
-        "version": "1f440ec3ad47d6f48273523114a998c3470604351fe7347ce92bd2be57100fac",
+        "version": "7812331910785fd1f7dbddd40f40738757f5024a1e86af6fbcf322c4efdb9ece",
         "signature": "1ae3a7e8b4cbc1fb9f91427cc7f155b1e621b39beb71365676b640a5bc51445d"
       },
       "./src/net/nettoken.ts": {
@@ -3787,6 +3787,7 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./src/net/uqapi.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3883,7 +3884,6 @@
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
       "./src/net/host.ts",
-      "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",

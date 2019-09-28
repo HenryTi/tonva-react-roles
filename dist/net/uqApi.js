@@ -142,7 +142,7 @@ export class UqApi extends ApiBase {
                 return channel;
             let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
             if (!uqToken) {
-                debugger;
+                //debugger;
                 yield this.init();
                 uqToken = appUq(this.uq);
             }
