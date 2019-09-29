@@ -61,11 +61,8 @@ export interface UqServiceData {
     token: string;
 }
 export declare class CenterAppApi extends CenterApiBase {
-    private local;
     uqs(appOwner: string, appName: string): Promise<UqAppData>;
     private uqsPure;
-    private isOkCheckUqs;
-    checkUqs(appOwner: string, appName: string): Promise<boolean>;
     unitxUq(unit: number): Promise<UqServiceData>;
     changePassword(param: {
         orgPassword: string;

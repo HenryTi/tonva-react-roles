@@ -496,9 +496,12 @@ export interface UqServiceData {
 const appUqsName = 'appUqs';
 
 export class CenterAppApi extends CenterApiBase {
-    private local: LocalCache = env.localDb.item(appUqsName);
+    //private local: LocalCache = env.localDb.item(appUqsName);
     //private cachedUqs: UqAppData;
     async uqs(appOwner:string, appName:string):Promise<UqAppData> {
+        let ret:UqAppData = await this.get('tie/app-uqs', {appOwner:appOwner, appName:appName});
+        return ret;
+        /*
         let ret:UqAppData;
         let appUqs = this.local.get();
         if (appUqs) {
@@ -514,10 +517,12 @@ export class CenterAppApi extends CenterApiBase {
         }
         //return this.cachedUqs = _.cloneDeep(ret);
         return ret;
+        */
     }
     private async uqsPure(appOwner:string, appName:string):Promise<UqAppData> {
         return await this.get('tie/app-uqs', {appOwner:appOwner, appName:appName});
     }
+    /*
     private async isOkCheckUqs(appOwner:string, appName:string):Promise<boolean> {
         let ret = await this.uqsPure(appOwner, appName);
         let {id:cachedId, uqs:cachedUqs} = this.local.get(); //.cachedUqs;
@@ -538,6 +543,7 @@ export class CenterAppApi extends CenterApiBase {
         }
         return ret;
     }
+    */
     async unitxUq(unit:number):Promise<UqServiceData> {
         return await this.get('tie/unitx-uq', {unit:unit});
     }
@@ -550,7 +556,7 @@ export async function loadAppUqs(appOwner:string, appName:string): Promise<UqApp
     let centerAppApi = new CenterAppApi('tv/', undefined);
     //let unit = meInFrame.unit;
     let ret = await centerAppApi.uqs(appOwner, appName);
-    await centerAppApi.checkUqs(appOwner, appName);
+    //await centerAppApi.checkUqs(appOwner, appName);
     /*
     .then(v => {
         if (v === false) {

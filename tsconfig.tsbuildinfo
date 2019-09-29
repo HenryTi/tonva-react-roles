@@ -386,8 +386,8 @@
         "signature": "39b695b3b682b3e6e2924a56202a3ee719088a71fcbd587f42aecd8b5c358afd"
       },
       "./src/net/uqapi.ts": {
-        "version": "7812331910785fd1f7dbddd40f40738757f5024a1e86af6fbcf322c4efdb9ece",
-        "signature": "1ae3a7e8b4cbc1fb9f91427cc7f155b1e621b39beb71365676b640a5bc51445d"
+        "version": "155017d042d1ac091e846b3b13ea7c6e40c787f0cb7ab411e56bc20e053adb52",
+        "signature": "3f7ec26d3cd758418b75553009058b4d1cfe471c56821967909568d66595e306"
       },
       "./src/net/nettoken.ts": {
         "version": "ae1e1a25312b41898a208000d0a0523ae810b755cb8aff0d4d360c1f3d658508",
@@ -783,7 +783,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "e61bf2ec50c3198539312bb357e0e055f1accf05163c2ee0eb587f0df9664652",
-        "signature": "714cf37350c4d0190b811086a7e96824fe0ffe36e51c01033d75c7d0de37d971"
+        "signature": "e96f95694fb895595737c40064b7a227bcac259fd2ed3cd2a9bff5cfff1c8332"
       },
       "./src/uq/index.ts": {
         "version": "b20883d8fd2a61f444a4b5fe2f2b45e85af5eb8d4a8b325375ad14261d7c1475",
@@ -3787,7 +3787,6 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "./src/net/uqapi.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
       "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
@@ -3884,6 +3883,7 @@
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
       "./src/net/host.ts",
+      "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",

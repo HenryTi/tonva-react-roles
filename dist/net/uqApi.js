@@ -13,7 +13,6 @@ import { HttpChannelNavUI } from './httpChannelUI';
 import { appUq, logoutUqTokens, buildAppUq } from './appBridge';
 import { ApiBase } from './apiBase';
 import { host } from './host';
-import { nav } from '../components';
 import { env } from '../tool';
 import { decodeUserToken } from '../tool/user';
 let channelUIs = {};
@@ -324,22 +323,21 @@ export class CallCenterApi extends CenterApiBase {
 export const callCenterapi = new CallCenterApi('', undefined);
 const appUqsName = 'appUqs';
 export class CenterAppApi extends CenterApiBase {
-    constructor() {
-        super(...arguments);
-        this.local = env.localDb.item(appUqsName);
-    }
+    //private local: LocalCache = env.localDb.item(appUqsName);
     //private cachedUqs: UqAppData;
     uqs(appOwner, appName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret;
+            let ret = yield this.get('tie/app-uqs', { appOwner: appOwner, appName: appName });
+            return ret;
+            /*
+            let ret:UqAppData;
             let appUqs = this.local.get();
             if (appUqs) {
-                let { appOwner: rAppOwner, appName: rAppName } = appUqs;
-                if (appOwner === rAppOwner && appName === rAppName)
-                    ret = appUqs;
+                let {appOwner:rAppOwner, appName:rAppName} = appUqs;
+                if (appOwner === rAppOwner && appName === rAppName) ret = appUqs;
             }
             if (ret === undefined) {
-                ret = yield this.uqsPure(appOwner, appName);
+                ret = await this.uqsPure(appOwner, appName);
                 ret.appName = appName;
                 ret.appOwner = appOwner;
                 //localStorage.setItem(JSON.stringify(obj));
@@ -347,6 +345,7 @@ export class CenterAppApi extends CenterApiBase {
             }
             //return this.cachedUqs = _.cloneDeep(ret);
             return ret;
+            */
         });
     }
     uqsPure(appOwner, appName) {
@@ -354,33 +353,28 @@ export class CenterAppApi extends CenterApiBase {
             return yield this.get('tie/app-uqs', { appOwner: appOwner, appName: appName });
         });
     }
-    isOkCheckUqs(appOwner, appName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.uqsPure(appOwner, appName);
-            let { id: cachedId, uqs: cachedUqs } = this.local.get(); //.cachedUqs;
-            let { id: retId, uqs: retUqs } = ret;
-            if (cachedId !== retId)
-                return false;
-            if (cachedUqs.length !== retUqs.length)
-                return false;
-            let len = cachedUqs.length;
-            for (let i = 0; i < len; i++) {
-                if (_.isMatch(cachedUqs[i], retUqs[i]) === false)
-                    return false;
-            }
-            return true;
-        });
+    /*
+    private async isOkCheckUqs(appOwner:string, appName:string):Promise<boolean> {
+        let ret = await this.uqsPure(appOwner, appName);
+        let {id:cachedId, uqs:cachedUqs} = this.local.get(); //.cachedUqs;
+        let {id:retId, uqs:retUqs} = ret;
+        if (cachedId !== retId) return false;
+        if (cachedUqs.length !== retUqs.length) return false;
+        let len = cachedUqs.length;
+        for (let i=0; i<len; i++) {
+            if (_.isMatch(cachedUqs[i], retUqs[i]) === false) return false;
+        }
+        return true;
     }
-    checkUqs(appOwner, appName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.isOkCheckUqs(appOwner, appName);
-            if (ret === false) {
-                this.local.remove();
-                nav.start();
-            }
-            return ret;
-        });
+    async checkUqs(appOwner:string, appName:string):Promise<boolean> {
+        let ret = await this.isOkCheckUqs(appOwner, appName);
+        if (ret === false) {
+            this.local.remove();
+            nav.start();
+        }
+        return ret;
     }
+    */
     unitxUq(unit) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.get('tie/unitx-uq', { unit: unit });
@@ -397,7 +391,7 @@ export function loadAppUqs(appOwner, appName) {
         let centerAppApi = new CenterAppApi('tv/', undefined);
         //let unit = meInFrame.unit;
         let ret = yield centerAppApi.uqs(appOwner, appName);
-        yield centerAppApi.checkUqs(appOwner, appName);
+        //await centerAppApi.checkUqs(appOwner, appName);
         /*
         .then(v => {
             if (v === false) {
