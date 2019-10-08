@@ -84,6 +84,8 @@ export class QueryQueryCaller extends EntityCaller {
     buildParams() { return this.entity.buildParams(this.params); }
 }
 export class QueryPageCaller extends EntityCaller {
+    get params() { return this._params; }
+    ;
     get entity() { return this._entity; }
     ;
     get path() { return `query-page/${this.entity.name}`; }

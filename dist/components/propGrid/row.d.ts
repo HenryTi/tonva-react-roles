@@ -15,7 +15,8 @@ export declare class PropGap extends PropRow {
 }
 export declare abstract class LabeledPropRow extends PropRow {
     protected gridProps: PropGridProps;
-    protected prop: LabeledProp;
+    protected _prop: LabeledProp;
+    protected readonly prop: LabeledProp;
     protected content: any;
     protected col: string;
     constructor(gridProps: PropGridProps, prop: LabeledProp);
@@ -26,20 +27,20 @@ export declare abstract class LabeledPropRow extends PropRow {
     protected renderPropContent(): any;
 }
 export declare class StringPropRow extends LabeledPropRow {
-    protected prop: StringProp;
+    protected readonly prop: StringProp;
     setValues(values: any): void;
 }
 export declare class NumberPropRow extends LabeledPropRow {
-    protected prop: NumberProp;
+    protected readonly prop: NumberProp;
     setValues(values: any): void;
 }
 export declare class ListPropRow extends LabeledPropRow {
-    protected prop: ListProp;
+    protected readonly prop: ListProp;
     setValues(values: any): void;
     protected renderPropBody(): JSX.Element;
 }
 export declare class ComponentPropRow extends LabeledPropRow {
-    protected prop: ComponentProp;
+    protected readonly prop: ComponentProp;
     protected renderPropBody(): any;
     protected renderProp(): any;
 }

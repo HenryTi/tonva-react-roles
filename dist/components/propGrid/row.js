@@ -40,10 +40,11 @@ export class LabeledPropRow extends PropRow {
     constructor(gridProps, prop) {
         super();
         this.gridProps = gridProps;
-        this.prop = prop;
+        this._prop = prop;
         this.col = gridProps.labelFixLeft === true ? 'col' : 'col-sm';
         //this.values = values;
     }
+    get prop() { return this._prop; }
     render(key) {
         let { onClick, bk } = this.prop;
         let cn = className({
@@ -102,6 +103,7 @@ export class LabeledPropRow extends PropRow {
     }
 }
 export class StringPropRow extends LabeledPropRow {
+    get prop() { return this._prop; }
     setValues(values) {
         if (values === undefined)
             this.content = undefined;
@@ -110,6 +112,7 @@ export class StringPropRow extends LabeledPropRow {
     }
 }
 export class NumberPropRow extends LabeledPropRow {
+    get prop() { return this._prop; }
     setValues(values) {
         if (values === undefined)
             this.content = undefined;
@@ -118,6 +121,7 @@ export class NumberPropRow extends LabeledPropRow {
     }
 }
 export class ListPropRow extends LabeledPropRow {
+    get prop() { return this._prop; }
     setValues(values) {
         if (values === undefined)
             this.content = undefined;
@@ -141,6 +145,7 @@ export class ListPropRow extends LabeledPropRow {
     }
 }
 export class ComponentPropRow extends LabeledPropRow {
+    get prop() { return this._prop; }
     renderPropBody() {
         let { component } = this.prop;
         return component;
