@@ -87,7 +87,7 @@ export class ReactBoxId {
                 let ret = ui(val /*, this.tuidUR.res*/);
                 if (ret !== undefined)
                     return ret;
-                return React.createElement("del", { className: "text-danger" },
+                return React.createElement("span", { className: "text-danger" },
                     boxName,
                     " ",
                     this.id);
