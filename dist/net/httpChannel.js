@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -6,6 +19,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
 import { bridgeCenterApi, isBridged } from './appBridge';
 import { nav } from '../components/nav';
@@ -23,104 +63,155 @@ export async function httpPost(url:string, params?:any):Promise<any> {
     return ret;
 }
 */
-const methodsWithBody = ['POST', 'PUT'];
-export class HttpChannel {
-    constructor(hostUrl, apiToken, ui) {
-        this.startWait = () => {
-            if (this.ui !== undefined)
-                this.ui.startWait();
+var methodsWithBody = ['POST', 'PUT'];
+var HttpChannel = /** @class */ (function () {
+    function HttpChannel(hostUrl, apiToken, ui) {
+        var _this = this;
+        this.startWait = function () {
+            if (_this.ui !== undefined)
+                _this.ui.startWait();
         };
-        this.endWait = (url, reject) => {
-            if (this.ui !== undefined)
-                this.ui.endWait();
+        this.endWait = function (url, reject) {
+            if (_this.ui !== undefined)
+                _this.ui.endWait();
             if (reject !== undefined)
                 reject('访问webapi超时 ' + url);
         };
-        this.showError = (error) => __awaiter(this, void 0, void 0, function* () {
-            if (this.ui !== undefined)
-                yield this.ui.showError(error);
-        });
+        this.showError = function (error) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.ui !== undefined)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.ui.showError(error)];
+                    case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2: return [2 /*return*/];
+                }
+            });
+        }); };
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
         this.timeout = env.isDevelopment === true ? 500000 : 5000;
     }
-    used() {
+    HttpChannel.prototype.used = function () {
         this.post('', {});
-    }
-    xcall(urlPrefix, caller) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let options = this.buildOptions();
-            let { headers, path, method } = caller;
-            if (headers !== undefined) {
-                let h = options.headers;
-                for (let i in headers) {
-                    h.append(i, encodeURI(headers[i]));
+    };
+    HttpChannel.prototype.xcall = function (urlPrefix, caller) {
+        return __awaiter(this, void 0, void 0, function () {
+            var options, headers, path, method, h, i, p;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = this.buildOptions();
+                        headers = caller.headers, path = caller.path, method = caller.method;
+                        if (headers !== undefined) {
+                            h = options.headers;
+                            for (i in headers) {
+                                h.append(i, encodeURI(headers[i]));
+                            }
+                        }
+                        options.method = method;
+                        p = caller.buildParams();
+                        if (methodsWithBody.indexOf(method) >= 0 && p !== undefined) {
+                            options.body = JSON.stringify(p);
+                        }
+                        return [4 /*yield*/, this.innerFetch(urlPrefix + path, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
-            }
-            options.method = method;
-            let p = caller.buildParams();
-            if (methodsWithBody.indexOf(method) >= 0 && p !== undefined) {
-                options.body = JSON.stringify(p);
-            }
-            return yield this.innerFetch(urlPrefix + path, options);
+            });
         });
-    }
-    innerFetchResult(url, options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.innerFetch(url, options);
-            return ret.res;
-        });
-    }
-    get(url, params = undefined) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (params) {
-                let keys = Object.keys(params);
-                if (keys.length > 0) {
-                    let c = '?';
-                    for (let k of keys) {
-                        let v = params[k];
-                        if (v === undefined)
-                            continue;
-                        url += c + k + '=' + params[k];
-                        c = '&';
-                    }
+    };
+    HttpChannel.prototype.innerFetchResult = function (url, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.innerFetch(url, options)];
+                    case 1:
+                        ret = _a.sent();
+                        return [2 /*return*/, ret.res];
                 }
-            }
-            let options = this.buildOptions();
-            options.method = 'GET';
-            return yield this.innerFetchResult(url, options);
+            });
         });
-    }
-    post(url, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let options = this.buildOptions();
-            options.method = 'POST';
-            options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+    };
+    HttpChannel.prototype.get = function (url, params) {
+        if (params === void 0) { params = undefined; }
+        return __awaiter(this, void 0, void 0, function () {
+            var keys, c, _i, keys_1, k, v, options;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (params) {
+                            keys = Object.keys(params);
+                            if (keys.length > 0) {
+                                c = '?';
+                                for (_i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+                                    k = keys_1[_i];
+                                    v = params[k];
+                                    if (v === undefined)
+                                        continue;
+                                    url += c + k + '=' + params[k];
+                                    c = '&';
+                                }
+                            }
+                        }
+                        options = this.buildOptions();
+                        options.method = 'GET';
+                        return [4 /*yield*/, this.innerFetchResult(url, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    put(url, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let options = this.buildOptions();
-            options.method = 'PUT';
-            options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+    };
+    HttpChannel.prototype.post = function (url, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var options;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = this.buildOptions();
+                        options.method = 'POST';
+                        options.body = JSON.stringify(params);
+                        return [4 /*yield*/, this.innerFetchResult(url, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    delete(url, params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let options = this.buildOptions();
-            options.method = 'DELETE';
-            options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+    };
+    HttpChannel.prototype.put = function (url, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var options;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = this.buildOptions();
+                        options.method = 'PUT';
+                        options.body = JSON.stringify(params);
+                        return [4 /*yield*/, this.innerFetchResult(url, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    fetch(url, options, resolve, reject) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let that = this;
-            this.startWait();
-            let path = url;
+    };
+    HttpChannel.prototype.delete = function (url, params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var options;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = this.buildOptions();
+                        options.method = 'DELETE';
+                        options.body = JSON.stringify(params);
+                        return [4 /*yield*/, this.innerFetchResult(url, options)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    HttpChannel.prototype.fetch = function (url, options, resolve, reject) {
+        return __awaiter(this, void 0, void 0, function () {
             function buildError(err) {
                 return {
                     channel: that,
@@ -131,97 +222,148 @@ export class HttpChannel {
                     error: err,
                 };
             }
-            try {
-                console.log('%s %s', options.method, path);
-                let timeOutHandler = setTimeout(() => that.endWait(url, reject), this.timeout);
-                let res = yield fetch(encodeURI(path), options);
-                if (res.ok === false) {
-                    clearTimeout(timeOutHandler);
-                    that.endWait();
-                    console.log('call error %s', res.statusText);
-                    throw res.statusText;
-                }
-                let ct = res.headers.get('content-type');
-                if (ct && ct.indexOf('json') >= 0) {
-                    return res.json().then((retJson) => __awaiter(this, void 0, void 0, function* () {
-                        clearTimeout(timeOutHandler);
+            var that, path, timeOutHandler_1, res, ct, text, error_1, err;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        that = this;
+                        this.startWait();
+                        path = url;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 6, , 8]);
+                        console.log('%s %s', options.method, path);
+                        timeOutHandler_1 = setTimeout(function () { return that.endWait(url, reject); }, this.timeout);
+                        return [4 /*yield*/, fetch(encodeURI(path), options)];
+                    case 2:
+                        res = _a.sent();
+                        if (res.ok === false) {
+                            clearTimeout(timeOutHandler_1);
+                            that.endWait();
+                            console.log('call error %s', res.statusText);
+                            throw res.statusText;
+                        }
+                        ct = res.headers.get('content-type');
+                        if (!(ct && ct.indexOf('json') >= 0)) return [3 /*break*/, 3];
+                        return [2 /*return*/, res.json().then(function (retJson) { return __awaiter(_this, void 0, void 0, function () {
+                                var retError;
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0:
+                                            clearTimeout(timeOutHandler_1);
+                                            that.endWait();
+                                            if (retJson.ok === true) {
+                                                if (typeof retJson !== 'object') {
+                                                    debugger;
+                                                }
+                                                else if (Array.isArray(retJson) === true) {
+                                                    debugger;
+                                                }
+                                                /*
+                                                let json = retJson.res;
+                                                if (json === undefined) {
+                                                    json = {
+                                                        $uq: retJson.$uq
+                                                    }
+                                                }
+                                                */
+                                                //json.$modify = retJson.$modify;
+                                                //return resolve(json);
+                                                return [2 /*return*/, resolve(retJson)];
+                                            }
+                                            retError = retJson.error;
+                                            if (!(retError === undefined)) return [3 /*break*/, 2];
+                                            return [4 /*yield*/, that.showError(buildError('not valid tonva json'))];
+                                        case 1:
+                                            _a.sent();
+                                            return [3 /*break*/, 4];
+                                        case 2: return [4 /*yield*/, that.showError(buildError(retError))];
+                                        case 3:
+                                            _a.sent();
+                                            reject(retError);
+                                            _a.label = 4;
+                                        case 4: return [2 /*return*/];
+                                    }
+                                });
+                            }); }).catch(function (error) { return __awaiter(_this, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, that.showError(buildError(error))];
+                                        case 1:
+                                            _a.sent();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 3: return [4 /*yield*/, res.text()];
+                    case 4:
+                        text = _a.sent();
+                        clearTimeout(timeOutHandler_1);
                         that.endWait();
-                        if (retJson.ok === true) {
-                            if (typeof retJson !== 'object') {
-                                debugger;
+                        resolve(text);
+                        _a.label = 5;
+                    case 5: return [3 /*break*/, 8];
+                    case 6:
+                        error_1 = _a.sent();
+                        if (typeof error_1 === 'string') {
+                            err = error_1.toLowerCase();
+                            if (err.startsWith('unauthorized') === true) {
+                                nav.logout();
+                                return [2 /*return*/];
                             }
-                            else if (Array.isArray(retJson) === true) {
-                                debugger;
-                            }
-                            /*
-                            let json = retJson.res;
-                            if (json === undefined) {
-                                json = {
-                                    $uq: retJson.$uq
-                                }
-                            }
-                            */
-                            //json.$modify = retJson.$modify;
-                            //return resolve(json);
-                            return resolve(retJson);
                         }
-                        let retError = retJson.error;
-                        if (retError === undefined) {
-                            yield that.showError(buildError('not valid tonva json'));
-                        }
-                        else {
-                            yield that.showError(buildError(retError));
-                            reject(retError);
-                        }
-                    })).catch((error) => __awaiter(this, void 0, void 0, function* () {
-                        yield that.showError(buildError(error));
-                    }));
+                        return [4 /*yield*/, this.showError(buildError(error_1.message))];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 8];
+                    case 8:
+                        ;
+                        return [2 /*return*/];
                 }
-                else {
-                    let text = yield res.text();
-                    clearTimeout(timeOutHandler);
-                    that.endWait();
-                    resolve(text);
-                }
-            }
-            catch (error) {
-                if (typeof error === 'string') {
-                    let err = error.toLowerCase();
-                    if (err.startsWith('unauthorized') === true) {
-                        nav.logout();
-                        return;
-                    }
-                }
-                yield this.showError(buildError(error.message));
-            }
-            ;
+            });
         });
-    }
-    callFetch(url, method, body) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let options = this.buildOptions();
-            options.method = method;
-            options.body = body;
-            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(url, options, resolve, reject);
-            }));
+    };
+    HttpChannel.prototype.callFetch = function (url, method, body) {
+        return __awaiter(this, void 0, void 0, function () {
+            var options;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        options = this.buildOptions();
+                        options.method = method;
+                        options.body = body;
+                        return [4 /*yield*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, this.fetch(url, options, resolve, reject)];
+                                        case 1:
+                                            _a.sent();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    buildOptions() {
-        let headers = this.buildHeaders();
-        let options = {
+    };
+    HttpChannel.prototype.buildOptions = function () {
+        var headers = this.buildHeaders();
+        var options = {
             headers: headers,
             method: undefined,
             body: undefined,
         };
         return options;
-    }
-    buildHeaders() {
-        let { language, culture } = nav;
-        let headers = new Headers();
+    };
+    HttpChannel.prototype.buildHeaders = function () {
+        var language = nav.language, culture = nav.culture;
+        var headers = new Headers();
         //headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Content-Type', 'application/json;charset=UTF-8');
-        let lang = language;
+        var lang = language;
         if (culture)
             lang += '-' + culture;
         headers.append('Accept-Language', lang);
@@ -229,21 +371,49 @@ export class HttpChannel {
             headers.append('Authorization', this.apiToken);
         }
         return headers;
+    };
+    return HttpChannel;
+}());
+export { HttpChannel };
+var CenterHttpChannel = /** @class */ (function (_super) {
+    __extends(CenterHttpChannel, _super);
+    function CenterHttpChannel() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-export class CenterHttpChannel extends HttpChannel {
-    innerFetch(url, options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let u = this.hostUrl + url;
-            if (this.apiToken === undefined && isBridged())
-                return yield bridgeCenterApi(u, options.method, options.body);
-            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(u, options, resolve, reject);
-            }));
+    CenterHttpChannel.prototype.innerFetch = function (url, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var u;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        u = this.hostUrl + url;
+                        if (!(this.apiToken === undefined && isBridged())) return [3 /*break*/, 2];
+                        return [4 /*yield*/, bridgeCenterApi(u, options.method, options.body)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2: return [4 /*yield*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4 /*yield*/, this.fetch(u, options, resolve, reject)];
+                                    case 1:
+                                        _a.sent();
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); })];
+                    case 3: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
+    };
+    return CenterHttpChannel;
+}(HttpChannel));
+export { CenterHttpChannel };
+var UqHttpChannel = /** @class */ (function (_super) {
+    __extends(UqHttpChannel, _super);
+    function UqHttpChannel() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-export class UqHttpChannel extends HttpChannel {
     /*
     private uqForChannel: IUqForChannel;
     constructor(hostUrl: string, apiToken:string, uqForChannel: IUqForChannel, ui?: HttpChannelUI) {
@@ -251,13 +421,30 @@ export class UqHttpChannel extends HttpChannel {
         this.uqForChannel = uqForChannel;
     }
     */
-    innerFetch(url, options) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let u = this.hostUrl + url;
-            return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(u, options, resolve, reject);
-            }));
+    UqHttpChannel.prototype.innerFetch = function (url, options) {
+        return __awaiter(this, void 0, void 0, function () {
+            var u;
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        u = this.hostUrl + url;
+                        return [4 /*yield*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                                return __generator(this, function (_a) {
+                                    switch (_a.label) {
+                                        case 0: return [4 /*yield*/, this.fetch(u, options, resolve, reject)];
+                                        case 1:
+                                            _a.sent();
+                                            return [2 /*return*/];
+                                    }
+                                });
+                            }); })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-}
+    };
+    return UqHttpChannel;
+}(HttpChannel));
+export { UqHttpChannel };
 //# sourceMappingURL=httpChannel.js.map

@@ -1,5 +1,5 @@
 import * as React from 'react';
-const defaultImage = 'http://101.200.46.56/imgs/Bear-icon.png';
+var defaultImage = 'http://101.200.46.56/imgs/Bear-icon.png';
 export function Image(props) {
     /*
     @observable private src: string;
@@ -17,7 +17,7 @@ export function Image(props) {
     }
     render() {
     */
-    let { className, style, src } = props;
+    var className = props.className, style = props.style, src = props.src;
     if (!src) {
         src = defaultImage;
     }

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-export const resOptions = {
+export var resOptions = {
     lang: undefined,
     district: undefined,
 };
@@ -8,8 +8,8 @@ export function setResOptions(lang, district) {
     resOptions.district = district;
 }
 (function () {
-    let lang, district;
-    let language = (navigator.languages && navigator.languages[0]) // Chrome / Firefox
+    var lang, district;
+    var language = (navigator.languages && navigator.languages[0]) // Chrome / Firefox
         || navigator.language; // ||   // All browsers
     //navigator.userLanguage; // IE <= 10
     if (!language) {
@@ -17,7 +17,7 @@ export function setResOptions(lang, district) {
         district = 'CN';
     }
     else {
-        let parts = language.split('-');
+        var parts = language.split('-');
         lang = parts[0];
         if (parts.length > 1)
             district = parts[1];
@@ -25,22 +25,22 @@ export function setResOptions(lang, district) {
     setResOptions(lang, district);
 }());
 export function resLang(res) {
-    let { lang, district } = resOptions;
-    let ret = {};
+    var lang = resOptions.lang, district = resOptions.district;
+    var ret = {};
     if (res === undefined)
         return ret;
     _.merge(ret, res._);
-    let l = res[lang];
+    var l = res[lang];
     if (l === undefined)
         return ret;
     _.merge(ret, l._);
-    let d = l[district];
+    var d = l[district];
     if (d === undefined)
         return ret;
     _.merge(ret, d);
-    let { entity } = ret;
+    var entity = ret.entity;
     if (entity !== undefined) {
-        for (let i in entity) {
+        for (var i in entity) {
             entity[i.toLowerCase()] = entity[i];
         }
     }

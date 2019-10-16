@@ -1,5 +1,5 @@
 import * as React from 'react';
-export const Unknown = (dataType, uiType, dataTypes) => {
+export var Unknown = function (dataType, uiType, dataTypes) {
     return React.createElement("span", { className: "text-danger" },
         "!!data type ",
         dataType,

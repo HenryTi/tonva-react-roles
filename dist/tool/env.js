@@ -1,17 +1,18 @@
 import { LocalMap } from './localDb';
-const testingTags = ['/test', '/test/', '-test', '-test/'];
+var testingTags = ['/test', '/test/', '-test', '-test/'];
 function isTesting() {
-    let { pathname } = document.location;
-    let pn = pathname.toLowerCase();
-    for (let item of testingTags) {
+    var pathname = document.location.pathname;
+    var pn = pathname.toLowerCase();
+    for (var _i = 0, testingTags_1 = testingTags; _i < testingTags_1.length; _i++) {
+        var item = testingTags_1[_i];
         if (pn.endsWith(item) === true)
             return true;
     }
     return false;
 }
-export const env = (function () {
-    let testing = isTesting();
-    let localDb = new LocalMap(testing === true ? '$$' : '$');
+export var env = (function () {
+    var testing = isTesting();
+    var localDb = new LocalMap(testing === true ? '$$' : '$');
     return {
         testing: testing,
         isDevelopment: process.env.NODE_ENV === 'development',

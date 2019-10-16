@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,6 +20,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 import _ from 'lodash';
 import { CenterHttpChannel, UqHttpChannel } from './httpChannel';
 import { HttpChannelNavUI } from './httpChannelUI';
@@ -15,8 +55,8 @@ import { ApiBase } from './apiBase';
 import { host } from './host';
 import { env } from '../tool';
 import { decodeUserToken } from '../tool/user';
-let channelUIs = {};
-let channelNoUIs = {};
+var channelUIs = {};
+var channelNoUIs = {};
 export function logoutApis() {
     channelUIs = {};
     channelNoUIs = {};
@@ -107,50 +147,67 @@ class CacheUqLocals {
 
 const localUqs = new CacheUqLocals;
 */
-export class UqApi extends ApiBase {
+var UqApi = /** @class */ (function (_super) {
+    __extends(UqApi, _super);
     //uqVersion: number;
-    constructor(basePath, uqOwner, uqName, access, showWaiting) {
-        super(basePath, showWaiting);
+    function UqApi(basePath, uqOwner, uqName, access, showWaiting) {
+        var _this = _super.call(this, basePath, showWaiting) || this;
         if (uqName) {
-            this.uqOwner = uqOwner;
-            this.uqName = uqName;
-            this.uq = uqOwner + '/' + uqName;
+            _this.uqOwner = uqOwner;
+            _this.uqName = uqName;
+            _this.uq = uqOwner + '/' + uqName;
         }
-        this.access = access;
-        this.showWaiting = showWaiting;
+        _this.access = access;
+        _this.showWaiting = showWaiting;
+        return _this;
     }
     //setUqVersion(uqVersion:number) {this.uqVersion = undefined}
-    init() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield buildAppUq(this.uq, this.uqOwner, this.uqName);
+    UqApi.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, buildAppUq(this.uq, this.uqOwner, this.uqName)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
-    }
-    getHttpChannel() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let channels;
-            let channelUI;
-            if (this.showWaiting === true || this.showWaiting === undefined) {
-                channels = channelUIs;
-                channelUI = new HttpChannelNavUI();
-            }
-            else {
-                channels = channelNoUIs;
-            }
-            let channel = channels[this.uq];
-            if (channel !== undefined)
-                return channel;
-            let uqToken = appUq(this.uq); //, this.uqOwner, this.uqName);
-            if (!uqToken) {
-                //debugger;
-                yield this.init();
-                uqToken = appUq(this.uq);
-            }
-            let { url, token } = uqToken;
-            this.token = token;
-            channel = new UqHttpChannel(url, token, channelUI);
-            return channels[this.uq] = channel;
+    };
+    UqApi.prototype.getHttpChannel = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var channels, channelUI, channel, uqToken, url, token;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.showWaiting === true || this.showWaiting === undefined) {
+                            channels = channelUIs;
+                            channelUI = new HttpChannelNavUI();
+                        }
+                        else {
+                            channels = channelNoUIs;
+                        }
+                        channel = channels[this.uq];
+                        if (channel !== undefined)
+                            return [2 /*return*/, channel];
+                        uqToken = appUq(this.uq);
+                        if (!!uqToken) return [3 /*break*/, 2];
+                        //debugger;
+                        return [4 /*yield*/, this.init()];
+                    case 1:
+                        //debugger;
+                        _a.sent();
+                        uqToken = appUq(this.uq);
+                        _a.label = 2;
+                    case 2:
+                        url = uqToken.url, token = uqToken.token;
+                        this.token = token;
+                        channel = new UqHttpChannel(url, token, channelUI);
+                        return [2 /*return*/, channels[this.uq] = channel];
+                }
+            });
         });
-    }
+    };
     /*async update():Promise<string> {
         return await this.get('update');
     }*/
@@ -163,16 +220,23 @@ export class UqApi extends ApiBase {
         return ret;
     }
     */
-    loadAccess() {
-        return __awaiter(this, void 0, void 0, function* () {
-            //return await localUqs.loadAccess(this);
-            let acc = this.access === undefined ?
-                '' :
-                this.access.join('|');
-            let ret = yield this.get('access', { acc: acc });
-            return ret;
+    UqApi.prototype.loadAccess = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var acc, ret;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        acc = this.access === undefined ?
+                            '' :
+                            this.access.join('|');
+                        return [4 /*yield*/, this.get('access', { acc: acc })];
+                    case 1:
+                        ret = _a.sent();
+                        return [2 /*return*/, ret];
+                }
+            });
         });
-    }
+    };
     /*async loadEntities():Promise<any> {
         return await this.get('entities');
     }*/
@@ -181,47 +245,80 @@ export class UqApi extends ApiBase {
         return await localUqs.checkAccess(this);
     }
     */
-    schema(name) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('schema/' + name);
+    UqApi.prototype.schema = function (name) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('schema/' + name)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    queueModify(start, page, entities) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('queue-modify', { start: start, page: page, entities: entities });
+    };
+    UqApi.prototype.queueModify = function (start, page, entities) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('queue-modify', { start: start, page: page, entities: entities })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-}
-let channels = {};
+    };
+    return UqApi;
+}(ApiBase));
+export { UqApi };
+var channels = {};
 export function logoutUnitxApis() {
     channels = {};
 }
-export class UnitxApi extends UqApi {
-    constructor(unitId) {
-        super('tv/', undefined, undefined, undefined, true);
-        this.unitId = unitId;
+var UnitxApi = /** @class */ (function (_super) {
+    __extends(UnitxApi, _super);
+    function UnitxApi(unitId) {
+        var _this = _super.call(this, 'tv/', undefined, undefined, undefined, true) || this;
+        _this.unitId = unitId;
+        return _this;
     }
-    getHttpChannel() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let channel = channels[this.unitId];
-            if (channel !== undefined)
-                return channel;
-            return channels[this.unitId] = yield this.buildChannel();
+    UnitxApi.prototype.getHttpChannel = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var channel, _a, _b;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        channel = channels[this.unitId];
+                        if (channel !== undefined)
+                            return [2 /*return*/, channel];
+                        _a = channels;
+                        _b = this.unitId;
+                        return [4 /*yield*/, this.buildChannel()];
+                    case 1: return [2 /*return*/, _a[_b] = _c.sent()];
+                }
+            });
         });
-    }
-    buildChannel() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let channelUI = new HttpChannelNavUI();
-            let centerAppApi = new CenterAppApi('tv/', undefined);
-            let ret = yield centerAppApi.unitxUq(this.unitId);
-            let { token, db, url, urlTest } = ret;
-            let realUrl = host.getUrlOrTest(db, url, urlTest);
-            this.token = token;
-            return new UqHttpChannel(realUrl, token, channelUI);
+    };
+    UnitxApi.prototype.buildChannel = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var channelUI, centerAppApi, ret, token, db, url, urlTest, realUrl;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        channelUI = new HttpChannelNavUI();
+                        centerAppApi = new CenterAppApi('tv/', undefined);
+                        return [4 /*yield*/, centerAppApi.unitxUq(this.unitId)];
+                    case 1:
+                        ret = _a.sent();
+                        token = ret.token, db = ret.db, url = ret.url, urlTest = ret.urlTest;
+                        realUrl = host.getUrlOrTest(db, url, urlTest);
+                        this.token = token;
+                        return [2 /*return*/, new UqHttpChannel(realUrl, token, channelUI)];
+                }
+            });
         });
-    }
-}
-let centerHost;
+    };
+    return UnitxApi;
+}(UqApi));
+export { UnitxApi };
+var centerHost;
 export function setCenterUrl(url) {
     console.log('setCenterUrl %s', url);
     centerHost = url;
@@ -229,8 +326,8 @@ export function setCenterUrl(url) {
     centerChannel = undefined;
     centerChannelUI = undefined;
 }
-export let centerToken = undefined;
-let loginedUserId = 0;
+export var centerToken = undefined;
+var loginedUserId = 0;
 export function setCenterToken(userId, t) {
     loginedUserId = userId;
     centerToken = t;
@@ -238,8 +335,8 @@ export function setCenterToken(userId, t) {
     centerChannel = undefined;
     centerChannelUI = undefined;
 }
-let centerChannelUI;
-let centerChannel;
+var centerChannelUI;
+var centerChannel;
 function getCenterChannelUI() {
     if (centerChannelUI !== undefined)
         return centerChannelUI;
@@ -250,109 +347,136 @@ function getCenterChannel() {
         return centerChannel;
     return centerChannel = new CenterHttpChannel(centerHost, centerToken);
 }
-export class CenterApiBase extends ApiBase {
+var CenterApiBase = /** @class */ (function (_super) {
+    __extends(CenterApiBase, _super);
+    function CenterApiBase() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     /*
     constructor(path: string, showWaiting?: boolean) {
         super(path, showWaiting);
     }*/
-    getHttpChannel() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return (this.showWaiting === true || this.showWaiting === undefined) ?
-                getCenterChannelUI() :
-                getCenterChannel();
+    CenterApiBase.prototype.getHttpChannel = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/, (this.showWaiting === true || this.showWaiting === undefined) ?
+                        getCenterChannelUI() :
+                        getCenterChannel()];
+            });
         });
+    };
+    return CenterApiBase;
+}(ApiBase));
+export { CenterApiBase };
+var uqTokensName = 'uqTokens';
+var UqTokenApi = /** @class */ (function (_super) {
+    __extends(UqTokenApi, _super);
+    function UqTokenApi() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.localMap = env.localDb.map(uqTokensName);
+        return _this;
     }
-}
-const uqTokensName = 'uqTokens';
-export class UqTokenApi extends CenterApiBase {
-    constructor() {
-        super(...arguments);
-        this.localMap = env.localDb.map(uqTokensName);
-    }
-    uq(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let { uqOwner, uqName } = params;
-            let un = uqOwner + '/' + uqName;
-            let localCache = this.localMap.child(un);
-            try {
-                let uqToken = localCache.get();
-                if (uqToken !== undefined) {
-                    let { unit, user } = uqToken;
-                    if (unit !== params.unit || user !== loginedUserId) {
+    UqTokenApi.prototype.uq = function (params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var uqOwner, uqName, un, localCache, uqToken, unit, user, nowTick, tick, value, appUqParams, ret, unit, uqOwner_1, uqName_1, err, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        uqOwner = params.uqOwner, uqName = params.uqName;
+                        un = uqOwner + '/' + uqName;
+                        localCache = this.localMap.child(un);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        uqToken = localCache.get();
+                        if (uqToken !== undefined) {
+                            unit = uqToken.unit, user = uqToken.user;
+                            if (unit !== params.unit || user !== loginedUserId) {
+                                localCache.remove();
+                                uqToken = undefined;
+                            }
+                        }
+                        nowTick = Math.floor(Date.now() / 1000);
+                        if (uqToken !== undefined) {
+                            tick = uqToken.tick, value = uqToken.value;
+                            if (value !== undefined && (nowTick - tick) < 24 * 3600) {
+                                return [2 /*return*/, _.clone(value)];
+                            }
+                        }
+                        appUqParams = _.clone(params);
+                        appUqParams.testing = host.testing;
+                        return [4 /*yield*/, this.get('app-uq', appUqParams)];
+                    case 2:
+                        ret = _a.sent();
+                        if (ret === undefined) {
+                            unit = params.unit, uqOwner_1 = params.uqOwner, uqName_1 = params.uqName;
+                            err = "center get app-uq(unit=" + unit + ", '" + uqOwner_1 + "/" + uqName_1 + "') - not exists or no unit-service";
+                            throw err;
+                        }
+                        uqToken = {
+                            unit: params.unit,
+                            user: loginedUserId,
+                            tick: nowTick,
+                            value: ret,
+                        };
+                        localCache.set(uqToken);
+                        return [2 /*return*/, _.clone(ret)];
+                    case 3:
+                        err_1 = _a.sent();
                         localCache.remove();
-                        uqToken = undefined;
-                    }
+                        throw err_1;
+                    case 4: return [2 /*return*/];
                 }
-                let nowTick = Math.floor(Date.now() / 1000);
-                if (uqToken !== undefined) {
-                    let { tick, value } = uqToken;
-                    if (value !== undefined && (nowTick - tick) < 24 * 3600) {
-                        return _.clone(value);
-                    }
-                }
-                let appUqParams = _.clone(params);
-                appUqParams.testing = host.testing;
-                let ret = yield this.get('app-uq', appUqParams);
-                if (ret === undefined) {
-                    let { unit, uqOwner, uqName } = params;
-                    let err = `center get app-uq(unit=${unit}, '${uqOwner}/${uqName}') - not exists or no unit-service`;
-                    throw err;
-                }
-                uqToken = {
-                    unit: params.unit,
-                    user: loginedUserId,
-                    tick: nowTick,
-                    value: ret,
-                };
-                localCache.set(uqToken);
-                return _.clone(ret);
-            }
-            catch (err) {
-                localCache.remove();
-                throw err;
-            }
+            });
         });
+    };
+    return UqTokenApi;
+}(CenterApiBase));
+export { UqTokenApi };
+export var uqTokenApi = new UqTokenApi('tv/tie/', undefined);
+var CallCenterApi = /** @class */ (function (_super) {
+    __extends(CallCenterApi, _super);
+    function CallCenterApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-export const uqTokenApi = new UqTokenApi('tv/tie/', undefined);
-export class CallCenterApi extends CenterApiBase {
-    directCall(url, method, body) {
+    CallCenterApi.prototype.directCall = function (url, method, body) {
         return this.call(url, method, body);
+    };
+    return CallCenterApi;
+}(CenterApiBase));
+export { CallCenterApi };
+export var callCenterapi = new CallCenterApi('', undefined);
+var appUqsName = 'appUqs';
+var CenterAppApi = /** @class */ (function (_super) {
+    __extends(CenterAppApi, _super);
+    function CenterAppApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-export const callCenterapi = new CallCenterApi('', undefined);
-const appUqsName = 'appUqs';
-export class CenterAppApi extends CenterApiBase {
     //private local: LocalCache = env.localDb.item(appUqsName);
     //private cachedUqs: UqAppData;
-    uqs(appOwner, appName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.get('tie/app-uqs', { appOwner: appOwner, appName: appName });
-            return ret;
-            /*
-            let ret:UqAppData;
-            let appUqs = this.local.get();
-            if (appUqs) {
-                let {appOwner:rAppOwner, appName:rAppName} = appUqs;
-                if (appOwner === rAppOwner && appName === rAppName) ret = appUqs;
-            }
-            if (ret === undefined) {
-                ret = await this.uqsPure(appOwner, appName);
-                ret.appName = appName;
-                ret.appOwner = appOwner;
-                //localStorage.setItem(JSON.stringify(obj));
-                this.local.set(ret);
-            }
-            //return this.cachedUqs = _.cloneDeep(ret);
-            return ret;
-            */
+    CenterAppApi.prototype.uqs = function (appOwner, appName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('tie/app-uqs', { appOwner: appOwner, appName: appName })];
+                    case 1:
+                        ret = _a.sent();
+                        return [2 /*return*/, ret];
+                }
+            });
         });
-    }
-    uqsPure(appOwner, appName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('tie/app-uqs', { appOwner: appOwner, appName: appName });
+    };
+    CenterAppApi.prototype.uqsPure = function (appOwner, appName) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('tie/app-uqs', { appOwner: appOwner, appName: appName })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
+    };
     /*
     private async isOkCheckUqs(appOwner:string, appName:string):Promise<boolean> {
         let ret = await this.uqsPure(appOwner, appName);
@@ -375,91 +499,159 @@ export class CenterAppApi extends CenterApiBase {
         return ret;
     }
     */
-    unitxUq(unit) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('tie/unitx-uq', { unit: unit });
+    CenterAppApi.prototype.unitxUq = function (unit) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('tie/unitx-uq', { unit: unit })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    changePassword(param) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('tie/change-password', param);
+    };
+    CenterAppApi.prototype.changePassword = function (param) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('tie/change-password', param)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-}
+    };
+    return CenterAppApi;
+}(CenterApiBase));
+export { CenterAppApi };
 export function loadAppUqs(appOwner, appName) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let centerAppApi = new CenterAppApi('tv/', undefined);
-        //let unit = meInFrame.unit;
-        let ret = yield centerAppApi.uqs(appOwner, appName);
-        //await centerAppApi.checkUqs(appOwner, appName);
-        /*
-        .then(v => {
-            if (v === false) {
-                localStorage.removeItem(appUqs);
-                nav.start();
+    return __awaiter(this, void 0, void 0, function () {
+        var centerAppApi, ret;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    centerAppApi = new CenterAppApi('tv/', undefined);
+                    return [4 /*yield*/, centerAppApi.uqs(appOwner, appName)];
+                case 1:
+                    ret = _a.sent();
+                    //await centerAppApi.checkUqs(appOwner, appName);
+                    /*
+                    .then(v => {
+                        if (v === false) {
+                            localStorage.removeItem(appUqs);
+                            nav.start();
+                        }
+                    });
+                    */
+                    return [2 /*return*/, ret];
             }
         });
-        */
-        return ret;
     });
 }
 ;
-export class UserApi extends CenterApiBase {
-    login(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            //(params as any).device = nav.local.device.get();
-            let ret = yield this.get('user/login', params);
-            switch (typeof ret) {
-                default: return;
-                case 'string': return decodeUserToken(ret);
-                case 'object':
-                    let token = ret.token;
-                    let user = decodeUserToken(token);
-                    let { nick, icon } = ret;
-                    if (nick)
-                        user.nick = nick;
-                    if (icon)
-                        user.icon = icon;
-                    return user;
-            }
-            // !== undefined) return decodeToken(token);
-        });
+var UserApi = /** @class */ (function (_super) {
+    __extends(UserApi, _super);
+    function UserApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    register(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('user/register', params);
+    UserApi.prototype.login = function (params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret, token, user, nick, icon;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('user/login', params)];
+                    case 1:
+                        ret = _a.sent();
+                        switch (typeof ret) {
+                            default: return [2 /*return*/];
+                            case 'string': return [2 /*return*/, decodeUserToken(ret)];
+                            case 'object':
+                                token = ret.token;
+                                user = decodeUserToken(token);
+                                nick = ret.nick, icon = ret.icon;
+                                if (nick)
+                                    user.nick = nick;
+                                if (icon)
+                                    user.icon = icon;
+                                return [2 /*return*/, user];
+                        }
+                        return [2 /*return*/];
+                }
+            });
         });
-    }
-    setVerify(account, type, oem) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('user/set-verify', { account: account, type: type });
+    };
+    UserApi.prototype.register = function (params) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('user/register', params)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    checkVerify(account, verify) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('user/check-verify', { account: account, verify: verify });
+    };
+    UserApi.prototype.setVerify = function (account, type, oem) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('user/set-verify', { account: account, type: type })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    isExists(account) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('user/is-exists', { account: account });
+    };
+    UserApi.prototype.checkVerify = function (account, verify) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('user/check-verify', { account: account, verify: verify })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    resetPassword(account, password, verify, type) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('user/reset-password', { account: account, password, verify, type });
+    };
+    UserApi.prototype.isExists = function (account) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('user/is-exists', { account: account })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    userSetProp(prop, value) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.post('tie/user-set-prop', { prop: prop, value: value });
+    };
+    UserApi.prototype.resetPassword = function (account, password, verify, type) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('user/reset-password', { account: account, password: password, verify: verify, type: type })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    me() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get('tie/me');
+    };
+    UserApi.prototype.userSetProp = function (prop, value) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('tie/user-set-prop', { prop: prop, value: value })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
-    }
-}
-export const userApi = new UserApi('tv/', undefined);
+    };
+    UserApi.prototype.me = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('tie/me')];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return UserApi;
+}(CenterApiBase));
+export { UserApi };
+export var userApi = new UserApi('tv/', undefined);
 //# sourceMappingURL=uqApi.js.map

@@ -1,15 +1,17 @@
 import { env } from './env';
-export class LocalData {
-    constructor() {
+var LocalData = /** @class */ (function () {
+    function LocalData() {
         this.user = env.localDb.child('user');
         this.guest = env.localDb.child('guest');
         this.unit = env.localDb.child('unit');
     }
-    logoutClear() {
+    LocalData.prototype.logoutClear = function () {
         [
             this.user,
             this.unit,
-        ].forEach(d => d.remove());
-    }
-}
+        ].forEach(function (d) { return d.remove(); });
+    };
+    return LocalData;
+}());
+export { LocalData };
 //# sourceMappingURL=local.js.map

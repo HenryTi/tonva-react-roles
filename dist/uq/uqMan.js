@@ -7,6 +7,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 import _ from 'lodash';
 import { UqApi, UnitxApi, appInFrame } from '../net';
 import { TuidImport, TuidInner, TuidsCache } from './tuid';
@@ -36,8 +63,9 @@ export function fieldDefaultValue(type) {
             return '0:00';
     }
 }
-export class UqMan {
-    constructor(uqs, uqData, createBoxId, tvs) {
+var UqMan = /** @class */ (function () {
+    function UqMan(uqs, uqData, createBoxId, tvs) {
+        var _this = this;
         this.actions = {};
         this.sheets = {};
         this.queries = {};
@@ -46,8 +74,8 @@ export class UqMan {
         this.histories = {};
         this.pendings = {};
         this.tuids = {};
-        this.createBoxIdFromTVs = (tuid, id) => {
-            let { name } = tuid;
+        this.createBoxIdFromTVs = function (tuid, id) {
+            var name = tuid.name;
             /*
             let tuidUR = this.tuidURs[name];
             if (tuidUR === undefined) {
@@ -55,7 +83,7 @@ export class UqMan {
                 this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
             }
             */
-            return new ReactBoxId(id, tuid, this.tvs[name]);
+            return new ReactBoxId(id, tuid, _this.tvs[name]);
         };
         this.tuidArr = [];
         this.actionArr = [];
@@ -70,7 +98,7 @@ export class UqMan {
             this.createBoxId = this.createBoxIdFromTVs;
             this.tvs = tvs || {};
         }
-        let { id, uqOwner, uqName, access, newVersion: clearTuids } = uqData;
+        var id = uqData.id, uqOwner = uqData.uqOwner, uqName = uqData.uqName, access = uqData.access, clearTuids = uqData.newVersion;
         this.newVersion = clearTuids;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
@@ -81,13 +109,13 @@ export class UqMan {
         this.localModifyMax = this.localMap.child('$modifyMax');
         this.localAccess = this.localMap.child('$access');
         //let hash = document.location.hash;
-        let baseUrl = 'tv/';
-        let acc;
+        var baseUrl = 'tv/';
+        var acc;
         if (access === null || access === undefined || access === '*') {
             acc = [];
         }
         else {
-            acc = access.split(';').map(v => v.trim()).filter(v => v.length > 0);
+            acc = access.split(';').map(function (v) { return v.trim(); }).filter(function (v) { return v.length > 0; });
         }
         if (this.name === '$$$/$unitx') {
             // 这里假定，点击home link之后，已经设置unit了
@@ -99,101 +127,127 @@ export class UqMan {
         }
         this.tuidsCache = new TuidsCache(this);
     }
-    get entities() {
-        return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids);
-    }
-    tuid(name) { return this.tuids[name.toLowerCase()]; }
-    tuidDiv(name, div) {
-        let tuid = this.tuids[name.toLowerCase()];
+    Object.defineProperty(UqMan.prototype, "entities", {
+        get: function () {
+            return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    UqMan.prototype.tuid = function (name) { return this.tuids[name.toLowerCase()]; };
+    UqMan.prototype.tuidDiv = function (name, div) {
+        var tuid = this.tuids[name.toLowerCase()];
         return tuid && tuid.div(div.toLowerCase());
-    }
-    action(name) { return this.actions[name.toLowerCase()]; }
-    sheet(name) { return this.sheets[name.toLowerCase()]; }
-    query(name) { return this.queries[name.toLowerCase()]; }
-    book(name) { return this.books[name.toLowerCase()]; }
-    map(name) { return this.maps[name.toLowerCase()]; }
-    history(name) { return this.histories[name.toLowerCase()]; }
-    pending(name) { return this.pendings[name.toLowerCase()]; }
-    sheetFromTypeId(typeId) {
-        for (let i in this.sheets) {
-            let sheet = this.sheets[i];
+    };
+    UqMan.prototype.action = function (name) { return this.actions[name.toLowerCase()]; };
+    UqMan.prototype.sheet = function (name) { return this.sheets[name.toLowerCase()]; };
+    UqMan.prototype.query = function (name) { return this.queries[name.toLowerCase()]; };
+    UqMan.prototype.book = function (name) { return this.books[name.toLowerCase()]; };
+    UqMan.prototype.map = function (name) { return this.maps[name.toLowerCase()]; };
+    UqMan.prototype.history = function (name) { return this.histories[name.toLowerCase()]; };
+    UqMan.prototype.pending = function (name) { return this.pendings[name.toLowerCase()]; };
+    UqMan.prototype.sheetFromTypeId = function (typeId) {
+        for (var i in this.sheets) {
+            var sheet = this.sheets[i];
             if (sheet.typeId === typeId)
                 return sheet;
         }
-    }
-    init() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.uqApi.init();
-        });
-    }
-    loadEntities() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let accesses = this.localAccess.get();
-                if (!accesses) {
-                    accesses = yield this.uqApi.loadAccess();
+    };
+    UqMan.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.uqApi.init()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
-                if (!accesses)
-                    return;
-                this.buildEntities(accesses);
-                if (this.uqName === 'common') {
-                    this.pullModify(12);
-                }
-            }
-            catch (err) {
-                return err;
-            }
+            });
         });
-    }
+    };
+    UqMan.prototype.loadEntities = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var accesses, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        accesses = this.localAccess.get();
+                        if (!!accesses) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.uqApi.loadAccess()];
+                    case 1:
+                        accesses = _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        if (!accesses)
+                            return [2 /*return*/];
+                        this.buildEntities(accesses);
+                        if (this.uqName === 'common') {
+                            this.pullModify(12);
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
+                        err_1 = _a.sent();
+                        return [2 /*return*/, err_1];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     /*
     async loadEntities() {
         let accesses = await this.uqApi.loadEntities();
         this.buildEntities(accesses);
     }
     */
-    buildEntities(entities) {
+    UqMan.prototype.buildEntities = function (entities) {
         if (entities === undefined) {
             debugger;
         }
         this.localAccess.set(entities);
-        let { access, tuids, version } = entities;
+        var access = entities.access, tuids = entities.tuids, version = entities.version;
         this.uqVersion = version;
         this.buildTuids(tuids);
         this.buildAccess(access);
-    }
+    };
     /*
     async checkAccess() {
         return await this.uqApi.checkAccess();
     }
     */
-    loadEntitySchema(entityName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield this.uqApi.schema(entityName);
+    UqMan.prototype.loadEntitySchema = function (entityName) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.uqApi.schema(entityName)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
         });
-    }
-    getTuid(name) {
+    };
+    UqMan.prototype.getTuid = function (name) {
         return this.tuids[name];
-    }
-    buildTuids(tuids) {
-        for (let i in tuids) {
-            let schema = tuids[i];
-            let { typeId, from } = schema;
-            let tuid = this.newTuid(i, typeId, from);
+    };
+    UqMan.prototype.buildTuids = function (tuids) {
+        for (var i in tuids) {
+            var schema = tuids[i];
+            var typeId = schema.typeId, from = schema.from;
+            var tuid = this.newTuid(i, typeId, from);
             tuid.sys = true;
         }
-        for (let i in tuids) {
-            let schema = tuids[i];
-            let tuid = this.getTuid(i);
+        for (var i in tuids) {
+            var schema = tuids[i];
+            var tuid = this.getTuid(i);
             tuid.setSchema(schema);
         }
-        for (let i in this.tuids) {
-            let tuid = this.tuids[i];
+        for (var i in this.tuids) {
+            var tuid = this.tuids[i];
             tuid.buildFieldsTuid();
         }
-    }
-    buildAccess(access) {
-        for (let a in access) {
-            let v = access[a];
+    };
+    UqMan.prototype.buildAccess = function (access) {
+        for (var a in access) {
+            var v = access[a];
             switch (typeof v) {
                 case 'string':
                     this.fromType(a, v);
@@ -203,20 +257,20 @@ export class UqMan {
                     break;
             }
         }
-    }
-    cacheTuids(defer) {
+    };
+    UqMan.prototype.cacheTuids = function (defer) {
         this.tuidsCache.cacheTuids(defer);
-    }
-    newAction(name, id) {
-        let action = this.actions[name];
+    };
+    UqMan.prototype.newAction = function (name, id) {
+        var action = this.actions[name];
         if (action !== undefined)
             return action;
         action = this.actions[name] = new Action(this, name, id);
         this.actionArr.push(action);
         return action;
-    }
-    newTuid(name, id, from) {
-        let tuid = this.tuids[name];
+    };
+    UqMan.prototype.newTuid = function (name, id, from) {
+        var tuid = this.tuids[name];
         if (tuid !== undefined)
             return tuid;
         if (from !== undefined)
@@ -226,59 +280,59 @@ export class UqMan {
         this.tuids[name] = tuid;
         this.tuidArr.push(tuid);
         return tuid;
-    }
-    newQuery(name, id) {
-        let query = this.queries[name];
+    };
+    UqMan.prototype.newQuery = function (name, id) {
+        var query = this.queries[name];
         if (query !== undefined)
             return query;
         query = this.queries[name] = new Query(this, name, id);
         this.queryArr.push(query);
         return query;
-    }
-    newBook(name, id) {
-        let book = this.books[name];
+    };
+    UqMan.prototype.newBook = function (name, id) {
+        var book = this.books[name];
         if (book !== undefined)
             return book;
         book = this.books[name] = new Book(this, name, id);
         this.bookArr.push(book);
         return book;
-    }
-    newMap(name, id) {
-        let map = this.maps[name];
+    };
+    UqMan.prototype.newMap = function (name, id) {
+        var map = this.maps[name];
         if (map !== undefined)
             return map;
         map = this.maps[name] = new Map(this, name, id);
         this.mapArr.push(map);
         return map;
-    }
-    newHistory(name, id) {
-        let history = this.histories[name];
+    };
+    UqMan.prototype.newHistory = function (name, id) {
+        var history = this.histories[name];
         if (history !== undefined)
             return;
         history = this.histories[name] = new History(this, name, id);
         this.historyArr.push(history);
         return history;
-    }
-    newPending(name, id) {
-        let pending = this.pendings[name];
+    };
+    UqMan.prototype.newPending = function (name, id) {
+        var pending = this.pendings[name];
         if (pending !== undefined)
             return;
         pending = this.pendings[name] = new Pending(this, name, id);
         this.pendingArr.push(pending);
         return pending;
-    }
-    newSheet(name, id) {
-        let sheet = this.sheets[name];
+    };
+    UqMan.prototype.newSheet = function (name, id) {
+        var sheet = this.sheets[name];
         if (sheet !== undefined)
             return sheet;
         sheet = this.sheets[name] = new Sheet(this, name, id);
         this.sheetArr.push(sheet);
         return sheet;
-    }
-    fromType(name, type) {
-        let parts = type.split('|');
+    };
+    UqMan.prototype.fromType = function (name, type) {
+        var parts = type.split('|');
         type = parts[0];
-        let id = Number(parts[1]);
+        var id = Number(parts[1]);
         switch (type) {
             //case 'uq': this.id = id; break;
             case 'tuid':
@@ -308,70 +362,79 @@ export class UqMan {
                 this.newPending(name, id);
                 break;
         }
-    }
-    fromObj(name, obj) {
+    };
+    UqMan.prototype.fromObj = function (name, obj) {
         switch (obj['$']) {
             case 'sheet':
                 this.buildSheet(name, obj);
                 break;
         }
-    }
-    buildSheet(name, obj) {
-        let sheet = this.sheets[name];
+    };
+    UqMan.prototype.buildSheet = function (name, obj) {
+        var sheet = this.sheets[name];
         if (sheet === undefined)
             sheet = this.newSheet(name, obj.id);
         sheet.build(obj);
-    }
-    buildFieldTuid(fields, mainFields) {
+    };
+    UqMan.prototype.buildFieldTuid = function (fields, mainFields) {
         if (fields === undefined)
             return;
-        for (let f of fields) {
-            let { tuid } = f;
+        for (var _i = 0, fields_1 = fields; _i < fields_1.length; _i++) {
+            var f = fields_1[_i];
+            var tuid = f.tuid;
             if (tuid === undefined)
                 continue;
-            let t = this.getTuid(tuid);
+            var t = this.getTuid(tuid);
             if (t === undefined)
                 continue;
             f._tuid = t.buildTuidBox();
         }
-        for (let f of fields) {
-            let { owner } = f;
+        var _loop_1 = function (f) {
+            var owner = f.owner;
             if (owner === undefined)
-                continue;
-            let ownerField = fields.find(v => v.name === owner);
+                return "continue";
+            var ownerField = fields.find(function (v) { return v.name === owner; });
             if (ownerField === undefined) {
                 if (mainFields !== undefined) {
-                    ownerField = mainFields.find(v => v.name === owner);
+                    ownerField = mainFields.find(function (v) { return v.name === owner; });
                 }
                 if (ownerField === undefined) {
                     debugger;
-                    throw new Error(`owner field ${owner} is undefined`);
+                    throw new Error("owner field " + owner + " is undefined");
                 }
             }
-            let { arr, tuid } = f;
-            let t = this.getTuid(ownerField._tuid.tuid.name);
+            var arr = f.arr, tuid = f.tuid;
+            var t = this_1.getTuid(ownerField._tuid.tuid.name);
             if (t === undefined)
-                continue;
-            let div = t.div(arr || tuid);
+                return "continue";
+            var div = t.div(arr || tuid);
             f._tuid = div && div.buildTuidDivBox(ownerField);
             if (f._tuid === undefined) {
                 debugger;
-                throw new Error(`owner field ${owner} is not tuid`);
+                throw new Error("owner field " + owner + " is not tuid");
             }
+        };
+        var this_1 = this;
+        for (var _a = 0, fields_2 = fields; _a < fields_2.length; _a++) {
+            var f = fields_2[_a];
+            _loop_1(f);
         }
-    }
-    buildArrFieldsTuid(arrFields, mainFields) {
+    };
+    UqMan.prototype.buildArrFieldsTuid = function (arrFields, mainFields) {
         if (arrFields === undefined)
             return;
-        for (let af of arrFields) {
-            let { fields } = af;
+        for (var _i = 0, arrFields_1 = arrFields; _i < arrFields_1.length; _i++) {
+            var af = arrFields_1[_i];
+            var fields = af.fields;
             if (fields === undefined)
                 continue;
             this.buildFieldTuid(fields, mainFields);
         }
-    }
-    pullModify(modifyMax) {
+    };
+    UqMan.prototype.pullModify = function (modifyMax) {
         this.tuidsCache.pullModify(modifyMax);
-    }
-}
+    };
+    return UqMan;
+}());
+export { UqMan };
 //# sourceMappingURL=uqMan.js.map

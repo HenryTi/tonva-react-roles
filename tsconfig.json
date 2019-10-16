@@ -11,8 +11,12 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "preserveSymlinks": true,
-        "target": "es2016",
-        "lib": ["es2016", "dom"],
+        "target": "es5",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "sourceMap": true,
         "jsx": "react",
         "forceConsistentCasingInFileNames": true,

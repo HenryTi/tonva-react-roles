@@ -1,50 +1,66 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import * as React from 'react';
 import classNames from 'classnames';
-export class DropdownActions extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleDocumentClick = (evt) => {
-            if (this.state.dropdownOpen === false)
+var DropdownActions = /** @class */ (function (_super) {
+    __extends(DropdownActions, _super);
+    function DropdownActions(props) {
+        var _this = _super.call(this, props) || this;
+        _this.handleDocumentClick = function (evt) {
+            if (_this.state.dropdownOpen === false)
                 return;
-            if (this.button && this.button.contains(evt.target))
+            if (_this.button && _this.button.contains(evt.target))
                 return;
-            if (!this.menu)
+            if (!_this.menu)
                 return;
             //if (!this.menu.contains(evt.target)) 
-            this.toggle();
+            _this.toggle();
         };
-        this.toggle = () => {
-            this.setState({
-                dropdownOpen: !this.state.dropdownOpen
+        _this.toggle = function () {
+            _this.setState({
+                dropdownOpen: !_this.state.dropdownOpen
             });
         };
-        this.state = {
+        _this.state = {
             dropdownOpen: false
         };
+        return _this;
     }
-    componentWillMount() {
+    DropdownActions.prototype.componentWillMount = function () {
         document.addEventListener('click', this.handleDocumentClick);
         document.addEventListener('touchstart', this.handleDocumentClick);
-    }
-    componentWillUnmount() {
+    };
+    DropdownActions.prototype.componentWillUnmount = function () {
         document.removeEventListener('click', this.handleDocumentClick);
         document.removeEventListener('touchstart', this.handleDocumentClick);
-    }
-    render() {
-        let { icon, actions, isRight } = this.props;
+    };
+    DropdownActions.prototype.render = function () {
+        var _this = this;
+        var _a = this.props, icon = _a.icon, actions = _a.actions, isRight = _a.isRight;
         if (isRight === undefined)
             isRight = true;
-        let hasIcon = actions.some(v => v.icon !== undefined);
-        let { dropdownOpen } = this.state;
+        var hasIcon = actions.some(function (v) { return v.icon !== undefined; });
+        var dropdownOpen = this.state.dropdownOpen;
         //isOpen={this.state.dropdownOpen} toggle={this.toggle}
         return React.createElement("div", { className: "dropdown" },
-            React.createElement("button", { ref: v => this.button = v, className: "cursor-pointer dropdown-toggle btn btn-sm", "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
+            React.createElement("button", { ref: function (v) { return _this.button = v; }, className: "cursor-pointer dropdown-toggle btn btn-sm", "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
                 React.createElement("i", { className: classNames('fa', 'fa-' + (icon || 'ellipsis-v')) })),
-            React.createElement("div", { ref: v => this.menu = v, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map((v, index) => {
-                let { icon, caption, action } = v;
+            React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
+                var icon = v.icon, caption = v.caption, action = v.action;
                 if (icon === undefined && caption === undefined)
                     return React.createElement("div", { className: "dropdown-divider" });
-                let i;
+                var i;
                 if (hasIcon === true) {
                     if (icon !== undefined)
                         icon = 'fa-' + icon;
@@ -58,13 +74,15 @@ export class DropdownActions extends React.Component {
                         " ",
                         caption);
                 // eslint-disable-next-line
-                return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: (evt) => { evt.preventDefault(); action(); } },
+                return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: function (evt) { evt.preventDefault(); action(); } },
                     i,
                     " ",
                     caption);
             })));
-    }
-}
+    };
+    return DropdownActions;
+}(React.Component));
+export { DropdownActions };
 /*
 export class DropdownActions extends React.Component<DropdownActionsProps, DropdownActionsState> {
     constructor(props) {
