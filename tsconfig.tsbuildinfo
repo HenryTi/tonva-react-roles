@@ -542,7 +542,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "70fc08f154a9af3c0e54dc49efae267a51e31c6e0c1489cfefba4f64dbb51ab7",
+        "version": "ab7889485d505887caf579608e0724098b1e5c6cfe846e663af8fbd7c9a036bf",
         "signature": "fcb6392c5a312d8541cf8ce1e5fcf5b5c40ab32c6eeedfc4d28eca2fc316ed61"
       },
       "./src/components/vm.tsx": {
@@ -734,7 +734,7 @@
         "signature": "3854529758c26ebbf306f35ece73c9ef0d593cacf40c48b3561225c65837a6bc"
       },
       "./src/components/dropdownactions/index.tsx": {
-        "version": "efe508208ccc7b4a967e9dc6dff9296b1733955714fcb3f1602cf784b5500d00",
+        "version": "898bdd3ed538a2c2ff0e9c3502773238d76e04a7846dcdcbbff07e405d2c4718",
         "signature": "5f5cb554f60db64ec848a29c9bca7c2cbcd7130c2119cfc56b894054e638d79b"
       },
       "./src/components/easydate/index.tsx": {
@@ -4007,7 +4007,6 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4055,7 +4054,6 @@
       "./src/components/list/static.tsx",
       "./src/components/list/selectable.tsx",
       "./src/components/list/index.tsx",
-      "./src/components/dropdownactions/index.tsx",
       "./src/components/easydate/index.tsx",
       "./src/components/propgrid/propgrid.tsx",
       "./src/components/propgrid/row.tsx",
@@ -4189,7 +4187,9 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts"
+      "./node_modules/@types/react-dom/index.d.ts",
+      "./src/components/nav.tsx",
+      "./src/components/dropdownactions/index.tsx"
     ]
   },
   "version": "3.6.3"

@@ -28,13 +28,13 @@ export class DropdownActions extends React.Component<DropdownActionsProps, Dropd
     }
 
     componentWillMount() {
-        document.addEventListener('click', this.handleDocumentClick);
-        document.addEventListener('touchstart', this.handleDocumentClick);
+        //document.addEventListener('click', this.handleDocumentClick);
+        //document.addEventListener('touchstart', this.handleDocumentClick);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('click', this.handleDocumentClick);
-        document.removeEventListener('touchstart', this.handleDocumentClick);
+        //document.removeEventListener('click', this.handleDocumentClick);
+        //document.removeEventListener('touchstart', this.handleDocumentClick);
     }
 
     private handleDocumentClick = (evt:any) => {
