@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,20 +9,19 @@ import { observable, autorun } from 'mobx';
 import classNames from 'classnames';
 import { ListBase } from './base';
 import { uid } from '../../tool/uid';
-var Selectable = /** @class */ (function (_super) {
-    __extends(Selectable, _super);
-    function Selectable(list) {
-        var _this = _super.call(this, list) || this;
-        _this.buildItems = function () {
+export class Selectable extends ListBase {
+    constructor(list) {
+        super(list);
+        this.buildItems = () => {
             console.log('buildItems in selectable.tsx');
-            var _a = _this.list.props, items = _a.items, selectedItems = _a.selectedItems, compare = _a.compare;
-            var itemsArray;
+            let { items, selectedItems, compare } = this.list.props;
+            let itemsArray;
             if (items === undefined) {
-                _this._items = undefined;
+                this._items = undefined;
                 return;
             }
             if (items === null) {
-                _this._items = null;
+                this._items = null;
                 return;
             }
             if (Array.isArray(items) === true) {
@@ -46,27 +32,27 @@ var Selectable = /** @class */ (function (_super) {
             }
             //let items = this.items;
             //this._selectedItems = selectedItems;
-            var comp;
+            let comp;
             if (compare === undefined) {
-                comp = function (item, selectItem) { return item === selectItem; };
+                comp = (item, selectItem) => item === selectItem;
             }
             else {
                 comp = compare;
             }
-            var retItems = itemsArray.map(function (v) {
+            let retItems = itemsArray.map(v => {
                 //let isObserved = isObservable(v);
                 //let obj = isObserved === true? toJS(v) : v;
                 //let obj = v;
-                var selected = selectedItems === undefined ?
+                let selected = selectedItems === undefined ?
                     false
-                    : selectedItems.find(function (si) { return comp(v, si); }) !== undefined;
+                    : selectedItems.find(si => comp(v, si)) !== undefined;
                 return {
                     selected: selected,
                     item: v,
                     labelId: uid()
                 };
             });
-            _this._items = retItems;
+            this._items = retItems;
         };
         /*
         set selectedItems(value: any[]) {
@@ -92,68 +78,57 @@ var Selectable = /** @class */ (function (_super) {
         */
         //w-100 mb-0 pl-3
         //m-0 w-100
-        _this.render = function (item, index) {
-            var _a = _this.list.props.item, className = _a.className, key = _a.key;
-            var labelId = item.labelId, selected = item.selected, obItem = item.item;
+        this.render = (item, index) => {
+            let { className, key } = this.list.props.item;
+            let { labelId, selected, item: obItem } = item;
             return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
                 React.createElement("div", { className: "d-flex align-items-center px-3" },
-                    React.createElement("input", { ref: function (input) {
+                    React.createElement("input", { ref: input => {
                             if (!input)
                                 return;
-                            _this.input = input;
+                            this.input = input;
                             input.checked = selected;
-                        }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: function (e) {
-                            _this.onSelect(item, e.target.checked);
+                        }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {
+                            this.onSelect(item, e.target.checked);
                         } }),
-                    React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, _this.renderContent(obItem, index))));
+                    React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, this.renderContent(obItem, index))));
         };
-        _this.disposer = autorun(_this.buildItems);
-        return _this;
+        this.disposer = autorun(this.buildItems);
         //this.buildItems();
     }
-    Selectable.prototype.dispose = function () { this.disposer(); };
+    dispose() { this.disposer(); }
     ;
-    Object.defineProperty(Selectable.prototype, "items", {
-        get: function () {
-            //if (this._items === undefined) 
-            //this.buildItems();
-            return this._items;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Selectable.prototype.selectAll = function () {
+    get items() {
+        //if (this._items === undefined) 
+        //this.buildItems();
+        return this._items;
+    }
+    selectAll() {
         if (this._items)
-            this._items.forEach(function (v) { return v.selected = true; });
-    };
-    Selectable.prototype.unselectAll = function () {
+            this._items.forEach(v => v.selected = true);
+    }
+    unselectAll() {
         if (this._items)
-            this._items.forEach(function (v) { return v.selected = false; });
-    };
+            this._items.forEach(v => v.selected = false);
+    }
     /*
     updateProps(nextProps:any) {
         if (nextProps.selectedItems === this._selectedItems) return;
         this.buildItems();
     }
     */
-    Selectable.prototype.onSelect = function (item, selected) {
+    onSelect(item, selected) {
         item.selected = selected;
-        var anySelected = this._items.some(function (v) { return v.selected; });
+        let anySelected = this._items.some(v => v.selected);
         this.list.props.item.onSelect(item.item, selected, anySelected);
-    };
-    Object.defineProperty(Selectable.prototype, "selectedItems", {
-        get: function () {
-            return this._items.filter(function (v) { return v.selected === true; }).map(function (v) { return v.item; });
-        },
-        enumerable: true,
-        configurable: true
-    });
-    __decorate([
-        observable
-    ], Selectable.prototype, "_items", void 0);
-    return Selectable;
-}(ListBase));
-export { Selectable };
+    }
+    get selectedItems() {
+        return this._items.filter(v => v.selected === true).map(v => v.item);
+    }
+}
+__decorate([
+    observable
+], Selectable.prototype, "_items", void 0);
 /*
 <label>
 <label className="custom-control custom-checkbox">

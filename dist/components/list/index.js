@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,60 +11,53 @@ import { Clickable } from './clickable';
 import { Static } from './static';
 import { Selectable } from './selectable';
 import '../../css/va-list.css';
-var List = /** @class */ (function (_super) {
-    __extends(List, _super);
-    function List(props) {
-        var _this = _super.call(this, props) || this;
-        _this._$scroll = function (direct) {
+let List = class List extends React.Component {
+    constructor(props) {
+        super(props);
+        this._$scroll = (direct) => {
             console.log('############### items scroll to ' + direct);
         };
-        _this.buildBase();
-        return _this;
+        this.buildBase();
     }
-    List.prototype.buildBase = function () {
-        var item = this.props.item;
-        var onClick = item.onClick, onSelect = item.onSelect;
+    buildBase() {
+        let { item } = this.props;
+        let { onClick, onSelect } = item;
         if (onSelect !== undefined)
             this.selectable = this.listBase = new Selectable(this);
         else if (onClick !== undefined)
             this.listBase = new Clickable(this);
         else
             this.listBase = new Static(this);
-    };
+    }
     /*
     componentWillUpdate(nextProps:ListProps, nextState, nextContext) {
         //this.listBase.updateProps(nextProps);
     }
     */
-    List.prototype.componentWillUnmount = function () {
+    componentWillUnmount() {
         this.listBase.dispose();
-    };
-    List.prototype.selectAll = function () {
+    }
+    selectAll() {
         if (this.selectable)
             this.selectable.selectAll();
-    };
-    List.prototype.unselectAll = function () {
+    }
+    unselectAll() {
         if (this.selectable)
             this.selectable.unselectAll();
-    };
-    Object.defineProperty(List.prototype, "selectedItems", {
-        get: function () {
-            return this.listBase.selectedItems;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    List.prototype.render = function () {
-        var _this = this;
-        var _a = this.props, className = _a.className, header = _a.header, footer = _a.footer, before = _a.before, loading = _a.loading, none = _a.none;
+    }
+    get selectedItems() {
+        return this.listBase.selectedItems;
+    }
+    render() {
+        let { className, header, footer, before, loading, none } = this.props;
         if (before === undefined)
             before = '-';
         if (loading === undefined)
-            loading = function () { return React.createElement("i", { className: "fa fa-spinner fa-spin fa-2x fa-fw text-info" }); };
+            loading = () => React.createElement("i", { className: "fa fa-spinner fa-spin fa-2x fa-fw text-info" });
         if (none === undefined)
             none = 'none';
         //this.listBase.selectedItems = selectedItems;
-        var _b = this.listBase, items = _b.items, isLoading = _b.loading;
+        let { items, loading: isLoading } = this.listBase;
         function staticRow(row, type) {
             if (!row)
                 return;
@@ -88,7 +68,7 @@ var List = /** @class */ (function (_super) {
                 case 'object': return React.createElement("li", null, row);
             }
         }
-        var content, waitingMore;
+        let content, waitingMore;
         if (items === null)
             content = staticRow(before, 'before');
         else if (items === undefined)
@@ -96,8 +76,8 @@ var List = /** @class */ (function (_super) {
         else if (items.length === 0)
             content = staticRow(none, 'none');
         else {
-            content = items.map(function (item, index) {
-                return _this.listBase.render(item, index);
+            content = items.map((item, index) => {
+                return this.listBase.render(item, index);
             });
         }
         if (isLoading === true && items) {
@@ -108,11 +88,10 @@ var List = /** @class */ (function (_super) {
             content,
             waitingMore,
             staticRow(footer, 'footer'));
-    };
-    List = __decorate([
-        observer
-    ], List);
-    return List;
-}(React.Component));
+    }
+};
+List = __decorate([
+    observer
+], List);
 export { List };
 //# sourceMappingURL=index.js.map

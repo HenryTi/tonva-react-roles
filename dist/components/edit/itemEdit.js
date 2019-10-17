@@ -13,84 +13,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 import { nav } from '../nav';
 //import { Page } from '../page';
 //import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-var ItemEdit = /** @class */ (function () {
-    function ItemEdit(itemSchema, uiItem, label, value) {
+export class ItemEdit {
+    constructor(itemSchema, uiItem, label, value) {
         this.isChanged = false;
         this.itemSchema = itemSchema;
         this.uiItem = uiItem;
         this.value = value;
-        var name = itemSchema.name;
+        let { name } = itemSchema;
         this.name = name;
         this.label = label;
     }
-    ItemEdit.prototype.start = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.internalStart()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    start() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.internalStart();
         });
-    };
-    ItemEdit.prototype.end = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.internalEnd()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+    }
+    end() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.internalEnd();
         });
-    };
-    ItemEdit.prototype.internalEnd = function () {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            nav.pop();
-            return [2 /*return*/];
-        }); });
-    };
-    ItemEdit.prototype.verifyValue = function () {
+    }
+    internalEnd() {
+        return __awaiter(this, void 0, void 0, function* () { nav.pop(); });
+    }
+    verifyValue() {
         if (this.uiItem === undefined)
             return;
-        var rules = this.uiItem.rules;
+        let { rules } = this.uiItem;
         if (rules === undefined)
             return;
-        var nv = this.newValue;
+        let nv = this.newValue;
         function verifyRule(rule, value) {
-            var error = rule(nv);
+            let error = rule(nv);
             if (error !== undefined) {
                 if (typeof error !== 'object')
                     return error;
@@ -99,9 +57,8 @@ var ItemEdit = /** @class */ (function () {
             }
         }
         if (Array.isArray(rules)) {
-            for (var _i = 0, rules_1 = rules; _i < rules_1.length; _i++) {
-                var rule = rules_1[_i];
-                var error = verifyRule(rule, nv);
+            for (let rule of rules) {
+                let error = verifyRule(rule, nv);
                 if (error !== undefined) {
                     this.error = error;
                     break;
@@ -111,14 +68,12 @@ var ItemEdit = /** @class */ (function () {
         else {
             this.error = verifyRule(rules, nv);
         }
-    };
-    __decorate([
-        observable
-    ], ItemEdit.prototype, "error", void 0);
-    __decorate([
-        observable
-    ], ItemEdit.prototype, "isChanged", void 0);
-    return ItemEdit;
-}());
-export { ItemEdit };
+    }
+}
+__decorate([
+    observable
+], ItemEdit.prototype, "error", void 0);
+__decorate([
+    observable
+], ItemEdit.prototype, "isChanged", void 0);
 //# sourceMappingURL=itemEdit.js.map

@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -20,428 +7,297 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 import _ from 'lodash';
 import { Entity } from '../entity';
 import { EntityCaller } from '../caller';
 import { IdCache, IdDivCache } from './idCache';
-var Tuid = /** @class */ (function (_super) {
-    __extends(Tuid, _super);
-    function Tuid() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.typeName = 'tuid';
-        _this.isImport = false;
-        return _this;
+export class Tuid extends Entity {
+    constructor() {
+        super(...arguments);
+        this.typeName = 'tuid';
+        this.isImport = false;
     }
     /*
     constructor(uq:UqMan, name:string, typeId:number) {
         super(uq, name, typeId)
     }*/
-    Tuid.prototype.setSchema = function (schema) {
-        _super.prototype.setSchema.call(this, schema);
-        var id = schema.id;
+    setSchema(schema) {
+        super.setSchema(schema);
+        let { id } = schema;
         this.idName = id;
-    };
-    Tuid.prototype.buildTuidBox = function () {
-        return new TuidBox(this);
-    };
-    Tuid.prototype.getIdFromObj = function (obj) { return obj[this.idName]; };
-    Tuid.prototype.cacheIds = function () { };
-    Tuid.prototype.modifyIds = function (ids) {
-        return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
-        }); });
-    };
-    return Tuid;
-}(Entity));
-export { Tuid };
-var TuidInner = /** @class */ (function (_super) {
-    __extends(TuidInner, _super);
-    function TuidInner(uq, name, typeId) {
-        var _this = _super.call(this, uq, name, typeId) || this;
-        _this.idCache = new IdCache(_this);
-        _this.localArr = _this.cache.arr(_this.name + '.whole');
-        if (uq.newVersion === true)
-            _this.localArr.removeAll();
-        return _this;
     }
-    TuidInner.prototype.setSchema = function (schema) {
-        _super.prototype.setSchema.call(this, schema);
-        var arrs = schema.arrs;
+    buildTuidBox() {
+        return new TuidBox(this);
+    }
+    getIdFromObj(obj) { return obj[this.idName]; }
+    cacheIds() { }
+    modifyIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () { });
+    }
+}
+export class TuidInner extends Tuid {
+    constructor(uq, name, typeId) {
+        super(uq, name, typeId);
+        this.idCache = new IdCache(this);
+        this.localArr = this.cache.arr(this.name + '.whole');
+        if (uq.newVersion === true)
+            this.localArr.removeAll();
+    }
+    setSchema(schema) {
+        super.setSchema(schema);
+        let { arrs } = schema;
         if (arrs !== undefined) {
             this.divs = {};
-            for (var _i = 0, arrs_1 = arrs; _i < arrs_1.length; _i++) {
-                var arr = arrs_1[_i];
-                var name_1 = arr.name;
-                var tuidDiv = new TuidDiv(this.uq, this, name_1);
-                this.divs[name_1] = tuidDiv;
+            for (let arr of arrs) {
+                let { name } = arr;
+                let tuidDiv = new TuidDiv(this.uq, this, name);
+                this.divs[name] = tuidDiv;
                 tuidDiv.setSchema(arr);
                 tuidDiv.buildFieldsTuid();
             }
         }
-    };
-    TuidInner.prototype.useId = function (id, defer) {
+    }
+    useId(id, defer) {
         this.idCache.useId(id, defer);
-    };
-    TuidInner.prototype.boxId = function (id) {
+    }
+    boxId(id) {
         if (typeof id === 'object')
             return id;
         this.useId(id);
-        var createBoxId = this.uq.createBoxId;
+        let { createBoxId } = this.uq;
         if (!createBoxId)
             return { id: id };
         return createBoxId(this, id);
-    };
-    TuidInner.prototype.valueFromId = function (id) { return this.idCache.getValue(id); };
-    TuidInner.prototype.assureBox = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.idCache.assureObj(id)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+    }
+    valueFromId(id) { return this.idCache.getValue(id); }
+    assureBox(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.assureObj(id);
         });
-    };
-    TuidInner.prototype.cacheIds = function () {
+    }
+    cacheIds() {
         this.idCache.cacheIds();
         if (this.divs === undefined)
             return;
-        for (var i in this.divs)
+        for (let i in this.divs)
             this.divs[i].cacheIds();
-    };
-    TuidInner.prototype.modifyIds = function (ids) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.idCache.modifyIds(ids)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+    }
+    modifyIds(ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.modifyIds(ids);
         });
-    };
-    TuidInner.prototype.cacheTuids = function (defer) { this.uq.cacheTuids(defer); };
-    Object.defineProperty(TuidInner.prototype, "hasDiv", {
-        get: function () { return this.divs !== undefined; },
-        enumerable: true,
-        configurable: true
-    });
-    TuidInner.prototype.div = function (name) {
+    }
+    cacheTuids(defer) { this.uq.cacheTuids(defer); }
+    get hasDiv() { return this.divs !== undefined; }
+    div(name) {
         return this.divs && this.divs[name];
-    };
-    TuidInner.prototype.loadTuidIds = function (divName, ids) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new IdsCaller(this, { divName: divName, ids: ids }).request()];
-                    case 1:
-                        ret = _a.sent();
-                        if (ret.length > 0)
-                            this.cached = true;
-                        return [2 /*return*/, ret];
-                }
-            });
+    }
+    loadTuidIds(divName, ids) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //return await this.uqApi.tuidIds(this.name, divName, ids);
+            let ret = yield new IdsCaller(this, { divName: divName, ids: ids }).request();
+            if (ret.length > 0)
+                this.cached = true;
+            return ret;
         });
-    };
-    TuidInner.prototype.loadMain = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (typeof id === 'object')
-                            id = id.id;
-                        return [4 /*yield*/, this.idCache.assureObj(id)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/, this.idCache.valueFromId(id)];
-                }
-            });
+    }
+    loadMain(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (typeof id === 'object')
+                id = id.id;
+            yield this.idCache.assureObj(id);
+            return this.idCache.valueFromId(id);
         });
-    };
-    TuidInner.prototype.load = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var valuesText, values, _i, _a, f, tuid, t, n;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        if (id === undefined || id === 0)
-                            return [2 /*return*/];
-                        //let cacheValue = this.idCache.valueFromId(id); 
-                        //if (typeof cacheValue === 'object') return cacheValue;
-                        if (typeof id === 'object')
-                            id = id.id;
-                        valuesText = this.localArr.getItem(id);
-                        if (!valuesText) return [3 /*break*/, 1];
-                        values = JSON.parse(valuesText);
-                        return [3 /*break*/, 3];
-                    case 1: return [4 /*yield*/, new GetCaller(this, id).request()];
-                    case 2:
-                        values = _b.sent();
-                        if (values !== undefined) {
-                            this.localArr.setItem(id, JSON.stringify(values));
-                        }
-                        _b.label = 3;
-                    case 3:
-                        if (values === undefined)
-                            return [2 /*return*/];
-                        for (_i = 0, _a = this.schema.fields; _i < _a.length; _i++) {
-                            f = _a[_i];
-                            tuid = f.tuid;
-                            if (tuid === undefined)
-                                continue;
-                            t = this.uq.getTuid(tuid);
-                            if (t === undefined)
-                                continue;
-                            n = f.name;
-                            values[n] = t.boxId(values[n]);
-                        }
-                        this.idCache.cacheValue(values);
-                        this.cacheTuidFieldValues(values);
-                        return [2 /*return*/, values];
+    }
+    load(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (id === undefined || id === 0)
+                return;
+            //let cacheValue = this.idCache.valueFromId(id); 
+            //if (typeof cacheValue === 'object') return cacheValue;
+            if (typeof id === 'object')
+                id = id.id;
+            let valuesText = this.localArr.getItem(id);
+            let values;
+            if (valuesText) {
+                values = JSON.parse(valuesText);
+            }
+            else {
+                values = yield new GetCaller(this, id).request();
+                if (values !== undefined) {
+                    this.localArr.setItem(id, JSON.stringify(values));
                 }
-            });
+            }
+            if (values === undefined)
+                return;
+            for (let f of this.schema.fields) {
+                let { tuid } = f;
+                if (tuid === undefined)
+                    continue;
+                let t = this.uq.getTuid(tuid);
+                if (t === undefined)
+                    continue;
+                let n = f.name;
+                values[n] = t.boxId(values[n]);
+            }
+            this.idCache.cacheValue(values);
+            this.cacheTuidFieldValues(values);
+            return values;
         });
-    };
-    TuidInner.prototype.cacheTuidFieldValues = function (values) {
-        var _a = this.schema, fields = _a.fields, arrs = _a.arrs;
+    }
+    cacheTuidFieldValues(values) {
+        let { fields, arrs } = this.schema;
         this.cacheFieldsInValue(values, fields);
         if (arrs !== undefined) {
-            for (var _i = 0, _b = arrs; _i < _b.length; _i++) {
-                var arr = _b[_i];
-                var name_2 = arr.name, fields_1 = arr.fields;
-                var arrValues = values[name_2];
+            for (let arr of arrs) {
+                let { name, fields } = arr;
+                let arrValues = values[name];
                 if (arrValues === undefined)
                     continue;
-                var tuidDiv = this.div(name_2);
-                for (var _c = 0, arrValues_1 = arrValues; _c < arrValues_1.length; _c++) {
-                    var row = arrValues_1[_c];
+                let tuidDiv = this.div(name);
+                for (let row of arrValues) {
                     //row._$tuid = tuidDiv;
                     //row.$owner = this.boxId(row.owner);
                     tuidDiv.cacheValue(row);
-                    this.cacheFieldsInValue(row, fields_1);
+                    this.cacheFieldsInValue(row, fields);
                 }
             }
         }
-    };
-    TuidInner.prototype.buildFieldsTuid = function () {
-        _super.prototype.buildFieldsTuid.call(this);
-        var mainFields = this.schema.mainFields;
+    }
+    buildFieldsTuid() {
+        super.buildFieldsTuid();
+        let { mainFields } = this.schema;
         if (mainFields === undefined)
             debugger;
         this.uq.buildFieldTuid(this.cacheFields = mainFields || this.fields);
-    };
-    TuidInner.prototype.unpackTuidIds = function (values) {
-        return this.unpackTuidIdsOfFields(values, this.cacheFields);
-    };
-    TuidInner.prototype.save = function (id, props) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                ret = new SaveCaller(this, { id: id, props: props }).request();
-                if (id !== undefined) {
-                    this.idCache.remove(id);
-                    this.localArr.removeItem(id);
-                }
-                return [2 /*return*/, ret];
-            });
-        });
-    };
-    TuidInner.prototype.all = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new AllCaller(this, {}).request()];
-                    case 1:
-                        ret = _a.sent();
-                        return [2 /*return*/, ret];
-                }
-            });
-        });
-    };
-    TuidInner.prototype.search = function (key, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.searchArr(undefined, key, pageStart, pageSize)];
-                    case 1:
-                        ret = _a.sent();
-                        return [2 /*return*/, ret];
-                }
-            });
-        });
-    };
-    TuidInner.prototype.searchArr = function (owner, key, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var params, ret, fields, _i, ret_1, row;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        params = { arr: undefined, owner: owner, key: key, pageStart: pageStart, pageSize: pageSize };
-                        return [4 /*yield*/, new SearchCaller(this, params).request()];
-                    case 1:
-                        ret = _a.sent();
-                        fields = this.schema.fields;
-                        for (_i = 0, ret_1 = ret; _i < ret_1.length; _i++) {
-                            row = ret_1[_i];
-                            this.cacheFieldsInValue(row, fields);
-                        }
-                        return [2 /*return*/, ret];
-                }
-            });
-        });
-    };
-    TuidInner.prototype.loadArr = function (arr, owner, id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (id === undefined || id === 0)
-                            return [2 /*return*/];
-                        return [4 /*yield*/, new LoadArrCaller(this, { arr: arr, owner: owner, id: id }).request()];
-                    case 1: 
-                    //let api = this.uqApi;
-                    //return await api.tuidArrGet(this.name, arr, owner, id);
-                    return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    TuidInner.prototype.saveArr = function (arr, owner, id, props) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new SaveArrCaller(this, { arr: arr, owner: owner, id: id, props: props }).request()];
-                    case 1: 
-                    //let params = _.clone(props);
-                    //params["$id"] = id;
-                    //return await this.uqApi.tuidArrSave(this.name, arr, owner, params);
-                    return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    TuidInner.prototype.posArr = function (arr, owner, id, order) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new ArrPosCaller(this, { arr: arr, owner: owner, id: id, order: order }).request()];
-                    case 1: 
-                    //return await this.uqApi.tuidArrPos(this.name, arr, owner, id, order);
-                    return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return TuidInner;
-}(Tuid));
-export { TuidInner };
-var TuidCaller = /** @class */ (function (_super) {
-    __extends(TuidCaller, _super);
-    function TuidCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(TuidCaller.prototype, "entity", {
-        get: function () { return this._entity; },
-        enumerable: true,
-        configurable: true
-    });
+    unpackTuidIds(values) {
+        return this.unpackTuidIdsOfFields(values, this.cacheFields);
+    }
+    save(id, props) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            let {fields} = this.schema;
+            let params:any = {$id: id};
+            for (let field of fields as Field[]) {
+                let {name, tuid, type} = field;
+                let val = props[name];
+                if (tuid !== undefined) {
+                    if (typeof val === 'object') {
+                        if (val !== null) val = val.id;
+                    }
+                }
+                else {
+                    switch (type) {
+                        case 'date':
+                        case 'datetime':
+                            val = new Date(val).toISOString();
+                            val = (val as string).replace('T', ' ');
+                            val = (val as string).replace('Z', '');
+                            break;
+                    }
+                }
+                params[name] = val;
+            }
+            let ret = await this.uqApi.tuidSave(this.name, params);
+            return ret;
+            */
+            let ret = new SaveCaller(this, { id: id, props: props }).request();
+            if (id !== undefined) {
+                this.idCache.remove(id);
+                this.localArr.removeItem(id);
+            }
+            return ret;
+        });
+    }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield new AllCaller(this, {}).request();
+            return ret;
+        });
+    }
+    search(key, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.searchArr(undefined, key, pageStart, pageSize);
+            return ret;
+        });
+    }
+    searchArr(owner, key, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //let api = this.uqApi;
+            //let ret = await api.tuidSearch(this.name, undefined, owner, key, pageStart, pageSize);
+            let params = { arr: undefined, owner: owner, key: key, pageStart: pageStart, pageSize: pageSize };
+            let ret = yield new SearchCaller(this, params).request();
+            let { fields } = this.schema;
+            for (let row of ret) {
+                this.cacheFieldsInValue(row, fields);
+            }
+            return ret;
+        });
+    }
+    loadArr(arr, owner, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (id === undefined || id === 0)
+                return;
+            //let api = this.uqApi;
+            //return await api.tuidArrGet(this.name, arr, owner, id);
+            return yield new LoadArrCaller(this, { arr: arr, owner: owner, id: id }).request();
+        });
+    }
+    saveArr(arr, owner, id, props) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //let params = _.clone(props);
+            //params["$id"] = id;
+            //return await this.uqApi.tuidArrSave(this.name, arr, owner, params);
+            return yield new SaveArrCaller(this, { arr: arr, owner: owner, id: id, props: props }).request();
+        });
+    }
+    posArr(arr, owner, id, order) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //return await this.uqApi.tuidArrPos(this.name, arr, owner, id, order);
+            return yield new ArrPosCaller(this, { arr: arr, owner: owner, id: id, order: order }).request();
+        });
+    }
+}
+class TuidCaller extends EntityCaller {
+    get entity() { return this._entity; }
     ;
-    return TuidCaller;
-}(EntityCaller));
+}
 // 包含main字段的load id
 // 当前为了兼容，先调用的包含所有字段的内容
-var GetCaller = /** @class */ (function (_super) {
-    __extends(GetCaller, _super);
-    function GetCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'GET';
-        return _this;
+class GetCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
     }
-    Object.defineProperty(GetCaller.prototype, "path", {
-        get: function () { return "tuid/" + this.entity.name + "/" + this.params; },
-        enumerable: true,
-        configurable: true
-    });
-    return GetCaller;
-}(TuidCaller));
-var IdsCaller = /** @class */ (function (_super) {
-    __extends(IdsCaller, _super);
-    function IdsCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    get path() { return `tuid/${this.entity.name}/${this.params}`; }
+}
+class IdsCaller extends TuidCaller {
+    get path() {
+        let { divName } = this.params;
+        return `tuidids/${this.entity.name}/${divName !== undefined ? divName : '$'}`;
     }
-    Object.defineProperty(IdsCaller.prototype, "path", {
-        get: function () {
-            var divName = this.params.divName;
-            return "tuidids/" + this.entity.name + "/" + (divName !== undefined ? divName : '$');
-        },
-        enumerable: true,
-        configurable: true
-    });
-    IdsCaller.prototype.buildParams = function () { return this.params.ids; };
-    IdsCaller.prototype.xresult = function (res) {
+    buildParams() { return this.params.ids; }
+    xresult(res) {
         return res.split('\n');
-    };
-    return IdsCaller;
-}(TuidCaller));
-var SaveCaller = /** @class */ (function (_super) {
-    __extends(SaveCaller, _super);
-    function SaveCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(SaveCaller.prototype, "path", {
-        get: function () { return "tuid/" + this.entity.name; },
-        enumerable: true,
-        configurable: true
-    });
-    SaveCaller.prototype.buildParams = function () {
-        var _a = this.entity.schema, fields = _a.fields, arrs = _a.arrs;
-        var _b = this.params, id = _b.id, props = _b.props;
-        var params = { $id: id };
+}
+class SaveCaller extends TuidCaller {
+    get path() { return `tuid/${this.entity.name}`; }
+    buildParams() {
+        let { fields, arrs } = this.entity.schema;
+        let { id, props } = this.params;
+        let params = { $id: id };
         this.transParams(params, props, fields);
         if (arrs !== undefined) {
-            for (var _i = 0, arrs_2 = arrs; _i < arrs_2.length; _i++) {
-                var arr = arrs_2[_i];
-                var arrName = arr.name;
-                var arrParams = [];
-                var arrFields = arr.fields;
-                var arrValues = props[arrName];
+            for (let arr of arrs) {
+                let arrName = arr.name;
+                let arrParams = [];
+                let arrFields = arr.fields;
+                let arrValues = props[arrName];
                 if (arrValues !== undefined) {
-                    for (var _c = 0, arrValues_2 = arrValues; _c < arrValues_2.length; _c++) {
-                        var arrValue = arrValues_2[_c];
-                        var row = {};
+                    for (let arrValue of arrValues) {
+                        let row = {};
                         this.transParams(row, arrValue, arrFields);
                         arrParams.push(row);
                     }
@@ -450,14 +306,13 @@ var SaveCaller = /** @class */ (function (_super) {
             }
         }
         return params;
-    };
-    SaveCaller.prototype.transParams = function (values, params, fields) {
+    }
+    transParams(values, params, fields) {
         if (params === undefined)
             return;
-        for (var _i = 0, fields_2 = fields; _i < fields_2.length; _i++) {
-            var field = fields_2[_i];
-            var name_3 = field.name, tuid = field.tuid, type = field.type;
-            var val = params[name_3];
+        for (let field of fields) {
+            let { name, tuid, type } = field;
+            let val = params[name];
             if (tuid !== undefined) {
                 if (typeof val === 'object') {
                     if (val !== null)
@@ -479,268 +334,149 @@ var SaveCaller = /** @class */ (function (_super) {
                         break;
                 }
             }
-            values[name_3] = val;
+            values[name] = val;
         }
-    };
-    return SaveCaller;
-}(TuidCaller));
-var SearchCaller = /** @class */ (function (_super) {
-    __extends(SearchCaller, _super);
-    function SearchCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(SearchCaller.prototype, "path", {
-        get: function () { return "tuids/" + this.entity.name; },
-        enumerable: true,
-        configurable: true
-    });
-    return SearchCaller;
-}(TuidCaller));
-var AllCaller = /** @class */ (function (_super) {
-    __extends(AllCaller, _super);
-    function AllCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'GET';
-        return _this;
+}
+class SearchCaller extends TuidCaller {
+    get path() { return `tuids/${this.entity.name}`; }
+}
+class AllCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
     }
-    Object.defineProperty(AllCaller.prototype, "path", {
-        get: function () { return "tuid-all/" + this.entity.name; },
-        enumerable: true,
-        configurable: true
-    });
-    return AllCaller;
-}(TuidCaller));
-var LoadArrCaller = /** @class */ (function (_super) {
-    __extends(LoadArrCaller, _super);
-    function LoadArrCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'GET';
-        return _this;
+    get path() { return `tuid-all/${this.entity.name}`; }
+}
+class LoadArrCaller extends TuidCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
     }
-    Object.defineProperty(LoadArrCaller.prototype, "path", {
-        get: function () {
-            var _a = this.params, arr = _a.arr, owner = _a.owner, id = _a.id;
-            return "tuid-arr/" + this.entity.name + "/" + owner + "/" + arr + "/" + id;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return LoadArrCaller;
-}(TuidCaller));
-var SaveArrCaller = /** @class */ (function (_super) {
-    __extends(SaveArrCaller, _super);
-    function SaveArrCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    get path() {
+        let { arr, owner, id } = this.params;
+        return `tuid-arr/${this.entity.name}/${owner}/${arr}/${id}`;
     }
-    Object.defineProperty(SaveArrCaller.prototype, "path", {
-        get: function () {
-            var _a = this.params, arr = _a.arr, owner = _a.owner;
-            return "tuid-arr/" + this.entity.name + "/" + owner + "/" + arr + "/";
-        },
-        enumerable: true,
-        configurable: true
-    });
-    SaveArrCaller.prototype.buildParams = function () {
-        var _a = this.params, id = _a.id, props = _a.props;
-        var params = _.clone(props);
+}
+class SaveArrCaller extends TuidCaller {
+    get path() {
+        let { arr, owner } = this.params;
+        return `tuid-arr/${this.entity.name}/${owner}/${arr}/`;
+    }
+    buildParams() {
+        let { id, props } = this.params;
+        let params = _.clone(props);
         params['$id'] = id;
         return params;
-    };
-    return SaveArrCaller;
-}(TuidCaller));
-var ArrPosCaller = /** @class */ (function (_super) {
-    __extends(ArrPosCaller, _super);
-    function ArrPosCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(ArrPosCaller.prototype, "path", {
-        get: function () {
-            var _a = this.params, arr = _a.arr, owner = _a.owner;
-            return "tuid-arr-pos/" + this.entity.name + "/" + owner + "/" + arr + "/";
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ArrPosCaller.prototype.buildParams = function () {
-        var _a = this.params, id = _a.id, order = _a.order;
+}
+class ArrPosCaller extends TuidCaller {
+    get path() {
+        let { arr, owner } = this.params;
+        return `tuid-arr-pos/${this.entity.name}/${owner}/${arr}/`;
+    }
+    buildParams() {
+        let { id, order } = this.params;
         return { bid: id, $order: order };
-    };
-    return ArrPosCaller;
-}(TuidCaller));
-var TuidImport = /** @class */ (function (_super) {
-    __extends(TuidImport, _super);
-    function TuidImport(uq, name, typeId, from) {
-        var _this = _super.call(this, uq, name, typeId) || this;
-        _this.isImport = true;
-        _this.from = from;
-        return _this;
     }
-    TuidImport.prototype.setFrom = function (tuidLocal) { this.tuidLocal = tuidLocal; };
-    TuidImport.prototype.useId = function (id) { this.tuidLocal.useId(id); };
-    TuidImport.prototype.boxId = function (id) { return this.tuidLocal.boxId(id); };
-    TuidImport.prototype.valueFromId = function (id) { return this.tuidLocal.valueFromId(id); };
-    TuidImport.prototype.assureBox = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.assureBox(id)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+}
+export class TuidImport extends Tuid {
+    constructor(uq, name, typeId, from) {
+        super(uq, name, typeId);
+        this.isImport = true;
+        this.from = from;
+    }
+    setFrom(tuidLocal) { this.tuidLocal = tuidLocal; }
+    useId(id) { this.tuidLocal.useId(id); }
+    boxId(id) { return this.tuidLocal.boxId(id); }
+    valueFromId(id) { return this.tuidLocal.valueFromId(id); }
+    assureBox(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.tuidLocal.assureBox(id);
         });
-    };
-    Object.defineProperty(TuidImport.prototype, "hasDiv", {
-        get: function () { return this.tuidLocal.hasDiv; },
-        enumerable: true,
-        configurable: true
-    });
-    TuidImport.prototype.div = function (name) { return this.tuidLocal.div(name); };
-    TuidImport.prototype.loadMain = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.loadMain(id)];
-                    case 1:
-                        ret = _a.sent();
-                        return [2 /*return*/, ret];
-                }
-            });
+    }
+    get hasDiv() { return this.tuidLocal.hasDiv; }
+    div(name) { return this.tuidLocal.div(name); }
+    loadMain(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.tuidLocal.loadMain(id);
+            return ret;
         });
-    };
-    TuidImport.prototype.load = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.load(id)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    load(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.load(id);
         });
-    };
-    TuidImport.prototype.save = function (id, props) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.save(id, props)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    save(id, props) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.save(id, props);
         });
-    };
-    TuidImport.prototype.all = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.all()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.all();
         });
-    };
-    TuidImport.prototype.search = function (key, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.search(key, pageStart, pageSize)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    search(key, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.search(key, pageStart, pageSize);
         });
-    };
-    TuidImport.prototype.searchArr = function (owner, key, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.searchArr(owner, key, pageStart, pageSize)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    searchArr(owner, key, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.searchArr(owner, key, pageStart, pageSize);
         });
-    };
-    TuidImport.prototype.loadArr = function (arr, owner, id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.loadArr(arr, owner, id)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    loadArr(arr, owner, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.tuidLocal.loadArr(arr, owner, id);
         });
-    };
-    TuidImport.prototype.saveArr = function (arr, owner, id, props) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.saveArr(arr, owner, id, props)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+    }
+    saveArr(arr, owner, id, props) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.tuidLocal.saveArr(arr, owner, id, props);
         });
-    };
-    TuidImport.prototype.posArr = function (arr, owner, id, order) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.tuidLocal.posArr(arr, owner, id, order)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
+    }
+    posArr(arr, owner, id, order) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.tuidLocal.posArr(arr, owner, id, order);
         });
-    };
-    return TuidImport;
-}(Tuid));
-export { TuidImport };
+    }
+}
 // field._tuid 用这个接口
 // Tuid, TuidDiv 实现这个接口
-var TuidBox = /** @class */ (function () {
-    function TuidBox(tuid) {
+export class TuidBox {
+    constructor(tuid) {
         this.ownerField = undefined;
         this.tuid = tuid;
     }
-    TuidBox.prototype.boxId = function (id) {
+    boxId(id) {
         return this.tuid.boxId(id);
-    };
-    TuidBox.prototype.getIdFromObj = function (obj) {
+    }
+    getIdFromObj(obj) {
         return this.tuid.getIdFromObj(obj);
-    };
-    TuidBox.prototype.useId = function (id) {
+    }
+    useId(id) {
         return this.tuid.useId(id);
-    };
-    TuidBox.prototype.showInfo = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                alert('showInfo not implemented');
-                return [2 /*return*/];
-            });
+    }
+    showInfo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            alert('showInfo not implemented');
         });
-    };
-    return TuidBox;
-}());
-export { TuidBox };
-var TuidDiv = /** @class */ (function (_super) {
-    __extends(TuidDiv, _super); /* Entity*/
+    }
+}
+export class TuidDiv extends TuidInner /* Entity*/ {
     //ui: React.StatelessComponent<any>;
     //res: any;
-    function TuidDiv(uq, tuid, name) {
-        var _this = _super.call(this, uq, name, 0) || this;
-        _this.typeName = 'div';
-        _this.tuid = tuid;
-        _this.idName = 'id';
-        _this.idCache = new IdDivCache(tuid, _this);
-        return _this;
+    constructor(uq, tuid, name) {
+        super(uq, name, 0);
+        this.typeName = 'div';
+        this.tuid = tuid;
+        this.idName = 'id';
+        this.idCache = new IdDivCache(tuid, this);
     }
-    Object.defineProperty(TuidDiv.prototype, "owner", {
-        get: function () { return this.tuid; },
-        enumerable: true,
-        configurable: true
-    });
+    get owner() { return this.tuid; }
     /*
     setSchema(schema:any) {
         super.setSchema(schema);
@@ -752,23 +488,23 @@ var TuidDiv = /** @class */ (function (_super) {
         this.res = res;
     }
     */
-    TuidDiv.prototype.buildFieldsTuid = function () {
-        _super.prototype.buildFieldsTuid.call(this);
-        var mainFields = this.schema.mainFields;
+    buildFieldsTuid() {
+        super.buildFieldsTuid();
+        let { mainFields } = this.schema;
         if (mainFields === undefined)
             debugger;
         this.uq.buildFieldTuid(this.cacheFields = mainFields);
-    };
-    TuidDiv.prototype.buildTuidDivBox = function (ownerField) {
+    }
+    buildTuidDivBox(ownerField) {
         return new TuidBoxDiv(this.tuid, this, ownerField);
-    };
-    TuidDiv.prototype.getIdFromObj = function (obj) { return obj[this.idName]; };
-    TuidDiv.prototype.cacheValue = function (value) {
+    }
+    getIdFromObj(obj) { return obj[this.idName]; }
+    cacheValue(value) {
         this.idCache.cacheValue(value);
-    };
-    TuidDiv.prototype.useId = function (id, defer) {
+    }
+    useId(id, defer) {
         this.idCache.useId(id, defer);
-    };
+    }
     /*
     boxId(id:number):BoxId {
         if (typeof id === 'object') return id;
@@ -777,61 +513,41 @@ var TuidDiv = /** @class */ (function (_super) {
         return this.tuid.boxDivId(this, id);
     }
     */
-    TuidDiv.prototype.valueFromId = function (id) {
+    valueFromId(id) {
         return this.idCache.getValue(id);
-    };
-    TuidDiv.prototype.assureBox = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.idCache.assureObj(id)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    TuidDiv.prototype.cacheIds = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.idCache.cacheIds()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    TuidDiv.prototype.cacheTuidFieldValues = function (values) {
-        var fields = this.schema.fields;
-        this.cacheFieldsInValue(values, fields);
-    };
-    TuidDiv.prototype.unpackTuidIds = function (values) {
-        return this.unpackTuidIdsOfFields(values, this.cacheFields);
-    };
-    return TuidDiv;
-}(TuidInner /* Entity*/));
-export { TuidDiv };
-var TuidBoxDiv = /** @class */ (function (_super) {
-    __extends(TuidBoxDiv, _super);
-    function TuidBoxDiv(tuid, div, ownerField) {
-        var _this = _super.call(this, tuid) || this;
-        _this.div = div;
-        _this.ownerField = ownerField;
-        return _this;
     }
-    TuidBoxDiv.prototype.boxId = function (id) {
+    assureBox(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.assureObj(id);
+        });
+    }
+    cacheIds() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.idCache.cacheIds();
+        });
+    }
+    cacheTuidFieldValues(values) {
+        let fields = this.schema.fields;
+        this.cacheFieldsInValue(values, fields);
+    }
+    unpackTuidIds(values) {
+        return this.unpackTuidIdsOfFields(values, this.cacheFields);
+    }
+}
+export class TuidBoxDiv extends TuidBox {
+    constructor(tuid, div, ownerField) {
+        super(tuid);
+        this.div = div;
+        this.ownerField = ownerField;
+    }
+    boxId(id) {
         return this.div.boxId(id);
-    };
-    TuidBoxDiv.prototype.getIdFromObj = function (obj) {
+    }
+    getIdFromObj(obj) {
         return this.div.getIdFromObj(obj);
-    };
-    TuidBoxDiv.prototype.useId = function (id) {
+    }
+    useId(id) {
         return this.div.useId(id);
-    };
-    return TuidBoxDiv;
-}(TuidBox));
-export { TuidBoxDiv };
+    }
+}
 //# sourceMappingURL=tuid.js.map

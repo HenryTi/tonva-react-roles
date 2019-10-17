@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21,22 +8,17 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { PropView } from './propView';
-var PropGrid = /** @class */ (function (_super) {
-    __extends(PropGrid, _super);
-    function PropGrid() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    PropGrid.prototype.render = function () {
-        var _a = this.props, className = _a.className, rows = _a.rows, values = _a.values;
-        var propView = new PropView(this.props, rows);
+let PropGrid = class PropGrid extends React.Component {
+    render() {
+        let { className, rows, values } = this.props;
+        let propView = new PropView(this.props, rows);
         propView.setValues(values);
-        var cn = classNames('container-fluid', className);
+        let cn = classNames('container-fluid', className);
         return React.createElement("div", { className: cn }, propView.render());
-    };
-    PropGrid = __decorate([
-        observer
-    ], PropGrid);
-    return PropGrid;
-}(React.Component));
+    }
+};
+PropGrid = __decorate([
+    observer
+], PropGrid);
 export { PropGrid };
 //# sourceMappingURL=PropGrid.js.map

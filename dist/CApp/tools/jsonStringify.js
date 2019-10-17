@@ -1,5 +1,5 @@
 function replacer(key, value) {
-    var first = key.substr(0, 1);
+    let first = key.substr(0, 1);
     switch (first) {
         default: return value;
         case '$':

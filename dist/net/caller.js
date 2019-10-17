@@ -1,20 +1,10 @@
-var Caller = /** @class */ (function () {
-    function Caller(params) {
+export class Caller {
+    constructor(params) {
         this.method = 'POST';
         this._params = params;
     }
-    Object.defineProperty(Caller.prototype, "params", {
-        get: function () { return this._params; },
-        enumerable: true,
-        configurable: true
-    });
-    Caller.prototype.buildParams = function () { return this.params; };
-    Object.defineProperty(Caller.prototype, "headers", {
-        get: function () { return undefined; },
-        enumerable: true,
-        configurable: true
-    });
-    return Caller;
-}());
-export { Caller };
+    get params() { return this._params; }
+    buildParams() { return this.params; }
+    get headers() { return undefined; }
+}
 //# sourceMappingURL=caller.js.map

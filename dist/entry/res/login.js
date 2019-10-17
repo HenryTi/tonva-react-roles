@@ -1,4 +1,4 @@
-export var loginRes = {
+export const loginRes = {
     _: {
         a: 'd',
     }

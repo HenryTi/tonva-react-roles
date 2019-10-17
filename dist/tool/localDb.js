@@ -1,42 +1,26 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 import _ from 'lodash';
-var _LocalStorage = /** @class */ (function () {
-    function _LocalStorage() {
-    }
-    _LocalStorage.prototype.getItem = function (key) {
+class _LocalStorage {
+    getItem(key) {
         return localStorage.getItem(key);
-    };
-    _LocalStorage.prototype.setItem = function (key, value) {
+    }
+    setItem(key, value) {
         localStorage.setItem(key, value);
-    };
-    _LocalStorage.prototype.removeItem = function (key) {
+    }
+    removeItem(key) {
         localStorage.removeItem(key);
-    };
-    return _LocalStorage;
-}());
-var __ls = new _LocalStorage(); // new Ls;
-var LocalCache = /** @class */ (function () {
-    function LocalCache(local, key) {
+    }
+}
+const __ls = new _LocalStorage(); // new Ls;
+export class LocalCache {
+    constructor(local, key) {
         this.local = local;
         this.key = key;
     }
-    LocalCache.prototype.get = function () {
+    get() {
         try {
             // 下面缓冲的内容不能有，可能会被修改，造成circular引用
             //if (this.value !== undefined) return this.value;
-            var text = this.local.getItem(this.key);
+            let text = this.local.getItem(this.key);
             if (text === null)
                 return;
             if (text === undefined)
@@ -48,10 +32,10 @@ var LocalCache = /** @class */ (function () {
             this.local.removeItem(this.key);
             return;
         }
-    };
-    LocalCache.prototype.set = function (value) {
+    }
+    set(value) {
         //this.value = value;
-        var t = JSON.stringify(value);
+        let t = JSON.stringify(value);
         this.local.setItem(this.key, t);
         /*
         let text = Flatted.stringify(value, undefined, undefined);
@@ -67,8 +51,8 @@ var LocalCache = /** @class */ (function () {
             let s = null;
         }
         */
-    };
-    LocalCache.prototype.remove = function (local) {
+    }
+    remove(local) {
         if (local === undefined) {
             this.local.removeItem(this.key);
             //this.value = undefined;
@@ -76,100 +60,95 @@ var LocalCache = /** @class */ (function () {
         else {
             this.local.removeLocal(local);
         }
-    };
-    LocalCache.prototype.child = function (key) {
+    }
+    child(key) {
         return this.local.child(key);
-    };
-    LocalCache.prototype.arr = function (key) {
+    }
+    arr(key) {
         return this.local.arr(key);
-    };
-    LocalCache.prototype.map = function (key) {
+    }
+    map(key) {
         return this.local.map(key);
-    };
-    return LocalCache;
-}());
-export { LocalCache };
-var Local = /** @class */ (function () {
-    function Local(name) {
+    }
+}
+class Local {
+    constructor(name) {
         this.name = name;
         this.caches = {};
         this.locals = {};
     }
-    Local.prototype.getItem = function (key) {
-        var k = this.keyForGet(key);
+    getItem(key) {
+        let k = this.keyForGet(key);
         if (k === undefined)
             return;
         return __ls.getItem(k);
-    };
-    Local.prototype.setItem = function (key, value) {
-        var k = this.keyForSet(key);
+    }
+    setItem(key, value) {
+        let k = this.keyForSet(key);
         __ls.setItem(k, value);
-    };
-    Local.prototype.removeItem = function (key) {
-        var k = this.keyForSet(key);
+    }
+    removeItem(key) {
+        let k = this.keyForSet(key);
         if (k === undefined)
             return;
         localStorage.removeItem(k);
-    };
-    Local.prototype.arr = function (key) {
-        var sk = String(key);
-        var arr = this.locals[sk];
+    }
+    arr(key) {
+        let sk = String(key);
+        let arr = this.locals[sk];
         if (arr === undefined) {
-            var k = this.keyForSet(key);
+            let k = this.keyForSet(key);
             this.locals[sk] = arr = new LocalArr(k);
         }
         return arr;
-    };
-    Local.prototype.map = function (key) {
-        var sk = String(key);
-        var map = this.locals[sk];
+    }
+    map(key) {
+        let sk = String(key);
+        let map = this.locals[sk];
         if (map === undefined) {
-            var k = this.keyForSet(key);
+            let k = this.keyForSet(key);
             this.locals[sk] = map = new LocalMap(k);
         }
         return map;
-    };
-    Local.prototype.removeLocal = function (local) {
-        var sk = local.name;
-        var k = this.keyForRemove(sk);
+    }
+    removeLocal(local) {
+        let sk = local.name;
+        let k = this.keyForRemove(sk);
         if (k === undefined)
             return;
-        var arr = this.locals[sk];
+        let arr = this.locals[sk];
         if (arr === undefined)
             arr = new LocalArr(k);
         else
             this.locals[sk] = undefined;
         arr.removeAll();
-    };
-    Local.prototype.child = function (key) {
-        var ks = String(key);
-        var ret = this.caches[ks];
+    }
+    child(key) {
+        let ks = String(key);
+        let ret = this.caches[ks];
         if (ret !== undefined)
             return ret;
         return this.caches[ks] = ret = new LocalCache(this, key);
-    };
-    return Local;
-}());
-var maxArrSize = 500;
-var LocalArr = /** @class */ (function (_super) {
-    __extends(LocalArr, _super);
-    function LocalArr(name) {
-        var _this = _super.call(this, name) || this;
-        var index = __ls.getItem(_this.name);
-        _this.index = index === null ? [] : index.split('\n').map(function (v) { return Number(v); });
-        return _this;
     }
-    LocalArr.prototype.saveIndex = function () {
+}
+const maxArrSize = 500;
+export class LocalArr extends Local {
+    constructor(name) {
+        super(name);
+        let index = __ls.getItem(this.name);
+        this.index = index === null ? [] : index.split('\n').map(v => Number(v));
+    }
+    saveIndex() {
         __ls.setItem(this.name, this.index.join('\n'));
-    };
-    LocalArr.prototype.keyForGet = function (key) {
-        var i = _.indexOf(this.index, key);
+    }
+    keyForGet(key) {
+        let i = _.indexOf(this.index, key);
         if (i < 0)
             return undefined;
-        return this.name + "." + key;
-    };
-    LocalArr.prototype.keyForSet = function (key) {
-        var i = _.indexOf(this.index, key);
+        return `${this.name}.${key}`;
+    }
+    keyForSet(key) {
+        let i = _.indexOf(this.index, key);
         if (i < 0) {
             this.index.unshift(key);
             if (this.index.length > maxArrSize)
@@ -180,100 +159,93 @@ var LocalArr = /** @class */ (function (_super) {
             this.index.unshift(key);
         }
         this.saveIndex();
-        return this.name + "." + key;
-    };
-    LocalArr.prototype.keyForRemove = function (key) {
-        var i = _.indexOf(this.index, key);
+        return `${this.name}.${key}`;
+    }
+    keyForRemove(key) {
+        let i = _.indexOf(this.index, key);
         if (i < 0)
             return;
         this.index.splice(i, 1);
         this.saveIndex();
-        return this.name + "." + key;
-    };
-    LocalArr.prototype.removeAll = function () {
-        for (var _i = 0, _a = this.index; _i < _a.length; _i++) {
-            var i = _a[_i];
-            __ls.removeItem(this.name + "." + i);
+        return `${this.name}.${key}`;
+    }
+    removeAll() {
+        for (let i of this.index) {
+            __ls.removeItem(`${this.name}.${i}`);
         }
         __ls.removeItem(this.name);
         this.index.splice(0);
-    };
-    LocalArr.prototype.item = function (index) {
+    }
+    item(index) {
         return this.child(index);
-    };
-    return LocalArr;
-}(Local));
-export { LocalArr };
-var LocalMap = /** @class */ (function (_super) {
-    __extends(LocalMap, _super);
-    function LocalMap(name) {
-        var _this = _super.call(this, name) || this;
-        _this.max = 0;
-        _this.index = {};
-        var index = __ls.getItem(_this.name);
+    }
+}
+export class LocalMap extends Local {
+    constructor(name) {
+        super(name);
+        this.max = 0;
+        this.index = {};
+        let index = __ls.getItem(this.name);
         if (index !== null) {
-            var ls = index.split('\n');
-            ls.forEach(function (l) {
-                var p = l.indexOf('\t');
+            let ls = index.split('\n');
+            ls.forEach(l => {
+                let p = l.indexOf('\t');
                 if (p < 0)
                     return;
-                var key = l.substr(0, p);
-                var i = Number(l.substr(p + 1));
+                let key = l.substr(0, p);
+                let i = Number(l.substr(p + 1));
                 if (isNaN(i) === true)
                     return;
-                _this.index[key] = i;
-                if (i > _this.max)
-                    _this.max = i;
+                this.index[key] = i;
+                if (i > this.max)
+                    this.max = i;
             });
         }
-        return _this;
     }
-    LocalMap.prototype.saveIndex = function () {
-        var ls = [];
-        for (var k in this.index) {
-            var v = this.index[k];
+    saveIndex() {
+        let ls = [];
+        for (let k in this.index) {
+            let v = this.index[k];
             if (v === undefined)
                 continue;
-            ls.push(k + "\t" + v);
+            ls.push(`${k}\t${v}`);
         }
         __ls.setItem(this.name, ls.join('\n'));
-    };
-    LocalMap.prototype.keyForGet = function (key) {
-        var i = this.index[key];
+    }
+    keyForGet(key) {
+        let i = this.index[key];
         if (i === undefined)
             return undefined;
-        return this.name + "." + i;
-    };
-    LocalMap.prototype.keyForSet = function (key) {
-        var i = this.index[key];
+        return `${this.name}.${i}`;
+    }
+    keyForSet(key) {
+        let i = this.index[key];
         if (i === undefined) {
             ++this.max;
             i = this.max;
             this.index[key] = i;
             this.saveIndex();
         }
-        return this.name + "." + i;
-    };
-    LocalMap.prototype.keyForRemove = function (key) {
-        var i = this.index[key];
+        return `${this.name}.${i}`;
+    }
+    keyForRemove(key) {
+        let i = this.index[key];
         if (i === undefined)
             return;
         this.index[key] = undefined;
         this.saveIndex();
-        return this.name + "." + i;
-    };
-    LocalMap.prototype.removeAll = function () {
-        for (var i in this.index) {
-            __ls.removeItem(this.name + "." + this.index[i]);
+        return `${this.name}.${i}`;
+    }
+    removeAll() {
+        for (let i in this.index) {
+            __ls.removeItem(`${this.name}.${this.index[i]}`);
             this.index[i] = undefined;
         }
         __ls.removeItem(this.name);
         this.max = 0;
-    };
-    LocalMap.prototype.item = function (key) {
+    }
+    item(key) {
         return this.child(key);
-    };
-    return LocalMap;
-}(Local));
-export { LocalMap };
+    }
+}
 //# sourceMappingURL=localDb.js.map

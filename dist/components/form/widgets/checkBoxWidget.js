@@ -1,41 +1,22 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-var CheckBoxWidget = /** @class */ (function (_super) {
-    __extends(CheckBoxWidget, _super);
-    function CheckBoxWidget() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.onInputChange = function (evt) {
-            _this.setDataValue(evt.target.checked === true ? _this.trueValue : _this.falseValue);
+export class CheckBoxWidget extends Widget {
+    constructor() {
+        super(...arguments);
+        this.onInputChange = (evt) => {
+            this.setDataValue(evt.target.checked === true ? this.trueValue : this.falseValue);
         };
-        _this.onClick = function () {
-            _this.context.clearErrors();
+        this.onClick = () => {
+            this.context.clearErrors();
         };
-        return _this;
     }
-    Object.defineProperty(CheckBoxWidget.prototype, "ui", {
-        get: function () { return this._ui; },
-        enumerable: true,
-        configurable: true
-    });
+    get ui() { return this._ui; }
     ;
-    CheckBoxWidget.prototype.init = function () {
-        _super.prototype.init.call(this);
+    init() {
+        super.init();
         if (this.ui !== undefined) {
-            var _a = this.ui, trueValue = _a.trueValue, falseValue = _a.falseValue;
+            let { trueValue, falseValue } = this.ui;
             if (trueValue === undefined)
                 this.trueValue = true;
             else
@@ -49,16 +30,15 @@ var CheckBoxWidget = /** @class */ (function (_super) {
             this.trueValue = true;
             this.falseValue = false;
         }
-    };
-    CheckBoxWidget.prototype.setElementValue = function (value) {
+    }
+    setElementValue(value) {
         this.input.checked = value === this.trueValue;
-    };
-    CheckBoxWidget.prototype.setReadOnly = function (value) { this.input.readOnly = this.readOnly = value; };
-    CheckBoxWidget.prototype.setDisabled = function (value) { this.input.disabled = this.disabled = value; };
-    CheckBoxWidget.prototype.render = function () {
-        var _this = this;
-        var cn = classNames(this.className, 'form-check-inline p-0');
-        var input = React.createElement("input", { ref: function (input) { return _this.input = input; }, className: 'align-self-center', type: "checkbox", defaultChecked: this.defaultValue, onChange: this.onInputChange, onClick: this.onClick });
+    }
+    setReadOnly(value) { this.input.readOnly = this.readOnly = value; }
+    setDisabled(value) { this.input.disabled = this.disabled = value; }
+    render() {
+        let cn = classNames(this.className, 'form-check-inline p-0');
+        let input = React.createElement("input", { ref: (input) => this.input = input, className: 'align-self-center', type: "checkbox", defaultChecked: this.defaultValue, onChange: this.onInputChange, onClick: this.onClick });
         if (this.context.inNode === true) {
             return React.createElement("label", { className: cn },
                 input,
@@ -69,8 +49,6 @@ var CheckBoxWidget = /** @class */ (function (_super) {
             return React.createElement("div", { className: cn },
                 React.createElement("label", { className: "w-100 h-100 mb-0 d-flex justify-content-center" }, input));
         }
-    };
-    return CheckBoxWidget;
-}(Widget));
-export { CheckBoxWidget };
+    }
+}
 //# sourceMappingURL=checkBoxWidget.js.map

@@ -1,11 +1,11 @@
 import { setCenterToken } from './uqApi';
 import { WSChannel } from './wsChannel';
-export var netToken = {
-    set: function (userId, token) {
+export const netToken = {
+    set(userId, token) {
         setCenterToken(userId, token);
         WSChannel.setCenterToken(token);
     },
-    clear: function () {
+    clear() {
         setCenterToken(0, undefined);
         WSChannel.setCenterToken(undefined);
     }

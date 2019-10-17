@@ -1,108 +1,88 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 import React from 'react';
 import { View, List, Muted } from '../../components';
 import { CLink } from '../link';
-var VUq = /** @class */ (function (_super) {
-    __extends(VUq, _super);
-    function VUq(cUq) {
-        var _this = _super.call(this, cUq) || this;
-        _this.isSysVisible = false;
-        _this.view = function () {
-            var _a = _this.controller, res = _a.res, uq = _a.uq, error = _a.error;
-            var linkItem = {
-                render: function (cLink, index) { return cLink.render(); },
+export class VUq extends View {
+    constructor(cUq) {
+        super(cUq);
+        this.isSysVisible = false;
+        this.view = () => {
+            let { res, uq, error } = this.controller;
+            let linkItem = {
+                render: (cLink, index) => cLink.render(),
                 onClick: undefined,
             };
-            var lists = [
+            let lists = [
                 {
                     header: res.tuid || 'TUID',
-                    items: _this.tuidLinks,
+                    items: this.tuidLinks,
                 },
                 {
                     cn: 'my-2',
                     header: res.map || 'MAP',
-                    items: _this.mapLinks,
+                    items: this.mapLinks,
                 },
                 {
                     cn: 'my-2',
                     header: res.sheet || 'SHEET',
-                    items: _this.sheetLinks
+                    items: this.sheetLinks
                 },
                 {
                     cn: 'my-2',
                     header: res.action || 'ACTION',
-                    items: _this.actionLinks
+                    items: this.actionLinks
                 },
                 {
                     cn: 'my-2',
                     header: res.query || 'QUERY',
-                    items: _this.queryLinks
+                    items: this.queryLinks
                 },
                 {
                     cn: 'mt-2 mb-4',
                     header: res.book || 'BOOK',
-                    items: _this.bookLinks
+                    items: this.bookLinks
                 },
                 {
                     cn: 'mt-2 mb-4',
                     header: res.history || 'HISTORY',
-                    items: _this.historyLinks
+                    items: this.historyLinks
                 },
                 {
                     cn: 'mt-2 mb-4',
                     header: res.pending || 'PENDING',
-                    items: _this.pendingLinks
+                    items: this.pendingLinks
                 }
             ];
-            var content;
+            let content;
             if (error !== undefined) {
                 content = React.createElement("div", { className: "p-3 text-danger" },
                     "\u8FDE\u63A5\u9519\u8BEF: ",
                     error);
             }
             else {
-                content = lists.map(function (_a, index) {
-                    var cn = _a.cn, header = _a.header, items = _a.items;
-                    return items.length > 0 && React.createElement(List, { key: index, className: cn, header: React.createElement("div", { className: "px-3 py-1 bg-light" },
-                            React.createElement(Muted, null, header)), items: items, item: linkItem });
-                });
+                content = lists.map(({ cn, header, items }, index) => items.length > 0 && React.createElement(List, { key: index, className: cn, header: React.createElement("div", { className: "px-3 py-1 bg-light" },
+                        React.createElement(Muted, null, header)), items: items, item: linkItem }));
             }
             return React.createElement(React.Fragment, null,
                 React.createElement("div", { className: "px-3 py-1 small" }, res.uq || uq),
                 content);
         };
-        var _a = cUq.uq, tuidArr = _a.tuidArr, mapArr = _a.mapArr, sheetArr = _a.sheetArr, actionArr = _a.actionArr, queryArr = _a.queryArr, bookArr = _a.bookArr, historyArr = _a.historyArr, pendingArr = _a.pendingArr;
-        _this.tuidLinks = tuidArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cTuidMain(v)); });
-        _this.mapLinks = mapArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cMap(v)); });
-        _this.sheetLinks = sheetArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cSheet(v)); });
-        _this.actionLinks = actionArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cAction(v)); });
-        _this.queryLinks = queryArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cQuery(v)); });
-        _this.bookLinks = bookArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cBook(v)); });
-        _this.historyLinks = historyArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cHistory(v)); });
-        _this.pendingLinks = pendingArr.filter(function (v) { return _this.isVisible(v); }).map(function (v) { return new CLink(_this.controller.cPending(v)); });
-        return _this;
+        let { tuidArr, mapArr, sheetArr, actionArr, queryArr, bookArr, historyArr, pendingArr } = cUq.uq;
+        this.tuidLinks = tuidArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cTuidMain(v)));
+        this.mapLinks = mapArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cMap(v)));
+        this.sheetLinks = sheetArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cSheet(v)));
+        this.actionLinks = actionArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cAction(v)));
+        this.queryLinks = queryArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cQuery(v)));
+        this.bookLinks = bookArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cBook(v)));
+        this.historyLinks = historyArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cHistory(v)));
+        this.pendingLinks = pendingArr.filter(v => this.isVisible(v)).map(v => new CLink(this.controller.cPending(v)));
     }
-    VUq.prototype.isVisible = function (entity) {
+    isVisible(entity) {
         return entity.sys !== true || this.isSysVisible;
-    };
-    VUq.prototype.render = function (param) {
+    }
+    render(param) {
         if (this.view === undefined)
             return React.createElement("div", null, "??? viewModel \u5FC5\u987B\u5B9A\u4E49 view ???");
         return React.createElement(this.view);
-    };
-    return VUq;
-}(View));
-export { VUq };
+    }
+}
 //# sourceMappingURL=vUq.js.map

@@ -297,10 +297,12 @@ export class NavView extends React.Component<Props, NavViewState> {
 
     private isHistoryBack:boolean = false;
     navBack() {
-        nav.log('backbutton pressed - nav level: ' + this.stack.length);
+        //nav.log('backbutton pressed - nav level: ' + this.stack.length);
+        let tick = Date.now();
         this.isHistoryBack = true;
         this.back(true);
         this.isHistoryBack = false;
+        console.log(`///\\\\ ${Date.now()-tick}ms backbutton pressed - nav level: ${this.stack.length}`);
     }
 
     async back(confirm:boolean = true) {

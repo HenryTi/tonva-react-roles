@@ -1,38 +1,24 @@
-var Callbacks = /** @class */ (function () {
-    function Callbacks() {
-    }
-    Object.defineProperty(Callbacks.prototype, "has", {
-        get: function () { return this.list !== undefined && this.list.length > 0; },
-        enumerable: true,
-        configurable: true
-    });
-    Callbacks.prototype.register = function (callback) {
+export class Callbacks {
+    get has() { return this.list !== undefined && this.list.length > 0; }
+    register(callback) {
         if (this.list === undefined)
             this.list = [];
-        var index = this.list.findIndex(function (v) { return v === callback; });
+        let index = this.list.findIndex(v => v === callback);
         if (index < 0)
             this.list.push(callback);
-    };
-    Callbacks.prototype.unregister = function (callback) {
+    }
+    unregister(callback) {
         if (this.list === undefined)
             return;
-        var index = this.list.findIndex(function (v) { return v === callback; });
+        let index = this.list.findIndex(v => v === callback);
         if (index >= 0)
             this.list.splice(index);
-    };
-    Callbacks.prototype.call = function () {
-        var params = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            params[_i] = arguments[_i];
-        }
+    }
+    call(...params) {
         if (this.list === undefined)
             return;
-        for (var _a = 0, _b = this.list; _a < _b.length; _a++) {
-            var callback = _b[_a];
+        for (let callback of this.list)
             callback(params);
-        }
-    };
-    return Callbacks;
-}());
-export { Callbacks };
+    }
+}
 //# sourceMappingURL=callbacks.js.map

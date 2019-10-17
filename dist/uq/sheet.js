@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -20,60 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 import { Entity } from './entity';
 import { PageItems } from '../tool/pageItems';
 import { EntityCaller } from './caller';
-var Sheet = /** @class */ (function (_super) {
-    __extends(Sheet, _super);
-    function Sheet() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Object.defineProperty(Sheet.prototype, "typeName", {
-        get: function () { return 'sheet'; },
-        enumerable: true,
-        configurable: true
-    });
+export class Sheet extends Entity {
+    get typeName() { return 'sheet'; }
     /*
     setStates(states: SheetState[]) {
         for (let state of states) {
             this.setStateAccess(this.states.find(s=>s.name==state.name), state);
         }
     }*/
-    Sheet.prototype.setSchema = function (schema) {
-        _super.prototype.setSchema.call(this, schema);
+    setSchema(schema) {
+        super.setSchema(schema);
         this.states = schema.states;
-    };
-    Sheet.prototype.build = function (obj) {
+    }
+    build(obj) {
         this.states = [];
-        for (var _i = 0, _a = obj.ops; _i < _a.length; _i++) {
-            var op = _a[_i];
+        for (let op of obj.ops) {
             this.states.push({ name: op, actions: undefined });
         }
         /*
@@ -84,16 +35,16 @@ var Sheet = /** @class */ (function (_super) {
                 default: this.states.push(this.createSheetState(p, obj[p])); break;
             }
         }*/
-    };
-    Sheet.prototype.createSheetState = function (name, obj) {
-        var ret = { name: name, actions: [] };
-        var actions = ret.actions;
-        for (var p in obj) {
-            var action = { name: p };
+    }
+    createSheetState(name, obj) {
+        let ret = { name: name, actions: [] };
+        let actions = ret.actions;
+        for (let p in obj) {
+            let action = { name: p };
             actions.push(action);
         }
         return ret;
-    };
+    }
     /*
     private setStateAccess(s:SheetState, s1:SheetState) {
         if (s === undefined) return;
@@ -104,326 +55,231 @@ var Sheet = /** @class */ (function (_super) {
             s.actions.push(action);
         }
     }*/
-    Sheet.prototype.save = function (discription, data) {
-        return __awaiter(this, void 0, void 0, function () {
-            var id, params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        id = this.uq.id;
-                        params = { app: id, discription: discription, data: data };
-                        return [4 /*yield*/, new SaveCaller(this, params).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
+    save(discription, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let {id} = this.uq;
+            let text = this.pack(data);
+    
+            let ret = await this.uqApi.sheetSave(this.name, );
+            return ret;
+            */
+            let { id } = this.uq;
+            //let text = this.pack(data);
+            let params = { app: id, discription: discription, data: data };
+            return yield new SaveCaller(this, params).request();
+            /*
+            let {id, state} = ret;
+            if (id > 0) this.changeStateCount(state, 1);
+            return ret;
+            */
         });
-    };
-    Sheet.prototype.action = function (id, flow, state, action) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new ActionCaller(this, { id: id, flow: flow, state: state, action: action }).request()];
-                    case 1: 
-                    /*
-                    await this.loadSchema();
-                    return await this.uqApi.sheetAction(this.name, {id:id, flow:flow, state:state, action:action});
-                    */
-                    return [2 /*return*/, _a.sent()];
-                }
-            });
+    }
+    action(id, flow, state, action) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            return await this.uqApi.sheetAction(this.name, {id:id, flow:flow, state:state, action:action});
+            */
+            return yield new ActionCaller(this, { id: id, flow: flow, state: state, action: action }).request();
         });
-    };
-    Sheet.prototype.unpack = function (data) {
+    }
+    unpack(data) {
         //if (this.schema === undefined) await this.loadSchema();
-        var ret = data[0];
-        var brief = ret[0];
-        var sheetData = this.unpackSheet(brief.data);
-        var flows = data[1];
+        let ret = data[0];
+        let brief = ret[0];
+        let sheetData = this.unpackSheet(brief.data);
+        let flows = data[1];
         return {
             brief: brief,
             data: sheetData,
             flows: flows,
         };
-    };
-    Sheet.prototype.getSheet = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new GetSheetCaller(this, id).request()];
-                    case 1:
-                        ret = _a.sent();
-                        if (!(ret[0].length === 0)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.getArchive(id)];
-                    case 2: return [2 /*return*/, _a.sent()];
-                    case 3: return [2 /*return*/, this.unpack(ret)];
-                }
-            });
-        });
-    };
-    Sheet.prototype.getArchive = function (id) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new SheetArchiveCaller(this, id).request()];
-                    case 1:
-                        ret = _a.sent();
-                        return [2 /*return*/, this.unpack(ret)];
-                }
-            });
-        });
-    };
-    Sheet.prototype.getArchives = function (pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        params = { pageStart: pageStart, pageSize: pageSize };
-                        return [4 /*yield*/, new SheetArchivesCaller(this, params).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Sheet.prototype.getStateSheets = function (state, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        params = { state: state, pageStart: pageStart, pageSize: pageSize };
-                        return [4 /*yield*/, new StateSheetsCaller(this, params).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Sheet.prototype.createPageStateItems = function () { return new PageStateItems(this); };
-    Sheet.prototype.stateSheetCount = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, new StateSheetCountCaller(this, undefined).request()];
-                    case 1: 
-                    /*
-                    await this.loadSchema();
-                    let ret:StateCount[] = await this.uqApi.stateSheetCount(this.name);
-                    return this.states.map(s => {
-                        let n = s.name, count = 0;
-                        let r = ret.find(v => v.state === n);
-                        if (r !== undefined) count = r.count;
-                        return {state: n, count: count}
-                    });
-                    */
-                    return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Sheet.prototype.userSheets = function (state, user, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        params = { state: state, user: user, pageStart: pageStart, pageSize: pageSize };
-                        return [4 /*yield*/, new UserSheetsCaller(this, params).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    Sheet.prototype.mySheets = function (state, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var params;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        params = { state: state, pageStart: pageStart, pageSize: pageSize };
-                        return [4 /*yield*/, new MySheetsCaller(this, params).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    return Sheet;
-}(Entity));
-export { Sheet };
-var SheetCaller = /** @class */ (function (_super) {
-    __extends(SheetCaller, _super);
-    function SheetCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(SheetCaller.prototype, "entity", {
-        get: function () { return this._entity; },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SheetCaller.prototype, "path", {
-        get: function () { return "sheet/" + this.entity.name + "/" + this.suffix; },
-        enumerable: true,
-        configurable: true
-    });
-    return SheetCaller;
-}(EntityCaller));
-var SaveCaller = /** @class */ (function (_super) {
-    __extends(SaveCaller, _super);
-    function SaveCaller() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    getSheet(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret = await this.uqApi.getSheet(this.name, id);
+            */
+            let ret = yield new GetSheetCaller(this, id).request();
+            if (ret[0].length === 0)
+                return yield this.getArchive(id);
+            return this.unpack(ret);
+        });
     }
-    Object.defineProperty(SaveCaller.prototype, "path", {
-        get: function () { return "sheet/" + this.entity.name; },
-        enumerable: true,
-        configurable: true
-    });
-    SaveCaller.prototype.buildParams = function () {
-        var _a = this.params, app = _a.app, discription = _a.discription, data = _a.data;
+    getArchive(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret = await this.uqApi.sheetArchive(this.name, id)
+            return this.unpack(ret);
+            */
+            let ret = yield new SheetArchiveCaller(this, id).request();
+            return this.unpack(ret);
+        });
+    }
+    getArchives(pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret = await this.uqApi.sheetArchives(this.name, {pageStart:pageStart, pageSize:pageSize});
+            return ret;
+            */
+            let params = { pageStart: pageStart, pageSize: pageSize };
+            return yield new SheetArchivesCaller(this, params).request();
+        });
+    }
+    getStateSheets(state, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret = await this.uqApi.stateSheets(this.name, {state:state, pageStart:pageStart, pageSize:pageSize});
+            return ret;
+            */
+            let params = { state: state, pageStart: pageStart, pageSize: pageSize };
+            return yield new StateSheetsCaller(this, params).request();
+        });
+    }
+    createPageStateItems() { return new PageStateItems(this); }
+    stateSheetCount() {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret:StateCount[] = await this.uqApi.stateSheetCount(this.name);
+            return this.states.map(s => {
+                let n = s.name, count = 0;
+                let r = ret.find(v => v.state === n);
+                if (r !== undefined) count = r.count;
+                return {state: n, count: count}
+            });
+            */
+            return yield new StateSheetCountCaller(this, undefined).request();
+        });
+    }
+    userSheets(state, user, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let params = { state: state, user: user, pageStart: pageStart, pageSize: pageSize };
+            return yield new UserSheetsCaller(this, params).request();
+        });
+    }
+    mySheets(state, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            /*
+            await this.loadSchema();
+            let ret = await this.uqApi.mySheets(this.name, {state:state, pageStart:pageStart, pageSize:pageSize});
+            return ret;
+            */
+            let params = { state: state, pageStart: pageStart, pageSize: pageSize };
+            return yield new MySheetsCaller(this, params).request();
+        });
+    }
+}
+class SheetCaller extends EntityCaller {
+    get entity() { return this._entity; }
+    get path() { return `sheet/${this.entity.name}/${this.suffix}`; }
+}
+class SaveCaller extends SheetCaller {
+    get path() { return `sheet/${this.entity.name}`; }
+    buildParams() {
+        let { app, discription, data } = this.params;
         return {
             app: app,
             discription: discription,
             data: this.entity.pack(data)
         };
-    };
-    return SaveCaller;
-}(SheetCaller));
-var ActionCaller = /** @class */ (function (_super) {
-    __extends(ActionCaller, _super);
-    function ActionCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'PUT';
-        return _this;
+    }
+}
+class ActionCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'PUT';
         //buildParams() {return this.entity.buildParams(this.params);}
     }
-    Object.defineProperty(ActionCaller.prototype, "path", {
-        get: function () { return "sheet/" + this.entity.name; },
-        enumerable: true,
-        configurable: true
-    });
-    return ActionCaller;
-}(SheetCaller));
-var GetSheetCaller = /** @class */ (function (_super) {
-    __extends(GetSheetCaller, _super);
-    function GetSheetCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    get path() { return `sheet/${this.entity.name}`; }
+}
+class GetSheetCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
         //protected readonly params: number;  // id
-        _this.method = 'GET';
-        return _this;
+        this.method = 'GET';
     }
     //private id:number;
     //protected readonly suffix = 'archive';
-    GetSheetCaller.prototype.buildParams = function () { };
-    Object.defineProperty(GetSheetCaller.prototype, "path", {
-        get: function () { return "sheet/" + this.entity.name + "/get/" + this.params; },
-        enumerable: true,
-        configurable: true
-    });
-    return GetSheetCaller;
-}(SheetCaller));
-var SheetArchiveCaller = /** @class */ (function (_super) {
-    __extends(SheetArchiveCaller, _super);
-    function SheetArchiveCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'GET';
-        return _this;
+    buildParams() { }
+    get path() { return `sheet/${this.entity.name}/get/${this.params}`; }
+}
+class SheetArchiveCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
     }
     //protected readonly suffix = 'archive';
-    SheetArchiveCaller.prototype.buildParams = function () { };
-    Object.defineProperty(SheetArchiveCaller.prototype, "path", {
-        get: function () { return "sheet/" + this.entity.name + "/archive/" + this.params; },
-        enumerable: true,
-        configurable: true
-    });
-    return SheetArchiveCaller;
-}(SheetCaller));
-var SheetArchivesCaller = /** @class */ (function (_super) {
-    __extends(SheetArchivesCaller, _super);
-    function SheetArchivesCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.suffix = 'archives';
-        return _this;
+    buildParams() { }
+    get path() { return `sheet/${this.entity.name}/archive/${this.params}`; }
+}
+class SheetArchivesCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.suffix = 'archives';
     }
-    return SheetArchivesCaller;
-}(SheetCaller));
-var StateSheetsCaller = /** @class */ (function (_super) {
-    __extends(StateSheetsCaller, _super);
-    function StateSheetsCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.suffix = 'states';
-        return _this;
+}
+class StateSheetsCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.suffix = 'states';
     }
-    return StateSheetsCaller;
-}(SheetCaller));
-var StateSheetCountCaller = /** @class */ (function (_super) {
-    __extends(StateSheetCountCaller, _super);
-    function StateSheetCountCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.method = 'GET';
-        _this.suffix = 'statecount';
-        return _this;
+}
+class StateSheetCountCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.method = 'GET';
+        this.suffix = 'statecount';
     }
-    StateSheetCountCaller.prototype.xresult = function (res) {
-        var states = this.entity.states;
-        return states.map(function (s) {
-            var n = s.name, count = 0;
-            var r = res.find(function (v) { return v.state === n; });
+    xresult(res) {
+        let { states } = this.entity;
+        return states.map(s => {
+            let n = s.name, count = 0;
+            let r = res.find(v => v.state === n);
             if (r !== undefined)
                 count = r.count;
             return { state: n, count: count };
         });
-    };
-    return StateSheetCountCaller;
-}(SheetCaller));
-var UserSheetsCaller = /** @class */ (function (_super) {
-    __extends(UserSheetsCaller, _super);
-    function UserSheetsCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.suffix = 'user-sheets';
-        return _this;
     }
-    UserSheetsCaller.prototype.xresult = function (res) {
+}
+class UserSheetsCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.suffix = 'user-sheets';
+    }
+    xresult(res) {
         return res;
-    };
-    return UserSheetsCaller;
-}(SheetCaller));
-var MySheetsCaller = /** @class */ (function (_super) {
-    __extends(MySheetsCaller, _super);
-    function MySheetsCaller() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.suffix = 'my-sheets';
-        return _this;
     }
-    MySheetsCaller.prototype.xresult = function (res) {
+}
+class MySheetsCaller extends SheetCaller {
+    constructor() {
+        super(...arguments);
+        this.suffix = 'my-sheets';
+    }
+    xresult(res) {
         return res;
-    };
-    return MySheetsCaller;
-}(SheetCaller));
-var PageStateItems = /** @class */ (function (_super) {
-    __extends(PageStateItems, _super);
-    function PageStateItems(sheet) {
-        var _this = _super.call(this, true) || this;
-        _this.sheet = sheet;
-        _this.pageSize = 10;
-        return _this;
     }
-    PageStateItems.prototype.load = function (param, pageStart, pageSize) {
-        return __awaiter(this, void 0, void 0, function () {
-            var ret;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.sheet.getStateSheets(param, pageStart, pageSize)];
-                    case 1:
-                        ret = _a.sent();
-                        return [2 /*return*/, ret];
-                }
-            });
+}
+export class PageStateItems extends PageItems {
+    constructor(sheet) {
+        super(true);
+        this.sheet = sheet;
+        this.pageSize = 10;
+    }
+    load(param, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = yield this.sheet.getStateSheets(param, pageStart, pageSize);
+            return ret;
         });
-    };
-    PageStateItems.prototype.setPageStart = function (item) {
+    }
+    setPageStart(item) {
         this.pageStart = item === undefined ? 0 : item.id;
-    };
-    return PageStateItems;
-}(PageItems));
-export { PageStateItems };
+    }
+}
 //# sourceMappingURL=sheet.js.map

@@ -3,7 +3,7 @@ import { FA } from '../components';
 function icon(className, name) {
     return React.createElement(FA, { className: className, name: name, fixWidth: true });
 }
-export var entityIcons = {
+export const entityIcons = {
     tuid: icon('text-info', 'list-alt'),
     action: icon('text-info', 'hand-o-right'),
     map: icon('text-muted', 'list-ul'),

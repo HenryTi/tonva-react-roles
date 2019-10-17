@@ -1,16 +1,16 @@
 import * as React from 'react';
-var en_AbcEntry = {
+const en_AbcEntry = {
     entryA: {
         a: 'dd',
         b: 'a',
         c: React.createElement("div", null),
     }
 };
-var enAbcEntry = {
+const enAbcEntry = {
     _: en_AbcEntry,
 };
-var zhAbcEntry = {};
-var resEntry = {
+const zhAbcEntry = {};
+let resEntry = {
     _: en_AbcEntry,
     en: enAbcEntry,
     zh: zhAbcEntry,

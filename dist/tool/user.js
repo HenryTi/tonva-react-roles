@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 export function decodeUserToken(token) {
-    var ret = jwtDecode(token);
-    var user = {
+    let ret = jwtDecode(token);
+    let user = {
         id: ret.id,
         name: ret.name,
         guest: ret.guest,
@@ -10,8 +10,8 @@ export function decodeUserToken(token) {
     return user;
 }
 export function decodeGuestToken(token) {
-    var ret = jwtDecode(token);
-    var guest = {
+    let ret = jwtDecode(token);
+    let guest = {
         id: 0,
         guest: ret.guest,
         token: token,
