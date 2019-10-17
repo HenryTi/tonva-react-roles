@@ -542,7 +542,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "ab7889485d505887caf579608e0724098b1e5c6cfe846e663af8fbd7c9a036bf",
+        "version": "14fe0128310729ed78ffd4ff6a63e99722307aa4f80b6e9a173cbd74a54c1f92",
         "signature": "fcb6392c5a312d8541cf8ce1e5fcf5b5c40ab32c6eeedfc4d28eca2fc316ed61"
       },
       "./src/components/vm.tsx": {
@@ -4007,6 +4007,7 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4054,6 +4055,7 @@
       "./src/components/list/static.tsx",
       "./src/components/list/selectable.tsx",
       "./src/components/list/index.tsx",
+      "./src/components/dropdownactions/index.tsx",
       "./src/components/easydate/index.tsx",
       "./src/components/propgrid/propgrid.tsx",
       "./src/components/propgrid/row.tsx",
@@ -4187,9 +4189,7 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "./src/components/nav.tsx",
-      "./src/components/dropdownactions/index.tsx"
+      "./node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.6.3"

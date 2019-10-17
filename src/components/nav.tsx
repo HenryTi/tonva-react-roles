@@ -73,24 +73,11 @@ export class NavView extends React.Component<Props, NavViewState> {
             fetchError: undefined
         };
     }
-    /*
-    async componentWillMount() {
-        window.addEventListener('popstate', this.navBack);
-    }
-    */
     async componentDidMount()
     {
         //window.addEventListener('popstate', this.navBack);
         nav.set(this);
-        /*
-        let start = this.props.start;
-        if (start !== undefined) {
-            await start();
-        }
-        else {
-        */
-            await nav.start();
-        //}
+        await nav.start();
     }
 
     get level(): number {
