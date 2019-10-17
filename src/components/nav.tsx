@@ -64,8 +64,8 @@ export class NavView extends React.Component<Props, NavViewState> {
 
     constructor(props:Props) {
         super(props);
-        this.back = this.back.bind(this);
-        this.navBack = this.navBack.bind(this);
+        //this.back = this.back.bind(this);
+        //this.navBack = this.navBack.bind(this);
         this.stack = [];
         this.state = {
             stack: this.stack,
@@ -283,7 +283,7 @@ export class NavView extends React.Component<Props, NavViewState> {
     }
 
     private isHistoryBack:boolean = false;
-    navBack() {
+    navBack = () => {
         //nav.log('backbutton pressed - nav level: ' + this.stack.length);
         let tick = Date.now();
         this.isHistoryBack = true;
@@ -292,7 +292,7 @@ export class NavView extends React.Component<Props, NavViewState> {
         console.log(`///\\\\ ${Date.now()-tick}ms backbutton pressed - nav level: ${this.stack.length}`);
     }
 
-    async back(confirm:boolean = true) {
+    back = async (confirm:boolean = true) => {
         let stack = this.stack;
         let len = stack.length;
         if (len === 0) return;

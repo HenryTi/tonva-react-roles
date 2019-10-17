@@ -55,11 +55,39 @@ export class NavView extends React.Component {
             nav.start();
         };
         this.isHistoryBack = false;
+        this.navBack = () => {
+            //nav.log('backbutton pressed - nav level: ' + this.stack.length);
+            let tick = Date.now();
+            this.isHistoryBack = true;
+            this.back(true);
+            this.isHistoryBack = false;
+            console.log(`///\\\\ ${Date.now() - tick}ms backbutton pressed - nav level: ${this.stack.length}`);
+        };
+        this.back = (confirm = true) => __awaiter(this, void 0, void 0, function* () {
+            let stack = this.stack;
+            let len = stack.length;
+            if (len === 0)
+                return;
+            if (len === 1) {
+                if (window.self !== window.top) {
+                    window.top.postMessage({ type: 'pop-app' }, '*');
+                }
+                return;
+            }
+            let top = stack[len - 1];
+            if (confirm === true && top.confirmClose) {
+                if ((yield top.confirmClose()) === true)
+                    this.pop();
+            }
+            else {
+                this.pop();
+            }
+        });
         this.clearError = () => {
             this.setState({ fetchError: undefined });
         };
-        this.back = this.back.bind(this);
-        this.navBack = this.navBack.bind(this);
+        //this.back = this.back.bind(this);
+        //this.navBack = this.navBack.bind(this);
         this.stack = [];
         this.state = {
             stack: this.stack,
@@ -274,36 +302,6 @@ export class NavView extends React.Component {
             return;
         let top = stack[len - 1];
         top.confirmClose = confirmClose;
-    }
-    navBack() {
-        //nav.log('backbutton pressed - nav level: ' + this.stack.length);
-        let tick = Date.now();
-        this.isHistoryBack = true;
-        this.back(true);
-        this.isHistoryBack = false;
-        console.log(`///\\\\ ${Date.now() - tick}ms backbutton pressed - nav level: ${this.stack.length}`);
-    }
-    back(confirm = true) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let stack = this.stack;
-            let len = stack.length;
-            if (len === 0)
-                return;
-            if (len === 1) {
-                if (window.self !== window.top) {
-                    window.top.postMessage({ type: 'pop-app' }, '*');
-                }
-                return;
-            }
-            let top = stack[len - 1];
-            if (confirm === true && top.confirmClose) {
-                if ((yield top.confirmClose()) === true)
-                    this.pop();
-            }
-            else {
-                this.pop();
-            }
-        });
     }
     confirmBox(message) {
         return window.confirm(message);
