@@ -87,7 +87,7 @@ export declare class UserApi extends CenterApiBase {
         guest: number;
     }): Promise<any>;
     register(params: RegisterParameter): Promise<any>;
-    setVerify(account: string, type: 'mobile' | 'email', oem: string): Promise<any>;
+    sendVerify(account: string, type: 'mobile' | 'email', oem: string): Promise<any>;
     checkVerify(account: string, verify: string): Promise<any>;
     isExists(account: string): Promise<any>;
     resetPassword(account: string, password: string, verify: string, type: 'mobile' | 'email'): Promise<any>;

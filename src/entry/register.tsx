@@ -118,7 +118,7 @@ export class RegisterController extends Controller {
         let ret = await userApi.isExists(this.account);
         let error = this.accountError(ret);
         if (error !== undefined) return error;
-        ret = await userApi.setVerify(this.account, this.type, nav.oem);
+        ret = await userApi.sendVerify(this.account, this.type, nav.oem);
         this.toVerify(this.account);
         return;
     }

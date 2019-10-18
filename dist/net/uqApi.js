@@ -430,9 +430,9 @@ export class UserApi extends CenterApiBase {
             return yield this.post('user/register', params);
         });
     }
-    setVerify(account, type, oem) {
+    sendVerify(account, type, oem) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.post('user/set-verify', { account: account, type: type });
+            return yield this.post('user/set-verify', { account: account, type: type, oem: oem });
         });
     }
     checkVerify(account, verify) {

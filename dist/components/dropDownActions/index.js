@@ -23,12 +23,12 @@ export class DropdownActions extends React.Component {
         };
     }
     componentWillMount() {
-        //document.addEventListener('click', this.handleDocumentClick);
-        //document.addEventListener('touchstart', this.handleDocumentClick);
+        document.addEventListener('click', this.handleDocumentClick);
+        document.addEventListener('touchstart', this.handleDocumentClick);
     }
     componentWillUnmount() {
-        //document.removeEventListener('click', this.handleDocumentClick);
-        //document.removeEventListener('touchstart', this.handleDocumentClick);
+        document.removeEventListener('click', this.handleDocumentClick);
+        document.removeEventListener('touchstart', this.handleDocumentClick);
     }
     render() {
         let { icon, actions, isRight } = this.props;

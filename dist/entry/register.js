@@ -112,7 +112,7 @@ export class RegisterController extends Controller {
             let error = this.accountError(ret);
             if (error !== undefined)
                 return error;
-            ret = yield userApi.setVerify(this.account, this.type, nav.oem);
+            ret = yield userApi.sendVerify(this.account, this.type, nav.oem);
             this.toVerify(this.account);
             return;
         });

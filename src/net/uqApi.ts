@@ -603,8 +603,8 @@ export class UserApi extends CenterApiBase {
         return await this.post('user/register', params);
     }
 
-    async setVerify(account:string, type:'mobile'|'email', oem:string) {
-        return await this.post('user/set-verify', {account:account, type:type});
+    async sendVerify(account:string, type:'mobile'|'email', oem:string) {
+        return await this.post('user/set-verify', {account:account, type:type, oem:oem});
     }
 
     async checkVerify(account:string, verify:string) {
