@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { IComputedValue } from 'mobx';
+export declare class Scroller {
+    private el;
+    constructor(el: HTMLBaseElement);
+    scrollToTop(): void;
+    scrollToBottom(): void;
+}
 export interface ScrollProps {
     onScroll?: (e: any) => void;
-    onScrollTop?: () => void;
-    onScrollBottom?: () => void;
+    onScrollTop?: (scroller: Scroller) => void;
+    onScrollBottom?: (scroller: Scroller) => void;
 }
 export interface Tab extends ScrollProps {
     title: string | JSX.Element;

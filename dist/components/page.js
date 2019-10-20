@@ -18,6 +18,17 @@ import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import _ from 'lodash';
 import { PageHeader } from './pageHeader';
+export class Scroller {
+    constructor(el) {
+        this.el = el;
+    }
+    scrollToTop() {
+        setTimeout(() => this.el.scrollTo(0, 0), 100);
+    }
+    scrollToBottom() {
+        setTimeout(() => this.el.scrollTo(0, this.el.scrollTop + this.el.offsetHeight), 100);
+    }
+}
 const scrollTimeGap = 100;
 class ScrollView extends React.Component {
     constructor() {
@@ -29,13 +40,14 @@ class ScrollView extends React.Component {
             if (onScroll)
                 this.props.onScroll(e);
             let el = e.target;
+            let scroller = new Scroller(el);
             if (el.scrollTop < 30) {
                 //this.eachChild(this, 'top');
                 if (onScrollTop !== undefined) {
                     let topTime = new Date().getTime();
                     if (topTime - this.topTime > scrollTimeGap) {
                         this.topTime = topTime;
-                        onScrollTop();
+                        onScrollTop(scroller);
                     }
                 }
             }
@@ -45,7 +57,7 @@ class ScrollView extends React.Component {
                     let bottomTime = new Date().getTime();
                     if (bottomTime - this.bottomTime > scrollTimeGap) {
                         this.bottomTime = bottomTime;
-                        onScrollBottom();
+                        onScrollBottom(scroller);
                     }
                 }
             }
