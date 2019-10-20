@@ -1,5 +1,6 @@
 import { UqMan, TuidModify } from '../uqMan';
 import { Tuid } from "./tuid";
+import { env } from 'tool';
 
 interface Modify {
     id: number;
@@ -21,7 +22,7 @@ export class TuidsCache {
 
     cacheTuids(defer:number) {
         this.clearCacheTimer();
-        this.cacheTimer = setTimeout(this.loadIds, defer);
+        this.cacheTimer = env.setTimeout(this.loadIds, defer);
     }
     private clearCacheTimer() {
         if (this.cacheTimer === undefined) return;

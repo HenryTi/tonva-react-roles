@@ -108,7 +108,7 @@ export class NavView extends React.Component {
     startWait() {
         if (this.waitCount === 0) {
             this.setState({ wait: 1 });
-            this.waitTimeHandler = global.setTimeout(() => {
+            this.waitTimeHandler = env.setTimeout(() => {
                 this.waitTimeHandler = undefined;
                 this.setState({ wait: 2 });
             }, 1000);
@@ -119,7 +119,7 @@ export class NavView extends React.Component {
         });
     }
     endWait() {
-        setTimeout(() => {
+        env.setTimeout(() => {
             /*
             this.setState({
                 fetchError: undefined,

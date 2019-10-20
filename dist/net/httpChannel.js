@@ -149,7 +149,7 @@ export class HttpChannel {
             try {
                 console.log('%s-%s %s', options.method, path, options.body);
                 let now = Date.now();
-                let timeOutHandler = setTimeout(() => {
+                let timeOutHandler = env.setTimeout(() => {
                     that.endWait(url + ' timeout endWait: ' + (Date.now() - now) + 'ms', reject);
                 }, this.timeout);
                 let res = yield fetch(encodeURI(path), options);

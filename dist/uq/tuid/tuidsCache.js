@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { env } from 'tool';
 export class TuidsCache {
     constructor(uq) {
         this.loadIds = () => {
@@ -23,7 +24,7 @@ export class TuidsCache {
     }
     cacheTuids(defer) {
         this.clearCacheTimer();
-        this.cacheTimer = setTimeout(this.loadIds, defer);
+        this.cacheTimer = env.setTimeout(this.loadIds, defer);
     }
     clearCacheTimer() {
         if (this.cacheTimer === undefined)

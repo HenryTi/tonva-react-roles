@@ -195,7 +195,7 @@ function fetchLocalCheck(url) {
         })
             .catch(reject);
         const e = new Error("Connection timed out");
-        setTimeout(reject, timeout, e);
+        env.setTimeout(reject, timeout, e);
     });
 }
 function localCheck(url) {
