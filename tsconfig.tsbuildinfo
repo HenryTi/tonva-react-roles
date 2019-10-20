@@ -362,8 +362,8 @@
         "signature": "cd953c09fa2acb78928346b069aa472375599c048d50e9f27e32c34abe5efd55"
       },
       "./src/tool/env.ts": {
-        "version": "f94832005b84122fe5f9487b20a0e871c9294493b172b320da03bcf71b940cce",
-        "signature": "647f89d94879d60671bbff51ce71e3063cf25be2061a562b761626975daeda66"
+        "version": "9c5974d2b9c5860997f9a8ff4779ad12d321b76f72ce0097e6d0499cdf8f2b3d",
+        "signature": "806d66617d3f051a2c5c4af6e6d6ec52662666eb33a5a05eb1866af7f2c6dbc6"
       },
       "./src/tool/local.ts": {
         "version": "681d4a0e4941eda44915204493ca64e6909243f52f6138f7ff7d1f8f12710c4a",
@@ -466,7 +466,7 @@
         "signature": "ed056c000f3c02c125a1bfc1547c611017acb550f16063f89a823dd19493c8d2"
       },
       "./src/net/host.ts": {
-        "version": "def7f1b5b214039fd956f27f7a6c6c18ff65e1e86b10348f0f925330f1c26340",
+        "version": "5773f483d6085f0bedf754bf50515b5bc897d76c4fb9a4ef02c1019d606c4b61",
         "signature": "39b695b3b682b3e6e2924a56202a3ee719088a71fcbd587f42aecd8b5c358afd"
       },
       "./src/net/uqapi.ts": {
@@ -542,7 +542,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "6a02c65ab2e78527b779308f07145d20f400877af349e941e21b1b442bd46249",
+        "version": "fb5b7f45146f58c2665e9042b32bb0bdc510316caeb7c4a65cde3f494f0447ce",
         "signature": "fefe614432d53b57d6b3256149144e7e8dce492e4898ea89c92321e9b3bf4274"
       },
       "./src/components/vm.tsx": {
@@ -638,7 +638,7 @@
         "signature": "2bb09740108c786d61a18a232461199a97f1e1949b92deecf45565677586aea3"
       },
       "./src/components/edit/imageitemedit.tsx": {
-        "version": "6c3a0b5011e656ac258adc0b3b62407ca8ca08f9286db6bb9738b514d8e609a7",
+        "version": "0533780eadaf628c6c7d3cdb71572380c7dbaa97b2918c3e3e21f1ddbd7b485e",
         "signature": "75ebcef6ffae8d2e8a8e8e91424cd52c9d29b66ed3f5b33ce4c4fb24b0ba8f9b"
       },
       "./src/components/form/widgets/imagewidget.tsx": {
@@ -778,7 +778,7 @@
         "signature": "72b72bcdb0ec80269a441a0260aa999e86ea4d0adb8d10619db3cc11c5771679"
       },
       "./src/net/httpchannel.ts": {
-        "version": "8d707e707bf25f40e8e6f783905da998d3422f94ff9ce067c08ec01d3aebb07c",
+        "version": "56fd2e363f0688ecb363833ea812efa9dca3b90156edca55f6cad9d8f8380382",
         "signature": "b9ac0d2bc488cc8a2a4142d1ae866bfdc0608494c3f16abd4f9ce794241eda81"
       },
       "./src/net/apibase.ts": {
@@ -830,7 +830,7 @@
         "signature": "e48f8d7d7db88718c389c91f3403ef2f5b37afff0caa5cdff2badccf02cf6b17"
       },
       "./src/uq/tuid/tuidscache.ts": {
-        "version": "4de624475f731377718bb7cbe95415d2cce210a9fc73ca818a3a070961c229a1",
+        "version": "8f1e801eb65f742cf463d9edf4951e0bf2ca9b66c782b4e8aca391498d44afb5",
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
@@ -3990,7 +3990,6 @@
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
-      "./src/net/host.ts",
       "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
       "./src/components/fetcherrorview.tsx",
@@ -4009,6 +4008,7 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4067,6 +4067,7 @@
       "./src/components/index.ts",
       "./src/net/appbridge.ts",
       "./src/net/caller.ts",
+      "./src/net/httpchannel.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
       "./src/net/index.ts",
@@ -4079,6 +4080,7 @@
       "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
+      "./src/uq/tuid/tuidscache.ts",
       "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
@@ -4189,9 +4191,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/components/nav.tsx",
-      "./src/net/httpchannel.ts",
-      "./src/uq/tuid/tuidscache.ts"
+      "./src/net/host.ts"
     ]
   },
   "version": "3.6.3"

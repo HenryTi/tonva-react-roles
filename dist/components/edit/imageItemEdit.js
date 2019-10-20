@@ -32,7 +32,7 @@ export class ImageItemEdit extends ItemEdit {
             let ret = yield this.resUploader.upload();
             if (ret === null) {
                 this.overSize = true;
-                env.setTimeout(() => this.overSize = false, 3000);
+                env.setTimeout('imageItemEdit upload', () => this.overSize = false, 3000);
                 return;
             }
             this.resId = ret;

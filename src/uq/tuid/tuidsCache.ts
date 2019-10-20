@@ -22,7 +22,7 @@ export class TuidsCache {
 
     cacheTuids(defer:number) {
         this.clearCacheTimer();
-        this.cacheTimer = env.setTimeout(this.loadIds, defer);
+        this.cacheTimer = env.setTimeout('TuidsCache.cacheTuids', this.loadIds, defer);
     }
     private clearCacheTimer() {
         if (this.cacheTimer === undefined) return;

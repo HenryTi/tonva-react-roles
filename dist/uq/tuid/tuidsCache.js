@@ -24,7 +24,7 @@ export class TuidsCache {
     }
     cacheTuids(defer) {
         this.clearCacheTimer();
-        this.cacheTimer = env.setTimeout(this.loadIds, defer);
+        this.cacheTimer = env.setTimeout('TuidsCache.cacheTuids', this.loadIds, defer);
     }
     clearCacheTimer() {
         if (this.cacheTimer === undefined)

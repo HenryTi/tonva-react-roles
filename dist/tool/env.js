@@ -16,21 +16,21 @@ export const env = (function () {
         testing: testing,
         isDevelopment: process.env.NODE_ENV === 'development',
         localDb: localDb,
-        setTimeout: (callback, ms, ...args) => {
-            console.log('setTimeout');
-            return setTimeout(callback, ms, ...args);
+        setTimeout: (tag, callback, ms, ...args) => {
+            console.log('setTimeout ' + tag);
+            return global.setTimeout(callback, ms, ...args);
         },
         clearTimeout: (handle) => {
             console.log('clearTimeout');
-            clearTimeout(handle);
+            global.clearTimeout(handle);
         },
         setInterval: (callback, ms, ...args) => {
             console.log('setInterval');
-            return setInterval(callback, ms, ...args);
+            return global.setInterval(callback, ms, ...args);
         },
         clearInterval: (handle) => {
             console.log('clearInterval');
-            clearInterval(handle);
+            global.clearInterval(handle);
         }
     };
 }());
