@@ -36,7 +36,7 @@ export class ImageItemEdit extends ItemEdit {
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
         let {resolve} = props;
         let right = <button
-            className="btn btn-sm btn-success"
+            className="btn btn-sm btn-success align-self-center"
             disabled={!this.isChanged}
             onClick={()=>resolve(this.resId)}>保存</button>;
         let overSize:any;

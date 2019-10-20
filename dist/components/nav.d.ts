@@ -83,6 +83,11 @@ export declare class Nav {
     private centerHost;
     private arrs;
     private unitJsonPath;
+    private windowOnError;
+    private windowOnUnhandledRejection;
+    private windowOnClick;
+    private windowOnMouseMove;
+    private windowOnScroll;
     start(): Promise<void>;
     showAppView(): Promise<void>;
     setGuest(guest: Guest): void;

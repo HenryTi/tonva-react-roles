@@ -24,7 +24,7 @@ export class RadioItemEdit extends ItemEdit {
             let { resolve } = props;
             let { name } = this.itemSchema;
             let { list } = this.uiItem;
-            let right = React.createElement("button", { className: "btn btn-sm btn-success", disabled: !this.isChanged, onClick: () => {
+            let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !this.isChanged, onClick: () => {
                     this.verifyValue();
                     if (this.error === undefined)
                         resolve(this.newValue);

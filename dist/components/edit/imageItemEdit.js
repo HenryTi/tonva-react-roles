@@ -39,7 +39,7 @@ export class ImageItemEdit extends ItemEdit {
         });
         this.page = observer((props) => {
             let { resolve } = props;
-            let right = React.createElement("button", { className: "btn btn-sm btn-success", disabled: !this.isChanged, onClick: () => resolve(this.resId) }, "\u4FDD\u5B58");
+            let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !this.isChanged, onClick: () => resolve(this.resId) }, "\u4FDD\u5B58");
             let overSize;
             if (this.overSize === true) {
                 overSize = React.createElement("div", { className: "text-danger" },

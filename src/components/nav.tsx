@@ -555,8 +555,32 @@ export class Nav {
         }
         return href + '/unit.json';
     }
+    private windowOnError = (event: Event | string, source?: string, lineno?: number, colno?: number, error?: Error) => {
+        console.error('windowOnError');
+        console.error(error);
+    }
+    private windowOnUnhandledRejection = (ev: PromiseRejectionEvent) => {
+        console.error('windowOnUnhandledRejection');
+        console.error(ev.reason);
+    }
+    private windowOnClick = (ev: MouseEvent) => {
+        console.error('windowOnClick');
+    }
+    private windowOnMouseMove = (ev: MouseEvent) => {
+        console.log('mouse move (%s, %s)', ev.x, ev.y);
+    }
+    private windowOnScroll = (ev: Event) => {
+        console.log('scroll event');
+    }
     async start() {
         try {
+            window.onerror = this.windowOnError;
+            window.onunhandledrejection = this.windowOnUnhandledRejection;
+            window.addEventListener('click', this.windowOnClick);
+            window.addEventListener('mousemove', this.windowOnMouseMove);
+            window.addEventListener('touchmove', this.windowOnMouseMove);
+            window.addEventListener('scroll', this.windowOnScroll);
+            window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
             this.testing = env.testing;
             await host.start(this.testing);
             let hash = document.location.hash;

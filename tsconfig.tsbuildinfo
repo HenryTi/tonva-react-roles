@@ -542,8 +542,8 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "d8fe0bd1afeb6fd9af12b0cfbad0c95f0922e48b97365eae651fb475ee8c5d6c",
-        "signature": "e795c2ddff6a4275d4f978d4f590cd4f6b21db390dee1f919dbfe265e3e866e8"
+        "version": "6b44cf040b40268505a6460526038e3c2a4cb62678d0bf3b953be618d36099bb",
+        "signature": "fefe614432d53b57d6b3256149144e7e8dce492e4898ea89c92321e9b3bf4274"
       },
       "./src/components/vm.tsx": {
         "version": "5b02916c2e73a81218c917163ac32f120b36c2f02a8b72b6d158b2f12a078b0a",
@@ -638,7 +638,7 @@
         "signature": "2bb09740108c786d61a18a232461199a97f1e1949b92deecf45565677586aea3"
       },
       "./src/components/edit/imageitemedit.tsx": {
-        "version": "451390902746fe8eccbcc4361f87ee63b2d65f0061704c6266f8feaf1e919c81",
+        "version": "f702e0bfe94241fb9c6bfbe1932b3fb1ff1167b46e3c028ec4845f6e08c72579",
         "signature": "75ebcef6ffae8d2e8a8e8e91424cd52c9d29b66ed3f5b33ce4c4fb24b0ba8f9b"
       },
       "./src/components/form/widgets/imagewidget.tsx": {
@@ -678,11 +678,11 @@
         "signature": "a3f93fa096c839777cedd9106e79a830ed3c686e01c1de9585d24c2c6facc3c6"
       },
       "./src/components/edit/stringitemedit.tsx": {
-        "version": "7afa9d284a394444ed4cd1b7bb05070d2cea965573ae2a786a28f785761fc210",
+        "version": "703b722aa0361fc8cc8a341851b6063b1445d5dbabe93150c25d5feb9b16630a",
         "signature": "6e7b2ebd15016ca0a130718a12dd5e13c6afa9267efe0b03ae410716c53c2cd3"
       },
       "./src/components/edit/radioitemedit.tsx": {
-        "version": "7aa47ae6a932598a0939075a799e37354e22d4e85372740fab4c70bb382b3416",
+        "version": "1121552c4a6a68773ce2c59089ac5cc99ac87d68b1ee1c9034cd6f4f927b9d9d",
         "signature": "f6f0091532937550d23177aa1d61541a34f25072818edacfecbea2b8601d7657"
       },
       "./src/components/edit/selectitemedit.tsx": {
@@ -867,7 +867,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "e61bf2ec50c3198539312bb357e0e055f1accf05163c2ee0eb587f0df9664652",
-        "signature": "e96f95694fb895595737c40064b7a227bcac259fd2ed3cd2a9bff5cfff1c8332"
+        "signature": "714cf37350c4d0190b811086a7e96824fe0ffe36e51c01033d75c7d0de37d971"
       },
       "./src/uq/index.ts": {
         "version": "b20883d8fd2a61f444a4b5fe2f2b45e85af5eb8d4a8b325375ad14261d7c1475",
@@ -4067,6 +4067,7 @@
       "./src/net/appbridge.ts",
       "./src/net/caller.ts",
       "./src/net/httpchannel.ts",
+      "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
       "./src/net/index.ts",
       "./src/entry/meinfo.tsx",
@@ -4188,8 +4189,7 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "./src/net/apibase.ts"
+      "./node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.6.3"

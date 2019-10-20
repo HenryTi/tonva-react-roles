@@ -28,12 +28,12 @@ export class StringItemEdit extends ItemEdit {
         };
         this.page = observer((props) => {
             let { resolve } = props;
-            let right = React.createElement("button", { className: "btn btn-sm btn-success", disabled: !this.isChanged, onClick: () => {
+            let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !this.isChanged, onClick: () => {
                     this.verifyValue();
                     if (this.error === undefined)
                         resolve(this.newValue);
                 } }, "\u4FDD\u5B58");
-            return React.createElement(Page, { header: '更改' + this.label, right: right },
+            return React.createElement(Page, { header: this.label, right: right },
                 React.createElement("div", { className: "m-3" },
                     React.createElement("input", { type: "text", onChange: this.onChange, onBlur: this.onBlur, onFocus: this.onFocus, className: "form-control", defaultValue: this.value }),
                     this.uiItem && React.createElement("div", { className: "small muted m-2" }, this.uiItem.placeholder),

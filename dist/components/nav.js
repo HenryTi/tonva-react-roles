@@ -380,6 +380,23 @@ export class Nav {
         this.local = new LocalData();
         this.user = undefined;
         this.arrs = ['/test', '/test/'];
+        this.windowOnError = (event, source, lineno, colno, error) => {
+            console.error('windowOnError');
+            console.error(error);
+        };
+        this.windowOnUnhandledRejection = (ev) => {
+            console.error('windowOnUnhandledRejection');
+            console.error(ev.reason);
+        };
+        this.windowOnClick = (ev) => {
+            console.error('windowOnClick');
+        };
+        this.windowOnMouseMove = (ev) => {
+            console.log('mouse move (%s, %s)', ev.x, ev.y);
+        };
+        this.windowOnScroll = (ev) => {
+            console.log('scroll event');
+        };
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;
@@ -524,6 +541,13 @@ export class Nav {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                window.onerror = this.windowOnError;
+                window.onunhandledrejection = this.windowOnUnhandledRejection;
+                window.addEventListener('click', this.windowOnClick);
+                window.addEventListener('mousemove', this.windowOnMouseMove);
+                window.addEventListener('touchmove', this.windowOnMouseMove);
+                window.addEventListener('scroll', this.windowOnScroll);
+                window.setInterval(() => console.error('tick every 5 seconds'), 5000);
                 this.testing = env.testing;
                 yield host.start(this.testing);
                 let hash = document.location.hash;
