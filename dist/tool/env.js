@@ -17,19 +17,17 @@ export const env = (function () {
         isDevelopment: process.env.NODE_ENV === 'development',
         localDb: localDb,
         setTimeout: (tag, callback, ms, ...args) => {
-            console.log('setTimeout ' + tag);
+            if (tag !== undefined)
+                console.log('setTimeout ' + tag);
             return global.setTimeout(callback, ms, ...args);
         },
         clearTimeout: (handle) => {
-            console.log('clearTimeout');
             global.clearTimeout(handle);
         },
         setInterval: (callback, ms, ...args) => {
-            console.log('setInterval');
             return global.setInterval(callback, ms, ...args);
         },
         clearInterval: (handle) => {
-            console.log('clearInterval');
             global.clearInterval(handle);
         }
     };

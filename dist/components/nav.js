@@ -30,13 +30,10 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
-/*
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
-    'BlackBerry|Windows Phone|'  +
-    'Opera Mini|IEMobile|Mobile' ,
-    'i');
+    'BlackBerry|Windows Phone|' +
+    'Opera Mini|IEMobile|Mobile', 'i');
 const isMobile = regEx.test(navigator.userAgent);
-*/
 /*
 export const mobileHeaderStyle = isMobile? {
     minHeight:  '3em'
@@ -392,6 +389,7 @@ export class Nav {
             console.error('windowOnClick');
         };
         this.windowOnMouseMove = (ev) => {
+            console.log('navigator.userAgent: ' + navigator.userAgent);
             console.log('mouse move (%s, %s)', ev.x, ev.y);
         };
         this.windowOnScroll = (ev) => {
@@ -544,9 +542,13 @@ export class Nav {
                 window.onerror = this.windowOnError;
                 window.onunhandledrejection = this.windowOnUnhandledRejection;
                 window.addEventListener('click', this.windowOnClick);
-                window.addEventListener('mousemove', this.windowOnMouseMove);
-                window.addEventListener('touchmove', this.windowOnMouseMove);
-                window.addEventListener('scroll', this.windowOnScroll);
+                //window.addEventListener('mousemove', this.windowOnMouseMove);
+                //window.addEventListener('touchmove', this.windowOnMouseMove);
+                //window.addEventListener('scroll', this.windowOnScroll);
+                if (isMobile === true) {
+                    document.onselectstart = function () { return false; };
+                    document.oncontextmenu = function () { return false; };
+                }
                 window.setInterval(() => console.error('tick every 5 seconds'), 5000);
                 this.testing = env.testing;
                 yield host.start(this.testing);

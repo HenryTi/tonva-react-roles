@@ -157,55 +157,55 @@ export class Query extends Entity {
             //this.loaded = true;
         });
     }
-    pageCaller(params) {
-        return new QueryPageCaller(this, params);
+    pageCaller(params, showWaiting = true) {
+        return new QueryPageCaller(this, params, showWaiting);
     }
-    page(params, pageStart, pageSize) {
+    page(params, pageStart, pageSize, showWaiting = true) {
         return __awaiter(this, void 0, void 0, function* () {
             /*
             await this.loadSchema();
             let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
             */
             let p = { pageStart: pageStart, pageSize: pageSize + 1, params: params };
-            let res = yield this.pageCaller(p).request();
+            let res = yield this.pageCaller(p, showWaiting).request();
             //let data = this.unpackReturns(res);
             //return data.$page;// as any[];
             return res;
         });
     }
-    queryCaller(params) {
-        return new QueryQueryCaller(this, params);
+    queryCaller(params, showWaiting = true) {
+        return new QueryQueryCaller(this, params, showWaiting);
     }
-    query(params) {
+    query(params, showWaiting = true) {
         return __awaiter(this, void 0, void 0, function* () {
             /*
             await this.loadSchema();
             let res = await this.uqApi.query(this.name, this.buildParams(params));
             */
-            let res = yield this.queryCaller(params).request();
+            let res = yield this.queryCaller(params, showWaiting).request();
             //let data = this.unpackReturns(res);
             //return data;
             return res;
         });
     }
-    table(params) {
+    table(params, showWaiting = true) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.query(params);
+            let ret = yield this.query(params, showWaiting);
             for (let i in ret) {
                 return ret[i];
             }
         });
     }
-    obj(params) {
+    obj(params, showWaiting = true) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.table(params);
+            let ret = yield this.table(params, showWaiting);
             if (ret.length > 0)
                 return ret[0];
         });
     }
-    scalar(params) {
+    scalar(params, showWaiting = true) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.obj(params);
+            let ret = yield this.obj(params, showWaiting);
             for (let i in ret)
                 return ret[i];
         });

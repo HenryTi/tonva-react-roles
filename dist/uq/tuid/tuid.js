@@ -30,6 +30,7 @@ export class Tuid extends Entity {
         return new TuidBox(this);
     }
     getIdFromObj(obj) { return obj[this.idName]; }
+    stopCache() { this.noCache = true; }
     cacheIds() { }
     modifyIds(ids) {
         return __awaiter(this, void 0, void 0, function* () { });
@@ -58,6 +59,8 @@ export class TuidInner extends Tuid {
         }
     }
     useId(id, defer) {
+        if (this.noCache === true)
+            return;
         this.idCache.useId(id, defer);
     }
     boxId(id) {
@@ -502,6 +505,8 @@ export class TuidDiv extends TuidInner /* Entity*/ {
         this.idCache.cacheValue(value);
     }
     useId(id, defer) {
+        if (this.noCache === true)
+            return;
         this.idCache.useId(id, defer);
     }
     /*

@@ -12,6 +12,7 @@ export interface TuidSaveResult {
 }
 
 export abstract class Tuid extends Entity {
+    protected noCache: boolean;
     readonly typeName:string = 'tuid';
     protected idName: string;
     cached: boolean;
@@ -33,6 +34,7 @@ export abstract class Tuid extends Entity {
     }
 
     getIdFromObj(obj:any):number {return obj[this.idName]}
+    stopCache():void {this.noCache = true}
     abstract useId(id:number):void;
     abstract boxId(id:number):BoxId;
     abstract valueFromId(id:number):any;
@@ -81,6 +83,7 @@ export class TuidInner extends Tuid {
     }
     
     useId(id:number, defer?:boolean) {
+        if (this.noCache === true) return;
         this.idCache.useId(id, defer);
     }
     boxId(id:number):BoxId {
@@ -493,6 +496,7 @@ export class TuidDiv extends TuidInner /* Entity*/ {
     }
 
     useId(id:number, defer?:boolean):void {
+        if (this.noCache === true) return;
         this.idCache.useId(id, defer);
     }
 

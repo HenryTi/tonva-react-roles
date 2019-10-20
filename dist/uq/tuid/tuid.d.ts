@@ -8,6 +8,7 @@ export interface TuidSaveResult {
     inId: number;
 }
 export declare abstract class Tuid extends Entity {
+    protected noCache: boolean;
     readonly typeName: string;
     protected idName: string;
     cached: boolean;
@@ -15,6 +16,7 @@ export declare abstract class Tuid extends Entity {
     setSchema(schema: any): void;
     buildTuidBox(): TuidBox;
     getIdFromObj(obj: any): number;
+    stopCache(): void;
     abstract useId(id: number): void;
     abstract boxId(id: number): BoxId;
     abstract valueFromId(id: number): any;

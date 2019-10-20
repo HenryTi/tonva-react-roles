@@ -25,11 +25,11 @@ export declare class Query extends Entity {
     resetPage(size: number, params: any): void;
     readonly hasMore: boolean;
     loadPage(): Promise<void>;
-    protected pageCaller(params: any): QueryPageCaller;
-    page(params: any, pageStart: any, pageSize: number): Promise<any[]>;
-    protected queryCaller(params: any): QueryQueryCaller;
-    query(params: any): Promise<any>;
-    table(params: any): Promise<any[]>;
-    obj(params: any): Promise<any>;
-    scalar(params: any): Promise<any>;
+    protected pageCaller(params: any, showWaiting?: boolean): QueryPageCaller;
+    page(params: any, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<any[]>;
+    protected queryCaller(params: any, showWaiting?: boolean): QueryQueryCaller;
+    query(params: any, showWaiting?: boolean): Promise<any>;
+    table(params: any, showWaiting?: boolean): Promise<any[]>;
+    obj(params: any, showWaiting?: boolean): Promise<any>;
+    scalar(params: any, showWaiting?: boolean): Promise<any>;
 }
