@@ -1,6 +1,6 @@
 import { UqMan, TuidModify } from '../uqMan';
 import { Tuid } from "./tuid";
-import { env } from 'tool';
+import { env } from '../../tool';
 
 interface Modify {
     id: number;
@@ -26,7 +26,7 @@ export class TuidsCache {
     }
     private clearCacheTimer() {
         if (this.cacheTimer === undefined) return;
-        clearTimeout(this.cacheTimer);
+        env.clearTimeout(this.cacheTimer);
         this.cacheTimer = undefined;
     }
     private loadIds = () => {

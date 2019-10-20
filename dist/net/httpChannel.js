@@ -154,7 +154,7 @@ export class HttpChannel {
                 }, this.timeout);
                 let res = yield fetch(encodeURI(path), options);
                 if (res.ok === false) {
-                    clearTimeout(timeOutHandler);
+                    env.clearTimeout(timeOutHandler);
                     console.log('ok false endWait');
                     that.endWait();
                     console.log('call error %s', res.statusText);
@@ -163,7 +163,7 @@ export class HttpChannel {
                 let ct = res.headers.get('content-type');
                 if (ct && ct.indexOf('json') >= 0) {
                     return res.json().then((retJson) => __awaiter(this, void 0, void 0, function* () {
-                        clearTimeout(timeOutHandler);
+                        env.clearTimeout(timeOutHandler);
                         that.endWait();
                         if (retJson.ok === true) {
                             if (typeof retJson !== 'object') {
@@ -188,7 +188,7 @@ export class HttpChannel {
                 }
                 else {
                     let text = yield res.text();
-                    clearTimeout(timeOutHandler);
+                    env.clearTimeout(timeOutHandler);
                     console.log('text endWait');
                     that.endWait();
                     resolve(text);

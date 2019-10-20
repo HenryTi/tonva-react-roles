@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { env } from 'tool';
+import { env } from '../../tool';
 export class TuidsCache {
     constructor(uq) {
         this.loadIds = () => {
@@ -29,7 +29,7 @@ export class TuidsCache {
     clearCacheTimer() {
         if (this.cacheTimer === undefined)
             return;
-        clearTimeout(this.cacheTimer);
+        env.clearTimeout(this.cacheTimer);
         this.cacheTimer = undefined;
     }
     pullModify(modifyMax) {

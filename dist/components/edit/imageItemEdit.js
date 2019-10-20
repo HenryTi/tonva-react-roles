@@ -21,7 +21,7 @@ import { Image } from '../image';
 import { nav } from '../nav';
 import { Page } from '../page';
 import { ItemEdit } from './itemEdit';
-import { env } from 'tool';
+import { env } from '../../tool';
 export class ImageItemEdit extends ItemEdit {
     constructor() {
         super(...arguments);

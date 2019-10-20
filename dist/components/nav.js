@@ -127,7 +127,7 @@ export class NavView extends React.Component {
             --this.waitCount;
             if (this.waitCount === 0) {
                 if (this.waitTimeHandler !== undefined) {
-                    clearTimeout(this.waitTimeHandler);
+                    env.clearTimeout(this.waitTimeHandler);
                     this.waitTimeHandler = undefined;
                 }
                 this.setState({ wait: 0 });

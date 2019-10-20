@@ -542,7 +542,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "10e5be0ae18af78fe5708b86ce1d7aadb87f8605ea3dab9e86c9aaab5eb6a063",
+        "version": "6a02c65ab2e78527b779308f07145d20f400877af349e941e21b1b442bd46249",
         "signature": "fefe614432d53b57d6b3256149144e7e8dce492e4898ea89c92321e9b3bf4274"
       },
       "./src/components/vm.tsx": {
@@ -638,7 +638,7 @@
         "signature": "2bb09740108c786d61a18a232461199a97f1e1949b92deecf45565677586aea3"
       },
       "./src/components/edit/imageitemedit.tsx": {
-        "version": "e5a708c6f8feb7a032c5888e7fdd49ce7431152323905c32775db30f76b1faaa",
+        "version": "6c3a0b5011e656ac258adc0b3b62407ca8ca08f9286db6bb9738b514d8e609a7",
         "signature": "75ebcef6ffae8d2e8a8e8e91424cd52c9d29b66ed3f5b33ce4c4fb24b0ba8f9b"
       },
       "./src/components/form/widgets/imagewidget.tsx": {
@@ -778,7 +778,7 @@
         "signature": "72b72bcdb0ec80269a441a0260aa999e86ea4d0adb8d10619db3cc11c5771679"
       },
       "./src/net/httpchannel.ts": {
-        "version": "fca12cf8c2d15c1934e0767528cf52086ca4fac0dfea63394e95261f82cca5a3",
+        "version": "8d707e707bf25f40e8e6f783905da998d3422f94ff9ce067c08ec01d3aebb07c",
         "signature": "b9ac0d2bc488cc8a2a4142d1ae866bfdc0608494c3f16abd4f9ce794241eda81"
       },
       "./src/net/apibase.ts": {
@@ -830,7 +830,7 @@
         "signature": "e48f8d7d7db88718c389c91f3403ef2f5b37afff0caa5cdff2badccf02cf6b17"
       },
       "./src/uq/tuid/tuidscache.ts": {
-        "version": "5a29893b4c3c496830dac41f82a39d8d0b340c0dce8be8c0e17a5d45152b75b3",
+        "version": "4de624475f731377718bb7cbe95415d2cce210a9fc73ca818a3a070961c229a1",
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
@@ -4009,7 +4009,6 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4068,7 +4067,6 @@
       "./src/components/index.ts",
       "./src/net/appbridge.ts",
       "./src/net/caller.ts",
-      "./src/net/httpchannel.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
       "./src/net/index.ts",
@@ -4081,7 +4079,6 @@
       "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
-      "./src/uq/tuid/tuidscache.ts",
       "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
@@ -4191,7 +4188,10 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts"
+      "./node_modules/@types/react-dom/index.d.ts",
+      "./src/components/nav.tsx",
+      "./src/net/httpchannel.ts",
+      "./src/uq/tuid/tuidscache.ts"
     ]
   },
   "version": "3.6.3"
