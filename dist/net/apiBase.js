@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 export function refetchApi(channel, url, options, resolve, reject) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield channel.fetch(url, options, resolve, reject);
+        yield channel.fetch(url, options, false, resolve, reject);
     });
 }
 export class ApiBase {

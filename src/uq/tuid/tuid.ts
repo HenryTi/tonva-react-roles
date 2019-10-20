@@ -109,8 +109,7 @@ export class TuidInner extends Tuid {
         return this.divs && this.divs[name];
     }
     async loadTuidIds(divName:string, ids:number[]):Promise<any[]> {
-        //return await this.uqApi.tuidIds(this.name, divName, ids);
-        let ret:any[] = await new IdsCaller(this, {divName:divName, ids:ids}).request();
+        let ret:any[] = await new IdsCaller(this, {divName:divName, ids:ids}, false).request();
         if (ret.length > 0) this.cached = true;
         return ret;
     }

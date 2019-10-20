@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 //import _ from 'lodash';
 import { Caller } from '../net';
 export class EntityCaller extends Caller {
-    constructor(entity, params) {
-        super(params);
+    constructor(entity, params, waiting = true) {
+        super(params, waiting);
         this.tries = 0;
         this._entity = entity;
     }

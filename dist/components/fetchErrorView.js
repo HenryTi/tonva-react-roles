@@ -23,14 +23,13 @@ export default class FetchErrorView extends React.Component {
     }
     render() {
         let { error, url } = this.props;
-        //let errMsg = fetchError.errorMsg;
         let errContent;
         if (typeof error === 'object') {
             let err = [];
             for (let i in error) {
                 err.push(React.createElement("li", { key: i },
                     React.createElement("label", null, i),
-                    React.createElement("div", null, error[i])));
+                    React.createElement("div", { style: { wordWrap: "break-word" } }, error[i])));
             }
             errContent = React.createElement("ul", null, err);
         }
@@ -43,7 +42,7 @@ export default class FetchErrorView extends React.Component {
                     React.createElement("div", { className: "va-error" },
                         React.createElement("div", null, "\u7F51\u7EDC\u51FA\u73B0\u95EE\u9898"),
                         React.createElement("div", null, "\u70B9\u51FB\u91CD\u65B0\u8BBF\u95EE"),
-                        React.createElement("div", null,
+                        React.createElement("div", { style: { wordWrap: "break-word" } },
                             "url: ",
                             url),
                         errContent,

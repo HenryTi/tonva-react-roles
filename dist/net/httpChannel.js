@@ -26,9 +26,11 @@ export async function httpPost(url:string, params?:any):Promise<any> {
 const methodsWithBody = ['POST', 'PUT'];
 export class HttpChannel {
     constructor(hostUrl, apiToken, ui) {
-        this.startWait = () => {
-            if (this.ui !== undefined)
-                this.ui.startWait();
+        this.startWait = (waiting) => {
+            if (waiting === true) {
+                if (this.ui !== undefined)
+                    this.ui.startWait();
+            }
         };
         this.endWait = (url, reject) => {
             if (this.ui !== undefined)
@@ -43,7 +45,7 @@ export class HttpChannel {
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
-        this.timeout = env.isDevelopment === true ? 500000 : 5000;
+        this.timeout = env.isDevelopment === true ? 500000 : 50000;
     }
     used() {
         this.post('', {});
@@ -63,16 +65,16 @@ export class HttpChannel {
             if (methodsWithBody.indexOf(method) >= 0 && p !== undefined) {
                 options.body = JSON.stringify(p);
             }
-            return yield this.innerFetch(urlPrefix + path, options);
+            return yield this.innerFetch(urlPrefix + path, options, caller.waiting);
         });
     }
-    innerFetchResult(url, options) {
+    innerFetchResult(url, options, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ret = yield this.innerFetch(url, options);
+            let ret = yield this.innerFetch(url, options, waiting);
             return ret.res;
         });
     }
-    get(url, params = undefined) {
+    get(url, params = undefined, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             if (params) {
                 let keys = Object.keys(params);
@@ -89,39 +91,52 @@ export class HttpChannel {
             }
             let options = this.buildOptions();
             options.method = 'GET';
-            return yield this.innerFetchResult(url, options);
+            return yield this.innerFetchResult(url, options, waiting);
         });
     }
-    post(url, params) {
+    post(url, params, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let options = this.buildOptions();
             options.method = 'POST';
             options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+            return yield this.innerFetchResult(url, options, waiting);
         });
     }
-    put(url, params) {
+    put(url, params, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let options = this.buildOptions();
             options.method = 'PUT';
             options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+            return yield this.innerFetchResult(url, options, waiting);
         });
     }
-    delete(url, params) {
+    delete(url, params, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let options = this.buildOptions();
             options.method = 'DELETE';
             options.body = JSON.stringify(params);
-            return yield this.innerFetchResult(url, options);
+            return yield this.innerFetchResult(url, options, waiting);
         });
     }
-    fetch(url, options, resolve, reject) {
+    fetch(url, options, waiting, resolve, reject) {
         return __awaiter(this, void 0, void 0, function* () {
             let that = this;
-            this.startWait();
+            this.startWait(waiting);
             let path = url;
-            function buildError(err) {
+            function buildError(err, ex) {
+                switch (typeof err) {
+                    case 'string':
+                        if (ex !== undefined)
+                            err += ' ' + ex;
+                        break;
+                    case 'object':
+                        let retErr = {
+                            ex: ex,
+                            message: err.message,
+                        };
+                        err = retErr;
+                        break;
+                }
                 return {
                     channel: that,
                     url: path,
@@ -132,11 +147,15 @@ export class HttpChannel {
                 };
             }
             try {
-                console.log('%s %s', options.method, path);
-                let timeOutHandler = setTimeout(() => that.endWait(url, reject), this.timeout);
+                console.log('%s-%s %s', options.method, path, options.body);
+                let now = Date.now();
+                let timeOutHandler = setTimeout(() => {
+                    that.endWait(url + ' timeout endWait: ' + (Date.now() - now) + 'ms', reject);
+                }, this.timeout);
                 let res = yield fetch(encodeURI(path), options);
                 if (res.ok === false) {
                     clearTimeout(timeOutHandler);
+                    console.log('ok false endWait');
                     that.endWait();
                     console.log('call error %s', res.statusText);
                     throw res.statusText;
@@ -153,16 +172,6 @@ export class HttpChannel {
                             else if (Array.isArray(retJson) === true) {
                                 debugger;
                             }
-                            /*
-                            let json = retJson.res;
-                            if (json === undefined) {
-                                json = {
-                                    $uq: retJson.$uq
-                                }
-                            }
-                            */
-                            //json.$modify = retJson.$modify;
-                            //return resolve(json);
                             return resolve(retJson);
                         }
                         let retError = retJson.error;
@@ -170,21 +179,23 @@ export class HttpChannel {
                             yield that.showError(buildError('not valid tonva json'));
                         }
                         else {
-                            yield that.showError(buildError(retError));
+                            yield that.showError(buildError(retError, 'retJson.error'));
                             reject(retError);
                         }
                     })).catch((error) => __awaiter(this, void 0, void 0, function* () {
-                        yield that.showError(buildError(error));
+                        yield that.showError(buildError(error, 'catch res.json()'));
                     }));
                 }
                 else {
                     let text = yield res.text();
                     clearTimeout(timeOutHandler);
+                    console.log('text endWait');
                     that.endWait();
                     resolve(text);
                 }
             }
             catch (error) {
+                this.endWait(url, reject);
                 if (typeof error === 'string') {
                     let err = error.toLowerCase();
                     if (err.startsWith('unauthorized') === true) {
@@ -192,7 +203,8 @@ export class HttpChannel {
                         return;
                     }
                 }
-                yield this.showError(buildError(error.message));
+                console.error('fecth error (no nav.showError): ' + url);
+                // await this.showError(buildError(error, 'catch outmost'));
             }
             ;
         });
@@ -203,7 +215,7 @@ export class HttpChannel {
             options.method = method;
             options.body = body;
             return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(url, options, resolve, reject);
+                yield this.fetch(url, options, true, resolve, reject);
             }));
         });
     }
@@ -232,13 +244,13 @@ export class HttpChannel {
     }
 }
 export class CenterHttpChannel extends HttpChannel {
-    innerFetch(url, options) {
+    innerFetch(url, options, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let u = this.hostUrl + url;
             if (this.apiToken === undefined && isBridged())
                 return yield bridgeCenterApi(u, options.method, options.body);
             return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(u, options, resolve, reject);
+                yield this.fetch(u, options, waiting, resolve, reject);
             }));
         });
     }
@@ -251,11 +263,11 @@ export class UqHttpChannel extends HttpChannel {
         this.uqForChannel = uqForChannel;
     }
     */
-    innerFetch(url, options) {
+    innerFetch(url, options, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let u = this.hostUrl + url;
             return yield new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-                yield this.fetch(u, options, resolve, reject);
+                yield this.fetch(u, options, waiting, resolve, reject);
             }));
         });
     }

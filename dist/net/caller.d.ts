@@ -1,6 +1,6 @@
 export declare abstract class Caller<T> {
     protected readonly _params: T;
-    constructor(params: T);
+    constructor(params: T, waiting: boolean);
     protected readonly params: any;
     buildParams(): any;
     method: string;
@@ -8,4 +8,5 @@ export declare abstract class Caller<T> {
     readonly headers: {
         [header: string]: string;
     };
+    waiting: boolean;
 }

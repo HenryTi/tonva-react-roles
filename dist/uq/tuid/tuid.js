@@ -94,8 +94,7 @@ export class TuidInner extends Tuid {
     }
     loadTuidIds(divName, ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            //return await this.uqApi.tuidIds(this.name, divName, ids);
-            let ret = yield new IdsCaller(this, { divName: divName, ids: ids }).request();
+            let ret = yield new IdsCaller(this, { divName: divName, ids: ids }, false).request();
             if (ret.length > 0)
                 this.cached = true;
             return ret;
