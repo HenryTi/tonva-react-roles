@@ -127,12 +127,12 @@ export class VErrorsPage extends VPage {
             return React.createElement(Page, { header: "ERROR" },
                 React.createElement("div", { className: "m-3" },
                     React.createElement("div", null, "Load Uqs \u53D1\u751F\u9519\u8BEF\uFF1A"),
-                    errors.map((r, i) => React.createElement("div", { key: i }, r))));
+                    errors.errors.map((r, i) => React.createElement("div", { key: i }, r))));
         };
     }
     open(errors) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page, errors);
+            this.openPage(this.page, { errors: errors });
         });
     }
 }

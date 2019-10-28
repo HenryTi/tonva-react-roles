@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import _ from 'lodash';
 import {PageHeader} from './pageHeader';
 
+const scrollAfter = 20; // 20ms之后，scroll执行
 export class Scroller {
     private el: HTMLBaseElement;
     constructor(el: HTMLBaseElement) {
@@ -12,10 +13,10 @@ export class Scroller {
     }
 
     scrollToTop():void {
-        setTimeout(() => this.el.scrollTo(0, 0), 100);
+        setTimeout(() => this.el.scrollTo(0, 0), scrollAfter);
     }
     scrollToBottom():void {
-        setTimeout(() => this.el.scrollTo(0, this.el.scrollTop + this.el.offsetHeight), 100);
+        setTimeout(() => this.el.scrollTo(0, this.el.scrollTop + this.el.offsetHeight), scrollAfter);
     }
 }
 
