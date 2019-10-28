@@ -13,7 +13,8 @@ import { loadAppUqs, appInFrame, getExHash } from '../../net';
 import { CUq } from '../cUq';
 import { centerApi } from '../centerApi';
 import { UQsMan } from '../../uq';
-import { VUnsupportedUnit, VAppMain, VUnitSelect, VErrorsPage, VAppStartError } from './vApp';
+import { VUnsupportedUnit, VAppMain, VUnitSelect } from './vApp';
+import { VErrorsPage, VStartError } from '../../app/vMain';
 export class CApp extends Controller {
     constructor(ui) {
         super(resLang(ui && ui.res));
@@ -94,13 +95,13 @@ export class CApp extends Controller {
                     }
                 }
                 if (retErrors !== undefined) {
-                    this.openVPage(VErrorsPage);
+                    this.openVPage(VErrorsPage, retErrors);
                     return false;
                 }
                 return true;
             }
             catch (err) {
-                this.openVPage(VAppStartError);
+                this.openVPage(VStartError, err);
                 return false;
             }
         });

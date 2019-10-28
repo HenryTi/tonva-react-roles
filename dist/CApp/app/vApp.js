@@ -118,34 +118,34 @@ export class VUnitSelect extends VPage {
         });
     }
 }
-export class VErrorsPage extends VPage {
-    constructor() {
-        super(...arguments);
-        this.page = (errors) => {
-            return React.createElement(Page, { header: "ERROR" },
-                React.createElement("div", { className: "m-3" },
-                    React.createElement("div", null, "Load Uqs \u53D1\u751F\u9519\u8BEF\uFF1A"),
-                    errors.map((r, i) => React.createElement("div", { key: i }, r))));
-        };
+/*
+export class VErrorsPage extends VPage<CApp> {
+    async open(errors:string[]) {
+        this.openPage(this.page, errors);
     }
-    open(errors) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page, errors);
-        });
-    }
-}
-export class VAppStartError extends VPage {
-    constructor() {
-        super(...arguments);
-        this.page = (error) => {
-            return React.createElement(Page, { header: "App start error!" },
-                React.createElement("pre", null, typeof error === 'string' ? error : error.message));
-        };
-    }
-    open(error) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page, error);
-        });
+
+    private page = (errors:string[]) => {
+        return <Page header="ERROR">
+            <div className="m-3">
+                <div>Load Uqs 发生错误：</div>
+                {errors.map((r, i) => <div key={i}>{r}</div>)}
+            </div>
+        </Page>;
     }
 }
+
+export class VAppStartError extends VPage<CApp> {
+    async open(error:any) {
+        this.openPage(this.page, error);
+    }
+
+    private page = (error:any) => {
+        return <Page header="App start error!">
+            <pre>
+                {typeof error === 'string'? error : error.message}
+            </pre>
+        </Page>;
+    }
+}
+*/ 
 //# sourceMappingURL=vApp.js.map

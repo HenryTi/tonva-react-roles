@@ -63,7 +63,7 @@ export class CAppBase extends Controller {
                     }
                 }
                 if (retErrors !== undefined) {
-                    this.openVPage(VErrorsPage);
+                    this.openVPage(VErrorsPage, retErrors);
                     return false;
                 }
                 return true;

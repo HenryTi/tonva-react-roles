@@ -1158,11 +1158,23 @@
         "signature": "38149d7804ae3acafe0317b0b2a3de80fbff36f3b7b747db9dbeae0194dbf548"
       },
       "./src/capp/app/vapp.tsx": {
-        "version": "c9c15e1f25fba975d6587ec5330a7e27a69d7b1e0080b2b921f64f6963ee56b5",
-        "signature": "b5e1def66a9c4b5f9fa3959c41d6fc13d3c50ab1a45d2afd420c2b31d57aa1a8"
+        "version": "cd9a33d05106686dad37f78efb78967987ea5686db5635bc1ed1e3bb8d88c0b2",
+        "signature": "bfdd90d6b11e4162017fd179df49c2f64be7ccb16f3ce51b686dcf24867b6089"
+      },
+      "./src/app/centerapi.ts": {
+        "version": "32ae063e836b610123bb86f9c2c0acae5658d3e1172455d0edd1f6b0f5574935",
+        "signature": "38149d7804ae3acafe0317b0b2a3de80fbff36f3b7b747db9dbeae0194dbf548"
+      },
+      "./src/app/cappbase.ts": {
+        "version": "745ba6f1f16412f9322673c5daea38920eeba8a9efb33ad4e6c7b274ed5fd827",
+        "signature": "d9a5da06e45aa83a0d31e48dfd75361fd73aedb04fc3e8c70934cdee6cbacf73"
+      },
+      "./src/app/vmain.tsx": {
+        "version": "7df2a5d42b441df3936086609a38f2058b28fa3422c96f9f2dc18ce2174a5d7c",
+        "signature": "1fdc4184d648d96c793b125cb610b66f56caaf867d5a2b8001fe9d9ae126d4a8"
       },
       "./src/capp/app/capp.tsx": {
-        "version": "a92c62b99eb69ac05064ce5d6ac669efc0f26dd1e3c0780b1e082ad5be92653f",
+        "version": "a538754cad5cc193aa025d3527699af799ca1212e65c669bdedb9a41e3269f43",
         "signature": "cad4fabbe00e5321d79a40a206979a62a2c1ef2a8e47fbbcdd88e0360e9811c9"
       },
       "./src/capp/app/index.ts": {
@@ -1176,18 +1188,6 @@
       "./src/capp/index.ts": {
         "version": "dbec9ded8619a5fe575ae4d397d162b7f558915caafc776a78172b4ccfa8d222",
         "signature": "dbec9ded8619a5fe575ae4d397d162b7f558915caafc776a78172b4ccfa8d222"
-      },
-      "./src/app/centerapi.ts": {
-        "version": "32ae063e836b610123bb86f9c2c0acae5658d3e1172455d0edd1f6b0f5574935",
-        "signature": "38149d7804ae3acafe0317b0b2a3de80fbff36f3b7b747db9dbeae0194dbf548"
-      },
-      "./src/app/vmain.tsx": {
-        "version": "7df2a5d42b441df3936086609a38f2058b28fa3422c96f9f2dc18ce2174a5d7c",
-        "signature": "1fdc4184d648d96c793b125cb610b66f56caaf867d5a2b8001fe9d9ae126d4a8"
-      },
-      "./src/app/cappbase.ts": {
-        "version": "b23709150c13094308d137d80aa4e412ab17df42cba6a663edddcf80cce43c03",
-        "signature": "d9a5da06e45aa83a0d31e48dfd75361fd73aedb04fc3e8c70934cdee6cbacf73"
       },
       "./src/app/start.ts": {
         "version": "39920059387be77f4deff154e46ea5e4d69d1c77b917a3566f397e1d7a0b20af",
@@ -2658,13 +2658,30 @@
         "./src/net/index.ts",
         "./src/capp/app/capp.tsx"
       ],
+      "./src/app/centerapi.ts": [
+        "./src/net/index.ts"
+      ],
+      "./src/app/cappbase.ts": [
+        "./src/components/index.ts",
+        "./src/uq/index.ts",
+        "./src/net/index.ts",
+        "./src/app/centerapi.ts",
+        "./src/app/vmain.tsx"
+      ],
+      "./src/app/vmain.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/index.ts",
+        "./src/net/index.ts",
+        "./src/app/cappbase.ts"
+      ],
       "./src/capp/app/capp.tsx": [
         "./src/components/index.ts",
         "./src/net/index.ts",
         "./src/capp/cuq/index.ts",
         "./src/capp/centerapi.ts",
         "./src/uq/index.ts",
-        "./src/capp/app/vapp.tsx"
+        "./src/capp/app/vapp.tsx",
+        "./src/app/vmain.tsx"
       ],
       "./src/capp/app/index.ts": [
         "./src/capp/app/capp.tsx"
@@ -2691,22 +2708,6 @@
         "./src/capp/cventity.tsx",
         "./src/capp/link/index.ts",
         "./src/capp/icons.tsx"
-      ],
-      "./src/app/centerapi.ts": [
-        "./src/net/index.ts"
-      ],
-      "./src/app/vmain.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/index.ts",
-        "./src/net/index.ts",
-        "./src/app/cappbase.ts"
-      ],
-      "./src/app/cappbase.ts": [
-        "./src/components/index.ts",
-        "./src/uq/index.ts",
-        "./src/net/index.ts",
-        "./src/app/centerapi.ts",
-        "./src/app/vmain.tsx"
       ],
       "./src/app/start.ts": [
         "./src/app/cappbase.ts"
@@ -3770,6 +3771,17 @@
         "./src/components/index.ts",
         "./src/capp/app/capp.tsx"
       ],
+      "./src/app/centerapi.ts": [
+        "./src/net/index.ts"
+      ],
+      "./src/app/cappbase.ts": [
+        "./src/uq/index.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/app/vmain.tsx": [
+        "./src/components/index.ts",
+        "./src/app/cappbase.ts"
+      ],
       "./src/capp/app/capp.tsx": [
         "./src/capp/cuq/index.ts",
         "./src/components/index.ts",
@@ -3800,17 +3812,6 @@
         "./src/capp/cventity.tsx",
         "./src/capp/link/index.ts",
         "./src/capp/icons.tsx"
-      ],
-      "./src/app/centerapi.ts": [
-        "./src/net/index.ts"
-      ],
-      "./src/app/vmain.tsx": [
-        "./src/components/index.ts",
-        "./src/app/cappbase.ts"
-      ],
-      "./src/app/cappbase.ts": [
-        "./src/uq/index.ts",
-        "./src/components/index.ts"
       ],
       "./src/app/start.ts": [
         "./src/app/cappbase.ts"
@@ -4164,12 +4165,13 @@
       "./src/capp/cuq/index.ts",
       "./src/capp/centerapi.ts",
       "./src/capp/app/vapp.tsx",
+      "./src/app/centerapi.ts",
+      "./src/app/cappbase.ts",
+      "./src/app/vmain.tsx",
       "./src/capp/app/capp.tsx",
       "./src/capp/app/index.ts",
       "./src/capp/startapp.ts",
       "./src/capp/index.ts",
-      "./src/app/centerapi.ts",
-      "./src/app/cappbase.ts",
       "./src/app/start.ts",
       "./src/app/cbase.ts",
       "./src/app/index.ts",
@@ -4190,8 +4192,7 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "./src/app/vmain.tsx"
+      "./node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.6.3"

@@ -17,11 +17,3 @@ export declare class VUnitSelect extends VPage<CApp> {
     private onRowClick;
     private page;
 }
-export declare class VErrorsPage extends VPage<CApp> {
-    open(errors: string[]): Promise<void>;
-    private page;
-}
-export declare class VAppStartError extends VPage<CApp> {
-    open(error: any): Promise<void>;
-    private page;
-}
