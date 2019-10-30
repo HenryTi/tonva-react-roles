@@ -615,7 +615,7 @@ export class UserApi extends CenterApiBase {
         return await this.get('user/is-exists', {account:account});
     }
 
-    async resetPassword(account:string, password:string, verify:string, type:'mobile'|'email') {
+    async resetPassword(account:string, password:string, verify:string, type:'mobile'|'email'):Promise<any[]> {
         return await this.post('user/reset-password', {account:account, password, verify, type});
     }
     

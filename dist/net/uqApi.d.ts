@@ -90,7 +90,7 @@ export declare class UserApi extends CenterApiBase {
     sendVerify(account: string, type: 'mobile' | 'email', oem: string): Promise<any>;
     checkVerify(account: string, verify: string): Promise<any>;
     isExists(account: string): Promise<any>;
-    resetPassword(account: string, password: string, verify: string, type: 'mobile' | 'email'): Promise<any>;
+    resetPassword(account: string, password: string, verify: string, type: 'mobile' | 'email'): Promise<any[]>;
     userSetProp(prop: string, value: any): Promise<void>;
     me(): Promise<any>;
 }

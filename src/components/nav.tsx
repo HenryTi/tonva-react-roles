@@ -497,14 +497,21 @@ export class Nav {
 
     private async getPredefinedUnitName() {
         try {
-            let unitJsonPath = this.unitJsonPath();
-            let unitRes = await fetch(unitJsonPath, {});
-            let res = await unitRes.json();
+            let json = document.getElementById('unit.json').innerHTML;
+            let res = JSON.parse(json);
             return res.unit;
         }
         catch (err) {
-            this.local.unit.remove();
-            return;
+            try {
+                let unitJsonPath = this.unitJsonPath();
+                let unitRes = await fetch(unitJsonPath, {});
+                let res = await unitRes.json();
+                return res.unit;
+            }
+            catch (err1) {
+                this.local.unit.remove();
+                return;
+            }
         }
     }
 
@@ -544,18 +551,19 @@ export class Nav {
     private centerHost: string;
     private arrs = ['/test', '/test/'];
     private unitJsonPath():string {
-        let {href} = document.location;
-        href = href.toLowerCase();
+        let {origin, pathname} = document.location;
+        //href = href.toLowerCase();
+        pathname = pathname.toLowerCase();
         for (let item of this.arrs) {
-            if (href.endsWith(item) === true) {
-                href = href.substr(0, href.length - item.length);
+            if (pathname.endsWith(item) === true) {
+                pathname = pathname.substr(0, pathname.length - item.length);
                 break;
             }
         }
-        if (href.endsWith('/') === true || href.endsWith('\\') === true) {
-            href = href.substr(0, href.length-1);
+        if (pathname.endsWith('/') === true || pathname.endsWith('\\') === true) {
+            pathname = pathname.substr(0, pathname.length-1);
         }
-        return href + '/unit.json';
+        return origin + pathname + '/unit.json';
     }
     private windowOnError = (event: Event | string, source?: string, lineno?: number, colno?: number, error?: Error) => {
         console.error('windowOnError');

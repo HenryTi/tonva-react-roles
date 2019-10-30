@@ -22,8 +22,8 @@ export declare class RegisterController extends Controller {
     protected internalStart(): Promise<void>;
     toVerify(account: string): void;
     toPassword(): void;
-    toSuccess(): void;
-    login: () => Promise<void>;
+    toSuccess(accounts?: any[]): void;
+    login: (account?: string) => Promise<void>;
     private regReturn;
     checkAccount(): Promise<string>;
     protected accountError(isExists: number): string;

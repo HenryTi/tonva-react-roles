@@ -61,8 +61,8 @@ export class RegisterController extends Controller {
         this.passwordPageCaption = '账号密码';
         this.passwordSubmitCaption = '注册新账号';
         this.successText = '注册成功';
-        this.login = () => __awaiter(this, void 0, void 0, function* () {
-            let retUser = yield userApi.login({ user: this.account, pwd: this.password, guest: nav.guest });
+        this.login = (account) => __awaiter(this, void 0, void 0, function* () {
+            let retUser = yield userApi.login({ user: account || this.account, pwd: this.password, guest: nav.guest });
             if (retUser === undefined) {
                 alert('something wrong!');
                 return;
@@ -82,8 +82,8 @@ export class RegisterController extends Controller {
     toPassword() {
         this.openVPage(PasswordPage);
     }
-    toSuccess() {
-        this.openVPage(RegSuccess);
+    toSuccess(accounts) {
+        this.openVPage(RegSuccess, accounts);
     }
     regReturn(registerReturn) {
         let msg;
@@ -165,9 +165,9 @@ export class ForgetController extends RegisterController {
     }
     execute() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield userApi.resetPassword(this.account, this.password, this.verify, this.type);
+            let ret = yield userApi.resetPassword(this.account, this.password, this.verify, this.type);
             nav.clear();
-            this.toSuccess();
+            this.toSuccess(ret);
             return undefined;
         });
     }
@@ -367,25 +367,41 @@ class PasswordPage extends VPage {
 class RegSuccess extends VPage {
     constructor() {
         super(...arguments);
-        this.page = () => {
+        this.page = ({ users }) => {
             const { account, successText, login } = this.controller;
-            return (React.createElement(Page, { header: false },
-                React.createElement("div", { className: "container w-max-30c" },
-                    React.createElement("form", { className: "my-5" },
-                        React.createElement("div", { className: "py-5" },
-                            "\u8D26\u53F7 ",
-                            React.createElement("strong", { className: "text-primary" },
-                                account,
-                                " "),
-                            " ",
-                            successText,
-                            "\uFF01"),
-                        React.createElement("button", { className: "btn btn-success btn-block", type: "button", onClick: login }, "\u76F4\u63A5\u767B\u5F55")))));
+            if (users === undefined) {
+                return React.createElement(Page, { header: false },
+                    React.createElement("div", { className: "container w-max-30c" },
+                        React.createElement("div", { className: "my-5" },
+                            React.createElement("div", { className: "py-5" },
+                                "\u8D26\u53F7 ",
+                                React.createElement("strong", { className: "text-primary" },
+                                    account,
+                                    " "),
+                                " ",
+                                successText,
+                                "\uFF01"),
+                            React.createElement("button", { className: "btn btn-success btn-block", type: "button", onClick: () => login(undefined) }, "\u76F4\u63A5\u767B\u5F55"))));
+            }
+            else {
+                return React.createElement(Page, { header: false },
+                    React.createElement("div", { className: "container w-max-30c" },
+                        React.createElement("div", { className: "my-5" },
+                            React.createElement("div", { className: "py-5 text-success" }, successText),
+                            users.map((v) => {
+                                let { name } = v;
+                                return React.createElement("div", { className: "py-2 cursor-pointer", onClick: () => login(name) },
+                                    "\u767B\u5F55\u8D26\u53F7 ",
+                                    React.createElement("strong", { className: "text-primary" },
+                                        name,
+                                        " "));
+                            }))));
+            }
         };
     }
-    open() {
+    open(users) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page);
+            this.openPage(this.page, { users: users });
         });
     }
 }
