@@ -542,7 +542,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "e8b25277c3b90b7923029d1c5300649b5a35978431748ff1ad3a6bcac8f2659d",
+        "version": "4b7f009de4a7e60dbd0c454453281c94df575e2f391c3d9f162e5e7fcfce4492",
         "signature": "fefe614432d53b57d6b3256149144e7e8dce492e4898ea89c92321e9b3bf4274"
       },
       "./src/components/vm.tsx": {

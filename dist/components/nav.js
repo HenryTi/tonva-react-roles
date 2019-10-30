@@ -557,7 +557,7 @@ export class Nav {
                     document.onselectstart = function () { return false; };
                     document.oncontextmenu = function () { return false; };
                 }
-                window.setInterval(() => console.error('tick every 5 seconds'), 5000);
+                //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
                 this.testing = env.testing;
                 yield host.start(this.testing);
                 let hash = document.location.hash;
