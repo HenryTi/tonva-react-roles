@@ -474,7 +474,7 @@
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
       "./src/components/pageheader.tsx": {
-        "version": "7258142e61e2b1a466664c106a5bf076d17765b4dede2d9e02508a1334386ce1",
+        "version": "c20c75c2e97310c18a3c622878e3978cdbd0a1ab80e044d6ef471ccde0db635b",
         "signature": "7385062be3517777f270bab3374ded5d92609bc30e1011f962ddb0fc38b4e3fd"
       },
       "./src/components/page.tsx": {

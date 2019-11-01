@@ -104,7 +104,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         let rightView = (right || debugLogout) && <aside>{right} {debugLogout}</aside>;
         return <header className={className}>
             {back}
-            {pop}
+            {/*pop 弹出window暂时停止作用 */}
             <div>{center}</div>
             {rightView}
         </header>;
