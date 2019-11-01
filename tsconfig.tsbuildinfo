@@ -449,8 +449,32 @@
         "version": "026cc8c57b36581fc3da28a608c8086d4eeed85c8a04f15189c2116e43c4df1e",
         "signature": "026cc8c57b36581fc3da28a608c8086d4eeed85c8a04f15189c2116e43c4df1e"
       },
+      "./src/components/simple/badge.tsx": {
+        "version": "df2cfce1b17fc1d417a7a25dc2129521ebe3ae133402b7689d59b92b3984524f",
+        "signature": "950ef71465c2326c200a418eac0ebd4051df102b210efb8460d07be13a83df93"
+      },
+      "./src/components/simple/lmr.tsx": {
+        "version": "19fa035359066fd5e4b69c88d2a58999c5fa961da5fa6af7908118e132cb6097",
+        "signature": "6f19b50e6612d45e7cdba725e2d8c797c634d1ed7fb5a46c0ad3dc48d7412bb5"
+      },
+      "./src/components/simple/fa.tsx": {
+        "version": "ebf4cb5a1a797b41c43907e1ea0174bdaa069e0caac7d3cf8a67c05c5f40b24f",
+        "signature": "2392e4c0fc54f7b30d139e626f5e85c5694528c01ef06974171e17b86317affe"
+      },
+      "./src/components/simple/icontext.tsx": {
+        "version": "63b36c26c9547ff7847c509f1a502cc0119fb792fe2b676500aee9672d05a4b1",
+        "signature": "8b7a6df8a71c8d465a8d55c4e4b2759318ed3f6a1c4543140a52468d01826063"
+      },
+      "./src/components/simple/muted.tsx": {
+        "version": "c3d3a975570e5018e8fc6135d65152e4279e1e66de87cb3a8ebe62b432badbbc",
+        "signature": "d7c8c34ad208ea31310ccc4bbbcf867cb1c95c10bd072738478ae83cf864030e"
+      },
+      "./src/components/simple/index.ts": {
+        "version": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74",
+        "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
+      },
       "./src/components/pageheader.tsx": {
-        "version": "807ec55863b38d30561e3ceb60184e46121939d1818b5672e340f93c2ec42455",
+        "version": "7258142e61e2b1a466664c106a5bf076d17765b4dede2d9e02508a1334386ce1",
         "signature": "7385062be3517777f270bab3374ded5d92609bc30e1011f962ddb0fc38b4e3fd"
       },
       "./src/components/page.tsx": {
@@ -488,30 +512,6 @@
       "./src/components/loading.tsx": {
         "version": "f610f4e9cef5610785ea97b6d0ec17df01aadcf7ad78cbbece75ea0957b8e998",
         "signature": "536179a80f4b0ebf715cc00532cec363083c9d3c38b9db8ada302b5491a007aa"
-      },
-      "./src/components/simple/badge.tsx": {
-        "version": "df2cfce1b17fc1d417a7a25dc2129521ebe3ae133402b7689d59b92b3984524f",
-        "signature": "950ef71465c2326c200a418eac0ebd4051df102b210efb8460d07be13a83df93"
-      },
-      "./src/components/simple/lmr.tsx": {
-        "version": "19fa035359066fd5e4b69c88d2a58999c5fa961da5fa6af7908118e132cb6097",
-        "signature": "6f19b50e6612d45e7cdba725e2d8c797c634d1ed7fb5a46c0ad3dc48d7412bb5"
-      },
-      "./src/components/simple/fa.tsx": {
-        "version": "ebf4cb5a1a797b41c43907e1ea0174bdaa069e0caac7d3cf8a67c05c5f40b24f",
-        "signature": "2392e4c0fc54f7b30d139e626f5e85c5694528c01ef06974171e17b86317affe"
-      },
-      "./src/components/simple/icontext.tsx": {
-        "version": "63b36c26c9547ff7847c509f1a502cc0119fb792fe2b676500aee9672d05a4b1",
-        "signature": "8b7a6df8a71c8d465a8d55c4e4b2759318ed3f6a1c4543140a52468d01826063"
-      },
-      "./src/components/simple/muted.tsx": {
-        "version": "c3d3a975570e5018e8fc6135d65152e4279e1e66de87cb3a8ebe62b432badbbc",
-        "signature": "d7c8c34ad208ea31310ccc4bbbcf867cb1c95c10bd072738478ae83cf864030e"
-      },
-      "./src/components/simple/index.ts": {
-        "version": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74",
-        "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
       "./src/entry/res/login.ts": {
         "version": "39220cd5924500b07b7f9ef0d64faea72c08c65020c6619e53636505f392806a",
@@ -1500,9 +1500,39 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react-lite/dist/index.d.ts"
       ],
+      "./src/components/simple/badge.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/mobx-react.d.ts",
+        "./node_modules/@types/classnames/index.d.ts"
+      ],
+      "./src/components/simple/lmr.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/mobx-react.d.ts",
+        "./node_modules/@types/classnames/index.d.ts"
+      ],
+      "./src/components/simple/fa.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/classnames/index.d.ts"
+      ],
+      "./src/components/simple/icontext.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/simple/fa.tsx"
+      ],
+      "./src/components/simple/muted.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/classnames/index.d.ts"
+      ],
+      "./src/components/simple/index.ts": [
+        "./src/components/simple/badge.tsx",
+        "./src/components/simple/lmr.tsx",
+        "./src/components/simple/fa.tsx",
+        "./src/components/simple/icontext.tsx",
+        "./src/components/simple/muted.tsx"
+      ],
       "./src/components/pageheader.tsx": [
         "./node_modules/@types/react/index.d.ts",
-        "./src/components/nav.tsx"
+        "./src/components/nav.tsx",
+        "./src/components/simple/index.ts"
       ],
       "./src/components/page.tsx": [
         "./node_modules/@types/react/index.d.ts",
@@ -1547,35 +1577,6 @@
       ],
       "./src/components/loading.tsx": [
         "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/badge.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/mobx-react/dist/mobx-react.d.ts",
-        "./node_modules/@types/classnames/index.d.ts"
-      ],
-      "./src/components/simple/lmr.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/mobx-react/dist/mobx-react.d.ts",
-        "./node_modules/@types/classnames/index.d.ts"
-      ],
-      "./src/components/simple/fa.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/@types/classnames/index.d.ts"
-      ],
-      "./src/components/simple/icontext.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/simple/fa.tsx"
-      ],
-      "./src/components/simple/muted.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/@types/classnames/index.d.ts"
-      ],
-      "./src/components/simple/index.ts": [
-        "./src/components/simple/badge.tsx",
-        "./src/components/simple/lmr.tsx",
-        "./src/components/simple/fa.tsx",
-        "./src/components/simple/icontext.tsx",
-        "./src/components/simple/muted.tsx"
       ],
       "./src/entry/res/login.ts": [
         "./src/components/index.ts"
@@ -2965,6 +2966,25 @@
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react-lite/dist/index.d.ts"
       ],
+      "./src/components/simple/badge.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/lmr.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/fa.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/icontext.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/index.ts": [
+        "./src/components/simple/badge.tsx",
+        "./src/components/simple/lmr.tsx",
+        "./src/components/simple/fa.tsx",
+        "./src/components/simple/icontext.tsx",
+        "./src/components/simple/muted.tsx"
+      ],
       "./src/components/pageheader.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -2985,25 +3005,6 @@
       "./src/components/fetcherrorview.tsx": [
         "./src/net/fetcherror.ts",
         "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/badge.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/lmr.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/fa.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/icontext.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/index.ts": [
-        "./src/components/simple/badge.tsx",
-        "./src/components/simple/lmr.tsx",
-        "./src/components/simple/fa.tsx",
-        "./src/components/simple/icontext.tsx",
-        "./src/components/simple/muted.tsx"
       ],
       "./src/entry/res/login.ts": [
         "./src/components/index.ts"
@@ -3987,6 +3988,12 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
+      "./src/components/simple/badge.tsx",
+      "./src/components/simple/lmr.tsx",
+      "./src/components/simple/fa.tsx",
+      "./src/components/simple/icontext.tsx",
+      "./src/components/simple/muted.tsx",
+      "./src/components/simple/index.ts",
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
@@ -3996,16 +4003,11 @@
       "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",
       "./src/components/loading.tsx",
-      "./src/components/simple/badge.tsx",
-      "./src/components/simple/lmr.tsx",
-      "./src/components/simple/fa.tsx",
-      "./src/components/simple/icontext.tsx",
-      "./src/components/simple/muted.tsx",
-      "./src/components/simple/index.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
       "./src/entry/tools.tsx",
+      "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
       "./src/components/nav.tsx",
@@ -4191,8 +4193,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/components/pageheader.tsx",
-      "./src/entry/register.tsx"
+      "./src/components/pageheader.tsx"
     ]
   },
   "version": "3.6.3"

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 //import _ from 'lodash';
 import { nav } from './nav';
+import { FA } from './simple';
 export class PageHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -89,7 +90,8 @@ export class PageHeader extends React.Component {
         }
         if (window.self !== window.top) {
             console.log(document.location.href);
-            pop = React.createElement("header", { onClick: this.openWindow });
+            pop = React.createElement("header", { onClick: this.openWindow, className: "mx-1" },
+                React.createElement(FA, { name: "external-link" }));
         }
         if (back === undefined && typeof center === 'string') {
             center = React.createElement("div", { className: "px-3" }, center);

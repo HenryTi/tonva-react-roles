@@ -1,6 +1,7 @@
 import * as React from 'react';
 //import _ from 'lodash';
 import {nav} from './nav';
+import { FA } from './simple';
 
 export interface PageHeaderProps {
     back?: 'back' | 'close' | 'none';
@@ -95,7 +96,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         }
         if (window.self !== window.top) {
             console.log(document.location.href);
-            pop = <header onClick={this.openWindow} />;
+            pop = <header onClick={this.openWindow} className="mx-1"><FA name="external-link" /></header>;
         }
         if (back === undefined && typeof center === 'string') {
             center = <div className="px-3">{center}</div>;
