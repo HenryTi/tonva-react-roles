@@ -450,7 +450,7 @@
         "signature": "026cc8c57b36581fc3da28a608c8086d4eeed85c8a04f15189c2116e43c4df1e"
       },
       "./src/components/pageheader.tsx": {
-        "version": "85358d99928543699a1306156958c81bb2e3284c27576df53e375a490eb916f1",
+        "version": "807ec55863b38d30561e3ceb60184e46121939d1818b5672e340f93c2ec42455",
         "signature": "7385062be3517777f270bab3374ded5d92609bc30e1011f962ddb0fc38b4e3fd"
       },
       "./src/components/page.tsx": {
@@ -530,7 +530,7 @@
         "signature": "87dcb27d68c976da37056c28629a8b954f9cedf98cceda4e55cd98e53c24b1ee"
       },
       "./src/entry/register.tsx": {
-        "version": "2f7db2df2c12428773c9b3058b3fc2f1990ce902719221810ab47f97e6a51f30",
+        "version": "9a8f7e3e49b117b230161f3fcc1d7ff610c4789fe1869ad825b0a3a92ebfd585",
         "signature": "386c97365e92d5d5525c5cdee0d20ed54c1a237188bbe4540bb7d497f0f9c4ee"
       },
       "./src/entry/login.tsx": {
@@ -3987,7 +3987,6 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
-      "./src/components/pageheader.tsx",
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
@@ -4007,9 +4006,9 @@
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
       "./src/entry/tools.tsx",
-      "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4192,7 +4191,8 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/components/nav.tsx"
+      "./src/components/pageheader.tsx",
+      "./src/entry/register.tsx"
     ]
   },
   "version": "3.6.3"

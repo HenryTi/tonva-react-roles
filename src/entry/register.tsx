@@ -374,7 +374,7 @@ class RegSuccess extends VPage<RegisterController> {
         this.openPage(this.page, {users:users});
     }
 
-    private page = ({users}) => {
+    private page = ({users}:{users:any[]}) => {
         const {account, successText, login} = this.controller;
         if (users === undefined) {
             return <Page header={false}>

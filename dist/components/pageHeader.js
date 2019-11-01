@@ -99,8 +99,8 @@ export class PageHeader extends React.Component {
             " ",
             debugLogout);
         return React.createElement("header", { className: className },
-            pop,
             back,
+            pop,
             React.createElement("div", null, center),
             rightView);
     }

@@ -106,11 +106,7 @@ div.red-dot>u.message-dot {
       min-height: 3rem;
   }
   article.page-container>header>header {
-      display: flex;
-      height: 20px;
       cursor: pointer;
-      width: 4px;
-      background-color: #666;
   }
   article.page-container>header>nav {
       display: flex;

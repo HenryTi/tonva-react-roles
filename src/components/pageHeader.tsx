@@ -102,8 +102,8 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         }
         let rightView = (right || debugLogout) && <aside>{right} {debugLogout}</aside>;
         return <header className={className}>
-            {pop}
             {back}
+            {pop}
             <div>{center}</div>
             {rightView}
         </header>;
