@@ -43,7 +43,7 @@ export class ReactBoxId implements BoxId {
     protected ui: (values:any) => JSX.Element;
     readonly isUndefined:boolean;
     constructor(id: number, tuid: Tuid, ui: (values:any) => JSX.Element) {
-        this.id = id;
+        this.id = Number(id);
         this.tuid = tuid;
         this.ui = ui;
         this.isUndefined = (this.tuid === undefined);
@@ -88,8 +88,9 @@ export class ReactBoxId implements BoxId {
     // ui(): TvTemplet {return this.tuid.ui}
     // res(): any {return this.tuid.res}
 
-    async assure(): Promise<any> {
-        return await this.tuid.assureBox(this.id);
+    async assure(): Promise<BoxId> {
+        await this.tuid.assureBox(this.id);
+        return this;
     }
 }
 

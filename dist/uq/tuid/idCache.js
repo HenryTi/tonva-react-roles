@@ -166,7 +166,6 @@ export class IdCache {
             //let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
             let ret = yield this.loadTuidIdsOrLocal([id]);
             yield this.cacheIdValues(ret);
-            return this.cache.get(id);
         });
     }
     loadTuidIdsOrLocal(ids) {

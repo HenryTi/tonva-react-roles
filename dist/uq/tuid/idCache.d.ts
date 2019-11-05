@@ -24,7 +24,7 @@ export declare class IdCache {
     protected loadIds(): Promise<any[]>;
     protected unpackTuidIds(values: string[]): any[];
     protected cacheTuidFieldValues(tuidValue: any): void;
-    assureObj(id: number): Promise<any>;
+    assureObj(id: number): Promise<void>;
     private loadTuidIdsOrLocal;
 }
 export declare class IdDivCache extends IdCache {

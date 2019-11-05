@@ -145,7 +145,7 @@ export class IdCache {
         this.tuidInner.cacheTuidFieldValues(tuidValue);
     }
 
-    async assureObj(id:number):Promise<any> {
+    async assureObj(id:number):Promise<void> {
         let val = this.cache.get(id);
         switch (typeof val) {
             case 'object': return val;
@@ -154,7 +154,6 @@ export class IdCache {
         //let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
         let ret = await this.loadTuidIdsOrLocal([id]);
         await this.cacheIdValues(ret);
-        return this.cache.get(id);
     }
 
     private async loadTuidIdsOrLocal(ids:number[]):Promise<string[]> {

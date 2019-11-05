@@ -49,7 +49,7 @@ window.addEventListener('message', function (evt) {
                 yield initSubWin(message);
                 break;
             case 'pop-app':
-                this.console.log('///\\\ pop-app');
+                this.console.log('///\\\\\\ pop-app');
                 nav.navBack();
                 break;
             case 'center-api':

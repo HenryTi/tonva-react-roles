@@ -47,7 +47,7 @@ function stringify(values) {
 }
 export class ReactBoxId {
     constructor(id, tuid, ui) {
-        this.id = id;
+        this.id = Number(id);
         this.tuid = tuid;
         this.ui = ui;
         this.isUndefined = (this.tuid === undefined);
@@ -100,7 +100,8 @@ export class ReactBoxId {
     // res(): any {return this.tuid.res}
     assure() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.tuid.assureBox(this.id);
+            yield this.tuid.assureBox(this.id);
+            return this;
         });
     }
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 //import _ from 'lodash';
 import {nav} from './nav';
-import { FA } from './simple';
 
 export interface PageHeaderProps {
     back?: 'back' | 'close' | 'none';
@@ -58,7 +57,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
     render() {
         let b = this.state.hasBack || window.self !== window.top;
         let {right, center, logout, className} = this.props;
-        let back:any, pop:any, debugLogout:any;
+        let back:any, debugLogout:any;
         if (logout !== undefined && window.self === window.top) {
             if ((typeof logout === 'boolean' && logout === true)
                 || typeof logout === 'function')
@@ -96,7 +95,7 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         }
         if (window.self !== window.top) {
             console.log(document.location.href);
-            pop = <header onClick={this.openWindow} className="mx-1"><FA name="external-link" /></header>;
+            // pop = <header onClick={this.openWindow} className="mx-1"><FA name="external-link" /></header>;
         }
         if (back === undefined && typeof center === 'string') {
             center = <div className="px-3">{center}</div>;

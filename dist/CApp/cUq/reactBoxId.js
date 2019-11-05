@@ -71,7 +71,8 @@ export class ReactBoxId {
     // res(): any {return this.tuid.res}
     assure() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.tuidUR.tuid.assureBox(this.id);
+            yield this.tuidUR.tuid.assureBox(this.id);
+            return this;
         });
     }
 }

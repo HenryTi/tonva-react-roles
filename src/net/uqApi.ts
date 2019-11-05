@@ -4,8 +4,7 @@ import {HttpChannelNavUI} from './httpChannelUI';
 import {appUq, logoutUqTokens, buildAppUq} from './appBridge';
 import {ApiBase} from './apiBase';
 import { host } from './host';
-import { nav } from '../components';
-import { LocalCache, LocalMap, env } from '../tool';
+import { LocalMap, env } from '../tool';
 import {decodeUserToken} from '../tool/user';
 
 let channelUIs:{[name:string]: HttpChannel} = {};
@@ -493,7 +492,7 @@ export interface UqServiceData {
     token: string;
 }
 
-const appUqsName = 'appUqs';
+//const appUqsName = 'appUqs';
 
 export class CenterAppApi extends CenterApiBase {
     //private local: LocalCache = env.localDb.item(appUqsName);

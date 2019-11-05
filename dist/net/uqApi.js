@@ -321,7 +321,7 @@ export class CallCenterApi extends CenterApiBase {
     }
 }
 export const callCenterapi = new CallCenterApi('', undefined);
-const appUqsName = 'appUqs';
+//const appUqsName = 'appUqs';
 export class CenterAppApi extends CenterApiBase {
     //private local: LocalCache = env.localDb.item(appUqsName);
     //private cachedUqs: UqAppData;

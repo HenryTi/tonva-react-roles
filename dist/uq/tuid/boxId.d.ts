@@ -4,6 +4,6 @@ export interface BoxId {
     obj: any;
     boxName: string;
     isUndefined: boolean;
-    assure(): Promise<any>;
+    assure(): Promise<BoxId>;
 }
 export declare type CreateBoxId = (tuid: Tuid, id: number) => BoxId;
