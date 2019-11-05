@@ -38,7 +38,7 @@ export abstract class Tuid extends Entity {
     abstract useId(id:number):void;
     abstract boxId(id:number):BoxId;
     abstract valueFromId(id:number):any;
-    abstract async assureBox (id:number): Promise<void>;
+    abstract async assureBox (id:number): Promise<any>;
     cacheIds() {}
     async modifyIds(ids:any[]) {}
     isImport = false;
@@ -94,8 +94,8 @@ export class TuidInner extends Tuid {
         return createBoxId(this, id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
-    async assureBox (id:number):Promise<void> {
-        await this.idCache.assureObj(id);
+    async assureBox (id:number):Promise<any> {
+        return await this.idCache.assureObj(id);
     }
 
     cacheIds() {
@@ -388,8 +388,8 @@ export class TuidImport extends Tuid {
     useId(id:number) {this.tuidLocal.useId(id);}
     boxId(id:number):BoxId {return this.tuidLocal.boxId(id);}
     valueFromId(id:number) {return this.tuidLocal.valueFromId(id)}
-    async assureBox(id:number):Promise<void> {
-        await this.tuidLocal.assureBox(id);
+    async assureBox(id:number):Promise<any> {
+        return await this.tuidLocal.assureBox(id);
     }
     get hasDiv():boolean {return this.tuidLocal.hasDiv}
     div(name:string):TuidDiv {return this.tuidLocal.div(name)}
@@ -512,8 +512,8 @@ export class TuidDiv extends TuidInner /* Entity*/ {
         return this.idCache.getValue(id)
     }
 
-    async assureBox(id:number):Promise<void> {
-        await this.idCache.assureObj(id);
+    async assureBox(id:number):Promise<any> {
+        return await this.idCache.assureObj(id);
     }
 
     async cacheIds() {

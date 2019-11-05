@@ -148,12 +148,13 @@ export class IdCache {
     async assureObj(id:number):Promise<any> {
         let val = this.cache.get(id);
         switch (typeof val) {
-            case 'object': return;
+            case 'object': return val;
             case 'number': this.cache.set(id, id); break;
         }
         //let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
         let ret = await this.loadTuidIdsOrLocal([id]);
         await this.cacheIdValues(ret);
+        return this.cache.get(id);
     }
 
     private async loadTuidIdsOrLocal(ids:number[]):Promise<string[]> {

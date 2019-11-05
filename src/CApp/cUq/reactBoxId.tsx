@@ -63,8 +63,8 @@ export class ReactBoxId implements BoxId {
     // ui(): TvTemplet {return this.tuid.ui}
     // res(): any {return this.tuid.res}
 
-    async assure(): Promise<void> {
-        await this.tuidUR.tuid.assureBox(this.id);
+    async assure(): Promise<any> {
+        return await this.tuidUR.tuid.assureBox(this.id);
     }
 }
 
