@@ -100,7 +100,7 @@ export class ReactBoxId {
     // res(): any {return this.tuid.res}
     assure() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.tuid.assureBox(this.id);
+            return yield this.tuid.assureBox(this.id);
         });
     }
 }

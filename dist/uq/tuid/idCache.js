@@ -158,7 +158,7 @@ export class IdCache {
         return __awaiter(this, void 0, void 0, function* () {
             let val = this.cache.get(id);
             switch (typeof val) {
-                case 'object': return;
+                case 'object': return val;
                 case 'number':
                     this.cache.set(id, id);
                     break;
@@ -166,6 +166,7 @@ export class IdCache {
             //let ret = await this.tuidInner.loadTuidIds(this.divName, [id]);
             let ret = yield this.loadTuidIdsOrLocal([id]);
             yield this.cacheIdValues(ret);
+            return this.cache.get(id);
         });
     }
     loadTuidIdsOrLocal(ids) {
