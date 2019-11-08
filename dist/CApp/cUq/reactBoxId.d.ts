@@ -12,6 +12,7 @@ export declare class ReactBoxId implements BoxId {
     readonly isUndefined: boolean;
     constructor(tuidUR: TuidWithUIRes, id: number);
     readonly obj: any;
+    equ(id: BoxId | number): boolean;
     render(ui: TvTemplet, x: any): JSX.Element;
     readonly boxName: string;
     assure(): Promise<BoxId>;

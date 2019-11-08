@@ -31,6 +31,15 @@ export class Tuid extends Entity {
     }
     getIdFromObj(obj) { return obj[this.idName]; }
     stopCache() { this.noCache = true; }
+    equ(id1, id2) {
+        if (typeof id1 === 'object') {
+            return id1.equ(id2);
+        }
+        if (typeof id2 === 'object') {
+            return id2.equ(id1);
+        }
+        return id1 === id2;
+    }
     cacheIds() { }
     modifyIds(ids) {
         return __awaiter(this, void 0, void 0, function* () { });

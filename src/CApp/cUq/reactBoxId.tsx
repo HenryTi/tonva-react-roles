@@ -28,6 +28,11 @@ export class ReactBoxId implements BoxId {
         return this.tuidUR.tuid.valueFromId(this.id);
     }
 
+    equ(id:BoxId|number): boolean {
+        if (typeof id === 'object') return this.id === id.id;
+        return this.id === id;
+    }
+
     render(ui:TvTemplet, x:any):JSX.Element {
         if (this.id === undefined || this.id === null) return;
         let boxName = this.boxName; // this.tuid.name;

@@ -36,9 +36,18 @@ export abstract class Tuid extends Entity {
     getIdFromObj(obj:any):number {return obj[this.idName]}
     stopCache():void {this.noCache = true}
     abstract useId(id:number):void;
-    abstract boxId(id:number):BoxId;
+    abstract boxId(id:number):BoxId;    
     abstract valueFromId(id:number):any;
     abstract async assureBox (id:number): Promise<void>;
+    equ(id1:BoxId|number, id2:BoxId|number): boolean {
+        if (typeof id1 === 'object') {
+            return id1.equ(id2);
+        }
+        if (typeof id2 === 'object') {
+            return id2.equ(id1);
+        }
+        return id1 === id2;
+    }
     cacheIds() {}
     async modifyIds(ids:any[]) {}
     isImport = false;
