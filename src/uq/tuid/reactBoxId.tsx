@@ -54,6 +54,7 @@ export class ReactBoxId implements BoxId {
     }
 
     equ(id:BoxId|number): boolean {
+        if (id === undefined || id === null) return false;
         if (typeof id === 'object') return this.id === id.id;
         return this.id === id;
     }

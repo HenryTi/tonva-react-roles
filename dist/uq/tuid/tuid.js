@@ -32,6 +32,10 @@ export class Tuid extends Entity {
     getIdFromObj(obj) { return obj[this.idName]; }
     stopCache() { this.noCache = true; }
     equ(id1, id2) {
+        if (id1 === undefined)
+            return false;
+        if (id2 === undefined)
+            return false;
         if (typeof id1 === 'object') {
             return id1.equ(id2);
         }

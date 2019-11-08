@@ -56,6 +56,8 @@ export class ReactBoxId {
         return this.tuid.valueFromId(this.id);
     }
     equ(id) {
+        if (id === undefined || id === null)
+            return false;
         if (typeof id === 'object')
             return this.id === id.id;
         return this.id === id;

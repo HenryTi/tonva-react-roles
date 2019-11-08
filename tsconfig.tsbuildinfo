@@ -822,7 +822,7 @@
         "signature": "a8c2769b6dabaf1dd3db8432c4355019ade51ef5c0b75f2b7defbd0ff3023dc5"
       },
       "./src/uq/tuid/tuid.ts": {
-        "version": "d5d71225230873798e4a219a2b026d5ca99bf4866d31a7728b4c9b0f217a290c",
+        "version": "96780be39d263cd424ac920020ada57ce700ead6f42fc8fe22613a3d0ddd3ae1",
         "signature": "72926a72c6443ca49eb87620051830b37588c63c59b2fd3314c454da4f0a9c75"
       },
       "./src/uq/tuid/boxid.tsx": {
@@ -834,7 +834,7 @@
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
-        "version": "f4cbc1f179c58a7181b5c05af49b6219a51937b305af0324e6e9d1dce0946f5b",
+        "version": "954e93ee5d38dd70bedf8cd147f16324ef07260625b146c7298f3d7af62282ac",
         "signature": "2eaa47e6afd7e1cf4536f7b39158c56d27c3cc9d0535b049028680346e079eb6"
       },
       "./src/uq/tuid/index.ts": {
@@ -934,7 +934,7 @@
         "signature": "b563ee3f69ec8534d8d6f0cc5764e804ba109a8ab7011593503a0ebd0073bdb8"
       },
       "./src/capp/cuq/reactboxid.tsx": {
-        "version": "66dd83be90936cb64d5333f9298a7e9a5501f478492852a1f4d7691313889acf",
+        "version": "da573a2a119a944bd936650ab72e4b3a522a59aa7bcd31db46ad906d8a1ab78a",
         "signature": "86d454c26294b43370988cfb92821945bbe600e338fc18a6e1310adb91292d52"
       },
       "./src/capp/form/vfield/vtuidfield.tsx": {
@@ -4079,10 +4079,8 @@
       "./src/uq/query.ts",
       "./src/uq/caller.ts",
       "./src/uq/tuid/idcache.ts",
-      "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
       "./src/uq/tuid/tuidscache.ts",
-      "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
       "./src/uq/book.ts",
@@ -4107,7 +4105,6 @@
       "./src/capp/form/varr.tsx",
       "./src/capp/form/vsubmit.tsx",
       "./src/capp/form/vband.tsx",
-      "./src/capp/cuq/reactboxid.tsx",
       "./src/capp/form/vfield/vtuidfield.tsx",
       "./src/capp/form/bandsbuilder.ts",
       "./src/capp/form/vform.tsx",
@@ -4191,7 +4188,10 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts"
+      "./node_modules/@types/react-dom/index.d.ts",
+      "./src/uq/tuid/tuid.ts",
+      "./src/uq/tuid/reactboxid.tsx",
+      "./src/capp/cuq/reactboxid.tsx"
     ]
   },
   "version": "3.6.3"

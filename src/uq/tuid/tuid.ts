@@ -40,6 +40,8 @@ export abstract class Tuid extends Entity {
     abstract valueFromId(id:number):any;
     abstract async assureBox (id:number): Promise<void>;
     equ(id1:BoxId|number, id2:BoxId|number): boolean {
+        if (id1 === undefined) return false;
+        if (id2 === undefined) return false;
         if (typeof id1 === 'object') {
             return id1.equ(id2);
         }
