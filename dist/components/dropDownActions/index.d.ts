@@ -8,6 +8,7 @@ export interface DropdownActionsProps {
     icon?: string;
     actions: DropdownAction[];
     isRight?: boolean;
+    className?: string;
 }
 export interface DropdownActionsState {
     dropdownOpen: boolean;

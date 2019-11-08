@@ -60,6 +60,7 @@ export abstract class PageItems<T> {
     }
 
     protected async onLoad(): Promise<void> {}
+    protected async onLoaded(): Promise<void> {}
 
     async more():Promise<void> {
         if (this.allLoaded === true) return;
@@ -98,5 +99,6 @@ export abstract class PageItems<T> {
         else
             this._items.unshift(...ret.reverse());
         this.isFirst = false;
+        this.onLoaded();
     }
 }

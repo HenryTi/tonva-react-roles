@@ -67,6 +67,9 @@ export class PageItems {
     onLoad() {
         return __awaiter(this, void 0, void 0, function* () { });
     }
+    onLoaded() {
+        return __awaiter(this, void 0, void 0, function* () { });
+    }
     more() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.allLoaded === true)
@@ -105,6 +108,7 @@ export class PageItems {
             else
                 this._items.unshift(...ret.reverse());
             this.isFirst = false;
+            this.onLoaded();
         });
     }
 }
