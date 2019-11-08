@@ -4107,6 +4107,8 @@
       "./src/capp/form/varr.tsx",
       "./src/capp/form/vsubmit.tsx",
       "./src/capp/form/vband.tsx",
+      "./src/capp/cuq/reactboxid.tsx",
+      "./src/capp/form/vfield/vtuidfield.tsx",
       "./src/capp/form/bandsbuilder.ts",
       "./src/capp/form/vform.tsx",
       "./src/capp/form/index.ts",
@@ -4147,6 +4149,7 @@
       "./src/capp/tuid/vtuidlist.tsx",
       "./src/capp/tuid/ctuid.ts",
       "./src/capp/tuid/index.tsx",
+      "./src/capp/map/vmain.tsx",
       "./src/capp/map/inputvalues.tsx",
       "./src/capp/map/cmap.ts",
       "./src/capp/map/index.ts",
@@ -4157,6 +4160,7 @@
       "./src/capp/pending/vpendingmain.tsx",
       "./src/capp/pending/cpending.ts",
       "./src/capp/pending/index.ts",
+      "./src/capp/cuq/cuq.tsx",
       "./src/capp/cuq/index.ts",
       "./src/capp/centerapi.ts",
       "./src/capp/app/vapp.tsx",
@@ -4187,11 +4191,7 @@
       "./node_modules/@types/node/inspector.d.ts",
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "./src/capp/cuq/reactboxid.tsx",
-      "./src/capp/cuq/cuq.tsx",
-      "./src/capp/map/vmain.tsx",
-      "./src/capp/form/vfield/vtuidfield.tsx"
+      "./node_modules/@types/react-dom/index.d.ts"
     ]
   },
   "version": "3.6.3"
