@@ -17,7 +17,7 @@ export declare class DropdownActions extends React.Component<DropdownActionsProp
     private menu;
     private button;
     constructor(props: DropdownActionsProps);
-    componentWillMount(): void;
+    componentDidMount(): void;
     componentWillUnmount(): void;
     private handleDocumentClick;
     private toggle;

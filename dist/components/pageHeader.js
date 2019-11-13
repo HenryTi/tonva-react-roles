@@ -36,12 +36,6 @@ export class PageHeader extends React.Component {
         })
     }
     */
-    /*
-    componentWillMount() {
-        this.navChange();
-        //this.navChangeHandler = nav.events.add('change', this.navChange);
-    }
-    */
     componentWillUnmount() {
         //nav.events.remove('change', this.navChangeHandler);
     }

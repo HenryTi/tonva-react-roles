@@ -79,14 +79,6 @@ let Tabs = class Tabs extends React.Component {
             this.selectedTab = this.tabs[0];
         this.selectedTab.selected = true;
     }
-    /*
-    async componentWillMount() {
-        if (this.tabs === undefined) return;
-        if (this.tabs.length === 0) return;
-        let tab = this.tabs[0];
-        await tab.start();
-    }
-    */
     componentDidMount() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.tabs === undefined)

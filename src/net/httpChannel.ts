@@ -140,10 +140,10 @@ export abstract class HttpChannel {
             }
         }
         try {
-            console.log('%s-%s %s', options.method, path, options.body);
+            console.log('%s-%s %s', options.method, path, options.body || '');
             let now = Date.now();
             let timeOutHandler = env.setTimeout(
-                'httpChannel.fetch',
+                undefined, //'httpChannel.fetch',
                 () => {
                     that.endWait(url + ' timeout endWait: ' + (Date.now() - now) + 'ms', reject);
                 },

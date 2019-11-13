@@ -102,7 +102,7 @@ export class NavView extends React.Component<Props, NavViewState> {
 
     endWait() {
         env.setTimeout(
-            'NavView.endWait',
+            undefined, //'NavView.endWait',
             () => {
             /*
             this.setState({
@@ -587,7 +587,7 @@ export class Nav {
         try {
             window.onerror = this.windowOnError;
             window.onunhandledrejection = this.windowOnUnhandledRejection;
-            window.addEventListener('click', this.windowOnClick);
+            //window.addEventListener('click', this.windowOnClick);
             //window.addEventListener('mousemove', this.windowOnMouseMove);
             //window.addEventListener('touchmove', this.windowOnMouseMove);
             //window.addEventListener('scroll', this.windowOnScroll);
@@ -667,7 +667,7 @@ export class Nav {
         }
         nav.clear();
         await onLogined();
-        console.log('logined: AppView shown');
+        //console.log('logined: AppView shown');
     }
 
     setGuest(guest: Guest) {

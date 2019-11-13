@@ -116,7 +116,8 @@ export class NavView extends React.Component {
         });
     }
     endWait() {
-        env.setTimeout('NavView.endWait', () => {
+        env.setTimeout(undefined, //'NavView.endWait',
+        () => {
             /*
             this.setState({
                 fetchError: undefined,
@@ -549,7 +550,7 @@ export class Nav {
             try {
                 window.onerror = this.windowOnError;
                 window.onunhandledrejection = this.windowOnUnhandledRejection;
-                window.addEventListener('click', this.windowOnClick);
+                //window.addEventListener('click', this.windowOnClick);
                 //window.addEventListener('mousemove', this.windowOnMouseMove);
                 //window.addEventListener('touchmove', this.windowOnMouseMove);
                 //window.addEventListener('scroll', this.windowOnScroll);
@@ -626,7 +627,7 @@ export class Nav {
             }
             nav.clear();
             yield onLogined();
-            console.log('logined: AppView shown');
+            //console.log('logined: AppView shown');
         });
     }
     setGuest(guest) {

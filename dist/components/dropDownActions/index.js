@@ -22,7 +22,7 @@ export class DropdownActions extends React.Component {
             dropdownOpen: false
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         document.addEventListener('click', this.handleDocumentClick);
         document.addEventListener('touchstart', this.handleDocumentClick);
     }
@@ -57,8 +57,15 @@ export class DropdownActions extends React.Component {
                         i,
                         " ",
                         caption);
+                let onMenuItemClick = (evt) => {
+                    evt.preventDefault();
+                    action();
+                };
+                let onTouchStart = (evt) => {
+                    action();
+                };
                 // eslint-disable-next-line
-                return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: (evt) => { evt.preventDefault(); action(); } },
+                return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: onMenuItemClick, onTouchStart: onTouchStart },
                     i,
                     " ",
                     caption);

@@ -28,7 +28,7 @@ export class DropdownActions extends React.Component<DropdownActionsProps, Dropd
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         document.addEventListener('click', this.handleDocumentClick);
         document.addEventListener('touchstart', this.handleDocumentClick);
     }
@@ -78,8 +78,17 @@ export class DropdownActions extends React.Component<DropdownActionsProps, Dropd
                         }
                         if (action === undefined) 
                             return <h6 className="dropdown-header">{i} {caption}</h6>;
-                        // eslint-disable-next-line
-                        return <a className="dropdown-item" key={index} href="#/" onClick={(evt:React.MouseEvent<HTMLAnchorElement>)=>{ evt.preventDefault();action()}}>{i} {caption}</a>
+                        let onMenuItemClick = (evt:React.MouseEvent<HTMLAnchorElement>)=>{
+                            evt.preventDefault();
+                            action();
+                        }
+                        let onTouchStart = (evt: React.TouchEvent<HTMLAnchorElement>) => {
+                            action();
+                        }
+                            // eslint-disable-next-line
+                        return <a className="dropdown-item" key={index} href="#/" 
+                            onClick={onMenuItemClick} onTouchStart={onTouchStart}
+                            >{i} {caption}</a>
                     })
                 }
             </div>
