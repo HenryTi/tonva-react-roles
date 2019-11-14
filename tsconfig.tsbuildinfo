@@ -834,7 +834,7 @@
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
-        "version": "954e93ee5d38dd70bedf8cd147f16324ef07260625b146c7298f3d7af62282ac",
+        "version": "75e564d145855204fc27b0be0e1dd6d58e61901f4ab4520334177d9b886fe3b6",
         "signature": "2eaa47e6afd7e1cf4536f7b39158c56d27c3cc9d0535b049028680346e079eb6"
       },
       "./src/uq/tuid/index.ts": {
@@ -4078,10 +4078,10 @@
       "./src/uq/action.ts",
       "./src/uq/query.ts",
       "./src/uq/caller.ts",
+      "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
       "./src/uq/tuid/tuidscache.ts",
-      "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
       "./src/uq/book.ts",
@@ -4191,7 +4191,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/tuid/idcache.ts"
+      "./src/uq/tuid/reactboxid.tsx"
     ]
   },
   "version": "3.6.3"

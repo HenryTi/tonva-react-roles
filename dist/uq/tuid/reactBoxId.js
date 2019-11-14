@@ -63,7 +63,7 @@ export class ReactBoxId {
         return this.id === id;
     }
     render(ui, x) {
-        if (this.id === undefined || this.id === null)
+        if (this.id === undefined || this.id === null || isNaN(this.id) === true)
             return;
         let boxName = this.boxName; // this.tuid.name;
         let val = this.obj; // this.tuid.valueFromId(this.id);
