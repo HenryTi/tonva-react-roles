@@ -126,7 +126,6 @@ export class IdCache {
     }
     modifyIds(ids) {
         return __awaiter(this, void 0, void 0, function* () {
-            //let tuidValues:string[] = await this.tuidInner.loadTuidIds(this.divName, ids);
             let tuidValues = yield this.loadTuidIdsOrLocal(ids);
             let localedValues = tuidValues.filter(v => {
                 let p = v.indexOf('\t');
@@ -174,7 +173,8 @@ export class IdCache {
             let netIds = [];
             for (let id of ids) {
                 let value = this.localArr.getItem(id);
-                if (value === undefined)
+                //if (value === undefined)
+                if (!value)
                     netIds.push(id);
                 else
                     ret.push(value);
