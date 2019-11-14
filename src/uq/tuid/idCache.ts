@@ -161,6 +161,7 @@ export class IdCache {
         for (let id of ids) {
             let value = this.localArr.getItem(id);
             //if (value === undefined)
+            // 值不存在或者是空字符串，重新获取
             if (!value)
                 netIds.push(id);
             else
