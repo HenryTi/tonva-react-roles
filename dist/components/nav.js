@@ -30,6 +30,7 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
+import { ReloadPage } from './reloadPage';
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
@@ -395,6 +396,9 @@ export class Nav {
         };
         this.windowOnScroll = (ev) => {
             console.log('scroll event');
+        };
+        this.reload = () => {
+            window.document.location.reload();
         };
         let { lang, district } = resOptions;
         this.language = lang;
@@ -809,6 +813,10 @@ export class Nav {
     }
     logStep(step) {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
+    }
+    showReloadPage(msg) {
+        this.push(React.createElement(ReloadPage, { message: msg }));
+        env.setTimeout(undefined, this.reload, 10 * 1000);
     }
 }
 __decorate([

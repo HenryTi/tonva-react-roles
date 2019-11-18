@@ -2,6 +2,7 @@ import { LocalMap, LocalCache, env } from '../tool';
 import { UqData } from '../net';
 import { UqMan } from './uqMan';
 import { TuidImport, TuidInner } from './tuid';
+import { nav } from 'components';
 
 export interface TVs {
     [uqName:string]: {
@@ -96,6 +97,7 @@ export class UQsMan {
     }
 
     buildUQs(): any {
+        let that = this;
         let uqs:any = {};
         for (let i in this.collection) {
             let uqMan = this.collection[i];
@@ -107,13 +109,48 @@ export class UQsMan {
             for (let key of keys) {
                 let entity = entities[key];
                 let {name, sName} = entity;
-                if (name !== sName) entities[sName] = entity;
+                //if (name !== sName) 
+                //entities[sName] = entity;
+                entities[name.toLowerCase()] = entity;
             }
-            uqs[i] = entities;
-            uqs[uqName] = entities;
-            if (l !== uqName) uqs[l] = entities;
+            //uqs[i] = entities;
+            //uqs[uqName] = entities;
+            //if (l !== uqName) 
+            uqs[l] = new Proxy(entities, {
+                get: function(target, key, receiver) {
+                    let lk = (key as string).toLowerCase();
+                    let ret = target[lk];
+                    if (ret !== undefined) return ret;
+                    debugger;
+                    console.error('error in uqs entity undefined');
+                    that.showReload(`新增 uq ${uqName} entity ${String(key)}`);
+                    return undefined;
+                }
+            });
         }
-        return uqs;
+        //let uqs = this.collection;
+        return new Proxy(uqs, {
+            get: function (target, key, receiver) {
+                let lk = (key as string).toLowerCase();
+                let ret = target[lk];
+                if (ret !== undefined) return ret;
+                /*
+                for (let i in uqs) {
+                    if (i.toLowerCase() === lk) {
+                        return uqs[i];
+                    }
+                }*/
+                debugger;
+                console.error('error in uqs');
+                that.showReload(`新增 uq ${String(key)}`);
+                return undefined;
+            },
+        });
+    }
+
+    private showReload(msg: string) {
+        this.localMap.removeAll();
+        nav.showReloadPage(msg);
     }
 
     setTuidImportsLocal():string[] {

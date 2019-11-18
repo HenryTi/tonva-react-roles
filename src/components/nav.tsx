@@ -18,6 +18,7 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
+import { ReloadPage } from './reloadPage';
 
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
@@ -851,6 +852,15 @@ export class Nav {
     }
     logStep(step:string) {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
+    }
+
+    showReloadPage(msg: string) {
+        this.push(<ReloadPage message={msg} />);
+        env.setTimeout(undefined, this.reload, 10*1000);
+    }
+
+    reload = () => {
+        window.document.location.reload();
     }
 }
 export const nav: Nav = new Nav();

@@ -513,6 +513,10 @@
         "version": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74",
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
+      "./src/components/reloadpage.tsx": {
+        "version": "4690b08de6ca4c5bff4a10e77c0936c22cece97eb65792784bfc9b2308dd9f9b",
+        "signature": "7a263a27a2722aa9dabed52e1d36a69d4769c2732a20fc5b122a586462f0c108"
+      },
       "./src/entry/res/login.ts": {
         "version": "39220cd5924500b07b7f9ef0d64faea72c08c65020c6619e53636505f392806a",
         "signature": "17247298607bcf57ae5bd712ecf99f765fa09cbe7840ef99186971e7a6340c25"
@@ -542,8 +546,8 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "e04cd9aedb7a82b0b2e331be5d0d6b1d496cff8b36cd10da7086c7f3168a0f21",
-        "signature": "fefe614432d53b57d6b3256149144e7e8dce492e4898ea89c92321e9b3bf4274"
+        "version": "094228c7657083a3b1a93301f2bcc1bb10df14b346433ced65e56b0901f139ed",
+        "signature": "f883c7b2b89d5dc79a7ebaa32a062bd685274e9c4bec2142f56f3469de9245be"
       },
       "./src/components/vm.tsx": {
         "version": "5b02916c2e73a81218c917163ac32f120b36c2f02a8b72b6d158b2f12a078b0a",
@@ -862,8 +866,8 @@
         "signature": "25661ceed9b75b002d85e387b215e2fd2590ade111bb152eb5003d86c851e7d5"
       },
       "./src/uq/uqsman.ts": {
-        "version": "7122c377f00dbc77f0fb2066f8701b56e9772a86bd27573ed0d6fa1f4a0f24c8",
-        "signature": "5d702728ede503fb4b1b938a26847bac1f1aef7c1924f04b61a65ae24ebe44d6"
+        "version": "0f62d90b5434cee24d3177fba615615b85e036d989dea2de373cb6b580516e13",
+        "signature": "4ea170ea4a639e324ae875507c732ed9d2dca943b215d8621bad4442a8b981a9"
       },
       "./src/uq/uqman.ts": {
         "version": "e61bf2ec50c3198539312bb357e0e055f1accf05163c2ee0eb587f0df9664652",
@@ -1576,6 +1580,11 @@
         "./src/components/simple/icontext.tsx",
         "./src/components/simple/muted.tsx"
       ],
+      "./src/components/reloadpage.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/nav.tsx",
+        "./src/components/page.tsx"
+      ],
       "./src/entry/res/login.ts": [
         "./src/components/index.ts"
       ],
@@ -1626,6 +1635,7 @@
         "./src/components/res.ts",
         "./src/components/loading.tsx",
         "./src/components/simple/index.ts",
+        "./src/components/reloadpage.tsx",
         "./src/entry/login.tsx",
         "./src/entry/changepassword.tsx"
       ],
@@ -2135,7 +2145,8 @@
         "./src/tool/index.ts",
         "./src/net/index.ts",
         "./src/uq/uqman.ts",
-        "./src/uq/tuid/index.ts"
+        "./src/uq/tuid/index.ts",
+        "./src/components/index.ts"
       ],
       "./src/uq/uqman.ts": [
         "./node_modules/@types/lodash/index.d.ts",
@@ -3871,6 +3882,9 @@
       ],
       "./node_modules/@types/react-dom/index.d.ts": [
         "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/reloadpage.tsx": [
+        "./node_modules/@types/react/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -3986,14 +4000,10 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
-      "./src/components/pageheader.tsx",
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
-      "./src/net/httpchannelui.ts",
       "./src/net/host.ts",
-      "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
-      "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",
       "./src/components/loading.tsx",
       "./src/components/simple/badge.tsx",
@@ -4002,15 +4012,6 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
-      "./src/entry/res/login.ts",
-      "./src/entry/res/register.ts",
-      "./src/entry/res/index.ts",
-      "./src/entry/tools.tsx",
-      "./src/entry/register.tsx",
-      "./src/entry/login.tsx",
-      "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
-      "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
       "./src/components/form/formres.ts",
@@ -4030,10 +4031,6 @@
       "./src/components/form/widgets/unknown.tsx",
       "./src/components/form/widgets/buttonwidget.tsx",
       "./src/components/form/widgets/arrcomponent.tsx",
-      "./src/components/image.tsx",
-      "./src/components/resuploader.tsx",
-      "./src/components/edit/itemedit.tsx",
-      "./src/components/edit/imageitemedit.tsx",
       "./src/components/form/widgets/imagewidget.tsx",
       "./src/components/form/widgets/factory.tsx",
       "./src/components/form/widgets/index.ts",
@@ -4043,9 +4040,6 @@
       "./src/components/schema/touiselectitems.ts",
       "./src/components/schema/index.ts",
       "./src/components/form/index.ts",
-      "./src/components/edit/stringitemedit.tsx",
-      "./src/components/edit/radioitemedit.tsx",
-      "./src/components/edit/selectitemedit.tsx",
       "./src/components/edit/iditemedit.tsx",
       "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
@@ -4063,14 +4057,60 @@
       "./src/components/propgrid/row.tsx",
       "./src/components/propgrid/propview.tsx",
       "./src/components/propgrid/index.tsx",
-      "./src/components/media.tsx",
       "./src/components/searchbox.tsx",
-      "./src/components/index.ts",
-      "./src/net/appbridge.ts",
       "./src/net/caller.ts",
-      "./src/net/httpchannel.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
+      "./src/capp/tools/jsonstringify.ts",
+      "./src/capp/tools/purejsoncontent.tsx",
+      "./src/capp/tools/index.ts",
+      "./src/capp/form/viewmodel.tsx",
+      "./src/capp/form/rule.ts",
+      "./src/capp/formui.ts",
+      "./src/capp/query/defaultrow.tsx",
+      "./src/capp/viewmodel.tsx",
+      "./src/components/callbacks.ts",
+      "./src/components/edit/selectbaseitemedit.tsx",
+      "./src/components/fileupload/index.tsx",
+      "./src/components/form/widgets/selectbasewidget.tsx",
+      "./src/components/simple/image.tsx",
+      "./src/components/simple/resuploader.tsx",
+      "./src/net/serializejson.ts",
+      "./src/res/index.ts",
+      "./src/res/res.tsx",
+      "./src/uq/ui.ts",
+      "./node_modules/@types/node/inspector.d.ts",
+      "./node_modules/@types/node/index.d.ts",
+      "./node_modules/@types/node-fetch/index.d.ts",
+      "./node_modules/@types/react-dom/index.d.ts",
+      "./src/components/reloadpage.tsx",
+      "./src/components/nav.tsx",
+      "./src/net/httpchannel.ts",
+      "./src/components/index.ts",
+      "./src/components/edit/selectitemedit.tsx",
+      "./src/components/edit/radioitemedit.tsx",
+      "./src/components/edit/stringitemedit.tsx",
+      "./src/components/edit/imageitemedit.tsx",
+      "./src/components/edit/itemedit.tsx",
+      "./src/components/resuploader.tsx",
+      "./src/components/image.tsx",
+      "./src/components/vm.tsx",
+      "./src/net/httpchannelui.ts",
+      "./src/components/pageheader.tsx",
+      "./src/uq/uqsman.ts",
+      "./src/uq/index.ts",
+      "./src/uq/uqman.ts",
+      "./src/net/uqapi.ts",
+      "./src/components/fetcherrorview.tsx",
+      "./src/entry/res/login.ts",
+      "./src/entry/res/register.ts",
+      "./src/entry/res/index.ts",
+      "./src/entry/tools.tsx",
+      "./src/entry/register.tsx",
+      "./src/entry/login.tsx",
+      "./src/entry/changepassword.tsx",
+      "./src/components/media.tsx",
+      "./src/net/appbridge.ts",
       "./src/net/index.ts",
       "./src/entry/meinfo.tsx",
       "./src/entry/index.ts",
@@ -4082,23 +4122,15 @@
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
       "./src/uq/tuid/tuidscache.ts",
+      "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
       "./src/uq/book.ts",
       "./src/uq/history.ts",
       "./src/uq/map.ts",
       "./src/uq/pending.ts",
-      "./src/uq/uqsman.ts",
-      "./src/uq/uqman.ts",
-      "./src/uq/index.ts",
-      "./src/capp/tools/jsonstringify.ts",
-      "./src/capp/tools/purejsoncontent.tsx",
-      "./src/capp/tools/index.ts",
       "./src/capp/link/clink.tsx",
       "./src/capp/link/index.ts",
-      "./src/capp/form/viewmodel.tsx",
-      "./src/capp/form/rule.ts",
-      "./src/capp/formui.ts",
       "./src/capp/form/vfield/vfield.tsx",
       "./src/capp/form/vfield/buildvmfield.ts",
       "./src/capp/form/vfield/vcomputefield.tsx",
@@ -4111,7 +4143,6 @@
       "./src/capp/form/bandsbuilder.ts",
       "./src/capp/form/vform.tsx",
       "./src/capp/form/index.ts",
-      "./src/capp/query/defaultrow.tsx",
       "./src/capp/query/vquerymain.tsx",
       "./src/capp/query/vqueryselect.tsx",
       "./src/capp/query/cquery.ts",
@@ -4174,24 +4205,8 @@
       "./src/app/cbase.ts",
       "./src/app/index.ts",
       "./src/index.ts",
-      "./src/capp/viewmodel.tsx",
-      "./src/components/callbacks.ts",
-      "./src/components/edit/selectbaseitemedit.tsx",
-      "./src/components/fileupload/index.tsx",
-      "./src/components/form/widgets/selectbasewidget.tsx",
-      "./src/components/simple/image.tsx",
-      "./src/components/simple/resuploader.tsx",
       "./src/entry/forget.tsx",
-      "./src/net/serializejson.ts",
-      "./src/res/index.ts",
-      "./src/res/res.tsx",
-      "./src/uq/boxid.tsx",
-      "./src/uq/ui.ts",
-      "./node_modules/@types/node/inspector.d.ts",
-      "./node_modules/@types/node/index.d.ts",
-      "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/tuid/reactboxid.tsx"
+      "./src/uq/boxid.tsx"
     ]
   },
   "version": "3.6.3"

@@ -124,5 +124,7 @@ export declare class Nav {
     log(msg: string): void;
     logMark(): void;
     logStep(step: string): void;
+    showReloadPage(msg: string): void;
+    reload: () => void;
 }
 export declare const nav: Nav;

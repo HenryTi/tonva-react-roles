@@ -22,6 +22,7 @@ export declare class UQsMan {
     init(uqsData: UqData[]): Promise<void>;
     load(): Promise<string[]>;
     buildUQs(): any;
+    private showReload;
     setTuidImportsLocal(): string[];
     private setInner;
 }
