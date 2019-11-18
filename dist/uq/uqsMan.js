@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { env } from '../tool';
 import { UqMan } from './uqMan';
-import { nav } from 'components';
+import { nav } from '../components';
 export class UQsMan {
     constructor(tonvaAppName, tvs) {
         this.tvs = tvs || {};

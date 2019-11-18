@@ -2,7 +2,7 @@ import { LocalMap, LocalCache, env } from '../tool';
 import { UqData } from '../net';
 import { UqMan } from './uqMan';
 import { TuidImport, TuidInner } from './tuid';
-import { nav } from 'components';
+import { nav } from '../components';
 
 export interface TVs {
     [uqName:string]: {
