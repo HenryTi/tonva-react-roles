@@ -798,7 +798,7 @@
         "signature": "8f844c6b04d949ce777d523b44c7540f9d8e0512d3c44e836256e4d82aec3d8a"
       },
       "./src/entry/meinfo.tsx": {
-        "version": "8f91f62e4f7b0b3efae25d4fd8f6d4d37013c7923e4a8900f2984f51e921baf0",
+        "version": "d15047d10f59a9b293bb8bd94e49f25ada3d133bc9025b42a94dca621ad9c1d3",
         "signature": "6e5aeabc725c720c6ce9d2b1bc6c81aab4fb08b2e039e380c829daea6c9ff3d5"
       },
       "./src/entry/index.ts": {
@@ -4087,7 +4087,6 @@
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
       "./src/net/index.ts",
-      "./src/entry/meinfo.tsx",
       "./src/entry/index.ts",
       "./src/uq/entity.ts",
       "./src/uq/action.ts",
@@ -4104,6 +4103,7 @@
       "./src/uq/history.ts",
       "./src/uq/map.ts",
       "./src/uq/pending.ts",
+      "./src/uq/uqsman.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
       "./src/capp/tools/jsonstringify.ts",
@@ -4206,7 +4206,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/uqsman.ts"
+      "./src/entry/meinfo.tsx"
     ]
   },
   "version": "3.6.3"

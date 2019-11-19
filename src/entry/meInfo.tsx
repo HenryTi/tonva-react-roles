@@ -26,10 +26,11 @@ export class EditMeInfo extends React.Component {
     }
 
     private onItemChanged = async (itemSchema:ItemSchema, newValue:any, preValue:any) => {
-        let {name} = itemSchema;
+        let {name} = itemSchema;        
         await userApi.userSetProp(name, newValue);
         this.data[name] = newValue;
-        nav.user.name = newValue;
+        let user:any = nav.user;
+        user[name] = newValue;
         nav.saveLocalUser();
     }
 
