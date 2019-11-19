@@ -94,6 +94,10 @@ export abstract class CAppBase extends Controller {
         }
     }
 
+    async userFromId(userId:number):Promise<any> {
+        return await centerApi.userFromId(userId);
+    }
+
     private async load(): Promise<string[]> {
         let {appOwner, appName} = this.uqsMan;
         let {localData} = this.uqsMan;

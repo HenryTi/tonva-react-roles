@@ -74,6 +74,11 @@ export class CAppBase extends Controller {
             }
         });
     }
+    userFromId(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield centerApi.userFromId(userId);
+        });
+    }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
             let { appOwner, appName } = this.uqsMan;

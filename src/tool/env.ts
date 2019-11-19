@@ -18,7 +18,7 @@ export const env = (function () {
         isDevelopment: process.env.NODE_ENV === 'development',
         localDb: localDb,
         setTimeout: (tag:string, callback: (...args: any[]) => void, ms: number, ...args: any[]):NodeJS.Timer => {
-            if (tag !== undefined) console.log('setTimeout ' + tag);
+            //if (tag !== undefined) console.log('setTimeout ' + tag);
             return global.setTimeout(callback, ms, ...args);
         },
         clearTimeout: (handle:NodeJS.Timer):void => {

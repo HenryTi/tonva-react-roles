@@ -122,6 +122,10 @@ export class CApp extends Controller {
         }
     }
 
+    async userFromId(userId:number):Promise<any> {
+        return await centerApi.userFromId(userId);
+    }
+
     private async load(): Promise<string[]> {
         let {appOwner, appName} = this.uqs;
         let {localData} = this.uqs;

@@ -34,6 +34,7 @@ export declare class CApp extends Controller {
     getCUq(uq: string): CUq;
     protected readonly VAppMain: TypeVPage<CApp>;
     protected beforeStart(): Promise<boolean>;
+    userFromId(userId: number): Promise<any>;
     private load;
     protected internalStart(param: any): Promise<void>;
     protected clearPrevPages(): void;

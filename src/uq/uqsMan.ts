@@ -108,7 +108,7 @@ export class UQsMan {
             let keys = Object.keys(entities);
             for (let key of keys) {
                 let entity = entities[key];
-                let {name, sName} = entity;
+                let {name} = entity;
                 //if (name !== sName) 
                 //entities[sName] = entity;
                 entities[name.toLowerCase()] = entity;

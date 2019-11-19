@@ -14,6 +14,12 @@ export class CenterApi extends CenterApiBase {
             return yield this.get('tie/user-app-units', { app: app });
         });
     }
+    ;
+    userFromId(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.get('user/user-name-nick-icon-from-id', { userId: userId });
+        });
+    }
 }
 export const centerApi = new CenterApi('tv/', undefined);
 //# sourceMappingURL=centerApi.js.map
