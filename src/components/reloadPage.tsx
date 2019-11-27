@@ -43,3 +43,20 @@ export class ReloadPage extends React.Component<Props, State> {
         </Page>;
     }
 }
+
+interface ConfirmReloadPageProps {
+    confirm: (ok: boolean)=>Promise<void>;
+}
+export const ConfirmReloadPage = (props: ConfirmReloadPageProps):JSX.Element => {
+    return <Page header="彻底升级" back="none">
+        <div className="p-5 m-5 border bg-white rounded">
+            <div className="text-center text-info">
+                清除所有缓冲区内容，并重新加载网页
+            </div>
+            <div className="text-center mt-5">
+                <button className="btn btn-primary mr-3" onClick={()=>props.confirm(true)}>确认升级</button>
+                <button className="btn btn-outline-primary" onClick={()=>props.confirm(false)}>不升级</button>
+            </div>
+        </div>
+    </Page>;
+}

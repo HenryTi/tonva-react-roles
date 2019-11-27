@@ -126,5 +126,6 @@ export declare class Nav {
     logStep(step: string): void;
     showReloadPage(msg: string): void;
     reload: () => void;
+    resetAll: () => void;
 }
 export declare const nav: Nav;

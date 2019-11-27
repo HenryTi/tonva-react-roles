@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-//import _ from 'lodash';
 import { nav } from './nav';
 import { Page } from './page';
 import { env } from '../tool';

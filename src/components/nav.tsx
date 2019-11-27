@@ -18,7 +18,7 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
-import { ReloadPage } from './reloadPage';
+import { ReloadPage, ConfirmReloadPage } from './reloadPage';
 
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
@@ -726,7 +726,8 @@ export class Nav {
             <div className="m-5 border border-info bg-white rounded p-3 text-center">
                 <div>退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号</div>
                 <div className="mt-3">
-                    <button className="btn btn-danger" onClick={()=>this.logout(callback)}>退出</button>
+                    <button className="btn btn-danger mr-3" onClick={()=>this.logout(callback)}>安全退出</button>
+                    <button className="btn btn-outline-danger" onClick={this.resetAll}>彻底升级</button>
                 </div>
             </div>
         </Page>);
@@ -861,6 +862,19 @@ export class Nav {
 
     reload = () => {
         window.document.location.reload();
+    }
+
+    resetAll = () => {
+        this.push(<ConfirmReloadPage confirm={(ok:boolean):Promise<void> => {
+            if (ok === true) {
+                this.showReloadPage('彻底升级');
+                localStorage.clear();
+            }
+            else {
+                this.pop();
+            }
+            return;
+        }} />);
     }
 }
 export const nav: Nav = new Nav();

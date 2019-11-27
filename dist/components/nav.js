@@ -30,7 +30,7 @@ import '../css/va.css';
 import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
-import { ReloadPage } from './reloadPage';
+import { ReloadPage, ConfirmReloadPage } from './reloadPage';
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
@@ -400,6 +400,18 @@ export class Nav {
         this.reload = () => {
             window.document.location.reload();
         };
+        this.resetAll = () => {
+            this.push(React.createElement(ConfirmReloadPage, { confirm: (ok) => {
+                    if (ok === true) {
+                        this.showReloadPage('彻底升级');
+                        localStorage.clear();
+                    }
+                    else {
+                        this.pop();
+                    }
+                    return;
+                } }));
+        };
         let { lang, district } = resOptions;
         this.language = lang;
         this.culture = district;
@@ -687,7 +699,8 @@ export class Nav {
                 React.createElement("div", { className: "m-5 border border-info bg-white rounded p-3 text-center" },
                     React.createElement("div", null, "\u9000\u51FA\u5F53\u524D\u8D26\u53F7\u4E0D\u4F1A\u5220\u9664\u4EFB\u4F55\u5386\u53F2\u6570\u636E\uFF0C\u4E0B\u6B21\u767B\u5F55\u4F9D\u7136\u53EF\u4EE5\u4F7F\u7528\u672C\u8D26\u53F7"),
                     React.createElement("div", { className: "mt-3" },
-                        React.createElement("button", { className: "btn btn-danger", onClick: () => this.logout(callback) }, "\u9000\u51FA")))));
+                        React.createElement("button", { className: "btn btn-danger mr-3", onClick: () => this.logout(callback) }, "\u5B89\u5168\u9000\u51FA"),
+                        React.createElement("button", { className: "btn btn-outline-danger", onClick: this.resetAll }, "\u5F7B\u5E95\u5347\u7EA7")))));
         });
     }
     logout(callback) {

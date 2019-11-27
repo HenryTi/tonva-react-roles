@@ -116,7 +116,7 @@ export class UQsMan {
                         return ret;
                     debugger;
                     console.error('error in uqs entity undefined');
-                    that.showReload(`新增 uq ${uqName} entity ${String(key)}`);
+                    that.showReload(`代码错误：新增 uq ${uqName} entity ${String(key)}`);
                     return undefined;
                 }
             });
@@ -136,7 +136,7 @@ export class UQsMan {
                 }*/
                 debugger;
                 console.error('error in uqs');
-                that.showReload(`新增 uq ${String(key)}`);
+                that.showReload(`代码错误：新增 uq ${String(key)}`);
                 return undefined;
             },
         });

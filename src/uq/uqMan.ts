@@ -9,7 +9,6 @@ import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
 import { CreateBoxId, BoxId } from './tuid';
-//import { UqCache } from './caches';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 import { ReactBoxId } from './tuid/reactBoxId';
@@ -164,14 +163,14 @@ export class UqMan {
         }
     }
 
-    tuidArr: Tuid[] = [];
-    actionArr: Action[] = [];
-    sheetArr: Sheet[] = [];
-    queryArr: Query[] = [];
-    bookArr: Book[] = [];
-    mapArr: Map[] = [];
-    historyArr: History[] = [];
-    pendingArr: Pending[] = [];
+    readonly tuidArr: Tuid[] = [];
+    readonly actionArr: Action[] = [];
+    readonly sheetArr: Sheet[] = [];
+    readonly queryArr: Query[] = [];
+    readonly bookArr: Book[] = [];
+    readonly mapArr: Map[] = [];
+    readonly historyArr: History[] = [];
+    readonly pendingArr: Pending[] = [];
 
     async init() {
         await this.uqApi.init();
