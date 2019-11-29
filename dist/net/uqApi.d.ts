@@ -93,5 +93,6 @@ export declare class UserApi extends CenterApiBase {
     resetPassword(account: string, password: string, verify: string, type: 'mobile' | 'email'): Promise<any[]>;
     userSetProp(prop: string, value: any): Promise<void>;
     me(): Promise<any>;
+    user(id: number): Promise<any>;
 }
 export declare const userApi: UserApi;

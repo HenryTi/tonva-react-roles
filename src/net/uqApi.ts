@@ -625,6 +625,10 @@ export class UserApi extends CenterApiBase {
     async me():Promise<any> {
         return await this.get('tie/me');
     }
+
+    async user(id:number): Promise<any> {
+        return await this.get('tie/user', {id:id});
+    }
 }
 
 export const userApi = new UserApi('tv/', undefined);

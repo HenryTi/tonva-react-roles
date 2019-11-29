@@ -18,3 +18,4 @@ export * from './propGrid';
 export * from './simple';
 export * from './media';
 export * from './searchBox';
+export * from './userIcon';

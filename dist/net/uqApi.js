@@ -460,6 +460,11 @@ export class UserApi extends CenterApiBase {
             return yield this.get('tie/me');
         });
     }
+    user(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.get('tie/user', { id: id });
+        });
+    }
 }
 export const userApi = new UserApi('tv/', undefined);
 //# sourceMappingURL=uqApi.js.map
