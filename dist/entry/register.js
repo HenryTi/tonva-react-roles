@@ -189,7 +189,8 @@ class AccountPage extends VPage {
                 React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
                     tonvaTop(),
                     React.createElement("div", { className: "h-3c" }),
-                    React.createElement(Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false })));
+                    React.createElement(Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
+                    React.createElement("div", null, nav.loginBottom())));
         };
         this.onSubmit = (name, context) => __awaiter(this, void 0, void 0, function* () {
             context.clearContextErrors();

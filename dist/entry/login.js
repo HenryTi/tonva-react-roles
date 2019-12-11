@@ -65,8 +65,11 @@ export default class Login extends React.Component {
         };
     }
     render() {
-        let footer = React.createElement("div", { className: 'text-center' },
-            React.createElement("button", { className: "btn btn-link", color: "link", style: { margin: '0px auto' }, onClick: this.clickReg }, "\u6CE8\u518C\u8D26\u53F7"));
+        let footer = React.createElement("div", null,
+            React.createElement("div", { className: "d-block" },
+                React.createElement("div", { className: 'text-center' },
+                    React.createElement("button", { className: "btn btn-link", style: { margin: '0px auto' }, onClick: this.clickReg }, "\u6CE8\u518C\u8D26\u53F7")),
+                nav.loginBottom()));
         let header = false;
         if (this.props.withBack === true) {
             header = '登录';

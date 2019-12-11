@@ -404,6 +404,7 @@ export class NavView extends React.Component<Props, NavViewState> {
 export interface NavSettings {
     oem?: string;
     loginTop?: JSX.Element;
+    loginBottom?: JSX.Element;
 }
 
 export class Nav {
@@ -707,6 +708,10 @@ export class Nav {
 
     loginTop(defaultTop:JSX.Element) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
+    }
+
+    loginBottom(defaultBottom?:JSX.Element) {
+        return (this.navSettings && this.navSettings.loginBottom) || defaultBottom;
     }
 
     async showLogin(callback?: (user:User)=>Promise<void>, withBack?:boolean) {

@@ -64,11 +64,15 @@ export default class Login extends React.Component<LoginProps> {
         forget.start();
     }
     render() {
-        let footer = <div className='text-center'>
-            <button className="btn btn-link" color="link" style={{margin:'0px auto'}}
-                onClick={this.clickReg}>
-                注册账号
-            </button>
+        let footer = <div><div className="d-block">
+            <div className='text-center'>
+                <button className="btn btn-link" style={{margin:'0px auto'}}
+                    onClick={this.clickReg}>
+                    注册账号
+                </button>
+            </div>
+            {nav.loginBottom()}
+        </div>
         </div>;
         let header:string|boolean|JSX.Element = false;
         if (this.props.withBack === true) {

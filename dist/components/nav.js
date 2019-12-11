@@ -682,6 +682,9 @@ export class Nav {
     loginTop(defaultTop) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     }
+    loginBottom(defaultBottom) {
+        return (this.navSettings && this.navSettings.loginBottom) || defaultBottom;
+    }
     showLogin(callback, withBack) {
         return __awaiter(this, void 0, void 0, function* () {
             let lv = yield import('../entry/login');

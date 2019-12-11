@@ -165,7 +165,6 @@ div.red-dot>u.message-dot {
     flex-basis: 80px;
     text-align: center;
     color: #606060;
-    cursor: pointer;
     margin: 0 1px;
     border: solid 1px #f0f0f0;
     font-size: 12px;
