@@ -397,6 +397,12 @@ export class Nav {
         this.windowOnScroll = (ev) => {
             console.log('scroll event');
         };
+        this.privacyPage = (privacy) => __awaiter(this, void 0, void 0, function* () {
+            let html = yield this.getPrivacy(privacy);
+            let content = { __html: html };
+            nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
+                React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
+        });
         this.reload = () => {
             window.document.location.reload();
         };
@@ -682,8 +688,40 @@ export class Nav {
     loginTop(defaultTop) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     }
-    loginBottom(defaultBottom) {
-        return (this.navSettings && this.navSettings.loginBottom) || defaultBottom;
+    showPrivacy() {
+        if (!this.navSettings)
+            return;
+        let { privacy } = this.navSettings;
+        if (privacy === undefined)
+            return;
+        return React.createElement("div", { className: "text-center" },
+            React.createElement("button", { className: "btn btn-sm btn-link", onClick: () => this.privacyPage(privacy) },
+                React.createElement("small", { className: "text-muted" }, "\u9690\u79C1\u653F\u7B56")));
+    }
+    getPrivacy(privacy) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const headers = new Headers({
+                "Content-Type": 'text/plain'
+            });
+            let pos = privacy.indexOf('://');
+            if (pos > 0) {
+                let http = privacy.substring(0, pos).toLowerCase();
+                if (http === 'http' || http === 'https') {
+                    try {
+                        let res = yield fetch(privacy, {
+                            method: 'GET',
+                            headers: headers,
+                        });
+                        let text = yield res.text();
+                        return text;
+                    }
+                    catch (err) {
+                        console.error(err);
+                    }
+                }
+            }
+            return privacy;
+        });
     }
     showLogin(callback, withBack) {
         return __awaiter(this, void 0, void 0, function* () {

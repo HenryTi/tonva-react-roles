@@ -57,7 +57,7 @@ export declare class NavView extends React.Component<Props, NavViewState> {
 export interface NavSettings {
     oem?: string;
     loginTop?: JSX.Element;
-    loginBottom?: JSX.Element;
+    privacy?: string;
 }
 export declare class Nav {
     private nav;
@@ -97,7 +97,9 @@ export declare class Nav {
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
     wsConnect(): void;
     loginTop(defaultTop: JSX.Element): JSX.Element;
-    loginBottom(defaultBottom?: JSX.Element): JSX.Element;
+    showPrivacy(): JSX.Element;
+    private privacyPage;
+    private getPrivacy;
     showLogin(callback?: (user: User) => Promise<void>, withBack?: boolean): Promise<void>;
     showLogout(callback?: () => Promise<void>): Promise<void>;
     logout(callback?: () => Promise<void>): Promise<void>;

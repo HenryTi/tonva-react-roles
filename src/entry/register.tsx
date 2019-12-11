@@ -211,7 +211,7 @@ class AccountPage extends VPage<RegisterController> {
                     onButtonClick={this.onSubmit}
                     onEnter={this.onEnter} 
                     requiredFlag={false} />
-                <div>{nav.loginBottom()}</div>
+                {nav.showPrivacy()}
             </div>
         </Page>;
     }

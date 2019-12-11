@@ -404,7 +404,7 @@ export class NavView extends React.Component<Props, NavViewState> {
 export interface NavSettings {
     oem?: string;
     loginTop?: JSX.Element;
-    loginBottom?: JSX.Element;
+    privacy?: string;
 }
 
 export class Nav {
@@ -710,8 +710,48 @@ export class Nav {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     }
 
-    loginBottom(defaultBottom?:JSX.Element) {
-        return (this.navSettings && this.navSettings.loginBottom) || defaultBottom;
+    showPrivacy() {
+        if (!this.navSettings) return;
+        let {privacy} = this.navSettings;
+        if (privacy === undefined) return;
+        return <div className="text-center">
+            <button className="btn btn-sm btn-link"
+                onClick={()=>this.privacyPage(privacy)}>
+                <small className="text-muted">隐私政策</small>
+            </button>
+        </div>;
+    }
+
+    private privacyPage = async (privacy:string) => {
+        let html = await this.getPrivacy(privacy);
+        let content = {__html: html};
+        nav.push(<Page header="隐私政策">
+            <div className="p-3" dangerouslySetInnerHTML={content} />
+        </Page>);
+    }
+
+    private async getPrivacy(privacy:string):Promise<string> {
+        const headers = new  Headers({
+            "Content-Type":'text/plain'
+       })
+        let pos = privacy.indexOf('://');
+        if (pos > 0) {
+            let http = privacy.substring(0, pos).toLowerCase();
+            if (http === 'http' || http === 'https') {
+                try {
+                    let res = await fetch(privacy, {
+                        method:'GET',
+                        headers: headers,
+                    });
+                    let text = await res.text();
+                    return text;
+                }
+                catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+        return privacy;
     }
 
     async showLogin(callback?: (user:User)=>Promise<void>, withBack?:boolean) {
