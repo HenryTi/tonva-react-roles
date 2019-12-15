@@ -6,7 +6,7 @@ export interface ActionUI extends EntityUI {
 }
 export declare class CAction extends CEntity<Action, ActionUI> {
     protected internalStart(): Promise<void>;
-    protected readonly VActionMain: typeof VActionMain;
+    protected get VActionMain(): typeof VActionMain;
     submit(values: any): Promise<any>;
     submitReturns(values: any): Promise<{
         [ret: string]: any[];

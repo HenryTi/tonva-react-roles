@@ -12,7 +12,7 @@ export interface StateCount {
     count: number;
 }
 export declare class Sheet extends Entity {
-    readonly typeName: string;
+    get typeName(): string;
     states: SheetState[];
     setSchema(schema: any): void;
     build(obj: any): void;

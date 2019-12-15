@@ -12,8 +12,8 @@ export declare abstract class Entity {
     readonly typeId: number;
     readonly cache: LocalCache;
     readonly uqApi: UqApi;
-    abstract readonly typeName: string;
-    readonly sName: string;
+    abstract get typeName(): string;
+    get sName(): string;
     fields: Field[];
     arrFields: ArrFields[];
     returns: ArrFields[];

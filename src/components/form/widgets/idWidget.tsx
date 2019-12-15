@@ -37,11 +37,22 @@ export class IdWidget extends Widget {
         };
         let content;
         if (this.value === undefined || this.value === null) {
-            content = placeholder || 'placeholder';
+            content = placeholder || <small className="text-muted">[无]</small>;
             cn['text-muted'] = true;
         }
         else if (Templet === undefined) {
-            content = <>{this.value}</>;
+            let c: any;
+            if (this.value === null) {
+                c = 'null';
+            }
+            else {
+                switch (typeof this.value) {
+                    case 'undefined': c = <small className="text-muted">[无]</small>; break;
+                    case 'object': c = (this.value as any).id; break;
+                    default: c = this.value; break;
+                }
+            }
+            content = <>{c}</>;
         }
         else if (typeof Templet === 'function') {
             content = Templet(this.value);

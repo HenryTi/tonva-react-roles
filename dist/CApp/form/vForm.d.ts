@@ -71,9 +71,9 @@ export declare class VForm {
     computeFields(): void;
     submit(): Promise<void>;
     getValues(): any;
-    readonly valueBoxs: any;
+    get valueBoxs(): any;
     setValues(initValues: any): void;
-    readonly isOk: boolean;
+    get isOk(): boolean;
     reset(): void;
     getValue(fieldName: string): any;
     setValue(fieldName: string, value: any): void;

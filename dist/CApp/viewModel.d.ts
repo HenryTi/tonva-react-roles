@@ -6,7 +6,7 @@ export declare type TypeView = React.StatelessComponent<{
 }>;
 export declare type TypeContent = React.StatelessComponent<any>;
 export declare abstract class ViewModel {
-    protected abstract readonly view: TypeView;
+    protected abstract get view(): TypeView;
     render(className?: string | string[]): JSX.Element;
 }
 export declare const JSONContent: (values: any, x?: any) => JSX.Element;

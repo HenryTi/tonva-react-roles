@@ -2,9 +2,9 @@
 import { UiButton } from '../../schema';
 import { Widget } from './widget';
 export declare class ButtonWidget extends Widget {
-    protected readonly ui: UiButton;
+    protected get ui(): UiButton;
     protected onClick: () => Promise<void>;
     private observerRender;
-    protected readonly label: string;
+    protected get label(): string;
     render(): JSX.Element;
 }

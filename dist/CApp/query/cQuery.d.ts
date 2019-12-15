@@ -15,9 +15,9 @@ export declare abstract class CQueryBase extends CEntity<Query, QueryUI> {
 }
 export declare class CQuery extends CQueryBase {
     protected internalStart(): Promise<void>;
-    protected readonly VQueryMain: typeof VQueryMain;
+    protected get VQueryMain(): typeof VQueryMain;
 }
 export declare class CQuerySelect extends CQueryBase {
     protected internalStart(param?: any): Promise<void>;
-    protected readonly VQuerySelect: typeof VQuerySelect;
+    protected get VQuerySelect(): typeof VQuerySelect;
 }

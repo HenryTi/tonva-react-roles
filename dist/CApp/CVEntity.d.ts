@@ -26,6 +26,6 @@ export declare abstract class VEntity<T extends Entity, UI extends EntityUI, C e
     protected readonly entity: T;
     protected readonly ui: UI;
     constructor(controller: C);
-    readonly label: string;
+    get label(): string;
     protected createForm(onSubmit: () => Promise<void>, values?: any, mode?: FormMode): VForm;
 }

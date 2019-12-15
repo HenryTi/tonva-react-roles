@@ -21,10 +21,10 @@ export declare abstract class Context {
     getArrRowContexts(arrName: string): {
         [rowKey: string]: Context;
     };
-    abstract readonly data: any;
+    abstract get data(): any;
     abstract getItemSchema(itemName: string): ItemSchema;
     abstract getUiItem(itemName: string): UiItem;
-    readonly arrName: string;
+    get arrName(): string;
     getValue(itemName: string): any;
     setValue(itemName: string, value: any): void;
     getDisabled(itemName: string): boolean;
@@ -43,7 +43,7 @@ export declare abstract class Context {
     addErrorWidget(widget: Widget): void;
     removeErrorWidget(widget: Widget): void;
     protected checkHasError(): boolean;
-    readonly hasError: boolean;
+    get hasError(): boolean;
     clearErrors(): void;
     renderErrors: () => JSX.Element;
 }
@@ -56,13 +56,13 @@ export declare class RowContext extends Context {
     constructor(parentContext: Context, arrSchema: ArrSchema, data: any, inNode: boolean);
     getItemSchema(itemName: string): ItemSchema;
     getUiItem(itemName: string): UiItem;
-    readonly arrName: string;
+    get arrName(): string;
     clearErrors(): void;
-    readonly parentData: any;
+    get parentData(): any;
 }
 export declare class FormContext extends Context {
     constructor(form: Form, inNode: boolean);
-    readonly data: any;
+    get data(): any;
     getItemSchema(itemName: string): ItemSchema;
     getUiItem(itemName: string): UiItem;
 }

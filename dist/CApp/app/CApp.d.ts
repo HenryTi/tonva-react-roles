@@ -30,9 +30,9 @@ export declare class CApp extends Controller {
     constructor(ui: AppUI);
     getImportUq(uqOwner: string, uqName: string): CUq;
     protected newCUq(uqData: UqData, uqUI: UqUI): CUq;
-    readonly cUqArr: CUq[];
+    get cUqArr(): CUq[];
     getCUq(uq: string): CUq;
-    protected readonly VAppMain: TypeVPage<CApp>;
+    protected get VAppMain(): TypeVPage<CApp>;
     protected beforeStart(): Promise<boolean>;
     userFromId(userId: number): Promise<any>;
     private load;

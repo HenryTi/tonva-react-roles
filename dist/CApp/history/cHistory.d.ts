@@ -7,5 +7,5 @@ export interface HistoryUI extends EntityUI {
 }
 export declare class CHistory extends CEntity<History, HistoryUI> {
     protected internalStart(): Promise<void>;
-    protected readonly VHistoryMain: typeof VHistoryMain;
+    protected get VHistoryMain(): typeof VHistoryMain;
 }

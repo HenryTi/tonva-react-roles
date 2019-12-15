@@ -7,5 +7,5 @@ export interface BookUI extends EntityUI {
 }
 export declare class CBook extends CEntity<Book, BookUI> {
     protected internalStart(): Promise<void>;
-    protected readonly VBookMain: typeof VBookMain;
+    protected get VBookMain(): typeof VBookMain;
 }

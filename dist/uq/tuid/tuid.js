@@ -31,7 +31,7 @@ export class Tuid extends Entity {
     }
     getIdFromObj(obj) { return obj[this.idName]; }
     stopCache() { this.noCache = true; }
-    equ(id1, id2) {
+    static equ(id1, id2) {
         if (id1 === undefined)
             return false;
         if (id2 === undefined)
@@ -74,9 +74,13 @@ export class TuidInner extends Tuid {
     useId(id, defer) {
         if (this.noCache === true)
             return;
+        if (id === undefined)
+            return;
         this.idCache.useId(id, defer);
     }
     boxId(id) {
+        if (id === undefined)
+            return;
         if (typeof id === 'object')
             return id;
         this.useId(id);

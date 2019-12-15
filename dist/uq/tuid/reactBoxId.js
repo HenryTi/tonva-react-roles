@@ -143,7 +143,7 @@ function boxIdContent(bi, ui, x) {
 const Tv = observer(({ tuidValue, ui, x, nullUI }) => {
     if (tuidValue === undefined) {
         if (nullUI === undefined)
-            return React.createElement(React.Fragment, null, "[undefined]");
+            return React.createElement("small", { className: "text-muted" }, "[\u65E0]");
         return nullUI();
     }
     if (tuidValue === null) {

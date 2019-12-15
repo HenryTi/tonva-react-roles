@@ -189,7 +189,15 @@ export abstract class View<C extends Controller> {
     }
 
     protected openPage(view: React.StatelessComponent<any>, param?:any) {
-        this.controller.openPage(React.createElement(view, param));
+        let type = typeof param;
+        if (type === 'object' || type === 'undefined') {
+            this.controller.openPage(React.createElement(view, param));
+        }
+        else {
+            this.controller.openPage(<Page header="param type error">
+                View.openPage param must be object, but here is {type}
+            </Page>);
+        }
     }
 
     protected replacePage(view: React.StatelessComponent<any>, param?:any) {

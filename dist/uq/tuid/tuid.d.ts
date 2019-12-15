@@ -21,11 +21,11 @@ export declare abstract class Tuid extends Entity {
     abstract boxId(id: number): BoxId;
     abstract valueFromId(id: number): any;
     abstract assureBox(id: number): Promise<void>;
-    equ(id1: BoxId | number, id2: BoxId | number): boolean;
+    static equ(id1: BoxId | number, id2: BoxId | number): boolean;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
     isImport: boolean;
-    abstract readonly hasDiv: boolean;
+    abstract get hasDiv(): boolean;
     abstract div(name: string): TuidDiv;
     abstract loadMain(id: number | BoxId): Promise<any>;
     abstract load(id: number | BoxId): Promise<any>;
@@ -51,7 +51,7 @@ export declare class TuidInner extends Tuid {
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
     cacheTuids(defer: number): void;
-    readonly hasDiv: boolean;
+    get hasDiv(): boolean;
     div(name: string): TuidDiv;
     loadTuidIds(divName: string, ids: number[]): Promise<any[]>;
     loadMain(id: number | BoxId): Promise<any>;
@@ -77,7 +77,7 @@ export declare class TuidImport extends Tuid {
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
     assureBox(id: number): Promise<void>;
-    readonly hasDiv: boolean;
+    get hasDiv(): boolean;
     div(name: string): TuidDiv;
     loadMain(id: number | BoxId): Promise<any>;
     load(id: number | BoxId): Promise<any>;
@@ -105,7 +105,7 @@ export declare class TuidDiv extends TuidInner {
     protected idName: string;
     protected idCache: IdDivCache;
     constructor(uq: UqMan, tuid: TuidInner, name: string);
-    readonly owner: TuidInner;
+    get owner(): TuidInner;
     buildFieldsTuid(): void;
     buildTuidDivBox(ownerField: Field): TuidBoxDiv;
     getIdFromObj(obj: any): number;

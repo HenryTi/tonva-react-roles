@@ -217,7 +217,7 @@ export abstract class Entity {
                         let len = d.length;
                         let r = '', p = 0;
                         for (let i=0;i<len;i++) {
-                            let c = d.charCodeAt(i);
+                            let c:number = d.charCodeAt(i);
                             switch(c) {
                                 case 9: r += d.substring(p, i) + '\\t'; p = i+1; break;
                                 case 10: r += d.substring(p, i) + '\\n'; p = i+1; break;

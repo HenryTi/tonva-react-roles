@@ -173,7 +173,15 @@ export class View {
         this.controller.returnCall(value);
     }
     openPage(view, param) {
-        this.controller.openPage(React.createElement(view, param));
+        let type = typeof param;
+        if (type === 'object' || type === 'undefined') {
+            this.controller.openPage(React.createElement(view, param));
+        }
+        else {
+            this.controller.openPage(React.createElement(Page, { header: "param type error" },
+                "View.openPage param must be object, but here is ",
+                type));
+        }
     }
     replacePage(view, param) {
         this.controller.replacePage(React.createElement(view, param));

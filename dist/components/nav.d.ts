@@ -28,7 +28,7 @@ export declare class NavView extends React.Component<Props, NavViewState> {
     private waitTimeHandler?;
     constructor(props: Props);
     componentDidMount(): Promise<void>;
-    readonly level: number;
+    get level(): number;
     startWait(): void;
     endWait(): void;
     onError(fetchError: FetchError): Promise<void>;
@@ -71,7 +71,7 @@ export declare class Nav {
     culture: string;
     resUrl: string;
     constructor();
-    readonly guest: number;
+    get guest(): number;
     set(nav: NavView): void;
     registerReceiveHandler(handler: (message: any) => Promise<void>): number;
     unregisterReceiveHandler(handlerId: number): void;
@@ -79,7 +79,7 @@ export declare class Nav {
     private getPredefinedUnitName;
     private loadPredefinedUnit;
     setSettings(settings?: NavSettings): void;
-    readonly oem: string;
+    get oem(): string;
     hashParam: string;
     private centerHost;
     private arrs;
@@ -104,7 +104,7 @@ export declare class Nav {
     showLogout(callback?: () => Promise<void>): Promise<void>;
     logout(callback?: () => Promise<void>): Promise<void>;
     changePassword(): Promise<void>;
-    readonly level: number;
+    get level(): number;
     startWait(): void;
     endWait(): void;
     onError(error: FetchError): Promise<void>;
@@ -124,7 +124,7 @@ export declare class Nav {
     confirmBox(message?: string): boolean;
     navToApp(url: string, unitId: number, apiId?: number, sheetType?: number, sheetId?: number): Promise<void>;
     navToSite(url: string): void;
-    readonly logs: string[];
+    get logs(): string[];
     log(msg: string): void;
     logMark(): void;
     logStep(step: string): void;

@@ -7,5 +7,5 @@ export declare class VMapMain extends VEntity<Map, MapUI, CMap> {
     open(param?: any): Promise<void>;
     itemRender: (item: MapItem, index: number) => JSX.Element;
     private ItemRow;
-    protected readonly view: () => JSX.Element;
+    protected get view(): () => JSX.Element;
 }

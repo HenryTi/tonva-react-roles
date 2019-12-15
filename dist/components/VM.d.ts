@@ -6,8 +6,8 @@ export declare abstract class Controller {
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
-    readonly user: User;
-    readonly isLogined: boolean;
+    get user(): User;
+    get isLogined(): boolean;
     constructor(res: any);
     private receiveHandlerId;
     private disposer;
@@ -25,7 +25,7 @@ export declare abstract class Controller {
     protected registerReceiveHandler(): void;
     protected abstract internalStart(param?: any, ...params: any[]): Promise<void>;
     start(param?: any, ...params: any[]): Promise<void>;
-    readonly isCalling: boolean;
+    get isCalling(): boolean;
     private _resolve_$;
     call<T>(param?: any, ...params: any[]): Promise<T>;
     vCall<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<any>;
@@ -43,7 +43,7 @@ export declare abstract class View<C extends Controller> {
     protected readonly res: any;
     protected readonly x: any;
     constructor(controller: C);
-    protected readonly isDev: boolean;
+    protected get isDev(): boolean;
     abstract render(param?: any): JSX.Element;
     protected renderVm(vm: new (controller: C) => View<C>, param?: any): JSX.Element;
     protected openVPage(vp: new (controller: C) => VPage<C>, param?: any): Promise<void>;

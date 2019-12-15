@@ -30,7 +30,7 @@ export declare class List extends React.Component<ListProps> {
     componentWillUnmount(): void;
     selectAll(): void;
     unselectAll(): void;
-    readonly selectedItems: any[];
+    get selectedItems(): any[];
     render(): JSX.Element;
 }
 export {};

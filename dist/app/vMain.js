@@ -45,7 +45,7 @@ export class VAppMain extends VPage<CMainBase> {
 export class VUnsupportedUnit extends VPage {
     constructor() {
         super(...arguments);
-        this.page = (predefinedUnit) => {
+        this.page = ({ predefinedUnit }) => {
             let { user } = nav;
             let userName = user ? user.name : '[未登录]';
             let { appOwner, appName } = this.controller.uqsMan;
@@ -93,7 +93,7 @@ export class VUnsupportedUnit extends VPage {
     }
     open(predefinedUnit) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page, predefinedUnit);
+            this.openPage(this.page, { predefinedUnit: predefinedUnit });
         });
     }
 }
@@ -139,14 +139,14 @@ export class VErrorsPage extends VPage {
 export class VStartError extends VPage {
     constructor() {
         super(...arguments);
-        this.page = (error) => {
+        this.page = ({ error }) => {
             return React.createElement(Page, { header: "App start error!" },
                 React.createElement("pre", null, typeof error === 'string' ? error : error.message));
         };
     }
     open(error) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.openPage(this.page, error);
+            this.openPage(this.page, { error: error });
         });
     }
 }

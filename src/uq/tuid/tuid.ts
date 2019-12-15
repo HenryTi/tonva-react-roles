@@ -39,7 +39,7 @@ export abstract class Tuid extends Entity {
     abstract boxId(id:number):BoxId;    
     abstract valueFromId(id:number):any;
     abstract async assureBox (id:number): Promise<void>;
-    equ(id1:BoxId|number, id2:BoxId|number): boolean {
+    static equ(id1:BoxId|number, id2:BoxId|number): boolean {
         if (id1 === undefined) return false;
         if (id2 === undefined) return false;
         if (typeof id1 === 'object') {
@@ -95,9 +95,11 @@ export class TuidInner extends Tuid {
     
     useId(id:number, defer?:boolean) {
         if (this.noCache === true) return;
+        if (id === undefined) return;
         this.idCache.useId(id, defer);
     }
     boxId(id:number):BoxId {
+        if (id === undefined) return;
         if (typeof id === 'object') return id;
         this.useId(id);
         let {createBoxId} = this.uq;

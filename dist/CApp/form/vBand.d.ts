@@ -8,7 +8,7 @@ export declare abstract class VBand {
     constructor(label: string);
     render(): JSX.Element;
     setAddRow(addRow: () => Promise<void>): void;
-    readonly key: string;
+    get key(): string;
     getVFields(): VField[];
     getVArr(): VArr;
     getVSubmit(): VSubmit;
@@ -22,7 +22,7 @@ export interface FieldRes {
 export declare class VFieldBand extends VBand {
     protected vField: VField;
     constructor(label: string, vField: VField);
-    readonly key: string;
+    get key(): string;
     getVFields(): VField[];
     protected renderContent(): JSX.Element;
 }
@@ -30,21 +30,21 @@ export declare class VArrBand extends VBand {
     protected vArr: VArr;
     constructor(label: string, vArr: VArr);
     setAddRow(addRow: () => Promise<void>): void;
-    readonly key: string;
+    get key(): string;
     getVArr(): VArr;
     render(): JSX.Element;
 }
 export declare class VFieldsBand extends VBand {
     protected vFields: VField[];
     constructor(label: string, vFields: VField[]);
-    readonly key: string;
+    get key(): string;
     getVFields(): VField[];
     protected renderContent(): JSX.Element;
 }
 export declare class VSubmitBand extends VBand {
     protected vSubmit: VSubmit;
     constructor(vSubmit: VSubmit);
-    readonly key: string;
+    get key(): string;
     getVSubmit(): VSubmit;
     render(): JSX.Element;
 }

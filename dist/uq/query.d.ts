@@ -12,7 +12,7 @@ export declare class QueryPager<T extends any> extends PageItems<T> {
     protected setPageStart(item: T): void;
 }
 export declare class Query extends Entity {
-    readonly typeName: string;
+    get typeName(): string;
     private pageStart;
     private pageSize;
     private params;
@@ -23,7 +23,7 @@ export declare class Query extends Entity {
     isPaged: boolean;
     setSchema(schema: any): void;
     resetPage(size: number, params: any): void;
-    readonly hasMore: boolean;
+    get hasMore(): boolean;
     loadPage(): Promise<void>;
     protected pageCaller(params: any, showWaiting?: boolean): QueryPageCaller;
     page(params: any, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<any[]>;

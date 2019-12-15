@@ -37,10 +37,10 @@ export class VAppMain extends VPage<CMainBase> {
 */
 export class VUnsupportedUnit extends VPage<CAppBase> {
     async open(predefinedUnit: number) {
-        this.openPage(this.page, predefinedUnit);
+        this.openPage(this.page, {predefinedUnit:predefinedUnit});
     }
 
-    private page = (predefinedUnit: number) => {
+    private page = ({predefinedUnit}:{predefinedUnit: number}) => {
         let {user} = nav;
         let userName:string = user? user.name : '[未登录]';
         let {appOwner, appName} = this.controller.uqsMan;
@@ -127,10 +127,10 @@ export class VErrorsPage extends VPage<CAppBase> {
 
 export class VStartError extends VPage<CAppBase> {
     async open(error:any) {
-        this.openPage(this.page, error);
+        this.openPage(this.page, {error:error});
     }
 
-    private page = (error:any) => {
+    private page = ({error}:{error:any}) => {
         return <Page header="App start error!">
             <pre>
                 {typeof error === 'string'? error : error.message}

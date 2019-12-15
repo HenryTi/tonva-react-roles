@@ -5,7 +5,7 @@ export declare class RadioWidget extends Widget {
     protected inputs: {
         [index: number]: HTMLInputElement;
     };
-    protected readonly ui: UiRadio;
+    protected get ui(): UiRadio;
     protected setElementValue(value: any): void;
     setReadOnly(value: boolean): void;
     setDisabled(value: boolean): void;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {FetchError} from '../net/fetchError';
 import { refetchApi } from '../net';
+import { Page } from './page';
 
 export interface FetchErrorProps extends FetchError {
     clearError: ()=>void
@@ -45,4 +46,10 @@ export default class FetchErrorView extends React.Component<FetchErrorProps, nul
             </article>
         </li>;
     }
+}
+
+export const SystemNotifyPage = ({message}:{message:string}):JSX.Element => {
+    return <Page header="系统提醒">
+        <div className="px-3">{message}</div>
+    </Page>;
 }

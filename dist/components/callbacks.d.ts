@@ -3,7 +3,7 @@ export interface Callback {
 }
 export declare class Callbacks<T extends Callback> {
     private list;
-    readonly has: boolean;
+    get has(): boolean;
     register(callback: T): void;
     unregister(callback: T): void;
     call(...params: any[]): void;

@@ -13,10 +13,10 @@ export declare class Selectable extends ListBase {
     constructor(list: List);
     dispose(): void;
     private buildItems;
-    readonly items: SelectableItem[];
+    get items(): SelectableItem[];
     selectAll(): void;
     unselectAll(): void;
     private onSelect;
-    readonly selectedItems: any[];
+    get selectedItems(): any[];
     render: (item: SelectableItem, index: number) => JSX.Element;
 }

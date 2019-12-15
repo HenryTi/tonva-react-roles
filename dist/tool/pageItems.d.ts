@@ -7,7 +7,7 @@ export declare abstract class PageItems<T> {
     protected loaded: boolean;
     protected _items: IObservableArray<T>;
     allLoaded: boolean;
-    readonly items: IObservableArray<T>;
+    get items(): IObservableArray<T>;
     topDiv: string;
     bottomDiv: string;
     scrollToTop(): void;

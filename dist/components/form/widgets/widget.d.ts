@@ -16,17 +16,17 @@ export declare abstract class Widget {
     protected rules: Rule[];
     errors: string[];
     protected contextErrors: string[];
-    protected readonly hasError: boolean;
+    protected get hasError(): boolean;
     protected readOnly: boolean;
     protected disabled: boolean;
     visible: boolean;
     constructor(context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode);
-    protected readonly itemSchema: ItemSchema;
-    protected readonly ui: UiItem;
+    protected get itemSchema(): ItemSchema;
+    protected get ui(): UiItem;
     protected init(): void;
     protected buildRules(): void;
     checkRules(): void;
-    readonly isOk: boolean;
+    get isOk(): boolean;
     setError(err: string | string[]): void;
     setContextError(err: string | string[]): void;
     clearError(): void;
@@ -45,11 +45,11 @@ export declare abstract class Widget {
     private isChanging;
     protected onInputChange: (evt: React.ChangeEvent<any>) => void;
     protected changeValue(newValue: any, fromElement: boolean): void;
-    protected readonly className: string;
+    protected get className(): string;
     protected abstract render(): JSX.Element;
     protected renderBody(): JSX.Element;
     container: () => JSX.Element;
-    protected readonly label: string;
+    protected get label(): string;
     protected renderTemplet(): JSX.Element | undefined;
     protected renderErrors(): React.ReactElement<{
         key: string;

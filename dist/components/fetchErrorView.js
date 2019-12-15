@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { refetchApi } from '../net';
+import { Page } from './page';
 export default class FetchErrorView extends React.Component {
     constructor() {
         super(...arguments);
@@ -51,4 +52,8 @@ export default class FetchErrorView extends React.Component {
                             React.createElement("button", { type: 'button', onClick: this.close }, "\u5173\u95ED"))))));
     }
 }
+export const SystemNotifyPage = ({ message }) => {
+    return React.createElement(Page, { header: "\u7CFB\u7EDF\u63D0\u9192" },
+        React.createElement("div", { className: "px-3" }, message));
+};
 //# sourceMappingURL=fetchErrorView.js.map

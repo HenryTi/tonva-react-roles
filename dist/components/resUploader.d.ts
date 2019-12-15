@@ -10,3 +10,18 @@ export declare class ResUploader extends React.Component<ResUploaderProps> {
     upload: () => Promise<string>;
     render(): JSX.Element;
 }
+interface ImageUploaderProps {
+    id?: string | number;
+    label?: string;
+    onSaved?: (imageId: string) => Promise<void>;
+}
+export declare class ImageUploader extends React.Component<ImageUploaderProps> {
+    private resUploader;
+    private isChanged;
+    private resId;
+    private overSize;
+    private upload;
+    private onSaved;
+    render(): JSX.Element;
+}
+export {};

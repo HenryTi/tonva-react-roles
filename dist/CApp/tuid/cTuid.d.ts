@@ -38,9 +38,9 @@ export declare abstract class CTuidBase extends CTuid<Tuid> {
     cSelectFrom(): CTuidSelect;
     getLable(tuid: Tuid): string;
     isImport: boolean;
-    protected readonly VTuidMain: typeof VTuidMain;
-    protected readonly VTuidEdit: typeof VTuidEdit;
-    protected readonly VTuidList: typeof VTuidList;
+    protected get VTuidMain(): typeof VTuidMain;
+    protected get VTuidEdit(): typeof VTuidEdit;
+    protected get VTuidList(): typeof VTuidList;
     protected internalStart(param?: any): Promise<void>;
     protected onEvent(type: string, value: any): Promise<void>;
     protected edit(values: any): Promise<void>;
@@ -65,10 +65,10 @@ export declare class CTuidDiv extends CTuid<Tuid> {
 export declare class CTuidSelect extends CTuid<Tuid> {
     protected internalStart(param?: any): Promise<void>;
     protected beforeStart(): Promise<boolean>;
-    protected readonly VTuidSelect: typeof VTuidSelect;
+    protected get VTuidSelect(): typeof VTuidSelect;
     idFromItem(item: any): any;
 }
 export declare class CTuidInfo extends CTuid<Tuid> {
     protected internalStart(id: any): Promise<void>;
-    protected readonly VTuidInfo: typeof VTuidInfo;
+    protected get VTuidInfo(): typeof VTuidInfo;
 }

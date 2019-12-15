@@ -12,7 +12,7 @@ import { CreateBoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
+export declare function fieldDefaultValue(type: FieldType): "" | 0 | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -67,7 +67,7 @@ export declare class UqMan {
     constructor(uqs: UQsMan, uqData: UqData, createBoxId: CreateBoxId, tvs: {
         [entity: string]: (values: any) => JSX.Element;
     });
-    readonly entities: any;
+    get entities(): any;
     private createBoxIdFromTVs;
     tuid(name: string): Tuid;
     tuidDiv(name: string, div: string): TuidDiv;

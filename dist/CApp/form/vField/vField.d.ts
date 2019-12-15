@@ -15,13 +15,14 @@ export declare abstract class VField extends ViewModel {
     name: string;
     protected init(): void;
     protected buildRules(): void;
-    readonly checkRules: string[];
-    readonly isOk: boolean;
-    readonly value: any;
+    get checkRules(): string[];
+    get isOk(): boolean;
+    get value(): any;
     setValue(v: any): void;
-    error: any;
+    get error(): any;
+    set error(err: any);
     protected parse(str: string): any;
-    readonly readonly: boolean;
+    get readonly(): boolean;
 }
 export declare class VUnknownField extends VField {
     protected view: () => JSX.Element;
@@ -30,7 +31,7 @@ export declare abstract class VInputControl extends VField {
     protected fieldUI: FieldInputUI;
     protected input: HTMLInputElement;
     protected inputType: string;
-    protected readonly maxLength: number;
+    protected get maxLength(): number;
     protected renderError: (className: string) => JSX.Element;
     setValue(v: any): void;
     protected ref: (input: HTMLInputElement) => void;
@@ -45,7 +46,7 @@ export declare const RedMark: () => JSX.Element;
 export declare class VStringField extends VInputControl {
     protected fieldUI: FieldStringUI;
     protected inputType: string;
-    protected readonly maxLength: number;
+    protected get maxLength(): number;
 }
 export declare abstract class VNumberControl extends VInputControl {
     protected fieldUI: FieldNumberUI;

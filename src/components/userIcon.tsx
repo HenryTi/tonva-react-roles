@@ -4,7 +4,7 @@ import { nav } from './nav';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { userApi } from '../net';
-
+import { User } from '../tool';
 
 export interface UserIconProps {
     id: number;
@@ -16,21 +16,22 @@ export interface UserIconProps {
 
 export const UserIcon = observer((props: UserIconProps):JSX.Element => {
     let {className, style, id, altImage, noneImage} = props;
-    let src = userImageSrc(id);
-    if (!src) {
+    let user = getUser(id);
+    if (!user) {
         return <div className={classNames(className, 'image-none')} style={style}>
             {noneImage || <i className="fa fa-file-o" />}
         </div>;
     }
-    if (src === '.' || src === '/') {
+    let {icon} = user;
+    if (!icon) {
         return <div className={classNames(className, 'image-none')} style={style}>
             <i className="fa fa-file-o" />
         </div>;
     }
-    if (src.startsWith(':') === true) {
-        src = nav.resUrl + src.substr(1);
+    if (icon.startsWith(':') === true) {
+        icon = nav.resUrl + icon.substr(1);
     }
-    return <img src={src} className={className} alt="img"
+    return <img src={icon} className={className} alt="img"
         style={style}
         onError={evt=>{
             if (altImage) evt.currentTarget.src=altImage;
@@ -38,24 +39,38 @@ export const UserIcon = observer((props: UserIconProps):JSX.Element => {
         }} />;
 });
 
-const map = observable(new Map<number, string>());
+export interface UserViewProps {
+    id: number;
+    render: (user:User) => JSX.Element;
+}
 
-function userImageSrc(id: number):string {
+export const UserView = observer((props: UserViewProps):JSX.Element => {
+    let {id, render} = props;
+    let user = getUser(id);
+    if (!user) {
+        return <></>;
+    }
+    return render(user);
+});
+
+const map = observable(new Map<number, User>());
+
+function getUser(id: any):User {
+    if (id === null) return;
+    switch (typeof(id)) {
+        case 'object': 
+            id = id.id; 
+            if (!id) return;
+            break;
+    }    
     if (map.has(id) === false) {
-        let ret = '.';
-        //map.set(id, ret);
         userApi.user(id).then(v => {
             if (!v) v = null;
-            else {
-                let {icon} = v;
-                if (icon) v = icon;
-                else v = '/';
-            }
             map.set(id, v);
         }).catch(reason => {
             console.error(reason);
         });
-        return ret;
+        return undefined;
     }
     let src = map.get(id);
     if (src === null) return;

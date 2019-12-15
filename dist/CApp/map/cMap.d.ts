@@ -32,5 +32,5 @@ export declare class CMap extends CEntity<Map, MapUI> {
     searchOnKey(keyField: Field, param: any): Promise<number>;
     addClick: (item: MapItem) => Promise<void>;
     removeClick: (item: MapItem) => Promise<void>;
-    protected readonly VMapMain: typeof VMapMain;
+    protected get VMapMain(): typeof VMapMain;
 }

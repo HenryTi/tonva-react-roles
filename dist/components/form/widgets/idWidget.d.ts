@@ -2,7 +2,7 @@
 import { Widget } from './widget';
 import { UiIdItem } from '../../schema';
 export declare class IdWidget extends Widget {
-    protected readonly ui: UiIdItem;
+    protected get ui(): UiIdItem;
     protected value: number;
     setReadOnly(value: boolean): void;
     setDisabled(value: boolean): void;

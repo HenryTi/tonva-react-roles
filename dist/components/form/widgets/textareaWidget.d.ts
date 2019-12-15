@@ -3,9 +3,9 @@ import { Widget } from './widget';
 import { UiTextAreaItem } from '../../schema';
 import { StringSchema } from '../../schema';
 export declare class TextAreaWidget extends Widget {
-    protected readonly itemSchema: StringSchema;
+    protected get itemSchema(): StringSchema;
     protected input: HTMLTextAreaElement;
-    protected readonly ui: UiTextAreaItem;
+    protected get ui(): UiTextAreaItem;
     protected setElementValue(value: any): void;
     protected onInputChange: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
     setReadOnly(value: boolean): void;

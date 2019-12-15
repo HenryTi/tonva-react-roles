@@ -134,7 +134,7 @@ interface Props {
 
 const Tv = observer(({tuidValue, ui, x, nullUI}:Props) => {
     if (tuidValue === undefined) {
-        if (nullUI === undefined) return <>[undefined]</>;
+        if (nullUI === undefined) return <small className="text-muted">[无]</small>;
         return nullUI();
     }
     if (tuidValue === null) {

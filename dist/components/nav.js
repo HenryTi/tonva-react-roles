@@ -17,7 +17,7 @@ import * as React from 'react';
 import { observable } from 'mobx';
 import { Page } from './page';
 import { netToken } from '../net/netToken';
-import FetchErrorView from './fetchErrorView';
+import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
 import { LocalData, env } from '../tool';
 import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, host, resUrlFromHost } from '../net';
@@ -136,9 +136,19 @@ export class NavView extends React.Component {
     onError(fetchError) {
         return __awaiter(this, void 0, void 0, function* () {
             let err = fetchError.error;
-            if (err !== undefined && err.unauthorized === true) {
-                yield nav.showLogin(undefined);
-                return;
+            if (err !== undefined) {
+                if (err.unauthorized === true) {
+                    yield nav.showLogin(undefined);
+                    return;
+                }
+                switch (err.type) {
+                    case 'unauthorized':
+                        yield nav.showLogin(undefined);
+                        return;
+                    case 'sheet-processing':
+                        nav.push(React.createElement(SystemNotifyPage, { message: "\u5355\u636E\u6B63\u5728\u5904\u7406\u4E2D\u3002\u8BF7\u91CD\u65B0\u64CD\u4F5C\uFF01" }));
+                        return;
+                }
             }
             this.setState({
                 fetchError: fetchError,

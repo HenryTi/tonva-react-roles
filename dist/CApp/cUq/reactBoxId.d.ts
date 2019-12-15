@@ -11,10 +11,10 @@ export declare class ReactBoxId implements BoxId {
     protected tuidUR: TuidWithUIRes;
     readonly isUndefined: boolean;
     constructor(tuidUR: TuidWithUIRes, id: number);
-    readonly obj: any;
+    get obj(): any;
     equ(id: BoxId | number): boolean;
     render(ui: TvTemplet, x: any): JSX.Element;
-    readonly boxName: string;
+    get boxName(): string;
     assure(): Promise<BoxId>;
 }
 export declare type TvTemplet = (values?: any, x?: any) => JSX.Element;

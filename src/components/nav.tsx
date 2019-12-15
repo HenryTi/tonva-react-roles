@@ -3,7 +3,7 @@ import {observable} from 'mobx';
 import {User, Guest/*, UserInNav*/} from '../tool/user';
 import {Page} from './page';
 import {netToken} from '../net/netToken';
-import FetchErrorView from './fetchErrorView';
+import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
 import {FetchError} from '../net/fetchError';
 import {appUrl, setAppInFrame, getExHash, getExHashPos} from '../net/appBridge';
 import {LocalData, env} from '../tool';
@@ -123,9 +123,19 @@ export class NavView extends React.Component<Props, NavViewState> {
     async onError(fetchError: FetchError)
     {
         let err = fetchError.error;
-        if (err !== undefined && err.unauthorized === true) {
-            await nav.showLogin(undefined);
-            return;
+        if (err !== undefined) {
+            if (err.unauthorized === true) {
+                await nav.showLogin(undefined);
+                return;
+            }
+            switch (err.type) {
+                case 'unauthorized':
+                    await nav.showLogin(undefined);
+                    return;
+                case 'sheet-processing':
+                    nav.push(<SystemNotifyPage message="单据正在处理中。请重新操作！" />);
+                    return;
+            }
         }
         this.setState({
             fetchError: fetchError,

@@ -7,5 +7,5 @@ export interface PendingUI extends EntityUI {
 }
 export declare class CPending extends CEntity<Pending, PendingUI> {
     protected internalStart(): Promise<void>;
-    protected readonly VPendingMain: typeof VPendingMain;
+    protected get VPendingMain(): typeof VPendingMain;
 }

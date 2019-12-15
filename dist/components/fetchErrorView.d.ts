@@ -8,3 +8,6 @@ export default class FetchErrorView extends React.Component<FetchErrorProps, nul
     private close;
     render(): JSX.Element;
 }
+export declare const SystemNotifyPage: ({ message }: {
+    message: string;
+}) => JSX.Element;

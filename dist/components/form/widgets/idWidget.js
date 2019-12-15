@@ -51,11 +51,28 @@ export class IdWidget extends Widget {
         };
         let content;
         if (this.value === undefined || this.value === null) {
-            content = placeholder || 'placeholder';
+            content = placeholder || React.createElement("small", { className: "text-muted" }, "[\u65E0]");
             cn['text-muted'] = true;
         }
         else if (Templet === undefined) {
-            content = React.createElement(React.Fragment, null, this.value);
+            let c;
+            if (this.value === null) {
+                c = 'null';
+            }
+            else {
+                switch (typeof this.value) {
+                    case 'undefined':
+                        c = React.createElement("small", { className: "text-muted" }, "[\u65E0]");
+                        break;
+                    case 'object':
+                        c = this.value.id;
+                        break;
+                    default:
+                        c = this.value;
+                        break;
+                }
+            }
+            content = React.createElement(React.Fragment, null, c);
         }
         else if (typeof Templet === 'function') {
             content = Templet(this.value);
