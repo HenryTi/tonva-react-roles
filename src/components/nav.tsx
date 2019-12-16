@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {observable} from 'mobx';
+import marked from 'marked';
 import {User, Guest/*, UserInNav*/} from '../tool/user';
 import {Page} from './page';
 import {netToken} from '../net/netToken';
@@ -720,21 +721,37 @@ export class Nav {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     }
 
-    showPrivacy() {
-        if (!this.navSettings) return;
-        let {privacy} = this.navSettings;
-        if (privacy === undefined) return;
+    privacyEntry() {
+        if (!this.getPrivacyContent()) return;
         return <div className="text-center">
             <button className="btn btn-sm btn-link"
-                onClick={()=>this.privacyPage(privacy)}>
+                onClick={this.showPrivacyPage}>
                 <small className="text-muted">隐私政策</small>
             </button>
         </div>;
     }
 
+    private getPrivacyContent():string {
+        if (!this.navSettings) return;
+        let {privacy} = this.navSettings;
+        return privacy;
+    }
+
+    showPrivacyPage = () => {
+        let privacy = this.getPrivacyContent();
+        if (privacy) {
+            this.privacyPage(privacy);
+        }
+        else {
+            nav.push(<Page header="隐私政策">
+                <div className="p-3">AppConfig 中没有定义 privacy。可以定义为字符串，或者url。markdown格式</div>
+            </Page>);
+        }
+    }
+
     private privacyPage = async (privacy:string) => {
         let html = await this.getPrivacy(privacy);
-        let content = {__html: html};
+        let content = {__html: marked(html)};
         nav.push(<Page header="隐私政策">
             <div className="p-3" dangerouslySetInnerHTML={content} />
         </Page>);
@@ -757,7 +774,7 @@ export class Nav {
                     return text;
                 }
                 catch (err) {
-                    console.error(err);
+                    return err.message;
                 }
             }
         }

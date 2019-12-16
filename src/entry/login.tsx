@@ -71,7 +71,7 @@ export default class Login extends React.Component<LoginProps> {
                     注册账号
                 </button>
             </div>
-            {nav.showPrivacy()}
+            {nav.privacyEntry()}
         </div>
         </div>;
         let header:string|boolean|JSX.Element = false;

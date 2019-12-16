@@ -190,7 +190,7 @@ class AccountPage extends VPage {
                     tonvaTop(),
                     React.createElement("div", { className: "h-3c" }),
                     React.createElement(Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
-                    nav.showPrivacy()));
+                    nav.privacyEntry()));
         };
         this.onSubmit = (name, context) => __awaiter(this, void 0, void 0, function* () {
             context.clearContextErrors();

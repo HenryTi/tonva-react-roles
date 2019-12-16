@@ -15,6 +15,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observable } from 'mobx';
+import marked from 'marked';
 import { Page } from './page';
 import { netToken } from '../net/netToken';
 import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
@@ -407,9 +408,19 @@ export class Nav {
         this.windowOnScroll = (ev) => {
             console.log('scroll event');
         };
+        this.showPrivacyPage = () => {
+            let privacy = this.getPrivacyContent();
+            if (privacy) {
+                this.privacyPage(privacy);
+            }
+            else {
+                nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
+                    React.createElement("div", { className: "p-3" }, "AppConfig \u4E2D\u6CA1\u6709\u5B9A\u4E49 privacy\u3002\u53EF\u4EE5\u5B9A\u4E49\u4E3A\u5B57\u7B26\u4E32\uFF0C\u6216\u8005url\u3002markdown\u683C\u5F0F")));
+            }
+        };
         this.privacyPage = (privacy) => __awaiter(this, void 0, void 0, function* () {
             let html = yield this.getPrivacy(privacy);
-            let content = { __html: html };
+            let content = { __html: marked(html) };
             nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
                 React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
         });
@@ -698,15 +709,18 @@ export class Nav {
     loginTop(defaultTop) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     }
-    showPrivacy() {
+    privacyEntry() {
+        if (!this.getPrivacyContent())
+            return;
+        return React.createElement("div", { className: "text-center" },
+            React.createElement("button", { className: "btn btn-sm btn-link", onClick: this.showPrivacyPage },
+                React.createElement("small", { className: "text-muted" }, "\u9690\u79C1\u653F\u7B56")));
+    }
+    getPrivacyContent() {
         if (!this.navSettings)
             return;
         let { privacy } = this.navSettings;
-        if (privacy === undefined)
-            return;
-        return React.createElement("div", { className: "text-center" },
-            React.createElement("button", { className: "btn btn-sm btn-link", onClick: () => this.privacyPage(privacy) },
-                React.createElement("small", { className: "text-muted" }, "\u9690\u79C1\u653F\u7B56")));
+        return privacy;
     }
     getPrivacy(privacy) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -726,7 +740,7 @@ export class Nav {
                         return text;
                     }
                     catch (err) {
-                        console.error(err);
+                        return err.message;
                     }
                 }
             }

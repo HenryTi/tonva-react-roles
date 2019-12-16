@@ -69,7 +69,7 @@ export default class Login extends React.Component {
             React.createElement("div", { className: "d-block" },
                 React.createElement("div", { className: 'text-center' },
                     React.createElement("button", { className: "btn btn-link", style: { margin: '0px auto' }, onClick: this.clickReg }, "\u6CE8\u518C\u8D26\u53F7")),
-                nav.showPrivacy()));
+                nav.privacyEntry()));
         let header = false;
         if (this.props.withBack === true) {
             header = '登录';

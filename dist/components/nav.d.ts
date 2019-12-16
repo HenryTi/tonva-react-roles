@@ -97,7 +97,9 @@ export declare class Nav {
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
     wsConnect(): void;
     loginTop(defaultTop: JSX.Element): JSX.Element;
-    showPrivacy(): JSX.Element;
+    privacyEntry(): JSX.Element;
+    private getPrivacyContent;
+    showPrivacyPage: () => void;
     private privacyPage;
     private getPrivacy;
     showLogin(callback?: (user: User) => Promise<void>, withBack?: boolean): Promise<void>;
