@@ -425,13 +425,24 @@ export class Nav {
                 React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
         });
         this.reload = () => {
-            window.document.location.reload();
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.unregister();
+                    window.document.location.reload();
+                });
+            }
+            else {
+                window.document.location.reload();
+            }
+            //window.document.location.reload();
         };
         this.resetAll = () => {
             this.push(React.createElement(ConfirmReloadPage, { confirm: (ok) => {
                     if (ok === true) {
                         this.showReloadPage('彻底升级');
+                        this.local.readToMemory();
                         localStorage.clear();
+                        this.local.saveToLocalStorage();
                     }
                     else {
                         this.pop();
@@ -893,8 +904,9 @@ export class Nav {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
     }
     showReloadPage(msg) {
-        this.push(React.createElement(ReloadPage, { message: msg }));
-        env.setTimeout(undefined, this.reload, 10 * 1000);
+        let seconds = 10;
+        this.push(React.createElement(ReloadPage, { message: msg, seconds: seconds }));
+        env.setTimeout(undefined, this.reload, seconds * 1000);
     }
 }
 __decorate([

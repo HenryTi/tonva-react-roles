@@ -8,7 +8,7 @@ export class ReloadPage extends React.Component {
             clearInterval(this.timerHandler);
             nav.reload();
         };
-        this.state = { seconds: 10 };
+        this.state = { seconds: props.seconds };
         this.timerHandler = setInterval(() => {
             let seconds = this.state.seconds;
             seconds--;

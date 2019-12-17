@@ -1,6 +1,7 @@
 import * as React from 'react';
 interface Props {
     message: string;
+    seconds: number;
 }
 interface State {
     seconds: number;

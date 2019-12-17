@@ -928,19 +928,32 @@ export class Nav {
     }
 
     showReloadPage(msg: string) {
-        this.push(<ReloadPage message={msg} />);
-        env.setTimeout(undefined, this.reload, 10*1000);
+        let seconds = 10;
+        this.push(<ReloadPage message={msg} seconds={seconds} />);
+        env.setTimeout(undefined, this.reload, seconds*1000);
     }
 
     reload = () => {
-        window.document.location.reload();
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.unregister();
+                window.document.location.reload();
+            });
+        }
+        else {
+            window.document.location.reload();
+
+        }
+        //window.document.location.reload();
     }
 
     resetAll = () => {
         this.push(<ConfirmReloadPage confirm={(ok:boolean):Promise<void> => {
             if (ok === true) {
                 this.showReloadPage('彻底升级');
+                this.local.readToMemory();
                 localStorage.clear();
+                this.local.saveToLocalStorage();
             }
             else {
                 this.pop();

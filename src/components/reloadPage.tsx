@@ -3,7 +3,8 @@ import { nav } from './nav';
 import { Page } from './page';
 
 interface Props {
-    message: string
+    message: string,
+    seconds: number
 }
 
 interface State {
@@ -14,7 +15,7 @@ export class ReloadPage extends React.Component<Props, State> {
     private timerHandler:any;
     constructor(props:Props) {
         super(props);
-        this.state = {seconds: 10};
+        this.state = {seconds: props.seconds};
         this.timerHandler = setInterval(() => {
             let seconds = this.state.seconds;
             seconds--;

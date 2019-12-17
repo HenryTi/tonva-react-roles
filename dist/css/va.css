@@ -112,7 +112,7 @@ div.red-dot>u.message-dot {
       display: flex;
       height: 2.3rem;
       cursor: pointer;
-      width: 3rem;
+      width: 2.5rem;
       justify-content: center;
       align-items: center;
   }
