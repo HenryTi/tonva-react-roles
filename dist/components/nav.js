@@ -424,24 +424,24 @@ export class Nav {
             nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
                 React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
         });
-        this.reload = () => {
+        this.reload = () => __awaiter(this, void 0, void 0, function* () {
+            let waiting = new Promise((resolve, reject) => {
+                setTimeout(resolve, 100);
+            });
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.ready.then(registration => {
+                let registration = yield Promise.race([waiting, navigator.serviceWorker.ready]);
+                if (registration)
                     registration.unregister();
-                    window.document.location.reload();
-                });
             }
-            else {
-                window.document.location.reload();
-            }
-            //window.document.location.reload();
-        };
+            window.document.location.reload();
+        });
         this.resetAll = () => {
             this.push(React.createElement(ConfirmReloadPage, { confirm: (ok) => {
                     if (ok === true) {
                         this.showReloadPage('彻底升级');
                         this.local.readToMemory();
-                        localStorage.clear();
+                        //localStorage.clear();
+                        env.localDb.removeAll();
                         this.local.saveToLocalStorage();
                     }
                     else {

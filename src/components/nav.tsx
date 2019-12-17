@@ -20,6 +20,7 @@ import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
 import { ReloadPage, ConfirmReloadPage } from './reloadPage';
+import { resolve } from 'dns';
 
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
@@ -933,18 +934,16 @@ export class Nav {
         env.setTimeout(undefined, this.reload, seconds*1000);
     }
 
-    reload = () => {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.ready.then(registration => {
-                registration.unregister();
-                window.document.location.reload();
-            });
-        }
-        else {
-            window.document.location.reload();
+    reload = async () => {
+        let waiting:Promise<void> = new Promise<void>((resolve, reject) => {
+            setTimeout(resolve, 100);
+        });
 
+        if ('serviceWorker' in navigator) {
+            let registration =await Promise.race([waiting, navigator.serviceWorker.ready]);
+            if (registration) registration.unregister();
         }
-        //window.document.location.reload();
+        window.document.location.reload();
     }
 
     resetAll = () => {
@@ -952,7 +951,8 @@ export class Nav {
             if (ok === true) {
                 this.showReloadPage('彻底升级');
                 this.local.readToMemory();
-                localStorage.clear();
+                //localStorage.clear();
+                env.localDb.removeAll();
                 this.local.saveToLocalStorage();
             }
             else {
