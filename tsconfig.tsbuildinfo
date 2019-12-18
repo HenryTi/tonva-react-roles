@@ -530,7 +530,7 @@
         "signature": "e4bc5aba3ee51ebf6248b38b7d909e0f713de411e6b20847777c53e5fd6e7c74"
       },
       "./src/components/reloadpage.tsx": {
-        "version": "caaf4a16b065b0a0d97170f1c92a9d067cda87ee8943472a48d827b1133545ce",
+        "version": "f247878df99e4d291b15adcb9fc066663fcb3bb21ae53c94efc5776ed41b7c3f",
         "signature": "f83ecda53bbdd3347e0bf245f611dcc8c587d3c17b0955849c5016cb58f96597"
       },
       "./src/entry/res/login.ts": {
@@ -562,7 +562,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "c974729bf41ed8348387ca810bdb27e74ad977d261c1125765cce9d70941b804",
+        "version": "1310a8f21b2b5c855694cd528f61215b65a12df9f2a767f91f6ae50337695e84",
         "signature": "ae947663a5d64a9327a32b41cbbbca073b94b9d9ab465e0d7cce8936b25edb16"
       },
       "./src/components/vm.tsx": {

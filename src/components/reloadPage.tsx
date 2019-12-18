@@ -35,11 +35,13 @@ export class ReloadPage extends React.Component<Props, State> {
         return <Page header={false}>
             <div className="text-center p-5">
                 <div className="text-info py-5">
-                    程序需要升级，{this.state.seconds}秒钟之后自动重启动...
+                    程序升级中...
+                    <br/>
+                    {this.state.seconds}秒钟之后自动重启动
                     <br/>
                     <span className="small text-muted">{this.props.message}</span>
                 </div>
-                <button className="btn btn-danger" onClick={this.reload}>立刻升级</button>
+                <button className="btn btn-danger" onClick={this.reload}>立刻重启</button>
             </div>
         </Page>;
     }

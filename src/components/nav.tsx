@@ -931,7 +931,7 @@ export class Nav {
     }
 
     showReloadPage(msg: string) {
-        let seconds = 10;
+        let seconds = 5;
         this.push(<ReloadPage message={msg} seconds={seconds} />);
         env.setTimeout(undefined, this.reload, seconds*1000);
     }

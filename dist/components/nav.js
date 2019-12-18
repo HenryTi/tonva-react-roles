@@ -905,7 +905,7 @@ export class Nav {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
     }
     showReloadPage(msg) {
-        let seconds = 10;
+        let seconds = 5;
         this.push(React.createElement(ReloadPage, { message: msg, seconds: seconds }));
         env.setTimeout(undefined, this.reload, seconds * 1000);
     }
