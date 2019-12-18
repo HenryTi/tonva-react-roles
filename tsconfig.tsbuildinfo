@@ -650,8 +650,8 @@
         "signature": "56c39c27cd87f6ac2228840ec407a751d332bd9511b1de1f28f84a97945562f6"
       },
       "./src/components/resuploader.tsx": {
-        "version": "da4e44df89d273413dc2744869a70b273c59ea061de93d4f17f15300885e5013",
-        "signature": "5f9fb9feb3e11f356167b6b1efb586e4c8ec0bac57406ab092f30f832ed72212"
+        "version": "99859e0d606d4d5dce92e23fc8c255c0bc7e7edd8af818b11d4dc917d9f93489",
+        "signature": "ab9f007e9476e9263519be6108ea1720615529957c80f216b621ed023d3cb5f0"
       },
       "./src/components/edit/itemedit.tsx": {
         "version": "54397816371e25fe5bf0eecd3f32248713310ff040307816e4fa516c08f570bc",
@@ -1783,7 +1783,8 @@
         "./src/components/page.tsx",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/tool/index.ts"
+        "./src/tool/index.ts",
+        "./node_modules/@types/node/index.d.ts"
       ],
       "./src/components/edit/itemedit.tsx": [
         "./src/components/schema/index.ts",
@@ -4084,6 +4085,7 @@
       "./src/components/form/widgets/arrcomponent.tsx",
       "./src/components/image.tsx",
       "./src/components/edit/itemedit.tsx",
+      "./src/components/form/widgets/imagewidget.tsx",
       "./src/components/form/widgets/factory.tsx",
       "./src/components/form/widgets/index.ts",
       "./src/components/form/form.tsx",
@@ -4096,6 +4098,7 @@
       "./src/components/edit/radioitemedit.tsx",
       "./src/components/edit/selectitemedit.tsx",
       "./src/components/edit/iditemedit.tsx",
+      "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
       "./src/components/tabs/tabs.tsx",
       "./src/components/tabs/index.tsx",
@@ -4140,8 +4143,6 @@
       "./src/components/resuploader.tsx",
       "./src/components/index.ts",
       "./src/components/edit/imageitemedit.tsx",
-      "./src/components/edit/edit.tsx",
-      "./src/components/form/widgets/imagewidget.tsx",
       "./src/net/uqapi.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/entry/res/login.ts",
