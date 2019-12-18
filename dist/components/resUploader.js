@@ -136,6 +136,7 @@ let ImageUploader = class ImageUploader extends React.Component {
             });
         };
         this.upload = () => __awaiter(this, void 0, void 0, function* () {
+            this.isChanged = false;
             if (!this.resUploader)
                 return;
             let formData = new FormData();
@@ -201,12 +202,8 @@ let ImageUploader = class ImageUploader extends React.Component {
                     "\u652F\u6301 ",
                     imageTypes.join(', '),
                     " \u683C\u5F0F\u56FE\u7247\u3002"),
-                React.createElement("div", { className: "d-flex" },
-                    React.createElement("div", { className: "w-12c h-12c mr-4", style: { border: '1px dotted gray', padding: '8px' } },
-                        React.createElement(ImageControl, { className: "w-100 h-100", src: this.srcImage })),
-                    React.createElement("div", null,
-                        React.createElement("div", { className: "small" }, "\u56FE\u7247\u9884\u89C8"),
-                        React.createElement(ImageControl, { className: "w-4c h-4c mt-3", src: this.desImage })))));
+                React.createElement("div", { className: "text-center", style: { border: '1px dotted gray', padding: '8px' } },
+                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
     }
 };
 __decorate([
@@ -231,4 +228,14 @@ ImageUploader = __decorate([
     observer
 ], ImageUploader);
 export { ImageUploader };
+/*
+<div className="w-12c h-12c mr-4"
+style={{border: '1px dotted gray', padding: '8px'}}>
+<ImageControl className="w-100 h-100" src={this.srcImage} />
+</div>
+<div>
+<div className="small">图片预览</div>
+<ImageControl className="w-4c h-4c mt-3" src={this.desImage} />
+</div>
+*/
 //# sourceMappingURL=resUploader.js.map

@@ -170,6 +170,7 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     }
 
     private upload = async () => {
+        this.isChanged = false;
         if (!this.resUploader) return;
         let formData = new FormData();
         let blob = this.convertBase64UrlToBlob(this.desImage);
