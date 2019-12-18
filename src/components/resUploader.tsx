@@ -218,17 +218,20 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                     </div>
                 </div>
                 <div className="small muted my-4">支持 {imageTypes.join(', ')} 格式图片。</div>
-                <div className="d-flex">
-                    <div className="w-12c h-12c mr-4"
-                        style={{border: '1px dotted gray', padding: '8px'}}>
-                        <ImageControl className="w-100 h-100" src={this.srcImage} />
-                    </div>
-                    <div>
-                        <div className="small">图片预览</div>
-                        <ImageControl className="w-4c h-4c mt-3" src={this.desImage} />
-                    </div>
+                <div className="text-center" style={{border: '1px dotted gray', padding: '8px'}}>
+                    <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.srcImage} />
                 </div>
             </div>
         </Page>;
     }
 }
+/*
+<div className="w-12c h-12c mr-4"
+style={{border: '1px dotted gray', padding: '8px'}}>
+<ImageControl className="w-100 h-100" src={this.srcImage} />
+</div>
+<div>
+<div className="small">图片预览</div>
+<ImageControl className="w-4c h-4c mt-3" src={this.desImage} />
+</div>
+*/
