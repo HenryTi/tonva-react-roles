@@ -7,30 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-//import { AppUI, CApp } from './app';
-/*
-function convertUIKeyToLowercase(obj: any) {
-    for (let i in obj) {
-        let v = obj[i];
-        obj[i.toLowerCase()] = v;
-        if (typeof v !== 'object') continue;
-        if (React.isValidElement(v)) continue;
-        if (Array.isArray(v) !== true) {
-            convertUIKeyToLowercase(v);
-            continue;
-        }
-        for (let i of (v as any[])) {
-            convertUIKeyToLowercase(i);
-        }
-    }
-}
-*/
-// const appName = 'JKDev/jkOrder';
 export function start(CApp, appConfig) {
     return __awaiter(this, void 0, void 0, function* () {
-        //convertUIKeyToLowercase(ui);
-        //let cApp = new (ui && ui.CApp || CApp)(ui);
-        //await cApp.start();
+        let html = document.getElementsByTagName('html');
+        let version = html[0].getAttribute('data-version');
+        if (version)
+            appConfig.version = version;
         let cApp = new CApp(appConfig);
         yield cApp.start();
     });

@@ -133,5 +133,6 @@ export declare class Nav {
     showReloadPage(msg: string): void;
     reload: () => Promise<void>;
     resetAll: () => void;
+    checkVersion(): Promise<string>;
 }
 export declare const nav: Nav;

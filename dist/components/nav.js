@@ -909,6 +909,18 @@ export class Nav {
         this.push(React.createElement(ReloadPage, { message: msg, seconds: seconds }));
         env.setTimeout(undefined, this.reload, seconds * 1000);
     }
+    checkVersion() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = document.location.origin + '?' + new Date().getTime();
+            let ret = yield fetch(url);
+            let r = yield ret.text();
+            let parser = new DOMParser();
+            let htmlDoc = parser.parseFromString(r, 'text/html');
+            let elHtml = htmlDoc.getElementsByTagName('html');
+            let newVersion = elHtml[0].getAttribute('data-version');
+            return newVersion;
+        });
+    }
 }
 __decorate([
     observable

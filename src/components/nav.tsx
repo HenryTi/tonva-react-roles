@@ -963,5 +963,16 @@ export class Nav {
             return;
         }} />);
     }
+
+    async checkVersion():Promise<string> {
+        let url = document.location.origin + '?' + new Date().getTime();
+        let ret = await fetch(url);
+        let r = await ret.text();
+        let parser = new DOMParser();
+        let htmlDoc = parser.parseFromString(r, 'text/html');
+        let elHtml = htmlDoc.getElementsByTagName('html');
+        let newVersion = elHtml[0].getAttribute('data-version');
+        return newVersion;
+    }
 }
 export const nav: Nav = new Nav();
