@@ -33,11 +33,11 @@ export class ReloadPage extends React.Component {
     }
 }
 export const ConfirmReloadPage = (props) => {
-    return React.createElement(Page, { header: "\u5F7B\u5E95\u5347\u7EA7", back: "none" },
-        React.createElement("div", { className: "p-5 m-5 border bg-white rounded" },
-            React.createElement("div", { className: "text-center text-info" }, "\u6E05\u9664\u6240\u6709\u7F13\u51B2\u533A\u5185\u5BB9\uFF0C\u5E76\u91CD\u65B0\u52A0\u8F7D\u7F51\u9875"),
+    return React.createElement(Page, { header: "\u5347\u7EA7\u8F6F\u4EF6", back: "close" },
+        React.createElement("div", { className: "py-5 px-3 my-5 mx-2 border bg-white rounded" },
+            React.createElement("div", { className: "text-center text-info" }, "\u5347\u7EA7\u5C06\u6E05\u9664\u6240\u6709\u672C\u673A\u7F13\u51B2\u533A\u5185\u5BB9\uFF0C\u5E76\u4ECE\u670D\u52A1\u5668\u91CD\u65B0\u5B89\u88C5\u7A0B\u5E8F\uFF01"),
             React.createElement("div", { className: "text-center mt-5" },
-                React.createElement("button", { className: "btn btn-primary mr-3", onClick: () => props.confirm(true) }, "\u786E\u8BA4\u5347\u7EA7"),
-                React.createElement("button", { className: "btn btn-outline-primary", onClick: () => props.confirm(false) }, "\u4E0D\u5347\u7EA7"))));
+                React.createElement("button", { className: "btn btn-danger mr-3", onClick: () => props.confirm(true) }, "\u786E\u8BA4\u5347\u7EA7"))));
+    // <button className="btn btn-outline-danger" onClick={()=>props.confirm(false)}>暂不</button>
 };
 //# sourceMappingURL=reloadPage.js.map

@@ -795,12 +795,14 @@ export class Nav {
     }
 
     async showLogout(callback?: ()=>Promise<void>) {
-        nav.push(<Page header="安全退出" back="close">
-            <div className="m-5 border border-info bg-white rounded p-3 text-center">
+        let footer = <div className="text-center justify-content-center">
+            <button className="btn btn-outline-danger" onClick={this.resetAll}>升级软件</button>
+        </div>;
+        nav.push(<Page header="安全退出" back="close" footer={footer}>
+            <div className="my-5 mx-1 border border-info bg-white rounded p-3 text-center">
                 <div>退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号</div>
-                <div className="mt-3">
-                    <button className="btn btn-danger mr-3" onClick={()=>this.logout(callback)}>安全退出</button>
-                    <button className="btn btn-outline-danger" onClick={this.resetAll}>彻底升级</button>
+                <div className="mt-3 text-center">
+                        <button className="btn btn-danger" onClick={()=>this.logout(callback)}>安全退出</button>
                 </div>
             </div>
         </Page>);
