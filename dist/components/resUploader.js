@@ -19,7 +19,6 @@ import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { env } from '../tool';
 export class ResUploader extends React.Component {
     constructor() {
         super(...arguments);
@@ -40,6 +39,7 @@ export class ResUploader extends React.Component {
             }
             catch (err) {
                 console.error('%s %s', resUrl, err);
+                return { error: err };
             }
             finally {
                 nav.endWait();
@@ -70,11 +70,11 @@ export class ResUploader extends React.Component {
         return React.createElement("input", { className: className, ref: t => this.fileInput = t, onChange: onFilesChange, type: 'file', name: 'file', multiple: multiple });
     }
 }
+const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 let ImageUploader = class ImageUploader extends React.Component {
     constructor(props) {
         super(props);
         this.isChanged = false;
-        this.overSize = false;
         this.enableUploadButton = false;
         this.onFileChange = (evt) => {
             this.fileError = undefined;
@@ -84,8 +84,8 @@ let ImageUploader = class ImageUploader extends React.Component {
                 let pos = this.file.name.lastIndexOf('.');
                 if (pos >= 0)
                     this.suffix = this.file.name.substr(pos + 1).toLowerCase();
-                if (['gif', 'jpg', 'jpeg', 'png'].indexOf(this.suffix) < 0) {
-                    this.fileError = "图片类型必须是.gif,jpeg,jpg,png中的一种";
+                if (imageTypes.indexOf(this.suffix) < 0) {
+                    this.fileError = `图片类型必须是 ${imageTypes.join(', ')} 中的一种`;
                     return;
                 }
                 let reader = new FileReader();
@@ -142,9 +142,25 @@ let ImageUploader = class ImageUploader extends React.Component {
             let blob = this.convertBase64UrlToBlob(this.desImage);
             formData.append('image', blob, this.file.name);
             let ret = yield this.resUploader.upload(formData);
-            if (ret === null) {
-                this.overSize = true;
-                env.setTimeout('imageItemEdit upload', () => this.overSize = false, 3000);
+            if (typeof ret === 'object') {
+                let { error } = ret;
+                let type = typeof error;
+                let err;
+                switch (type) {
+                    case 'undefined':
+                        err = 'error: undefined';
+                        break;
+                    case 'string':
+                        err = error;
+                        break;
+                    case 'object':
+                        err = error.message;
+                        break;
+                    default:
+                        err = String(err);
+                        break;
+                }
+                this.fileError = 'error: ' + type + ' - ' + err;
                 return;
             }
             this.resId = ret;
@@ -172,12 +188,6 @@ let ImageUploader = class ImageUploader extends React.Component {
     render() {
         let { label } = this.props;
         let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !this.isChanged, onClick: this.onSaved }, "\u4FDD\u5B58");
-        let overSize;
-        if (this.overSize === true) {
-            overSize = React.createElement("div", { className: "text-danger" },
-                React.createElement("i", { className: "fa fa-times-circle" }),
-                " \u56FE\u7247\u6587\u4EF6\u5927\u5C0F\u8D85\u8FC72M\uFF0C\u65E0\u6CD5\u4E0A\u4F20");
-        }
         return React.createElement(Page, { header: label || '更改图片', right: right },
             React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
                 React.createElement("div", null,
@@ -187,8 +197,10 @@ let ImageUploader = class ImageUploader extends React.Component {
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
                     React.createElement("div", null,
                         React.createElement("button", { className: "btn btn-primary", onClick: this.upload, disabled: !this.enableUploadButton }, "\u4E0A\u4F20"))),
-                overSize,
-                React.createElement("div", { className: "small muted my-4" }, "\u652F\u6301JPG\u3001GIF\u3001PNG\u683C\u5F0F\u56FE\u7247\uFF0C\u4E0D\u8D85\u8FC72M\u3002"),
+                React.createElement("div", { className: "small muted my-4" },
+                    "\u652F\u6301 ",
+                    imageTypes.join(', '),
+                    " \u683C\u5F0F\u56FE\u7247\u3002"),
                 React.createElement("div", { className: "d-flex" },
                     React.createElement("div", { className: "w-12c h-12c mr-4", style: { border: '1px dotted gray', padding: '8px' } },
                         React.createElement(ImageControl, { className: "w-100 h-100", src: this.srcImage })),
@@ -203,9 +215,6 @@ __decorate([
 __decorate([
     observable
 ], ImageUploader.prototype, "resId", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "overSize", void 0);
 __decorate([
     observable
 ], ImageUploader.prototype, "enableUploadButton", void 0);

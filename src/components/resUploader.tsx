@@ -37,7 +37,7 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         return this.fileInput.files[0];
     }
 
-    upload = async (formData?: FormData):Promise<string> => {
+    upload = async (formData?: FormData):Promise<string|{error:any}> => {
         let resUrl = nav.resUrl + 'upload';
         if (!formData) formData = this.buildFormData();
         try {
@@ -53,6 +53,7 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         }
         catch (err) {
             console.error('%s %s', resUrl, err);
+            return {error:err};
         }
         finally {
             nav.endWait();
@@ -75,6 +76,8 @@ interface ImageUploaderProps {
     onSaved?: (imageId:string) => Promise<void>;
 }
 
+const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
+
 @observer
 export class ImageUploader extends React.Component<ImageUploaderProps> {
     private imgBaseSize: number;
@@ -83,7 +86,6 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     private resUploader: ResUploader;
     @observable private isChanged: boolean = false;
     @observable private resId: string;
-    @observable private overSize: boolean = false;
     @observable private enableUploadButton: boolean = false;
     @observable private srcImage: string;
     @observable private desImage: string;
@@ -102,8 +104,8 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
             this.file = evt.target.files[0];
             let pos = this.file.name.lastIndexOf('.');
             if (pos >= 0) this.suffix = this.file.name.substr(pos+1).toLowerCase();
-            if(['gif', 'jpg', 'jpeg', 'png'].indexOf(this.suffix) < 0){
-                this.fileError = "图片类型必须是.gif,jpeg,jpg,png中的一种";
+            if(imageTypes.indexOf(this.suffix) < 0){
+                this.fileError = `图片类型必须是 ${imageTypes.join(', ')} 中的一种`;
                 return;
             }
             let reader = new FileReader();
@@ -173,9 +175,17 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         let blob = this.convertBase64UrlToBlob(this.desImage);
         formData.append('image', blob, this.file.name);
         let ret = await this.resUploader.upload(formData);
-        if (ret === null) {
-            this.overSize = true;
-            env.setTimeout('imageItemEdit upload', () => this.overSize = false, 3000);
+        if (typeof ret === 'object') {
+            let {error} = ret;
+            let type = typeof error;
+            let err:string;
+            switch (type) {
+                case 'undefined': err = 'error: undefined'; break;
+                case 'string': err = error; break;
+                case 'object': err = error.message; break;
+                default: err = String(err); break;
+            }
+            this.fileError = 'error: ' + type + ' - ' + err;
             return;
         }
         this.resId = ret;
@@ -194,12 +204,6 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
             className="btn btn-sm btn-success align-self-center mr-2"
             disabled={!this.isChanged}
             onClick={this.onSaved}>保存</button>;
-        let overSize:any;
-        if (this.overSize === true) {
-            overSize = <div className="text-danger">
-                <i className="fa fa-times-circle" /> 图片文件大小超过2M，无法上传
-            </div>;
-        }
         return <Page header={label || '更改图片'} right={right}>
             <div className="my-3 px-3 py-3 bg-white">
                 <div>
@@ -213,8 +217,7 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                             disabled={!this.enableUploadButton}>上传</button>
                     </div>
                 </div>
-                {overSize}
-                <div className="small muted my-4">支持JPG、GIF、PNG格式图片，不超过2M。</div>
+                <div className="small muted my-4">支持 {imageTypes.join(', ')} 格式图片。</div>
                 <div className="d-flex">
                     <div className="w-12c h-12c mr-4"
                         style={{border: '1px dotted gray', padding: '8px'}}>

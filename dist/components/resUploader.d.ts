@@ -9,7 +9,9 @@ export declare class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput;
     buildFormData(): FormData;
     getFile0(): File;
-    upload: (formData?: FormData) => Promise<string>;
+    upload: (formData?: FormData) => Promise<string | {
+        error: any;
+    }>;
     render(): JSX.Element;
 }
 interface ImageUploaderProps {
@@ -25,7 +27,6 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private resUploader;
     private isChanged;
     private resId;
-    private overSize;
     private enableUploadButton;
     private srcImage;
     private desImage;
