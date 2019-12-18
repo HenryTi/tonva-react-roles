@@ -4,18 +4,19 @@ import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { env } from '../tool';
-import { resolve } from 'url';
 
 export interface ResUploaderProps {
     className?: string;
+    label?: string;
     multiple?: boolean;
     maxSize?: number;
     onFilesChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+@observer
 export class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput: HTMLInputElement;
+    @observable private fileName: string;
 
     buildFormData():FormData {
         let {maxSize} = this.props;
@@ -42,11 +43,12 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         if (!formData) formData = this.buildFormData();
         try {
             nav.startWait();
-            let abortController = new AbortController();
+            //2019-12-18：因为 vivo按oppo某些版本不支持，暂时先不要 
+            //let abortController = new AbortController();
             let res = await fetch(resUrl, {
                 method: "POST",
                 body: formData,
-                signal: abortController.signal,
+                //signal: abortController.signal,
             });
             let json = await res.json();
             return ':' + json.res.id;
@@ -59,13 +61,34 @@ export class ResUploader extends React.Component<ResUploaderProps> {
             nav.endWait();
         }
     }
+
+    private onFilesChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        let {onFilesChange} = this.props;
+        if (onFilesChange) onFilesChange(evt);
+        let files = evt.target.files;
+        let len = files.length;
+        let names:string[] = [];
+        for (let i=0; i<len; i++) {
+            names.push(files.item(i).name);
+        }
+        this.fileName = names.join(', ');
+    }
+
     render() {
-        let {className, multiple, onFilesChange} = this.props;
-        return <input 
-            className={className}
-            ref={t=>this.fileInput=t} 
-            onChange={onFilesChange}
-            type='file' name='file' multiple={multiple} />
+        let {className, multiple, label} = this.props;
+        return <div>
+                <label className="btn btn-outline-success">
+                    {label || '选择文件'} 
+                    <input 
+                        className={className}
+                        ref={t=>this.fileInput=t} 
+                        onChange={this.onFilesChange}
+                        type='file' name='file' 
+                        multiple={multiple} style={{display:'none'}} />
+                </label>
+                &nbsp;
+                {this.fileName}
+            </div>
     }
 }
 
@@ -170,7 +193,6 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     }
 
     private upload = async () => {
-        this.isChanged = false;
         if (!this.resUploader) return;
         let formData = new FormData();
         let blob = this.convertBase64UrlToBlob(this.desImage);
@@ -208,17 +230,21 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         return <Page header={label || '更改图片'} right={right}>
             <div className="my-3 px-3 py-3 bg-white">
                 <div>
-                    <div>上传图片：</div>
-                    <div className="my-3">
-                        <ResUploader ref={v=>this.resUploader=v} multiple={false} maxSize={2048} onFilesChange={this.onFileChange} />
+                    <div className="mb-3">
+                        <ResUploader ref={v=>this.resUploader=v} 
+                            multiple={false} maxSize={2048} 
+                            label="选择图片文件"
+                            onFilesChange={this.onFileChange} />
+                        <div className="small text-muted">支持 {imageTypes.join(', ')} 格式图片。</div>
                         {this.fileError && <div className="text-danger">{this.fileError}</div>}
                     </div>
-                    <div>
-                        <button className="btn btn-primary" onClick={this.upload} 
-                            disabled={!this.enableUploadButton}>上传</button>
-                    </div>
+                    {
+                        this.enableUploadButton &&
+                        <div className="mb-3">
+                            <button className="btn btn-primary" onClick={this.upload}>上传</button>
+                        </div>
+                    }
                 </div>
-                <div className="small muted my-4">支持 {imageTypes.join(', ')} 格式图片。</div>
                 <div className="text-center" style={{border: '1px dotted gray', padding: '8px'}}>
                     <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.srcImage} />
                 </div>

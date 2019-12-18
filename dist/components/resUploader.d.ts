@@ -1,17 +1,20 @@
 import * as React from 'react';
 export interface ResUploaderProps {
     className?: string;
+    label?: string;
     multiple?: boolean;
     maxSize?: number;
     onFilesChange?: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export declare class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput;
+    private fileName;
     buildFormData(): FormData;
     getFile0(): File;
     upload: (formData?: FormData) => Promise<string | {
         error: any;
     }>;
+    private onFilesChange;
     render(): JSX.Element;
 }
 interface ImageUploaderProps {

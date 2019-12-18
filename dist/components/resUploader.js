@@ -19,7 +19,7 @@ import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-export class ResUploader extends React.Component {
+let ResUploader = class ResUploader extends React.Component {
     constructor() {
         super(...arguments);
         this.upload = (formData) => __awaiter(this, void 0, void 0, function* () {
@@ -28,11 +28,11 @@ export class ResUploader extends React.Component {
                 formData = this.buildFormData();
             try {
                 nav.startWait();
-                let abortController = new AbortController();
+                //2019-12-18：因为 vivo按oppo某些版本不支持，暂时先不要 
+                //let abortController = new AbortController();
                 let res = yield fetch(resUrl, {
                     method: "POST",
                     body: formData,
-                    signal: abortController.signal,
                 });
                 let json = yield res.json();
                 return ':' + json.res.id;
@@ -45,6 +45,18 @@ export class ResUploader extends React.Component {
                 nav.endWait();
             }
         });
+        this.onFilesChange = (evt) => {
+            let { onFilesChange } = this.props;
+            if (onFilesChange)
+                onFilesChange(evt);
+            let files = evt.target.files;
+            let len = files.length;
+            let names = [];
+            for (let i = 0; i < len; i++) {
+                names.push(files.item(i).name);
+            }
+            this.fileName = names.join(', ');
+        };
     }
     buildFormData() {
         let { maxSize } = this.props;
@@ -66,10 +78,22 @@ export class ResUploader extends React.Component {
         return this.fileInput.files[0];
     }
     render() {
-        let { className, multiple, onFilesChange } = this.props;
-        return React.createElement("input", { className: className, ref: t => this.fileInput = t, onChange: onFilesChange, type: 'file', name: 'file', multiple: multiple });
+        let { className, multiple, label } = this.props;
+        return React.createElement("div", null,
+            React.createElement("label", { className: "btn btn-outline-success" },
+                label || '选择文件',
+                React.createElement("input", { className: className, ref: t => this.fileInput = t, onChange: this.onFilesChange, type: 'file', name: 'file', multiple: multiple, style: { display: 'none' } })),
+            "\u00A0",
+            this.fileName);
     }
-}
+};
+__decorate([
+    observable
+], ResUploader.prototype, "fileName", void 0);
+ResUploader = __decorate([
+    observer
+], ResUploader);
+export { ResUploader };
 const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 let ImageUploader = class ImageUploader extends React.Component {
     constructor(props) {
@@ -136,7 +160,6 @@ let ImageUploader = class ImageUploader extends React.Component {
             });
         };
         this.upload = () => __awaiter(this, void 0, void 0, function* () {
-            this.isChanged = false;
             if (!this.resUploader)
                 return;
             let formData = new FormData();
@@ -192,16 +215,16 @@ let ImageUploader = class ImageUploader extends React.Component {
         return React.createElement(Page, { header: label || '更改图片', right: right },
             React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
                 React.createElement("div", null,
-                    React.createElement("div", null, "\u4E0A\u4F20\u56FE\u7247\uFF1A"),
-                    React.createElement("div", { className: "my-3" },
-                        React.createElement(ResUploader, { ref: v => this.resUploader = v, multiple: false, maxSize: 2048, onFilesChange: this.onFileChange }),
+                    React.createElement("div", { className: "mb-3" },
+                        React.createElement(ResUploader, { ref: v => this.resUploader = v, multiple: false, maxSize: 2048, label: "\u9009\u62E9\u56FE\u7247\u6587\u4EF6", onFilesChange: this.onFileChange }),
+                        React.createElement("div", { className: "small text-muted" },
+                            "\u652F\u6301 ",
+                            imageTypes.join(', '),
+                            " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
-                    React.createElement("div", null,
-                        React.createElement("button", { className: "btn btn-primary", onClick: this.upload, disabled: !this.enableUploadButton }, "\u4E0A\u4F20"))),
-                React.createElement("div", { className: "small muted my-4" },
-                    "\u652F\u6301 ",
-                    imageTypes.join(', '),
-                    " \u683C\u5F0F\u56FE\u7247\u3002"),
+                    this.enableUploadButton &&
+                        React.createElement("div", { className: "mb-3" },
+                            React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20"))),
                 React.createElement("div", { className: "text-center", style: { border: '1px dotted gray', padding: '8px' } },
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
     }
