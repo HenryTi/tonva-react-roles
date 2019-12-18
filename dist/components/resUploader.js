@@ -40,6 +40,7 @@ export class ResUploader extends React.Component {
                 data.append('files[]', file, file.name);
             }
             try {
+                nav.startWait();
                 let abortController = new AbortController();
                 let res = yield fetch(resUrl, {
                     method: "POST",
@@ -52,6 +53,9 @@ export class ResUploader extends React.Component {
             catch (err) {
                 console.error('%s %s', resUrl, err);
             }
+            finally {
+                nav.endWait();
+            }
         });
     }
     render() {
@@ -60,8 +64,8 @@ export class ResUploader extends React.Component {
     }
 }
 let ImageUploader = class ImageUploader extends React.Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.isChanged = false;
         this.overSize = false;
         this.upload = () => __awaiter(this, void 0, void 0, function* () {
@@ -81,6 +85,7 @@ let ImageUploader = class ImageUploader extends React.Component {
             onSaved && onSaved(this.resId);
             return;
         };
+        this.resId = props.id;
     }
     render() {
         let { label } = this.props;

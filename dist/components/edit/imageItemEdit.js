@@ -16,20 +16,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { ResUploader } from '../resUploader';
-import { Image } from '../image';
+import { ImageUploader } from '../resUploader';
 import { nav } from '../nav';
-import { Page } from '../page';
 import { ItemEdit } from './itemEdit';
-import { env } from '../../tool';
 export class ImageItemEdit extends ItemEdit {
     constructor() {
         super(...arguments);
         this.overSize = false;
-        this.upload = () => __awaiter(this, void 0, void 0, function* () {
-            if (!this.resUploader)
-                return;
-            let ret = yield this.resUploader.upload();
+        /*
+        private upload = async () => {
+            if (!this.resUploader) return;
+            let ret = await this.resUploader.upload();
             if (ret === null) {
                 this.overSize = true;
                 env.setTimeout('imageItemEdit upload', () => this.overSize = false, 3000);
@@ -37,32 +34,50 @@ export class ImageItemEdit extends ItemEdit {
             }
             this.resId = ret;
             this.isChanged = (this.resId !== this.value);
-        });
+        }
+        */
         this.page = observer((props) => {
             let { resolve } = props;
-            let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !this.isChanged, onClick: () => resolve(this.resId) }, "\u4FDD\u5B58");
-            let overSize;
+            /*
+            let right = <button
+                className="btn btn-sm btn-success align-self-center"
+                disabled={!this.isChanged}
+                onClick={()=>resolve(this.resId)}>保存</button>;
+            let overSize:any;
             if (this.overSize === true) {
-                overSize = React.createElement("div", { className: "text-danger" },
-                    React.createElement("i", { className: "fa fa-times-circle" }),
-                    " \u56FE\u7247\u6587\u4EF6\u5927\u5C0F\u8D85\u8FC72M\uFF0C\u65E0\u6CD5\u4E0A\u4F20");
+                overSize = <div className="text-danger">
+                    <i className="fa fa-times-circle" /> 图片文件大小超过2M，无法上传
+                </div>;
             }
-            return React.createElement(Page, { header: '更改' + this.label, right: right },
-                React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
-                    React.createElement("div", null,
-                        React.createElement("div", null, "\u4E0A\u4F20\u56FE\u7247\uFF1A"),
-                        React.createElement("div", { className: "my-3" },
-                            React.createElement(ResUploader, { ref: v => this.resUploader = v, multiple: false, maxSize: 2048 })),
-                        React.createElement("div", null,
-                            React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20"))),
-                    overSize,
-                    React.createElement("div", { className: "small muted my-4" }, "\u652F\u6301JPG\u3001GIF\u3001PNG\u683C\u5F0F\u56FE\u7247\uFF0C\u4E0D\u8D85\u8FC72M\u3002"),
-                    React.createElement("div", { className: "d-flex" },
-                        React.createElement("div", { className: "w-12c h-12c mr-4", style: { border: '1px dotted gray', padding: '8px' } },
-                            React.createElement(Image, { className: "w-100 h-100", src: this.resId })),
-                        React.createElement("div", null,
-                            React.createElement("div", { className: "small" }, "\u56FE\u7247\u9884\u89C8"),
-                            React.createElement(Image, { className: "w-4c h-4c mt-3", src: this.resId })))));
+            */
+            return React.createElement(ImageUploader, { label: '更改' + this.label, id: this.resId, onSaved: (resId) => { resolve(resId); return; } });
+            /*
+            return <Page header={'更改' + this.label} right={right}>
+                <div className="my-3 px-3 py-3 bg-white">
+                    <div>
+                        <div>上传图片：</div>
+                        <div className="my-3">
+                            <ResUploader ref={v=>this.resUploader=v} multiple={false} maxSize={2048} />
+                        </div>
+                        <div>
+                            <button className="btn btn-primary" onClick={this.upload}>上传</button>
+                        </div>
+                    </div>
+                    {overSize}
+                    <div className="small muted my-4">支持JPG、GIF、PNG格式图片，不超过2M。</div>
+                    <div className="d-flex">
+                        <div className="w-12c h-12c mr-4"
+                            style={{border: '1px dotted gray', padding: '8px'}}>
+                            <Image className="w-100 h-100" src={this.resId} />
+                        </div>
+                        <div>
+                            <div className="small">图片预览</div>
+                            <Image className="w-4c h-4c mt-3" src={this.resId} />
+                        </div>
+                    </div>
+                </div>
+            </Page>;
+            */
         });
     }
     internalStart() {

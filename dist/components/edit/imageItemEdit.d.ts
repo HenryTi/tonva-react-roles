@@ -6,6 +6,5 @@ export declare class ImageItemEdit extends ItemEdit {
     private resId;
     private overSize;
     protected internalStart(): Promise<any>;
-    private upload;
     private page;
 }

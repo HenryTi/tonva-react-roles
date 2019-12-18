@@ -2,7 +2,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { UiTextItem } from '../schema';
-import { ResUploader } from '../resUploader';
+import { ResUploader, ImageUploader } from '../resUploader';
 import { Image } from '../image';
 import { nav } from '../nav';
 import { Page } from '../page';
@@ -22,6 +22,7 @@ export class ImageItemEdit extends ItemEdit {
         });
     }
 
+    /*
     private upload = async () => {
         if (!this.resUploader) return;
         let ret = await this.resUploader.upload();
@@ -33,9 +34,11 @@ export class ImageItemEdit extends ItemEdit {
         this.resId = ret;
         this.isChanged = (this.resId !== this.value);
     }
+    */
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
         let {resolve} = props;
+        /*
         let right = <button
             className="btn btn-sm btn-success align-self-center"
             disabled={!this.isChanged}
@@ -46,6 +49,12 @@ export class ImageItemEdit extends ItemEdit {
                 <i className="fa fa-times-circle" /> 图片文件大小超过2M，无法上传
             </div>;
         }
+        */
+        return <ImageUploader 
+            label={'更改' + this.label} 
+            id={this.resId} 
+            onSaved={(resId):Promise<void>=>{resolve(resId); return;}} />;
+        /*
         return <Page header={'更改' + this.label} right={right}>
             <div className="my-3 px-3 py-3 bg-white">
                 <div>
@@ -71,5 +80,6 @@ export class ImageItemEdit extends ItemEdit {
                 </div>
             </div>
         </Page>;
+        */
     })
 }

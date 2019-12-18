@@ -33,6 +33,7 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         }
   
         try {
+            nav.startWait();
             let abortController = new AbortController();
             let res = await fetch(resUrl, {
                 method: "POST",
@@ -44,6 +45,9 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         }
         catch (err) {
             console.error('%s %s', resUrl, err);
+        }
+        finally {
+            nav.endWait();
         }
     }
     render() {
@@ -57,7 +61,7 @@ export class ResUploader extends React.Component<ResUploaderProps> {
 }
 
 interface ImageUploaderProps {
-    id?: string|number;
+    id?: string;
     label?: string;
     onSaved?: (imageId:string) => Promise<void>;
 }
@@ -68,6 +72,11 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     @observable private isChanged: boolean = false;
     @observable private resId: string;
     @observable private overSize: boolean = false;
+
+    constructor(props: ImageUploaderProps) {
+        super(props);
+        this.resId = props.id;
+    }
 
     private upload = async () => {
         if (!this.resUploader) return;
