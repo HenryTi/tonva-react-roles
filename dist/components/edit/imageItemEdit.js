@@ -17,12 +17,14 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ImageUploader } from '../resUploader';
+//import { Image } from '../image';
 import { nav } from '../nav';
+//import { Page } from '../page';
 import { ItemEdit } from './itemEdit';
+//import { env } from '../../tool';
 export class ImageItemEdit extends ItemEdit {
     constructor() {
         super(...arguments);
-        this.overSize = false;
         /*
         private upload = async () => {
             if (!this.resUploader) return;
@@ -50,7 +52,7 @@ export class ImageItemEdit extends ItemEdit {
                 </div>;
             }
             */
-            return React.createElement(ImageUploader, { label: '更改' + this.label, id: this.resId, onSaved: (resId) => { resolve(resId); return; } });
+            return React.createElement(ImageUploader, { label: '更改' + this.label, id: this.resId, size: this.uiItem.size, onSaved: (resId) => { resolve(resId); return; } });
             /*
             return <Page header={'更改' + this.label} right={right}>
                 <div className="my-3 px-3 py-3 bg-white">
@@ -80,6 +82,7 @@ export class ImageItemEdit extends ItemEdit {
             */
         });
     }
+    //@observable private overSize: boolean = false;
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
             this.resId = this.value;
@@ -92,7 +95,4 @@ export class ImageItemEdit extends ItemEdit {
 __decorate([
     observable
 ], ImageItemEdit.prototype, "resId", void 0);
-__decorate([
-    observable
-], ImageItemEdit.prototype, "overSize", void 0);
 //# sourceMappingURL=imageItemEdit.js.map

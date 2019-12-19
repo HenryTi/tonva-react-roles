@@ -1,22 +1,22 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { UiTextItem } from '../schema';
-import { ResUploader, ImageUploader } from '../resUploader';
-import { Image } from '../image';
+import { UiImageItem } from '../schema';
+import { ImageUploader } from '../resUploader';
+//import { Image } from '../image';
 import { nav } from '../nav';
-import { Page } from '../page';
+//import { Page } from '../page';
 import { ItemEdit } from './itemEdit';
-import { env } from '../../tool';
+//import { env } from '../../tool';
 
 export class ImageItemEdit extends ItemEdit {
-    protected uiItem: UiTextItem;
-    private resUploader: ResUploader;
+    protected uiItem: UiImageItem;
+    //private resUploader: ResUploader;
     @observable private resId: string;
-    @observable private overSize: boolean = false;
+    //@observable private overSize: boolean = false;
 
     protected async internalStart():Promise<any> {
-        this.resId = this.value;        
+        this.resId = this.value;
         return new Promise<any>((resolve, reject) => {
             nav.push(React.createElement(this.page, {resolve:resolve, reject:reject}), ()=>reject());
         });
@@ -51,8 +51,9 @@ export class ImageItemEdit extends ItemEdit {
         }
         */
         return <ImageUploader 
-            label={'更改' + this.label} 
-            id={this.resId} 
+            label={'更改' + this.label}
+            id={this.resId}
+            size={this.uiItem.size}
             onSaved={(resId):Promise<void>=>{resolve(resId); return;}} />;
         /*
         return <Page header={'更改' + this.label} right={right}>

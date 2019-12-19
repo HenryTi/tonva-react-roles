@@ -1,10 +1,8 @@
-import { UiTextItem } from '../schema';
+import { UiImageItem } from '../schema';
 import { ItemEdit } from './itemEdit';
 export declare class ImageItemEdit extends ItemEdit {
-    protected uiItem: UiTextItem;
-    private resUploader;
+    protected uiItem: UiImageItem;
     private resId;
-    private overSize;
     protected internalStart(): Promise<any>;
     private page;
 }

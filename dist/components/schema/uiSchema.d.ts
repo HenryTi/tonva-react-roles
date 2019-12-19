@@ -29,6 +29,7 @@ export interface UiCustom extends UiItem {
 }
 export interface UiImageItem extends UiItem {
     widget: 'image';
+    size: 'sm' | 'lg';
 }
 export interface UiIdItem extends UiItem {
     widget: 'id';
