@@ -911,8 +911,9 @@ export class Nav {
     }
     checkVersion() {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = document.location.origin + '?' + new Date().getTime();
-            let ret = yield fetch(url);
+            let { href } = document.location;
+            href += (href.indexOf('?') >= 0 ? '&' : '?') + '_t_t_=' + new Date().getTime();
+            let ret = yield fetch(href);
             let r = yield ret.text();
             let parser = new DOMParser();
             let htmlDoc = parser.parseFromString(r, 'text/html');

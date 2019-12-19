@@ -965,8 +965,9 @@ export class Nav {
     }
 
     async checkVersion():Promise<string> {
-        let url = document.location.origin + '?' + new Date().getTime();
-        let ret = await fetch(url);
+        let {href} = document.location;
+        href += (href.indexOf('?')>=0? '&':'?') + '_t_t_=' + new Date().getTime();
+        let ret = await fetch(href);
         let r = await ret.text();
         let parser = new DOMParser();
         let htmlDoc = parser.parseFromString(r, 'text/html');
