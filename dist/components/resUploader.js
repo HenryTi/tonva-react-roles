@@ -29,11 +29,14 @@ let ResUploader = class ResUploader extends React.Component {
                 formData = this.buildFormData();
             try {
                 nav.startWait();
+                let headers = new Headers();
+                headers.append('Access-Control-Allow-Origin', '*');
                 //2019-12-18：因为 vivo按oppo某些版本不支持，暂时先不要 
                 //let abortController = new AbortController();
                 let res = yield fetch(resUrl, {
                     method: "POST",
                     body: formData,
+                    headers: headers,
                 });
                 let json = yield res.json();
                 return ':' + json.res.id;
@@ -96,13 +99,17 @@ ResUploader = __decorate([
 ], ResUploader);
 export { ResUploader };
 const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
+const largeSize = 800;
+const smallSize = 180;
 let ImageUploader = class ImageUploader extends React.Component {
     constructor(props) {
         super(props);
         this.isChanged = false;
         this.enableUploadButton = false;
+        this.uploaded = false;
         this.onFileChange = (evt) => {
             this.fileError = undefined;
+            this.uploaded = false;
             this.enableUploadButton = evt.target.files.length > 0;
             if (this.enableUploadButton) {
                 this.file = evt.target.files[0];
@@ -190,6 +197,7 @@ let ImageUploader = class ImageUploader extends React.Component {
             }
             this.resId = ret;
             this.isChanged = (this.resId !== this.props.id);
+            this.uploaded = true;
         });
         this.onSaved = () => {
             let { onSaved } = this.props;
@@ -202,7 +210,7 @@ let ImageUploader = class ImageUploader extends React.Component {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
         };
         this.resId = props.id;
-        this.imgBaseSize = props.size === 'lg' ? 800 : 180;
+        this.imgBaseSize = props.size === 'lg' ? largeSize : smallSize;
     }
     convertBase64UrlToBlob(urlData) {
         let arr = urlData.split(',');
@@ -228,10 +236,15 @@ let ImageUploader = class ImageUploader extends React.Component {
                             imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
-                    React.createElement(LMR, { left: this.enableUploadButton &&
-                            React.createElement("div", { className: "mb-3" },
-                                React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20")), right: this.desImage && React.createElement("button", { className: "btn btn-link btn-sm", onClick: this.showOrgImage }, "\u67E5\u770B\u539F\u56FE") })),
-                React.createElement("div", { className: "text-center", style: { border: '1px dotted gray', padding: '8px' } },
+                    React.createElement(LMR, { left: this.enableUploadButton && (this.uploaded === true ?
+                            React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
+                            :
+                                React.createElement("div", { className: "mb-3" },
+                                    React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20"))), right: this.desImage && React.createElement("button", { className: "btn btn-link btn-sm", onClick: this.showOrgImage }, "\u67E5\u770B\u539F\u56FE") })),
+                React.createElement("div", { className: "text-center", style: {
+                        border: (this.uploaded === true ? '2px solid green' : '1px dotted gray'),
+                        padding: '8px'
+                    } },
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     }
 };
@@ -253,6 +266,9 @@ __decorate([
 __decorate([
     observable
 ], ImageUploader.prototype, "fileError", void 0);
+__decorate([
+    observable
+], ImageUploader.prototype, "uploaded", void 0);
 ImageUploader = __decorate([
     observer
 ], ImageUploader);

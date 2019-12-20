@@ -34,6 +34,7 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private srcImage;
     private desImage;
     private fileError;
+    private uploaded;
     constructor(props: ImageUploaderProps);
     private onFileChange;
     private compress;

@@ -650,8 +650,8 @@
         "signature": "56c39c27cd87f6ac2228840ec407a751d332bd9511b1de1f28f84a97945562f6"
       },
       "./src/components/resuploader.tsx": {
-        "version": "261234736df1b9723f2595f13fdd11c4d2785a8f2b4f044ef1502e801a7fd402",
-        "signature": "ef6d4e22795182ee592c44c515a13165ed4cffb0799d483692319257a2a24b8e"
+        "version": "4abe1c8d8b59a38c18b46123ec3144d5332eef8a2db486bf6f6a124a026b8da8",
+        "signature": "d1ffcc3254fe4c0f81e96cc7c97a5ef6d0f013d9dac710448ac1542fb59a7c9e"
       },
       "./src/components/edit/itemedit.tsx": {
         "version": "54397816371e25fe5bf0eecd3f32248713310ff040307816e4fa516c08f570bc",
@@ -4109,6 +4109,7 @@
       "./src/components/propgrid/row.tsx",
       "./src/components/propgrid/propview.tsx",
       "./src/components/propgrid/index.tsx",
+      "./src/components/searchbox.tsx",
       "./src/net/caller.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
@@ -4137,7 +4138,6 @@
       "./src/components/resuploader.tsx",
       "./src/components/index.ts",
       "./src/components/edit/imageitemedit.tsx",
-      "./src/components/searchbox.tsx",
       "./src/net/uqapi.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/entry/res/login.ts",

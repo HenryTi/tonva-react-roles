@@ -44,11 +44,14 @@ export class ResUploader extends React.Component<ResUploaderProps> {
         if (!formData) formData = this.buildFormData();
         try {
             nav.startWait();
+            let headers = new Headers();
+            headers.append('Access-Control-Allow-Origin', '*');
             //2019-12-18：因为 vivo按oppo某些版本不支持，暂时先不要 
             //let abortController = new AbortController();
             let res = await fetch(resUrl, {
                 method: "POST",
                 body: formData,
+                headers: headers,
                 //signal: abortController.signal,
             });
             let json = await res.json();
@@ -101,6 +104,8 @@ interface ImageUploaderProps {
 }
 
 const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
+const largeSize = 800;
+const smallSize = 180;
 
 @observer
 export class ImageUploader extends React.Component<ImageUploaderProps> {
@@ -114,15 +119,17 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     @observable private srcImage: string;
     @observable private desImage: string;
     @observable private fileError: string;
+    @observable private uploaded: boolean = false;
 
     constructor(props: ImageUploaderProps) {
         super(props);
         this.resId = props.id;
-        this.imgBaseSize = props.size === 'lg'? 800 : 180;
+        this.imgBaseSize = props.size === 'lg'? largeSize : smallSize;
     }
 
     private onFileChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         this.fileError = undefined;
+        this.uploaded = false;
         this.enableUploadButton = evt.target.files.length > 0;
         if (this.enableUploadButton) {
             this.file = evt.target.files[0];
@@ -214,6 +221,7 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         }
         this.resId = ret;
         this.isChanged = (this.resId !== this.props.id);
+        this.uploaded = true;
     }
 
     private onSaved = (): Promise<void> => {
@@ -249,15 +257,23 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                     </div>
                     <LMR left=
                     {
-                        this.enableUploadButton &&
-                        <div className="mb-3">
-                            <button className="btn btn-primary" onClick={this.upload}>上传</button>
-                        </div>
+                        this.enableUploadButton && (
+                            this.uploaded === true? 
+                                <div className="text-success p-2">上传成功！</div>
+                                :
+                                <div className="mb-3">
+                                    <button className="btn btn-primary" onClick={this.upload}>上传</button>
+                                </div>
+                        )
                     }
                     right={this.desImage && <button className="btn btn-link btn-sm" onClick={this.showOrgImage}>查看原图</button>}
                     ></LMR>
                 </div>
-                <div className="text-center" style={{border: '1px dotted gray', padding: '8px'}}>
+                <div className="text-center" 
+                    style={{
+                        border: (this.uploaded===true? '2px solid green' : '1px dotted gray'),
+                        padding: '8px'
+                    }}>
                     <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.desImage} />
                 </div>
             </div>
