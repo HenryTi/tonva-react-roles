@@ -69,12 +69,9 @@ export class SearchBox extends React.Component {
                 inputSize = 'input-group-lg';
                 break;
         }
-        let lab;
-        if (label !== undefined)
-            lab = React.createElement("label", { className: "input-group-addon" }, label);
         return React.createElement("form", { className: className, onSubmit: this.onSubmit },
             React.createElement("div", { className: classNames("input-group", inputSize) },
-                lab,
+                label && React.createElement("div", { className: "input-group-addon align-self-center mr-2" }, label),
                 React.createElement("input", { ref: v => this.input = v, onChange: this.onChange, type: "text", name: "key", onFocus: onFocus, className: classNames('form-control', inputClassName || 'border-primary'), placeholder: placeholder, defaultValue: this.props.initKey, maxLength: maxLength }),
                 React.createElement("div", { className: "input-group-append" },
                     React.createElement("button", { className: "btn btn-primary", type: "submit", disabled: this.disabled },

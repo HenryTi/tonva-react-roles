@@ -40,6 +40,7 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private convertBase64UrlToBlob;
     private upload;
     private onSaved;
+    private showOrgImage;
     render(): JSX.Element;
 }
 export {};

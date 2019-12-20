@@ -19,6 +19,7 @@ import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import { LMR } from './simple';
 let ResUploader = class ResUploader extends React.Component {
     constructor() {
         super(...arguments);
@@ -195,6 +196,11 @@ let ImageUploader = class ImageUploader extends React.Component {
             onSaved && onSaved(this.resId);
             return;
         };
+        this.showOrgImage = () => {
+            nav.push(React.createElement(Page, { header: "\u539F\u56FE" },
+                React.createElement("div", { className: "p-3 text-center" },
+                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
+        };
         this.resId = props.id;
         this.imgBaseSize = props.size === 'lg' ? 800 : 180;
     }
@@ -222,11 +228,11 @@ let ImageUploader = class ImageUploader extends React.Component {
                             imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
-                    this.enableUploadButton &&
-                        React.createElement("div", { className: "mb-3" },
-                            React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20"))),
+                    React.createElement(LMR, { left: this.enableUploadButton &&
+                            React.createElement("div", { className: "mb-3" },
+                                React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20")), right: this.desImage && React.createElement("button", { className: "btn btn-link btn-sm", onClick: this.showOrgImage }, "\u67E5\u770B\u539F\u56FE") })),
                 React.createElement("div", { className: "text-center", style: { border: '1px dotted gray', padding: '8px' } },
-                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
+                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     }
 };
 __decorate([

@@ -4,6 +4,7 @@ import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import { LMR } from './simple';
 
 export interface ResUploaderProps {
     className?: string;
@@ -221,6 +222,14 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         return;
     }
 
+    private showOrgImage = () => {
+        nav.push(<Page header="原图">
+            <div className="p-3 text-center">
+                <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.srcImage} />
+            </div>
+        </Page>);
+    }
+
     render() {
         let {label} = this.props;
         let right = <button
@@ -238,15 +247,18 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                         <div className="small text-muted">支持 {imageTypes.join(', ')} 格式图片。</div>
                         {this.fileError && <div className="text-danger">{this.fileError}</div>}
                     </div>
+                    <LMR left=
                     {
                         this.enableUploadButton &&
                         <div className="mb-3">
                             <button className="btn btn-primary" onClick={this.upload}>上传</button>
                         </div>
                     }
+                    right={this.desImage && <button className="btn btn-link btn-sm" onClick={this.showOrgImage}>查看原图</button>}
+                    ></LMR>
                 </div>
                 <div className="text-center" style={{border: '1px dotted gray', padding: '8px'}}>
-                    <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.srcImage} />
+                    <ImageControl className="h-min-4c" style={{maxWidth:'100%'}} src={this.desImage} />
                 </div>
             </div>
         </Page>;

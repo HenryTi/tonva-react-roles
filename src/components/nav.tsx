@@ -20,7 +20,6 @@ import '../css/animation.css';
 import { FA } from './simple';
 import { userApi } from '../net';
 import { ReloadPage, ConfirmReloadPage } from './reloadPage';
-import { resolve } from 'dns';
 
 const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|'  +
