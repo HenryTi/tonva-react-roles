@@ -118,9 +118,8 @@ export class UqApi extends ApiBase {
     uqOwner: string;
     uqName: string;
     uq: string;
-    //uqVersion: number;
 
-    constructor(basePath: string, uqOwner: string, uqName: string, access:string[], showWaiting?: boolean) {
+    constructor(basePath:string, uqOwner:string, uqName:string, access:string[], showWaiting?: boolean) {
         super(basePath, showWaiting);
         if (uqName) {
             this.uqOwner = uqOwner;

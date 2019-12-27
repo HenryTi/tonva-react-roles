@@ -113,7 +113,7 @@ function onReceiveAppApiMessage(hash, apiName) {
             console.error('no unit defined in unit.json or not logined in', unit);
         }
         let parts = apiName.split('/');
-        let param = { unit: unit, uqOwner: parts[0], uqName: parts[1] };
+        let param = { unit: unit, uqOwner: parts[0], uqName: parts[1], appOwner: parts[2], appName: parts[3] };
         console.log('uqTokenApi.uq onReceiveAppApiMessage', param);
         let ret = yield uqTokenApi.uq(param);
         let { db, url, token } = ret;

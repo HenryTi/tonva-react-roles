@@ -1,5 +1,13 @@
 import * as React from 'react';
 import { User } from '../tool';
+export interface ConfirmOptions {
+    caption?: string;
+    message: string | JSX.Element;
+    classNames?: string;
+    ok?: string;
+    yes?: string;
+    no?: string;
+}
 export declare abstract class Controller {
     readonly res: any;
     readonly x: any;
@@ -37,6 +45,7 @@ export declare abstract class Controller {
     ceasePage(level?: number): void;
     removeCeased(): void;
     regConfirmClose(confirmClose: () => Promise<boolean>): void;
+    confirm(options: ConfirmOptions): Promise<'ok' | 'yes' | 'no' | undefined>;
 }
 export declare abstract class View<C extends Controller> {
     protected controller: C;

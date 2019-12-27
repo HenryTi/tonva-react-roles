@@ -108,7 +108,6 @@ class CacheUqLocals {
 const localUqs = new CacheUqLocals;
 */
 export class UqApi extends ApiBase {
-    //uqVersion: number;
     constructor(basePath, uqOwner, uqName, access, showWaiting) {
         super(basePath, showWaiting);
         if (uqName) {

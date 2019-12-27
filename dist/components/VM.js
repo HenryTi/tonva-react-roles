@@ -138,6 +138,35 @@ export class Controller {
     regConfirmClose(confirmClose) {
         nav.regConfirmClose(confirmClose);
     }
+    confirm(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+                let { caption, message, ok, yes, no, classNames } = options;
+                let close = (res) => {
+                    this.closePage();
+                    resolve(res);
+                };
+                let buttons = [];
+                if (ok !== undefined) {
+                    buttons.push(React.createElement("button", { key: "ok", className: "btn btn-primary mr-3", onClick: () => close('ok') }, ok));
+                }
+                if (yes !== undefined) {
+                    buttons.push(React.createElement("button", { key: "yes", className: "btn btn-success mr-3", onClick: () => close('yes') }, yes));
+                }
+                if (no !== undefined) {
+                    buttons.push(React.createElement("button", { key: "no", className: "btn btn-outline-danger mr-3", onClick: () => close('no') }, no));
+                }
+                this.openPage(React.createElement(Page, { header: caption || '请确认', back: "close" },
+                    React.createElement("div", { className: classNames || "rounded bg-white m-5 p-3 border" },
+                        React.createElement("div", { className: "d-flex align-items-center justify-content-center" }, message),
+                        React.createElement("div", { className: "mt-3 d-flex align-items-center justify-content-center" }, buttons))));
+                nav.regConfirmClose(() => __awaiter(this, void 0, void 0, function* () {
+                    resolve(undefined);
+                    return true;
+                }));
+            }));
+        });
+    }
 }
 export class View {
     constructor(controller) {

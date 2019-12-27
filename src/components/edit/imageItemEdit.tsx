@@ -38,6 +38,8 @@ export class ImageItemEdit extends ItemEdit {
 
     private page = observer((props:{resolve:(value:any)=>void, reject: (resean?:any)=>void}):JSX.Element => {
         let {resolve} = props;
+        let size:any = this.uiItem && this.uiItem.size;
+
         /*
         let right = <button
             className="btn btn-sm btn-success align-self-center"
@@ -53,7 +55,7 @@ export class ImageItemEdit extends ItemEdit {
         return <ImageUploader 
             label={'更改' + this.label}
             id={this.resId}
-            size={this.uiItem.size}
+            size={size}
             onSaved={(resId):Promise<void>=>{resolve(resId); return;}} />;
         /*
         return <Page header={'更改' + this.label} right={right}>

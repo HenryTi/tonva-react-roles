@@ -5,7 +5,7 @@ import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 
-type EntityType = Tuid | Action | Sheet | Query | Map;
+//type EntityType = Tuid | Action | Sheet | Query | Map;
 
 export interface IConstructor<T> {
     new (...args: any[]): T;

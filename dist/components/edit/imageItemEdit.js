@@ -40,6 +40,7 @@ export class ImageItemEdit extends ItemEdit {
         */
         this.page = observer((props) => {
             let { resolve } = props;
+            let size = this.uiItem && this.uiItem.size;
             /*
             let right = <button
                 className="btn btn-sm btn-success align-self-center"
@@ -52,7 +53,7 @@ export class ImageItemEdit extends ItemEdit {
                 </div>;
             }
             */
-            return React.createElement(ImageUploader, { label: '更改' + this.label, id: this.resId, size: this.uiItem.size, onSaved: (resId) => { resolve(resId); return; } });
+            return React.createElement(ImageUploader, { label: '更改' + this.label, id: this.resId, size: size, onSaved: (resId) => { resolve(resId); return; } });
             /*
             return <Page header={'更改' + this.label} right={right}>
                 <div className="my-3 px-3 py-3 bg-white">
