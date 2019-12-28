@@ -203,11 +203,11 @@ function getUnit() {
     return realUnit;
 }
 const uqTokenActions = {};
-export function buildAppUq(uq, uqOwner, uqName) {
+export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!isBridged()) {
             let unit = getUnit();
-            let uqToken = yield uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName });
+            let uqToken = yield uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName, appOwner: appOwner, appName: appName });
             if (uqToken.token === undefined)
                 uqToken.token = centerToken;
             let { db, url, urlTest } = uqToken;

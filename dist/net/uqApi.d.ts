@@ -3,10 +3,12 @@ import { ApiBase } from './apiBase';
 export declare function logoutApis(): void;
 export declare class UqApi extends ApiBase {
     private access;
+    appOwner: string;
+    appName: string;
     uqOwner: string;
     uqName: string;
     uq: string;
-    constructor(basePath: string, uqOwner: string, uqName: string, access: string[], showWaiting?: boolean);
+    constructor(basePath: string, appOwner: string, appName: string, uqOwner: string, uqName: string, access: string[], showWaiting?: boolean);
     init(): Promise<void>;
     protected getHttpChannel(): Promise<HttpChannel>;
     loadAccess(): Promise<any>;
@@ -32,6 +34,8 @@ export declare class UqTokenApi extends CenterApiBase {
         unit: number;
         uqOwner: string;
         uqName: string;
+        appOwner: string;
+        appName: string;
     }): Promise<any>;
 }
 export declare const uqTokenApi: UqTokenApi;

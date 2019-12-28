@@ -213,10 +213,10 @@ interface UqTokenAction {
     reject: (reason?: any) => void;
 }
 const uqTokenActions:{[uq:string]: UqTokenAction} = {};
-export async function buildAppUq(uq:string, uqOwner:string, uqName:string):Promise<void> {
+export async function buildAppUq(uq:string, uqOwner:string, uqName:string, appOwner:string, appName:string):Promise<void> {
     if (!isBridged()) {
         let unit = getUnit();
-        let uqToken = await uqTokenApi.uq({unit:unit,  uqOwner:uqOwner, uqName:uqName});
+        let uqToken = await uqTokenApi.uq({unit:unit,  uqOwner:uqOwner, uqName:uqName, appOwner:appOwner, appName:appName});
         if (uqToken.token === undefined) uqToken.token = centerToken;
         let {db, url, urlTest} = uqToken;
         let realUrl = host.getUrlOrTest(db, url, urlTest);

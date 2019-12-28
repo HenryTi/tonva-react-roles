@@ -108,8 +108,10 @@ class CacheUqLocals {
 const localUqs = new CacheUqLocals;
 */
 export class UqApi extends ApiBase {
-    constructor(basePath, uqOwner, uqName, access, showWaiting) {
+    constructor(basePath, appOwner, appName, uqOwner, uqName, access, showWaiting) {
         super(basePath, showWaiting);
+        this.appOwner = appOwner;
+        this.appName = appName;
         if (uqName) {
             this.uqOwner = uqOwner;
             this.uqName = uqName;
@@ -121,7 +123,7 @@ export class UqApi extends ApiBase {
     //setUqVersion(uqVersion:number) {this.uqVersion = undefined}
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield buildAppUq(this.uq, this.uqOwner, this.uqName);
+            yield buildAppUq(this.uq, this.uqOwner, this.uqName, this.appOwner, this.appName);
         });
     }
     getHttpChannel() {
@@ -197,7 +199,7 @@ export function logoutUnitxApis() {
 }
 export class UnitxApi extends UqApi {
     constructor(unitId) {
-        super('tv/', undefined, undefined, undefined, true);
+        super('tv/', undefined, undefined, undefined, undefined, undefined, true);
         this.unitId = unitId;
     }
     getHttpChannel() {
