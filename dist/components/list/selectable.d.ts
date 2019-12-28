@@ -8,15 +8,18 @@ export interface SelectableItem {
 }
 export declare class Selectable extends ListBase {
     private _items;
-    private input;
+    private inputItems;
     private disposer;
     constructor(list: List);
-    dispose(): void;
+    private listenArraySplice;
     private buildItems;
     get items(): SelectableItem[];
+    private checkAll;
     selectAll(): void;
     unselectAll(): void;
+    private get anySelected();
     private onSelect;
     get selectedItems(): any[];
     render: (item: SelectableItem, index: number) => JSX.Element;
+    private row;
 }

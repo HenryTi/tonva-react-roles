@@ -5,7 +5,8 @@ export class CheckBoxWidget extends Widget {
     constructor() {
         super(...arguments);
         this.onInputChange = (evt) => {
-            this.setDataValue(evt.target.checked === true ? this.trueValue : this.falseValue);
+            let v = evt.target.checked === true ? this.trueValue : this.falseValue;
+            this.setDataValue(v);
         };
         this.onClick = () => {
             this.context.clearErrors();

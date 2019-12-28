@@ -16,9 +16,6 @@ import { ContextContainer, FormContext } from './context';
 import { formRes } from './formRes';
 import { resLang } from '../res';
 export class Form extends React.Component {
-    //readonly ArrContainer: (label:any, content:JSX.Element) => JSX.Element;
-    //readonly RowContainer: (content:JSX.Element) => JSX.Element;
-    //readonly RowSeperator: JSX.Element;
     constructor(props) {
         super(props);
         this.watch = () => {
@@ -77,10 +74,8 @@ export class Form extends React.Component {
             this.itemSchemas[itemSchema.name] = itemSchema;
         }
         this.uiSchema = uiSchema;
-        //this.formData = formData;
         this.disposer = autorun(this.watch);
         this.data = {};
-        // this.initRender();
     }
     renderContent() {
         this.initData(this.props.formData);
@@ -154,12 +149,6 @@ export class Form extends React.Component {
             };
             for (let item of arrItems) {
                 this.initDataItem(item, r, row);
-                /*
-                let {name:nm} = item;
-                let v = row[nm];
-                if (v === undefined) v = null;
-                r[nm] = v;
-                */
             }
             arr.push(r);
         }

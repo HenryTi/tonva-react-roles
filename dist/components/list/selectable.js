@@ -5,15 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import * as React from 'react';
-import { observable, autorun } from 'mobx';
+import { observable, isObservableArray, observe } from 'mobx';
 import classNames from 'classnames';
 import { ListBase } from './base';
 import { uid } from '../../tool/uid';
+import { observer } from 'mobx-react';
 export class Selectable extends ListBase {
     constructor(list) {
         super(list);
+        this.inputItems = {};
         this.buildItems = () => {
-            console.log('buildItems in selectable.tsx');
             let { items, selectedItems, compare } = this.list.props;
             let itemsArray;
             if (items === undefined) {
@@ -79,37 +80,75 @@ export class Selectable extends ListBase {
         //w-100 mb-0 pl-3
         //m-0 w-100
         this.render = (item, index) => {
+            return React.createElement(this.row, { item: item, index: index });
+        };
+        this.row = observer((props) => {
+            let { item, index } = props;
             let { className, key } = this.list.props.item;
             let { labelId, selected, item: obItem } = item;
             return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
                 React.createElement("div", { className: "d-flex align-items-center px-3" },
-                    React.createElement("input", { ref: input => {
-                            if (!input)
-                                return;
-                            this.input = input;
-                            input.checked = selected;
-                        }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {
+                    React.createElement("input", { ref: input => { if (input)
+                            this.inputItems[labelId] = input; }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {
                             this.onSelect(item, e.target.checked);
                         } }),
                     React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, this.renderContent(obItem, index))));
-        };
-        this.disposer = autorun(this.buildItems);
-        //this.buildItems();
+        });
+        //this.disposer = autorun(this.buildItems);
+        this.buildItems();
+        this.listenArraySplice();
     }
-    dispose() { this.disposer(); }
-    ;
+    //dispose() {this.disposer()};
+    listenArraySplice() {
+        let { items, selectedItems, compare } = this.list.props;
+        if (items === undefined)
+            return;
+        if (items === null)
+            return;
+        let itemsArray;
+        if (Array.isArray(items) === true) {
+            itemsArray = items;
+        }
+        else {
+            itemsArray = items.items;
+        }
+        if (isObservableArray(items) === true) {
+            observe(itemsArray, (change) => {
+                if (change.type === 'splice') {
+                    let { index, removedCount, added } = change;
+                    let _added = added && added.map(v => {
+                        return {
+                            selected: false,
+                            item: v,
+                            labelId: uid()
+                        };
+                    });
+                    this._items.splice(index, removedCount, ..._added);
+                    this.buildItems();
+                }
+            }, true);
+        }
+    }
     get items() {
         //if (this._items === undefined) 
         //this.buildItems();
         return this._items;
     }
+    checkAll(on) {
+        for (let i in this.inputItems)
+            this.inputItems[i].checked = on;
+        for (let item of this._items)
+            item.selected = on;
+    }
     selectAll() {
-        if (this._items)
-            this._items.forEach(v => v.selected = true);
+        //if (this._items) this._items.forEach(v => v.selected = true);
+        this.checkAll(true);
+        this.list.props.item.onSelect(undefined, true, this.anySelected);
     }
     unselectAll() {
-        if (this._items)
-            this._items.forEach(v => v.selected = false);
+        // if (this._items) this._items.forEach(v => v.selected = false);
+        this.checkAll(false);
+        this.list.props.item.onSelect(undefined, false, this.anySelected);
     }
     /*
     updateProps(nextProps:any) {
@@ -117,10 +156,10 @@ export class Selectable extends ListBase {
         this.buildItems();
     }
     */
+    get anySelected() { return this._items.some(v => v.selected); }
     onSelect(item, selected) {
         item.selected = selected;
-        let anySelected = this._items.some(v => v.selected);
-        this.list.props.item.onSelect(item.item, selected, anySelected);
+        this.list.props.item.onSelect(item.item, selected, this.anySelected);
     }
     get selectedItems() {
         return this._items.filter(v => v.selected === true).map(v => v.item);
@@ -129,15 +168,4 @@ export class Selectable extends ListBase {
 __decorate([
     observable
 ], Selectable.prototype, "_items", void 0);
-/*
-<label>
-<label className="custom-control custom-checkbox">
-    <input type='checkbox' className="custom-control-input"
-        //checked={selected}
-        onChange={(e)=>this.onSelect(item, e.target.checked)} />
-    <span className="custom-control-indicator" />
-</label>
-{this.renderContent(item.item, index)}
-</label>
-*/
 //# sourceMappingURL=selectable.js.map

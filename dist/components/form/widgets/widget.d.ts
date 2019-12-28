@@ -23,7 +23,7 @@ export declare abstract class Widget {
     constructor(context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode);
     protected get itemSchema(): ItemSchema;
     protected get ui(): UiItem;
-    protected init(): void;
+    init(): void;
     protected buildRules(): void;
     checkRules(): void;
     get isOk(): boolean;

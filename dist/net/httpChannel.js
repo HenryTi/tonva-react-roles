@@ -130,10 +130,13 @@ export class HttpChannel {
                             err += ' ' + ex;
                         break;
                     case 'object':
+                        let keys = Object.keys(err);
                         let retErr = {
                             ex: ex,
-                            message: err.message,
                         };
+                        for (let key of keys) {
+                            retErr[key] = err[key];
+                        }
                         err = retErr;
                         break;
                 }
@@ -257,13 +260,6 @@ export class CenterHttpChannel extends HttpChannel {
     }
 }
 export class UqHttpChannel extends HttpChannel {
-    /*
-    private uqForChannel: IUqForChannel;
-    constructor(hostUrl: string, apiToken:string, uqForChannel: IUqForChannel, ui?: HttpChannelUI) {
-        super(hostUrl, apiToken, ui);
-        this.uqForChannel = uqForChannel;
-    }
-    */
     innerFetch(url, options, waiting) {
         return __awaiter(this, void 0, void 0, function* () {
             let u = this.hostUrl + url;

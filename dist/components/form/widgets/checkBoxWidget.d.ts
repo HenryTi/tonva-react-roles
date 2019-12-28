@@ -6,7 +6,7 @@ export declare class CheckBoxWidget extends Widget {
     protected get ui(): UiCheckItem;
     protected trueValue: any;
     protected falseValue: any;
-    protected init(): void;
+    init(): void;
     protected setElementValue(value: any): void;
     setReadOnly(value: boolean): void;
     setDisabled(value: boolean): void;

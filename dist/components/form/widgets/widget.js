@@ -51,7 +51,7 @@ export class Widget {
             this.visible = !(visible === false);
         }
         this.value = this.defaultValue = context.getValue(name); //defaultValue;
-        this.init();
+        // this.init();
     }
     get hasError() { return (this.errors.length + this.contextErrors.length) > 0; }
     get itemSchema() { return this._itemSchema; }
