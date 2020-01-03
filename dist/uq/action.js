@@ -13,20 +13,17 @@ export class Action extends Entity {
     get typeName() { return 'action'; }
     submit(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            //await this.loadSchema();
-            //let text = this.pack(data);
-            //return await this.uqApi.action(this.name, {data:text});
             return yield new ActionSubmitCaller(this, data).request();
         });
     }
     submitReturns(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            /*
-            await this.loadSchema();
-            let text = this.pack(data);
-            let result = await this.uqApi.actionReturns(this.name, {data:text});
-            */
             return yield new SubmitReturnsCaller(this, data).request();
+        });
+    }
+    submitConvert(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield new SubmitConvertCaller(this, data).request();
         });
     }
 }
@@ -45,6 +42,14 @@ class SubmitReturnsCaller extends ActionSubmitCaller {
             ret[retSchema.name] = res[i];
         }
         return ret;
+    }
+}
+class SubmitConvertCaller extends ActionSubmitCaller {
+    get path() { return 'action-convert/' + this.entity.name; }
+    buildParams() {
+        return {
+            data: this.params
+        };
     }
 }
 //# sourceMappingURL=action.js.map

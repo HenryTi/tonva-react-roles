@@ -124,7 +124,7 @@ export abstract class HttpChannel {
                     break;
                 case 'object':
                     let keys = Object.keys(err);
-                    let retErr = {
+                    let retErr:any = {
                         ex: ex,
                     };
                     for (let key of keys) {

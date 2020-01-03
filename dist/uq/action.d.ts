@@ -6,6 +6,7 @@ export declare class Action extends Entity {
     submitReturns(data: object): Promise<{
         [ret: string]: any[];
     }>;
+    submitConvert(data: object): Promise<any>;
 }
 export declare class ActionSubmitCaller extends ActionCaller {
     get path(): string;
