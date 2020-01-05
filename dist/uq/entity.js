@@ -385,8 +385,15 @@ export class Entity {
         return len;
     }
     to(ret, v, f) {
+        if (v === undefined)
+            return undefined;
+        if (v === null)
+            return null;
+        if (v === '')
+            return null;
         switch (f.type) {
             default: return v;
+            case 'char': return v;
             case 'datetime':
             case 'time':
                 let n = Number(v);
@@ -407,6 +414,8 @@ export class Entity {
                 if (_tuid === undefined)
                     return id;
                 return _tuid.boxId(id);
+            case 'bin':
+                return v;
         }
     }
     unpackArr(ret, arr, data, p) {

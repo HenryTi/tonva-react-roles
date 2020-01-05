@@ -366,8 +366,12 @@ export abstract class Entity {
     }
 
     private to(ret:any, v:string, f:Field):any {
+        if (v === undefined) return undefined;
+        if (v === null) return null;
+        if (v === '') return null;
         switch (f.type) {
             default: return v;
+            case 'char': return v;
             case 'datetime':
             case 'time':
                 let n = Number(v);
@@ -387,6 +391,8 @@ export abstract class Entity {
                 let {_tuid} = f;
                 if (_tuid === undefined) return id;
                 return _tuid.boxId(id);
+            case 'bin':
+                return v;
         }
     }
 

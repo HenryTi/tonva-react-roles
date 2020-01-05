@@ -11,8 +11,8 @@ import { Pending } from './pending';
 import { CreateBoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
-export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
+export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time' | 'bin';
+export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00" | "00";
 export interface Field {
     name: string;
     type: FieldType;

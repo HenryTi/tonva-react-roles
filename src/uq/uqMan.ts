@@ -14,7 +14,7 @@ import { UQsMan } from './uqsMan';
 import { ReactBoxId } from './tuid/reactBoxId';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
-    | 'datetime' | 'date' | 'time';
+    | 'datetime' | 'date' | 'time' | 'bin';
 
 export function fieldDefaultValue(type:FieldType) {
     switch (type) {
@@ -32,6 +32,8 @@ export function fieldDefaultValue(type:FieldType) {
             return '2000-1-1';
         case 'time':
             return '0:00';
+        case 'bin':
+            return '00';
     }
 }
 

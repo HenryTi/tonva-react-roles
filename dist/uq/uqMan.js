@@ -34,6 +34,8 @@ export function fieldDefaultValue(type) {
             return '2000-1-1';
         case 'time':
             return '0:00';
+        case 'bin':
+            return '00';
     }
 }
 export class UqMan {
