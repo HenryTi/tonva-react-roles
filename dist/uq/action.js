@@ -44,7 +44,7 @@ class SubmitReturnsCaller extends ActionSubmitCaller {
         return ret;
     }
 }
-class SubmitConvertCaller extends ActionSubmitCaller {
+class SubmitConvertCaller extends SubmitReturnsCaller {
     get path() { return 'action-convert/' + this.entity.name; }
     buildParams() {
         return {
