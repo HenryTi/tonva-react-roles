@@ -834,7 +834,7 @@
         "signature": "63f24acdd32f514f8e07ac7d3c461055537912e75d8bc84373ff21b1d4133566"
       },
       "./src/uq/query.ts": {
-        "version": "7cc7dddd48872c13124378b697d89f8cd9acbcd9cd539b99a85737b5996a0a6a",
+        "version": "d277287eea8def89a22d6a681cc4b2fd48e65bf0aa1657aeb4dc1bdac55e1fd5",
         "signature": "476f3c79d2cbfab5bc85ce6332f171955df1d30d902d66acd336a3d9b7cfa42d"
       },
       "./src/uq/caller.ts": {
@@ -858,7 +858,7 @@
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
-        "version": "249d3523a28cb8e42bec7ebd852da886593e922fc077f9146b770334b14eb573",
+        "version": "1a9b3c893c364f0ea959fb1df74dce45e3185d8cb8921d4a750a19ba6736e98a",
         "signature": "0946a13808315bdab1314e5e7f8b5d307b8d6782febe61e951a113fd5357bd5e"
       },
       "./src/uq/tuid/index.ts": {
@@ -4135,19 +4135,19 @@
       "./src/entry/meinfo.tsx",
       "./src/entry/index.ts",
       "./src/uq/entity.ts",
-      "./src/uq/query.ts",
+      "./src/uq/action.ts",
       "./src/uq/caller.ts",
       "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
       "./src/uq/tuid/tuidscache.ts",
-      "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
       "./src/uq/book.ts",
       "./src/uq/history.ts",
       "./src/uq/map.ts",
       "./src/uq/pending.ts",
+      "./src/uq/uqsman.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
       "./src/capp/tools/jsonstringify.ts",
@@ -4250,8 +4250,8 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/action.ts",
-      "./src/uq/uqsman.ts"
+      "./src/uq/query.ts",
+      "./src/uq/tuid/reactboxid.tsx"
     ]
   },
   "version": "3.7.3"
