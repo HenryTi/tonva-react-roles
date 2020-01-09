@@ -358,7 +358,7 @@
         "signature": "22a7ff3279e64124ef00f11ff9df209bbee0715a60a84bff067b14ac45183cbf"
       },
       "./src/tool/pageitems.ts": {
-        "version": "18a8935fea31d5e0d8287ff80f1cccaacaaff95190ee0c6a230b08cb4cd31ea9",
+        "version": "69f190a0c4e3d1fe65aad7a98ce57632be6064c14f07ff426bf27003f656b14b",
         "signature": "eb1dccf13d64f7ba61c2a74ab2ff566894fde45cdfd1b3a78b7d649dcbcaf64e"
       },
       "./src/tool/cacheids.ts": {
@@ -590,7 +590,7 @@
         "signature": "d512455149bf25ca6ce39a9eb282b4ba198eea669a702b45004de2df5d36a454"
       },
       "./src/components/form/widgets/textwidget.tsx": {
-        "version": "d1813fbb4d509e726f8c0af94fed6b4127172f48a3a268d192fc77f1ff26b59f",
+        "version": "780ad66389ed4be2b552fc4aeaac224419f184a8be276dfe3baca0ffd6d31926",
         "signature": "b71c00e9c0fa69a65badafd33f334f6af159f8f1360a77e6bef7b3b212338e3b"
       },
       "./src/components/form/widgets/textareawidget.tsx": {
@@ -886,7 +886,7 @@
         "signature": "45d6fe0da02ead28513ab0a78f5db893488c3a7deba11f81c17b15e79c35df57"
       },
       "./src/uq/uqsman.ts": {
-        "version": "2b4322d4e4dfadecd1ebfd8140e28f5aa187d05a8c6f6b3a2c3c6e6baedac558",
+        "version": "e1e886616435855fe1ead98c93264bd07a8728fb550ad2a41fe1b0d916f0f962",
         "signature": "4ea170ea4a639e324ae875507c732ed9d2dca943b215d8621bad4442a8b981a9"
       },
       "./src/uq/uqman.ts": {
@@ -4017,7 +4017,6 @@
       "./node_modules/mobx/lib/utils/iterable.d.ts",
       "./node_modules/mobx/lib/internal.d.ts",
       "./node_modules/mobx/lib/mobx.d.ts",
-      "./src/tool/pageitems.ts",
       "./src/tool/cacheids.ts",
       "./node_modules/@types/lodash/index.d.ts",
       "./src/tool/localdb.ts",
@@ -4075,7 +4074,6 @@
       "./src/components/form/formres.ts",
       "./src/components/form/rules/index.ts",
       "./src/components/form/widgets/widget.tsx",
-      "./src/components/form/widgets/textwidget.tsx",
       "./src/components/form/widgets/textareawidget.tsx",
       "./src/components/form/widgets/passwordwidget.tsx",
       "./src/components/form/widgets/numberwidget.tsx",
@@ -4136,18 +4134,19 @@
       "./src/entry/index.ts",
       "./src/uq/entity.ts",
       "./src/uq/action.ts",
+      "./src/uq/query.ts",
       "./src/uq/caller.ts",
       "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
       "./src/uq/tuid/tuidscache.ts",
+      "./src/uq/tuid/reactboxid.tsx",
       "./src/uq/tuid/index.ts",
       "./src/uq/sheet.ts",
       "./src/uq/book.ts",
       "./src/uq/history.ts",
       "./src/uq/map.ts",
       "./src/uq/pending.ts",
-      "./src/uq/uqsman.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
       "./src/capp/tools/jsonstringify.ts",
@@ -4250,8 +4249,9 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/query.ts",
-      "./src/uq/tuid/reactboxid.tsx"
+      "./src/tool/pageitems.ts",
+      "./src/components/form/widgets/textwidget.tsx",
+      "./src/uq/uqsman.ts"
     ]
   },
   "version": "3.7.3"

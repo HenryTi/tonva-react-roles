@@ -46,6 +46,7 @@ export class PageItems {
         this.beforeLoad = true;
         this.loaded = false;
         this.param = undefined;
+        this.pageStart = undefined;
         this.allLoaded = false;
         this._items.clear();
         //this.setPageStart(undefined);
