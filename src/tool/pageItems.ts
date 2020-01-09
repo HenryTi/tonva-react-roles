@@ -40,8 +40,8 @@ export abstract class PageItems<T> {
         this.beforeLoad = true;
         this.loaded = false;
         this.param = undefined;
+        this.pageStart = undefined;
         this.allLoaded = false;
-        this.pageStart = undefined;        
         this._items.clear();
         //this.setPageStart(undefined);
     }

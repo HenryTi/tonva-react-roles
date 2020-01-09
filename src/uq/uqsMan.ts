@@ -159,7 +159,7 @@ export class UQsMan {
             let uq = this.collection[i];
             for (let tuid of uq.tuidArr) {
                 if (tuid.isImport === true) {
-                    let error = this.setInner(uq, tuid as TuidImport);
+                    let error = this.setInner(tuid as TuidImport);
                     if (error) ret.push(error);
                 }
             }
@@ -167,18 +167,16 @@ export class UQsMan {
         return ret;
     }
 
-    private setInner(uq: UqMan, tuidImport: TuidImport):string {
+    private setInner(tuidImport: TuidImport):string {
         let {from} = tuidImport;
         let fromName = from.owner + '/' + from.uq;
-        let fromUq = this.collection[fromName];
-        if (fromUq === undefined) {
-            console.error(`setInner(tuidImport: TuidImport): uq ${fromName} is not loaded, but imported in ${uq.name}. pass this error now!`);
-            return;
+        let uq = this.collection[fromName];
+        if (uq === undefined) {
             //debugger;
-            //return `setInner(tuidImport: TuidImport): uq ${fromName} is not loaded`;
+            return `setInner(tuidImport: TuidImport): uq ${fromName} is not loaded`;
         }
         let iName = tuidImport.name
-        let tuid = fromUq.tuid(iName);
+        let tuid = uq.tuid(iName);
         if (tuid === undefined) {
             //debugger;
             return `setInner(tuidImport: TuidImport): uq ${fromName} has no Tuid ${iName}`;
