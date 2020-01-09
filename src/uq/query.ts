@@ -22,7 +22,7 @@ export class QueryPager<T extends any> extends PageItems<T> {
     }
 
     protected async load(param:any, pageStart:any, pageSize:number):Promise<T[]> {
-        if (pageStart === undefined) pageStart = 0;
+        //if (pageStart === undefined) pageStart = 0;
         let ret = await this.query.page(param, pageStart, pageSize);
         return ret;
     }
@@ -31,8 +31,33 @@ export class QueryPager<T extends any> extends PageItems<T> {
         if (schema === undefined) return;
         let $page = (schema.returns as any[]).find(v => v.name === '$page');
         if ($page === undefined) return;
+        
         let {order} = $page;
         if (order === undefined) return;
+        /*
+        if (order === 'desc') {
+            this.appendPosition = 'head';
+        }
+        else {
+            this.appendPosition = 'tail';
+        }
+        */
+        if (item !== undefined) {
+            let field = $page.fields[0];
+            if (field) {
+                let start = item[field.name];
+                if (start === null)
+                    start = undefined;
+                else if (start !== undefined) {
+                    if (typeof start === 'object') {
+                        start = start.id;
+                    }
+                }
+                this.pageStart = start;
+            }
+        }
+
+        /*
         let {field, type, asc} = order;
         let start:any;
         if (item !== undefined) start = item[field];
@@ -65,6 +90,7 @@ export class QueryPager<T extends any> extends PageItems<T> {
             }
         }
         this.pageStart = start;
+        */
     }
 }
 

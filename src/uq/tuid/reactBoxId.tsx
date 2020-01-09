@@ -69,7 +69,7 @@ export class ReactBoxId implements BoxId {
         }
         switch (typeof val) {
             case 'undefined':
-                return <span className="text-black-50">{boxName} undefined</span>;
+                return null; //<span className="text-black-50">{boxName} undefined</span>;
             case 'number':
                 return <span className="text-light">{boxName} {this.id}</span>;
         }
@@ -144,13 +144,12 @@ const Tv = observer(({tuidValue, ui, x, nullUI}:Props) => {
     let ttv = typeof tuidValue;
     switch (ttv) {
         default:
-            if (ui === undefined)
+            if (ui === undefined) {
                 return <>{ttv}-{tuidValue}</>;
-            else {
-                let ret = ui(tuidValue, x);
-                if (ret !== undefined) return ret;
-                return <>{tuidValue}</>;
             }
+            let ret = ui(tuidValue, x);
+            if (ret !== undefined) return ret;
+            return <>{tuidValue}</>;
         case 'object':
             let divObj = boxIdContent(tuidValue, ui, x);
             if (divObj !== undefined) return divObj;
