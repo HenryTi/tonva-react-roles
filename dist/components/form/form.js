@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import * as React from 'react';
 import { observable, autorun } from 'mobx';
 import classNames from 'classnames';
@@ -25,6 +16,21 @@ export class Form extends React.Component {
             //this.initData(formData);
             this.calcSelectOrDelete();
         };
+        /*
+            async buttonClick(buttonName:string) {
+                this.formContext.checkRules()
+                if (this.formContext.hasError === true) return;
+        
+                let {onButtonClick} = this.formContext.form.props;
+                if (onButtonClick === undefined) {
+                    alert(`you should define form onButtonClick`);
+                    return;
+                }
+                let ret = await onButtonClick(buttonName, this.formContext);
+                if (ret === undefined) return;
+                this.formContext.setError(buttonName, ret);
+            }
+        */
         this.DefaultContainer = (content) => {
             return React.createElement("form", { className: classNames(this.props.className), onSubmit: e => e.preventDefault() }, content);
         };
@@ -200,22 +206,6 @@ export class Form extends React.Component {
         return React.createElement(ContextContainer.Provider, { value: this.formContext },
             React.createElement(this.formContext.renderErrors, null),
             this.Container(content));
-    }
-    buttonClick(buttonName) {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.formContext.checkRules();
-            if (this.formContext.hasError === true)
-                return;
-            let { onButtonClick } = this.formContext.form.props;
-            if (onButtonClick === undefined) {
-                alert(`you should define form onButtonClick`);
-                return;
-            }
-            let ret = yield onButtonClick(buttonName, this.formContext);
-            if (ret === undefined)
-                return;
-            this.formContext.setError(buttonName, ret);
-        });
     }
 }
 //# sourceMappingURL=form.js.map

@@ -145,42 +145,6 @@ export class UQsMan {
         this.localMap.removeAll();
         nav.showReloadPage(msg);
     }
-    /*
-        setTuidImportsLocal():string[] {
-            let ret:string[] = [];
-            for (let i in this.collection) {
-                let uq = this.collection[i];
-                for (let tuid of uq.tuidArr) {
-                    if (tuid.isImport === true) {
-                        let error = this.setInner(tuid as TuidImport);
-                        if (error) ret.push(error);
-                    }
-                }
-            }
-            return ret;
-        }
-    
-        private setInner(tuidImport: TuidImport):string {
-            let {from} = tuidImport;
-            let fromName = from.owner + '/' + from.uq;
-            let uq = this.collection[fromName];
-            if (uq === undefined) {
-                //debugger;
-                return `setInner(tuidImport: TuidImport): uq ${fromName} is not loaded`;
-            }
-            let iName = tuidImport.name
-            let tuid = uq.tuid(iName);
-            if (tuid === undefined) {
-                //debugger;
-                return `setInner(tuidImport: TuidImport): uq ${fromName} has no Tuid ${iName}`;
-            }
-            if (tuid.isImport === true) {
-                //debugger;
-                return `setInner(tuidImport: TuidImport): uq ${fromName} Tuid ${iName} is import`;
-            }
-            tuidImport.setFrom(tuid as TuidInner);
-        }
-    */
     setTuidImportsLocal() {
         let ret = [];
         for (let i in this.collection) {
