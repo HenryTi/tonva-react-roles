@@ -59,6 +59,7 @@ export abstract class Tuid extends Entity {
     abstract async load(id:number|BoxId):Promise<any>;
     abstract async all():Promise<any[]>;
     abstract async save(id:number, props:any):Promise<TuidSaveResult>;
+    abstract async no(year?:number, month?:number, date?:number):Promise<{date:string, no:number}>;
     abstract async search(key:string, pageStart:string|number, pageSize:number):Promise<any>;
     abstract async searchArr(owner:number, key:string, pageStart:string|number, pageSize:number):Promise<any>;
     abstract async loadArr(arr:string, owner:number, id:number):Promise<any>;
@@ -194,6 +195,21 @@ export class TuidInner extends Tuid {
         return this.unpackTuidIdsOfFields(values, this.cacheFields);
     }
 
+    async no(date?:number, month?:number, year?:number):Promise<{date:string, no:number}> {
+        let d = new Date();
+        if (date === undefined) {
+            date = d.getDate();
+        }
+        if (month === undefined) {
+            month = d.getMonth() + 1;
+        }
+        if (year === undefined) {
+            year = d.getFullYear();
+        }
+        let ret = await new NoCaller(this, {year:year, month:month, date:date}).request();
+        return ret;
+    }
+
     async save(id:number, props:any):Promise<TuidSaveResult> {
         /*
         let {fields} = this.schema;
@@ -288,6 +304,9 @@ class IdsCaller extends TuidCaller<{divName:string, ids:number[]}> {
     }
 }
 
+class NoCaller extends TuidCaller<{year:number, month:number, date:number}> {
+    get path():string {return `tuid-no/${this.entity.name}`}
+}
 
 class SaveCaller extends TuidCaller<{id:number, props:any}> {
     get path():string {return `tuid/${this.entity.name}`}
@@ -412,6 +431,9 @@ export class TuidImport extends Tuid {
     }
     async load(id:number|BoxId):Promise<any> {
         return await this.tuidLocal.load(id);
+    }
+    async no(year?:number, month?:number, date?:number):Promise<any> {
+        return;        
     }
     async save(id:number, props:any):Promise<TuidSaveResult> {
         return await this.tuidLocal.save(id, props);

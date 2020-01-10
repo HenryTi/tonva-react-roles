@@ -197,7 +197,7 @@ export class Form extends React.Component<FormProps> {
             {this.Container(content)}
         </ContextContainer.Provider>;
     }
-
+/*
     async buttonClick(buttonName:string) {
         this.formContext.checkRules()
         if (this.formContext.hasError === true) return;
@@ -211,7 +211,7 @@ export class Form extends React.Component<FormProps> {
         if (ret === undefined) return;
         this.formContext.setError(buttonName, ret);
     }
-
+*/
     protected DefaultContainer = (content:JSX.Element): JSX.Element => {
         return <form className={classNames(this.props.className)} onSubmit={e=>e.preventDefault()}>
             {content}
