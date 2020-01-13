@@ -9,6 +9,7 @@ export interface PropGridProps {
     values: any;
     alignValue?: 'left'|'center'|'right';
     labelFixLeft?: boolean;
+    labelSize?: number;
 }
 
 @observer

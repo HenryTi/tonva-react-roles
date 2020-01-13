@@ -22,9 +22,9 @@ export class PageItems {
         this.beforeLoad = true;
         this.loaded = false;
         this.allLoaded = false;
-        this.firstSize = 100;
+        this.firstSize = 50;
         this.pageStart = undefined;
-        this.pageSize = 30;
+        this.pageSize = 10;
         this.appendPosition = 'tail';
         this._items = observable.array([], { deep: itemObservable });
     }
@@ -34,6 +34,12 @@ export class PageItems {
         if (this.loaded === false)
             return undefined;
         return this._items;
+    }
+    setItemDeepObservable() {
+        if (this._items.length > 0) {
+            throw new Error('setItemDeepObservable can only be called just after new');
+        }
+        this._items = observable.array([], { deep: true });
     }
     scrollToTop() {
         this.topDiv = '$$' + uid();

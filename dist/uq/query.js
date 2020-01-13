@@ -176,7 +176,7 @@ export class Query extends Entity {
             await this.loadSchema();
             let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
             */
-            let p = { pageStart: pageStart, pageSize: pageSize + 1, params: params };
+            let p = { pageStart: pageStart, pageSize: pageSize, params: params };
             let res = yield this.pageCaller(p, showWaiting).request();
             //let data = this.unpackReturns(res);
             //return data.$page;// as any[];

@@ -17,6 +17,13 @@ export abstract class PageItems<T> {
         return this._items;
     }
 
+    setItemDeepObservable() {
+        if (this._items.length > 0) {
+            throw new Error('setItemDeepObservable can only be called just after new');
+        }
+        this._items = observable.array<T>([], {deep:true});
+    }
+
     @observable topDiv:string;
     @observable bottomDiv:string;
     scrollToTop() {
@@ -27,9 +34,9 @@ export abstract class PageItems<T> {
     }
 
     protected param: any;
-    protected firstSize = 100;
+    protected firstSize = 50;
     protected pageStart:any = undefined;
-    protected pageSize = 30;
+    protected pageSize = 10;
     protected appendPosition:'head'|'tail' = 'tail';
 
     protected abstract async load(param:any, pageStart:any, pageSize:number):Promise<T[]>;
@@ -57,7 +64,7 @@ export abstract class PageItems<T> {
         this.reset();
         this.beforeLoad = false;
         this.param = param;
-        await this.more();        
+        await this.more();
     }
 
     protected async onLoad(): Promise<void> {}
