@@ -7,6 +7,9 @@ export class CenterApi extends CenterApiBase {
     async userFromId(userId:number):Promise<any> {
         return await this.get('user/user-name-nick-icon-from-id', {userId: userId});
     }
+    async userFromKey(userName:string):Promise<any> {
+        return await this.get('user/user-from-key', {key: userName});
+    }
 }
 
 export const centerApi = new CenterApi('tv/', undefined);
