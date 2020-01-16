@@ -19,7 +19,7 @@ export class UQsMan {
     readonly appName: string;
     readonly localMap: LocalMap;
     readonly localData: LocalCache;
-    id: number;
+    appId: number;
 
     constructor(tonvaAppName:string, tvs:TVs) {
         this.tvs = tvs || {};

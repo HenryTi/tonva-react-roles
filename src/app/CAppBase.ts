@@ -5,13 +5,8 @@ import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 
-//type EntityType = Tuid | Action | Sheet | Query | Map;
-
 export interface IConstructor<T> {
     new (...args: any[]): T;
-
-    // Or enforce default constructor
-    // new (): T;
 }
 
 export interface AppConfig {
@@ -65,13 +60,13 @@ export abstract class CAppBase extends Controller {
             //this.id = id;
             let {user} = nav;
             if (user !== undefined && user.id > 0) {
-                this.appUnits = await centerApi.userAppUnits(this.uqsMan.id);
+                this.appUnits = await centerApi.userAppUnits(this.uqsMan.appId);
                 switch (this.appUnits.length) {
                     case 0:
                         this.showUnsupport(predefinedUnit);
                         return false;
                     case 1:
-                        let {id:appUnit, roles} = this.appUnits[0];
+                        let {id:appUnit, roles, mainUqId} = this.appUnits[0];
                         if (appUnit === undefined || appUnit < 0 || 
                             (predefinedUnit !== undefined && appUnit !== predefinedUnit))
                         {
@@ -80,6 +75,7 @@ export abstract class CAppBase extends Controller {
                         }
                         appInFrame.unit = appUnit;
                         this.roles = roles;
+                        this.mainUqId = mainUqId;
                         break;
                     default:
                         if (predefinedUnit>0 && this.appUnits.find(v => v.id===predefinedUnit) !== undefined) {
@@ -107,43 +103,33 @@ export abstract class CAppBase extends Controller {
     }
 
     private async load(): Promise<string[]> {
-        let {appOwner, appName} = this.uqsMan;
-        let {localData} = this.uqsMan;
-        let uqAppData:UqAppData = localData.get();
-        if (!uqAppData || uqAppData.version !== this.version) {
-            uqAppData = await loadAppUqs(appOwner, appName);
-            uqAppData.version = this.version;
-            localData.set(uqAppData);
-            // 
-            for (let uq of uqAppData.uqs) uq.newVersion = true;
-        }
-        let {id, uqs, mainUqId, roles} = uqAppData;
-        this.uqsMan.id = id;
-        this.mainUqId = mainUqId;
-        this.roles = roles;
-        await this.uqsMan.init(uqs);
-        let retErrors = await this.uqsMan.load();
-        if (retErrors.length === 0) {
-            retErrors.push(...this.uqsMan.setTuidImportsLocal());
-            if (retErrors.length === 0) {
-                this._uqs = this.uqsMan.buildUQs();
-                /*
-                _.merge(this.uqs, this.uqsMan.uqsColl);
-                for (let i in this.uqs) {
-                    let p = i.indexOf('/');
-                    if (p < 0) continue;
-                    let uq = this.uqs[i];
-                    
-                    let n = i.substr(p+1);
-                    let l = n.toLowerCase();
-                    this.uqs[n] = uq;
-                    if (l !== n) this.uqs[l] = uq;
-                }
-                */
-                return;
+        try {
+            let {appOwner, appName} = this.uqsMan;
+            let {localData} = this.uqsMan;
+            let uqAppData:UqAppData = localData.get();
+            if (!uqAppData || uqAppData.version !== this.version) {
+                uqAppData = await loadAppUqs(appOwner, appName);
+                uqAppData.version = this.version;
+                localData.set(uqAppData);
+                for (let uq of uqAppData.uqs) uq.newVersion = true;
             }
+            let {id, uqs} = uqAppData;
+            this.uqsMan.appId = id;
+            await this.uqsMan.init(uqs);
+            let retErrors = await this.uqsMan.load();
+            if (retErrors.length === 0) {
+                retErrors.push(...this.uqsMan.setTuidImportsLocal());
+                if (retErrors.length === 0) {
+                    this._uqs = this.uqsMan.buildUQs();
+                    return;
+                }
+            }
+            return retErrors;
         }
-        return retErrors;
+        catch (err) {
+            debugger;
+            console.error(err);
+        }
     }
 
     private showUnsupport(predefinedUnit: number) {

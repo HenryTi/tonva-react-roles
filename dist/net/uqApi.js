@@ -215,7 +215,6 @@ export class CallCenterApi extends CenterApiBase {
     }
 }
 export const callCenterapi = new CallCenterApi('', undefined);
-//const appUqsName = 'appUqs';
 export class CenterAppApi extends CenterApiBase {
     uqs(appOwner, appName) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -223,33 +222,6 @@ export class CenterAppApi extends CenterApiBase {
             return ret;
         });
     }
-    /*
-    private async uqsPure(appOwner:string, appName:string):Promise<UqAppData> {
-        return await this.get('tie/app-uqs', {appOwner:appOwner, appName:appName});
-    }
-    */
-    /*
-    private async isOkCheckUqs(appOwner:string, appName:string):Promise<boolean> {
-        let ret = await this.uqsPure(appOwner, appName);
-        let {id:cachedId, uqs:cachedUqs} = this.local.get(); //.cachedUqs;
-        let {id:retId, uqs:retUqs} = ret;
-        if (cachedId !== retId) return false;
-        if (cachedUqs.length !== retUqs.length) return false;
-        let len = cachedUqs.length;
-        for (let i=0; i<len; i++) {
-            if (_.isMatch(cachedUqs[i], retUqs[i]) === false) return false;
-        }
-        return true;
-    }
-    async checkUqs(appOwner:string, appName:string):Promise<boolean> {
-        let ret = await this.isOkCheckUqs(appOwner, appName);
-        if (ret === false) {
-            this.local.remove();
-            nav.start();
-        }
-        return ret;
-    }
-    */
     unitxUq(unit) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.get('tie/unitx-uq', { unit: unit });
@@ -264,17 +236,7 @@ export class CenterAppApi extends CenterApiBase {
 export function loadAppUqs(appOwner, appName) {
     return __awaiter(this, void 0, void 0, function* () {
         let centerAppApi = new CenterAppApi('tv/', undefined);
-        //let unit = meInFrame.unit;
         let ret = yield centerAppApi.uqs(appOwner, appName);
-        //await centerAppApi.checkUqs(appOwner, appName);
-        /*
-        .then(v => {
-            if (v === false) {
-                localStorage.removeItem(appUqs);
-                nav.start();
-            }
-        });
-        */
         return ret;
     });
 }

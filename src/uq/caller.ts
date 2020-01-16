@@ -3,6 +3,7 @@ import { Caller } from '../net';
 import { Entity } from './entity';
 import { Action } from './action';
 import { Query } from './query';
+import { nav } from '../components';
 
 interface UqResponseSchema {
     uq: any;
@@ -22,22 +23,36 @@ export abstract class EntityCaller<T> extends Caller<T> {
     protected get entity(): Entity {return this._entity;}
 
     //大多的entityCaller都不需要这个
-    //buildParams() {return this.entity.buildParams(this.params);}
+    //buildParams() {return this._entity.buildParams(this.params);}
     
     async request(): Promise<any> {
-        await this.entity.loadSchema();
+        await this._entity.loadSchema();
         let ret = await this.innerRequest();
         return ret;
     }
 
     protected async innerCall(): Promise<any> {
-        return await this.entity.uqApi.xcall(this);
+        return await this._entity.uqApi.xcall(this);
     }
 
     async innerRequest(): Promise<any> {
         let jsonResult = await this.innerCall();
-        let {$uq, $modify, res} = jsonResult;
-        this.entity.uq.pullModify($modify);
+        let {$uq, $modify, res, $roles} = jsonResult;
+        if ($roles) {
+            nav.clear();
+            nav.onError({
+                channel: undefined, //HttpChannel;
+                url: undefined, //string;
+                options: undefined, //any;
+                resolve: undefined, //(value?:any)=>void;
+                reject: undefined, //(reason?:any)=>void;
+                error: '操作权限发生变化，需要重新加载程序',
+                type: 'message'
+            });
+            //nav.showReloadPage('操作权限发生变化，需要重新加载程序');
+            //return {}; 
+        }
+        this._entity.uq.pullModify($modify);
         if ($uq === undefined) {
             //if (res === undefined) debugger;
             let ret = this.xresult(res);
@@ -50,9 +65,10 @@ export abstract class EntityCaller<T> extends Caller<T> {
     xresult(res:any):any {return res}
 
     get headers(): {[header:string]: string} {
-        let {ver, uq} = this.entity;
-        let {uqVersion} = uq;
+        let {ver, uq} = this._entity;
+        let {uqVersion, } = uq;
         return {
+            app: String(uq.appId),
             uq: `${uqVersion}`,
             en: `${ver}`,
         }
@@ -67,8 +83,8 @@ export abstract class EntityCaller<T> extends Caller<T> {
 
     private rebuildSchema(schema: UqResponseSchema) {
         let {uq, entity} = schema;
-        if (uq !== undefined) this.entity.uq.buildEntities(uq);
-        if (entity !== undefined) this.entity.setSchema(entity);
+        if (uq !== undefined) this._entity.uq.buildEntities(uq);
+        if (entity !== undefined) this._entity.setSchema(entity);
     }
 }
 
@@ -78,18 +94,18 @@ export abstract class ActionCaller extends EntityCaller<any> {
 
 export class QueryQueryCaller extends EntityCaller<any> {
     protected get entity(): Query {return this._entity as Query};
-    get path():string {return `query/${this.entity.name}`;}
+    get path():string {return `query/${this._entity.name}`;}
     xresult(res:any) {
-        let data = this.entity.unpackReturns(res);
+        let data = this._entity.unpackReturns(res);
         return data;
     }
-    buildParams() {return this.entity.buildParams(this.params);}
+    buildParams() {return this._entity.buildParams(this.params);}
 }
 
 export class QueryPageCaller extends EntityCaller<any> {
     protected get params(): {pageStart:any; pageSize:number, params:any} {return this._params};
     protected get entity(): Query {return this._entity as Query};
-    get path():string {return `query-page/${this.entity.name}`;}
+    get path():string {return `query-page/${this._entity.name}`;}
     buildParams() {
         let {pageStart, pageSize, params} = this.params;
         let p:any;
@@ -97,7 +113,7 @@ export class QueryPageCaller extends EntityCaller<any> {
             p = {key: ''};
         }
         else {
-            p = this.entity.buildParams(params);
+            p = this._entity.buildParams(params);
         }
         /*
         switch (typeof params) {
@@ -110,7 +126,7 @@ export class QueryPageCaller extends EntityCaller<any> {
         return p;
     };
     xresult(res:any) {
-        let data = this.entity.unpackReturns(res);
+        let data = this._entity.unpackReturns(res);
         return data.$page;// as any[];
     }
 }

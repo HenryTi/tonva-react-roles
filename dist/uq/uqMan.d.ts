@@ -63,6 +63,7 @@ export declare class UqMan {
     readonly name: string;
     readonly uqApi: UqApi;
     readonly id: number;
+    readonly appId: number;
     uqVersion: number;
     constructor(uqs: UQsMan, uqData: UqData, createBoxId: CreateBoxId, tvs: {
         [entity: string]: (values: any) => JSX.Element;

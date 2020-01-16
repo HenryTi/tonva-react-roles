@@ -31,6 +31,7 @@ export class CApp extends Controller {
     readonly caption: string; // = 'View Model 版的 Uq App';
     appUnits:any[];
     roles: number;
+    mainUqId: number;
 
     constructor(ui:AppUI) {
         super(resLang(ui && ui.res));
@@ -86,7 +87,7 @@ export class CApp extends Controller {
             //this.id = id;
             let {user} = nav;
             if (user !== undefined && user.id > 0) {
-                this.appUnits = await centerApi.userAppUnits(this.uqs.id);
+                this.appUnits = await centerApi.userAppUnits(this.uqs.appId);
                 switch (this.appUnits.length) {
                     case 0:
                         this.showUnsupport(predefinedUnit);
@@ -139,7 +140,7 @@ export class CApp extends Controller {
             for (let uq of uqAppData.uqs) uq.newVersion = true;
         }
         let {id, uqs} = uqAppData;
-        this.uqs.id = id;
+        this.uqs.appId = id;
 
         let retErrors:string[] = [];
 

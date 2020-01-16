@@ -42,13 +42,13 @@ export class CAppBase extends Controller {
                 //this.id = id;
                 let { user } = nav;
                 if (user !== undefined && user.id > 0) {
-                    this.appUnits = yield centerApi.userAppUnits(this.uqsMan.id);
+                    this.appUnits = yield centerApi.userAppUnits(this.uqsMan.appId);
                     switch (this.appUnits.length) {
                         case 0:
                             this.showUnsupport(predefinedUnit);
                             return false;
                         case 1:
-                            let { id: appUnit, roles } = this.appUnits[0];
+                            let { id: appUnit, roles, mainUqId } = this.appUnits[0];
                             if (appUnit === undefined || appUnit < 0 ||
                                 (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
@@ -56,6 +56,7 @@ export class CAppBase extends Controller {
                             }
                             appInFrame.unit = appUnit;
                             this.roles = roles;
+                            this.mainUqId = mainUqId;
                             break;
                         default:
                             if (predefinedUnit > 0 && this.appUnits.find(v => v.id === predefinedUnit) !== undefined) {
@@ -85,44 +86,34 @@ export class CAppBase extends Controller {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            let { appOwner, appName } = this.uqsMan;
-            let { localData } = this.uqsMan;
-            let uqAppData = localData.get();
-            if (!uqAppData || uqAppData.version !== this.version) {
-                uqAppData = yield loadAppUqs(appOwner, appName);
-                uqAppData.version = this.version;
-                localData.set(uqAppData);
-                // 
-                for (let uq of uqAppData.uqs)
-                    uq.newVersion = true;
-            }
-            let { id, uqs, mainUqId, roles } = uqAppData;
-            this.uqsMan.id = id;
-            this.mainUqId = mainUqId;
-            this.roles = roles;
-            yield this.uqsMan.init(uqs);
-            let retErrors = yield this.uqsMan.load();
-            if (retErrors.length === 0) {
-                retErrors.push(...this.uqsMan.setTuidImportsLocal());
-                if (retErrors.length === 0) {
-                    this._uqs = this.uqsMan.buildUQs();
-                    /*
-                    _.merge(this.uqs, this.uqsMan.uqsColl);
-                    for (let i in this.uqs) {
-                        let p = i.indexOf('/');
-                        if (p < 0) continue;
-                        let uq = this.uqs[i];
-                        
-                        let n = i.substr(p+1);
-                        let l = n.toLowerCase();
-                        this.uqs[n] = uq;
-                        if (l !== n) this.uqs[l] = uq;
-                    }
-                    */
-                    return;
+            try {
+                let { appOwner, appName } = this.uqsMan;
+                let { localData } = this.uqsMan;
+                let uqAppData = localData.get();
+                if (!uqAppData || uqAppData.version !== this.version) {
+                    uqAppData = yield loadAppUqs(appOwner, appName);
+                    uqAppData.version = this.version;
+                    localData.set(uqAppData);
+                    for (let uq of uqAppData.uqs)
+                        uq.newVersion = true;
                 }
+                let { id, uqs } = uqAppData;
+                this.uqsMan.appId = id;
+                yield this.uqsMan.init(uqs);
+                let retErrors = yield this.uqsMan.load();
+                if (retErrors.length === 0) {
+                    retErrors.push(...this.uqsMan.setTuidImportsLocal());
+                    if (retErrors.length === 0) {
+                        this._uqs = this.uqsMan.buildUQs();
+                        return;
+                    }
+                }
+                return retErrors;
             }
-            return retErrors;
+            catch (err) {
+                debugger;
+                console.error(err);
+            }
         });
     }
     showUnsupport(predefinedUnit) {

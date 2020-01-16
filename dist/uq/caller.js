@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 //import _ from 'lodash';
 import { Caller } from '../net';
+import { nav } from '../components';
 export class EntityCaller extends Caller {
     constructor(entity, params, waiting = true) {
         super(params, waiting);
@@ -17,24 +18,38 @@ export class EntityCaller extends Caller {
     }
     get entity() { return this._entity; }
     //大多的entityCaller都不需要这个
-    //buildParams() {return this.entity.buildParams(this.params);}
+    //buildParams() {return this._entity.buildParams(this.params);}
     request() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield this.entity.loadSchema();
+            yield this._entity.loadSchema();
             let ret = yield this.innerRequest();
             return ret;
         });
     }
     innerCall() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.entity.uqApi.xcall(this);
+            return yield this._entity.uqApi.xcall(this);
         });
     }
     innerRequest() {
         return __awaiter(this, void 0, void 0, function* () {
             let jsonResult = yield this.innerCall();
-            let { $uq, $modify, res } = jsonResult;
-            this.entity.uq.pullModify($modify);
+            let { $uq, $modify, res, $roles } = jsonResult;
+            if ($roles) {
+                nav.clear();
+                nav.onError({
+                    channel: undefined,
+                    url: undefined,
+                    options: undefined,
+                    resolve: undefined,
+                    reject: undefined,
+                    error: '操作权限发生变化，需要重新加载程序',
+                    type: 'message'
+                });
+                //nav.showReloadPage('操作权限发生变化，需要重新加载程序');
+                //return {}; 
+            }
+            this._entity.uq.pullModify($modify);
             if ($uq === undefined) {
                 //if (res === undefined) debugger;
                 let ret = this.xresult(res);
@@ -46,9 +61,10 @@ export class EntityCaller extends Caller {
     }
     xresult(res) { return res; }
     get headers() {
-        let { ver, uq } = this.entity;
-        let { uqVersion } = uq;
+        let { ver, uq } = this._entity;
+        let { uqVersion, } = uq;
         return {
+            app: String(uq.appId),
             uq: `${uqVersion}`,
             en: `${ver}`,
         };
@@ -65,9 +81,9 @@ export class EntityCaller extends Caller {
     rebuildSchema(schema) {
         let { uq, entity } = schema;
         if (uq !== undefined)
-            this.entity.uq.buildEntities(uq);
+            this._entity.uq.buildEntities(uq);
         if (entity !== undefined)
-            this.entity.setSchema(entity);
+            this._entity.setSchema(entity);
     }
 }
 export class ActionCaller extends EntityCaller {
@@ -76,19 +92,19 @@ export class ActionCaller extends EntityCaller {
 export class QueryQueryCaller extends EntityCaller {
     get entity() { return this._entity; }
     ;
-    get path() { return `query/${this.entity.name}`; }
+    get path() { return `query/${this._entity.name}`; }
     xresult(res) {
-        let data = this.entity.unpackReturns(res);
+        let data = this._entity.unpackReturns(res);
         return data;
     }
-    buildParams() { return this.entity.buildParams(this.params); }
+    buildParams() { return this._entity.buildParams(this.params); }
 }
 export class QueryPageCaller extends EntityCaller {
     get params() { return this._params; }
     ;
     get entity() { return this._entity; }
     ;
-    get path() { return `query-page/${this.entity.name}`; }
+    get path() { return `query-page/${this._entity.name}`; }
     buildParams() {
         let { pageStart, pageSize, params } = this.params;
         let p;
@@ -96,7 +112,7 @@ export class QueryPageCaller extends EntityCaller {
             p = { key: '' };
         }
         else {
-            p = this.entity.buildParams(params);
+            p = this._entity.buildParams(params);
         }
         /*
         switch (typeof params) {
@@ -110,7 +126,7 @@ export class QueryPageCaller extends EntityCaller {
     }
     ;
     xresult(res) {
-        let data = this.entity.unpackReturns(res);
+        let data = this._entity.unpackReturns(res);
         return data.$page; // as any[];
     }
 }

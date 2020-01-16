@@ -295,6 +295,7 @@ export class NavView extends React.Component {
             disposer();
     }
     clear() {
+        this.setState({ fetchError: undefined });
         let len = this.stack.length;
         while (this.stack.length > 0)
             this.popAndDispose();
@@ -436,6 +437,7 @@ export class Nav {
             window.document.location.reload();
         });
         this.resetAll = () => {
+            this.nav.clearError();
             this.push(React.createElement(ConfirmReloadPage, { confirm: (ok) => {
                     if (ok === true) {
                         this.showReloadPage('彻底升级');
@@ -586,6 +588,7 @@ export class Nav {
     }
     unitJsonPath() {
         let { origin, pathname } = document.location;
+        //href = href.toLowerCase();
         pathname = pathname.toLowerCase();
         for (let item of this.arrs) {
             if (pathname.endsWith(item) === true) {
@@ -597,9 +600,7 @@ export class Nav {
             pathname = pathname.substr(0, pathname.length - 1);
         }
         let path = origin + pathname + '/unit.json';
-        console.log('unitJsonPath=' + path + ' document.location=' + document.location
-            + ' origin=' + origin
-            + ' pathName=' + pathname);
+        console.log('unitJsonPath = ' + path);
         return path;
     }
     start() {

@@ -77,6 +77,7 @@ export class UqMan {
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
+        this.appId = uqs.appId;
         this.name = uqOwner + '/' + uqName;
         this.uqVersion = 0;
         this.localMap = uqs.localMap.map(this.name);

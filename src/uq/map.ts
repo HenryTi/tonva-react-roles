@@ -164,14 +164,6 @@ class MapAddCaller extends ActionSubmitCaller {
 
     get path():string {return `map/${this.map.name}/add`}
     get headers(): {[header:string]: string} {return undefined;}
-    /*
-        let {ver, uq} = this.map;
-        let {uqVersion} = uq;
-        return {
-            uq: `${uqVersion}`,
-            en: `${ver}`,
-        }
-    }*/
 }
 
 class MapDelCaller extends ActionSubmitCaller {
@@ -183,14 +175,6 @@ class MapDelCaller extends ActionSubmitCaller {
 
     get path():string {return `map/${this.map.name}/del`}
     get headers(): {[header:string]: string} {return undefined}
-    /*
-        let {ver, uq} = this.map;
-        let {uqVersion} = uq;
-        return {
-            uq: `${uqVersion}`,
-            en: `${ver}`,
-        }
-    }*/
 }
 
 class MapAllCaller extends QueryPageCaller {
@@ -202,14 +186,6 @@ class MapAllCaller extends QueryPageCaller {
 
     get path():string {return `map/${this.map.name}/all`}
     get headers(): {[header:string]: string} {return undefined}
-    /*
-        let {ver, uq} = this.map;
-        let {uqVersion} = uq;
-        return {
-            uq: `${uqVersion}`,
-            en: `${ver}`,
-        }
-    }*/
 }
 
 
@@ -222,14 +198,6 @@ class MapPageCaller extends QueryPageCaller {
 
     get path():string {return `map/${this.map.name}/page`}
     get headers(): {[header:string]: string} {return undefined}
-    /*
-        let {ver, uq} = this.map;
-        let {uqVersion} = uq;
-        return {
-            uq: `${uqVersion}`,
-            en: `${ver}`,
-        }
-    }*/
 }
 
 class MapQueryCaller extends QueryQueryCaller {
@@ -241,12 +209,4 @@ class MapQueryCaller extends QueryQueryCaller {
 
     get path():string {return `map/${this.map.name}/query`}
     get headers(): {[header:string]: string} {return undefined}
-    /*
-        let {ver, uq} = this.map;
-        let {uqVersion} = uq;
-        return {
-            uq: `${uqVersion}`,
-            en: `${ver}`,
-        }
-    }*/
 }

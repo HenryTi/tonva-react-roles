@@ -70,7 +70,7 @@ export class CApp extends Controller {
                 //this.id = id;
                 let { user } = nav;
                 if (user !== undefined && user.id > 0) {
-                    this.appUnits = yield centerApi.userAppUnits(this.uqs.id);
+                    this.appUnits = yield centerApi.userAppUnits(this.uqs.appId);
                     switch (this.appUnits.length) {
                         case 0:
                             this.showUnsupport(predefinedUnit);
@@ -125,7 +125,7 @@ export class CApp extends Controller {
                     uq.newVersion = true;
             }
             let { id, uqs } = uqAppData;
-            this.uqs.id = id;
+            this.uqs.appId = id;
             let retErrors = [];
             let promiseInits = [];
             let promises = [];

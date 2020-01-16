@@ -278,6 +278,7 @@ export class NavView extends React.Component<Props, NavViewState> {
     }
 
     clear() {
+        this.setState({fetchError: undefined})
         let len = this.stack.length;
         while (this.stack.length > 0) this.popAndDispose();
         //this.refresh();
@@ -565,6 +566,7 @@ export class Nav {
     private arrs = ['/test', '/test/'];
     private unitJsonPath():string {
         let {origin, pathname} = document.location;
+        //href = href.toLowerCase();
         pathname = pathname.toLowerCase();
         for (let item of this.arrs) {
             if (pathname.endsWith(item) === true) {
@@ -576,9 +578,7 @@ export class Nav {
             pathname = pathname.substr(0, pathname.length-1);
         }
         let path = origin + pathname + '/unit.json';
-        console.log('unitJsonPath=' + path + ' document.location=' + document.location
-            + ' origin=' + origin
-            + ' pathName=' + pathname);
+        console.log('unitJsonPath = ' + path);
         return path;
     }
     private windowOnError = (event: Event | string, source?: string, lineno?: number, colno?: number, error?: Error) => {
@@ -951,6 +951,7 @@ export class Nav {
     }
 
     resetAll = () => {
+        this.nav.clearError();
         this.push(<ConfirmReloadPage confirm={(ok:boolean):Promise<void> => {
             if (ok === true) {
                 this.showReloadPage('彻底升级');

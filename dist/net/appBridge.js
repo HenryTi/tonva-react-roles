@@ -19,7 +19,6 @@ export function logoutUqTokens() {
         uqTokens[i] = undefined;
     }
 }
-const noUnitError = 'no unit defined in unit.json or not logined in or website cannot be in test subdirectory';
 const appsInFrame = {};
 class AppInFrameClass {
     get unit() { return this._unit; } // unit id
@@ -111,7 +110,7 @@ function onReceiveAppApiMessage(hash, apiName) {
         let { unit, predefinedUnit } = appInFrame;
         unit = unit || predefinedUnit;
         if (!unit) {
-            console.error(noUnitError);
+            console.error('no unit defined in unit.json or not logined in', unit);
         }
         let parts = apiName.split('/');
         let param = { unit: unit, uqOwner: parts[0], uqName: parts[1], appOwner: parts[2], appName: parts[3] };
@@ -199,7 +198,7 @@ function getUnit() {
     let { unit, predefinedUnit } = appInFrame;
     let realUnit = unit || predefinedUnit;
     if (realUnit === undefined) {
-        throw new Error(noUnitError);
+        throw new Error('no unit defined in unit.json or not logined in');
     }
     return realUnit;
 }

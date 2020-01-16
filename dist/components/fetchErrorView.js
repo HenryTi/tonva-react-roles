@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { refetchApi } from '../net';
 import { Page } from './page';
+import { nav } from './nav';
+import { FA } from './simple';
 export default class FetchErrorView extends React.Component {
     constructor() {
         super(...arguments);
@@ -23,33 +25,46 @@ export default class FetchErrorView extends React.Component {
         });
     }
     render() {
-        let { error, url } = this.props;
+        let { error, url, type } = this.props;
+        let buttons;
         let errContent;
+        let errText;
         if (typeof error === 'object') {
+            errText = '网络遇到问题';
             let err = [];
             for (let i in error) {
-                err.push(React.createElement("li", { key: i },
-                    React.createElement("label", null, i),
-                    React.createElement("div", { style: { wordWrap: "break-word" } }, error[i])));
+                err.push(React.createElement("div", { key: i, className: "form-group row" },
+                    React.createElement("label", { className: "col-sm-2 col-form-label" }, i),
+                    React.createElement("div", { className: "col-sm-10 col-form-label", style: { wordWrap: "break-word" } }, error[i])));
             }
-            errContent = React.createElement("ul", null, err);
+            errContent = React.createElement("div", { className: "p-3" }, err);
         }
         else {
-            errContent = React.createElement("div", null, error);
+            errText = error;
         }
+        if (type === 'message') {
+            buttons = React.createElement("button", { className: "btn btn-outline-primary mr-3", onClick: () => {
+                    nav.resetAll();
+                } }, "\u5347\u7EA7\u6743\u9650");
+        }
+        else {
+            buttons = React.createElement(React.Fragment, null,
+                React.createElement("button", { className: "btn btn-outline-primary mr-3", type: 'button', onClick: this.reApi }, "\u91CD\u65B0\u8BBF\u95EE"),
+                React.createElement("button", { className: "btn btn-outline-primary", type: 'button', onClick: this.close }, "\u5173\u95ED"));
+        }
+        let divErr = React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "p-3 bg-white" },
+                React.createElement("div", { className: "" },
+                    React.createElement(FA, { className: "text-danger", name: "exclamation-circle", size: "lg" }),
+                    "\u00A0 ",
+                    errText),
+                React.createElement("div", { className: "text-info", style: { wordWrap: "break-word" } }, url),
+                React.createElement("div", { className: "pt-3" }, buttons)),
+            errContent);
         return React.createElement("li", null,
             React.createElement("article", { className: "page-container" },
                 React.createElement("section", null,
-                    React.createElement("div", { className: "va-error" },
-                        React.createElement("div", null, "\u7F51\u7EDC\u51FA\u73B0\u95EE\u9898"),
-                        React.createElement("div", null, "\u70B9\u51FB\u91CD\u65B0\u8BBF\u95EE"),
-                        React.createElement("div", { style: { wordWrap: "break-word" } },
-                            "url: ",
-                            url),
-                        errContent,
-                        React.createElement("div", { className: "p-3" },
-                            React.createElement("button", { type: 'button', onClick: this.reApi }, "\u91CD\u65B0API"),
-                            React.createElement("button", { type: 'button', onClick: this.close }, "\u5173\u95ED"))))));
+                    React.createElement("div", { className: "" }, divErr))));
     }
 }
 export const SystemNotifyPage = ({ message }) => {
