@@ -84,10 +84,12 @@ export abstract class Context {
 
     async submit(buttonName: string) {
         let widget = this.widgets[buttonName];
+        /*
         if (buttonName && (widget === undefined)) {
             alert(`${buttonName} is not defined as a button or submit`);
             return;
         }
+        */
         if (!buttonName || (widget && (widget.itemType === 'submit' || widget.uiType === 'submit'))) {
             this.checkRules()
             if (this.hasError === true) {
