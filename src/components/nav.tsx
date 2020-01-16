@@ -565,7 +565,6 @@ export class Nav {
     private arrs = ['/test', '/test/'];
     private unitJsonPath():string {
         let {origin, pathname} = document.location;
-        //href = href.toLowerCase();
         pathname = pathname.toLowerCase();
         for (let item of this.arrs) {
             if (pathname.endsWith(item) === true) {
@@ -576,7 +575,11 @@ export class Nav {
         if (pathname.endsWith('/') === true || pathname.endsWith('\\') === true) {
             pathname = pathname.substr(0, pathname.length-1);
         }
-        return origin + pathname + '/unit.json';
+        let path = origin + pathname + '/unit.json';
+        console.log('unitJsonPath=' + path + ' document.location=' + document.location
+            + ' origin=' + origin
+            + ' pathName=' + pathname);
+        return path;
     }
     private windowOnError = (event: Event | string, source?: string, lineno?: number, colno?: number, error?: Error) => {
         console.error('windowOnError');
