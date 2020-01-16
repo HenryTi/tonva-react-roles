@@ -58,6 +58,8 @@ export class Widget {
     ;
     get ui() { return this._ui; }
     ;
+    get itemType() { return this._itemSchema.type; }
+    get uiType() { var _a; return (_a = this._ui) === null || _a === void 0 ? void 0 : _a.widget; }
     init() {
         this.rules = [];
         if (this.itemSchema.required === true) {

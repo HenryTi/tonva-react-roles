@@ -32,6 +32,8 @@ export abstract class CAppBase extends Controller {
 
     readonly uqsMan: UQsMan;
     appUnits:any[];
+    roles: number;
+    mainUqId: number;
 
     // appName: owner/name
     constructor(config: AppConfig) {
@@ -46,6 +48,11 @@ export abstract class CAppBase extends Controller {
     }
 
     get uqs(): any {return this._uqs;}
+
+    isRole(role: 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'): boolean {
+        let code = role.charCodeAt(0) - 'a'.charCodeAt(0);
+        return (this.roles & (1<<code)) !== 0;
+    }
 
     protected async beforeStart():Promise<boolean> {
         try {
@@ -64,7 +71,7 @@ export abstract class CAppBase extends Controller {
                         this.showUnsupport(predefinedUnit);
                         return false;
                     case 1:
-                        let appUnit = this.appUnits[0].id;
+                        let {id:appUnit, roles} = this.appUnits[0];
                         if (appUnit === undefined || appUnit < 0 || 
                             (predefinedUnit !== undefined && appUnit !== predefinedUnit))
                         {
@@ -72,13 +79,13 @@ export abstract class CAppBase extends Controller {
                             return false;
                         }
                         appInFrame.unit = appUnit;
+                        this.roles = roles;
                         break;
                     default:
                         if (predefinedUnit>0 && this.appUnits.find(v => v.id===predefinedUnit) !== undefined) {
                             appInFrame.unit = predefinedUnit;
                             break;
                         }
-                        //nav.push(<this.selectUnitPage />)
                         this.openVPage(VUnitSelect);
                         return false;
                 }
@@ -110,8 +117,10 @@ export abstract class CAppBase extends Controller {
             // 
             for (let uq of uqAppData.uqs) uq.newVersion = true;
         }
-        let {id, uqs} = uqAppData;
+        let {id, uqs, mainUqId, roles} = uqAppData;
         this.uqsMan.id = id;
+        this.mainUqId = mainUqId;
+        this.roles = roles;
         await this.uqsMan.init(uqs);
         let retErrors = await this.uqsMan.load();
         if (retErrors.length === 0) {

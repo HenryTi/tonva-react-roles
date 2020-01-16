@@ -48,6 +48,8 @@ export interface UqAppData {
     appOwner: string;
     id: number;
     version: string;
+    mainUqId: number;
+    roles: number;
     uqs: UqData[];
 }
 export interface UqData {
@@ -66,7 +68,6 @@ export interface UqServiceData {
 }
 export declare class CenterAppApi extends CenterApiBase {
     uqs(appOwner: string, appName: string): Promise<UqAppData>;
-    private uqsPure;
     unitxUq(unit: number): Promise<UqServiceData>;
     changePassword(param: {
         orgPassword: string;

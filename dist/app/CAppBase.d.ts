@@ -21,8 +21,11 @@ export declare abstract class CAppBase extends Controller {
     protected readonly version: string;
     readonly uqsMan: UQsMan;
     appUnits: any[];
+    roles: number;
+    mainUqId: number;
     constructor(config: AppConfig);
     get uqs(): any;
+    isRole(role: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'): boolean;
     protected beforeStart(): Promise<boolean>;
     userFromId(userId: number): Promise<any>;
     private load;

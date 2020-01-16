@@ -50,6 +50,8 @@ export abstract class Widget {
 
     protected get itemSchema(): ItemSchema {return this._itemSchema};
     protected get ui(): UiItem {return this._ui};
+    get itemType() {return this._itemSchema.type}
+    get uiType() {return this._ui?.widget}
 
     init() {
         this.rules = [];

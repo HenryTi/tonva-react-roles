@@ -34,6 +34,10 @@ export class Controller {
     }
     onDispose() {
     }
+    isRole(role) {
+        var _a;
+        return (_a = this.cApp) === null || _a === void 0 ? void 0 : _a.isRole(role);
+    }
     openVPage(vp, param) {
         return __awaiter(this, void 0, void 0, function* () {
             yield (new vp(this)).open(param);
@@ -175,6 +179,9 @@ export class View {
         this.x = controller.x;
     }
     get isDev() { return env.isDevelopment; }
+    isRole(role) {
+        return this.controller.isRole(role);
+    }
     renderVm(vm, param) {
         return (new vm(this.controller)).render(param);
     }

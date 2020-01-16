@@ -46,6 +46,7 @@ export declare class Form extends React.Component<FormProps> {
     componentDidMount(): void;
     componentWillUnmount(): void;
     render(): JSX.Element;
+    buttonClick(buttonName: string): Promise<void>;
     protected DefaultContainer: (content: JSX.Element) => JSX.Element;
     protected DefaultFieldContainer: (label: string | JSX.Element, content: JSX.Element) => JSX.Element;
     protected DefaultFieldClass: string;

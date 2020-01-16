@@ -21,6 +21,7 @@ export declare abstract class Controller {
     private disposer;
     private dispose;
     protected onDispose(): void;
+    isRole(role: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'): boolean;
     protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<void>;
     protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
     event(type: string, value: any): Promise<void>;
@@ -53,6 +54,7 @@ export declare abstract class View<C extends Controller> {
     protected readonly x: any;
     constructor(controller: C);
     protected get isDev(): boolean;
+    isRole(role: 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i' | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p' | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w' | 'x' | 'y' | 'z'): boolean;
     abstract render(param?: any): JSX.Element;
     protected renderVm(vm: new (controller: C) => View<C>, param?: any): JSX.Element;
     protected openVPage(vp: new (controller: C) => VPage<C>, param?: any): Promise<void>;

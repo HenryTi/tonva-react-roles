@@ -27,6 +27,7 @@ export declare class CApp extends Controller {
     readonly uqs: UQsMan;
     readonly caption: string;
     appUnits: any[];
+    roles: number;
     constructor(ui: AppUI);
     getImportUq(uqOwner: string, uqName: string): CUq;
     protected newCUq(uqData: UqData, uqUI: UqUI): CUq;

@@ -84,14 +84,21 @@ export abstract class Context {
     }
 
     async submit(buttonName: string) {
-        this.checkRules()
-        if (this.hasError === true) {
-            let err = '';
-            for (let ew of this.errorWidgets) {
-                err += ew.name + ':\n' + ew.errors.join('\n');
-            }
-            console.error(err);
+        let widget = this.widgets[buttonName];
+        if (widget === undefined) {
+            alert(`${buttonName} is not defined as a button or submit`);
             return;
+        }
+        if (widget.itemType === 'submit' || widget.uiType === 'submit') {
+            this.checkRules()
+            if (this.hasError === true) {
+                let err = '';
+                for (let ew of this.errorWidgets) {
+                    err += ew.name + ':\n' + ew.errors.join('\n');
+                }
+                console.error(err);
+                return;
+            }
         }
         let {onButtonClick} = this.form.props;
         if (onButtonClick === undefined) {
@@ -101,7 +108,6 @@ export abstract class Context {
         let ret = await onButtonClick(buttonName, this);
         if (ret === undefined) return;
         this.setError(buttonName, ret);
-
     }
 
     checkFieldRules() {

@@ -13,6 +13,9 @@ export abstract class CBase extends Controller {
 
     protected get uqs(): any {return this._uqs}
     get cApp(): any {return this._cApp}
+    isRole(role: 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'): boolean {
+        return this._cApp.isRole(role);
+    }
 
     protected newC<T extends CBase>(type: IConstructor<T>):T {
         return new type(this.cApp);

@@ -26,6 +26,10 @@ export class CAppBase extends Controller {
         this.uqsMan = new UQsMan(this.name, tvs);
     }
     get uqs() { return this._uqs; }
+    isRole(role) {
+        let code = role.charCodeAt(0) - 'a'.charCodeAt(0);
+        return (this.roles & (1 << code)) !== 0;
+    }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -44,20 +48,20 @@ export class CAppBase extends Controller {
                             this.showUnsupport(predefinedUnit);
                             return false;
                         case 1:
-                            let appUnit = this.appUnits[0].id;
+                            let { id: appUnit, roles } = this.appUnits[0];
                             if (appUnit === undefined || appUnit < 0 ||
                                 (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
                                 return false;
                             }
                             appInFrame.unit = appUnit;
+                            this.roles = roles;
                             break;
                         default:
                             if (predefinedUnit > 0 && this.appUnits.find(v => v.id === predefinedUnit) !== undefined) {
                                 appInFrame.unit = predefinedUnit;
                                 break;
                             }
-                            //nav.push(<this.selectUnitPage />)
                             this.openVPage(VUnitSelect);
                             return false;
                     }
@@ -92,8 +96,10 @@ export class CAppBase extends Controller {
                 for (let uq of uqAppData.uqs)
                     uq.newVersion = true;
             }
-            let { id, uqs } = uqAppData;
+            let { id, uqs, mainUqId, roles } = uqAppData;
             this.uqsMan.id = id;
+            this.mainUqId = mainUqId;
+            this.roles = roles;
             yield this.uqsMan.init(uqs);
             let retErrors = yield this.uqsMan.load();
             if (retErrors.length === 0) {

@@ -98,7 +98,9 @@ export class VUnitSelect extends VPage<CApp> {
         </LMR>;
     }
     private onRowClick = async (item: any) => {
-        appInFrame.unit = item.id; // 25;
+        let {id, roles} = item;
+        appInFrame.unit = id; // 25;
+        this.controller.roles = roles;
         await this.controller.start();
     }
 

@@ -76,13 +76,14 @@ export class CApp extends Controller {
                             this.showUnsupport(predefinedUnit);
                             return false;
                         case 1:
-                            let appUnit = this.appUnits[0].id;
+                            let { id: appUnit, roles } = this.appUnits[0];
                             if (appUnit === undefined || appUnit < 0 ||
                                 (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
                                 return false;
                             }
                             appInFrame.unit = appUnit;
+                            this.roles = roles;
                             break;
                         default:
                             if (predefinedUnit > 0 && this.appUnits.find(v => v.id === predefinedUnit) !== undefined) {

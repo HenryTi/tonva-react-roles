@@ -117,7 +117,7 @@ function onReceiveAppApiMessage(hash, apiName) {
         console.log('uqTokenApi.uq onReceiveAppApiMessage', param);
         let ret = yield uqTokenApi.uq(param);
         let { db, url, token } = ret;
-        return { name: apiName, db: db, url: url, token: token };
+        return { name: apiName, db, url, token };
     });
 }
 function onAppApiReturn(message) {
@@ -225,12 +225,7 @@ export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
             uqTokenActions[uq] = {
                 resolve: (at) => __awaiter(this, void 0, void 0, function* () {
                     let { db, url, token } = yield at;
-                    uqTokens[uq] = {
-                        name: uq,
-                        db: db,
-                        url: url,
-                        token: token,
-                    };
+                    uqTokens[uq] = { name: uq, db, url, token };
                     uqTokenActions[uq] = undefined;
                     console.log("**** after buildAppUq ****", appInFrame);
                     resolve();
