@@ -3,7 +3,6 @@ import { Form } from './form';
 import { UiSchema, UiArr, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
 import { Widget } from './widgets/widget';
-//import { ArrRow } from './arrRow';
 import { observable, computed } from 'mobx';
 import { ContextRule } from './rules';
 import { observer } from 'mobx-react';
@@ -85,11 +84,11 @@ export abstract class Context {
 
     async submit(buttonName: string) {
         let widget = this.widgets[buttonName];
-        if (widget === undefined) {
+        if (buttonName && (widget === undefined)) {
             alert(`${buttonName} is not defined as a button or submit`);
             return;
         }
-        if (widget.itemType === 'submit' || widget.uiType === 'submit') {
+        if (!buttonName || (widget && (widget.itemType === 'submit' || widget.uiType === 'submit'))) {
             this.checkRules()
             if (this.hasError === true) {
                 let err = '';

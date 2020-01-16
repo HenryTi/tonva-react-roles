@@ -14,7 +14,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-//import { ArrRow } from './arrRow';
 import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 export class Context {
@@ -99,11 +98,11 @@ export class Context {
     submit(buttonName) {
         return __awaiter(this, void 0, void 0, function* () {
             let widget = this.widgets[buttonName];
-            if (widget === undefined) {
+            if (buttonName && (widget === undefined)) {
                 alert(`${buttonName} is not defined as a button or submit`);
                 return;
             }
-            if (widget.itemType === 'submit' || widget.uiType === 'submit') {
+            if (!buttonName || (widget && (widget.itemType === 'submit' || widget.uiType === 'submit'))) {
                 this.checkRules();
                 if (this.hasError === true) {
                     let err = '';
