@@ -30,6 +30,7 @@ export class TextAreaWidget extends Widget {
         return <>
             <textarea ref={(input) => this.input=input} 
                 className={classNames(this.className, cn)}
+                readOnly={this.readOnly}
                 rows={this.ui && this.ui.rows}
                 maxLength={this.itemSchema.maxLength}
                 defaultValue={this.defaultValue} onChange={this.onInputChange} />
