@@ -594,7 +594,7 @@
         "signature": "b71c00e9c0fa69a65badafd33f334f6af159f8f1360a77e6bef7b3b212338e3b"
       },
       "./src/components/form/widgets/textareawidget.tsx": {
-        "version": "6327ab84708549a80188c7194a4f877ba55a36cfb6bb34d08719d17a47f91e9e",
+        "version": "0a2cfe6294c535a6c2e05c3a37679d3359f0b9da5a4d56a6ff40275e5bec18b5",
         "signature": "85c1fb59a76722d69b7cca405e609d93303831114568bdbd5c0905827d7d7e22"
       },
       "./src/components/form/widgets/passwordwidget.tsx": {
@@ -4079,7 +4079,6 @@
       "./src/components/form/rules/index.ts",
       "./src/components/form/widgets/widget.tsx",
       "./src/components/form/widgets/textwidget.tsx",
-      "./src/components/form/widgets/textareawidget.tsx",
       "./src/components/form/widgets/passwordwidget.tsx",
       "./src/components/form/widgets/numberwidget.tsx",
       "./src/components/form/widgets/updownwidget.tsx",
@@ -4140,6 +4139,7 @@
       "./src/uq/entity.ts",
       "./src/uq/action.ts",
       "./src/uq/query.ts",
+      "./src/uq/caller.ts",
       "./src/uq/tuid/idcache.ts",
       "./src/uq/tuid/tuid.ts",
       "./src/uq/tuid/boxid.tsx",
@@ -4254,7 +4254,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/uq/caller.ts"
+      "./src/components/form/widgets/textareawidget.tsx"
     ]
   },
   "version": "3.7.3"
