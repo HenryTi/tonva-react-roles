@@ -87,6 +87,7 @@ class Host {
         }
         let host = this.getCenterHost();
         this.url = centerUrlFromHost(host);
+        console.log('center url: ', this.url);
         this.ws = centerWsFromHost(host);
         this.resHost = this.getResHost();
     }

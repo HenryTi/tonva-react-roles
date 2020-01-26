@@ -482,7 +482,7 @@
         "signature": "ed056c000f3c02c125a1bfc1547c611017acb550f16063f89a823dd19493c8d2"
       },
       "./src/net/host.ts": {
-        "version": "5773f483d6085f0bedf754bf50515b5bc897d76c4fb9a4ef02c1019d606c4b61",
+        "version": "73021456a1f0e583da11219c42685ad3325df58320160393205c1c6b7bb4d316",
         "signature": "39b695b3b682b3e6e2924a56202a3ee719088a71fcbd587f42aecd8b5c358afd"
       },
       "./src/net/uqapi.ts": {
@@ -4051,7 +4051,6 @@
       "./src/components/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
-      "./src/net/host.ts",
       "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
       "./src/components/simple/badge.tsx",
@@ -4079,6 +4078,7 @@
       "./src/components/form/rules/index.ts",
       "./src/components/form/widgets/widget.tsx",
       "./src/components/form/widgets/textwidget.tsx",
+      "./src/components/form/widgets/textareawidget.tsx",
       "./src/components/form/widgets/passwordwidget.tsx",
       "./src/components/form/widgets/numberwidget.tsx",
       "./src/components/form/widgets/updownwidget.tsx",
@@ -4254,7 +4254,7 @@
       "./node_modules/@types/node/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
-      "./src/components/form/widgets/textareawidget.tsx"
+      "./src/net/host.ts"
     ]
   },
   "version": "3.7.3"
