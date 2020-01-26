@@ -228,6 +228,15 @@ export abstract class Widget {
         if (errorList.length === 0) return null;
         let {inNode} = this.context;
         let tag = inNode === true? 'span' : 'div';
+        let err = errorList[0];
+        return React.createElement(tag, 
+            {
+                key: err, 
+                className: 'text-danger d-inline-block my-2 ml-3'
+            },
+            <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
+        );
+        /*
         return errorList.map(err => React.createElement(tag, 
             {
                 key: err, 
@@ -235,5 +244,6 @@ export abstract class Widget {
             },
             <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
         ));
+        */
     }
 }

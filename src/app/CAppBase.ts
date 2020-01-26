@@ -1,6 +1,6 @@
 //import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { Tuid, Action, Sheet, Query, Map, UQsMan, TVs } from "../uq";
+import { Tuid, Action, Sheet, Query, Map, UQsMan, TVs, UqMan } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
@@ -26,9 +26,10 @@ export abstract class CAppBase extends Controller {
     protected readonly version: string;
 
     readonly uqsMan: UQsMan;
+    private _mainUqId: number;
+    private mainUqMan: UqMan;
     appUnits:any[];
     roles: number;
-    mainUqId: number;
 
     // appName: owner/name
     constructor(config: AppConfig) {
@@ -44,9 +45,14 @@ export abstract class CAppBase extends Controller {
 
     get uqs(): any {return this._uqs;}
 
-    isRole(role: 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'): boolean {
-        let code = role.charCodeAt(0) - 'a'.charCodeAt(0);
-        return (this.roles & (1<<code)) !== 0;
+    set mainUqId(value: number) {
+        this._mainUqId = value;
+        this.mainUqMan = this.uqsMan.getUqManFromId(value);
+    }    
+
+    hasRole(role: string): boolean {
+        if (this.mainUqMan === undefined) return true;
+        return this.mainUqMan.hasRole(role, this.roles);
     }
 
     protected async beforeStart():Promise<boolean> {

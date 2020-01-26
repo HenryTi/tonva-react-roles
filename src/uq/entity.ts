@@ -9,6 +9,8 @@ const ln = '\n';
 
 export abstract class Entity {
     private jName: string;
+    protected rolesBin: number;
+
     schema: any;
     ver: number = 0;
     sys?: boolean;
@@ -76,12 +78,13 @@ export abstract class Entity {
 
     public setSchema(schema:any) {
         if (schema === undefined) return;
-        let {name, version} = schema;
+        let {name, version, role} = schema;
         this.ver = version || 0;
         if (name !== this.name) this.jName = name;
         //if (this.schema === undefined) 
         this.cache.set(schema);
         this.schema = schema;
+        this.rolesBin = role;
         //this.buildFieldsTuid();
     }
 
@@ -97,6 +100,10 @@ export abstract class Entity {
             if (key === '_tuid') return undefined;
             return value;
         }, 4);
+    }
+
+    protected _hasRole(role:string):boolean {
+        return this.uq.hasRole(role, this.rolesBin);
     }
 
     tuidFromName(fieldName:string, arrName?:string):Tuid {

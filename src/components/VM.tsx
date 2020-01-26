@@ -41,8 +41,8 @@ export abstract class Controller {
     protected onDispose() {
     }
 
-    isRole(role: 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'): boolean {
-        return (this as any).cApp?.isRole(role);
+    hasRole(role: string): boolean {
+        return (this as any).cApp?.hasRole(role);
     }
 
     protected async openVPage<C extends Controller>(vp: new (controller: C)=>VPage<C>, param?:any):Promise<void> {
@@ -207,8 +207,8 @@ export abstract class View<C extends Controller> {
 
     protected get isDev() {return  env.isDevelopment}
 
-    isRole(role: 'a'|'b'|'c'|'d'|'e'|'f'|'g'|'h'|'i'|'j'|'k'|'l'|'m'|'n'|'o'|'p'|'q'|'r'|'s'|'t'|'u'|'v'|'w'|'x'|'y'|'z'): boolean {
-        return this.controller.isRole(role);
+    hasRole(role: string): boolean {
+        return this.controller.hasRole(role);
     }
 
     abstract render(param?:any): JSX.Element;

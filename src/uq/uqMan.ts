@@ -76,6 +76,7 @@ export class UqMan {
     private readonly tuidsCache: TuidsCache;
     private readonly localAccess: LocalCache;
     private readonly tvs:{[entity:string]:(values:any)=>JSX.Element};
+    private role: any; // role schema
     readonly localMap: LocalMap;
     readonly localModifyMax: LocalCache;
     readonly tuids: {[name:string]: Tuid} = {};
@@ -134,6 +135,19 @@ export class UqMan {
             this.actions, this.sheets, this.queries, this.books,
             this.maps, this.histories, this.pendings, this.tuids
         );
+    }
+
+    hasRole(role:string, rolesBin:number):boolean {
+        if (this.role === undefined) return false;
+        if (role.length === 1) {
+            let code = role.charCodeAt(0) - 0x61;
+            if (code >= 0 && code <= 26) {
+                return (rolesBin & (1<<code)) !== 0;
+            }
+        }
+        let {nicks} = this.role;
+        let index = (nicks as string[]).findIndex(v => v === role);
+        return (rolesBin & (1<<index)) !== 0;
     }
 
     private createBoxIdFromTVs:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{
@@ -208,8 +222,9 @@ export class UqMan {
             debugger;
         }
         this.localAccess.set(entities);
-        let {access, tuids, version} = entities;
+        let {access, tuids, version, role} = entities;
         this.uqVersion = version;
+        this.role = role;
         this.buildTuids(tuids);
         this.buildAccess(access);
     }

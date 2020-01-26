@@ -40,6 +40,13 @@ export class UQsMan {
         this.collection[uq.name] = uq;
     }
 
+    getUqManFromId(id:number):UqMan {
+        for (let i in this.collection) {
+            let uqMan = this.collection[i];
+            if (id === uqMan.id) return uqMan;
+        }
+    }
+
     private buildTVs() {
         for (let i in this.tvs) {
             let uqTVs = this.tvs[i];
