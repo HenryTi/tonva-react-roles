@@ -69,13 +69,14 @@ export class Entity {
     setSchema(schema) {
         if (schema === undefined)
             return;
-        let { name, version } = schema;
+        let { name, version, role } = schema;
         this.ver = version || 0;
         if (name !== this.name)
             this.jName = name;
         //if (this.schema === undefined) 
         this.cache.set(schema);
         this.schema = schema;
+        this.rolesBin = role;
         //this.buildFieldsTuid();
     }
     buildFieldsTuid() {
@@ -90,6 +91,9 @@ export class Entity {
                 return undefined;
             return value;
         }, 4);
+    }
+    _hasRole(role) {
+        return this.uq.hasRole(role, this.rolesBin);
     }
     tuidFromName(fieldName, arrName) {
         if (this.schema === undefined)

@@ -215,13 +215,23 @@ export class Widget {
             return null;
         let { inNode } = this.context;
         let tag = inNode === true ? 'span' : 'div';
-        return errorList.map(err => React.createElement(tag, {
+        let err = errorList[0];
+        return React.createElement(tag, {
             key: err,
             className: 'text-danger d-inline-block my-2 ml-3'
         }, React.createElement(React.Fragment, null,
             React.createElement("i", { className: "fa fa-exclamation-circle" }),
             " \u00A0",
-            err)));
+            err));
+        /*
+        return errorList.map(err => React.createElement(tag,
+            {
+                key: err,
+                className: 'text-danger d-inline-block my-2 ml-3'
+            },
+            <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
+        ));
+        */
     }
 }
 __decorate([

@@ -34,9 +34,9 @@ export class Controller {
     }
     onDispose() {
     }
-    isRole(role) {
+    hasRole(role) {
         var _a;
-        return (_a = this.cApp) === null || _a === void 0 ? void 0 : _a.isRole(role);
+        return (_a = this.cApp) === null || _a === void 0 ? void 0 : _a.hasRole(role);
     }
     openVPage(vp, param) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -179,8 +179,8 @@ export class View {
         this.x = controller.x;
     }
     get isDev() { return env.isDevelopment; }
-    isRole(role) {
-        return this.controller.isRole(role);
+    hasRole(role) {
+        return this.controller.hasRole(role);
     }
     renderVm(vm, param) {
         return (new vm(this.controller)).render(param);

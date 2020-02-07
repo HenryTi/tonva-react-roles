@@ -106,6 +106,19 @@ export class UqMan {
     get entities() {
         return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids);
     }
+    hasRole(role, rolesBin) {
+        if (this.role === undefined)
+            return false;
+        if (role.length === 1) {
+            let code = role.charCodeAt(0) - 0x61;
+            if (code >= 0 && code <= 26) {
+                return (rolesBin & (1 << code)) !== 0;
+            }
+        }
+        let { nicks } = this.role;
+        let index = nicks.findIndex(v => v === role);
+        return (rolesBin & (1 << index)) !== 0;
+    }
     tuid(name) { return this.tuids[name.toLowerCase()]; }
     tuidDiv(name, div) {
         let tuid = this.tuids[name.toLowerCase()];
@@ -160,8 +173,9 @@ export class UqMan {
             debugger;
         }
         this.localAccess.set(entities);
-        let { access, tuids, version } = entities;
+        let { access, tuids, version, role } = entities;
         this.uqVersion = version;
+        this.role = role;
         this.buildTuids(tuids);
         this.buildAccess(access);
     }

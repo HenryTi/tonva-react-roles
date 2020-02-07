@@ -26,6 +26,9 @@ export class Action extends Entity {
             return yield new SubmitConvertCaller(this, data).request();
         });
     }
+    hasRole(role) {
+        return this._hasRole(role);
+    }
 }
 export class ActionSubmitCaller extends ActionCaller {
     get path() { return 'action/' + this.entity.name; }

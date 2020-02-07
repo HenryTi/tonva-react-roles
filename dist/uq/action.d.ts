@@ -7,6 +7,7 @@ export declare class Action extends Entity {
         [ret: string]: any[];
     }>;
     submitConvert(data: object): Promise<any>;
+    hasRole(role: string): boolean;
 }
 export declare class ActionSubmitCaller extends ActionCaller {
     get path(): string;

@@ -4,6 +4,7 @@ import { UqMan, Field, ArrFields, FieldMap } from './uqMan';
 import { Tuid } from './tuid';
 export declare abstract class Entity {
     private jName;
+    protected rolesBin: number;
     schema: any;
     ver: number;
     sys?: boolean;
@@ -26,6 +27,7 @@ export declare abstract class Entity {
     setSchema(schema: any): void;
     buildFieldsTuid(): void;
     schemaStringify(): string;
+    protected _hasRole(role: string): boolean;
     tuidFromName(fieldName: string, arrName?: string): Tuid;
     buildParams(params: any): any;
     private buildFieldsParams;

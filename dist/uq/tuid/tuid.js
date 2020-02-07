@@ -17,10 +17,6 @@ export class Tuid extends Entity {
         this.typeName = 'tuid';
         this.isImport = false;
     }
-    /*
-    constructor(uq:UqMan, name:string, typeId:number) {
-        super(uq, name, typeId)
-    }*/
     setSchema(schema) {
         super.setSchema(schema);
         let { id } = schema;

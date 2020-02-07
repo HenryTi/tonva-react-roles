@@ -28,6 +28,13 @@ export class UQsMan {
     addUq(uq) {
         this.collection[uq.name] = uq;
     }
+    getUqManFromId(id) {
+        for (let i in this.collection) {
+            let uqMan = this.collection[i];
+            if (id === uqMan.id)
+                return uqMan;
+        }
+    }
     buildTVs() {
         for (let i in this.tvs) {
             let uqTVs = this.tvs[i];

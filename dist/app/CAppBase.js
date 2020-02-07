@@ -26,9 +26,14 @@ export class CAppBase extends Controller {
         this.uqsMan = new UQsMan(this.name, tvs);
     }
     get uqs() { return this._uqs; }
-    isRole(role) {
-        let code = role.charCodeAt(0) - 'a'.charCodeAt(0);
-        return (this.roles & (1 << code)) !== 0;
+    set mainUqId(value) {
+        this._mainUqId = value;
+        this.mainUqMan = this.uqsMan.getUqManFromId(value);
+    }
+    hasRole(role) {
+        if (this.mainUqMan === undefined)
+            return true;
+        return this.mainUqMan.hasRole(role, this.roles);
     }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {

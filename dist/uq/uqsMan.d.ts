@@ -18,6 +18,7 @@ export declare class UQsMan {
     appId: number;
     constructor(tonvaAppName: string, tvs: TVs);
     addUq(uq: UqMan): void;
+    getUqManFromId(id: number): UqMan;
     private buildTVs;
     init(uqsData: UqData[]): Promise<void>;
     load(): Promise<string[]>;
