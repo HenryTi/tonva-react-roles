@@ -22,7 +22,6 @@ export class PageItems {
         this.beforeLoad = true;
         this.loaded = false;
         this.allLoaded = false;
-        this.firstSize = 50;
         this.pageStart = undefined;
         this.pageSize = 10;
         this.appendPosition = 'tail';
@@ -89,6 +88,8 @@ export class PageItems {
                 this.setPageStart(undefined);
             let pageSize = this.pageSize + 1;
             if (this.isFirst === true) {
+                if (this.firstSize === undefined)
+                    this.firstSize = this.pageSize;
                 if (this.firstSize > this.pageSize)
                     pageSize = this.firstSize + 1;
             }

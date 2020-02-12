@@ -34,7 +34,7 @@ export abstract class PageItems<T> {
     }
 
     protected param: any;
-    protected firstSize = 50;
+    protected firstSize: number;
     protected pageStart:any = undefined;
     protected pageSize = 10;
     protected appendPosition:'head'|'tail' = 'tail';
@@ -78,6 +78,7 @@ export abstract class PageItems<T> {
         if (this.pageStart === undefined) this.setPageStart(undefined);
         let pageSize = this.pageSize + 1;
         if (this.isFirst === true) {
+            if (this.firstSize === undefined) this.firstSize = this.pageSize;
             if (this.firstSize > this.pageSize) pageSize = this.firstSize+1;
         }
         let ret = await this.load(
