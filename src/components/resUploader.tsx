@@ -96,38 +96,23 @@ export class ResUploader extends React.Component<ResUploaderProps> {
     }
 }
 
-function formatSize(size:number, pointLength:number=2, units?:string[]) {
-    var unit;
-    units = units || [ 'B', 'K', 'M', 'G', 'TB' ];
-    while ( (unit = units.shift()) && size > 1024 ) {
-        size = size / 1024;
-    }
-    return (unit === 'B' ? size : size.toFixed( pointLength === undefined ? 2 : pointLength)) + unit;
-}
-
 interface ImageUploaderProps {
     id?: string;
     label?: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'lg';
     onSaved?: (imageId:string) => Promise<void>;
 }
 
 const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 const largeSize = 800;
-const mediumSize = 400;
 const smallSize = 180;
 
 @observer
 export class ImageUploader extends React.Component<ImageUploaderProps> {
     private imgBaseSize: number;
+    private file: File;
     private suffix: string;
     private resUploader: ResUploader;
-    @observable private file: File;    
-    @observable private desImgWidth: number;
-    @observable private desImgHeight: number;
-    @observable private desImgSize: number;
-    @observable private srcImgWidth: number;
-    @observable private srcImgHeight: number;
     @observable private isChanged: boolean = false;
     @observable private resId: string;
     @observable private enableUploadButton: boolean = false;
@@ -139,6 +124,7 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     constructor(props: ImageUploaderProps) {
         super(props);
         this.resId = props.id;
+        this.imgBaseSize = props.size === 'lg'? largeSize : smallSize;
     }
 
     private onFileChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -157,22 +143,9 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
             reader.readAsDataURL(this.file);
             reader.onload = async () => {
                 this.srcImage = reader.result as string;
-                await this.setSize(this.props.size);
+                this.desImage = await this.compress();
             };
         }
-    }
-
-    private async setSize(size?: 'sm' | 'md' | 'lg') {
-        switch (size) {
-            default:
-            case 'sm':
-                this.imgBaseSize = smallSize; break;
-            case 'md':
-                this.imgBaseSize = mediumSize; break;
-            case 'lg':
-                this.imgBaseSize = largeSize; break;
-        }
-        this.desImage = await this.compress();
     }
 
     private compress = ():Promise<string> => {
@@ -183,15 +156,9 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                 //var that = this;
                 // 默认按比例压缩
                 let {width, height} = img;
-                this.srcImgWidth = width;
-                this.srcImgHeight = height;
                 let scale = width / height;
                 let w:number, h:number;
-                if (width <= this.imgBaseSize && height <= this.imgBaseSize) {
-                    w = width;
-                    h = height;
-                }
-                else if (scale < 0) {
+                if (scale < 0) {
                     w = this.imgBaseSize;
                     h = w / scale;
                 }
@@ -199,8 +166,6 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                     h = this.imgBaseSize;
                     w = h * scale;
                 }
-                this.desImgWidth = Math.round(w);
-                this.desImgHeight = Math.round(h);
                 var quality = 0.7;  // 默认图片质量为0.7
                 //生成canvas
                 var canvas = document.createElement('canvas');
@@ -214,10 +179,8 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                 canvas.setAttributeNode(anh);
                 ctx.drawImage(img, 0, 0, w, h);
                 let base64 = canvas.toDataURL('image/' + this.suffix , quality);
-                let blob = this.convertBase64UrlToBlob(base64);
-                this.desImgSize = blob.size;
-                if (this.desImgSize > 5000000) {
-                    this.fileError = "图片大于4M，无法上传";
+                if (base64.length > 5000000) {
+                    this.fileError = "文件太大，无法上传";
                     this.enableUploadButton = false;
                 }
                 resolve(base64);
@@ -275,24 +238,6 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         </Page>);
     }
 
-    private levelDiv() {
-        if (this.props.size) return;
-        let arr = [{caption:'小图', size:'sm'}];
-        if (this.srcImgHeight > mediumSize || this.srcImgWidth > mediumSize) {
-            arr.push({caption:'中图', size:'md'});
-        }
-        if (this.srcImgHeight > largeSize || this.srcImgWidth > largeSize) {
-            arr.push({caption:'大图', size:'lg'});
-        }
-        if (arr.length < 2) return;
-        return <div>{arr.map((v, index) => {
-            let {caption, size} = v;
-            return <label key={index} className="mr-3"><input type="radio" name="size" 
-                onChange={()=>this.setSize(size as any)}
-                defaultChecked={index===0} /> {caption}</label>;
-        })}</div>
-    }
-
     render() {
         let {label} = this.props;
         let right = <button
@@ -312,28 +257,16 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                     </div>
                     <LMR left=
                     {
-                        this.uploaded === true? 
-                            <div className="text-success p-2">上传成功！</div>
-                            :
-                            this.file && this.desImgSize > 0 && <div className="mb-3 d-flex align-items-end">
-                                <div className="mr-5">
-                                    {this.levelDiv()}
-                                    <div>分辨率：{this.desImgWidth} x {this.desImgHeight}
-                                    &nbsp; &nbsp;
-                                    文件大小：{formatSize(this.desImgSize)}
-                                    </div>
+                        this.enableUploadButton && (
+                            this.uploaded === true? 
+                                <div className="text-success p-2">上传成功！</div>
+                                :
+                                <div className="mb-3">
+                                    <button className="btn btn-primary" onClick={this.upload}>上传</button>
                                 </div>
-                                <button className="btn btn-primary" 
-                                    disabled={!this.enableUploadButton}
-                                    onClick={this.upload}>上传</button>
-                            </div>
+                        )
                     }
-                    right={this.desImage && 
-                        <button className="btn btn-link btn-sm text-right mb-3" onClick={this.showOrgImage}>
-                            原图大小: {formatSize(this.file.size)}<br/>
-                            分辨率：{this.srcImgWidth} x {this.srcImgHeight}
-                        </button>
-                    }
+                    right={this.desImage && <button className="btn btn-link btn-sm" onClick={this.showOrgImage}>查看原图</button>}
                     ></LMR>
                 </div>
                 <div className="text-center" 

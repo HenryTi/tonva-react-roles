@@ -74,7 +74,9 @@ export class ReactBoxId {
         }
         switch (typeof val) {
             case 'undefined':
-                return null; //<span className="text-black-50">{boxName} undefined</span>;
+                return React.createElement("span", { className: "text-black-50" },
+                    boxName,
+                    " undefined");
             case 'number':
                 return React.createElement("span", { className: "text-light" },
                     boxName,
@@ -152,16 +154,17 @@ const Tv = observer(({ tuidValue, ui, x, nullUI }) => {
     let ttv = typeof tuidValue;
     switch (ttv) {
         default:
-            if (ui === undefined) {
+            if (ui === undefined)
                 return React.createElement(React.Fragment, null,
                     ttv,
                     "-",
                     tuidValue);
+            else {
+                let ret = ui(tuidValue, x);
+                if (ret !== undefined)
+                    return ret;
+                return React.createElement(React.Fragment, null, tuidValue);
             }
-            let ret = ui(tuidValue, x);
-            if (ret !== undefined)
-                return ret;
-            return React.createElement(React.Fragment, null, tuidValue);
         case 'object':
             let divObj = boxIdContent(tuidValue, ui, x);
             if (divObj !== undefined)

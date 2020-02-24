@@ -20,19 +20,14 @@ export declare class ResUploader extends React.Component<ResUploaderProps> {
 interface ImageUploaderProps {
     id?: string;
     label?: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'lg';
     onSaved?: (imageId: string) => Promise<void>;
 }
 export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private imgBaseSize;
+    private file;
     private suffix;
     private resUploader;
-    private file;
-    private desImgWidth;
-    private desImgHeight;
-    private desImgSize;
-    private srcImgWidth;
-    private srcImgHeight;
     private isChanged;
     private resId;
     private enableUploadButton;
@@ -42,13 +37,11 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private uploaded;
     constructor(props: ImageUploaderProps);
     private onFileChange;
-    private setSize;
     private compress;
     private convertBase64UrlToBlob;
     private upload;
     private onSaved;
     private showOrgImage;
-    private levelDiv;
     render(): JSX.Element;
 }
 export {};

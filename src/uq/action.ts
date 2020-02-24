@@ -12,9 +12,6 @@ export class Action extends Entity {
     async submitConvert(data:object) {
         return await new SubmitConvertCaller(this, data).request();
     }
-    hasRole(role:string):boolean {
-        return this._hasRole(role);
-    }
 }
 
 export class ActionSubmitCaller extends ActionCaller {
@@ -36,7 +33,7 @@ class SubmitReturnsCaller extends ActionSubmitCaller {
     }
 }
 
-class SubmitConvertCaller extends SubmitReturnsCaller {
+class SubmitConvertCaller extends ActionSubmitCaller {
     get path():string {return 'action-convert/' + this.entity.name;}
     buildParams():any {
         return {

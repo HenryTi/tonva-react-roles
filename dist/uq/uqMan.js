@@ -18,6 +18,7 @@ import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
 import { ReactBoxId } from './tuid/reactBoxId';
+import { Tag } from './tag';
 export function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':
@@ -34,8 +35,6 @@ export function fieldDefaultValue(type) {
             return '2000-1-1';
         case 'time':
             return '0:00';
-        case 'bin':
-            return '00';
     }
 }
 export class UqMan {
@@ -47,6 +46,7 @@ export class UqMan {
         this.maps = {};
         this.histories = {};
         this.pendings = {};
+        this.tags = {};
         this.tuids = {};
         this.createBoxIdFromTVs = (tuid, id) => {
             let { name } = tuid;
@@ -67,6 +67,7 @@ export class UqMan {
         this.mapArr = [];
         this.historyArr = [];
         this.pendingArr = [];
+        this.tagArr = [];
         this.createBoxId = createBoxId;
         if (createBoxId === undefined) {
             this.createBoxId = this.createBoxIdFromTVs;
@@ -77,7 +78,6 @@ export class UqMan {
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
-        this.appId = uqs.appId;
         this.name = uqOwner + '/' + uqName;
         this.uqVersion = 0;
         this.localMap = uqs.localMap.map(this.name);
@@ -104,20 +104,7 @@ export class UqMan {
         this.tuidsCache = new TuidsCache(this);
     }
     get entities() {
-        return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids);
-    }
-    hasRole(role, rolesBin) {
-        if (this.role === undefined)
-            return false;
-        if (role.length === 1) {
-            let code = role.charCodeAt(0) - 0x61;
-            if (code >= 0 && code <= 26) {
-                return (rolesBin & (1 << code)) !== 0;
-            }
-        }
-        let { nicks } = this.role;
-        let index = nicks.findIndex(v => v === role);
-        return (rolesBin & (1 << index)) !== 0;
+        return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids, this.tags);
     }
     tuid(name) { return this.tuids[name.toLowerCase()]; }
     tuidDiv(name, div) {
@@ -153,9 +140,6 @@ export class UqMan {
                 if (!accesses)
                     return;
                 this.buildEntities(accesses);
-                if (this.uqName === 'common') {
-                    this.pullModify(12);
-                }
             }
             catch (err) {
                 return err;
@@ -173,9 +157,8 @@ export class UqMan {
             debugger;
         }
         this.localAccess.set(entities);
-        let { access, tuids, version, role } = entities;
+        let { access, tuids, version } = entities;
         this.uqVersion = version;
-        this.role = role;
         this.buildTuids(tuids);
         this.buildAccess(access);
     }
@@ -269,6 +252,14 @@ export class UqMan {
         this.mapArr.push(map);
         return map;
     }
+    newTag(name, id) {
+        let tag = this.tags[name];
+        if (tag !== undefined)
+            return tag;
+        tag = this.tags[name] = new Tag(this, name, id);
+        this.tagArr.push(tag);
+        return tag;
+    }
     newHistory(name, id) {
         let history = this.histories[name];
         if (history !== undefined)
@@ -324,6 +315,9 @@ export class UqMan {
                 break;
             case 'pending':
                 this.newPending(name, id);
+                break;
+            case 'tag':
+                this.newTag(name, id);
                 break;
         }
     }

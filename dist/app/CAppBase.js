@@ -26,15 +26,6 @@ export class CAppBase extends Controller {
         this.uqsMan = new UQsMan(this.name, tvs);
     }
     get uqs() { return this._uqs; }
-    set mainUqId(value) {
-        this._mainUqId = value;
-        this.mainUqMan = this.uqsMan.getUqManFromId(value);
-    }
-    hasRole(role) {
-        if (this.mainUqMan === undefined)
-            return true;
-        return this.mainUqMan.hasRole(role, this.roles);
-    }
     beforeStart() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -47,27 +38,26 @@ export class CAppBase extends Controller {
                 //this.id = id;
                 let { user } = nav;
                 if (user !== undefined && user.id > 0) {
-                    this.appUnits = yield centerApi.userAppUnits(this.uqsMan.appId);
+                    this.appUnits = yield centerApi.userAppUnits(this.uqsMan.id);
                     switch (this.appUnits.length) {
                         case 0:
                             this.showUnsupport(predefinedUnit);
                             return false;
                         case 1:
-                            let { id: appUnit, roles, mainUqId } = this.appUnits[0];
+                            let appUnit = this.appUnits[0].id;
                             if (appUnit === undefined || appUnit < 0 ||
                                 (predefinedUnit !== undefined && appUnit !== predefinedUnit)) {
                                 this.showUnsupport(predefinedUnit);
                                 return false;
                             }
                             appInFrame.unit = appUnit;
-                            this.roles = roles;
-                            this.mainUqId = mainUqId;
                             break;
                         default:
                             if (predefinedUnit > 0 && this.appUnits.find(v => v.id === predefinedUnit) !== undefined) {
                                 appInFrame.unit = predefinedUnit;
                                 break;
                             }
+                            //nav.push(<this.selectUnitPage />)
                             this.openVPage(VUnitSelect);
                             return false;
                     }
@@ -91,34 +81,42 @@ export class CAppBase extends Controller {
     }
     load() {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                let { appOwner, appName } = this.uqsMan;
-                let { localData } = this.uqsMan;
-                let uqAppData = localData.get();
-                if (!uqAppData || uqAppData.version !== this.version) {
-                    uqAppData = yield loadAppUqs(appOwner, appName);
-                    uqAppData.version = this.version;
-                    localData.set(uqAppData);
-                    for (let uq of uqAppData.uqs)
-                        uq.newVersion = true;
-                }
-                let { id, uqs } = uqAppData;
-                this.uqsMan.appId = id;
-                yield this.uqsMan.init(uqs);
-                let retErrors = yield this.uqsMan.load();
+            let { appOwner, appName } = this.uqsMan;
+            let { localData } = this.uqsMan;
+            let uqAppData = localData.get();
+            if (!uqAppData || uqAppData.version !== this.version) {
+                uqAppData = yield loadAppUqs(appOwner, appName);
+                uqAppData.version = this.version;
+                localData.set(uqAppData);
+                // 
+                for (let uq of uqAppData.uqs)
+                    uq.newVersion = true;
+            }
+            let { id, uqs } = uqAppData;
+            this.uqsMan.id = id;
+            yield this.uqsMan.init(uqs);
+            let retErrors = yield this.uqsMan.load();
+            if (retErrors.length === 0) {
+                retErrors.push(...this.uqsMan.setTuidImportsLocal());
                 if (retErrors.length === 0) {
-                    retErrors.push(...this.uqsMan.setTuidImportsLocal());
-                    if (retErrors.length === 0) {
-                        this._uqs = this.uqsMan.buildUQs();
-                        return;
+                    this._uqs = this.uqsMan.buildUQs();
+                    /*
+                    _.merge(this.uqs, this.uqsMan.uqsColl);
+                    for (let i in this.uqs) {
+                        let p = i.indexOf('/');
+                        if (p < 0) continue;
+                        let uq = this.uqs[i];
+                        
+                        let n = i.substr(p+1);
+                        let l = n.toLowerCase();
+                        this.uqs[n] = uq;
+                        if (l !== n) this.uqs[l] = uq;
                     }
+                    */
+                    return;
                 }
-                return retErrors;
             }
-            catch (err) {
-                debugger;
-                console.error(err);
-            }
+            return retErrors;
         });
     }
     showUnsupport(predefinedUnit) {

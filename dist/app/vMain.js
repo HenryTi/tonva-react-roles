@@ -106,10 +106,7 @@ export class VUnitSelect extends VPage {
                 React.createElement("div", null, nick || name));
         };
         this.onRowClick = (item) => __awaiter(this, void 0, void 0, function* () {
-            let { id, roles, mainUqId } = item;
-            appInFrame.unit = id; // 25;
-            this.controller.roles = roles;
-            this.controller.mainUqId = mainUqId;
+            appInFrame.unit = item.id; // 25;
             yield this.controller.start();
         });
         this.page = () => {

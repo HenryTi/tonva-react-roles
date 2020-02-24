@@ -203,20 +203,18 @@ export class Form extends React.Component {
     }
     buttonClick(buttonName) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.formContext.submit(buttonName);
-            /*
-            this.formContext.checkRules()
-            if (this.formContext.hasError === true) return;
-    
-            let {onButtonClick} = this.formContext.form.props;
+            this.formContext.checkRules();
+            if (this.formContext.hasError === true)
+                return;
+            let { onButtonClick } = this.formContext.form.props;
             if (onButtonClick === undefined) {
                 alert(`you should define form onButtonClick`);
                 return;
             }
-            let ret = await onButtonClick(buttonName, this.formContext);
-            if (ret === undefined) return;
+            let ret = yield onButtonClick(buttonName, this.formContext);
+            if (ret === undefined)
+                return;
             this.formContext.setError(buttonName, ret);
-            */
         });
     }
 }

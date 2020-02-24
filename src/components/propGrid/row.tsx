@@ -45,42 +45,14 @@ export abstract class LabeledPropRow extends PropRow {
     protected get prop():LabeledProp {return this._prop}
     protected content: any;
     protected col: string;
-    protected labelSize: number;
-    protected cnLabel: string;
-    protected cnCol: string;
-
+    //protected values: any;
     constructor(gridProps:PropGridProps, prop: LabeledProp) {
         super();
         this.gridProps = gridProps;
         this._prop = prop;
         this.col = gridProps.labelFixLeft === true? 'col' : 'col-sm';
-        let labelSize = gridProps.labelSize;
-        if (labelSize === undefined) labelSize = 3;
-        this.labelSize = labelSize;
-        this.cnLabel = `${this.col}-${labelSize} col-form-label`;
-
-        this.initCnCol();
+        //this.values = values;
     }
-
-    protected initCnCol() {
-        let {label} = this.prop;
-        let align:any, vAlign:any;
-        switch (this.gridProps.alignValue) {
-            case 'left': align = valueAlignStart; break;
-            case 'center': align = valueAlignCenter; break;
-            case 'right': align = valueAlignEnd; break;
-        }
-        switch (this.prop.vAlign) {
-            case 'top': vAlign = 'align-items-start'; break;
-            default:
-            case 'center': vAlign = 'align-items-center'; break;
-            case 'bottom': vAlign = 'align-items-end'; break;
-            case 'stretch': vAlign = 'align-items-stretch'; break;
-        }
-        let col:string = this.col + (label===undefined? '-12':12-this.labelSize);
-        this.cnCol = className(align, vAlign, col, 'd-flex');
-    }
-
     render(key:string):any {
         let {onClick, bk} = this.prop;
         let cn = className({
@@ -96,12 +68,28 @@ export abstract class LabeledPropRow extends PropRow {
     protected renderLabel():any {
         let {label} = this.prop;
         if (label === undefined) return null;
-        return <label className={this.cnLabel}>
+        return <label className={this.col + '-3 col-form-label'}>
             {label}
         </label>;
     }
     protected renderProp():any {
-        return <div className={this.cnCol}>
+        let {label} = this.prop;
+        let align, vAlign;
+        switch (this.gridProps.alignValue) {
+            case 'left': align = valueAlignStart; break;
+            case 'center': align = valueAlignCenter; break;
+            case 'right': align = valueAlignEnd; break;
+        }
+        switch (this.prop.vAlign) {
+            case 'top': vAlign = 'align-items-start'; break;
+            default:
+            case 'center': vAlign = 'align-items-center'; break;
+            case 'bottom': vAlign = 'align-items-end'; break;
+            case 'stretch': vAlign = 'align-items-stretch'; break;
+        }
+        let col:string = this.col + (label===undefined? '-12':'-9');
+        let cn = className(align, vAlign, col, 'd-flex');
+        return <div className={cn}>
             {this.renderPropBody()}
         </div>;
     }
@@ -158,9 +146,14 @@ export class ListPropRow extends LabeledPropRow {
 }
 
 export class ComponentPropRow extends LabeledPropRow {
-    protected initCnCol() {
+    protected get prop(): ComponentProp {return this._prop as ComponentProp;}
+    protected renderPropBody() {
+        let {component} = this.prop;
+        return component;
+    }
+    protected renderProp():any {
         let {label, full} = this.prop;
-        let align:any, vAlign:any;
+        let align, vAlign;
         switch (this.gridProps.alignValue) {
             case 'left': align = valueAlignStart; break;
             case 'center': align = valueAlignCenter; break;
@@ -174,23 +167,12 @@ export class ComponentPropRow extends LabeledPropRow {
             case 'stretch': vAlign = 'align-items-stretch'; break;
         }
         let col:string;
-        if (full !== true) {
-            let colSize = 12;
-            if (label!==undefined) colSize -= this.labelSize;
-            col = this.col + '-' + colSize;
-        }
+        if (full !== true)
+            col = this.col + (label===undefined? '-12':'-9');
         else
             col = 'w-100';
-        this.cnCol = className(align, vAlign, col, 'd-flex');
-    }
-
-    protected get prop(): ComponentProp {return this._prop as ComponentProp;}
-    protected renderPropBody() {
-        let {component} = this.prop;
-        return component;
-    }
-    protected renderProp():any {
-        return <div className={this.cnCol}>
+        let cn = className(align, vAlign, col, 'd-flex');
+        return <div className={cn}>
             {this.renderPropBody()}
         </div>;
     }

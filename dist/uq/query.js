@@ -36,7 +36,8 @@ export class QueryPager extends PageItems {
     }
     load(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
-            //if (pageStart === undefined) pageStart = 0;
+            if (pageStart === undefined)
+                pageStart = 0;
             let ret = yield this.query.page(param, pageStart, pageSize);
             return ret;
         });
@@ -51,32 +52,10 @@ export class QueryPager extends PageItems {
         let { order } = $page;
         if (order === undefined)
             return;
-        /*
-        if (order === 'desc') {
-            this.appendPosition = 'head';
-        }
-        else {
-            this.appendPosition = 'tail';
-        }
-        */
-        if (item !== undefined) {
-            let field = $page.fields[0];
-            if (field) {
-                let start = item[field.name];
-                if (start === null)
-                    start = undefined;
-                else if (start !== undefined) {
-                    if (typeof start === 'object') {
-                        start = start.id;
-                    }
-                }
-                this.pageStart = start;
-            }
-        }
-        /*
-        let {field, type, asc} = order;
-        let start:any;
-        if (item !== undefined) start = item[field];
+        let { field, type, asc } = order;
+        let start;
+        if (item !== undefined)
+            start = item[field];
         if (asc === false) {
             this.appendPosition = 'head';
             switch (type) {
@@ -85,10 +64,16 @@ export class QueryPager extends PageItems {
                 case 'smallint':
                 case 'int':
                 case 'bigint':
-                case 'dec': start = 999999999999; break;
+                case 'dec':
+                    start = 999999999999;
+                    break;
                 case 'date':
-                case 'datetime': start = undefined; break;          // 会自动使用现在
-                case 'char': start = ''; break;
+                case 'datetime':
+                    start = undefined;
+                    break; // 会自动使用现在
+                case 'char':
+                    start = '';
+                    break;
             }
         }
         else {
@@ -99,14 +84,19 @@ export class QueryPager extends PageItems {
                 case 'smallint':
                 case 'int':
                 case 'bigint':
-                case 'dec': start = 0; break;
+                case 'dec':
+                    start = 0;
+                    break;
                 case 'date':
-                case 'datetime': start = '1970-1-1'; break;
-                case 'char': start = ''; break;
+                case 'datetime':
+                    start = '1970-1-1';
+                    break;
+                case 'char':
+                    start = '';
+                    break;
             }
         }
         this.pageStart = start;
-        */
     }
 }
 export class Query extends Entity {
@@ -176,7 +166,7 @@ export class Query extends Entity {
             await this.loadSchema();
             let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));
             */
-            let p = { pageStart: pageStart, pageSize: pageSize, params: params };
+            let p = { pageStart: pageStart, pageSize: pageSize + 1, params: params };
             let res = yield this.pageCaller(p, showWaiting).request();
             //let data = this.unpackReturns(res);
             //return data.$page;// as any[];

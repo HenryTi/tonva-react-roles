@@ -13,9 +13,6 @@ export abstract class CBase extends Controller {
 
     protected get uqs(): any {return this._uqs}
     get cApp(): any {return this._cApp}
-    hasRole(role: string): boolean {
-        return this._cApp.hasRole(role);
-    }
 
     protected newC<T extends CBase>(type: IConstructor<T>):T {
         return new type(this.cApp);

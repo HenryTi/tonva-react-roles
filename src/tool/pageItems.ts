@@ -17,13 +17,6 @@ export abstract class PageItems<T> {
         return this._items;
     }
 
-    setItemDeepObservable() {
-        if (this._items.length > 0) {
-            throw new Error('setItemDeepObservable can only be called just after new');
-        }
-        this._items = observable.array<T>([], {deep:true});
-    }
-
     @observable topDiv:string;
     @observable bottomDiv:string;
     scrollToTop() {
@@ -34,9 +27,9 @@ export abstract class PageItems<T> {
     }
 
     protected param: any;
-    protected firstSize: number;
+    protected firstSize = 100;
     protected pageStart:any = undefined;
-    protected pageSize = 10;
+    protected pageSize = 30;
     protected appendPosition:'head'|'tail' = 'tail';
 
     protected abstract async load(param:any, pageStart:any, pageSize:number):Promise<T[]>;
@@ -47,7 +40,6 @@ export abstract class PageItems<T> {
         this.beforeLoad = true;
         this.loaded = false;
         this.param = undefined;
-        this.pageStart = undefined;
         this.allLoaded = false;
         this._items.clear();
         //this.setPageStart(undefined);
@@ -64,7 +56,7 @@ export abstract class PageItems<T> {
         this.reset();
         this.beforeLoad = false;
         this.param = param;
-        await this.more();
+        await this.more();        
     }
 
     protected async onLoad(): Promise<void> {}
@@ -78,7 +70,6 @@ export abstract class PageItems<T> {
         if (this.pageStart === undefined) this.setPageStart(undefined);
         let pageSize = this.pageSize + 1;
         if (this.isFirst === true) {
-            if (this.firstSize === undefined) this.firstSize = this.pageSize;
             if (this.firstSize > this.pageSize) pageSize = this.firstSize+1;
         }
         let ret = await this.load(

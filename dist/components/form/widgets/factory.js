@@ -13,6 +13,7 @@ import { IdWidget } from './idWidget';
 import { ButtonWidget } from './buttonWidget';
 import { ArrComponent } from './arrComponent';
 import { ImageWidget } from './imageWidget';
+import { TagSingleWidget, TagMultiWidget } from './tagWidget';
 const widgetsFactory = {
     id: {
         dataTypes: ['id'],
@@ -79,6 +80,14 @@ const widgetsFactory = {
     radio: {
         dataTypes: ['integer', 'number', 'string', 'date', 'boolean'],
         widget: RadioWidget
+    },
+    tagSingle: {
+        dataTypes: ['integer'],
+        widget: TagSingleWidget
+    },
+    tagMulti: {
+        dataTypes: ['string'],
+        widget: TagMultiWidget
     },
     range: {
         dataTypes: ['integer'],

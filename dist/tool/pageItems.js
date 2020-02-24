@@ -22,8 +22,9 @@ export class PageItems {
         this.beforeLoad = true;
         this.loaded = false;
         this.allLoaded = false;
+        this.firstSize = 100;
         this.pageStart = undefined;
-        this.pageSize = 10;
+        this.pageSize = 30;
         this.appendPosition = 'tail';
         this._items = observable.array([], { deep: itemObservable });
     }
@@ -33,12 +34,6 @@ export class PageItems {
         if (this.loaded === false)
             return undefined;
         return this._items;
-    }
-    setItemDeepObservable() {
-        if (this._items.length > 0) {
-            throw new Error('setItemDeepObservable can only be called just after new');
-        }
-        this._items = observable.array([], { deep: true });
     }
     scrollToTop() {
         this.topDiv = '$$' + uid();
@@ -51,7 +46,6 @@ export class PageItems {
         this.beforeLoad = true;
         this.loaded = false;
         this.param = undefined;
-        this.pageStart = undefined;
         this.allLoaded = false;
         this._items.clear();
         //this.setPageStart(undefined);
@@ -88,8 +82,6 @@ export class PageItems {
                 this.setPageStart(undefined);
             let pageSize = this.pageSize + 1;
             if (this.isFirst === true) {
-                if (this.firstSize === undefined)
-                    this.firstSize = this.pageSize;
                 if (this.firstSize > this.pageSize)
                     pageSize = this.firstSize + 1;
             }

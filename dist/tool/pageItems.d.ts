@@ -8,7 +8,6 @@ export declare abstract class PageItems<T> {
     protected _items: IObservableArray<T>;
     allLoaded: boolean;
     get items(): IObservableArray<T>;
-    setItemDeepObservable(): void;
     topDiv: string;
     bottomDiv: string;
     scrollToTop(): void;

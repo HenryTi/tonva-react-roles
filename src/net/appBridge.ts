@@ -124,7 +124,7 @@ async function onReceiveAppApiMessage(hash: string, apiName: string): Promise<Uq
     console.log('uqTokenApi.uq onReceiveAppApiMessage', param);
     let ret = await uqTokenApi.uq(param);
     let {db, url, token} = ret;
-    return {name: apiName, db, url, token};
+    return {name: apiName, db:db, url: url, token: token};
 }
 
 async function onAppApiReturn(message:any) {
@@ -232,7 +232,12 @@ export async function buildAppUq(uq:string, uqOwner:string, uqName:string, appOw
         uqTokenActions[uq] = {
             resolve: async (at:any) => {
                 let {db, url, token} = await at;
-                uqTokens[uq] = {name: uq, db, url, token};
+                uqTokens[uq] = {
+                    name: uq,
+                    db: db,
+                    url: url,
+                    token: token,
+                };
                 uqTokenActions[uq] = undefined;
                 console.log("**** after buildAppUq ****", appInFrame);
                 resolve();

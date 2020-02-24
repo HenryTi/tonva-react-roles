@@ -17,6 +17,10 @@ export class Tuid extends Entity {
         this.typeName = 'tuid';
         this.isImport = false;
     }
+    /*
+    constructor(uq:UqMan, name:string, typeId:number) {
+        super(uq, name, typeId)
+    }*/
     setSchema(schema) {
         super.setSchema(schema);
         let { id } = schema;
@@ -189,22 +193,6 @@ export class TuidInner extends Tuid {
     unpackTuidIds(values) {
         return this.unpackTuidIdsOfFields(values, this.cacheFields);
     }
-    no(date, month, year) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let d = new Date();
-            if (date === undefined) {
-                date = d.getDate();
-            }
-            if (month === undefined) {
-                month = d.getMonth() + 1;
-            }
-            if (year === undefined) {
-                year = d.getFullYear();
-            }
-            let ret = yield new NoCaller(this, { year: year, month: month, date: date }).request();
-            return ret;
-        });
-    }
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
             /*
@@ -312,9 +300,6 @@ class IdsCaller extends TuidCaller {
     xresult(res) {
         return res.split('\n');
     }
-}
-class NoCaller extends TuidCaller {
-    get path() { return `tuid-no/${this.entity.name}`; }
 }
 class SaveCaller extends TuidCaller {
     get path() { return `tuid/${this.entity.name}`; }
@@ -440,11 +425,6 @@ export class TuidImport extends Tuid {
     load(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.tuidLocal.load(id);
-        });
-    }
-    no(year, month, date) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return;
         });
     }
     save(id, props) {

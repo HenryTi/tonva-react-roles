@@ -159,15 +159,14 @@ export class Selectable extends ListBase {
     //w-100 mb-0 pl-3
     //m-0 w-100
     render = (item:SelectableItem, index:number):JSX.Element => {
-        let {key} = this.list.props.item;
-        return <this.row key={key===undefined?index:key(item)} item={item} index={index} />;
+        return <this.row item={item} index={index} />;
     }
 
     private row = observer((props: {item:SelectableItem, index:number}):JSX.Element => {
         let {item, index} = props;
-        let {className} = this.list.props.item;
+        let {className, key} = this.list.props.item;
         let {labelId, selected, item:obItem} = item;
-        return <li className={classNames(className)}>
+        return <li key={key===undefined?index:key(item)} className={classNames(className)}>
             <div className="d-flex align-items-center px-3">
                 <input ref={input=>{if (input) this.inputItems[labelId] = input;}}
                     className="" type="checkbox" value="" id={labelId}

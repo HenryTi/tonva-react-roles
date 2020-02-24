@@ -21,7 +21,6 @@ export declare abstract class Controller {
     private disposer;
     private dispose;
     protected onDispose(): void;
-    hasRole(role: string): boolean;
     protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<void>;
     protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
     event(type: string, value: any): Promise<void>;
@@ -54,7 +53,6 @@ export declare abstract class View<C extends Controller> {
     protected readonly x: any;
     constructor(controller: C);
     protected get isDev(): boolean;
-    hasRole(role: string): boolean;
     abstract render(param?: any): JSX.Element;
     protected renderVm(vm: new (controller: C) => View<C>, param?: any): JSX.Element;
     protected openVPage(vp: new (controller: C) => VPage<C>, param?: any): Promise<void>;

@@ -7,9 +7,6 @@ export class CBase extends Controller {
     }
     get uqs() { return this._uqs; }
     get cApp() { return this._cApp; }
-    hasRole(role) {
-        return this._cApp.hasRole(role);
-    }
     newC(type) {
         return new type(this.cApp);
     }

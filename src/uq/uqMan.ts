@@ -12,9 +12,10 @@ import { CreateBoxId, BoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 import { ReactBoxId } from './tuid/reactBoxId';
+import { Tag } from './tag';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
-    | 'datetime' | 'date' | 'time' | 'bin';
+    | 'datetime' | 'date' | 'time';
 
 export function fieldDefaultValue(type:FieldType) {
     switch (type) {
@@ -32,8 +33,6 @@ export function fieldDefaultValue(type:FieldType) {
             return '2000-1-1';
         case 'time':
             return '0:00';
-        case 'bin':
-            return '00';
     }
 }
 
@@ -72,11 +71,11 @@ export class UqMan {
     private readonly books: {[name:string]: Book} = {};
     private readonly maps: {[name:string]: Map} = {};
     private readonly histories: {[name:string]: History} = {};
-    private readonly pendings: {[name:string]: Pending} = {};
+	private readonly pendings: {[name:string]: Pending} = {};
+	private readonly tags: {[name:string]: Tag} = {};
     private readonly tuidsCache: TuidsCache;
     private readonly localAccess: LocalCache;
     private readonly tvs:{[entity:string]:(values:any)=>JSX.Element};
-    private role: any; // role schema
     readonly localMap: LocalMap;
     readonly localModifyMax: LocalCache;
     readonly tuids: {[name:string]: Tuid} = {};
@@ -87,7 +86,6 @@ export class UqMan {
     readonly name: string;
     readonly uqApi: UqApi;
     readonly id: number;
-    readonly appId: number;
 
     uqVersion: number;
 
@@ -102,7 +100,6 @@ export class UqMan {
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;
-        this.appId = uqs.appId;
         this.name = uqOwner + '/' + uqName;
         this.uqVersion = 0;
         this.localMap = uqs.localMap.map(this.name);
@@ -133,21 +130,9 @@ export class UqMan {
     get entities() {
         return _.merge({}, 
             this.actions, this.sheets, this.queries, this.books,
-            this.maps, this.histories, this.pendings, this.tuids
+			this.maps, this.histories, this.pendings, this.tuids,
+			this.tags,
         );
-    }
-
-    hasRole(role:string, rolesBin:number):boolean {
-        if (this.role === undefined) return false;
-        if (role.length === 1) {
-            let code = role.charCodeAt(0) - 0x61;
-            if (code >= 0 && code <= 26) {
-                return (rolesBin & (1<<code)) !== 0;
-            }
-        }
-        let {nicks} = this.role;
-        let index = (nicks as string[]).findIndex(v => v === role);
-        return (rolesBin & (1<<index)) !== 0;
     }
 
     private createBoxIdFromTVs:CreateBoxId = (tuid:Tuid, id:number):BoxId =>{
@@ -190,6 +175,7 @@ export class UqMan {
     readonly mapArr: Map[] = [];
     readonly historyArr: History[] = [];
     readonly pendingArr: Pending[] = [];
+    readonly tagArr: Tag[] = [];
 
     async init() {
         await this.uqApi.init();
@@ -203,9 +189,6 @@ export class UqMan {
             }
             if (!accesses) return;
             this.buildEntities(accesses);
-            if (this.uqName === 'common') {
-                this.pullModify(12);
-            }
         }
         catch (err) {
             return err;
@@ -222,9 +205,8 @@ export class UqMan {
             debugger;
         }
         this.localAccess.set(entities);
-        let {access, tuids, version, role} = entities;
+        let {access, tuids, version} = entities;
         this.uqVersion = version;
-        this.role = role;
         this.buildTuids(tuids);
         this.buildAccess(access);
     }
@@ -314,6 +296,13 @@ export class UqMan {
         this.mapArr.push(map);
         return map;
     }
+    private newTag(name:string, id:number):Tag {
+        let tag = this.tags[name];
+        if (tag !== undefined) return tag;
+        tag = this.tags[name] = new Tag(this, name, id)
+        this.tagArr.push(tag);
+        return tag;
+    }
     private newHistory(name:string, id:number):History {
         let history = this.histories[name];
         if (history !== undefined) return;
@@ -352,7 +341,8 @@ export class UqMan {
             case 'map': this.newMap(name, id); break;
             case 'history': this.newHistory(name, id); break;
             case 'sheet':this.newSheet(name, id); break;
-            case 'pending': this.newPending(name, id); break;
+			case 'pending': this.newPending(name, id); break;
+			case 'tag': this.newTag(name, id); break;
         }
     }
     private fromObj(name:string, obj:any) {

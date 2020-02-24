@@ -199,8 +199,6 @@ export class Form extends React.Component<FormProps> {
     }
 
     async buttonClick(buttonName:string) {
-        this.formContext.submit(buttonName);
-        /*
         this.formContext.checkRules()
         if (this.formContext.hasError === true) return;
 
@@ -212,7 +210,6 @@ export class Form extends React.Component<FormProps> {
         let ret = await onButtonClick(buttonName, this.formContext);
         if (ret === undefined) return;
         this.formContext.setError(buttonName, ret);
-        */
     }
 
     protected DefaultContainer = (content:JSX.Element): JSX.Element => {

@@ -20,14 +20,9 @@ export declare abstract class CAppBase extends Controller {
     protected readonly name: string;
     protected readonly version: string;
     readonly uqsMan: UQsMan;
-    private _mainUqId;
-    private mainUqMan;
     appUnits: any[];
-    roles: number;
     constructor(config: AppConfig);
     get uqs(): any;
-    set mainUqId(value: number);
-    hasRole(role: string): boolean;
     protected beforeStart(): Promise<boolean>;
     userFromId(userId: number): Promise<any>;
     private load;

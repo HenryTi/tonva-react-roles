@@ -9,8 +9,6 @@ const ln = '\n';
 
 export abstract class Entity {
     private jName: string;
-    protected rolesBin: number;
-
     schema: any;
     ver: number = 0;
     sys?: boolean;
@@ -68,8 +66,11 @@ export abstract class Entity {
             schema = await this.uq.loadEntitySchema(this.name);
         }
         this.setSchema(schema);
-        this.buildFieldsTuid();
-    }
+		this.buildFieldsTuid();
+		await this.loadValues();
+	}
+	
+	protected async loadValues():Promise<any> {}
 
     // 如果要在setSchema里面保存cache，必须先调用clearSchema
     public clearSchema() {
@@ -78,15 +79,16 @@ export abstract class Entity {
 
     public setSchema(schema:any) {
         if (schema === undefined) return;
-        let {name, version, role} = schema;
+        let {name, version} = schema;
         this.ver = version || 0;
-        if (name !== this.name) this.jName = name;
-        //if (this.schema === undefined) 
+		this.setJName(name);
         this.cache.set(schema);
         this.schema = schema;
-        this.rolesBin = role;
-        //this.buildFieldsTuid();
-    }
+	}
+	
+	protected setJName(name:string) {
+        if (name !== this.name) this.jName = name;
+	}
 
     public buildFieldsTuid() {
         let {fields, arrs, returns} = this.schema;
@@ -100,10 +102,6 @@ export abstract class Entity {
             if (key === '_tuid') return undefined;
             return value;
         }, 4);
-    }
-
-    protected _hasRole(role:string):boolean {
-        return this.uq.hasRole(role, this.rolesBin);
     }
 
     tuidFromName(fieldName:string, arrName?:string):Tuid {
@@ -373,12 +371,8 @@ export abstract class Entity {
     }
 
     private to(ret:any, v:string, f:Field):any {
-        if (v === undefined) return undefined;
-        if (v === null) return null;
-        if (v === '') return null;
         switch (f.type) {
             default: return v;
-            case 'char': return v;
             case 'datetime':
             case 'time':
                 let n = Number(v);
@@ -398,8 +392,6 @@ export abstract class Entity {
                 let {_tuid} = f;
                 if (_tuid === undefined) return id;
                 return _tuid.boxId(id);
-            case 'bin':
-                return v;
         }
     }
 

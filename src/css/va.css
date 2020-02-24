@@ -7,8 +7,7 @@ html, body
 }
 
 body {
-    font-family: SimSun, 宋体, "Arial Narrow", HELVETICA;
-    /*font-family: sans-serif;*/
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     background-color: lightblue;

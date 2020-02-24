@@ -23,8 +23,6 @@ export declare abstract class Widget {
     constructor(context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode);
     protected get itemSchema(): ItemSchema;
     protected get ui(): UiItem;
-    get itemType(): import("../../schema").DataType;
-    get uiType(): import("../../schema").UiType;
     init(): void;
     protected buildRules(): void;
     checkRules(): void;
@@ -56,5 +54,5 @@ export declare abstract class Widget {
     protected renderErrors(): React.ReactElement<{
         key: string;
         className: string;
-    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)>) | (new (props: any) => React.Component<any, any, any>)>;
+    }, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)>) | (new (props: any) => React.Component<any, any, any>)>[];
 }

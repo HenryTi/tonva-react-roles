@@ -41,10 +41,6 @@ export abstract class Controller {
     protected onDispose() {
     }
 
-    hasRole(role: string): boolean {
-        return (this as any).cApp?.hasRole(role);
-    }
-
     protected async openVPage<C extends Controller>(vp: new (controller: C)=>VPage<C>, param?:any):Promise<void> {
         await (new vp((this as any) as C)).open(param);
     }
@@ -206,10 +202,6 @@ export abstract class View<C extends Controller> {
     }
 
     protected get isDev() {return  env.isDevelopment}
-
-    hasRole(role: string): boolean {
-        return this.controller.hasRole(role);
-    }
 
     abstract render(param?:any): JSX.Element;
 

@@ -38,12 +38,7 @@ export class TextWidget extends Widget {
             return;
         this.input.value = value;
     }
-    get placeholder() {
-        if (!this.ui)
-            return this.name;
-        let { placeholder } = this.ui;
-        return placeholder;
-    }
+    get placeholder() { return (this.ui && this.ui.placeholder) || this.name; }
     internalOnKeyDown(evt) {
     }
     onBlur(evt) {

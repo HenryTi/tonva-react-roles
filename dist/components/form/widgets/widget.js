@@ -58,8 +58,6 @@ export class Widget {
     ;
     get ui() { return this._ui; }
     ;
-    get itemType() { return this._itemSchema.type; }
-    get uiType() { var _a; return (_a = this._ui) === null || _a === void 0 ? void 0 : _a.widget; }
     init() {
         this.rules = [];
         if (this.itemSchema.required === true) {
@@ -215,23 +213,13 @@ export class Widget {
             return null;
         let { inNode } = this.context;
         let tag = inNode === true ? 'span' : 'div';
-        let err = errorList[0];
-        return React.createElement(tag, {
+        return errorList.map(err => React.createElement(tag, {
             key: err,
             className: 'text-danger d-inline-block my-2 ml-3'
         }, React.createElement(React.Fragment, null,
             React.createElement("i", { className: "fa fa-exclamation-circle" }),
             " \u00A0",
-            err));
-        /*
-        return errorList.map(err => React.createElement(tag,
-            {
-                key: err,
-                className: 'text-danger d-inline-block my-2 ml-3'
-            },
-            <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
-        ));
-        */
+            err)));
     }
 }
 __decorate([

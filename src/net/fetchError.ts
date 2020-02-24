@@ -7,5 +7,4 @@ export interface FetchError {
     resolve:(value?:any)=>void;
     reject: (reason?:any)=>void;
     error: any;
-    type?: 'message'
 }

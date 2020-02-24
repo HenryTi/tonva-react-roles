@@ -19,11 +19,7 @@ export declare abstract class LabeledPropRow extends PropRow {
     protected get prop(): LabeledProp;
     protected content: any;
     protected col: string;
-    protected labelSize: number;
-    protected cnLabel: string;
-    protected cnCol: string;
     constructor(gridProps: PropGridProps, prop: LabeledProp);
-    protected initCnCol(): void;
     render(key: string): any;
     protected renderLabel(): any;
     protected renderProp(): any;
@@ -44,7 +40,6 @@ export declare class ListPropRow extends LabeledPropRow {
     protected renderPropBody(): JSX.Element;
 }
 export declare class ComponentPropRow extends LabeledPropRow {
-    protected initCnCol(): void;
     protected get prop(): ComponentProp;
     protected renderPropBody(): any;
     protected renderProp(): any;

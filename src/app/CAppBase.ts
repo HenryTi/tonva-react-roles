@@ -1,12 +1,17 @@
 //import _ from 'lodash';
 import { Controller, nav } from "../components";
-import { Tuid, Action, Sheet, Query, Map, UQsMan, TVs, UqMan } from "../uq";
+import { Tuid, Action, Sheet, Query, Map, UQsMan, TVs } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 
+//type EntityType = Tuid | Action | Sheet | Query | Map;
+
 export interface IConstructor<T> {
     new (...args: any[]): T;
+
+    // Or enforce default constructor
+    // new (): T;
 }
 
 export interface AppConfig {
@@ -26,10 +31,7 @@ export abstract class CAppBase extends Controller {
     protected readonly version: string;
 
     readonly uqsMan: UQsMan;
-    private _mainUqId: number;
-    private mainUqMan: UqMan;
     appUnits:any[];
-    roles: number;
 
     // appName: owner/name
     constructor(config: AppConfig) {
@@ -45,16 +47,6 @@ export abstract class CAppBase extends Controller {
 
     get uqs(): any {return this._uqs;}
 
-    set mainUqId(value: number) {
-        this._mainUqId = value;
-        this.mainUqMan = this.uqsMan.getUqManFromId(value);
-    }    
-
-    hasRole(role: string): boolean {
-        if (this.mainUqMan === undefined) return true;
-        return this.mainUqMan.hasRole(role, this.roles);
-    }
-
     protected async beforeStart():Promise<boolean> {
         try {
             let retErrors = await this.load();
@@ -66,13 +58,13 @@ export abstract class CAppBase extends Controller {
             //this.id = id;
             let {user} = nav;
             if (user !== undefined && user.id > 0) {
-                this.appUnits = await centerApi.userAppUnits(this.uqsMan.appId);
+                this.appUnits = await centerApi.userAppUnits(this.uqsMan.id);
                 switch (this.appUnits.length) {
                     case 0:
                         this.showUnsupport(predefinedUnit);
                         return false;
                     case 1:
-                        let {id:appUnit, roles, mainUqId} = this.appUnits[0];
+                        let appUnit = this.appUnits[0].id;
                         if (appUnit === undefined || appUnit < 0 || 
                             (predefinedUnit !== undefined && appUnit !== predefinedUnit))
                         {
@@ -80,14 +72,13 @@ export abstract class CAppBase extends Controller {
                             return false;
                         }
                         appInFrame.unit = appUnit;
-                        this.roles = roles;
-                        this.mainUqId = mainUqId;
                         break;
                     default:
                         if (predefinedUnit>0 && this.appUnits.find(v => v.id===predefinedUnit) !== undefined) {
                             appInFrame.unit = predefinedUnit;
                             break;
                         }
+                        //nav.push(<this.selectUnitPage />)
                         this.openVPage(VUnitSelect);
                         return false;
                 }
@@ -109,33 +100,41 @@ export abstract class CAppBase extends Controller {
     }
 
     private async load(): Promise<string[]> {
-        try {
-            let {appOwner, appName} = this.uqsMan;
-            let {localData} = this.uqsMan;
-            let uqAppData:UqAppData = localData.get();
-            if (!uqAppData || uqAppData.version !== this.version) {
-                uqAppData = await loadAppUqs(appOwner, appName);
-                uqAppData.version = this.version;
-                localData.set(uqAppData);
-                for (let uq of uqAppData.uqs) uq.newVersion = true;
-            }
-            let {id, uqs} = uqAppData;
-            this.uqsMan.appId = id;
-            await this.uqsMan.init(uqs);
-            let retErrors = await this.uqsMan.load();
+        let {appOwner, appName} = this.uqsMan;
+        let {localData} = this.uqsMan;
+        let uqAppData:UqAppData = localData.get();
+        if (!uqAppData || uqAppData.version !== this.version) {
+            uqAppData = await loadAppUqs(appOwner, appName);
+            uqAppData.version = this.version;
+            localData.set(uqAppData);
+            // 
+            for (let uq of uqAppData.uqs) uq.newVersion = true;
+        }
+        let {id, uqs} = uqAppData;
+        this.uqsMan.id = id;
+        await this.uqsMan.init(uqs);
+        let retErrors = await this.uqsMan.load();
+        if (retErrors.length === 0) {
+            retErrors.push(...this.uqsMan.setTuidImportsLocal());
             if (retErrors.length === 0) {
-                retErrors.push(...this.uqsMan.setTuidImportsLocal());
-                if (retErrors.length === 0) {
-                    this._uqs = this.uqsMan.buildUQs();
-                    return;
+                this._uqs = this.uqsMan.buildUQs();
+                /*
+                _.merge(this.uqs, this.uqsMan.uqsColl);
+                for (let i in this.uqs) {
+                    let p = i.indexOf('/');
+                    if (p < 0) continue;
+                    let uq = this.uqs[i];
+                    
+                    let n = i.substr(p+1);
+                    let l = n.toLowerCase();
+                    this.uqs[n] = uq;
+                    if (l !== n) this.uqs[l] = uq;
                 }
+                */
+                return;
             }
-            return retErrors;
         }
-        catch (err) {
-            debugger;
-            console.error(err);
-        }
+        return retErrors;
     }
 
     private showUnsupport(predefinedUnit: number) {

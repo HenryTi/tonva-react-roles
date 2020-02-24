@@ -70,7 +70,7 @@ export class PropView {
             }
             else {
                 if (!isGap) this.rows.push(new PropBorder());
-                let row: any;
+                let row;
                 switch (prop.type) {
                     default: continue;
                     case 'string': row = new StringPropRow(this.gridProps, prop); break;

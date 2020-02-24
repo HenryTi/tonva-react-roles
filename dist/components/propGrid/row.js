@@ -36,20 +36,33 @@ const valueAlignStart = 'justify-content-start';
 const valueAlignCenter = 'justify-content-center';
 const valueAlignEnd = 'justify-content-end';
 export class LabeledPropRow extends PropRow {
+    //protected values: any;
     constructor(gridProps, prop) {
         super();
         this.gridProps = gridProps;
         this._prop = prop;
         this.col = gridProps.labelFixLeft === true ? 'col' : 'col-sm';
-        let labelSize = gridProps.labelSize;
-        if (labelSize === undefined)
-            labelSize = 3;
-        this.labelSize = labelSize;
-        this.cnLabel = `${this.col}-${labelSize} col-form-label`;
-        this.initCnCol();
+        //this.values = values;
     }
     get prop() { return this._prop; }
-    initCnCol() {
+    render(key) {
+        let { onClick, bk } = this.prop;
+        let cn = className({
+            "cursor-pointer": onClick !== undefined,
+            "bg-white": bk === undefined,
+            "row": true
+        });
+        return React.createElement("div", { key: key, className: cn, onClick: onClick },
+            this.renderLabel(),
+            this.renderProp());
+    }
+    renderLabel() {
+        let { label } = this.prop;
+        if (label === undefined)
+            return null;
+        return React.createElement("label", { className: this.col + '-3 col-form-label' }, label);
+    }
+    renderProp() {
         let { label } = this.prop;
         let align, vAlign;
         switch (this.gridProps.alignValue) {
@@ -78,28 +91,9 @@ export class LabeledPropRow extends PropRow {
                 vAlign = 'align-items-stretch';
                 break;
         }
-        let col = this.col + (label === undefined ? '-12' : 12 - this.labelSize);
-        this.cnCol = className(align, vAlign, col, 'd-flex');
-    }
-    render(key) {
-        let { onClick, bk } = this.prop;
-        let cn = className({
-            "cursor-pointer": onClick !== undefined,
-            "bg-white": bk === undefined,
-            "row": true
-        });
-        return React.createElement("div", { key: key, className: cn, onClick: onClick },
-            this.renderLabel(),
-            this.renderProp());
-    }
-    renderLabel() {
-        let { label } = this.prop;
-        if (label === undefined)
-            return null;
-        return React.createElement("label", { className: this.cnLabel }, label);
-    }
-    renderProp() {
-        return React.createElement("div", { className: this.cnCol }, this.renderPropBody());
+        let col = this.col + (label === undefined ? '-12' : '-9');
+        let cn = className(align, vAlign, col, 'd-flex');
+        return React.createElement("div", { className: cn }, this.renderPropBody());
     }
     renderPropBody() {
         return React.createElement("div", { className: "form-control-plaintext" }, this.renderPropContent());
@@ -151,7 +145,12 @@ export class ListPropRow extends LabeledPropRow {
     }
 }
 export class ComponentPropRow extends LabeledPropRow {
-    initCnCol() {
+    get prop() { return this._prop; }
+    renderPropBody() {
+        let { component } = this.prop;
+        return component;
+    }
+    renderProp() {
         let { label, full } = this.prop;
         let align, vAlign;
         switch (this.gridProps.alignValue) {
@@ -181,23 +180,12 @@ export class ComponentPropRow extends LabeledPropRow {
                 break;
         }
         let col;
-        if (full !== true) {
-            let colSize = 12;
-            if (label !== undefined)
-                colSize -= this.labelSize;
-            col = this.col + '-' + colSize;
-        }
+        if (full !== true)
+            col = this.col + (label === undefined ? '-12' : '-9');
         else
             col = 'w-100';
-        this.cnCol = className(align, vAlign, col, 'd-flex');
-    }
-    get prop() { return this._prop; }
-    renderPropBody() {
-        let { component } = this.prop;
-        return component;
-    }
-    renderProp() {
-        return React.createElement("div", { className: this.cnCol }, this.renderPropBody());
+        let cn = className(align, vAlign, col, 'd-flex');
+        return React.createElement("div", { className: cn }, this.renderPropBody());
     }
 }
 //# sourceMappingURL=row.js.map

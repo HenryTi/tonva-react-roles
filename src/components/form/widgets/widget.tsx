@@ -50,8 +50,6 @@ export abstract class Widget {
 
     protected get itemSchema(): ItemSchema {return this._itemSchema};
     protected get ui(): UiItem {return this._ui};
-    get itemType() {return this._itemSchema.type}
-    get uiType() {return this._ui?.widget}
 
     init() {
         this.rules = [];
@@ -228,15 +226,6 @@ export abstract class Widget {
         if (errorList.length === 0) return null;
         let {inNode} = this.context;
         let tag = inNode === true? 'span' : 'div';
-        let err = errorList[0];
-        return React.createElement(tag, 
-            {
-                key: err, 
-                className: 'text-danger d-inline-block my-2 ml-3'
-            },
-            <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
-        );
-        /*
         return errorList.map(err => React.createElement(tag, 
             {
                 key: err, 
@@ -244,6 +233,5 @@ export abstract class Widget {
             },
             <><i className="fa fa-exclamation-circle" /> &nbsp;{err}</>
         ));
-        */
     }
 }

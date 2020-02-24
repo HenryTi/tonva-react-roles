@@ -3,6 +3,7 @@ import { Form } from './form';
 import { UiSchema, UiArr, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
 import { Widget } from './widgets/widget';
+//import { ArrRow } from './arrRow';
 import { observable, computed } from 'mobx';
 import { ContextRule } from './rules';
 import { observer } from 'mobx-react';
@@ -83,23 +84,14 @@ export abstract class Context {
     }
 
     async submit(buttonName: string) {
-        let widget = this.widgets[buttonName];
-        /*
-        if (buttonName && (widget === undefined)) {
-            alert(`${buttonName} is not defined as a button or submit`);
-            return;
-        }
-        */
-        if (!buttonName || (widget && (widget.itemType === 'submit' || widget.uiType === 'submit'))) {
-            this.checkRules()
-            if (this.hasError === true) {
-                let err = '';
-                for (let ew of this.errorWidgets) {
-                    err += ew.name + ':\n' + ew.errors.join('\n');
-                }
-                console.error(err);
-                return;
+        this.checkRules()
+        if (this.hasError === true) {
+            let err = '';
+            for (let ew of this.errorWidgets) {
+                err += ew.name + ':\n' + ew.errors.join('\n');
             }
+            console.error(err);
+            return;
         }
         let {onButtonClick} = this.form.props;
         if (onButtonClick === undefined) {
@@ -109,6 +101,7 @@ export abstract class Context {
         let ret = await onButtonClick(buttonName, this);
         if (ret === undefined) return;
         this.setError(buttonName, ret);
+
     }
 
     checkFieldRules() {

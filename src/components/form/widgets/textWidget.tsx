@@ -12,11 +12,7 @@ export class TextWidget extends Widget {
         if (this.input === null) return;
         this.input.value = value;
     }
-    protected get placeholder() {
-        if (!this.ui) return this.name;
-        let {placeholder} = this.ui;
-        return placeholder;
-    }
+    protected get placeholder() {return (this.ui && this.ui.placeholder) || this.name}
     protected onKeyDown = async (evt:React.KeyboardEvent<HTMLInputElement>) => {
         this.internalOnKeyDown(evt);
         if (evt.keyCode !== 13) return;

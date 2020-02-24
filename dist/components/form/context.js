@@ -14,6 +14,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
+//import { ArrRow } from './arrRow';
 import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 export class Context {
@@ -97,23 +98,14 @@ export class Context {
     }
     submit(buttonName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let widget = this.widgets[buttonName];
-            /*
-            if (buttonName && (widget === undefined)) {
-                alert(`${buttonName} is not defined as a button or submit`);
-                return;
-            }
-            */
-            if (!buttonName || (widget && (widget.itemType === 'submit' || widget.uiType === 'submit'))) {
-                this.checkRules();
-                if (this.hasError === true) {
-                    let err = '';
-                    for (let ew of this.errorWidgets) {
-                        err += ew.name + ':\n' + ew.errors.join('\n');
-                    }
-                    console.error(err);
-                    return;
+            this.checkRules();
+            if (this.hasError === true) {
+                let err = '';
+                for (let ew of this.errorWidgets) {
+                    err += ew.name + ':\n' + ew.errors.join('\n');
                 }
+                console.error(err);
+                return;
             }
             let { onButtonClick } = this.form.props;
             if (onButtonClick === undefined) {

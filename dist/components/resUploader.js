@@ -98,17 +98,8 @@ ResUploader = __decorate([
     observer
 ], ResUploader);
 export { ResUploader };
-function formatSize(size, pointLength = 2, units) {
-    var unit;
-    units = units || ['B', 'K', 'M', 'G', 'TB'];
-    while ((unit = units.shift()) && size > 1024) {
-        size = size / 1024;
-    }
-    return (unit === 'B' ? size : size.toFixed(pointLength === undefined ? 2 : pointLength)) + unit;
-}
 const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 const largeSize = 800;
-const mediumSize = 400;
 const smallSize = 180;
 let ImageUploader = class ImageUploader extends React.Component {
     constructor(props) {
@@ -133,7 +124,7 @@ let ImageUploader = class ImageUploader extends React.Component {
                 reader.readAsDataURL(this.file);
                 reader.onload = () => __awaiter(this, void 0, void 0, function* () {
                     this.srcImage = reader.result;
-                    yield this.setSize(this.props.size);
+                    this.desImage = yield this.compress();
                 });
             }
         };
@@ -145,15 +136,9 @@ let ImageUploader = class ImageUploader extends React.Component {
                     //var that = this;
                     // 默认按比例压缩
                     let { width, height } = img;
-                    this.srcImgWidth = width;
-                    this.srcImgHeight = height;
                     let scale = width / height;
                     let w, h;
-                    if (width <= this.imgBaseSize && height <= this.imgBaseSize) {
-                        w = width;
-                        h = height;
-                    }
-                    else if (scale < 0) {
+                    if (scale < 0) {
                         w = this.imgBaseSize;
                         h = w / scale;
                     }
@@ -161,8 +146,6 @@ let ImageUploader = class ImageUploader extends React.Component {
                         h = this.imgBaseSize;
                         w = h * scale;
                     }
-                    this.desImgWidth = Math.round(w);
-                    this.desImgHeight = Math.round(h);
                     var quality = 0.7; // 默认图片质量为0.7
                     //生成canvas
                     var canvas = document.createElement('canvas');
@@ -176,10 +159,8 @@ let ImageUploader = class ImageUploader extends React.Component {
                     canvas.setAttributeNode(anh);
                     ctx.drawImage(img, 0, 0, w, h);
                     let base64 = canvas.toDataURL('image/' + this.suffix, quality);
-                    let blob = this.convertBase64UrlToBlob(base64);
-                    this.desImgSize = blob.size;
-                    if (this.desImgSize > 5000000) {
-                        this.fileError = "图片大于4M，无法上传";
+                    if (base64.length > 5000000) {
+                        this.fileError = "文件太大，无法上传";
                         this.enableUploadButton = false;
                     }
                     resolve(base64);
@@ -229,23 +210,7 @@ let ImageUploader = class ImageUploader extends React.Component {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.srcImage }))));
         };
         this.resId = props.id;
-    }
-    setSize(size) {
-        return __awaiter(this, void 0, void 0, function* () {
-            switch (size) {
-                default:
-                case 'sm':
-                    this.imgBaseSize = smallSize;
-                    break;
-                case 'md':
-                    this.imgBaseSize = mediumSize;
-                    break;
-                case 'lg':
-                    this.imgBaseSize = largeSize;
-                    break;
-            }
-            this.desImage = yield this.compress();
-        });
+        this.imgBaseSize = props.size === 'lg' ? largeSize : smallSize;
     }
     convertBase64UrlToBlob(urlData) {
         let arr = urlData.split(',');
@@ -257,26 +222,6 @@ let ImageUploader = class ImageUploader extends React.Component {
             u8arr[n] = bstr.charCodeAt(n);
         }
         return new Blob([u8arr], { type: mime });
-    }
-    levelDiv() {
-        if (this.props.size)
-            return;
-        let arr = [{ caption: '小图', size: 'sm' }];
-        if (this.srcImgHeight > mediumSize || this.srcImgWidth > mediumSize) {
-            arr.push({ caption: '中图', size: 'md' });
-        }
-        if (this.srcImgHeight > largeSize || this.srcImgWidth > largeSize) {
-            arr.push({ caption: '大图', size: 'lg' });
-        }
-        if (arr.length < 2)
-            return;
-        return React.createElement("div", null, arr.map((v, index) => {
-            let { caption, size } = v;
-            return React.createElement("label", { key: index, className: "mr-3" },
-                React.createElement("input", { type: "radio", name: "size", onChange: () => this.setSize(size), defaultChecked: index === 0 }),
-                " ",
-                caption);
-        }));
     }
     render() {
         let { label } = this.props;
@@ -291,28 +236,11 @@ let ImageUploader = class ImageUploader extends React.Component {
                             imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
-                    React.createElement(LMR, { left: this.uploaded === true ?
+                    React.createElement(LMR, { left: this.enableUploadButton && (this.uploaded === true ?
                             React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
                             :
-                                this.file && this.desImgSize > 0 && React.createElement("div", { className: "mb-3 d-flex align-items-end" },
-                                    React.createElement("div", { className: "mr-5" },
-                                        this.levelDiv(),
-                                        React.createElement("div", null,
-                                            "\u5206\u8FA8\u7387\uFF1A",
-                                            this.desImgWidth,
-                                            " x ",
-                                            this.desImgHeight,
-                                            "\u00A0 \u00A0 \u6587\u4EF6\u5927\u5C0F\uFF1A",
-                                            formatSize(this.desImgSize))),
-                                    React.createElement("button", { className: "btn btn-primary", disabled: !this.enableUploadButton, onClick: this.upload }, "\u4E0A\u4F20")), right: this.desImage &&
-                            React.createElement("button", { className: "btn btn-link btn-sm text-right mb-3", onClick: this.showOrgImage },
-                                "\u539F\u56FE\u5927\u5C0F: ",
-                                formatSize(this.file.size),
-                                React.createElement("br", null),
-                                "\u5206\u8FA8\u7387\uFF1A",
-                                this.srcImgWidth,
-                                " x ",
-                                this.srcImgHeight) })),
+                                React.createElement("div", { className: "mb-3" },
+                                    React.createElement("button", { className: "btn btn-primary", onClick: this.upload }, "\u4E0A\u4F20"))), right: this.desImage && React.createElement("button", { className: "btn btn-link btn-sm", onClick: this.showOrgImage }, "\u67E5\u770B\u539F\u56FE") })),
                 React.createElement("div", { className: "text-center", style: {
                         border: (this.uploaded === true ? '2px solid green' : '1px dotted gray'),
                         padding: '8px'
@@ -320,24 +248,6 @@ let ImageUploader = class ImageUploader extends React.Component {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     }
 };
-__decorate([
-    observable
-], ImageUploader.prototype, "file", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "desImgWidth", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "desImgHeight", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "desImgSize", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "srcImgWidth", void 0);
-__decorate([
-    observable
-], ImageUploader.prototype, "srcImgHeight", void 0);
 __decorate([
     observable
 ], ImageUploader.prototype, "isChanged", void 0);

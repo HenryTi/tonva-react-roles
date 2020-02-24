@@ -60,7 +60,11 @@ export class Entity {
             }
             this.setSchema(schema);
             this.buildFieldsTuid();
+            yield this.loadValues();
         });
+    }
+    loadValues() {
+        return __awaiter(this, void 0, void 0, function* () { });
     }
     // 如果要在setSchema里面保存cache，必须先调用clearSchema
     clearSchema() {
@@ -69,15 +73,15 @@ export class Entity {
     setSchema(schema) {
         if (schema === undefined)
             return;
-        let { name, version, role } = schema;
+        let { name, version } = schema;
         this.ver = version || 0;
-        if (name !== this.name)
-            this.jName = name;
-        //if (this.schema === undefined) 
+        this.setJName(name);
         this.cache.set(schema);
         this.schema = schema;
-        this.rolesBin = role;
-        //this.buildFieldsTuid();
+    }
+    setJName(name) {
+        if (name !== this.name)
+            this.jName = name;
     }
     buildFieldsTuid() {
         let { fields, arrs, returns } = this.schema;
@@ -91,9 +95,6 @@ export class Entity {
                 return undefined;
             return value;
         }, 4);
-    }
-    _hasRole(role) {
-        return this.uq.hasRole(role, this.rolesBin);
     }
     tuidFromName(fieldName, arrName) {
         if (this.schema === undefined)
@@ -389,15 +390,8 @@ export class Entity {
         return len;
     }
     to(ret, v, f) {
-        if (v === undefined)
-            return undefined;
-        if (v === null)
-            return null;
-        if (v === '')
-            return null;
         switch (f.type) {
             default: return v;
-            case 'char': return v;
             case 'datetime':
             case 'time':
                 let n = Number(v);
@@ -418,8 +412,6 @@ export class Entity {
                 if (_tuid === undefined)
                     return id;
                 return _tuid.boxId(id);
-            case 'bin':
-                return v;
         }
     }
     unpackArr(ret, arr, data, p) {

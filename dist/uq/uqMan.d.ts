@@ -11,8 +11,9 @@ import { Pending } from './pending';
 import { CreateBoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
-export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time' | 'bin';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00" | "00";
+import { Tag } from './tag';
+export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time';
+export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -48,10 +49,10 @@ export declare class UqMan {
     private readonly maps;
     private readonly histories;
     private readonly pendings;
+    private readonly tags;
     private readonly tuidsCache;
     private readonly localAccess;
     private readonly tvs;
-    private role;
     readonly localMap: LocalMap;
     readonly localModifyMax: LocalCache;
     readonly tuids: {
@@ -64,13 +65,11 @@ export declare class UqMan {
     readonly name: string;
     readonly uqApi: UqApi;
     readonly id: number;
-    readonly appId: number;
     uqVersion: number;
     constructor(uqs: UQsMan, uqData: UqData, createBoxId: CreateBoxId, tvs: {
         [entity: string]: (values: any) => JSX.Element;
     });
     get entities(): any;
-    hasRole(role: string, rolesBin: number): boolean;
     private createBoxIdFromTVs;
     tuid(name: string): Tuid;
     tuidDiv(name: string, div: string): TuidDiv;
@@ -90,6 +89,7 @@ export declare class UqMan {
     readonly mapArr: Map[];
     readonly historyArr: History[];
     readonly pendingArr: Pending[];
+    readonly tagArr: Tag[];
     init(): Promise<void>;
     loadEntities(): Promise<string>;
     buildEntities(entities: any): void;
@@ -103,6 +103,7 @@ export declare class UqMan {
     newQuery(name: string, id: number): Query;
     private newBook;
     private newMap;
+    private newTag;
     private newHistory;
     private newPending;
     newSheet(name: string, id: number): Sheet;
