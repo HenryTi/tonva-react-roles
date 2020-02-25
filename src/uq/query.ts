@@ -22,7 +22,7 @@ export class QueryPager<T extends any> extends PageItems<T> {
     }
 
     protected async load(param:any, pageStart:any, pageSize:number):Promise<T[]> {
-        if (pageStart === undefined) pageStart = 0;
+        //if (pageStart === undefined) pageStart = 0;
         let ret = await this.query.page(param, pageStart, pageSize);
         return ret;
     }

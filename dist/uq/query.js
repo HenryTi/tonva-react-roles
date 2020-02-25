@@ -36,8 +36,7 @@ export class QueryPager extends PageItems {
     }
     load(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (pageStart === undefined)
-                pageStart = 0;
+            //if (pageStart === undefined) pageStart = 0;
             let ret = yield this.query.page(param, pageStart, pageSize);
             return ret;
         });
