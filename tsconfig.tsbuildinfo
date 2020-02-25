@@ -846,7 +846,7 @@
         "signature": "63f24acdd32f514f8e07ac7d3c461055537912e75d8bc84373ff21b1d4133566"
       },
       "./src/uq/query.ts": {
-        "version": "21fb16ce2e2993e0baf787190f25b74ff3a37912b897eb87b677bd36fcb6aa1f",
+        "version": "1b9f38d8b99b6b26c0fbd9770813eecfbc3adbd6b0ba14305a2663a8d254eefa",
         "signature": "476f3c79d2cbfab5bc85ce6332f171955df1d30d902d66acd336a3d9b7cfa42d"
       },
       "./src/uq/caller.ts": {
