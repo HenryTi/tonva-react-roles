@@ -36,7 +36,7 @@ body, body>div, ul.va, ul.va>li, article.page-container {
     height:100%;
   }
   article.page-container {
-    max-width: 860px;
+    max-width: 992px;
     width: 100%;
     align-self: center;
   }
