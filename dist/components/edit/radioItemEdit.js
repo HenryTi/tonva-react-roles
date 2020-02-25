@@ -13,8 +13,8 @@ import { Page } from '../page';
 import { observer } from 'mobx-react';
 import { ItemEdit } from './itemEdit';
 export class RadioItemEdit extends ItemEdit {
-    constructor(itemSchema, uiItem, label, value) {
-        super(itemSchema, uiItem, label, value);
+    constructor() {
+        super(...arguments);
         this.onChange = (value) => {
             this.newValue = value;
             let preValue = this.value;
@@ -32,19 +32,25 @@ export class RadioItemEdit extends ItemEdit {
             let content = list ?
                 list.map((v, index) => {
                     let { title, value } = v;
-                    return React.createElement("label", { key: index, className: "px-3 py-2 cursor-pointer" },
-                        React.createElement("input", { name: name, type: "radio", value: value, onClick: () => this.onChange(value), defaultChecked: value === this.value }),
-                        " ",
-                        title || value,
-                        " \u00A0");
+                    return React.createElement("div", { key: index, className: "col" },
+                        React.createElement("label", { className: "px-3 py-2 cursor-pointer" },
+                            React.createElement("input", { name: name, type: "radio", value: value, onClick: () => this.onChange(value), defaultChecked: value === this.value }),
+                            " ",
+                            title || value,
+                            " \u00A0"));
                 })
                 :
                     React.createElement(React.Fragment, null, "no list defined");
             return React.createElement(Page, { header: '更改' + this.label, right: right },
-                React.createElement("div", { className: "m-3" }, content));
+                React.createElement("div", { className: "m-3" },
+                    React.createElement("div", { className: "row row-cols-2 row-cols-sm-3 row-cols-md-4" }, content)));
         });
+    }
+    get uiItem() { return this._uiItem; }
+    init() {
+        var _a;
         if (this.value === undefined) {
-            this.value = uiItem.defaultValue;
+            this.value = (_a = this._uiItem) === null || _a === void 0 ? void 0 : _a.defaultValue;
         }
     }
     internalStart() {

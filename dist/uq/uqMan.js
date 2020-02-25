@@ -18,7 +18,7 @@ import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
 import { ReactBoxId } from './tuid/reactBoxId';
-import { Tag } from './tag';
+import { Tag } from './tag/tag';
 export function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':

@@ -18,85 +18,71 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { StringItemEdit } from './stringItemEdit';
 import { ImageItemEdit } from './imageItemEdit';
-import { Image } from '../image';
 import { RadioItemEdit } from './radioItemEdit';
 import { SelectItemEdit } from './selectItemEdit';
 import { IdItemEdit } from './idItemEdit';
+import { TagSingleItemEdit, TagMultiItemEdit } from './tagItemEdit';
 let Edit = class Edit extends React.Component {
     constructor(props) {
         super(props);
         this.defaultSepClassName = 'border-top edit-sep-light-gray';
         this.defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
-        this.renderRow = (itemSchema, value) => {
-            let { name, type, required } = itemSchema;
-            let divValue;
-            let uiItem = this.uiSchema[name];
-            let label;
-            if (uiItem === undefined) {
-                label = name;
-            }
-            else {
-                label = uiItem.label;
-                let templet = uiItem.Templet;
-                if (templet !== undefined) {
-                    if (typeof templet === 'function')
-                        divValue = React.createElement("b", null, templet(value));
-                    else
-                        divValue = React.createElement("b", null, templet);
+        /*
+            private renderRow = (itemSchema: ItemSchema, value:any):JSX.Element => {
+                let {name, type, required} = itemSchema;
+                let divValue:any;
+                let uiItem = this.uiSchema[name];
+                let label:string;
+                if (uiItem === undefined) {
+                    label = name;
                 }
-                else if (value !== undefined) {
-                    switch (uiItem.widget) {
-                        case 'radio':
-                        case 'select':
-                            let { list } = uiItem;
-                            divValue = React.createElement("b", null, list.find(v => v.value === value).title);
+                else {
+                    label = uiItem.label;
+                    let templet = uiItem.Templet;
+                    if (templet !== undefined) {
+                        if (typeof templet === 'function')
+                            divValue = <b>{templet(value)}</b>;
+                        else
+                            divValue = <b>{templet}</b>;
+                    }
+                    else if (value !== undefined) {
+                        switch (uiItem.widget) {
+                            case 'radio':
+                            case 'select':
+                                let {list} = uiItem as UiSelectBase;
+                                divValue = <b>{list.find(v => v.value === value).title}</b>;
+                                break;
+                            case 'id':
+                                divValue = <b>no templet for {name}={value}</b>
+                                break;
+                        }
+                    }
+                }
+                if (divValue === undefined) {
+                    switch (type) {
+                        default:
+                            divValue = value? <b>{value}</b> : <small className="text-muted">(无)</small>;
                             break;
-                        case 'id':
-                            divValue = React.createElement("b", null,
-                                "no templet for ",
-                                name,
-                                "=",
-                                value);
+                        case 'image':
+                            divValue = <Image className="w-4c h-4c" src={value} />;
                             break;
                     }
                 }
+                let requireFlag = required===true && <span className="text-danger">*</span>;
+                return <div className={'d-flex align-items-center' + this.rowContainerClassName}
+                    onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, value)}>
+                    <div>{label} {requireFlag}</div>
+                    <div className="flex-fill d-flex justify-content-end">{divValue}</div>
+                    {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
+                </div>;
+            };
+        */
+        this.rowClick = (itemEdit /*, itemSchema: ItemSchema, uiItem: UiItem, label:string, value: any*/) => __awaiter(this, void 0, void 0, function* () {
+            if (itemEdit === undefined) {
+                alert('item has no edit');
+                return;
             }
-            //let value:any = this.props.data[name];
-            /*
-            if (uiItem !== undefined && value) {
-                switch (uiItem.widget) {
-                    case 'radio':
-                    case 'select':
-                        let {list} = uiItem as UiSelectBase;
-                        divValue = <b>{list.find(v => v.value === value).title}</b>;
-                        break;
-                    case 'id':
-                        divValue = <b>no templet for {name}={value}</b>
-                        break;
-                }
-            }
-            */
-            if (divValue === undefined) {
-                switch (type) {
-                    default:
-                        divValue = value ? React.createElement("b", null, value) : React.createElement("small", { className: "text-muted" }, "(\u65E0)");
-                        break;
-                    case 'image':
-                        divValue = React.createElement(Image, { className: "w-4c h-4c", src: value });
-                        break;
-                }
-            }
-            let requireFlag = required === true && React.createElement("span", { className: "text-danger" }, "*");
-            return React.createElement("div", { className: this.rowContainerClassName, onClick: () => __awaiter(this, void 0, void 0, function* () { return yield this.rowClick(itemSchema, uiItem, label, value); }) },
-                React.createElement("div", { className: "w-6c" },
-                    label,
-                    " ",
-                    requireFlag),
-                React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, divValue),
-                this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
-                    React.createElement("i", { className: "fa fa-angle-right" })));
-        };
-        this.rowClick = (itemSchema, uiItem, label, value) => __awaiter(this, void 0, void 0, function* () {
+            let { itemSchema, uiItem, value } = itemEdit;
             let { onItemChanged, onItemClick, stopEdit } = this.props;
             if (stopEdit === true)
                 return;
@@ -105,7 +91,7 @@ let Edit = class Edit extends React.Component {
                 yield onItemClick(itemSchema, uiItem, value);
                 return;
             }
-            let itemEdit = createItemEdit(itemSchema, uiItem, label, value);
+            //let itemEdit:ItemEdit = createItemEdit(itemSchema, uiItem, label, value);
             if (itemEdit === undefined) {
                 alert('undefined: let itemEdit:ItemEdit = createItemEdit(itemSchema, uiItem, label, value);');
                 return;
@@ -138,19 +124,33 @@ let Edit = class Edit extends React.Component {
         this.uiSchema = (uiSchema && uiSchema.items) || {};
     }
     render() {
-        let elItems = [];
         let { schema } = this.props;
-        let len = schema.length;
-        elItems.push(this.topBorder);
-        for (let i = 0; i < len; i++) {
-            let itemSchema = schema[i];
-            if (i > 0)
-                elItems.push(this.sep);
-            let value = this.props.data[itemSchema.name];
-            elItems.push(this.renderRow(itemSchema, value));
-        }
-        elItems.push(this.bottomBorder);
-        return React.createElement("div", null, elItems.map((v, index) => React.createElement(React.Fragment, { key: index }, v)));
+        let sep;
+        return React.createElement("div", null,
+            this.topBorder,
+            schema.map((itemSchema, index) => {
+                var _a, _b, _c;
+                let { name } = itemSchema;
+                let uiItem = (_a = this.uiSchema) === null || _a === void 0 ? void 0 : _a[name];
+                let label = ((_b = uiItem) === null || _b === void 0 ? void 0 : _b.label) || name;
+                let value = this.props.data[name];
+                let itemEdit = createItemEdit(itemSchema, uiItem, label, value);
+                let { required } = itemSchema;
+                let requireFlag = required === true && React.createElement("span", { className: "text-danger" }, "*");
+                let ret = React.createElement(React.Fragment, { key: index },
+                    sep,
+                    React.createElement("div", { className: 'd-flex align-items-center' + this.rowContainerClassName, onClick: () => __awaiter(this, void 0, void 0, function* () { return yield this.rowClick(itemEdit); }) },
+                        React.createElement("div", null,
+                            label,
+                            " ",
+                            requireFlag),
+                        React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, (_c = itemEdit) === null || _c === void 0 ? void 0 : _c.renderContent()),
+                        this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
+                            React.createElement("i", { className: "fa fa-angle-right" }))));
+                sep = this.sep;
+                return ret;
+            }),
+            this.bottomBorder);
     }
 };
 Edit = __decorate([
@@ -158,6 +158,7 @@ Edit = __decorate([
 ], Edit);
 export { Edit };
 function createItemEdit(itemSchema, uiItem, label, value) {
+    let ie;
     let itemEdit;
     if (uiItem !== undefined) {
         switch (uiItem.widget) {
@@ -175,21 +176,32 @@ function createItemEdit(itemSchema, uiItem, label, value) {
                 itemEdit = SelectItemEdit;
                 break;
             case 'radio':
-                return new RadioItemEdit(itemSchema, uiItem, label, value);
-        }
-    }
-    if (itemEdit === undefined) {
-        switch (itemSchema.type) {
-            case 'string':
-                itemEdit = StringItemEdit;
+                ie = new RadioItemEdit(itemSchema, uiItem, label, value);
                 break;
-            case 'image':
-                itemEdit = ImageItemEdit;
+            case 'tagSingle':
+                ie = new TagSingleItemEdit(itemSchema, uiItem, label, value);
+                break;
+            case 'tagMulti':
+                ie = new TagMultiItemEdit(itemSchema, uiItem, label, value);
                 break;
         }
     }
-    if (itemEdit === undefined)
-        return;
-    return new itemEdit(itemSchema, uiItem, label, value);
+    if (ie === undefined) {
+        if (itemEdit === undefined) {
+            switch (itemSchema.type) {
+                case 'string':
+                    itemEdit = StringItemEdit;
+                    break;
+                case 'image':
+                    itemEdit = ImageItemEdit;
+                    break;
+            }
+        }
+        if (itemEdit === undefined)
+            return;
+        ie = new itemEdit(itemSchema, uiItem, label, value);
+    }
+    ie.init();
+    return ie;
 }
 //# sourceMappingURL=edit.js.map

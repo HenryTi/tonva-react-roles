@@ -13,19 +13,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import * as React from 'react';
 import { nav } from '../nav';
-//import { Page } from '../page';
-//import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import { Image } from '../image';
 export class ItemEdit {
     constructor(itemSchema, uiItem, label, value) {
         this.isChanged = false;
-        this.itemSchema = itemSchema;
-        this.uiItem = uiItem;
+        this._itemSchema = itemSchema;
+        this._uiItem = uiItem;
         this.value = value;
         let { name } = itemSchema;
         this.name = name;
         this.label = label;
+    }
+    get itemSchema() { return this._itemSchema; }
+    get uiItem() { return this._uiItem; }
+    init() {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -36,6 +40,62 @@ export class ItemEdit {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.internalEnd();
         });
+    }
+    renderContent() {
+        let { name, type, required } = this._itemSchema;
+        let divValue;
+        let uiItem = this._uiItem;
+        let label;
+        if (uiItem === undefined) {
+            label = name;
+        }
+        else {
+            label = uiItem.label;
+            let templet = uiItem.Templet;
+            if (templet !== undefined) {
+                if (typeof templet === 'function')
+                    divValue = React.createElement("b", null, templet(this.value));
+                else
+                    divValue = React.createElement("b", null, templet);
+            }
+            else if (this.value !== undefined) {
+                switch (uiItem.widget) {
+                    case 'radio':
+                    case 'select':
+                        let { list } = uiItem;
+                        divValue = React.createElement("b", null, list.find(v => v.value === this.value).title);
+                        break;
+                    case 'id':
+                        divValue = React.createElement("b", null,
+                            "no templet for ",
+                            name,
+                            "=",
+                            this.value);
+                        break;
+                }
+            }
+        }
+        if (divValue === undefined) {
+            switch (type) {
+                default:
+                    divValue = this.value ? React.createElement("b", null, this.value) : React.createElement("small", { className: "text-muted" }, "(\u65E0)");
+                    break;
+                case 'image':
+                    divValue = React.createElement(Image, { className: "w-4c h-4c", src: this.value });
+                    break;
+            }
+        }
+        return divValue;
+        /*
+        let requireFlag = required===true && <span className="text-danger">*</span>;
+        return <div className={'d-flex align-items-center' + this.rowContainerClassName}
+            onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, this.value)}>
+            <div>{label} {requireFlag}</div>
+            <div className="flex-fill d-flex justify-content-end">{divValue}</div>
+            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
+        </div>;
+        //return this.value? <b>{this.value}</b> : <small className="text-muted">(无)</small>;
+        */
     }
     internalEnd() {
         return __awaiter(this, void 0, void 0, function* () { nav.pop(); });

@@ -23,6 +23,5 @@ export declare class Edit extends React.Component<EditProps> {
     private uiSchema;
     constructor(props: EditProps);
     render(): JSX.Element;
-    private renderRow;
     private rowClick;
 }

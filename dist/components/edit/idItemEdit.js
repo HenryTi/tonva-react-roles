@@ -41,6 +41,7 @@ export class IdItemEdit extends ItemEdit {
             return React.createElement(Page, { header: '更改' + this.label }, "ddd");
         });
     }
+    get uiItem() { return this._uiItem; }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {

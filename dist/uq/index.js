@@ -9,5 +9,5 @@ export * from './map';
 export * from './history';
 export * from './pending';
 export * from './uqsMan';
-export * from './tag';
+export * from './tag/tag';
 //# sourceMappingURL=index.js.map

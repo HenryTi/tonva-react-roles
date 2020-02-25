@@ -1,7 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-const radioStyle = { height: 'auto' };
+//const radioStyle:React.CSSProperties = {height: 'auto'};
 class TagWidget extends Widget {
     constructor() {
         super(...arguments);
@@ -25,8 +25,12 @@ class TagWidget extends Widget {
         for (let i in this.inputs)
             this.inputs[i].disabled = value;
     }
+}
+export class TagSingleWidget extends TagWidget {
     render() {
-        let { defaultValue, list } = this.ui;
+        let { valuesView } = this.ui;
+        if (valuesView === undefined)
+            return React.createElement(React.Fragment, null, "valuesView must be defined");
         let { isRow } = this.context;
         let rowKey;
         if (isRow === true) {
@@ -36,19 +40,21 @@ class TagWidget extends Widget {
         let name = this.name;
         if (rowKey !== undefined)
             name += '-' + rowKey;
-        return React.createElement("div", { className: cn, style: radioStyle },
-            React.createElement("div", { className: "row row-cols-3 row-cols-sm-4 row-cols-md-5" }, list.map((v, index) => {
-                return this.renderItem(v, index, name);
-            })));
-    }
-}
-export class TagSingleWidget extends TagWidget {
-    renderItem(item, index, widgetName) {
-        let { id, name, ext } = item;
-        return React.createElement("div", { className: "col" },
-            React.createElement("label", { key: index, className: "form-radio-inline" },
-                React.createElement("input", { ref: input => this.inputs[index] = input, type: "radio", name: widgetName, value: id, defaultChecked: this.defaultValue === id, onChange: this.onInputChange }),
-                name));
+        let options = {
+            className: cn,
+            inputName: name,
+            onInputChange: this.onInputChange
+        };
+        return valuesView.renderRadios(this.defaultValue, options);
+        /*
+        <div className={cn} style={radioStyle}>
+            <div className="row row-cols-3 row-cols-sm-4 row-cols-md-5">
+                {list.map((v,index) => {
+                    return this.renderItem(v, index, name);
+                })}
+            </div>
+        </div>;
+        */
     }
 }
 export class TagMultiWidget extends TagWidget {
@@ -61,7 +67,7 @@ export class TagMultiWidget extends TagWidget {
                 if (input.checked === true)
                     values.push(input.value);
             }
-            this.changeValue(values.join('\n'), true);
+            this.changeValue(values.join('|'), true);
         };
     }
     init() {
@@ -72,16 +78,41 @@ export class TagMultiWidget extends TagWidget {
                 this.defaultArr = [];
                 break;
             case 'string':
-                this.defaultArr = def.split('\n').map(v => Number(v));
+                this.defaultArr = def.split('|').map(v => Number(v));
                 break;
         }
     }
-    renderItem(item, index, widgetName) {
-        let { id, name, ext } = item;
-        return React.createElement("div", { className: "col" },
-            React.createElement("label", { key: index, className: "form-radio-inline" },
-                React.createElement("input", { ref: input => this.inputs[index] = input, type: "checkbox", value: id, defaultChecked: this.defaultArr.indexOf(id) >= 0, onChange: this.onInputChange }),
-                name));
+    /*
+    protected renderItem(item: TagListItem, index:number, widgetName:string):JSX.Element {
+        let {id, name, ext} = item;
+        return <div key={index} className="col"><label key={index} className="form-radio-inline">
+            <input ref={input=>this.inputs[index]=input} type="checkbox"
+                value={id} defaultChecked={this.defaultArr.indexOf(id)>=0}
+                onChange={this.onInputChange} />
+            {name}
+        </label></div>;
+    }
+    */
+    render() {
+        let { valuesView } = this.ui;
+        if (valuesView === undefined)
+            return React.createElement(React.Fragment, null, "valuesView must be defined");
+        let cn = classNames(this.className, 'py-0');
+        let options = {
+            className: cn,
+            inputs: this.inputs,
+            onInputChange: this.onInputChange
+        };
+        return valuesView.renderChecks(this.defaultValue, options);
+        /*
+        <div className={cn} style={radioStyle}>
+            <div className="row row-cols-3 row-cols-sm-4 row-cols-md-5">
+                {list.map((v,index) => {
+                    return this.renderItem(v, index, name);
+                })}
+            </div>
+        </div>;
+        */
     }
 }
 //# sourceMappingURL=tagWidget.js.map

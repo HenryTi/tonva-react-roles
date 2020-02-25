@@ -17,11 +17,8 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ImageUploader } from '../resUploader';
-//import { Image } from '../image';
 import { nav } from '../nav';
-//import { Page } from '../page';
 import { ItemEdit } from './itemEdit';
-//import { env } from '../../tool';
 export class ImageItemEdit extends ItemEdit {
     constructor() {
         super(...arguments);
@@ -83,7 +80,7 @@ export class ImageItemEdit extends ItemEdit {
             */
         });
     }
-    //@observable private overSize: boolean = false;
+    get uiItem() { return this._uiItem; }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
             this.resId = this.value;

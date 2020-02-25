@@ -40,6 +40,7 @@ export class StringItemEdit extends ItemEdit {
                     this.error && React.createElement("div", { className: "text-danger" }, this.error)));
         });
     }
+    get uiItem() { return this._uiItem; }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {

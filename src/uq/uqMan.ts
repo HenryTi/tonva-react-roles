@@ -12,7 +12,7 @@ import { CreateBoxId, BoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 import { ReactBoxId } from './tuid/reactBoxId';
-import { Tag } from './tag';
+import { Tag } from './tag/tag';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
     | 'datetime' | 'date' | 'time';

@@ -34,6 +34,7 @@ export class SelectItemEdit extends ItemEdit {
                 React.createElement("div", { className: "my-3" }, content));
         });
     }
+    get uiItem() { return this._uiItem; }
     internalStart() {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
