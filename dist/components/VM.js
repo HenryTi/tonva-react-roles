@@ -22,7 +22,7 @@ export class Controller {
         });
         this.res = res || {};
         this.x = this.res.x || {};
-        this.t = (str) => this.internalT(str);
+        this.t = this.internalT.bind(this);
     }
     get user() { return nav.user; }
     get isLogined() {

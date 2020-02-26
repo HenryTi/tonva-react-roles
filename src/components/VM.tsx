@@ -18,7 +18,7 @@ export abstract class Controller {
     readonly res: any;
 	readonly x: any;
 	private _t: any = {};
-	readonly t: (str:string)=>any;
+	t: (str:string)=>any;
     icon: string|JSX.Element;
     label:string;
     readonly isDev:boolean = env.isDevelopment;
@@ -31,7 +31,7 @@ export abstract class Controller {
     constructor(res:any) {
         this.res = res || {};
 		this.x = this.res.x || {};
-		this.t = (str:string):any => this.internalT(str);
+		this.t = this.internalT.bind(this);
 	}
 
 	internalT(str:string):any {

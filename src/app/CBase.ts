@@ -9,6 +9,7 @@ export abstract class CBase extends Controller {
         super(undefined);
         this._cApp = cApp;
         this._uqs = cApp && cApp.uqs;
+		this.t = this.internalT.bind(this);
 	}
 
     protected get uqs(): any {return this._uqs}
@@ -35,6 +36,7 @@ export abstract class CSub extends CBase {
     constructor(owner: CBase) {
         super(owner.cApp);
         this._owner = owner;
+		this.t = this.internalT.bind(this);
 	}
 
 	internalT(str:string):any {

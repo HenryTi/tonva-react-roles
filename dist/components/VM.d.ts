@@ -12,7 +12,7 @@ export declare abstract class Controller {
     readonly res: any;
     readonly x: any;
     private _t;
-    readonly t: (str: string) => any;
+    t: (str: string) => any;
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
