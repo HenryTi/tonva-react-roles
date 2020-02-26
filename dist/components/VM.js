@@ -22,7 +22,7 @@ export class Controller {
         });
         this.res = res || {};
         this.x = this.res.x || {};
-        this.t = this.internalT.bind(this);
+        this.t = (str) => this.internalT(str) || str;
     }
     get user() { return nav.user; }
     get isLogined() {
@@ -32,7 +32,7 @@ export class Controller {
         return user.id > 0;
     }
     internalT(str) {
-        return this._t[str] || str;
+        return this._t[str];
     }
     setRes(res) {
         if (res === undefined)

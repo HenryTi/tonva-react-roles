@@ -8,7 +8,12 @@ export interface Res<T extends KeyValueRes> {
     [lang:string]: T | {[district:string]: T};
 }
 
-export const resOptions = {
+export const resOptions:{
+	lang: string;
+	$lang: string;
+	district: string;
+	$district: string;
+} = {
 	lang: undefined,
 	$lang: undefined,
 	district: undefined,

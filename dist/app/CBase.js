@@ -4,7 +4,6 @@ export class CBase extends Controller {
         super(undefined);
         this._cApp = cApp;
         this._uqs = cApp && cApp.uqs;
-        this.t = this.internalT.bind(this);
     }
     get uqs() { return this._uqs; }
     get cApp() { return this._cApp; }
@@ -25,7 +24,6 @@ export class CSub extends CBase {
     constructor(owner) {
         super(owner.cApp);
         this._owner = owner;
-        this.t = this.internalT.bind(this);
     }
     internalT(str) {
         let r = super.internalT(str);
