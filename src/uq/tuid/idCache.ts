@@ -9,7 +9,8 @@ const maxCacheSize = 1000;
 
 export class IdCache {
     private queue: number[] = [];               // 每次使用，都排到队头
-    private cache = observable.map({}, {deep: false});    // 已经缓冲的
+	private cache = observable.map({}, {deep: false});    // 已经缓冲的
+	private loading:boolean = false;
 
     protected localArr:LocalArr;
     protected waitingIds: number[] = [];          // 等待loading的
@@ -107,7 +108,8 @@ export class IdCache {
 
     async cacheIds():Promise<void> {
         if (this.waitingIds.length === 0) return;
-        let tuidValues = await this.loadIds();
+		let tuidValues = await this.loadIds();
+		if (tuidValues === undefined) return;
         await this.cacheIdValues(tuidValues);
     }
 
@@ -133,8 +135,10 @@ export class IdCache {
     }
     protected divName:string = undefined;
     protected async loadIds(): Promise<any[]> {
-        //let ret = await this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
-        let ret = await this.loadTuidIdsOrLocal(this.waitingIds);
+		if (this.loading === true) return;
+		this.loading = true;
+		let ret = await this.loadTuidIdsOrLocal(this.waitingIds);
+		this.loading = false;
         return ret;
     }
     protected unpackTuidIds(values:string[]):any[] {

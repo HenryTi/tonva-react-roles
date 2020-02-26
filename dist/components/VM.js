@@ -13,6 +13,7 @@ import { Page } from './page';
 import { env } from '../tool';
 export class Controller {
     constructor(res) {
+        this.t = str => str;
         this.isDev = env.isDevelopment;
         this.onMessageReceive = (message) => __awaiter(this, void 0, void 0, function* () {
             yield this.onMessage(message);
@@ -26,6 +27,8 @@ export class Controller {
         if (user === undefined)
             return false;
         return user.id > 0;
+    }
+    tRes(res) {
     }
     dispose() {
         // message listener的清理
@@ -173,6 +176,7 @@ export class View {
         this.controller = controller;
         this.res = controller.res;
         this.x = controller.x;
+        this.t = controller.t;
     }
     get isDev() { return env.isDevelopment; }
     renderVm(vm, param) {

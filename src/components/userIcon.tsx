@@ -6,6 +6,43 @@ import { observable } from 'mobx';
 import { userApi } from '../net';
 import { User } from '../tool';
 
+export type UserLoader = (userId:number)=>Promise<any>;
+
+export class UserCache<T> {
+	private loader: UserLoader;
+	private map = observable(new Map<number, T>());
+
+	constructor(loader: UserLoader) {
+		if (loader === undefined) loader = (userId:number)=>userApi.user(userId);
+		this.loader = loader;
+	}
+
+	getValue(id:number|any):any {
+		if (id === null) return;
+		switch (typeof(id)) {
+			case 'object': 
+				id = id.id; 
+				if (!id) return;
+				break;
+		}
+		if (this.map.has(id) === false) {
+			this.map.set(id, null);
+			this.loader(id).then(v => {
+				if (!v) v = null;
+				this.map.set(id, v);
+			}).catch(reason => {
+				console.error(reason);
+			});
+			return undefined;
+		}
+		let src = this.map.get(id);
+		if (src === null) return;
+		return src;
+	}
+}
+
+const userCache = new UserCache(undefined);
+
 export interface UserIconProps {
     id: number;
     className?: string;
@@ -16,7 +53,7 @@ export interface UserIconProps {
 
 export const UserIcon = observer((props: UserIconProps):JSX.Element => {
     let {className, style, id, altImage, noneImage} = props;
-    let user = getUser(id);
+    let user = userCache.getValue(id);
     if (!user) {
         return <div className={classNames(className, 'image-none')} style={style}>
             {noneImage || <i className="fa fa-file-o" />}
@@ -46,33 +83,9 @@ export interface UserViewProps {
 
 export const UserView = observer((props: UserViewProps):JSX.Element => {
     let {id, render} = props;
-    let user = getUser(id);
+    let user = userCache.getValue(id);
     if (!user) {
         return <></>;
     }
     return render(user);
 });
-
-const map = observable(new Map<number, User>());
-
-function getUser(id: any):User {
-    if (id === null) return;
-    switch (typeof(id)) {
-        case 'object': 
-            id = id.id; 
-            if (!id) return;
-            break;
-    }    
-    if (map.has(id) === false) {
-        userApi.user(id).then(v => {
-            if (!v) v = null;
-            map.set(id, v);
-        }).catch(reason => {
-            console.error(reason);
-        });
-        return undefined;
-    }
-    let src = map.get(id);
-    if (src === null) return;
-    return src;
-}

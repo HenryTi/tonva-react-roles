@@ -15,6 +15,7 @@ export class IdCache {
     constructor(tuidLocal) {
         this.queue = []; // 每次使用，都排到队头
         this.cache = observable.map({}, { deep: false }); // 已经缓冲的
+        this.loading = false;
         this.waitingIds = []; // 等待loading的
         this.divName = undefined;
         this.tuidInner = tuidLocal;
@@ -109,6 +110,8 @@ export class IdCache {
             if (this.waitingIds.length === 0)
                 return;
             let tuidValues = yield this.loadIds();
+            if (tuidValues === undefined)
+                return;
             yield this.cacheIdValues(tuidValues);
         });
     }
@@ -142,8 +145,11 @@ export class IdCache {
     }
     loadIds() {
         return __awaiter(this, void 0, void 0, function* () {
-            //let ret = await this.tuidInner.loadTuidIds(this.divName, this.waitingIds);
+            if (this.loading === true)
+                return;
+            this.loading = true;
             let ret = yield this.loadTuidIdsOrLocal(this.waitingIds);
+            this.loading = false;
             return ret;
         });
     }

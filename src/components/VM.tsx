@@ -15,6 +15,7 @@ export interface ConfirmOptions {
 export abstract class Controller {
     readonly res: any;
     readonly x: any;
+	readonly t: (str:string)=>string = str=>str;
     icon: string|JSX.Element;
     label:string;
     readonly isDev:boolean = env.isDevelopment;
@@ -27,7 +28,11 @@ export abstract class Controller {
     constructor(res:any) {
         this.res = res || {};
         this.x = this.res.x || {};
-    }
+	}
+	
+	protected tRes(res:any) {
+		
+	}
 
     private receiveHandlerId:number;
     private disposer:()=>void;
@@ -193,12 +198,14 @@ export abstract class Controller {
 export abstract class View<C extends Controller> {
     protected controller: C;
     protected readonly res: any;
-    protected readonly x: any;
+	protected readonly x: any;
+	protected readonly t: (str:string)=>string;
 
     constructor(controller: C) {
         this.controller = controller;
         this.res = controller.res;
-        this.x = controller.x;
+		this.x = controller.x;
+		this.t = controller.t;
     }
 
     protected get isDev() {return  env.isDevelopment}

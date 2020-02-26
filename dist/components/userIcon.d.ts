@@ -1,5 +1,12 @@
 import * as React from 'react';
 import { User } from '../tool';
+export declare type UserLoader = (userId: number) => Promise<any>;
+export declare class UserCache<T> {
+    private loader;
+    private map;
+    constructor(loader: UserLoader);
+    getValue(id: number | any): any;
+}
 export interface UserIconProps {
     id: number;
     className?: string;

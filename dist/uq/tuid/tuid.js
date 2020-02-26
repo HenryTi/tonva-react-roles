@@ -136,7 +136,7 @@ export class TuidInner extends Tuid {
             //if (typeof cacheValue === 'object') return cacheValue;
             if (typeof id === 'object')
                 id = id.id;
-            let valuesText = this.localArr.getItem(id);
+            let valuesText = undefined; //this.localArr.getItem(id);
             let values;
             if (valuesText) {
                 values = JSON.parse(valuesText);
@@ -144,7 +144,7 @@ export class TuidInner extends Tuid {
             else {
                 values = yield new GetCaller(this, id).request();
                 if (values !== undefined) {
-                    this.localArr.setItem(id, JSON.stringify(values));
+                    // this.localArr.setItem(id, JSON.stringify(values));
                 }
             }
             if (values === undefined)

@@ -4,6 +4,7 @@ import { TuidInner, TuidDiv } from './tuid';
 export declare class IdCache {
     private queue;
     private cache;
+    private loading;
     protected localArr: LocalArr;
     protected waitingIds: number[];
     protected tuidInner: TuidInner;
