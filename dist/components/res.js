@@ -1,11 +1,15 @@
 import _ from 'lodash';
 export const resOptions = {
     lang: undefined,
+    $lang: undefined,
     district: undefined,
+    $district: undefined,
 };
 export function setResOptions(lang, district) {
     resOptions.lang = lang;
+    resOptions.$lang = '$' + lang;
     resOptions.district = district;
+    resOptions.$district = '$' + district;
 }
 (function () {
     let lang, district;
@@ -20,7 +24,7 @@ export function setResOptions(lang, district) {
         let parts = language.split('-');
         lang = parts[0];
         if (parts.length > 1)
-            district = parts[1];
+            district = parts[1].toUpperCase();
     }
     setResOptions(lang, district);
 }());

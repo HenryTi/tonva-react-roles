@@ -8,13 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
+import _ from 'lodash';
 import { nav } from './nav';
 import { Page } from './page';
 import { env } from '../tool';
+import { resOptions } from './res';
 export class Controller {
     constructor(res) {
-        this.t = str => str;
+        this._t = {};
         this.isDev = env.isDevelopment;
+        this.t = (str) => this._t[str] || str;
         this.onMessageReceive = (message) => __awaiter(this, void 0, void 0, function* () {
             yield this.onMessage(message);
         });
@@ -28,7 +31,21 @@ export class Controller {
             return false;
         return user.id > 0;
     }
-    tRes(res) {
+    setRes(res) {
+        if (res === undefined)
+            return;
+        let { $lang, $district } = resOptions;
+        _.merge(this._t, res);
+        if ($lang !== undefined) {
+            let l = res[$lang];
+            if (l !== undefined) {
+                _.merge(this._t, l);
+                let d = l[$district];
+                if (d !== undefined) {
+                    _.merge(this._t, d);
+                }
+            }
+        }
     }
     dispose() {
         // message listener的清理

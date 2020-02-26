@@ -11,14 +11,15 @@ export interface ConfirmOptions {
 export declare abstract class Controller {
     readonly res: any;
     readonly x: any;
-    readonly t: (str: string) => string;
+    private _t;
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
-    protected tRes(res: any): void;
+    protected setRes(res: any): void;
+    readonly t: (str: string) => string;
     private receiveHandlerId;
     private disposer;
     private dispose;

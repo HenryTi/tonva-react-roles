@@ -2,6 +2,12 @@ import { Controller } from "../components";
 export class CBase extends Controller {
     constructor(cApp) {
         super(undefined);
+        this.t = (str) => {
+            let r = super.t(str);
+            if (r !== undefined)
+                return r;
+            return this._cApp.t(str);
+        };
         this._cApp = cApp;
         this._uqs = cApp && cApp.uqs;
     }
@@ -17,6 +23,12 @@ export class CBase extends Controller {
 export class CSub extends CBase {
     constructor(owner) {
         super(owner.cApp);
+        this.t = (str) => {
+            let r = super.t(str);
+            if (r !== undefined)
+                return r;
+            return this._owner.t(str);
+        };
         this._owner = owner;
     }
     get owner() { return this._owner; }

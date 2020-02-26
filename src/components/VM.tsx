@@ -1,7 +1,9 @@
 import * as React from 'react';
+import _ from 'lodash';
 import {nav} from './nav';
 import {Page} from './page';
 import { User, env } from '../tool';
+import { resOptions } from './res';
 
 export interface ConfirmOptions {
     caption?: string;
@@ -14,8 +16,8 @@ export interface ConfirmOptions {
 
 export abstract class Controller {
     readonly res: any;
-    readonly x: any;
-	readonly t: (str:string)=>string = str=>str;
+	readonly x: any;
+	private _t: any = {};
     icon: string|JSX.Element;
     label:string;
     readonly isDev:boolean = env.isDevelopment;
@@ -30,9 +32,23 @@ export abstract class Controller {
         this.x = this.res.x || {};
 	}
 	
-	protected tRes(res:any) {
-		
+	protected setRes(res:any) {
+		if (res === undefined) return;
+		let {$lang, $district} = resOptions;
+		_.merge(this._t, res);
+		if ($lang !== undefined) {
+			let l = res[$lang];
+			if (l !== undefined) {
+				_.merge(this._t, l);
+				let d = l[$district];
+				if (d !== undefined) {
+					_.merge(this._t, d);
+				}
+			}
+		}		
 	}
+
+	readonly t = (str:string):string => this._t[str] || str;
 
     private receiveHandlerId:number;
     private disposer:()=>void;

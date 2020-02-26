@@ -8,14 +8,18 @@ export interface Res<T extends KeyValueRes> {
     [lang:string]: T | {[district:string]: T};
 }
 
-export const resOptions:{lang:string, district:string} = {
-    lang: undefined,
-    district: undefined,
+export const resOptions = {
+	lang: undefined,
+	$lang: undefined,
+	district: undefined,
+	$district: undefined,
 }
 
 export function setResOptions(lang:string, district:string) {
-    resOptions.lang = lang;
+	resOptions.lang = lang;
+	resOptions.$lang = '$' + lang;
     resOptions.district = district;
+    resOptions.$district = '$' + district;
 }
 
 (function() {
@@ -30,7 +34,7 @@ export function setResOptions(lang:string, district:string) {
     else {
         let parts = language.split('-');
         lang = parts[0];
-        if (parts.length > 1) district = parts[1];
+        if (parts.length > 1) district = parts[1].toUpperCase();
     }
     setResOptions(lang, district);
 }());
