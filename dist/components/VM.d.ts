@@ -12,14 +12,15 @@ export declare abstract class Controller {
     readonly res: any;
     readonly x: any;
     private _t;
+    readonly t: (str: string) => any;
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
+    internalT(str: string): any;
     protected setRes(res: any): void;
-    readonly t: (str: string) => any;
     private receiveHandlerId;
     private disposer;
     private dispose;

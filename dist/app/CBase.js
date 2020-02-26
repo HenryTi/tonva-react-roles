@@ -2,17 +2,17 @@ import { Controller } from "../components";
 export class CBase extends Controller {
     constructor(cApp) {
         super(undefined);
-        this.t = (str) => {
-            let r = super.t(str);
-            if (r !== undefined)
-                return r;
-            return this._cApp.t(str);
-        };
         this._cApp = cApp;
         this._uqs = cApp && cApp.uqs;
     }
     get uqs() { return this._uqs; }
     get cApp() { return this._cApp; }
+    internalT(str) {
+        let r = super.internalT(str);
+        if (r !== undefined)
+            return r;
+        return this._cApp.internalT(str);
+    }
     newC(type) {
         return new type(this.cApp);
     }
@@ -23,13 +23,13 @@ export class CBase extends Controller {
 export class CSub extends CBase {
     constructor(owner) {
         super(owner.cApp);
-        this.t = (str) => {
-            let r = super.t(str);
-            if (r !== undefined)
-                return r;
-            return this._owner.t(str);
-        };
         this._owner = owner;
+    }
+    internalT(str) {
+        let r = super.internalT(str);
+        if (r !== undefined)
+            return r;
+        return this._owner.internalT(str);
     }
     get owner() { return this._owner; }
 }

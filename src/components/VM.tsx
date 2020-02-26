@@ -18,6 +18,7 @@ export abstract class Controller {
     readonly res: any;
 	readonly x: any;
 	private _t: any = {};
+	readonly t: (str:string)=>any;
     icon: string|JSX.Element;
     label:string;
     readonly isDev:boolean = env.isDevelopment;
@@ -29,7 +30,12 @@ export abstract class Controller {
     }
     constructor(res:any) {
         this.res = res || {};
-        this.x = this.res.x || {};
+		this.x = this.res.x || {};
+		this.t = (str:string):any => this.internalT(str);
+	}
+
+	internalT(str:string):any {
+		return this._t[str] || str;
 	}
 	
 	protected setRes(res:any) {
@@ -47,8 +53,6 @@ export abstract class Controller {
 			}
 		}		
 	}
-
-	readonly t = (str:string):any => this._t[str] || str;
 
     private receiveHandlerId:number;
     private disposer:()=>void;

@@ -17,12 +17,12 @@ export class Controller {
     constructor(res) {
         this._t = {};
         this.isDev = env.isDevelopment;
-        this.t = (str) => this._t[str] || str;
         this.onMessageReceive = (message) => __awaiter(this, void 0, void 0, function* () {
             yield this.onMessage(message);
         });
         this.res = res || {};
         this.x = this.res.x || {};
+        this.t = (str) => this.internalT(str);
     }
     get user() { return nav.user; }
     get isLogined() {
@@ -30,6 +30,9 @@ export class Controller {
         if (user === undefined)
             return false;
         return user.id > 0;
+    }
+    internalT(str) {
+        return this._t[str] || str;
     }
     setRes(res) {
         if (res === undefined)
