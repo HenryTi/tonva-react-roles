@@ -48,7 +48,7 @@ export abstract class Controller {
 		}		
 	}
 
-	readonly t = (str:string):string => this._t[str] || str;
+	readonly t = (str:string):any => this._t[str] || str;
 
     private receiveHandlerId:number;
     private disposer:()=>void;

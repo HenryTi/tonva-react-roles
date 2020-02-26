@@ -19,7 +19,7 @@ export declare abstract class Controller {
     get isLogined(): boolean;
     constructor(res: any);
     protected setRes(res: any): void;
-    readonly t: (str: string) => string;
+    readonly t: (str: string) => any;
     private receiveHandlerId;
     private disposer;
     private dispose;
