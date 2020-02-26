@@ -650,8 +650,8 @@
         "signature": "56c39c27cd87f6ac2228840ec407a751d332bd9511b1de1f28f84a97945562f6"
       },
       "./src/components/resuploader.tsx": {
-        "version": "4abe1c8d8b59a38c18b46123ec3144d5332eef8a2db486bf6f6a124a026b8da8",
-        "signature": "d1ffcc3254fe4c0f81e96cc7c97a5ef6d0f013d9dac710448ac1542fb59a7c9e"
+        "version": "d06519dec996f489c968757a2d0081200e64063fa95a6d0d4920423a1b97e929",
+        "signature": "34527a38feaf28f107a397c99e4f8f59226e6038bb5462356a2040f3b1445b78"
       },
       "./src/components/edit/itemedit.tsx": {
         "version": "f27f6b8a591a4e6e28d41d9b957ed45e3606db5538a41cd07eafada34ef0f0c6",
@@ -4161,6 +4161,7 @@
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
       "./src/components/reloadpage.tsx",
+      "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
       "./src/components/form/formres.ts",
@@ -4181,9 +4182,7 @@
       "./src/components/form/widgets/buttonwidget.tsx",
       "./src/components/form/widgets/arrcomponent.tsx",
       "./src/components/image.tsx",
-      "./src/components/resuploader.tsx",
       "./src/components/edit/itemedit.tsx",
-      "./src/components/edit/imageitemedit.tsx",
       "./src/components/form/widgets/imagewidget.tsx",
       "./src/components/form/widgets/tagwidget.tsx",
       "./src/components/form/widgets/factory.tsx",
@@ -4243,10 +4242,9 @@
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/components/vm.tsx",
+      "./src/components/resuploader.tsx",
       "./src/components/index.ts",
-      "./src/app/cbase.ts",
-      "./src/app/index.ts",
+      "./src/components/edit/imageitemedit.tsx",
       "./src/net/uqapi.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/entry/res/login.ts",
@@ -4357,6 +4355,8 @@
       "./src/capp/startapp.ts",
       "./src/capp/index.ts",
       "./src/app/start.ts",
+      "./src/app/cbase.ts",
+      "./src/app/index.ts",
       "./src/index.ts",
       "./src/entry/forget.tsx",
       "./src/uq/boxid.tsx",
