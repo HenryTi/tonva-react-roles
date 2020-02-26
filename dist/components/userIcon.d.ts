@@ -5,6 +5,7 @@ export declare class UserCache<T> {
     private loader;
     private map;
     constructor(loader: UserLoader);
+    use(id: number | any): void;
     getValue(id: number | any): any;
 }
 export interface UserIconProps {

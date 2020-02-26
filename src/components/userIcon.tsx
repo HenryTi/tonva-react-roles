@@ -10,34 +10,46 @@ export type UserLoader = (userId:number)=>Promise<any>;
 
 export class UserCache<T> {
 	private loader: UserLoader;
-	private map = observable(new Map<number, T>());
+	private map = observable(new Map<number, T|number>());
 
 	constructor(loader: UserLoader) {
 		if (loader === undefined) loader = (userId:number)=>userApi.user(userId);
 		this.loader = loader;
 	}
 
+	use(id:number|any) {
+		if (!id) return;
+		if (typeof id === 'object') id = id.id;
+		if (!id) return;
+		id = Number(id);
+		let ret = this.map.get(id);
+		if (ret === undefined) {
+			this.map.set(id, id);
+		}
+	}
+
 	getValue(id:number|any):any {
-		if (id === null) return;
+		if (!id) return;
 		switch (typeof(id)) {
 			case 'object': 
 				id = id.id; 
 				if (!id) return;
 				break;
 		}
-		if (this.map.has(id) === false) {
-			this.map.set(id, null);
+		let ret = this.map.get(id);
+		if (typeof(ret) === 'number') {
+			if (ret < 0) return id;
+			this.map.set(id, -id);
 			this.loader(id).then(v => {
 				if (!v) v = null;
 				this.map.set(id, v);
 			}).catch(reason => {
 				console.error(reason);
 			});
-			return undefined;
+			return id;
 		}
-		let src = this.map.get(id);
-		if (src === null) return;
-		return src;
+		if (ret === null) return;
+		return ret;
 	}
 }
 
@@ -54,7 +66,9 @@ export interface UserIconProps {
 export const UserIcon = observer((props: UserIconProps):JSX.Element => {
     let {className, style, id, altImage, noneImage} = props;
     let user = userCache.getValue(id);
-    if (!user) {
+    switch (typeof user) {
+	case 'undefined':
+	case 'number':
         return <div className={classNames(className, 'image-none')} style={style}>
             {noneImage || <i className="fa fa-file-o" />}
         </div>;
@@ -84,8 +98,10 @@ export interface UserViewProps {
 export const UserView = observer((props: UserViewProps):JSX.Element => {
     let {id, render} = props;
     let user = userCache.getValue(id);
-    if (!user) {
-        return <></>;
+    switch (typeof user) {
+		case 'undefined':
+		case 'number':
+        	return <></>;
     }
     return render(user);
 });

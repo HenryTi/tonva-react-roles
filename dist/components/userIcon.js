@@ -11,8 +11,21 @@ export class UserCache {
             loader = (userId) => userApi.user(userId);
         this.loader = loader;
     }
+    use(id) {
+        if (!id)
+            return;
+        if (typeof id === 'object')
+            id = id.id;
+        if (!id)
+            return;
+        id = Number(id);
+        let ret = this.map.get(id);
+        if (ret === undefined) {
+            this.map.set(id, id);
+        }
+    }
     getValue(id) {
-        if (id === null)
+        if (!id)
             return;
         switch (typeof (id)) {
             case 'object':
@@ -21,8 +34,11 @@ export class UserCache {
                     return;
                 break;
         }
-        if (this.map.has(id) === false) {
-            this.map.set(id, null);
+        let ret = this.map.get(id);
+        if (typeof (ret) === 'number') {
+            if (ret < 0)
+                return id;
+            this.map.set(id, -id);
             this.loader(id).then(v => {
                 if (!v)
                     v = null;
@@ -30,20 +46,21 @@ export class UserCache {
             }).catch(reason => {
                 console.error(reason);
             });
-            return undefined;
+            return id;
         }
-        let src = this.map.get(id);
-        if (src === null)
+        if (ret === null)
             return;
-        return src;
+        return ret;
     }
 }
 const userCache = new UserCache(undefined);
 export const UserIcon = observer((props) => {
     let { className, style, id, altImage, noneImage } = props;
     let user = userCache.getValue(id);
-    if (!user) {
-        return React.createElement("div", { className: classNames(className, 'image-none'), style: style }, noneImage || React.createElement("i", { className: "fa fa-file-o" }));
+    switch (typeof user) {
+        case 'undefined':
+        case 'number':
+            return React.createElement("div", { className: classNames(className, 'image-none'), style: style }, noneImage || React.createElement("i", { className: "fa fa-file-o" }));
     }
     let { icon } = user;
     if (!icon) {
@@ -63,8 +80,10 @@ export const UserIcon = observer((props) => {
 export const UserView = observer((props) => {
     let { id, render } = props;
     let user = userCache.getValue(id);
-    if (!user) {
-        return React.createElement(React.Fragment, null);
+    switch (typeof user) {
+        case 'undefined':
+        case 'number':
+            return React.createElement(React.Fragment, null);
     }
     return render(user);
 });
