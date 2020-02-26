@@ -215,7 +215,7 @@ export abstract class View<C extends Controller> {
     protected controller: C;
     protected readonly res: any;
 	protected readonly x: any;
-	protected readonly t: (str:string)=>string;
+	protected readonly t: (str:string)=>any;
 
     constructor(controller: C) {
         this.controller = controller;

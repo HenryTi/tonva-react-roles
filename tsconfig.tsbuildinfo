@@ -566,8 +566,8 @@
         "signature": "19ed274fcfddb2cf5c3b68f40371a45d74a3d9074c7958a648d1300e47ae9793"
       },
       "./src/components/vm.tsx": {
-        "version": "aadae11d6f0505ac4473a7168d4c425041dabd925cb62c2125839b7af20ed8f3",
-        "signature": "c6bd13245c6c107b86563b30d3b4fa485bd087190a60fdaa29fafa16109b01bc"
+        "version": "166d287e95f868e8282e8cc684cdc7b5050e00f61b1ef1409c222e63e7127475",
+        "signature": "305154b12f1b1d21f7d6aa287926f66e810b437febecd45236ea10d3b59d03ec"
       },
       "./src/components/schema/schema.ts": {
         "version": "6e3017c85594828fe07b3f7293f0a2e0cf20bf21c7bf0a0b40e3587c37ef598b",
@@ -4161,7 +4161,6 @@
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
       "./src/components/reloadpage.tsx",
-      "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
       "./src/components/form/formres.ts",
@@ -4182,7 +4181,9 @@
       "./src/components/form/widgets/buttonwidget.tsx",
       "./src/components/form/widgets/arrcomponent.tsx",
       "./src/components/image.tsx",
+      "./src/components/resuploader.tsx",
       "./src/components/edit/itemedit.tsx",
+      "./src/components/edit/imageitemedit.tsx",
       "./src/components/form/widgets/imagewidget.tsx",
       "./src/components/form/widgets/tagwidget.tsx",
       "./src/components/form/widgets/factory.tsx",
@@ -4242,9 +4243,8 @@
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/components/resuploader.tsx",
+      "./src/components/vm.tsx",
       "./src/components/index.ts",
-      "./src/components/edit/imageitemedit.tsx",
       "./src/net/uqapi.ts",
       "./src/components/fetcherrorview.tsx",
       "./src/entry/res/login.ts",
