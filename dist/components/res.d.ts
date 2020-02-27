@@ -14,5 +14,6 @@ export declare const resOptions: {
 };
 export declare function setResOptions(lang: string, district: string): void;
 export declare function resLang<T extends KeyValueRes>(res: Res<T>): T;
-export declare function setRes(res: any): void;
+export declare function setRes(taget: any, res: any): void;
+export declare function setGlobalRes(res: any): void;
 export declare function t(str: string): any;

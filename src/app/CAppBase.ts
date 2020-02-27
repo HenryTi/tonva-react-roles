@@ -1,5 +1,5 @@
 //import _ from 'lodash';
-import { Controller, nav, t, setRes } from "../components";
+import { Controller, nav, t, setRes, setGlobalRes } from "../components";
 import { UQsMan, TVs } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";
@@ -52,7 +52,7 @@ export abstract class CAppBase extends Controller {
 	}
 	
 	protected setRes(res:any) {
-		setRes(res);
+		setGlobalRes(res);
 	}
 
     protected async beforeStart():Promise<boolean> {

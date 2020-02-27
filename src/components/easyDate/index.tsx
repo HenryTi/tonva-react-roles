@@ -1,7 +1,39 @@
 import * as React from 'react';
+import { setRes } from '../../components';
 
 export interface EasyDateProps {
     date: Date | number;
+}
+
+//type YMD = (year:number, month:number, date:number) => string;
+//type MD = (month:number, date:number) => string;
+
+const timeRes = {
+	md: (month:number, date:number) => `${month}-${date}`,
+	ymd: (year:number, month:number, date:number) => `${year}-${month}-${date}`,
+	yesterday: 'Yesterday',
+	today: 'Today',
+	tomorrow: 'Tomorrow',
+	$zh: {
+		md: (month:number, date:number) => `${month}月${date}日`,
+		ymd: (year:number, month:number, date:number) => `${year}年${month}月${date}日`,
+		yesterday: '昨天',
+		today: '今天',
+		tomorrow: '明天',
+	},
+	$en: {
+		md: (month:number, date:number) => `${month}-${date}`,
+		ymd: (year:number, month:number, date:number) => `${year}-${month}-${date}`,
+		yesterday: 'Yesterday',
+		today: 'Today',
+		tomorrow: 'Tomorrow',
+	}
+}
+
+setRes(timeRes, timeRes);
+
+function tt(str:string, ...params:number[]):string {
+	return timeRes[str](...params);
 }
 
 function renderDate(vDate:Date|number, withTime:boolean) {
@@ -27,19 +59,19 @@ function renderDate(vDate:Date|number, withTime:boolean) {
 
     if (tick < -24*3600*1000) {
         if (year === nowYear)
-            return month+'月'+_date+'日' + hm;
+            return tt('md', month, _date) + hm;
         else
-            return year+'年'+month+'月'+_date+'日' + hm;
+            return tt('ymd', year, month, _date) + hm;
     }
     if (tick < 24*3600*1000) {
         return _date!==nDate? 
-            (tick < 0? '明天 ' : '昨天 ') + hm 
-            : withTime===true? hm : '今天';
+            tt(tick < 0? 'tomorrow' : 'yesterday') + hm 
+            : withTime===true? hm : tt('today');
     }
     if (year === nowYear) {
-        return month+'月'+_date+'日';
+        return tt('md', month, _date);
     }
-    return year+'年'+month+'月'+_date+'日';
+    return tt('ymd', year, month, _date);
 }
 
 
