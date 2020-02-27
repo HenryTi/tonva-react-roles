@@ -51,21 +51,24 @@ export function resLang(res) {
     return ret;
 }
 const resGlobal = {};
-export function setRes(taget, res) {
+export function setRes(target, res) {
     if (res === undefined)
         return;
     let { $lang, $district } = resOptions;
-    _.merge(taget, res);
+    _.merge(target, res);
     if ($lang !== undefined) {
         let l = res[$lang];
         if (l !== undefined) {
-            _.merge(taget, l);
+            _.merge(target, l);
             let d = l[$district];
             if (d !== undefined) {
-                _.merge(taget, d);
+                _.merge(target, d);
             }
         }
     }
+    return function (str) {
+        return target[str] || str;
+    };
 }
 export function setGlobalRes(res) {
     setRes(resGlobal, res);

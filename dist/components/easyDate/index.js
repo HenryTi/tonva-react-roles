@@ -5,9 +5,9 @@ import { setRes } from '../../components';
 const timeRes = {
     md: (month, date) => `${month}-${date}`,
     ymd: (year, month, date) => `${year}-${month}-${date}`,
-    yesterday: 'Yesterday',
+    yesterday: 'Yday',
     today: 'Today',
-    tomorrow: 'Tomorrow',
+    tomorrow: 'Tmw',
     $zh: {
         md: (month, date) => `${month}月${date}日`,
         ymd: (year, month, date) => `${year}年${month}月${date}日`,
@@ -18,14 +18,14 @@ const timeRes = {
     $en: {
         md: (month, date) => `${month}-${date}`,
         ymd: (year, month, date) => `${year}-${month}-${date}`,
-        yesterday: 'Yesterday',
+        yesterday: 'Yday',
         today: 'Today',
-        tomorrow: 'Tomorrow',
+        tomorrow: 'Tmw',
     }
 };
 setRes(timeRes, timeRes);
-function tt(str, ...params) {
-    return timeRes[str](...params);
+function tt(str) {
+    return timeRes[str];
 }
 function renderDate(vDate, withTime) {
     if (!vDate)
@@ -52,22 +52,22 @@ function renderDate(vDate, withTime) {
     month = d.getMonth() + 1;
     year = d.getFullYear();
     nowYear = now.getFullYear();
-    hm = withTime === true ? ' ' + hour + ((minute < 10 ? ':0' : ':') + minute) : '';
+    hm = withTime === true ? hour + ((minute < 10 ? ':0' : ':') + minute) : '';
     if (tick < -24 * 3600 * 1000) {
         if (year === nowYear)
-            return tt('md', month, _date) + hm;
+            return tt('md')(month, _date) + ' ' + hm;
         else
-            return tt('ymd', year, month, _date) + hm;
+            return tt('ymd')(year, month, _date) + ' ' + hm;
     }
     if (tick < 24 * 3600 * 1000) {
         return _date !== nDate ?
-            tt(tick < 0 ? 'tomorrow' : 'yesterday') + hm
+            tt(tick < 0 ? 'tomorrow' : 'yesterday') + ' ' + hm
             : withTime === true ? hm : tt('today');
     }
     if (year === nowYear) {
-        return tt('md', month, _date);
+        return tt('md')(month, _date);
     }
-    return tt('ymd', year, month, _date);
+    return tt('ymd')(year, month, _date);
 }
 export class EasyDate extends React.Component {
     render() {
