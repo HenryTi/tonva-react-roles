@@ -2,12 +2,14 @@ import { IObservableArray } from 'mobx';
 export declare abstract class PageItems<T> {
     constructor(itemObservable?: boolean);
     private isFirst;
+    private itemAction;
     loading: boolean;
     private beforeLoad;
     protected loaded: boolean;
     protected _items: IObservableArray<T>;
     allLoaded: boolean;
     get items(): IObservableArray<T>;
+    setEachItem(itemAction: (item: T) => void): void;
     topDiv: string;
     bottomDiv: string;
     scrollToTop(): void;

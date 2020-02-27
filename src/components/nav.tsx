@@ -951,10 +951,12 @@ export class Nav {
         this.push(<ConfirmReloadPage confirm={(ok:boolean):Promise<void> => {
             if (ok === true) {
                 this.showReloadPage('彻底升级');
+				localStorage.clear();
+				/*
                 this.local.readToMemory();
-                //localStorage.clear();
                 env.localDb.removeAll();
-                this.local.saveToLocalStorage();
+				this.local.saveToLocalStorage();
+				*/
             }
             else {
                 this.pop();

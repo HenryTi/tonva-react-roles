@@ -439,10 +439,12 @@ export class Nav {
             this.push(React.createElement(ConfirmReloadPage, { confirm: (ok) => {
                     if (ok === true) {
                         this.showReloadPage('彻底升级');
+                        localStorage.clear();
+                        /*
                         this.local.readToMemory();
-                        //localStorage.clear();
                         env.localDb.removeAll();
                         this.local.saveToLocalStorage();
+                        */
                     }
                     else {
                         this.pop();

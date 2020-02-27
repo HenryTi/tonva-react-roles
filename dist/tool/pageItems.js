@@ -35,6 +35,9 @@ export class PageItems {
             return undefined;
         return this._items;
     }
+    setEachItem(itemAction) {
+        this.itemAction = itemAction;
+    }
     scrollToTop() {
         this.topDiv = '$$' + uid();
     }
@@ -89,6 +92,11 @@ export class PageItems {
             this.loading = false;
             this.loaded = true;
             let len = ret.length;
+            if (this.itemAction !== undefined) {
+                for (let i = 0; i < len; i++) {
+                    this.itemAction(ret[i]);
+                }
+            }
             if ((this.isFirst === true && len > this.firstSize) ||
                 (this.isFirst === false && len > this.pageSize)) {
                 this.allLoaded = false;

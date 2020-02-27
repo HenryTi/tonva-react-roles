@@ -126,6 +126,8 @@ export class VErrorsPage extends VPage {
         this.page = (errors) => {
             return React.createElement(Page, { header: "ERROR" },
                 React.createElement("div", { className: "m-3" },
+                    React.createElement("div", { className: "p-3 d-flex justify-content-center align-items-center" },
+                        React.createElement("button", { className: "btn btn-danger", onClick: nav.resetAll }, "\u91CD\u542F\u7F51\u9875")),
                     React.createElement("div", null, "Load Uqs \u53D1\u751F\u9519\u8BEF\uFF1A"),
                     errors.errors.map((r, i) => React.createElement("div", { key: i }, r))));
         };

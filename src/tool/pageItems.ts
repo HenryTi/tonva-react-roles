@@ -5,7 +5,8 @@ export abstract class PageItems<T> {
     constructor(itemObservable:boolean = false) {
         this._items = observable.array<T>([], {deep:itemObservable});
     }
-    private isFirst: boolean = true;
+	private isFirst: boolean = true;
+	private itemAction: (item:T) => void;
     @observable loading: boolean = false;
     @observable private beforeLoad: boolean = true;
     @observable protected loaded: boolean = false;
@@ -15,7 +16,11 @@ export abstract class PageItems<T> {
         if (this.beforeLoad === true) return null;
         if (this.loaded === false) return undefined;
         return this._items;
-    }
+	}
+	
+	setEachItem(itemAction: (item:T) => void) {
+		this.itemAction = itemAction;
+	}
 
     @observable topDiv:string;
     @observable bottomDiv:string;
@@ -75,10 +80,15 @@ export abstract class PageItems<T> {
         let ret = await this.load(
                 this.param, 
                 this.pageStart,
-                pageSize);
+				pageSize);
         this.loading = false;
         this.loaded = true;
-        let len = ret.length;
+		let len = ret.length;
+		if (this.itemAction !== undefined) {
+			for (let i=0; i<len; i++) {
+				this.itemAction(ret[i]);
+			}
+		}
         if ((this.isFirst===true && len>this.firstSize) ||
             (this.isFirst===false && len>this.pageSize))
         {
