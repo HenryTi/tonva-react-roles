@@ -63,3 +63,23 @@ export function resLang<T extends KeyValueRes>(res:Res<T>):T {
     }
     return ret;
 }
+
+const resGlobal:any = {};
+export function setRes(res: any) {
+	if (res === undefined) return;
+	let {$lang, $district} = resOptions;
+	_.merge(resGlobal, res);
+	if ($lang !== undefined) {
+		let l = res[$lang];
+		if (l !== undefined) {
+			_.merge(resGlobal, l);
+			let d = l[$district];
+			if (d !== undefined) {
+				_.merge(resGlobal, d);
+			}
+		}
+	}		
+}
+export function t(str:string):any {
+	return resGlobal[str] || str;
+}

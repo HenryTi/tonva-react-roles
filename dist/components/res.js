@@ -50,4 +50,24 @@ export function resLang(res) {
     }
     return ret;
 }
+const resGlobal = {};
+export function setRes(res) {
+    if (res === undefined)
+        return;
+    let { $lang, $district } = resOptions;
+    _.merge(resGlobal, res);
+    if ($lang !== undefined) {
+        let l = res[$lang];
+        if (l !== undefined) {
+            _.merge(resGlobal, l);
+            let d = l[$district];
+            if (d !== undefined) {
+                _.merge(resGlobal, d);
+            }
+        }
+    }
+}
+export function t(str) {
+    return resGlobal[str] || str;
+}
 //# sourceMappingURL=res.js.map

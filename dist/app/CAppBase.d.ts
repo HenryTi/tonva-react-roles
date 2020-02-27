@@ -23,6 +23,8 @@ export declare abstract class CAppBase extends Controller {
     appUnits: any[];
     constructor(config: AppConfig);
     get uqs(): any;
+    internalT(str: string): any;
+    protected setRes(res: any): void;
     protected beforeStart(): Promise<boolean>;
     userFromId(userId: number): Promise<any>;
     private load;
