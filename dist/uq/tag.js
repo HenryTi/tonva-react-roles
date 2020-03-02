@@ -15,7 +15,7 @@ export class Tag extends Entity {
             if (this.values !== undefined)
                 return this.values;
             this.values = [];
-            let ret = yield this.uqApi.get('tag/values' + this.name);
+            let ret = yield this.uqApi.get('tag/values/' + this.name);
             if (ret === undefined)
                 return;
             let lines = ret.split('\n');
