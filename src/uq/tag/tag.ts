@@ -34,7 +34,7 @@ export class Tag extends Entity {
 	async loadValues():Promise<TagValue[]> {
 		if (this.values !== undefined) return this.values;
 		this.values = [];
-		let ret = await this.uqApi.get('tag/values' + this.name);
+		let ret = await this.uqApi.get('tag/values/' + this.name);
 		if (ret === undefined) return;
 		let lines = (ret as string).split('\n');
 		for (let line of lines) {
