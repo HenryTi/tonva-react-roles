@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { nav } from './nav';
+import { Loading } from './loading';
 import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
@@ -112,13 +113,13 @@ interface ImageUploaderProps {
     onSaved?: (imageId:string) => Promise<void>;
 }
 
-const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 const largeSize = 800;
 const mediumSize = 400;
 const smallSize = 180;
 
 @observer
 export class ImageUploader extends React.Component<ImageUploaderProps> {
+	private static imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
     private imgBaseSize: number;
     private suffix: string;
     private resUploader: ResUploader;
@@ -149,8 +150,8 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
             this.file = evt.target.files[0];
             let pos = this.file.name.lastIndexOf('.');
             if (pos >= 0) this.suffix = this.file.name.substr(pos+1).toLowerCase();
-            if(imageTypes.indexOf(this.suffix) < 0){
-                this.fileError = `图片类型必须是 ${imageTypes.join(', ')} 中的一种`;
+            if(ImageUploader.imageTypes.indexOf(this.suffix) < 0){
+                this.fileError = `图片类型必须是 ${ImageUploader.imageTypes.join(', ')} 中的一种`;
                 return;
             }
             let reader = new FileReader();
@@ -307,7 +308,7 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                             multiple={false} maxSize={2048} 
                             label="选择图片文件"
                             onFilesChange={this.onFileChange} />
-                        <div className="small text-muted">支持 {imageTypes.join(', ')} 格式图片。</div>
+                        <div className="small text-muted">支持 {ImageUploader.imageTypes.join(', ')} 格式图片。</div>
                         {this.fileError && <div className="text-danger">{this.fileError}</div>}
                     </div>
                     <LMR left=
@@ -368,7 +369,8 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
     @observable private resId: string;
     @observable private enableUploadButton: boolean = false;
     @observable private fileError: string;
-    @observable private uploaded: boolean = false;
+	@observable private uploaded: boolean = false;
+	@observable private uploading: boolean = false;
 
     constructor(props: AudioUploaderProps) {
         super(props);
@@ -383,7 +385,7 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
             this.file = evt.target.files[0];
             let pos = this.file.name.lastIndexOf('.');
             if (pos >= 0) this.suffix = this.file.name.substr(pos+1).toLowerCase();
-            if(imageTypes.indexOf(this.suffix) < 0){
+            if(AudioUploader.audioTypes.indexOf(this.suffix) < 0){
                 this.fileError = `音频类型必须是 ${AudioUploader.audioTypes.join(', ')} 中的一种`;
                 return;
             }
@@ -409,7 +411,8 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
     }
 
     private upload = async () => {
-        if (!this.resUploader) return;
+		if (!this.resUploader) return;
+		this.uploading = true;
         let formData = new FormData();
         let blob = this.convertBase64UrlToBlob(this.content);
         formData.append('image', blob, this.file.name);
@@ -461,17 +464,18 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
                     {
                         this.uploaded === true? 
                             <div className="text-success p-2">上传成功！</div>
-                            :
-                            this.file && this.content && <div className="mb-3 d-flex align-items-end">
-                                <div className="mr-5">
-                                    <div>
-                                    文件大小：{formatSize(this.fileSize)}
-                                    </div>
-                                </div>
-                                <button className="btn btn-primary" 
-                                    disabled={!this.enableUploadButton}
-                                    onClick={this.upload}>上传</button>
-                            </div>
+							:
+							this.uploading === true?
+								<div className="m-3"><Loading /></div>
+								:
+								this.file && this.content && <div className="m-3">
+									<div className="mb-3">
+										文件大小：{formatSize(this.fileSize)}
+									</div>
+									<button className="btn btn-primary" 
+										disabled={!this.enableUploadButton}
+										onClick={this.upload}>上传</button>
+								</div>
 					}
 			/>
         </Page>;

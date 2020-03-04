@@ -13,9 +13,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var AudioUploader_1;
+var ImageUploader_1, AudioUploader_1;
 import * as React from 'react';
 import { nav } from './nav';
+import { Loading } from './loading';
 import { Image as ImageControl } from './image';
 import { Page } from './page';
 import { observer } from 'mobx-react';
@@ -107,11 +108,10 @@ function formatSize(size, pointLength = 2, units) {
     }
     return (unit === 'B' ? size : size.toFixed(pointLength === undefined ? 2 : pointLength)) + unit;
 }
-const imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 const largeSize = 800;
 const mediumSize = 400;
 const smallSize = 180;
-let ImageUploader = class ImageUploader extends React.Component {
+let ImageUploader = ImageUploader_1 = class ImageUploader extends React.Component {
     constructor(props) {
         super(props);
         this.isChanged = false;
@@ -126,8 +126,8 @@ let ImageUploader = class ImageUploader extends React.Component {
                 let pos = this.file.name.lastIndexOf('.');
                 if (pos >= 0)
                     this.suffix = this.file.name.substr(pos + 1).toLowerCase();
-                if (imageTypes.indexOf(this.suffix) < 0) {
-                    this.fileError = `图片类型必须是 ${imageTypes.join(', ')} 中的一种`;
+                if (ImageUploader_1.imageTypes.indexOf(this.suffix) < 0) {
+                    this.fileError = `图片类型必须是 ${ImageUploader_1.imageTypes.join(', ')} 中的一种`;
                     return;
                 }
                 let reader = new FileReader();
@@ -289,7 +289,7 @@ let ImageUploader = class ImageUploader extends React.Component {
                         React.createElement(ResUploader, { ref: v => this.resUploader = v, multiple: false, maxSize: 2048, label: "\u9009\u62E9\u56FE\u7247\u6587\u4EF6", onFilesChange: this.onFileChange }),
                         React.createElement("div", { className: "small text-muted" },
                             "\u652F\u6301 ",
-                            imageTypes.join(', '),
+                            ImageUploader_1.imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
                     React.createElement(LMR, { left: this.uploaded === true ?
@@ -321,6 +321,7 @@ let ImageUploader = class ImageUploader extends React.Component {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     }
 };
+ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
 __decorate([
     observable
 ], ImageUploader.prototype, "file", void 0);
@@ -360,7 +361,7 @@ __decorate([
 __decorate([
     observable
 ], ImageUploader.prototype, "uploaded", void 0);
-ImageUploader = __decorate([
+ImageUploader = ImageUploader_1 = __decorate([
     observer
 ], ImageUploader);
 export { ImageUploader };
@@ -370,6 +371,7 @@ let AudioUploader = AudioUploader_1 = class AudioUploader extends React.Componen
         this.isChanged = false;
         this.enableUploadButton = false;
         this.uploaded = false;
+        this.uploading = false;
         this.onFileChange = (evt) => {
             this.fileError = undefined;
             this.uploaded = false;
@@ -379,7 +381,7 @@ let AudioUploader = AudioUploader_1 = class AudioUploader extends React.Componen
                 let pos = this.file.name.lastIndexOf('.');
                 if (pos >= 0)
                     this.suffix = this.file.name.substr(pos + 1).toLowerCase();
-                if (imageTypes.indexOf(this.suffix) < 0) {
+                if (AudioUploader_1.audioTypes.indexOf(this.suffix) < 0) {
                     this.fileError = `音频类型必须是 ${AudioUploader_1.audioTypes.join(', ')} 中的一种`;
                     return;
                 }
@@ -394,6 +396,7 @@ let AudioUploader = AudioUploader_1 = class AudioUploader extends React.Componen
         this.upload = () => __awaiter(this, void 0, void 0, function* () {
             if (!this.resUploader)
                 return;
+            this.uploading = true;
             let formData = new FormData();
             let blob = this.convertBase64UrlToBlob(this.content);
             formData.append('image', blob, this.file.name);
@@ -457,12 +460,15 @@ let AudioUploader = AudioUploader_1 = class AudioUploader extends React.Componen
             React.createElement(LMR, { left: this.uploaded === true ?
                     React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
                     :
-                        this.file && this.content && React.createElement("div", { className: "mb-3 d-flex align-items-end" },
-                            React.createElement("div", { className: "mr-5" },
-                                React.createElement("div", null,
-                                    "\u6587\u4EF6\u5927\u5C0F\uFF1A",
-                                    formatSize(this.fileSize))),
-                            React.createElement("button", { className: "btn btn-primary", disabled: !this.enableUploadButton, onClick: this.upload }, "\u4E0A\u4F20")) }));
+                        this.uploading === true ?
+                            React.createElement("div", { className: "m-3" },
+                                React.createElement(Loading, null))
+                            :
+                                this.file && this.content && React.createElement("div", { className: "m-3" },
+                                    React.createElement("div", { className: "mb-3" },
+                                        "\u6587\u4EF6\u5927\u5C0F\uFF1A",
+                                        formatSize(this.fileSize)),
+                                    React.createElement("button", { className: "btn btn-primary", disabled: !this.enableUploadButton, onClick: this.upload }, "\u4E0A\u4F20")) }));
     }
 };
 AudioUploader.audioTypes = ['mp3', 'wav'];
@@ -490,6 +496,9 @@ __decorate([
 __decorate([
     observable
 ], AudioUploader.prototype, "uploaded", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "uploading", void 0);
 AudioUploader = AudioUploader_1 = __decorate([
     observer
 ], AudioUploader);

@@ -24,6 +24,7 @@ interface ImageUploaderProps {
     onSaved?: (imageId: string) => Promise<void>;
 }
 export declare class ImageUploader extends React.Component<ImageUploaderProps> {
+    private static imageTypes;
     private imgBaseSize;
     private suffix;
     private resUploader;
@@ -68,6 +69,7 @@ export declare class AudioUploader extends React.Component<AudioUploaderProps> {
     private enableUploadButton;
     private fileError;
     private uploaded;
+    private uploading;
     constructor(props: AudioUploaderProps);
     private onFileChange;
     private convertBase64UrlToBlob;
