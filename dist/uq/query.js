@@ -19,13 +19,16 @@ import { PageItems } from '../tool';
 import { Entity } from './entity';
 import { QueryQueryCaller, QueryPageCaller } from './caller';
 export class QueryPager extends PageItems {
-    constructor(query, pageSize, firstSize) {
-        super();
+    constructor(query, pageSize, firstSize, itemObservable) {
+        super(itemObservable);
         this.query = query;
         if (pageSize !== undefined)
             this.pageSize = pageSize;
         if (firstSize !== undefined)
             this.firstSize = firstSize;
+    }
+    setReverse() {
+        this.appendPosition = 'head';
     }
     onLoad() {
         return __awaiter(this, void 0, void 0, function* () {

@@ -9,12 +9,16 @@ export type QueryPageApi = (name:string, pageStart:any, pageSize:number, params:
 
 export class QueryPager<T extends any> extends PageItems<T> {
     private query: Query;
-    constructor(query: Query, pageSize?: number, firstSize?: number) {
-        super();
+    constructor(query: Query, pageSize?: number, firstSize?: number, itemObservable?:boolean) {
+        super(itemObservable);
         this.query = query;
         if (pageSize !== undefined) this.pageSize = pageSize;
         if (firstSize !== undefined) this.firstSize = firstSize;
     }
+
+	setReverse() {
+		this.appendPosition = 'head';
+	}
 
     protected async onLoad() {
         let {schema} = this.query;

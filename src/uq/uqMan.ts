@@ -15,7 +15,7 @@ import { ReactBoxId } from './tuid/reactBoxId';
 import { Tag } from './tag/tag';
 
 export type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text'
-    | 'datetime' | 'date' | 'time';
+    | 'datetime' | 'date' | 'time' | 'timestamp';
 
 export function fieldDefaultValue(type:FieldType) {
     switch (type) {

@@ -51,4 +51,28 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private levelDiv;
     render(): JSX.Element;
 }
+interface AudioUploaderProps {
+    id?: string;
+    label?: string;
+    onSaved?: (imageId: string) => Promise<void>;
+}
+export declare class AudioUploader extends React.Component<AudioUploaderProps> {
+    private static audioTypes;
+    private suffix;
+    private resUploader;
+    private content;
+    private file;
+    private fileSize;
+    private isChanged;
+    private resId;
+    private enableUploadButton;
+    private fileError;
+    private uploaded;
+    constructor(props: AudioUploaderProps);
+    private onFileChange;
+    private convertBase64UrlToBlob;
+    private upload;
+    private onSaved;
+    render(): JSX.Element;
+}
 export {};

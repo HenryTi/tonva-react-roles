@@ -394,8 +394,9 @@ export class Entity {
             default: return v;
             case 'datetime':
             case 'time':
+            case 'timestamp':
                 let n = Number(v);
-                let date = isNaN(n) === true ? new Date(v) : new Date(n * 1000);
+                let date = isNaN(n) === true ? new Date(v) : new Date(n);
                 return date;
             case 'date':
                 let parts = v.split('-');

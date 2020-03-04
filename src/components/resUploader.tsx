@@ -347,13 +347,133 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
         </Page>;
     }
 }
-/*
-<div className="w-12c h-12c mr-4"
-style={{border: '1px dotted gray', padding: '8px'}}>
-<ImageControl className="w-100 h-100" src={this.srcImage} />
-</div>
-<div>
-<div className="small">图片预览</div>
-<ImageControl className="w-4c h-4c mt-3" src={this.desImage} />
-</div>
-*/
+
+interface AudioUploaderProps {
+    id?: string;
+    label?: string;
+    onSaved?: (imageId:string) => Promise<void>;
+}
+
+@observer
+export class AudioUploader extends React.Component<AudioUploaderProps> {
+	private static audioTypes = ['mp3', 'wav'];
+
+    private suffix: string;
+	private resUploader: ResUploader;
+	@observable private content: string;
+	@observable private file: File;    
+	@observable private fileSize: number;
+
+    @observable private isChanged: boolean = false;
+    @observable private resId: string;
+    @observable private enableUploadButton: boolean = false;
+    @observable private fileError: string;
+    @observable private uploaded: boolean = false;
+
+    constructor(props: AudioUploaderProps) {
+        super(props);
+        this.resId = props.id;
+    }
+
+    private onFileChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+        this.fileError = undefined;
+        this.uploaded = false;
+        this.enableUploadButton = evt.target.files.length > 0;
+        if (this.enableUploadButton) {
+            this.file = evt.target.files[0];
+            let pos = this.file.name.lastIndexOf('.');
+            if (pos >= 0) this.suffix = this.file.name.substr(pos+1).toLowerCase();
+            if(imageTypes.indexOf(this.suffix) < 0){
+                this.fileError = `音频类型必须是 ${AudioUploader.audioTypes.join(', ')} 中的一种`;
+                return;
+            }
+            let reader = new FileReader();
+            reader.readAsDataURL(this.file);
+            reader.onload = async () => {
+				this.content = reader.result as string;
+				this.fileSize = this.content.length;
+            };
+        }
+    }
+
+    private convertBase64UrlToBlob(urlData: string):Blob {
+        let arr = urlData.split(',');
+        let mime = arr[0].match(/:(.*?);/)[1];
+        let bstr = atob(arr[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+    }
+
+    private upload = async () => {
+        if (!this.resUploader) return;
+        let formData = new FormData();
+        let blob = this.convertBase64UrlToBlob(this.content);
+        formData.append('image', blob, this.file.name);
+        let ret = await this.resUploader.upload(formData);
+        if (typeof ret === 'object') {
+            let {error} = ret;
+            let type = typeof error;
+            let err:string;
+            switch (type) {
+                case 'undefined': err = 'error: undefined'; break;
+                case 'string': err = error; break;
+                case 'object': err = error.message; break;
+                default: err = String(err); break;
+            }
+            this.fileError = 'error: ' + type + ' - ' + err;
+            return;
+        }
+        this.resId = ret;
+        this.isChanged = (this.resId !== this.props.id);
+        this.uploaded = true;
+    }
+
+    private onSaved = (): Promise<void> => {
+        let {onSaved} = this.props;
+        onSaved && onSaved(this.resId);
+        return;
+    }
+
+    render() {
+        let {label} = this.props;
+        let right = <button
+            className="btn btn-sm btn-success align-self-center mr-2"
+            disabled={!this.isChanged}
+            onClick={this.onSaved}>保存</button>;
+        return <Page header={label || '更改文件'} right={right}>
+            <div className="my-3 px-3 py-3 bg-white">
+                <div>
+                    <div className="mb-3">
+                        <ResUploader ref={v=>this.resUploader=v} 
+                            multiple={false} maxSize={2048} 
+                            label="选择音频文件"
+                            onFilesChange={this.onFileChange} />
+                        <div className="small text-muted">支持 {AudioUploader.audioTypes.join(', ')} 格式。</div>
+                        {this.fileError && <div className="text-danger">{this.fileError}</div>}
+                    </div>
+                </div>
+            </div>
+			<LMR left=
+                    {
+                        this.uploaded === true? 
+                            <div className="text-success p-2">上传成功！</div>
+                            :
+                            this.file && this.content && <div className="mb-3 d-flex align-items-end">
+                                <div className="mr-5">
+                                    <div>
+                                    文件大小：{formatSize(this.fileSize)}
+                                    </div>
+                                </div>
+                                <button className="btn btn-primary" 
+                                    disabled={!this.enableUploadButton}
+                                    onClick={this.upload}>上传</button>
+                            </div>
+					}
+			/>
+        </Page>;
+    }
+}

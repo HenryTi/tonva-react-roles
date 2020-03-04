@@ -13,6 +13,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var AudioUploader_1;
 import * as React from 'react';
 import { nav } from './nav';
 import { Image as ImageControl } from './image';
@@ -363,14 +364,134 @@ ImageUploader = __decorate([
     observer
 ], ImageUploader);
 export { ImageUploader };
-/*
-<div className="w-12c h-12c mr-4"
-style={{border: '1px dotted gray', padding: '8px'}}>
-<ImageControl className="w-100 h-100" src={this.srcImage} />
-</div>
-<div>
-<div className="small">图片预览</div>
-<ImageControl className="w-4c h-4c mt-3" src={this.desImage} />
-</div>
-*/
+let AudioUploader = AudioUploader_1 = class AudioUploader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.isChanged = false;
+        this.enableUploadButton = false;
+        this.uploaded = false;
+        this.onFileChange = (evt) => {
+            this.fileError = undefined;
+            this.uploaded = false;
+            this.enableUploadButton = evt.target.files.length > 0;
+            if (this.enableUploadButton) {
+                this.file = evt.target.files[0];
+                let pos = this.file.name.lastIndexOf('.');
+                if (pos >= 0)
+                    this.suffix = this.file.name.substr(pos + 1).toLowerCase();
+                if (imageTypes.indexOf(this.suffix) < 0) {
+                    this.fileError = `音频类型必须是 ${AudioUploader_1.audioTypes.join(', ')} 中的一种`;
+                    return;
+                }
+                let reader = new FileReader();
+                reader.readAsDataURL(this.file);
+                reader.onload = () => __awaiter(this, void 0, void 0, function* () {
+                    this.content = reader.result;
+                    this.fileSize = this.content.length;
+                });
+            }
+        };
+        this.upload = () => __awaiter(this, void 0, void 0, function* () {
+            if (!this.resUploader)
+                return;
+            let formData = new FormData();
+            let blob = this.convertBase64UrlToBlob(this.content);
+            formData.append('image', blob, this.file.name);
+            let ret = yield this.resUploader.upload(formData);
+            if (typeof ret === 'object') {
+                let { error } = ret;
+                let type = typeof error;
+                let err;
+                switch (type) {
+                    case 'undefined':
+                        err = 'error: undefined';
+                        break;
+                    case 'string':
+                        err = error;
+                        break;
+                    case 'object':
+                        err = error.message;
+                        break;
+                    default:
+                        err = String(err);
+                        break;
+                }
+                this.fileError = 'error: ' + type + ' - ' + err;
+                return;
+            }
+            this.resId = ret;
+            this.isChanged = (this.resId !== this.props.id);
+            this.uploaded = true;
+        });
+        this.onSaved = () => {
+            let { onSaved } = this.props;
+            onSaved && onSaved(this.resId);
+            return;
+        };
+        this.resId = props.id;
+    }
+    convertBase64UrlToBlob(urlData) {
+        let arr = urlData.split(',');
+        let mime = arr[0].match(/:(.*?);/)[1];
+        let bstr = atob(arr[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    }
+    render() {
+        let { label } = this.props;
+        let right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !this.isChanged, onClick: this.onSaved }, "\u4FDD\u5B58");
+        return React.createElement(Page, { header: label || '更改文件', right: right },
+            React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
+                React.createElement("div", null,
+                    React.createElement("div", { className: "mb-3" },
+                        React.createElement(ResUploader, { ref: v => this.resUploader = v, multiple: false, maxSize: 2048, label: "\u9009\u62E9\u97F3\u9891\u6587\u4EF6", onFilesChange: this.onFileChange }),
+                        React.createElement("div", { className: "small text-muted" },
+                            "\u652F\u6301 ",
+                            AudioUploader_1.audioTypes.join(', '),
+                            " \u683C\u5F0F\u3002"),
+                        this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)))),
+            React.createElement(LMR, { left: this.uploaded === true ?
+                    React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
+                    :
+                        this.file && this.content && React.createElement("div", { className: "mb-3 d-flex align-items-end" },
+                            React.createElement("div", { className: "mr-5" },
+                                React.createElement("div", null,
+                                    "\u6587\u4EF6\u5927\u5C0F\uFF1A",
+                                    formatSize(this.fileSize))),
+                            React.createElement("button", { className: "btn btn-primary", disabled: !this.enableUploadButton, onClick: this.upload }, "\u4E0A\u4F20")) }));
+    }
+};
+AudioUploader.audioTypes = ['mp3', 'wav'];
+__decorate([
+    observable
+], AudioUploader.prototype, "content", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "file", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "fileSize", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "isChanged", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "resId", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "enableUploadButton", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "fileError", void 0);
+__decorate([
+    observable
+], AudioUploader.prototype, "uploaded", void 0);
+AudioUploader = AudioUploader_1 = __decorate([
+    observer
+], AudioUploader);
+export { AudioUploader };
 //# sourceMappingURL=resUploader.js.map

@@ -6,7 +6,8 @@ import { QueryQueryCaller, QueryPageCaller } from './caller';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
 export declare class QueryPager<T extends any> extends PageItems<T> {
     private query;
-    constructor(query: Query, pageSize?: number, firstSize?: number);
+    constructor(query: Query, pageSize?: number, firstSize?: number, itemObservable?: boolean);
+    setReverse(): void;
     protected onLoad(): Promise<void>;
     protected load(param: any, pageStart: any, pageSize: number): Promise<T[]>;
     protected setPageStart(item: T): void;
