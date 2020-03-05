@@ -129,10 +129,10 @@ let Edit = class Edit extends React.Component {
         return React.createElement("div", null,
             this.topBorder,
             schema.map((itemSchema, index) => {
-                var _a, _b, _c;
+                var _a;
                 let { name } = itemSchema;
                 let uiItem = (_a = this.uiSchema) === null || _a === void 0 ? void 0 : _a[name];
-                let label = ((_b = uiItem) === null || _b === void 0 ? void 0 : _b.label) || name;
+                let label = (uiItem === null || uiItem === void 0 ? void 0 : uiItem.label) || name;
                 let value = this.props.data[name];
                 let itemEdit = createItemEdit(itemSchema, uiItem, label, value);
                 let { required } = itemSchema;
@@ -144,7 +144,7 @@ let Edit = class Edit extends React.Component {
                             label,
                             " ",
                             requireFlag),
-                        React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, (_c = itemEdit) === null || _c === void 0 ? void 0 : _c.renderContent()),
+                        React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, itemEdit === null || itemEdit === void 0 ? void 0 : itemEdit.renderContent()),
                         this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
                             React.createElement("i", { className: "fa fa-angle-right" }))));
                 sep = this.sep;
