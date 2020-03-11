@@ -38,7 +38,7 @@ export abstract class Tuid extends Entity {
     abstract useId(id:number):void;
     abstract boxId(id:number):BoxId;    
     abstract valueFromId(id:number):any;
-    abstract async assureBox (id:number): Promise<void>;
+    abstract async assureBox<T> (id:number): Promise<T>;
     static equ(id1:BoxId|number, id2:BoxId|number): boolean {
         if (id1 === undefined) return false;
         if (id2 === undefined) return false;
@@ -95,11 +95,11 @@ export class TuidInner extends Tuid {
     
     useId(id:number, defer?:boolean) {
         if (this.noCache === true) return;
-        if (id === undefined) return;
+        if (!id) return;
         this.idCache.useId(id, defer);
     }
     boxId(id:number):BoxId {
-        if (id === undefined) return;
+        if (!id) return;
         if (typeof id === 'object') return id;
         this.useId(id);
         let {createBoxId} = this.uq;
@@ -107,8 +107,9 @@ export class TuidInner extends Tuid {
         return createBoxId(this, id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
-    async assureBox (id:number):Promise<void> {
-        await this.idCache.assureObj(id);
+    async assureBox<T> (id:number):Promise<T> {
+		await this.idCache.assureObj(id);
+		return this.idCache.getValue(id);
     }
 
     cacheIds() {
@@ -401,8 +402,9 @@ export class TuidImport extends Tuid {
     useId(id:number) {this.tuidLocal.useId(id);}
     boxId(id:number):BoxId {return this.tuidLocal.boxId(id);}
     valueFromId(id:number) {return this.tuidLocal.valueFromId(id)}
-    async assureBox(id:number):Promise<void> {
+    async assureBox<T>(id:number):Promise<T> {
         await this.tuidLocal.assureBox(id);
+		return this.tuidLocal.valueFromId(id);
     }
     get hasDiv():boolean {return this.tuidLocal.hasDiv}
     div(name:string):TuidDiv {return this.tuidLocal.div(name)}
@@ -525,8 +527,9 @@ export class TuidDiv extends TuidInner /* Entity*/ {
         return this.idCache.getValue(id)
     }
 
-    async assureBox(id:number):Promise<void> {
-        await this.idCache.assureObj(id);
+    async assureBox<T>(id:number):Promise<T> {
+		await this.idCache.assureObj(id);
+		return this.idCache.getValue(id);
     }
 
     async cacheIds() {

@@ -13,6 +13,12 @@ import { nav } from './nav';
 export class PageHeader extends React.Component {
     constructor(props) {
         super(props);
+        this.back = () => __awaiter(this, void 0, void 0, function* () {
+            yield nav.back(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
+            let { afterBack } = this.props;
+            if (afterBack)
+                afterBack();
+        });
         this.logoutClick = () => {
             nav.showLogout(this.logout);
         };
@@ -38,11 +44,6 @@ export class PageHeader extends React.Component {
     */
     componentWillUnmount() {
         //nav.events.remove('change', this.navChangeHandler);
-    }
-    back() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield nav.back(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
-        });
     }
     openWindow() {
         window.open(document.location.href);

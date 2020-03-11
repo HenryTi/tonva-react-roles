@@ -35,6 +35,7 @@ export interface PageProps extends ScrollProps {
     tabPosition?: 'top' | 'bottom';
     logout?: boolean | (() => Promise<void>);
     headerClassName?: string;
+    afterBack?: () => void;
 }
 export interface PageState {
     cur?: Tab;

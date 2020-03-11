@@ -25,10 +25,12 @@ export class QueryPager<T extends any> extends PageItems<T> {
         if (schema === undefined) await this.query.loadSchema();
     }
 
-    protected async load(param:any, pageStart:any, pageSize:number):Promise<T[]> {
+    protected async loadResults(param:any, pageStart:number, pageSize:number):Promise<{[name:string]:any[]}> {
         //if (pageStart === undefined) pageStart = 0;
-        let ret = await this.query.page(param, pageStart, pageSize);
-        return ret;
+        //let ret = await this.query.page(param, pageStart, pageSize);
+		//return ret;
+		let ret = await this.query.page(param, pageStart, pageSize);
+		return ret;
     }
     protected setPageStart(item:T) {
         let {schema} = this.query;
@@ -137,7 +139,8 @@ export class Query extends Entity {
                 case 'datetime': pageStart = (this.pageStart as Date).getTime(); break;
             }
         }
-        let page = await this.page(this.params, pageStart, this.pageSize+1);
+		let ret = await this.page(this.params, pageStart, this.pageSize+1);
+		let page = ret.$page;
         /*
         await this.loadSchema();
         let res = await this.tvApi.page(this.name, pageStart, this.pageSize+1, this.params);
@@ -165,7 +168,7 @@ export class Query extends Entity {
         return new QueryPageCaller(this, params, showWaiting);
     }
 
-    async page(params:any, pageStart:any, pageSize:number, showWaiting: boolean = true):Promise<any[]> {
+    async page(params:any, pageStart:any, pageSize:number, showWaiting: boolean = true):Promise<{[name:string]:any[]}> {
         /*
         await this.loadSchema();
         let res = await this.uqApi.page(this.name, pageStart, pageSize+1, this.buildParams(params));

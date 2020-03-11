@@ -88,6 +88,7 @@ export class QueryPageCaller extends EntityCaller {
     ;
     get entity() { return this._entity; }
     ;
+    //results: {[name:string]:any[]};
     get path() { return `query-page/${this.entity.name}`; }
     buildParams() {
         let { pageStart, pageSize, params } = this.params;
@@ -110,8 +111,9 @@ export class QueryPageCaller extends EntityCaller {
     }
     ;
     xresult(res) {
-        let data = this.entity.unpackReturns(res);
-        return data.$page; // as any[];
+        let ret = this.entity.unpackReturns(res);
+        //return this.results.$page;// as any[];
+        return ret;
     }
 }
 //# sourceMappingURL=caller.js.map

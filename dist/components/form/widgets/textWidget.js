@@ -30,6 +30,16 @@ export class TextWidget extends Widget {
                 this.context.setError(this.name, ret);
             }
         });
+        this.onBlur = (evt) => {
+            this.onInputChange(evt);
+            this.checkRules();
+            this.context.checkContextRules();
+        };
+        this.onFocus = (evt) => {
+            this.clearError();
+            this.context.removeErrorWidget(this);
+            this.context.clearErrors();
+        };
     }
     get ui() { return this._ui; }
     ;
@@ -40,16 +50,6 @@ export class TextWidget extends Widget {
     }
     get placeholder() { return (this.ui && this.ui.placeholder) || this.name; }
     internalOnKeyDown(evt) {
-    }
-    onBlur(evt) {
-        this.onInputChange(evt);
-        this.checkRules();
-        this.context.checkContextRules();
-    }
-    onFocus(evt) {
-        this.clearError();
-        this.context.removeErrorWidget(this);
-        this.context.clearErrors();
     }
     onChange(evt) {
     }
@@ -77,7 +77,7 @@ export class TextWidget extends Widget {
             cn['required-item'] = this.itemSchema.required === true;
         }
         return React.createElement(React.Fragment, null,
-            React.createElement("input", { ref: input => this.input = input, className: classNames(this.className, cn), type: this.inputType, defaultValue: this.value, onChange: (evt) => this.onChange(evt), placeholder: this.placeholder, readOnly: this.readOnly, disabled: this.disabled, onKeyDown: this.onKeyDown, onFocus: (evt) => this.onFocus(evt), onBlur: (evt) => this.onBlur(evt), maxLength: this.itemSchema.maxLength }),
+            React.createElement("input", { ref: input => this.input = input, className: classNames(this.className, cn), type: this.inputType, defaultValue: this.value, onChange: (evt) => this.onChange(evt), placeholder: this.placeholder, readOnly: this.readOnly, disabled: this.disabled, onKeyDown: this.onKeyDown, onFocus: this.onFocus, onBlur: this.onBlur, maxLength: this.itemSchema.maxLength }),
             this.renderErrors());
     }
 }

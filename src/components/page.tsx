@@ -106,6 +106,7 @@ export interface PageProps extends ScrollProps {
     tabPosition?: 'top' | 'bottom';
     logout?: boolean | (()=>Promise<void>);
     headerClassName?: string;
+	afterBack?: () => void;
 }
 export interface PageState {
     cur?: Tab;
@@ -181,7 +182,7 @@ export class Page extends React.Component<PageProps, PageState> {
     }
 
     private renderTabs(footer: JSX.Element) {
-        const {header, back, right, keepHeader, headerClassName, tabPosition} = this.props;
+        const {header, back, right, keepHeader, headerClassName, tabPosition, afterBack} = this.props;
         let cur = this.state.cur;
         let tabs = <div>{
                 this.state.tabs.map((tab, index) => {
@@ -211,7 +212,8 @@ export class Page extends React.Component<PageProps, PageState> {
                 back={back} 
                 center={keepHeader===true? (header as string) : (cur && (cur.header || cur.title))}
                 right={right}
-                className={headerClassName}
+				className={headerClassName}
+				afterBack={afterBack}
             />;
 
         return <article className='page-container'>
@@ -242,14 +244,15 @@ export class Page extends React.Component<PageProps, PageState> {
         </article>;
     }
     private renderSingle(footer: JSX.Element) {
-        const {back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName} = this.props;
+        const {back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName, afterBack} = this.props;
         let pageHeader = header !== false && <PageHeader 
             back={back} 
             center={header as any}
             right={right}
             logout={this.props.logout}
             className={headerClassName}
-        />;
+			afterBack={afterBack}
+			/>;
         return (
             <article className='page-container' onTouchStart={this.onTouchStart}>
                 {pageHeader}

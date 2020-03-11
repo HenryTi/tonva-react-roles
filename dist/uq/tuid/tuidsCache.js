@@ -72,6 +72,8 @@ export class TuidsCache {
             let modifyMax = 0;
             for (let modify of ret.queue) {
                 let { id, entity, key } = modify;
+                if (!key)
+                    continue;
                 let tuid = tuids[entity];
                 if (tuid === undefined)
                     continue;

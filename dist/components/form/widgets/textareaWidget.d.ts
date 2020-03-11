@@ -10,5 +10,7 @@ export declare class TextAreaWidget extends Widget {
     protected onInputChange: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
     setReadOnly(value: boolean): void;
     setDisabled(value: boolean): void;
+    protected onBlur: (evt: React.FocusEvent<any>) => void;
+    protected onFocus: (evt: React.FocusEvent<any>) => void;
     render(): JSX.Element;
 }

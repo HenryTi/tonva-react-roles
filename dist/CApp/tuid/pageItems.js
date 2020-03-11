@@ -13,10 +13,10 @@ export class TuidPageItems extends PageItems {
         super(true);
         this.tuid = tuid;
     }
-    load(param, pageStart, pageSize) {
+    loadResults(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret = yield this.tuid.search(param, pageStart, pageSize);
-            return ret;
+            return { $page: ret };
         });
     }
     setPageStart(item) {

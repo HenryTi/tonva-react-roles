@@ -301,7 +301,7 @@ export abstract class Entity {
         return ret;
     }
 
-    unpackReturns(data:string):any {
+    unpackReturns(data:string):{[name:string]:any[]} {
         if (data === undefined) debugger;
         let ret = {} as any;
         //if (schema === undefined || data === undefined) return;

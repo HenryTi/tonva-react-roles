@@ -5,6 +5,7 @@ export interface PageHeaderProps {
     right?: JSX.Element;
     logout?: boolean | (() => Promise<void>);
     className?: string;
+    afterBack?: () => void;
 }
 export interface PageHeaderState {
     hasBack: boolean;
@@ -12,7 +13,7 @@ export interface PageHeaderState {
 export declare class PageHeader extends React.Component<PageHeaderProps, PageHeaderState> {
     constructor(props: PageHeaderProps);
     componentWillUnmount(): void;
-    back(): Promise<void>;
+    private back;
     openWindow(): void;
     private logoutClick;
     private logout;

@@ -8,6 +8,7 @@ export interface PageHeaderProps {
     right?: JSX.Element;
     logout?: boolean | (()=>Promise<void>);
     className?: string;
+	afterBack?: () => void;
 }
 export interface PageHeaderState {
     hasBack: boolean;
@@ -32,8 +33,10 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
     componentWillUnmount() {
         //nav.events.remove('change', this.navChangeHandler);
     }
-    async back() {
+    private back = async () => {
         await nav.back(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
+		let {afterBack} = this.props;
+		if (afterBack) afterBack();
     }
     openWindow() {
         window.open(document.location.href);

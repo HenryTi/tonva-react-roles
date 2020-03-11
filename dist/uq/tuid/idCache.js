@@ -25,7 +25,7 @@ export class IdCache {
         this.localArr = this.tuidInner.cache.arr(this.tuidInner.name + '.ids');
     }
     useId(id, defer) {
-        if (id === undefined || id === 0)
+        if (!id)
             return;
         if (isNumber(id) === false)
             return;
@@ -112,20 +112,18 @@ export class IdCache {
             let tuidValues = yield this.loadIds();
             if (tuidValues === undefined)
                 return;
-            yield this.cacheIdValues(tuidValues);
+            this.cacheIdValues(tuidValues);
         });
     }
     cacheIdValues(tuidValues) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (tuidValues === undefined)
-                return;
-            let tuids = this.unpackTuidIds(tuidValues);
-            for (let tuidValue of tuids) {
-                if (this.cacheValue(tuidValue) === false)
-                    continue;
-                this.cacheTuidFieldValues(tuidValue);
-            }
-        });
+        if (tuidValues === undefined)
+            return;
+        let tuids = this.unpackTuidIds(tuidValues);
+        for (let tuidValue of tuids) {
+            if (this.cacheValue(tuidValue) === false)
+                continue;
+            this.cacheTuidFieldValues(tuidValue);
+        }
     }
     modifyIds(ids) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -140,7 +138,7 @@ export class IdCache {
             });
             if (localedValues.length === 0)
                 return;
-            yield this.cacheIdValues(localedValues);
+            this.cacheIdValues(localedValues);
         });
     }
     loadIds() {

@@ -34,12 +34,12 @@ export class TextWidget extends Widget {
     protected internalOnKeyDown(evt:React.KeyboardEvent<HTMLInputElement>) {
     }
 
-    protected onBlur(evt: React.FocusEvent<any>) {
+    protected onBlur = (evt: React.FocusEvent<any>) => {
         this.onInputChange(evt);
         this.checkRules();
         this.context.checkContextRules();
     }
-    protected onFocus(evt: React.FocusEvent<any>) {
+    protected onFocus = (evt: React.FocusEvent<any>) => {
         this.clearError();
         this.context.removeErrorWidget(this);
         this.context.clearErrors();
@@ -77,8 +77,8 @@ export class TextWidget extends Widget {
             readOnly={this.readOnly}
             disabled={this.disabled}
             onKeyDown = {this.onKeyDown}
-            onFocus = {(evt: React.FocusEvent<any>) => this.onFocus(evt)}
-            onBlur={(evt: React.FocusEvent<any>) => this.onBlur(evt)}
+            onFocus = {this.onFocus}
+            onBlur={this.onBlur}
             maxLength={(this.itemSchema as StringSchema).maxLength} />
             {this.renderErrors()}
         </>;

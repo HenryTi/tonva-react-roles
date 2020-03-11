@@ -48,18 +48,21 @@ export class QueryPageItems extends PageItems {
         super();
         this.query = query;
     }
-    load() {
+    loadResults() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.query.loadSchema();
-            let ret;
+            return yield this.query.query(this.param);
+            /*
+            let ret:any[];
             if (this.query.isPaged === true)
-                ret = yield this.query.page(this.param, this.pageStart, this.pageSize);
+                ret = await this.query.page(this.param, this.pageStart, this.pageSize);
             else {
-                let data = yield this.query.query(this.param);
+                let data = await this.query.query(this.param);
                 //let data = await this.query.unpackReturns(res);
                 ret = data[this.query.returns[0].name];
             }
             return ret;
+            */
         });
     }
     setPageStart(item) {

@@ -17,6 +17,8 @@ export declare class VQuerySelect extends VEntity<Query, QueryUI, CQuerySelect> 
 export declare class QueryPageItems extends PageItems<any> {
     private query;
     constructor(query: Query);
-    protected load(): Promise<any[]>;
+    protected loadResults(): Promise<{
+        [name: string]: any[];
+    }>;
     protected setPageStart(item: any): void;
 }

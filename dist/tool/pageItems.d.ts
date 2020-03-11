@@ -2,14 +2,16 @@ import { IObservableArray } from 'mobx';
 export declare abstract class PageItems<T> {
     constructor(itemObservable?: boolean);
     private isFirst;
-    private itemAction;
+    private pageItemAction;
     loading: boolean;
     private beforeLoad;
     protected loaded: boolean;
     protected _items: IObservableArray<T>;
     allLoaded: boolean;
     get items(): IObservableArray<T>;
-    setEachItem(itemAction: (item: T) => void): void;
+    setEachPageItem(pageItemAction: (item: T, results: {
+        [name: string]: any[];
+    }) => void): void;
     topDiv: string;
     bottomDiv: string;
     scrollToTop(): void;
@@ -19,8 +21,11 @@ export declare abstract class PageItems<T> {
     protected pageStart: any;
     protected pageSize: number;
     protected appendPosition: 'head' | 'tail';
-    protected abstract load(param: any, pageStart: any, pageSize: number): Promise<T[]>;
+    protected abstract loadResults(param: any, pageStart: any, pageSize: number): Promise<{
+        [name: string]: any[];
+    }>;
     protected abstract setPageStart(item: T): void;
+    protected load(param: any, pageStart: any, pageSize: number): Promise<any[]>;
     reset(): void;
     append(item: T): void;
     first(param: any): Promise<void>;

@@ -154,7 +154,7 @@ let Page = class Page extends React.Component {
     onTouchStart(evt) {
     }
     renderTabs(footer) {
-        const { header, back, right, keepHeader, headerClassName, tabPosition } = this.props;
+        const { header, back, right, keepHeader, headerClassName, tabPosition, afterBack } = this.props;
         let cur = this.state.cur;
         let tabs = React.createElement("div", null, this.state.tabs.map((tab, index) => {
             const { icon, isSelected, title, redDot, className } = tab;
@@ -179,7 +179,7 @@ let Page = class Page extends React.Component {
                     redDotView));
         }));
         let pageHeader = header !== false &&
-            React.createElement(PageHeader, { back: back, center: keepHeader === true ? header : (cur && (cur.header || cur.title)), right: right, className: headerClassName });
+            React.createElement(PageHeader, { back: back, center: keepHeader === true ? header : (cur && (cur.header || cur.title)), right: right, className: headerClassName, afterBack: afterBack });
         return React.createElement("article", { className: 'page-container' },
             pageHeader,
             tabPosition === 'top' && tabs,
@@ -197,8 +197,8 @@ let Page = class Page extends React.Component {
             footer);
     }
     renderSingle(footer) {
-        const { back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName } = this.props;
-        let pageHeader = header !== false && React.createElement(PageHeader, { back: back, center: header, right: right, logout: this.props.logout, className: headerClassName });
+        const { back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName, afterBack } = this.props;
+        let pageHeader = header !== false && React.createElement(PageHeader, { back: back, center: header, right: right, logout: this.props.logout, className: headerClassName, afterBack: afterBack });
         return (React.createElement("article", { className: 'page-container', onTouchStart: this.onTouchStart },
             pageHeader,
             React.createElement("section", { className: "position-relative" },

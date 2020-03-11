@@ -37,9 +37,11 @@ export class QueryPager extends PageItems {
                 yield this.query.loadSchema();
         });
     }
-    load(param, pageStart, pageSize) {
+    loadResults(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             //if (pageStart === undefined) pageStart = 0;
+            //let ret = await this.query.page(param, pageStart, pageSize);
+            //return ret;
             let ret = yield this.query.page(param, pageStart, pageSize);
             return ret;
         });
@@ -146,7 +148,8 @@ export class Query extends Entity {
                         break;
                 }
             }
-            let page = yield this.page(this.params, pageStart, this.pageSize + 1);
+            let ret = yield this.page(this.params, pageStart, this.pageSize + 1);
+            let page = ret.$page;
             /*
             await this.loadSchema();
             let res = await this.tvApi.page(this.name, pageStart, this.pageSize+1, this.params);

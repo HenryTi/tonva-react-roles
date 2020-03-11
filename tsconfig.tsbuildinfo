@@ -362,8 +362,8 @@
         "signature": "22a7ff3279e64124ef00f11ff9df209bbee0715a60a84bff067b14ac45183cbf"
       },
       "./src/tool/pageitems.ts": {
-        "version": "f0891e58e46fcd4cefeb008921c6ac7d4bc42dc2678df995e1d67a1ae9d3bed0",
-        "signature": "7b30c7d023865dc7d6819465fdf28263d86696d13ac43d1c7e33d75c23404fd6"
+        "version": "030bed968e05615ad9193cfb8e609072c4c0253e5d7b929e3ab358286a57303c",
+        "signature": "4f5d57cead36ff360bc02eb13a4f0dc4acd81593c5313bb9441ce689218100c5"
       },
       "./src/tool/cacheids.ts": {
         "version": "cb376cbff47d6d1af21b969d5440e9cb00828d83967f29259ffe77c14af14d2d",
@@ -470,12 +470,12 @@
         "signature": "026cc8c57b36581fc3da28a608c8086d4eeed85c8a04f15189c2116e43c4df1e"
       },
       "./src/components/pageheader.tsx": {
-        "version": "a596f1d87675ff131a8ae1b24a63455f11cf658ac96244e0f120fc0979c7b5b1",
-        "signature": "7385062be3517777f270bab3374ded5d92609bc30e1011f962ddb0fc38b4e3fd"
+        "version": "5e681e88e4b5abcc46f403266600ec2d1b840c3bf0f9e74c29cf6d2ca10222ff",
+        "signature": "fc0fba97cd6c617166358bbcb6bcce4710b10a58fed0aad763273104b42a49ed"
       },
       "./src/components/page.tsx": {
-        "version": "dad73fb8220ae0a9b8421ebe347226a2fd90939da6eea8dda511802b1b8d58a0",
-        "signature": "973aac8e22039d3ea34126a5e163e6d7db2843003ba8451b70eed77ab64bdfde"
+        "version": "f3e04ef80f93a6c12236383a1b2539049592d56349a12f6b506434e289015d91",
+        "signature": "df35f99e21ba776019067a8406862060b701081a7772fadfd02eacf882b07766"
       },
       "./src/net/fetcherror.ts": {
         "version": "73c6118360cd8bab1efa32475ae4393c4d33f68880fcd6dc273cb055404470d1",
@@ -594,12 +594,12 @@
         "signature": "d512455149bf25ca6ce39a9eb282b4ba198eea669a702b45004de2df5d36a454"
       },
       "./src/components/form/widgets/textwidget.tsx": {
-        "version": "d1813fbb4d509e726f8c0af94fed6b4127172f48a3a268d192fc77f1ff26b59f",
-        "signature": "b71c00e9c0fa69a65badafd33f334f6af159f8f1360a77e6bef7b3b212338e3b"
+        "version": "3c12ac660aeb4f04a5a328b85b084ab9bef97de15d6ae5dacafb09d67af82354",
+        "signature": "4e0369a13738ac43afa8c9960a2a53ce9a218a17704730881fcc43b53847c395"
       },
       "./src/components/form/widgets/textareawidget.tsx": {
-        "version": "6327ab84708549a80188c7194a4f877ba55a36cfb6bb34d08719d17a47f91e9e",
-        "signature": "85c1fb59a76722d69b7cca405e609d93303831114568bdbd5c0905827d7d7e22"
+        "version": "f560f5c929727a647ba252d7de5f6322a99dfdeea08ba1aac73640793377c200",
+        "signature": "c35b60cf1e511d77e3667694e4d5f8ca602dbb935c84aafd89110c9db23f7364"
       },
       "./src/components/form/widgets/passwordwidget.tsx": {
         "version": "5c56f69b3ff5357d3b91a3ff7e5096a5c6efdb619a7873bd585d3815e77d8733",
@@ -766,8 +766,8 @@
         "signature": "40558f7e048fca35a9a561b2194559211d143dc54398b92dd388666746b85ef6"
       },
       "./src/components/list/index.tsx": {
-        "version": "74024cb8fef3f776aa0dd125eaaa4e6810d870195c8401d12431fa5e8ed24b57",
-        "signature": "19850606759c3cdcbe8b9101745ea41c634214c9bc506364c093e86397c34dad"
+        "version": "ec8d8f3fe838e0c671ae93acb746862f2780029c2f9cc6d7ae36d3823d3943ff",
+        "signature": "e7e3f12e8ee66cf05390ec68b154db1386f5adb9288d9d236e4c53ec0cbbf8ee"
       },
       "./src/components/dropdownactions/index.tsx": {
         "version": "d792c9c984dfa477f3affd2b065609843aa2422c2a7e3d34869cd60b60d0e3cb",
@@ -842,35 +842,35 @@
         "signature": "a8b3b736fa42e209d6a32c215470fccec8279479c45460d79fc3288c59b12cd8"
       },
       "./src/uq/entity.ts": {
-        "version": "e1c54277eb2c7e9b9e9a1bfccee689ea00c30a3650c6aa73912624d9f9e73d25",
-        "signature": "bce8bc0d9738a79b6610d5b0959fe0d944333b1db8d5de451974521630fad1e3"
+        "version": "5a92f62a5cdf04b34245e6dbfdaab30e2c1d0c222da50875ede424857d4e91db",
+        "signature": "613e1d2196f5fc800c6efee308eab22db7fae2fd730882bb6ccfdde4f75c5361"
       },
       "./src/uq/action.ts": {
         "version": "60c932842268008c78a83eac445c114498634c8c4cc413f7e5399149f25b1bd3",
         "signature": "63f24acdd32f514f8e07ac7d3c461055537912e75d8bc84373ff21b1d4133566"
       },
       "./src/uq/query.ts": {
-        "version": "3fe23835cbde6418748c21e767d8b0b4aac34fcbe15d908e837689bee796e533",
-        "signature": "b4c8ef2094513fb4297b49157ed78d6ae254b88468cb1f6f5e1382b8c012ec5b"
+        "version": "cd669bc7814e69c22f28fd0959e26e9b03324f06a2e08e6a4ddd39fd932be162",
+        "signature": "4dbd76133d3fb0081f3976aacb4f91fed879ab0b147ab27a5d01cf034abfc90f"
       },
       "./src/uq/caller.ts": {
-        "version": "b07b834f4655b43bbfa30ed832a1d8e97806aea75f880f9ba6db0ab2132ecb75",
-        "signature": "443f3f669b731b044663fb0aca15f591acbe2fade692e04ba5b9365d5ce77617"
+        "version": "d23e1c4af54693121e9da32dd66fe3b8e2c47cdfefede8b0f9d5fb3e8088f8ce",
+        "signature": "39b0f79414c06cfbccfc3b331f6766dfcac0264c310fdf8513f313f48eb27d23"
       },
       "./src/uq/tuid/idcache.ts": {
-        "version": "9893d1cf18ee47328b4120f2cfdeaca4ae5e57de9e95852df7d79937bd21ac9d",
+        "version": "2c05616aabfa131e02385a879f2ce610145b670cdd7d34f01589b27afdc3ddfe",
         "signature": "d19f5c584342d44bc912eaac32143a853f73164021d4f400045c53b4bfa018a9"
       },
       "./src/uq/tuid/tuid.ts": {
-        "version": "fe6b51acd22212437cf744c36417f5ae9630c5385c056dd32557aa873e06a9df",
-        "signature": "93b06263c81fd9abbc15ed1b620e0dff4f42c63560f6004f37a91abe0466f53c"
+        "version": "bb91de2627ee2cd9eb11b9147ca6be61120458a6fa70d877b32df2438123952c",
+        "signature": "20b8851410a9a410a2f6fce073d0262098609fa70d3394875c0c78b665653dbf"
       },
       "./src/uq/tuid/boxid.tsx": {
         "version": "e147affc7979448f5854f54d68f57ce396c3eff0538b3954c19fc2a8d5732292",
         "signature": "1121c35415cb84988112b2f3c1ebe4b0fe9c53e5a241db14d1795900c02f3b7b"
       },
       "./src/uq/tuid/tuidscache.ts": {
-        "version": "8f1e801eb65f742cf463d9edf4951e0bf2ca9b66c782b4e8aca391498d44afb5",
+        "version": "e520c1aeea5ea6d7261219dfa6ba645f7914624d78ea534dbb1bab5883a2447e",
         "signature": "606348671c2076a69ecd9645134ccdcc1cd71a6bd52ee1b40d81b9b5f9098045"
       },
       "./src/uq/tuid/reactboxid.tsx": {
@@ -882,8 +882,8 @@
         "signature": "5097060a8c9f30a5f03c9ddfe8d2037f1a413b6e9245d6280b1dc8f474ea6a30"
       },
       "./src/uq/sheet.ts": {
-        "version": "28b32960985bcdcb2619d4062e11218aca9a67291d635eba006e840283e25803",
-        "signature": "9a5cd8fc73de82e305a8f0af7c8a840cd8be3b78409a722d0aad09400f13f6d6"
+        "version": "3bbbc621fb73866bbd576ce76a900bfeab526d57b62e5123796c6186b4760dd2",
+        "signature": "438d93a491032a10eeb8c02ef792191b92c18366a7e8b22f7b50d37c159bf51d"
       },
       "./src/uq/book.ts": {
         "version": "c8f2443120bbb1453fdc51cf6202d84e7678ec1c16e2ca38155b3eee8ae72a26",
@@ -915,7 +915,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "55223d76e91a517c724a010631eb7ce41891e1abff79cbcbf825ac378dbc5014",
-        "signature": "b10145bde3f511937a893133e3fd30b9f6f64b4aae77d3c1d4b7b06501b0ce06"
+        "signature": "8d0abc466c9b2aaea8ba2fd6641f69525f40b3f0d9a066c0844a4914d11e58a3"
       },
       "./src/uq/index.ts": {
         "version": "557885a8fc63fa5cd10e29f10ba869695f12ae7861c70e002f099545ff2b3d05",
@@ -1010,8 +1010,8 @@
         "signature": "075050763b745b35ec7361e74f1b49c30fdd8169e0f5cace197976de52c2d036"
       },
       "./src/capp/query/vqueryselect.tsx": {
-        "version": "ad3b85518abfcb8abf5c9298cf9d0761e66423f8fb4df5b98f26aaa4cadfc8ce",
-        "signature": "b06d969a8f2bb86bd8f27615d14f89151321ab6325b02f6b8925f3015e3b82dc"
+        "version": "b5f49d6563c98af8bd99ee7133d92f928c3cb7302c9421139706c68b4930b152",
+        "signature": "fac81d6c53c526d610a9c662cdeef2a87c58813124c7281ea9513f619fac4591"
       },
       "./src/capp/query/cquery.ts": {
         "version": "a7e4b4c5721e3b8c03449f5ace6ee3eaa7c8e50835d625bbccfe0ba3fadcc415",
@@ -1134,8 +1134,8 @@
         "signature": "4fc50761e5d3df95fa13dd39e34cc104014ea1a7083678c0df054e2415d4aeb6"
       },
       "./src/capp/tuid/pageitems.ts": {
-        "version": "d3b431341b950017d0b908dcb9ed8b30210ba3551a0f028ba1900508e984450c",
-        "signature": "1a8ea3da096180b19a198c043baa2087bd71f6880343a8a72b3657fcdc201979"
+        "version": "d73fd60e968fba102fa36b34e555f39f0ae4c405bf10cc026cde92119fffdb94",
+        "signature": "213ce315f6ee7c294eccc6ad105cf4e2cf4f7d98fdb3a310322b9954165f7d00"
       },
       "./src/capp/tuid/vtuidlist.tsx": {
         "version": "2ad0f6b6192000fa6b96bbd5d7e7e5439f89292f652e4de1277bb61073c0ec6c",
@@ -1300,6 +1300,10 @@
       "./src/uq/boxid.tsx": {
         "version": "f195a082cd4b42b7d559dfb0004ca8badad51c0319683098e725a15adac49b4e",
         "signature": "93a15cbc7907f5e8bba73a8adbc51131e8e3655f6231abd903ebf13b80a39e4d"
+      },
+      "./src/uq/tag.ts": {
+        "version": "8332d92679a0dee8ed6e4b8c3474b109ce4185fa95705c60b5fc5eb4e06a1c5f",
+        "signature": "b8cc466d5a91f447cc342a166d8daea90602193423b0878fbb3a5e34282c8ccc"
       },
       "./src/uq/ui.ts": {
         "version": "4490cbc716fb8b4917ba510bcc656036bead4f815510ae0fac1b6c01dd851260",
@@ -2877,6 +2881,9 @@
       "./src/uq/boxid.tsx": [
         "./src/uq/tuid/index.ts"
       ],
+      "./src/uq/tag.ts": [
+        "./src/uq/entity.ts"
+      ],
       "./src/uq/tag/index.ts": [
         "./src/uq/tag/tag.ts",
         "./src/uq/tag/tagview.tsx"
@@ -2896,879 +2903,93 @@
       ]
     },
     "exportedModulesMap": {
-      "./src/tool/index.ts": [
-        "./src/tool/left0.ts",
-        "./src/tool/user.ts",
-        "./src/tool/uid.ts",
-        "./src/tool/pageitems.ts",
-        "./src/tool/cacheids.ts",
-        "./src/tool/localdb.ts",
-        "./src/tool/local.ts",
-        "./src/tool/env.ts"
-      ],
-      "./src/index.ts": [
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/components/index.ts",
-        "./src/entry/index.ts",
-        "./src/uq/index.ts",
-        "./src/capp/index.ts",
-        "./src/app/index.ts"
-      ],
-      "./src/capp/tuid/ctuid.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/tool/index.ts",
-        "./src/capp/cuq/cuq.tsx",
-        "./src/capp/tuid/vtuidmain.tsx",
-        "./src/capp/tuid/vtuidedit.tsx",
-        "./src/capp/tuid/vtuidlist.tsx",
-        "./src/capp/tuid/vtuidselect.tsx",
-        "./src/capp/tuid/vtuidinfo.tsx"
-      ],
-      "./src/capp/tuid/index.tsx": [
-        "./src/capp/tuid/ctuid.ts",
-        "./src/capp/tuid/vtuidmain.tsx",
-        "./src/capp/tuid/vtuidedit.tsx",
-        "./src/capp/tuid/vtuidinfo.tsx",
-        "./src/capp/tuid/vtuidview.tsx",
-        "./src/capp/tuid/vtuidselect.tsx"
-      ],
-      "./src/capp/index.ts": [
-        "./src/capp/app/index.ts",
-        "./src/capp/startapp.ts",
-        "./src/capp/cuq/index.ts",
-        "./src/capp/action/index.ts",
-        "./src/capp/tuid/index.tsx",
-        "./src/capp/sheet/index.ts",
-        "./src/capp/query/index.ts",
-        "./src/capp/map/index.ts",
-        "./src/capp/history/index.ts",
-        "./src/capp/pending/index.ts",
-        "./src/capp/form/viewmodel.tsx",
-        "./src/capp/form/index.ts",
-        "./src/capp/formui.ts",
-        "./src/capp/controlleruq.ts",
-        "./src/capp/cventity.tsx",
-        "./src/capp/link/index.ts",
-        "./src/capp/icons.tsx"
-      ],
-      "./src/capp/cuq/cuq.tsx": [
-        "./src/capp/tuid/index.tsx",
-        "./src/capp/query/index.ts",
-        "./src/capp/map/index.ts",
-        "./src/capp/action/index.ts",
-        "./src/capp/sheet/index.ts",
-        "./src/capp/book/index.ts",
-        "./src/capp/history/index.ts",
-        "./src/capp/pending/index.ts",
-        "./src/capp/app/index.ts",
-        "./src/net/index.ts",
-        "./src/uq/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/capp/link/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/capp/cuq/vuq.tsx",
-        "./src/components/index.ts"
-      ],
-      "./src/capp/cuq/index.ts": [
-        "./src/capp/cuq/cuq.tsx",
-        "./src/capp/cuq/vuq.tsx"
-      ],
-      "./src/capp/app/capp.tsx": [
-        "./src/capp/cuq/index.ts",
-        "./src/components/index.ts",
-        "./src/uq/index.ts",
-        "./src/net/index.ts"
-      ],
-      "./src/capp/app/index.ts": [
-        "./src/capp/app/capp.tsx"
-      ],
-      "./src/capp/startapp.ts": [
-        "./src/capp/app/index.ts"
-      ],
-      "./src/capp/app/vapp.tsx": [
-        "./src/components/index.ts",
-        "./src/capp/app/capp.tsx"
-      ],
-      "./src/capp/controlleruq.ts": [
-        "./src/capp/cuq/index.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/capp/cventity.tsx": [
-        "./src/capp/formui.ts",
-        "./src/uq/index.ts",
-        "./src/capp/cuq/cuq.tsx",
-        "./src/capp/form/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/capp/query/index.ts",
-        "./src/capp/controlleruq.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/capp/pending/cpending.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/capp/pending/vpendingmain.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/pending/index.ts": [
-        "./src/capp/pending/cpending.ts",
-        "./src/capp/pending/vpendingmain.tsx"
-      ],
-      "./src/capp/pending/vpendingmain.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/pending/cpending.ts"
-      ],
-      "./src/capp/history/chistory.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/capp/history/vhistorymain.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/history/index.ts": [
-        "./src/capp/history/chistory.ts",
-        "./src/capp/history/vhistorymain.tsx"
-      ],
-      "./src/capp/history/vhistorymain.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/history/chistory.ts"
-      ],
-      "./src/capp/map/cmap.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/map/vmain.tsx"
-      ],
-      "./src/capp/map/index.ts": [
-        "./src/capp/map/cmap.ts",
-        "./src/capp/map/vmain.tsx"
-      ],
-      "./src/capp/map/inputvalues.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/map/cmap.ts"
-      ],
-      "./src/capp/map/vmain.tsx": [
-        "./src/capp/map/cmap.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/tuid/vtuidlist.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/tuid/ctuid.ts"
-      ],
-      "./src/capp/tuid/vtuidview.tsx": [
-        "./src/capp/form/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/tuid/ctuid.ts"
-      ],
-      "./src/capp/tuid/vtuidinfo.tsx": [
-        "./src/capp/tuid/vtuidview.tsx"
-      ],
-      "./src/capp/tuid/vtuidselect.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/tuid/ctuid.ts"
-      ],
-      "./src/capp/tuid/vtuidedit.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/tuid/ctuid.ts"
-      ],
-      "./src/capp/tuid/vtuidmain.tsx": [
-        "./src/capp/tuid/ctuid.ts",
-        "./src/capp/link/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/action/caction.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/capp/action/vactionmain.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/action/index.ts": [
-        "./src/capp/action/caction.ts",
-        "./src/capp/action/vactionmain.tsx"
-      ],
-      "./src/capp/action/vactionmain.tsx": [
-        "./src/capp/form/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/action/caction.ts"
-      ],
-      "./src/capp/sheet/csheet.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/components/index.ts",
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/uq/index.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/capp/sheet/index.ts": [
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/sheet/vsheet.tsx",
-        "./src/capp/sheet/vmain.tsx",
-        "./src/capp/sheet/vnew.tsx",
-        "./src/capp/sheet/vedit.tsx",
-        "./src/capp/sheet/vlist.tsx",
-        "./src/capp/sheet/vsheetaction.tsx",
-        "./src/capp/sheet/vschema.tsx",
-        "./src/capp/sheet/varchived.tsx",
-        "./src/capp/sheet/vsheetview.tsx"
-      ],
-      "./src/capp/sheet/vsheetprocessing.tsx": [
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/sheet/vsheetview.tsx"
-      ],
-      "./src/capp/sheet/vsheet.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/sheet/vsaved.tsx": [
-        "./src/capp/sheet/vsheet.tsx"
-      ],
-      "./src/capp/sheet/varchived.tsx": [
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/sheet/vsheetview.tsx"
-      ],
-      "./src/capp/sheet/vlist.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/sheet/varchives.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/sheet/vschema.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/sheet/vsheetaction.tsx": [
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/sheet/vsheetview.tsx"
-      ],
-      "./src/capp/sheet/vedit.tsx": [
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/sheet/vsheetview.tsx"
-      ],
-      "./src/capp/sheet/vsheetview.tsx": [
-        "./src/capp/form/index.ts",
-        "./src/capp/sheet/csheet.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/sheet/vnew.tsx": [
-        "./src/capp/form/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/sheet/vmain.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/sheet/csheet.ts"
-      ],
-      "./src/capp/book/cbook.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/capp/book/vbookmain.tsx",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/book/index.ts": [
-        "./src/capp/book/cbook.ts",
-        "./src/capp/book/vbookmain.tsx"
-      ],
-      "./src/capp/book/vbookmain.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/book/cbook.ts"
-      ],
-      "./src/capp/query/cquery.ts": [
-        "./src/capp/cventity.tsx",
-        "./src/capp/query/vquerymain.tsx",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/uq/index.ts",
-        "./src/capp/query/vqueryselect.tsx"
-      ],
-      "./src/capp/query/index.ts": [
-        "./src/capp/query/cquery.ts",
-        "./src/capp/query/vquerymain.tsx",
-        "./src/capp/query/vqueryselect.tsx"
-      ],
-      "./src/capp/query/vqueryselect.tsx": [
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/query/cquery.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/capp/query/vquerymain.tsx": [
-        "./src/capp/form/index.ts",
-        "./src/capp/cventity.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/query/cquery.ts"
-      ],
-      "./src/capp/cuq/vuq.tsx": [
-        "./src/capp/link/index.ts",
-        "./src/capp/cuq/cuq.tsx",
-        "./src/uq/index.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/capp/tuid/pageitems.ts": [
-        "./src/uq/index.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/uq/uqman.ts": [
-        "./src/uq/tuid/index.ts",
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/uq/uqsman.ts",
-        "./src/uq/action.ts",
-        "./src/uq/sheet.ts",
-        "./src/uq/query.ts",
-        "./src/uq/book.ts",
-        "./src/uq/map.ts",
-        "./src/uq/history.ts",
-        "./src/uq/pending.ts",
-        "./src/uq/tag/tag.ts"
-      ],
-      "./src/uq/index.ts": [
-        "./src/uq/uqman.ts",
-        "./src/uq/entity.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts",
-        "./src/uq/sheet.ts",
-        "./src/uq/tuid/index.ts",
-        "./src/uq/book.ts",
-        "./src/uq/map.ts",
-        "./src/uq/history.ts",
-        "./src/uq/pending.ts",
-        "./src/uq/uqsman.ts",
-        "./src/uq/tag/tag.ts"
-      ],
-      "./src/app/cappbase.ts": [
-        "./src/uq/index.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/app/index.ts": [
-        "./src/app/cappbase.ts",
-        "./src/app/start.ts",
-        "./src/app/cbase.ts"
-      ],
-      "./src/app/cbase.ts": [
-        "./src/app/cappbase.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/app/start.ts": [
-        "./src/app/cappbase.ts"
-      ],
-      "./src/app/vmain.tsx": [
-        "./src/components/index.ts",
-        "./src/app/cappbase.ts"
-      ],
-      "./src/capp/form/vform.tsx": [
-        "./src/uq/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/capp/formui.ts",
-        "./src/capp/form/vband.tsx",
-        "./src/capp/form/vfield/index.ts",
-        "./src/capp/form/varr.tsx",
-        "./src/capp/form/vsubmit.tsx"
-      ],
-      "./src/capp/form/index.ts": [
-        "./src/capp/form/vform.tsx"
-      ],
-      "./src/capp/form/bandsbuilder.ts": [
-        "./src/capp/form/vform.tsx",
-        "./src/capp/form/vband.tsx"
-      ],
-      "./src/capp/form/vfield/vtuidfield.tsx": [
-        "./src/capp/form/vform.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/formui.ts",
-        "./src/capp/form/vband.tsx",
-        "./src/capp/form/vfield/vfield.tsx"
-      ],
-      "./src/capp/form/vsubmit.tsx": [
-        "./src/capp/form/vform.tsx",
-        "./src/capp/form/viewmodel.tsx"
-      ],
-      "./src/capp/form/vband.tsx": [
-        "./src/capp/form/vfield/index.ts",
-        "./src/capp/form/varr.tsx",
-        "./src/capp/form/vsubmit.tsx"
-      ],
-      "./src/capp/form/vfield/vcomputefield.tsx": [
-        "./src/capp/form/vform.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/form/vband.tsx",
-        "./src/capp/form/vfield/vfield.tsx"
-      ],
-      "./src/capp/form/vfield/index.ts": [
-        "./src/capp/form/vfield/vfield.tsx",
-        "./src/capp/form/vfield/buildvmfield.ts",
-        "./src/capp/form/vfield/vcomputefield.tsx"
-      ],
-      "./src/capp/form/vfield/buildvmfield.ts": [
-        "./src/capp/form/vform.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/formui.ts",
-        "./src/capp/form/vband.tsx",
-        "./src/capp/form/vfield/vfield.tsx"
-      ],
-      "./src/capp/form/vfield/vfield.tsx": [
-        "./src/capp/form/vform.tsx",
-        "./src/capp/formui.ts",
-        "./src/capp/form/vband.tsx",
-        "./src/uq/index.ts",
-        "./src/capp/form/rule.ts",
-        "./src/capp/form/viewmodel.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/capp/form/varr.tsx": [
-        "./src/capp/form/vform.tsx",
-        "./src/capp/form/viewmodel.tsx",
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/uq/index.ts"
-      ],
-      "./src/capp/cuq/reactboxid.tsx": [
-        "./src/uq/index.ts"
-      ],
-      "./src/uq/uqsman.ts": [
-        "./src/tool/index.ts",
-        "./src/uq/uqman.ts",
-        "./src/net/index.ts"
-      ],
-      "./src/uq/map.ts": [
-        "./src/uq/uqman.ts",
-        "./src/uq/entity.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/tuid/tuidscache.ts": [
-        "./src/uq/uqman.ts"
-      ],
-      "./src/uq/tuid/index.ts": [
-        "./src/uq/tuid/boxid.tsx",
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/tuidscache.ts",
-        "./src/uq/tuid/reactboxid.tsx"
-      ],
-      "./src/uq/boxid.tsx": [
-        "./src/uq/tuid/index.ts"
-      ],
-      "./src/uq/entity.ts": [
-        "./src/uq/uqman.ts",
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/uq/tuid/index.ts"
-      ],
-      "./src/uq/tag/tag.ts": [
-        "./src/uq/tag/tagview.tsx",
-        "./src/uq/entity.ts"
-      ],
-      "./src/uq/tag/index.ts": [
-        "./src/uq/tag/tag.ts",
-        "./src/uq/tag/tagview.tsx"
-      ],
-      "./src/uq/tag/tagview.tsx": [
-        "./src/uq/tag/tag.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/uq/sheet.ts": [
-        "./src/uq/entity.ts",
-        "./src/tool/pageitems.ts"
-      ],
-      "./src/uq/tuid/tuid.ts": [
-        "./src/uq/tuid/boxid.tsx",
-        "./src/uq/entity.ts",
-        "./src/uq/uqman.ts",
-        "./src/uq/tuid/idcache.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/uq/tuid/reactboxid.tsx": [
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/boxid.tsx"
-      ],
-      "./src/uq/tuid/boxid.tsx": [
-        "./src/uq/tuid/tuid.ts"
-      ],
-      "./src/uq/tuid/idcache.ts": [
-        "./src/tool/index.ts",
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/boxid.tsx"
-      ],
-      "./src/uq/caller.ts": [
-        "./src/uq/entity.ts",
-        "./src/net/index.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/book.ts": [
-        "./src/uq/caller.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/query.ts": [
-        "./src/tool/index.ts",
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/uq/uqman.ts",
-        "./src/uq/caller.ts",
-        "./src/uq/entity.ts"
-      ],
-      "./src/uq/pending.ts": [
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/history.ts": [
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/action.ts": [
-        "./src/uq/entity.ts",
-        "./src/uq/caller.ts"
-      ],
-      "./src/net/httpchannel.ts": [
-        "./src/net/httpchannelui.ts",
-        "./src/net/caller.ts"
-      ],
-      "./src/net/apibase.ts": [
-        "./src/net/httpchannel.ts",
-        "./src/net/caller.ts"
-      ],
-      "./src/net/index.ts": [
-        "./src/net/wschannel.ts",
-        "./src/net/apibase.ts",
-        "./src/net/guestapi.ts",
-        "./src/net/caller.ts",
-        "./src/net/uqapi.ts",
-        "./src/net/appbridge.ts",
-        "./src/net/host.ts"
-      ],
-      "./src/app/centerapi.ts": [
-        "./src/net/index.ts"
-      ],
-      "./src/capp/centerapi.ts": [
-        "./src/net/index.ts"
-      ],
-      "./src/entry/meinfo.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/index.ts": [
-        "./src/entry/meinfo.tsx"
-      ],
-      "./src/components/usericon.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/components/index.ts": [
-        "./src/components/nav.tsx",
-        "./src/components/pageheader.tsx",
-        "./src/components/page.tsx",
-        "./src/components/vm.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/index.ts",
-        "./src/components/edit/index.tsx",
-        "./src/components/res.ts",
-        "./src/components/tabs/index.tsx",
-        "./src/components/loading.tsx",
-        "./src/components/image.tsx",
-        "./src/components/resuploader.tsx",
-        "./src/components/rules/index.ts",
-        "./src/components/list/index.tsx",
-        "./src/components/dropdownactions/index.tsx",
-        "./src/components/easydate/index.tsx",
-        "./src/components/propgrid/index.tsx",
-        "./src/components/simple/index.ts",
-        "./src/components/media.tsx",
-        "./src/components/searchbox.tsx",
-        "./src/components/usericon.tsx"
-      ],
-      "./src/entry/forget.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/capp/link/clink.tsx": [
-        "./src/components/index.ts"
-      ],
-      "./src/capp/link/index.ts": [
-        "./src/capp/link/clink.tsx"
-      ],
-      "./src/components/nav.tsx": [
-        "./src/net/fetcherror.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/tool/user.ts"
-      ],
-      "./src/components/edit/tagitemedit.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/edit.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/edit/index.tsx": [
-        "./src/components/edit/edit.tsx"
-      ],
-      "./src/components/edit/selectitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/radioitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/stringitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/imageitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/form/widgets/imagewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/index.ts": [
-        "./src/components/form/widgets/factory.tsx",
-        "./src/components/form/widgets/widget.tsx",
-        "./src/components/form/widgets/textwidget.tsx",
-        "./src/components/form/widgets/textareawidget.tsx",
-        "./src/components/form/widgets/passwordwidget.tsx",
-        "./src/components/form/widgets/updownwidget.tsx",
-        "./src/components/form/widgets/numberwidget.tsx",
-        "./src/components/form/widgets/datewidget.tsx",
-        "./src/components/form/widgets/checkboxwidget.tsx",
-        "./src/components/form/widgets/imagewidget.tsx",
-        "./src/components/form/context.tsx",
-        "./src/components/form/widgets/selectwidget.tsx",
-        "./src/components/form/widgets/radiowidget.tsx",
-        "./src/components/form/widgets/rangewidget.tsx",
-        "./src/components/form/widgets/idwidget.tsx",
-        "./src/components/form/widgets/buttonwidget.tsx",
-        "./src/components/form/widgets/unknown.tsx"
-      ],
-      "./src/components/form/index.ts": [
-        "./src/components/form/form.tsx",
-        "./src/components/form/field.tsx",
-        "./src/components/form/context.tsx",
-        "./src/components/form/widgets/index.ts"
-      ],
-      "./src/components/schema/uischema.ts": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/schema.ts",
-        "./src/components/form/field.tsx",
-        "./src/components/form/widgets/index.ts",
-        "./src/components/form/rules/index.ts",
-        "./src/components/schema/ivaluesview.tsx"
-      ],
-      "./src/components/schema/index.ts": [
-        "./src/components/schema/schema.ts",
-        "./src/components/schema/uischema.ts",
-        "./src/components/schema/touiselectitems.ts",
-        "./src/components/schema/ivaluesview.tsx"
-      ],
-      "./src/components/form/widgets/selectbasewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/edit/selectbaseitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/iditemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/form/context.tsx": [
-        "./src/components/form/form.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx",
-        "./src/components/form/rules/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/form.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/formres.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/widgets/factory.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/field.tsx"
-      ],
-      "./src/components/form/widgets/arrcomponent.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/widgets/tagwidget.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/radiowidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/widget.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/form/field.tsx",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/form/rules/index.ts"
-      ],
-      "./src/components/form/widgets/buttonwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/idwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/rangewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/selectwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/checkboxwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/textareawidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/textwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/datewidget.tsx": [
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/widgets/numberwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/widgets/updownwidget.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/numberwidget.tsx"
-      ],
-      "./src/components/form/widgets/passwordwidget.tsx": [
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/rules/index.ts": [
-        "./src/components/form/context.tsx",
-        "./src/components/form/formres.ts"
-      ],
-      "./src/components/edit/itemedit.tsx": [
-        "./src/components/schema/index.ts"
-      ],
-      "./src/components/form/field.tsx": [
-        "./src/components/form/context.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/widgets/unknown.tsx": [
-        "./src/components/schema/index.ts"
-      ],
-      "./src/components/schema/touiselectitems.ts": [
-        "./src/components/schema/uischema.ts"
-      ],
-      "./src/components/resuploader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/image.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/vm.tsx": [
-        "./src/tool/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/reloadpage.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/net/httpchannelui.ts": [
-        "./src/net/fetcherror.ts"
-      ],
-      "./src/net/uqapi.ts": [
-        "./src/net/httpchannel.ts",
-        "./src/net/apibase.ts"
-      ],
-      "./src/net/guestapi.ts": [
-        "./src/net/uqapi.ts"
-      ],
-      "./src/components/pageheader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/page.tsx": [
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/fetcherrorview.tsx": [
-        "./src/net/fetcherror.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/media.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/easydate/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/changepassword.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/login.tsx": [
-        "./src/tool/user.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/register.tsx": [
-        "./src/components/index.ts"
-      ],
-      "./src/entry/res/register.ts": [
-        "./src/components/index.ts"
-      ],
-      "./src/entry/res/index.ts": [
-        "./src/entry/res/login.ts",
-        "./src/entry/res/register.ts"
-      ],
-      "./src/entry/res/login.ts": [
-        "./src/components/index.ts"
-      ],
-      "./src/net/fetcherror.ts": [
-        "./src/net/httpchannel.ts"
-      ],
-      "./src/components/list/selectable.tsx": [
-        "./src/components/list/index.tsx",
-        "./src/components/list/base.tsx"
-      ],
-      "./src/components/list/index.tsx": [
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/tool/pageitems.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/list/base.tsx": [
-        "./src/components/list/index.tsx",
-        "./node_modules/mobx/lib/mobx.d.ts"
-      ],
-      "./src/components/list/static.tsx": [
-        "./src/components/list/base.tsx"
-      ],
-      "./src/components/list/clickable.tsx": [
-        "./src/components/list/base.tsx"
-      ],
-      "./src/tool/pageitems.ts": [
-        "./node_modules/mobx/lib/mobx.d.ts"
-      ],
       "./node_modules/mobx/lib/utils/utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/atom.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/mobx/lib/utils/utils.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observabledecorator.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/computed.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablevalue.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/computedvalue.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/derivation.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/globalstate.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/observable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/reaction.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/spy.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/actiondecorator.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/action.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/autorun.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/become-observed.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/extendobservable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/mobx/lib/api/observabledecorator.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/intercept-read.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/intercept.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/object-api.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observe.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/when.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/intercept-utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/listen-utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablearray.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablemap.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observableset.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observableobject.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/type-utils.d.ts": [
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/internal.d.ts": [
@@ -3818,107 +3039,11 @@
         "./node_modules/mobx/lib/utils/eq.d.ts",
         "./node_modules/mobx/lib/utils/iterable.d.ts"
       ],
-      "./src/components/tabs/tabs.tsx": [
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/tabs/index.tsx": [
-        "./src/components/tabs/tabs.tsx"
-      ],
       "./node_modules/mobx/lib/mobx.d.ts": [
         "./node_modules/mobx/lib/internal.d.ts"
       ],
-      "./src/components/simple/image.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/searchbox.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/type-utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observableobject.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observableset.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablemap.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablearray.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/listen-utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/intercept-utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/when.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observe.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/object-api.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/intercept.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/intercept-read.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/extendobservable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/mobx/lib/api/observabledecorator.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/become-observed.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/autorun.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/action.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/actiondecorator.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/spy.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/reaction.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/observable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/globalstate.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/derivation.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/computedvalue.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablevalue.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/computed.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observabledecorator.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/atom.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/mobx/lib/utils/utils.d.ts"
+      "./src/tool/pageitems.ts": [
+        "./node_modules/mobx/lib/mobx.d.ts"
       ],
       "./src/tool/env.ts": [
         "./src/tool/localdb.ts"
@@ -3926,71 +3051,23 @@
       "./src/tool/local.ts": [
         "./src/tool/localdb.ts"
       ],
+      "./src/tool/index.ts": [
+        "./src/tool/left0.ts",
+        "./src/tool/user.ts",
+        "./src/tool/uid.ts",
+        "./src/tool/pageitems.ts",
+        "./src/tool/cacheids.ts",
+        "./src/tool/localdb.ts",
+        "./src/tool/local.ts",
+        "./src/tool/env.ts"
+      ],
       "./node_modules/@types/react/index.d.ts": [
         "./node_modules/csstype/index.d.ts",
         "./node_modules/@types/prop-types/index.d.ts",
         "./node_modules/@types/react/global.d.ts"
       ],
-      "./node_modules/@types/react-dom/index.d.ts": [
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
         "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/resuploader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/fileupload/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/capp/viewmodel.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/capp/form/viewmodel.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/capp/tools/index.ts": [
-        "./src/capp/tools/jsonstringify.ts",
-        "./src/capp/tools/purejsoncontent.tsx"
-      ],
-      "./src/components/propgrid/row.tsx": [
-        "./src/components/propgrid/propgrid.tsx",
-        "./src/components/propgrid/propview.tsx"
-      ],
-      "./src/components/propgrid/index.tsx": [
-        "./src/components/propgrid/propview.tsx",
-        "./src/components/propgrid/row.tsx",
-        "./src/components/propgrid/propgrid.tsx"
-      ],
-      "./src/components/propgrid/propview.tsx": [
-        "./src/components/propgrid/propgrid.tsx"
-      ],
-      "./src/components/propgrid/propgrid.tsx": [
-        "./src/components/propgrid/propview.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/dropdownactions/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/index.ts": [
-        "./src/components/simple/badge.tsx",
-        "./src/components/simple/lmr.tsx",
-        "./src/components/simple/fa.tsx",
-        "./src/components/simple/icontext.tsx",
-        "./src/components/simple/muted.tsx"
-      ],
-      "./src/components/simple/icontext.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/fa.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/lmr.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/badge.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./node_modules/mobx-react/dist/mobx-react.d.ts": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/mobx-react-lite/dist/index.d.ts"
       ],
       "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
@@ -4008,11 +3085,938 @@
         "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts",
         "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts"
       ],
-      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+      "./node_modules/mobx-react/dist/mobx-react.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/index.d.ts"
+      ],
+      "./src/components/pageheader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/page.tsx": [
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/net/fetcherror.ts": [
+        "./src/net/httpchannel.ts"
+      ],
+      "./src/net/httpchannelui.ts": [
+        "./src/net/fetcherror.ts"
+      ],
+      "./src/net/uqapi.ts": [
+        "./src/net/httpchannel.ts",
+        "./src/net/apibase.ts"
+      ],
+      "./src/components/fetcherrorview.tsx": [
+        "./src/net/fetcherror.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/badge.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/lmr.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/fa.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/icontext.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/index.ts": [
+        "./src/components/simple/badge.tsx",
+        "./src/components/simple/lmr.tsx",
+        "./src/components/simple/fa.tsx",
+        "./src/components/simple/icontext.tsx",
+        "./src/components/simple/muted.tsx"
+      ],
+      "./src/components/reloadpage.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/res/login.ts": [
+        "./src/components/index.ts"
+      ],
+      "./src/entry/res/register.ts": [
+        "./src/components/index.ts"
+      ],
+      "./src/entry/res/index.ts": [
+        "./src/entry/res/login.ts",
+        "./src/entry/res/register.ts"
+      ],
+      "./src/entry/register.tsx": [
+        "./src/components/index.ts"
+      ],
+      "./src/entry/login.tsx": [
+        "./src/tool/user.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/changepassword.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/nav.tsx": [
+        "./src/net/fetcherror.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/tool/user.ts"
+      ],
+      "./src/components/vm.tsx": [
+        "./src/tool/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/field.tsx": [
+        "./src/components/form/context.tsx",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/form/formres.ts": [
         "./src/components/res.ts"
+      ],
+      "./src/components/form/rules/index.ts": [
+        "./src/components/form/context.tsx",
+        "./src/components/form/formres.ts"
+      ],
+      "./src/components/form/widgets/widget.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/form/field.tsx",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/form/rules/index.ts"
+      ],
+      "./src/components/form/widgets/textwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/textareawidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/passwordwidget.tsx": [
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/widgets/numberwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/widgets/updownwidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/numberwidget.tsx"
+      ],
+      "./src/components/form/widgets/datewidget.tsx": [
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/widgets/checkboxwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/selectwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/radiowidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/rangewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/idwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/unknown.tsx": [
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/form/widgets/buttonwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/arrcomponent.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/image.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/resuploader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/edit/itemedit.tsx": [
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/edit/imageitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/form/widgets/imagewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/tagwidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/factory.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/field.tsx"
+      ],
+      "./src/components/form/widgets/index.ts": [
+        "./src/components/form/widgets/factory.tsx",
+        "./src/components/form/widgets/widget.tsx",
+        "./src/components/form/widgets/textwidget.tsx",
+        "./src/components/form/widgets/textareawidget.tsx",
+        "./src/components/form/widgets/passwordwidget.tsx",
+        "./src/components/form/widgets/updownwidget.tsx",
+        "./src/components/form/widgets/numberwidget.tsx",
+        "./src/components/form/widgets/datewidget.tsx",
+        "./src/components/form/widgets/checkboxwidget.tsx",
+        "./src/components/form/widgets/imagewidget.tsx",
+        "./src/components/form/context.tsx",
+        "./src/components/form/widgets/selectwidget.tsx",
+        "./src/components/form/widgets/radiowidget.tsx",
+        "./src/components/form/widgets/rangewidget.tsx",
+        "./src/components/form/widgets/idwidget.tsx",
+        "./src/components/form/widgets/buttonwidget.tsx",
+        "./src/components/form/widgets/unknown.tsx"
+      ],
+      "./src/components/form/form.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./src/components/form/formres.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/context.tsx": [
+        "./src/components/form/form.tsx",
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx",
+        "./src/components/form/rules/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/schema/uischema.ts": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/schema.ts",
+        "./src/components/form/field.tsx",
+        "./src/components/form/widgets/index.ts",
+        "./src/components/form/rules/index.ts",
+        "./src/components/schema/ivaluesview.tsx"
+      ],
+      "./src/components/schema/touiselectitems.ts": [
+        "./src/components/schema/uischema.ts"
+      ],
+      "./src/components/schema/index.ts": [
+        "./src/components/schema/schema.ts",
+        "./src/components/schema/uischema.ts",
+        "./src/components/schema/touiselectitems.ts",
+        "./src/components/schema/ivaluesview.tsx"
+      ],
+      "./src/components/form/index.ts": [
+        "./src/components/form/form.tsx",
+        "./src/components/form/field.tsx",
+        "./src/components/form/context.tsx",
+        "./src/components/form/widgets/index.ts"
+      ],
+      "./src/components/edit/stringitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/radioitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/selectitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/iditemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/tagitemedit.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/edit.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/edit/index.tsx": [
+        "./src/components/edit/edit.tsx"
+      ],
+      "./src/components/tabs/tabs.tsx": [
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/tabs/index.tsx": [
+        "./src/components/tabs/tabs.tsx"
+      ],
+      "./src/components/list/base.tsx": [
+        "./src/components/list/index.tsx",
+        "./node_modules/mobx/lib/mobx.d.ts"
+      ],
+      "./src/components/list/clickable.tsx": [
+        "./src/components/list/base.tsx"
+      ],
+      "./src/components/list/static.tsx": [
+        "./src/components/list/base.tsx"
+      ],
+      "./src/components/list/selectable.tsx": [
+        "./src/components/list/index.tsx",
+        "./src/components/list/base.tsx"
+      ],
+      "./src/components/list/index.tsx": [
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/tool/pageitems.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/dropdownactions/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/easydate/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/propgrid/propgrid.tsx": [
+        "./src/components/propgrid/propview.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/propgrid/row.tsx": [
+        "./src/components/propgrid/propgrid.tsx",
+        "./src/components/propgrid/propview.tsx"
+      ],
+      "./src/components/propgrid/propview.tsx": [
+        "./src/components/propgrid/propgrid.tsx"
+      ],
+      "./src/components/propgrid/index.tsx": [
+        "./src/components/propgrid/propview.tsx",
+        "./src/components/propgrid/row.tsx",
+        "./src/components/propgrid/propgrid.tsx"
+      ],
+      "./src/components/media.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/searchbox.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/usericon.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/components/index.ts": [
+        "./src/components/nav.tsx",
+        "./src/components/pageheader.tsx",
+        "./src/components/page.tsx",
+        "./src/components/vm.tsx",
+        "./src/components/schema/index.ts",
+        "./src/components/form/index.ts",
+        "./src/components/edit/index.tsx",
+        "./src/components/res.ts",
+        "./src/components/tabs/index.tsx",
+        "./src/components/loading.tsx",
+        "./src/components/image.tsx",
+        "./src/components/resuploader.tsx",
+        "./src/components/rules/index.ts",
+        "./src/components/list/index.tsx",
+        "./src/components/dropdownactions/index.tsx",
+        "./src/components/easydate/index.tsx",
+        "./src/components/propgrid/index.tsx",
+        "./src/components/simple/index.ts",
+        "./src/components/media.tsx",
+        "./src/components/searchbox.tsx",
+        "./src/components/usericon.tsx"
+      ],
+      "./src/net/httpchannel.ts": [
+        "./src/net/httpchannelui.ts",
+        "./src/net/caller.ts"
+      ],
+      "./src/net/apibase.ts": [
+        "./src/net/httpchannel.ts",
+        "./src/net/caller.ts"
+      ],
+      "./src/net/guestapi.ts": [
+        "./src/net/uqapi.ts"
+      ],
+      "./src/net/index.ts": [
+        "./src/net/wschannel.ts",
+        "./src/net/apibase.ts",
+        "./src/net/guestapi.ts",
+        "./src/net/caller.ts",
+        "./src/net/uqapi.ts",
+        "./src/net/appbridge.ts",
+        "./src/net/host.ts"
+      ],
+      "./src/entry/meinfo.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/index.ts": [
+        "./src/entry/meinfo.tsx"
+      ],
+      "./src/uq/entity.ts": [
+        "./src/uq/uqman.ts",
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/uq/tuid/index.ts"
+      ],
+      "./src/uq/action.ts": [
+        "./src/uq/entity.ts",
+        "./src/uq/caller.ts"
+      ],
+      "./src/uq/query.ts": [
+        "./src/tool/index.ts",
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/uq/uqman.ts",
+        "./src/uq/caller.ts",
+        "./src/uq/entity.ts"
+      ],
+      "./src/uq/caller.ts": [
+        "./src/uq/entity.ts",
+        "./src/net/index.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/tuid/idcache.ts": [
+        "./src/tool/index.ts",
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/boxid.tsx"
+      ],
+      "./src/uq/tuid/tuid.ts": [
+        "./src/uq/tuid/boxid.tsx",
+        "./src/uq/entity.ts",
+        "./src/uq/uqman.ts",
+        "./src/uq/tuid/idcache.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/uq/tuid/boxid.tsx": [
+        "./src/uq/tuid/tuid.ts"
+      ],
+      "./src/uq/tuid/tuidscache.ts": [
+        "./src/uq/uqman.ts"
+      ],
+      "./src/uq/tuid/reactboxid.tsx": [
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/boxid.tsx"
+      ],
+      "./src/uq/tuid/index.ts": [
+        "./src/uq/tuid/boxid.tsx",
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/tuidscache.ts",
+        "./src/uq/tuid/reactboxid.tsx"
+      ],
+      "./src/uq/sheet.ts": [
+        "./src/uq/entity.ts",
+        "./src/tool/pageitems.ts"
+      ],
+      "./src/uq/book.ts": [
+        "./src/uq/caller.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/history.ts": [
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/map.ts": [
+        "./src/uq/uqman.ts",
+        "./src/uq/entity.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/pending.ts": [
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/uqsman.ts": [
+        "./src/tool/index.ts",
+        "./src/uq/uqman.ts",
+        "./src/net/index.ts"
+      ],
+      "./src/uq/tag/tagview.tsx": [
+        "./src/uq/tag/tag.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/uq/tag/tag.ts": [
+        "./src/uq/tag/tagview.tsx",
+        "./src/uq/entity.ts"
+      ],
+      "./src/uq/uqman.ts": [
+        "./src/uq/tuid/index.ts",
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/uq/uqsman.ts",
+        "./src/uq/action.ts",
+        "./src/uq/sheet.ts",
+        "./src/uq/query.ts",
+        "./src/uq/book.ts",
+        "./src/uq/map.ts",
+        "./src/uq/history.ts",
+        "./src/uq/pending.ts",
+        "./src/uq/tag/tag.ts"
+      ],
+      "./src/uq/index.ts": [
+        "./src/uq/uqman.ts",
+        "./src/uq/entity.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts",
+        "./src/uq/sheet.ts",
+        "./src/uq/tuid/index.ts",
+        "./src/uq/book.ts",
+        "./src/uq/map.ts",
+        "./src/uq/history.ts",
+        "./src/uq/pending.ts",
+        "./src/uq/uqsman.ts",
+        "./src/uq/tag/tag.ts"
+      ],
+      "./src/capp/tools/index.ts": [
+        "./src/capp/tools/jsonstringify.ts",
+        "./src/capp/tools/purejsoncontent.tsx"
+      ],
+      "./src/capp/link/clink.tsx": [
+        "./src/components/index.ts"
+      ],
+      "./src/capp/link/index.ts": [
+        "./src/capp/link/clink.tsx"
+      ],
+      "./src/capp/form/viewmodel.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/capp/form/vfield/vfield.tsx": [
+        "./src/capp/form/vform.tsx",
+        "./src/capp/formui.ts",
+        "./src/capp/form/vband.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/form/rule.ts",
+        "./src/capp/form/viewmodel.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/capp/form/vfield/buildvmfield.ts": [
+        "./src/capp/form/vform.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/formui.ts",
+        "./src/capp/form/vband.tsx",
+        "./src/capp/form/vfield/vfield.tsx"
+      ],
+      "./src/capp/form/vfield/vcomputefield.tsx": [
+        "./src/capp/form/vform.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/form/vband.tsx",
+        "./src/capp/form/vfield/vfield.tsx"
+      ],
+      "./src/capp/form/vfield/index.ts": [
+        "./src/capp/form/vfield/vfield.tsx",
+        "./src/capp/form/vfield/buildvmfield.ts",
+        "./src/capp/form/vfield/vcomputefield.tsx"
+      ],
+      "./src/capp/form/varr.tsx": [
+        "./src/capp/form/vform.tsx",
+        "./src/capp/form/viewmodel.tsx",
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/form/vsubmit.tsx": [
+        "./src/capp/form/vform.tsx",
+        "./src/capp/form/viewmodel.tsx"
+      ],
+      "./src/capp/form/vband.tsx": [
+        "./src/capp/form/vfield/index.ts",
+        "./src/capp/form/varr.tsx",
+        "./src/capp/form/vsubmit.tsx"
+      ],
+      "./src/capp/cuq/reactboxid.tsx": [
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/form/vfield/vtuidfield.tsx": [
+        "./src/capp/form/vform.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/formui.ts",
+        "./src/capp/form/vband.tsx",
+        "./src/capp/form/vfield/vfield.tsx"
+      ],
+      "./src/capp/form/bandsbuilder.ts": [
+        "./src/capp/form/vform.tsx",
+        "./src/capp/form/vband.tsx"
+      ],
+      "./src/capp/form/vform.tsx": [
+        "./src/uq/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/capp/formui.ts",
+        "./src/capp/form/vband.tsx",
+        "./src/capp/form/vfield/index.ts",
+        "./src/capp/form/varr.tsx",
+        "./src/capp/form/vsubmit.tsx"
+      ],
+      "./src/capp/form/index.ts": [
+        "./src/capp/form/vform.tsx"
+      ],
+      "./src/capp/query/vquerymain.tsx": [
+        "./src/capp/form/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/query/cquery.ts"
+      ],
+      "./src/capp/query/vqueryselect.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/query/cquery.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/capp/query/cquery.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/capp/query/vquerymain.tsx",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/uq/index.ts",
+        "./src/capp/query/vqueryselect.tsx"
+      ],
+      "./src/capp/query/index.ts": [
+        "./src/capp/query/cquery.ts",
+        "./src/capp/query/vquerymain.tsx",
+        "./src/capp/query/vqueryselect.tsx"
+      ],
+      "./src/capp/controlleruq.ts": [
+        "./src/capp/cuq/index.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/capp/cventity.tsx": [
+        "./src/capp/formui.ts",
+        "./src/uq/index.ts",
+        "./src/capp/cuq/cuq.tsx",
+        "./src/capp/form/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/capp/query/index.ts",
+        "./src/capp/controlleruq.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/capp/book/vbookmain.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/book/cbook.ts"
+      ],
+      "./src/capp/book/cbook.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/capp/book/vbookmain.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/book/index.ts": [
+        "./src/capp/book/cbook.ts",
+        "./src/capp/book/vbookmain.tsx"
+      ],
+      "./src/capp/sheet/vmain.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/vnew.tsx": [
+        "./src/capp/form/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/vsheetview.tsx": [
+        "./src/capp/form/index.ts",
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/sheet/vedit.tsx": [
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/sheet/vsheetview.tsx"
+      ],
+      "./src/capp/sheet/vsheetaction.tsx": [
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/sheet/vsheetview.tsx"
+      ],
+      "./src/capp/sheet/vschema.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/varchives.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/vlist.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/varchived.tsx": [
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/sheet/vsheetview.tsx"
+      ],
+      "./src/capp/sheet/vsheet.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/sheet/csheet.ts"
+      ],
+      "./src/capp/sheet/vsaved.tsx": [
+        "./src/capp/sheet/vsheet.tsx"
+      ],
+      "./src/capp/sheet/vsheetprocessing.tsx": [
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/sheet/vsheetview.tsx"
+      ],
+      "./src/capp/sheet/csheet.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/components/index.ts",
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/uq/index.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/capp/sheet/index.ts": [
+        "./src/capp/sheet/csheet.ts",
+        "./src/capp/sheet/vsheet.tsx",
+        "./src/capp/sheet/vmain.tsx",
+        "./src/capp/sheet/vnew.tsx",
+        "./src/capp/sheet/vedit.tsx",
+        "./src/capp/sheet/vlist.tsx",
+        "./src/capp/sheet/vsheetaction.tsx",
+        "./src/capp/sheet/vschema.tsx",
+        "./src/capp/sheet/varchived.tsx",
+        "./src/capp/sheet/vsheetview.tsx"
+      ],
+      "./src/capp/action/vactionmain.tsx": [
+        "./src/capp/form/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/action/caction.ts"
+      ],
+      "./src/capp/action/caction.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/capp/action/vactionmain.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/action/index.ts": [
+        "./src/capp/action/caction.ts",
+        "./src/capp/action/vactionmain.tsx"
+      ],
+      "./src/capp/tuid/vtuidmain.tsx": [
+        "./src/capp/tuid/ctuid.ts",
+        "./src/capp/link/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/tuid/vtuidedit.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/tuid/ctuid.ts"
+      ],
+      "./src/capp/tuid/vtuidselect.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/tuid/ctuid.ts"
+      ],
+      "./src/capp/tuid/vtuidview.tsx": [
+        "./src/capp/form/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/tuid/ctuid.ts"
+      ],
+      "./src/capp/tuid/vtuidinfo.tsx": [
+        "./src/capp/tuid/vtuidview.tsx"
+      ],
+      "./src/capp/tuid/pageitems.ts": [
+        "./src/uq/index.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/capp/tuid/vtuidlist.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/tuid/ctuid.ts"
+      ],
+      "./src/capp/tuid/ctuid.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/tool/index.ts",
+        "./src/capp/cuq/cuq.tsx",
+        "./src/capp/tuid/vtuidmain.tsx",
+        "./src/capp/tuid/vtuidedit.tsx",
+        "./src/capp/tuid/vtuidlist.tsx",
+        "./src/capp/tuid/vtuidselect.tsx",
+        "./src/capp/tuid/vtuidinfo.tsx"
+      ],
+      "./src/capp/tuid/index.tsx": [
+        "./src/capp/tuid/ctuid.ts",
+        "./src/capp/tuid/vtuidmain.tsx",
+        "./src/capp/tuid/vtuidedit.tsx",
+        "./src/capp/tuid/vtuidinfo.tsx",
+        "./src/capp/tuid/vtuidview.tsx",
+        "./src/capp/tuid/vtuidselect.tsx"
+      ],
+      "./src/capp/map/vmain.tsx": [
+        "./src/capp/map/cmap.ts",
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/map/inputvalues.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/map/cmap.ts"
+      ],
+      "./src/capp/map/cmap.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/map/vmain.tsx"
+      ],
+      "./src/capp/map/index.ts": [
+        "./src/capp/map/cmap.ts",
+        "./src/capp/map/vmain.tsx"
+      ],
+      "./src/capp/cuq/vuq.tsx": [
+        "./src/capp/link/index.ts",
+        "./src/capp/cuq/cuq.tsx",
+        "./src/uq/index.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/capp/history/vhistorymain.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/history/chistory.ts"
+      ],
+      "./src/capp/history/chistory.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/capp/history/vhistorymain.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/history/index.ts": [
+        "./src/capp/history/chistory.ts",
+        "./src/capp/history/vhistorymain.tsx"
+      ],
+      "./src/capp/pending/vpendingmain.tsx": [
+        "./src/capp/cventity.tsx",
+        "./src/uq/index.ts",
+        "./src/capp/pending/cpending.ts"
+      ],
+      "./src/capp/pending/cpending.ts": [
+        "./src/capp/cventity.tsx",
+        "./src/capp/pending/vpendingmain.tsx",
+        "./src/uq/index.ts"
+      ],
+      "./src/capp/pending/index.ts": [
+        "./src/capp/pending/cpending.ts",
+        "./src/capp/pending/vpendingmain.tsx"
+      ],
+      "./src/capp/cuq/cuq.tsx": [
+        "./src/capp/tuid/index.tsx",
+        "./src/capp/query/index.ts",
+        "./src/capp/map/index.ts",
+        "./src/capp/action/index.ts",
+        "./src/capp/sheet/index.ts",
+        "./src/capp/book/index.ts",
+        "./src/capp/history/index.ts",
+        "./src/capp/pending/index.ts",
+        "./src/capp/app/index.ts",
+        "./src/net/index.ts",
+        "./src/uq/index.ts",
+        "./src/capp/cventity.tsx",
+        "./src/capp/link/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/capp/cuq/vuq.tsx",
+        "./src/components/index.ts"
+      ],
+      "./src/capp/cuq/index.ts": [
+        "./src/capp/cuq/cuq.tsx",
+        "./src/capp/cuq/vuq.tsx"
+      ],
+      "./src/capp/centerapi.ts": [
+        "./src/net/index.ts"
+      ],
+      "./src/capp/app/vapp.tsx": [
+        "./src/components/index.ts",
+        "./src/capp/app/capp.tsx"
+      ],
+      "./src/app/centerapi.ts": [
+        "./src/net/index.ts"
+      ],
+      "./src/app/cappbase.ts": [
+        "./src/uq/index.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/app/vmain.tsx": [
+        "./src/components/index.ts",
+        "./src/app/cappbase.ts"
+      ],
+      "./src/capp/app/capp.tsx": [
+        "./src/capp/cuq/index.ts",
+        "./src/components/index.ts",
+        "./src/uq/index.ts",
+        "./src/net/index.ts"
+      ],
+      "./src/capp/app/index.ts": [
+        "./src/capp/app/capp.tsx"
+      ],
+      "./src/capp/startapp.ts": [
+        "./src/capp/app/index.ts"
+      ],
+      "./src/capp/index.ts": [
+        "./src/capp/app/index.ts",
+        "./src/capp/startapp.ts",
+        "./src/capp/cuq/index.ts",
+        "./src/capp/action/index.ts",
+        "./src/capp/tuid/index.tsx",
+        "./src/capp/sheet/index.ts",
+        "./src/capp/query/index.ts",
+        "./src/capp/map/index.ts",
+        "./src/capp/history/index.ts",
+        "./src/capp/pending/index.ts",
+        "./src/capp/form/viewmodel.tsx",
+        "./src/capp/form/index.ts",
+        "./src/capp/formui.ts",
+        "./src/capp/controlleruq.ts",
+        "./src/capp/cventity.tsx",
+        "./src/capp/link/index.ts",
+        "./src/capp/icons.tsx"
+      ],
+      "./src/app/start.ts": [
+        "./src/app/cappbase.ts"
+      ],
+      "./src/app/cbase.ts": [
+        "./src/app/cappbase.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/app/index.ts": [
+        "./src/app/cappbase.ts",
+        "./src/app/start.ts",
+        "./src/app/cbase.ts"
+      ],
+      "./src/index.ts": [
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/components/index.ts",
+        "./src/entry/index.ts",
+        "./src/uq/index.ts",
+        "./src/capp/index.ts",
+        "./src/app/index.ts"
+      ],
+      "./src/capp/viewmodel.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/edit/selectbaseitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/fileupload/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/widgets/selectbasewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/simple/image.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/resuploader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/forget.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/uq/boxid.tsx": [
+        "./src/uq/tuid/index.ts"
+      ],
+      "./src/uq/tag/index.ts": [
+        "./src/uq/tag/tag.ts",
+        "./src/uq/tag/tagview.tsx"
       ],
       "./node_modules/@types/node/inspector.d.ts": [
         "./node_modules/@types/node/index.d.ts"
@@ -4023,9 +4027,54 @@
       ],
       "./node_modules/@types/node-fetch/index.d.ts": [
         "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@types/react-dom/index.d.ts": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/uq/tag.ts": [
+        "./src/uq/entity.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.iterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.intl.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.array.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.object.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.symbol.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.bigint.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "./src/tool/left0.ts",
       "./node_modules/@types/jwt-decode/index.d.ts",
       "./src/tool/user.ts",
@@ -4077,13 +4126,11 @@
       "./node_modules/mobx/lib/utils/iterable.d.ts",
       "./node_modules/mobx/lib/internal.d.ts",
       "./node_modules/mobx/lib/mobx.d.ts",
-      "./src/tool/pageitems.ts",
       "./src/tool/cacheids.ts",
       "./node_modules/@types/lodash/index.d.ts",
       "./src/tool/localdb.ts",
       "./src/tool/env.ts",
       "./src/tool/local.ts",
-      "./src/tool/index.ts",
       "./src/net/wschannel.ts",
       "./node_modules/@types/react/global.d.ts",
       "./node_modules/csstype/index.d.ts",
@@ -4104,14 +4151,6 @@
       "./node_modules/mobx-react-lite/dist/index.d.ts",
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
-      "./src/components/pageheader.tsx",
-      "./src/components/page.tsx",
-      "./src/net/fetcherror.ts",
-      "./src/net/httpchannelui.ts",
-      "./src/net/host.ts",
-      "./src/net/uqapi.ts",
-      "./src/net/nettoken.ts",
-      "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",
       "./src/components/loading.tsx",
       "./src/components/simple/badge.tsx",
@@ -4120,7 +4159,63 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
+      "./src/components/schema/schema.ts",
+      "./src/components/form/formres.ts",
+      "./src/components/schema/ivaluesview.tsx",
+      "./src/components/tabs/tabs.tsx",
+      "./src/components/tabs/index.tsx",
+      "./src/components/rules/index.ts",
+      "./src/components/dropdownactions/index.tsx",
+      "./src/components/propgrid/propgrid.tsx",
+      "./src/components/propgrid/row.tsx",
+      "./src/components/propgrid/propview.tsx",
+      "./src/components/propgrid/index.tsx",
+      "./src/components/searchbox.tsx",
+      "./src/net/caller.ts",
+      "./src/capp/tools/jsonstringify.ts",
+      "./src/capp/tools/purejsoncontent.tsx",
+      "./src/capp/tools/index.ts",
+      "./src/capp/form/viewmodel.tsx",
+      "./src/capp/form/rule.ts",
+      "./src/capp/formui.ts",
+      "./src/capp/query/defaultrow.tsx",
+      "./src/capp/viewmodel.tsx",
+      "./src/components/callbacks.ts",
+      "./src/components/fileupload/index.tsx",
+      "./src/components/simple/image.tsx",
+      "./src/components/simple/resuploader.tsx",
+      "./src/net/serializejson.ts",
+      "./src/res/index.ts",
+      "./src/res/res.tsx",
+      "./src/uq/ui.ts",
+      "./node_modules/@types/node/inspector.d.ts",
+      "./node_modules/@types/node/index.d.ts",
+      "./node_modules/@types/node-fetch/index.d.ts",
+      "./node_modules/@types/react-dom/index.d.ts",
+      "../../../node_modules/@types/ejs/index.d.ts",
+      "./src/tool/pageitems.ts",
+      "./src/components/list/index.tsx",
+      "./src/components/list/selectable.tsx",
+      "./src/components/list/base.tsx",
+      "./src/tool/index.ts",
+      "./src/components/pageheader.tsx",
+      "./src/components/page.tsx",
+      "./src/components/resuploader.tsx",
+      "./src/components/vm.tsx",
+      "./src/components/nav.tsx",
       "./src/components/reloadpage.tsx",
+      "./src/components/fetcherrorview.tsx",
+      "./src/components/form/widgets/textareawidget.tsx",
+      "./src/capp/query/vqueryselect.tsx",
+      "./src/capp/query/index.ts",
+      "./src/capp/query/cquery.ts",
+      "./src/capp/tuid/pageitems.ts",
+      "./src/capp/tuid/ctuid.ts",
+      "./src/net/fetcherror.ts",
+      "./src/net/httpchannelui.ts",
+      "./src/net/host.ts",
+      "./src/net/uqapi.ts",
+      "./src/net/nettoken.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
@@ -4128,15 +4223,10 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
-      "./src/components/vm.tsx",
-      "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
-      "./src/components/form/formres.ts",
       "./src/components/form/rules/index.ts",
       "./src/components/form/widgets/widget.tsx",
       "./src/components/form/widgets/textwidget.tsx",
-      "./src/components/form/widgets/textareawidget.tsx",
       "./src/components/form/widgets/passwordwidget.tsx",
       "./src/components/form/widgets/numberwidget.tsx",
       "./src/components/form/widgets/updownwidget.tsx",
@@ -4150,7 +4240,6 @@
       "./src/components/form/widgets/buttonwidget.tsx",
       "./src/components/form/widgets/arrcomponent.tsx",
       "./src/components/image.tsx",
-      "./src/components/resuploader.tsx",
       "./src/components/edit/itemedit.tsx",
       "./src/components/edit/imageitemedit.tsx",
       "./src/components/form/widgets/imagewidget.tsx",
@@ -4159,7 +4248,6 @@
       "./src/components/form/widgets/index.ts",
       "./src/components/form/form.tsx",
       "./src/components/form/context.tsx",
-      "./src/components/schema/ivaluesview.tsx",
       "./src/components/schema/uischema.ts",
       "./src/components/schema/touiselectitems.ts",
       "./src/components/schema/index.ts",
@@ -4171,26 +4259,13 @@
       "./src/components/edit/tagitemedit.tsx",
       "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
-      "./src/components/tabs/tabs.tsx",
-      "./src/components/tabs/index.tsx",
-      "./src/components/rules/index.ts",
-      "./src/components/list/base.tsx",
       "./src/components/list/clickable.tsx",
       "./src/components/list/static.tsx",
-      "./src/components/list/selectable.tsx",
-      "./src/components/list/index.tsx",
-      "./src/components/dropdownactions/index.tsx",
       "./src/components/easydate/index.tsx",
-      "./src/components/propgrid/propgrid.tsx",
-      "./src/components/propgrid/row.tsx",
-      "./src/components/propgrid/propview.tsx",
-      "./src/components/propgrid/index.tsx",
       "./src/components/media.tsx",
-      "./src/components/searchbox.tsx",
       "./src/components/usericon.tsx",
       "./src/components/index.ts",
       "./src/net/appbridge.ts",
-      "./src/net/caller.ts",
       "./src/net/httpchannel.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
@@ -4217,14 +4292,8 @@
       "./src/uq/tag/tag.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
-      "./src/capp/tools/jsonstringify.ts",
-      "./src/capp/tools/purejsoncontent.tsx",
-      "./src/capp/tools/index.ts",
       "./src/capp/link/clink.tsx",
       "./src/capp/link/index.ts",
-      "./src/capp/form/viewmodel.tsx",
-      "./src/capp/form/rule.ts",
-      "./src/capp/formui.ts",
       "./src/capp/form/vfield/vfield.tsx",
       "./src/capp/form/vfield/buildvmfield.ts",
       "./src/capp/form/vfield/vcomputefield.tsx",
@@ -4237,11 +4306,7 @@
       "./src/capp/form/bandsbuilder.ts",
       "./src/capp/form/vform.tsx",
       "./src/capp/form/index.ts",
-      "./src/capp/query/defaultrow.tsx",
       "./src/capp/query/vquerymain.tsx",
-      "./src/capp/query/vqueryselect.tsx",
-      "./src/capp/query/cquery.ts",
-      "./src/capp/query/index.ts",
       "./src/capp/icons.tsx",
       "./src/capp/controlleruq.ts",
       "./src/capp/cventity.tsx",
@@ -4270,9 +4335,7 @@
       "./src/capp/tuid/vtuidselect.tsx",
       "./src/capp/tuid/vtuidview.tsx",
       "./src/capp/tuid/vtuidinfo.tsx",
-      "./src/capp/tuid/pageitems.ts",
       "./src/capp/tuid/vtuidlist.tsx",
-      "./src/capp/tuid/ctuid.ts",
       "./src/capp/tuid/index.tsx",
       "./src/capp/map/vmain.tsx",
       "./src/capp/map/inputvalues.tsx",
@@ -4300,64 +4363,12 @@
       "./src/app/cbase.ts",
       "./src/app/index.ts",
       "./src/index.ts",
-      "./src/capp/viewmodel.tsx",
-      "./src/components/callbacks.ts",
       "./src/components/edit/selectbaseitemedit.tsx",
-      "./src/components/fileupload/index.tsx",
       "./src/components/form/widgets/selectbasewidget.tsx",
-      "./src/components/simple/image.tsx",
-      "./src/components/simple/resuploader.tsx",
       "./src/entry/forget.tsx",
-      "./src/net/serializejson.ts",
-      "./src/res/index.ts",
-      "./src/res/res.tsx",
       "./src/uq/boxid.tsx",
-      "./src/uq/ui.ts",
-      "./src/uq/tag/index.ts",
-      "./node_modules/@types/node/inspector.d.ts",
-      "./node_modules/@types/node/index.d.ts",
-      "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "../../../node_modules/@types/ejs/index.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.iterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.intl.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.array.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.object.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.symbol.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.bigint.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.intl.d.ts"
+      "./src/uq/tag.ts",
+      "./src/uq/tag/index.ts"
     ]
   },
   "version": "3.8.3"

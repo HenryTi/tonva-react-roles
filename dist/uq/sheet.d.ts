@@ -32,6 +32,8 @@ export declare class Sheet extends Entity {
 export declare class PageStateItems<T> extends PageItems<T> {
     private sheet;
     constructor(sheet: Sheet);
-    protected load(param: any, pageStart: any, pageSize: number): Promise<any[]>;
+    protected loadResults(param: any, pageStart: any, pageSize: number): Promise<{
+        [name: string]: any[];
+    }>;
     protected setPageStart(item: any): void;
 }

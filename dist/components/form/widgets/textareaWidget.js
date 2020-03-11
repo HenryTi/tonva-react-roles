@@ -7,6 +7,16 @@ export class TextAreaWidget extends Widget {
         this.onInputChange = (evt) => {
             this.setValue(evt.currentTarget.value);
         };
+        this.onBlur = (evt) => {
+            this.onInputChange(evt);
+            this.checkRules();
+            this.context.checkContextRules();
+        };
+        this.onFocus = (evt) => {
+            this.clearError();
+            this.context.removeErrorWidget(this);
+            this.context.clearErrors();
+        };
     }
     get itemSchema() { return this._itemSchema; }
     ;
@@ -27,7 +37,7 @@ export class TextAreaWidget extends Widget {
             cn['required-item'] = this.itemSchema.required === true;
         }
         return React.createElement(React.Fragment, null,
-            React.createElement("textarea", { ref: (input) => this.input = input, className: classNames(this.className, cn), rows: this.ui && this.ui.rows, maxLength: this.itemSchema.maxLength, defaultValue: this.defaultValue, onChange: this.onInputChange }),
+            React.createElement("textarea", { ref: (input) => this.input = input, onBlur: this.onBlur, onFocus: this.onFocus, className: classNames(this.className, cn), rows: this.ui && this.ui.rows, maxLength: this.itemSchema.maxLength, defaultValue: this.defaultValue, onChange: this.onInputChange }),
             this.renderErrors());
     }
 }

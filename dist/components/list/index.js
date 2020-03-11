@@ -49,7 +49,7 @@ let List = class List extends React.Component {
         return this.listBase.selectedItems;
     }
     render() {
-        let { className, header, footer, before, loading, none } = this.props;
+        let { className, header, footer, before, loading, none, onFocus } = this.props;
         if (before === undefined)
             before = '-';
         if (loading === undefined)
@@ -83,7 +83,10 @@ let List = class List extends React.Component {
         if (isLoading === true && items) {
             waitingMore = staticRow(loading, 'loading');
         }
-        return React.createElement("ul", { className: classNames('va-list', className) },
+        let tabIndex;
+        if (onFocus !== undefined)
+            tabIndex = -1;
+        return React.createElement("ul", { className: classNames('va-list', className), onFocus: onFocus, tabIndex: tabIndex },
             staticRow(header, 'header'),
             content,
             waitingMore,

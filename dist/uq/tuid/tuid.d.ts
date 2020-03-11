@@ -20,7 +20,7 @@ export declare abstract class Tuid extends Entity {
     abstract useId(id: number): void;
     abstract boxId(id: number): BoxId;
     abstract valueFromId(id: number): any;
-    abstract assureBox(id: number): Promise<void>;
+    abstract assureBox<T>(id: number): Promise<T>;
     static equ(id1: BoxId | number, id2: BoxId | number): boolean;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
@@ -47,7 +47,7 @@ export declare class TuidInner extends Tuid {
     useId(id: number, defer?: boolean): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
-    assureBox(id: number): Promise<void>;
+    assureBox<T>(id: number): Promise<T>;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
     cacheTuids(defer: number): void;
@@ -76,7 +76,7 @@ export declare class TuidImport extends Tuid {
     useId(id: number): void;
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
-    assureBox(id: number): Promise<void>;
+    assureBox<T>(id: number): Promise<T>;
     get hasDiv(): boolean;
     div(name: string): TuidDiv;
     loadMain(id: number | BoxId): Promise<any>;
@@ -112,7 +112,7 @@ export declare class TuidDiv extends TuidInner {
     cacheValue(value: any): void;
     useId(id: number, defer?: boolean): void;
     valueFromId(id: number): any;
-    assureBox(id: number): Promise<void>;
+    assureBox<T>(id: number): Promise<T>;
     cacheIds(): Promise<void>;
     cacheTuidFieldValues(values: any): void;
     unpackTuidIds(values: string[]): any[];

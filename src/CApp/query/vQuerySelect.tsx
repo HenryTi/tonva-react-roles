@@ -53,8 +53,10 @@ export class QueryPageItems extends PageItems<any> {
         super();
         this.query = query;
     }
-    protected async load():Promise<any[]> {
-        await  this.query.loadSchema();
+    protected async loadResults():Promise<{[name:string]:any[]}> {
+		await  this.query.loadSchema();
+		return await this.query.query(this.param);
+		/*
         let ret:any[];
         if (this.query.isPaged === true)
             ret = await this.query.page(this.param, this.pageStart, this.pageSize);
@@ -63,7 +65,8 @@ export class QueryPageItems extends PageItems<any> {
             //let data = await this.query.unpackReturns(res);
             ret = data[this.query.returns[0].name];
         }
-        return ret;
+		return ret;
+		*/
     }
     protected setPageStart(item:any) {
         if (item === undefined) this.pageStart = 0;

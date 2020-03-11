@@ -272,12 +272,18 @@ export class PageStateItems extends PageItems {
         this.sheet = sheet;
         this.pageSize = 10;
     }
-    load(param, pageStart, pageSize) {
+    loadResults(param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function* () {
             let ret = yield this.sheet.getStateSheets(param, pageStart, pageSize);
-            return ret;
+            return { $page: ret };
         });
     }
+    /*
+    protected async load(param:any, pageStart:any, pageSize:number):Promise<any[]> {
+        let ret = await this.sheet.getStateSheets(param, pageStart, pageSize);
+        return ret;
+    }
+    */
     setPageStart(item) {
         this.pageStart = item === undefined ? 0 : item.id;
     }

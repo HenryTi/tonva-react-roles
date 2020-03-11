@@ -40,7 +40,9 @@ export declare abstract class Entity {
     protected cacheFieldsInValue(values: any, fields: Field[]): void;
     protected unpackTuidIdsOfFields(values: string[], fields: Field[]): any[];
     unpackSheet(data: string): any;
-    unpackReturns(data: string): any;
+    unpackReturns(data: string): {
+        [name: string]: any[];
+    };
     protected unpackRow(ret: any, fields: Field[], data: string, p: number): number;
     private to;
     private unpackArr;

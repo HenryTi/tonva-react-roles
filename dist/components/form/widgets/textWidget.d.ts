@@ -9,8 +9,8 @@ export declare class TextWidget extends Widget {
     protected get placeholder(): string;
     protected onKeyDown: (evt: React.KeyboardEvent<HTMLInputElement>) => Promise<void>;
     protected internalOnKeyDown(evt: React.KeyboardEvent<HTMLInputElement>): void;
-    protected onBlur(evt: React.FocusEvent<any>): void;
-    protected onFocus(evt: React.FocusEvent<any>): void;
+    protected onBlur: (evt: React.FocusEvent<any>) => void;
+    protected onFocus: (evt: React.FocusEvent<any>) => void;
     protected onChange(evt: React.ChangeEvent<any>): void;
     setReadOnly(value: boolean): void;
     setDisabled(value: boolean): void;

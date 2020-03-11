@@ -20,6 +20,7 @@ export interface ListProps {
     before?: StaticRow;
     loading?: StaticRow;
     none?: StaticRow;
+    onFocus?: (evt: React.FocusEvent<HTMLUListElement>) => void;
 }
 export declare class List extends React.Component<ListProps> {
     private listBase;

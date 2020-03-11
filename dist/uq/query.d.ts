@@ -9,7 +9,9 @@ export declare class QueryPager<T extends any> extends PageItems<T> {
     constructor(query: Query, pageSize?: number, firstSize?: number, itemObservable?: boolean);
     setReverse(): void;
     protected onLoad(): Promise<void>;
-    protected load(param: any, pageStart: any, pageSize: number): Promise<T[]>;
+    protected loadResults(param: any, pageStart: number, pageSize: number): Promise<{
+        [name: string]: any[];
+    }>;
     protected setPageStart(item: T): void;
 }
 export declare class Query extends Entity {
@@ -27,7 +29,9 @@ export declare class Query extends Entity {
     get hasMore(): boolean;
     loadPage(): Promise<void>;
     protected pageCaller(params: any, showWaiting?: boolean): QueryPageCaller;
-    page(params: any, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<any[]>;
+    page(params: any, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<{
+        [name: string]: any[];
+    }>;
     protected queryCaller(params: any, showWaiting?: boolean): QueryQueryCaller;
     query(params: any, showWaiting?: boolean): Promise<any>;
     table(params: any, showWaiting?: boolean): Promise<any[]>;

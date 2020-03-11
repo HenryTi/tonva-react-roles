@@ -74,12 +74,12 @@ export class TuidInner extends Tuid {
     useId(id, defer) {
         if (this.noCache === true)
             return;
-        if (id === undefined)
+        if (!id)
             return;
         this.idCache.useId(id, defer);
     }
     boxId(id) {
-        if (id === undefined)
+        if (!id)
             return;
         if (typeof id === 'object')
             return id;
@@ -93,6 +93,7 @@ export class TuidInner extends Tuid {
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.idCache.assureObj(id);
+            return this.idCache.getValue(id);
         });
     }
     cacheIds() {
@@ -412,6 +413,7 @@ export class TuidImport extends Tuid {
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.tuidLocal.assureBox(id);
+            return this.tuidLocal.valueFromId(id);
         });
     }
     get hasDiv() { return this.tuidLocal.hasDiv; }
@@ -540,6 +542,7 @@ export class TuidDiv extends TuidInner /* Entity*/ {
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.idCache.assureObj(id);
+            return this.idCache.getValue(id);
         });
     }
     cacheIds() {

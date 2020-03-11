@@ -26,7 +26,7 @@ export class IdCache {
     }
 
     useId(id:number, defer?:boolean) {
-        if (id === undefined || id === 0) return;
+        if (!id) return;
         if (isNumber(id) === false) return;
         if (this.cache.has(id) === true) {
             this.moveToHead(id);
@@ -110,10 +110,10 @@ export class IdCache {
         if (this.waitingIds.length === 0) return;
 		let tuidValues = await this.loadIds();
 		if (tuidValues === undefined) return;
-        await this.cacheIdValues(tuidValues);
+        this.cacheIdValues(tuidValues);
     }
 
-    private async cacheIdValues(tuidValues: any[]) {
+    private cacheIdValues(tuidValues: any[]) {
         if (tuidValues === undefined) return;
         let tuids = this.unpackTuidIds(tuidValues);
         for (let tuidValue of tuids) {
@@ -131,7 +131,7 @@ export class IdCache {
             return (val !== undefined);
         });
         if (localedValues.length === 0) return;
-        await this.cacheIdValues(localedValues);
+        this.cacheIdValues(localedValues);
     }
     protected divName:string = undefined;
     protected async loadIds(): Promise<any[]> {

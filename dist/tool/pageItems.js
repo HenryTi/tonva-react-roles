@@ -35,14 +35,27 @@ export class PageItems {
             return undefined;
         return this._items;
     }
-    setEachItem(itemAction) {
-        this.itemAction = itemAction;
+    setEachPageItem(pageItemAction) {
+        this.pageItemAction = pageItemAction;
     }
     scrollToTop() {
         this.topDiv = '$$' + uid();
     }
     scrollToBottom() {
         this.bottomDiv = '$$' + uid();
+    }
+    load(param, pageStart, pageSize) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let results = yield this.loadResults(param, pageStart, pageSize);
+            let pageList = results.$page;
+            if (this.pageItemAction !== undefined) {
+                let len = pageList.length;
+                for (let i = 0; i < len; i++) {
+                    this.pageItemAction(pageList[i], results);
+                }
+            }
+            return pageList;
+        });
     }
     reset() {
         this.isFirst = true;
@@ -92,11 +105,13 @@ export class PageItems {
             this.loading = false;
             this.loaded = true;
             let len = ret.length;
+            /*
             if (this.itemAction !== undefined) {
-                for (let i = 0; i < len; i++) {
-                    this.itemAction(ret[i]);
+                for (let i=0; i<len; i++) {
+                    this.itemAction(ret[i], ret);
                 }
             }
+            */
             if ((this.isFirst === true && len > this.firstSize) ||
                 (this.isFirst === false && len > this.pageSize)) {
                 this.allLoaded = false;
@@ -111,10 +126,12 @@ export class PageItems {
                 return;
             }
             this.setPageStart(ret[len - 1]);
-            if (this.appendPosition === 'tail')
+            if (this.appendPosition === 'tail') {
                 this._items.push(...ret);
-            else
+            }
+            else {
                 this._items.unshift(...ret.reverse());
+            }
             this.isFirst = false;
             this.onLoaded();
         });

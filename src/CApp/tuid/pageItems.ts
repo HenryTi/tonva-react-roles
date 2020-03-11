@@ -7,9 +7,9 @@ export class TuidPageItems<T> extends PageItems<T> {
         super(true);
         this.tuid = tuid;
     }
-    protected async load(param:any, pageStart:any, pageSize:number):Promise<any[]> {
+    protected async loadResults(param:any, pageStart:any, pageSize:number):Promise<{[name:string]:any[]}> {
         let ret = await this.tuid.search(param, pageStart, pageSize);
-        return ret;
+        return {$page: ret};
     }
     protected setPageStart(item:any) {
         this.pageStart = item === undefined? 0 : item.id;

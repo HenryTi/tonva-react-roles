@@ -23,7 +23,9 @@ export declare abstract class ActionCaller extends EntityCaller<any> {
 export declare class QueryQueryCaller extends EntityCaller<any> {
     protected get entity(): Query;
     get path(): string;
-    xresult(res: any): any;
+    xresult(res: any): {
+        [name: string]: any[];
+    };
     buildParams(): any;
 }
 export declare class QueryPageCaller extends EntityCaller<any> {
@@ -35,5 +37,7 @@ export declare class QueryPageCaller extends EntityCaller<any> {
     protected get entity(): Query;
     get path(): string;
     buildParams(): any;
-    xresult(res: any): any;
+    xresult(res: any): {
+        [name: string]: any[];
+    };
 }
