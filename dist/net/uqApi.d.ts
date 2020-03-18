@@ -98,5 +98,11 @@ export declare class UserApi extends CenterApiBase {
     userSetProp(prop: string, value: any): Promise<void>;
     me(): Promise<any>;
     user(id: number): Promise<any>;
+    fromKey(key: string): Promise<{
+        id: number;
+        name: string;
+        nick: string;
+        icon: string;
+    }>;
 }
 export declare const userApi: UserApi;

@@ -22,7 +22,8 @@ export interface UiItem {
     readOnly?: boolean;
     disabled?: boolean;
     visible?: boolean;
-    label?: string;
+	label?: string;
+	labelHide?: boolean;
     className?: string;
     onChanging?: ChangingHandler;
     onChanged?: ChangedHandler;
@@ -109,8 +110,7 @@ export interface TagListItem {
 export interface UiTag extends UiItem {
 	widget: 'tagSingle' | 'tagMulti';
 	valuesView: IValuesView;
-	//list: TagListItem[]; // uq tag 定义
-	//content: (item: TagListItem) => JSX.Element;
+	wrapClassName?: string;
 }
 
 export interface UiTagSingle extends UiTag {

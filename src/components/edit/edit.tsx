@@ -54,18 +54,30 @@ export class Edit extends React.Component<EditProps> {
             {schema.map((itemSchema, index) => {
 				let {name} = itemSchema;
 				let uiItem = this.uiSchema?.[name];
-				let label = uiItem?.label || name;
+				let label:string, labelHide;
+				if (uiItem !== undefined) {
+					label = uiItem.label || name;
+					labelHide = uiItem.labelHide;
+				};
 				let value = this.props.data[name];
 				let itemEdit = createItemEdit(itemSchema, uiItem, label, value);
 
 				let {required} = itemSchema;
 				let requireFlag = required===true && <span className="text-danger">*</span>;
+				let divLabel:any, cn:string = 'flex-fill d-flex ';
+				if (labelHide === true) {
+					divLabel = undefined;
+				}
+				else {
+					divLabel = <div>{label} {requireFlag}</div>;
+					cn += 'justify-content-end';
+				}
 				let ret = <React.Fragment key={index}>
 					{sep}
 					<div className={'d-flex align-items-center' + this.rowContainerClassName} 
 						onClick={async ()=>await this.rowClick(itemEdit)}>
-						<div>{label} {requireFlag}</div>
-						<div className="flex-fill d-flex justify-content-end">{
+						{divLabel}
+						<div className={cn}>{
 							itemEdit?.renderContent()
 						}</div>
 						{this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
@@ -77,57 +89,8 @@ export class Edit extends React.Component<EditProps> {
 			{this.bottomBorder}
 		</div>;
     }
-/*
-    private renderRow = (itemSchema: ItemSchema, value:any):JSX.Element => {
-        let {name, type, required} = itemSchema;
-        let divValue:any;
-        let uiItem = this.uiSchema[name];
-        let label:string;
-        if (uiItem === undefined) {
-            label = name;
-        }
-        else {
-            label = uiItem.label;
-            let templet = uiItem.Templet;
-            if (templet !== undefined) {
-                if (typeof templet === 'function')
-                    divValue = <b>{templet(value)}</b>;
-                else
-                    divValue = <b>{templet}</b>;
-            }
-            else if (value !== undefined) {
-                switch (uiItem.widget) {
-                    case 'radio':
-                    case 'select':
-                        let {list} = uiItem as UiSelectBase;
-                        divValue = <b>{list.find(v => v.value === value).title}</b>;
-                        break;
-                    case 'id':
-                        divValue = <b>no templet for {name}={value}</b>
-                        break;
-                }
-            }
-        }
-        if (divValue === undefined) {
-            switch (type) {
-                default:
-                    divValue = value? <b>{value}</b> : <small className="text-muted">(无)</small>;
-                    break;
-                case 'image':
-                    divValue = <Image className="w-4c h-4c" src={value} />;
-                    break;
-            }
-        }
-        let requireFlag = required===true && <span className="text-danger">*</span>;
-		return <div className={'d-flex align-items-center' + this.rowContainerClassName} 
-			onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, value)}>
-            <div>{label} {requireFlag}</div>
-            <div className="flex-fill d-flex justify-content-end">{divValue}</div>
-            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
-        </div>;
-    };
-*/
-    private rowClick = async (itemEdit:ItemEdit/*, itemSchema: ItemSchema, uiItem: UiItem, label:string, value: any*/) => {
+
+	private rowClick = async (itemEdit:ItemEdit/*, itemSchema: ItemSchema, uiItem: UiItem, label:string, value: any*/) => {
 		if (itemEdit === undefined) {
 			alert('item has no edit');
 			return;

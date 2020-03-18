@@ -36,9 +36,13 @@ export class TagView implements IValuesView {
 		return this.renderView(options, content);
 	}
 	private renderView(options: IValuesViewRenderOptions, content:any) {
-		let {className} = options;
+		let {className, wrapClassName} = options;
+		wrapClassName = wrapClassName?
+			'row ' + wrapClassName
+			:
+			'row row-cols-2 row-cols-sm-3 row-cols-md-4';
 		return <div className={className} style={radioStyle}>
-			<div className="row row-cols-2 row-cols-sm-3 row-cols-md-4">
+			<div className={wrapClassName}>
                 {content}
 			</div>
         </div>;

@@ -80,13 +80,14 @@ export class Selectable extends ListBase {
         //w-100 mb-0 pl-3
         //m-0 w-100
         this.render = (item, index) => {
-            return React.createElement(this.row, { item: item, index: index });
+            let { key } = this.list.props.item;
+            return React.createElement(this.row, { item: item, index: index, key: key === undefined ? index : key(item) });
         };
         this.row = observer((props) => {
             let { item, index } = props;
-            let { className, key } = this.list.props.item;
+            let { className } = this.list.props.item;
             let { labelId, selected, item: obItem } = item;
-            return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) },
+            return React.createElement("li", { className: classNames(className) },
                 React.createElement("div", { className: "d-flex align-items-center px-3" },
                     React.createElement("input", { ref: input => { if (input)
                             this.inputItems[labelId] = input; }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: (e) => {

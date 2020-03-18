@@ -37,7 +37,11 @@ export class UserCache<T> {
 				break;
 		}
 		let ret = this.map.get(id);
-		if (typeof(ret) === 'number') {
+		if (!ret) return;
+		switch (typeof(ret)) {
+		default:
+			return ret;
+		case 'number':
 			if (ret < 0) return id;
 			this.map.set(id, -id);
 			this.loader(id).then(v => {
@@ -48,8 +52,6 @@ export class UserCache<T> {
 			});
 			return id;
 		}
-		if (ret === null) return;
-		return ret;
 	}
 }
 
@@ -105,3 +107,7 @@ export const UserView = observer((props: UserViewProps):JSX.Element => {
     }
     return render(user);
 });
+
+export function useUser(id: number) {
+	userCache.use(id);
+}

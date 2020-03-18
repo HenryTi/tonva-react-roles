@@ -35,22 +35,24 @@ export class UserCache {
                 break;
         }
         let ret = this.map.get(id);
-        if (typeof (ret) === 'number') {
-            if (ret < 0)
-                return id;
-            this.map.set(id, -id);
-            this.loader(id).then(v => {
-                if (!v)
-                    v = null;
-                this.map.set(id, v);
-            }).catch(reason => {
-                console.error(reason);
-            });
-            return id;
-        }
-        if (ret === null)
+        if (!ret)
             return;
-        return ret;
+        switch (typeof (ret)) {
+            default:
+                return ret;
+            case 'number':
+                if (ret < 0)
+                    return id;
+                this.map.set(id, -id);
+                this.loader(id).then(v => {
+                    if (!v)
+                        v = null;
+                    this.map.set(id, v);
+                }).catch(reason => {
+                    console.error(reason);
+                });
+                return id;
+        }
     }
 }
 const userCache = new UserCache(undefined);
@@ -87,4 +89,7 @@ export const UserView = observer((props) => {
     }
     return render(user);
 });
+export function useUser(id) {
+    userCache.use(id);
+}
 //# sourceMappingURL=userIcon.js.map

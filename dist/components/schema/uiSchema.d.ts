@@ -15,6 +15,7 @@ export interface UiItem {
     disabled?: boolean;
     visible?: boolean;
     label?: string;
+    labelHide?: boolean;
     className?: string;
     onChanging?: ChangingHandler;
     onChanged?: ChangedHandler;
@@ -79,6 +80,7 @@ export interface UiRadio extends UiSelectBase {
 export interface UiTag extends UiItem {
     widget: 'tagSingle' | 'tagMulti';
     valuesView: IValuesView;
+    wrapClassName?: string;
 }
 export interface UiTagSingle extends UiTag {
     widget: 'tagSingle';

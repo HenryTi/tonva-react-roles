@@ -1,6 +1,7 @@
 export interface IValuesViewRenderOptions {
 	className?: string;
 	inputName?: string;
+	wrapClassName?: string;
 	onInputChange?: (evt: React.ChangeEvent<HTMLInputElement>)=>void;
 	inputs?: {[index:number]: HTMLInputElement};
 }

@@ -21,3 +21,4 @@ export interface UserViewProps {
     render: (user: User) => JSX.Element;
 }
 export declare const UserView: (props: UserViewProps) => JSX.Element;
+export declare function useUser(id: number): void;

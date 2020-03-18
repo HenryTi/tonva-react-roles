@@ -27,56 +27,6 @@ let Edit = class Edit extends React.Component {
         super(props);
         this.defaultSepClassName = 'border-top edit-sep-light-gray';
         this.defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
-        /*
-            private renderRow = (itemSchema: ItemSchema, value:any):JSX.Element => {
-                let {name, type, required} = itemSchema;
-                let divValue:any;
-                let uiItem = this.uiSchema[name];
-                let label:string;
-                if (uiItem === undefined) {
-                    label = name;
-                }
-                else {
-                    label = uiItem.label;
-                    let templet = uiItem.Templet;
-                    if (templet !== undefined) {
-                        if (typeof templet === 'function')
-                            divValue = <b>{templet(value)}</b>;
-                        else
-                            divValue = <b>{templet}</b>;
-                    }
-                    else if (value !== undefined) {
-                        switch (uiItem.widget) {
-                            case 'radio':
-                            case 'select':
-                                let {list} = uiItem as UiSelectBase;
-                                divValue = <b>{list.find(v => v.value === value).title}</b>;
-                                break;
-                            case 'id':
-                                divValue = <b>no templet for {name}={value}</b>
-                                break;
-                        }
-                    }
-                }
-                if (divValue === undefined) {
-                    switch (type) {
-                        default:
-                            divValue = value? <b>{value}</b> : <small className="text-muted">(无)</small>;
-                            break;
-                        case 'image':
-                            divValue = <Image className="w-4c h-4c" src={value} />;
-                            break;
-                    }
-                }
-                let requireFlag = required===true && <span className="text-danger">*</span>;
-                return <div className={'d-flex align-items-center' + this.rowContainerClassName}
-                    onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, value)}>
-                    <div>{label} {requireFlag}</div>
-                    <div className="flex-fill d-flex justify-content-end">{divValue}</div>
-                    {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
-                </div>;
-            };
-        */
         this.rowClick = (itemEdit /*, itemSchema: ItemSchema, uiItem: UiItem, label:string, value: any*/) => __awaiter(this, void 0, void 0, function* () {
             if (itemEdit === undefined) {
                 alert('item has no edit');
@@ -132,19 +82,32 @@ let Edit = class Edit extends React.Component {
                 var _a;
                 let { name } = itemSchema;
                 let uiItem = (_a = this.uiSchema) === null || _a === void 0 ? void 0 : _a[name];
-                let label = (uiItem === null || uiItem === void 0 ? void 0 : uiItem.label) || name;
+                let label, labelHide;
+                if (uiItem !== undefined) {
+                    label = uiItem.label || name;
+                    labelHide = uiItem.labelHide;
+                }
+                ;
                 let value = this.props.data[name];
                 let itemEdit = createItemEdit(itemSchema, uiItem, label, value);
                 let { required } = itemSchema;
                 let requireFlag = required === true && React.createElement("span", { className: "text-danger" }, "*");
+                let divLabel, cn = 'flex-fill d-flex ';
+                if (labelHide === true) {
+                    divLabel = undefined;
+                }
+                else {
+                    divLabel = React.createElement("div", null,
+                        label,
+                        " ",
+                        requireFlag);
+                    cn += 'justify-content-end';
+                }
                 let ret = React.createElement(React.Fragment, { key: index },
                     sep,
                     React.createElement("div", { className: 'd-flex align-items-center' + this.rowContainerClassName, onClick: () => __awaiter(this, void 0, void 0, function* () { return yield this.rowClick(itemEdit); }) },
-                        React.createElement("div", null,
-                            label,
-                            " ",
-                            requireFlag),
-                        React.createElement("div", { className: "flex-fill d-flex justify-content-end" }, itemEdit === null || itemEdit === void 0 ? void 0 : itemEdit.renderContent()),
+                        divLabel,
+                        React.createElement("div", { className: cn }, itemEdit === null || itemEdit === void 0 ? void 0 : itemEdit.renderContent()),
                         this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
                             React.createElement("i", { className: "fa fa-angle-right" }))));
                 sep = this.sep;

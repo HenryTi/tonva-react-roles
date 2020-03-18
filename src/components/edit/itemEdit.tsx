@@ -44,18 +44,21 @@ export abstract class ItemEdit {
         let {name, type, required} = this._itemSchema;
         let divValue:any;
         let uiItem = this._uiItem;
-        let label:string;
+        let label:string, labelHide:boolean;
         if (uiItem === undefined) {
             label = name;
         }
         else {
-            label = uiItem.label;
+			label = uiItem.label;
+			labelHide = uiItem.labelHide;
             let templet = uiItem.Templet;
             if (templet !== undefined) {
-                if (typeof templet === 'function')
-                    divValue = <b>{templet(this.value)}</b>;
-                else
-                    divValue = <b>{templet}</b>;
+                if (typeof templet === 'function') {
+					if (this.value !== undefined) divValue = templet(this.value);
+				}
+                else {
+					divValue = {templet};
+				}
             }
             else if (this.value !== undefined) {
                 switch (uiItem.widget) {
@@ -73,7 +76,10 @@ export abstract class ItemEdit {
         if (divValue === undefined) {
             switch (type) {
                 default:
-                    divValue = this.value? <b>{this.value}</b> : <small className="text-muted">(无)</small>;
+                    divValue = this.value? 
+						<b>{this.value}</b> 
+						:
+						<small className="text-muted">[{labelHide===true? label:'无'}]</small>;
                     break;
                 case 'image':
                     divValue = <Image className="w-4c h-4c" src={this.value} />;
@@ -81,16 +87,6 @@ export abstract class ItemEdit {
             }
 		}
 		return divValue;
-		/*
-        let requireFlag = required===true && <span className="text-danger">*</span>;
-		return <div className={'d-flex align-items-center' + this.rowContainerClassName} 
-			onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, this.value)}>
-            <div>{label} {requireFlag}</div>
-            <div className="flex-fill d-flex justify-content-end">{divValue}</div>
-            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
-        </div>;
-		//return this.value? <b>{this.value}</b> : <small className="text-muted">(无)</small>;
-		*/
 	}
 
     protected async internalEnd():Promise<void> {nav.pop()}

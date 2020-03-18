@@ -45,18 +45,22 @@ export class ItemEdit {
         let { name, type, required } = this._itemSchema;
         let divValue;
         let uiItem = this._uiItem;
-        let label;
+        let label, labelHide;
         if (uiItem === undefined) {
             label = name;
         }
         else {
             label = uiItem.label;
+            labelHide = uiItem.labelHide;
             let templet = uiItem.Templet;
             if (templet !== undefined) {
-                if (typeof templet === 'function')
-                    divValue = React.createElement("b", null, templet(this.value));
-                else
-                    divValue = React.createElement("b", null, templet);
+                if (typeof templet === 'function') {
+                    if (this.value !== undefined)
+                        divValue = templet(this.value);
+                }
+                else {
+                    divValue = { templet };
+                }
             }
             else if (this.value !== undefined) {
                 switch (uiItem.widget) {
@@ -78,7 +82,13 @@ export class ItemEdit {
         if (divValue === undefined) {
             switch (type) {
                 default:
-                    divValue = this.value ? React.createElement("b", null, this.value) : React.createElement("small", { className: "text-muted" }, "(\u65E0)");
+                    divValue = this.value ?
+                        React.createElement("b", null, this.value)
+                        :
+                            React.createElement("small", { className: "text-muted" },
+                                "[",
+                                labelHide === true ? label : '无',
+                                "]");
                     break;
                 case 'image':
                     divValue = React.createElement(Image, { className: "w-4c h-4c", src: this.value });
@@ -86,16 +96,6 @@ export class ItemEdit {
             }
         }
         return divValue;
-        /*
-        let requireFlag = required===true && <span className="text-danger">*</span>;
-        return <div className={'d-flex align-items-center' + this.rowContainerClassName}
-            onClick={async ()=>await this.rowClick(itemSchema, uiItem, label, this.value)}>
-            <div>{label} {requireFlag}</div>
-            <div className="flex-fill d-flex justify-content-end">{divValue}</div>
-            {this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
-        </div>;
-        //return this.value? <b>{this.value}</b> : <small className="text-muted">(无)</small>;
-        */
     }
     internalEnd() {
         return __awaiter(this, void 0, void 0, function* () { nav.pop(); });

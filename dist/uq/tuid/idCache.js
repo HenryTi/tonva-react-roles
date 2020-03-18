@@ -74,6 +74,7 @@ export class IdCache {
         this.cache.delete(id);
         let index = this.queue.findIndex(v => v === id);
         this.queue.splice(index, 1);
+        this.localArr.removeItem(id);
     }
     valueFromId(id) {
         let _id;

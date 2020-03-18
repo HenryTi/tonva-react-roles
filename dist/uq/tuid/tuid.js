@@ -90,6 +90,11 @@ export class TuidInner extends Tuid {
         return createBoxId(this, id);
     }
     valueFromId(id) { return this.idCache.getValue(id); }
+    resetCache(id) {
+        if (typeof id === 'object')
+            id = id.id;
+        this.idCache.resetCache(id);
+    }
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.idCache.assureObj(id);
@@ -410,6 +415,9 @@ export class TuidImport extends Tuid {
     useId(id) { this.tuidLocal.useId(id); }
     boxId(id) { return this.tuidLocal.boxId(id); }
     valueFromId(id) { return this.tuidLocal.valueFromId(id); }
+    resetCache(id) {
+        this.tuidLocal.resetCache(id);
+    }
     assureBox(id) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.tuidLocal.assureBox(id);

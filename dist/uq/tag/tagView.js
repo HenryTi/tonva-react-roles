@@ -31,9 +31,13 @@ export class TagView {
         return this.renderView(options, content);
     }
     renderView(options, content) {
-        let { className } = options;
+        let { className, wrapClassName } = options;
+        wrapClassName = wrapClassName ?
+            'row ' + wrapClassName
+            :
+                'row row-cols-2 row-cols-sm-3 row-cols-md-4';
         return React.createElement("div", { className: className, style: radioStyle },
-            React.createElement("div", { className: "row row-cols-2 row-cols-sm-3 row-cols-md-4" }, content));
+            React.createElement("div", { className: wrapClassName }, content));
     }
     renderRadio(item, value, options) {
         let { id, name, ext } = item;

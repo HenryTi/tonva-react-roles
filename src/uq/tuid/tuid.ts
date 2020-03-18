@@ -36,8 +36,9 @@ export abstract class Tuid extends Entity {
     getIdFromObj(obj:any):number {return obj[this.idName]}
     stopCache():void {this.noCache = true}
     abstract useId(id:number):void;
-    abstract boxId(id:number):BoxId;    
+    abstract boxId(id:number):BoxId;
     abstract valueFromId(id:number):any;
+	abstract resetCache(id:number|BoxId):void;
     abstract async assureBox<T> (id:number): Promise<T>;
     static equ(id1:BoxId|number, id2:BoxId|number): boolean {
         if (id1 === undefined) return false;
@@ -56,7 +57,7 @@ export abstract class Tuid extends Entity {
     abstract get hasDiv():boolean;// {return this.divs!==undefined}
     abstract div(name:string):TuidDiv;
     abstract async loadMain(id:number|BoxId):Promise<any>;
-    abstract async load(id:number|BoxId):Promise<any>;
+	abstract async load(id:number|BoxId):Promise<any>;
     abstract async all():Promise<any[]>;
     abstract async save(id:number, props:any):Promise<TuidSaveResult>;
     abstract async search(key:string, pageStart:string|number, pageSize:number):Promise<any>;
@@ -107,6 +108,10 @@ export class TuidInner extends Tuid {
         return createBoxId(this, id);
     }
     valueFromId(id:number) {return this.idCache.getValue(id)}
+	resetCache(id:number|BoxId):void {
+		if (typeof id === 'object') id = id.id;
+		this.idCache.resetCache(id);
+	}
     async assureBox<T> (id:number):Promise<T> {
 		await this.idCache.assureObj(id);
 		return this.idCache.getValue(id);
@@ -402,6 +407,9 @@ export class TuidImport extends Tuid {
     useId(id:number) {this.tuidLocal.useId(id);}
     boxId(id:number):BoxId {return this.tuidLocal.boxId(id);}
     valueFromId(id:number) {return this.tuidLocal.valueFromId(id)}
+	resetCache(id:number|BoxId):void {
+		this.tuidLocal.resetCache(id);
+	}
     async assureBox<T>(id:number):Promise<T> {
         await this.tuidLocal.assureBox(id);
 		return this.tuidLocal.valueFromId(id);
