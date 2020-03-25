@@ -36,12 +36,6 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
 const isMobile = regEx.test(navigator.userAgent);
-/*
-export const mobileHeaderStyle = isMobile? {
-    minHeight:  '3em'
-} : undefined;
-*/
-//const logo = require('../img/logo.svg');
 let logMark;
 const logs = [];
 ;

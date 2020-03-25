@@ -27,19 +27,11 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'i');
 const isMobile = regEx.test(navigator.userAgent);
 
-/*
-export const mobileHeaderStyle = isMobile? {
-    minHeight:  '3em'
-} : undefined;
-*/
-//const logo = require('../img/logo.svg');
 let logMark: number;
 const logs:string[] = [];
 
 export interface Props //extends React.Props<Nav>
 {
-    //view: JSX.Element | (()=>JSX.Element);
-    //start?: ()=>Promise<void>;
     onLogined: ()=>Promise<void>;
     notLogined?: ()=>Promise<void>;
 };

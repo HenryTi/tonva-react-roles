@@ -70,7 +70,7 @@ export class CAppBase extends Controller {
                 }
                 if (retErrors !== undefined) {
                     this.openVPage(VErrorsPage, retErrors);
-                    return false;
+                    //return false;
                 }
                 return true;
             }
@@ -102,26 +102,17 @@ export class CAppBase extends Controller {
             this.uqsMan.id = id;
             yield this.uqsMan.init(uqs);
             let retErrors = yield this.uqsMan.load();
+            retErrors.push(...this.uqsMan.setTuidImportsLocal());
+            this._uqs = this.uqsMan.buildUQs();
+            /*
             if (retErrors.length === 0) {
                 retErrors.push(...this.uqsMan.setTuidImportsLocal());
                 if (retErrors.length === 0) {
                     this._uqs = this.uqsMan.buildUQs();
-                    /*
-                    _.merge(this.uqs, this.uqsMan.uqsColl);
-                    for (let i in this.uqs) {
-                        let p = i.indexOf('/');
-                        if (p < 0) continue;
-                        let uq = this.uqs[i];
-                        
-                        let n = i.substr(p+1);
-                        let l = n.toLowerCase();
-                        this.uqs[n] = uq;
-                        if (l !== n) this.uqs[l] = uq;
-                    }
-                    */
                     return;
                 }
             }
+            */
             return retErrors;
         });
     }

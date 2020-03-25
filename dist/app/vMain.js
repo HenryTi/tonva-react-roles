@@ -10,38 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { VPage, Page, FA, nav, LMR, List } from "../components";
 import { appInFrame } from '../net';
-/*
-export class VAppMain extends VPage<CMainBase> {
-    async open(param?:any) {
-        this.openPage(this.appPage);
-    }
-
-    render(param?:any) {
-        return this.appContent();
-    }
-
-    protected appPage = () => {
-        let {caption} = this.controller;
-        return <Page header={caption} logout={async()=>{appInFrame.unit = undefined}}>
-            {this.appContent()}
-        </Page>;
-    }
-
-    protected appContent = () => {
-        let {cUqArr} = this.controller;
-        let content:any;
-        if (cUqArr.length === 0) {
-            content = <div className="text-danger">
-                <FA name="" /> 此APP没有绑定任何的UQ
-            </div>;
-        }
-        else {
-            content = cUqArr.map((v,i) => <div key={i}>{v.render()}</div>);
-        }
-        return <>{content}</>;
-    };
-}
-*/
 export class VUnsupportedUnit extends VPage {
     constructor() {
         super(...arguments);
@@ -124,7 +92,7 @@ export class VErrorsPage extends VPage {
     constructor() {
         super(...arguments);
         this.page = (errors) => {
-            return React.createElement(Page, { header: "ERROR" },
+            return React.createElement(Page, { header: "ERROR", back: "close" },
                 React.createElement("div", { className: "m-3" },
                     React.createElement("div", { className: "p-3 d-flex justify-content-center align-items-center" },
                         React.createElement("button", { className: "btn btn-danger", onClick: nav.resetAll }, "\u91CD\u542F\u7F51\u9875")),

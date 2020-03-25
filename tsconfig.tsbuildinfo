@@ -566,7 +566,7 @@
         "signature": "5b939471145f793b924060385888927ff5f9b0e919f1fbb93c1f1f2273bf709f"
       },
       "./src/components/nav.tsx": {
-        "version": "1f3219091b09c8888d7eccfacf1ea7adf2030daaa9db5e66835da6cfd15f5f87",
+        "version": "a5079d207e1428597246758fe6ae02ece4d85efa337695ca26f0fb6957acbd17",
         "signature": "19ed274fcfddb2cf5c3b68f40371a45d74a3d9074c7958a648d1300e47ae9793"
       },
       "./src/components/vm.tsx": {
@@ -1214,11 +1214,11 @@
         "signature": "d687cc7f07d98a5f3064d50ba0f8976a3b20a0941161fb3c3177736389795415"
       },
       "./src/app/cappbase.ts": {
-        "version": "e8aa4edf042143e1c69e8f5318d8ac0d574974d2da382e5b86811985bc5a10be",
+        "version": "4e7d046d45de819d798d998b4d5a3eb659fe3ed736bd68efd1c803d56ae16325",
         "signature": "1c805ec02c793209a1bfe996c249e42fecf21ff2803a6cfb713cc057eab42454"
       },
       "./src/app/vmain.tsx": {
-        "version": "a0afddce165cf9da22b446a4c159c78d677c2c2de23d559a72ad60df685c0553",
+        "version": "e76c1ef3424af8b79c341bbfb9378b61739d36f0f67ecfdd9d09dd34ada36c20",
         "signature": "1fdc4184d648d96c793b125cb610b66f56caaf867d5a2b8001fe9d9ae126d4a8"
       },
       "./src/capp/app/capp.tsx": {
@@ -4177,7 +4177,6 @@
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
-      "./src/components/nav.tsx",
       "./src/components/vm.tsx",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -4262,6 +4261,7 @@
       "./src/uq/map.ts",
       "./src/uq/pending.ts",
       "./src/uq/uqsman.ts",
+      "./src/uq/tag/tagview.tsx",
       "./src/uq/tag/tag.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
@@ -4338,8 +4338,6 @@
       "./src/capp/centerapi.ts",
       "./src/capp/app/vapp.tsx",
       "./src/app/centerapi.ts",
-      "./src/app/cappbase.ts",
-      "./src/app/vmain.tsx",
       "./src/capp/app/capp.tsx",
       "./src/capp/app/index.ts",
       "./src/capp/startapp.ts",
@@ -4368,7 +4366,9 @@
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/uq/tag/tagview.tsx"
+      "./src/components/nav.tsx",
+      "./src/app/cappbase.ts",
+      "./src/app/vmain.tsx"
     ]
   },
   "version": "3.8.3"
