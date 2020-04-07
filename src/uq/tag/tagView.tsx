@@ -28,9 +28,9 @@ export class TagView implements IValuesView {
 		return this.renderView(options, content);
 	}
 	renderChecks(values: string, options: IValuesViewRenderOptions): JSX.Element {
-		let arr = values?.split('|').map(v => Number(v));
+		let arr = values===undefined? undefined : values.split('|').map(v => Number(v));
 		let content = this.tag.values.map((item,index) => {
-			let checked: boolean = arr?.indexOf(item.id)>=0;
+			let checked: boolean = arr===undefined? undefined : arr.indexOf(item.id)>=0;
 			return <div className="col" key={index}>{this.renderCheck(item, checked, options)}</div>
 		});
 		return this.renderView(options, content);

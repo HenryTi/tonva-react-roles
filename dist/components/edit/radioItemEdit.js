@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { nav } from '../nav';
-import { Page } from '../page';
+import { Page } from '../page/page';
 import { observer } from 'mobx-react';
 import { ItemEdit } from './itemEdit';
 export class RadioItemEdit extends ItemEdit {
@@ -48,9 +48,8 @@ export class RadioItemEdit extends ItemEdit {
     }
     get uiItem() { return this._uiItem; }
     init() {
-        var _a;
         if (this.value === undefined) {
-            this.value = (_a = this._uiItem) === null || _a === void 0 ? void 0 : _a.defaultValue;
+            this.value = this._uiItem === undefined ? undefined : this._uiItem.defaultValue;
         }
     }
     internalStart() {

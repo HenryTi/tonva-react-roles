@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { refetchApi } from '../net';
-import { Page } from './page';
+import { Page } from './page/page';
 export default class FetchErrorView extends React.Component {
     constructor() {
         super(...arguments);

@@ -18,7 +18,7 @@ import * as React from 'react';
 import { nav } from './nav';
 import { Loading } from './loading';
 import { Image as ImageControl } from './image';
-import { Page } from './page';
+import { Page } from './page/page';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { LMR } from './simple';

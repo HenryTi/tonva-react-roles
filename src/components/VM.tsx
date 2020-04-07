@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash';
 import {nav} from './nav';
-import {Page} from './page';
+import {Page} from './page/page';
 import { User, env } from '../tool';
 import { resOptions } from './res';
 

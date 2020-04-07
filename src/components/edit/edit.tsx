@@ -53,8 +53,8 @@ export class Edit extends React.Component<EditProps> {
 			{this.topBorder}
             {schema.map((itemSchema, index) => {
 				let {name} = itemSchema;
-				let uiItem = this.uiSchema?.[name];
-				let label:string, labelHide;
+				let uiItem = this.uiSchema===undefined? undefined : this.uiSchema[name];
+				let label:string, labelHide:any;
 				if (uiItem !== undefined) {
 					label = uiItem.label || name;
 					labelHide = uiItem.labelHide;
@@ -78,7 +78,7 @@ export class Edit extends React.Component<EditProps> {
 						onClick={async ()=>await this.rowClick(itemEdit)}>
 						{divLabel}
 						<div className={cn}>{
-							itemEdit?.renderContent()
+							itemEdit===undefined? undefined: itemEdit.renderContent()
 						}</div>
 						{this.props.stopEdit!==true && <div className="w-2c text-right"><i className="fa fa-angle-right" /></div>}
 					</div>

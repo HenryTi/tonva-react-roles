@@ -97,12 +97,29 @@ export class PageHeader extends React.Component<PageHeaderProps, PageHeaderState
         if (back === undefined && typeof center === 'string') {
             center = <div className="px-3">{center}</div>;
         }
-        let rightView = (right || debugLogout) && <aside>{right} {debugLogout}</aside>;
-        return <header className={className}>
+		let rightView = (right || debugLogout) && <aside>{right} {debugLogout}</aside>;
+		let header = <header className={className}>
+			{back}
+			{/*pop 弹出window暂时停止作用 */}
+			<div>{center}</div>
+			{rightView}
+		</header>;
+        return <>
+			<section className="tv-page-header">{header}</section>
+			{header}
+		</>;
+		/*
+			<header className={className}>
+			<section>
+				<header>
+					{back}
+					<div>{center}</div>
+					{rightView}
+				</header>
+			</section>
             {back}
-            {/*pop 弹出window暂时停止作用 */}
             <div>{center}</div>
             {rightView}
-        </header>;
+        </header>;*/
     }
 }

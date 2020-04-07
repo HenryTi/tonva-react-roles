@@ -2,7 +2,7 @@ import * as React from 'react';
 import {observable} from 'mobx';
 import marked from 'marked';
 import {User, Guest/*, UserInNav*/} from '../tool/user';
-import {Page} from './page';
+import {Page} from './page/page';
 import {netToken} from '../net/netToken';
 import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
 import {FetchError} from '../net/fetchError';
@@ -27,11 +27,19 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'i');
 const isMobile = regEx.test(navigator.userAgent);
 
+/*
+export const mobileHeaderStyle = isMobile? {
+    minHeight:  '3em'
+} : undefined;
+*/
+//const logo = require('../img/logo.svg');
 let logMark: number;
 const logs:string[] = [];
 
 export interface Props //extends React.Props<Nav>
 {
+    //view: JSX.Element | (()=>JSX.Element);
+    //start?: ()=>Promise<void>;
     onLogined: ()=>Promise<void>;
     notLogined?: ()=>Promise<void>;
 };
@@ -376,25 +384,21 @@ export class NavView extends React.Component<Props, NavViewState> {
         if (fetchError)
             elError = <FetchErrorView clearError={this.clearError} {...fetchError} />;
         let test = nav.testing===true && 
-            <span className="cursor-pointer position-absolute" style={{lineHeight:0}}>
+			<span className="cursor-pointer position-fixed" style={{top:0,left:'0.2rem',zIndex:90001}}>
                 <FA className="text-warning" name="info-circle" />
             </span>;
         //onClick={this.onClick}
-        return (
-        <ul className="va">
-            {
-                stack.map((item, index) => {
-                    let {key, view} = item;
-                    return <li key={key} style={index<top? {visibility: 'hidden'}:undefined}>
-                        {view}
-                    </li>
-                })
-            }
-            {elWait}
-            {elError}
-            {test}
-        </ul>
-        );
+        return <>
+			{stack.map((item, index) => {
+				let {key, view} = item;
+				return <div key={key} style={index<top? {visibility: 'hidden'}:undefined}>
+					{view}
+				</div>
+			})}
+			{elWait}
+			{elError}
+			{test}
+        </>;
     }
 
     private refresh() {

@@ -45,7 +45,8 @@ __decorate([
 export const TabCaptionComponent = (label, icon, color) => React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
     React.createElement("div", null,
         React.createElement("i", { className: 'fa fa-lg fa-' + icon })),
-    React.createElement("small", null, label));
+    React.createElement("small", null,
+        React.createElement("small", null, label)));
 let Tabs = class Tabs extends React.Component {
     constructor(props) {
         super(props);
@@ -69,9 +70,9 @@ let Tabs = class Tabs extends React.Component {
             tab.onShown = onShown;
             return tab;
         });
-        this.tabBg = tabBack || 'bg-light';
+        this.tabBg = tabBack; // || 'bg-light';
         this.contentBg = contentBack;
-        this.sep = sep || 'border-top border-gray';
+        this.sep = sep; // || 'border-top border-gray';
         if (selected !== undefined) {
             this.selectedTab = this.tabs.find(v => v.name === selected);
         }
@@ -99,13 +100,6 @@ let Tabs = class Tabs extends React.Component {
         this.selectedTab = tab;
     }
     render() {
-        let cn = classNames('tab', 'tab-' + this.size);
-        let content = React.createElement("div", { className: classNames(this.contentBg, 'tab-content') }, this.tabs.map((v, index) => {
-            let style = {
-                display: v.selected === true ? undefined : 'none'
-            };
-            return React.createElement("div", { key: index, style: style }, v.content);
-        }));
         let { tabPosition, borderColor } = this.props;
         let bsCur, bsTab;
         if (borderColor) {
@@ -138,7 +132,13 @@ let Tabs = class Tabs extends React.Component {
                 bsTab.borderBottomWidth = 0;
             }
         }
-        let tabs = React.createElement("div", { className: classNames(this.tabBg, this.sep, 'tab-tabs') }, this.tabs.map((v, index) => {
+        /*
+        let cnContainer = classNames(
+            tabPosition==='top'? 'tv-page-header':'tv-page-footer'
+        );
+        */
+        let cn = classNames('tv-tabs', this.tabBg, this.sep, 'tv-tabs-' + this.size);
+        let tabs = React.createElement("div", { className: cn }, this.tabs.map((v, index) => {
             let { selected, caption, notify } = v;
             let notifyCircle;
             if (notify !== undefined) {
@@ -150,18 +150,46 @@ let Tabs = class Tabs extends React.Component {
                         notifyCircle = React.createElement("u", { className: "dot" });
                 }
             }
-            return React.createElement("div", { key: index, className: "", onClick: () => this.tabClick(v), style: selected === true ? bsCur : bsTab },
-                React.createElement("div", { className: "align-self-center" },
-                    notifyCircle,
-                    caption(selected)));
+            return React.createElement("div", { key: index, onClick: () => this.tabClick(v), style: selected === true ? bsCur : bsTab },
+                notifyCircle,
+                caption(selected));
         }));
-        return React.createElement("div", { className: cn }, tabPosition === 'top' ?
-            React.createElement(React.Fragment, null,
-                tabs,
-                content) :
-            React.createElement(React.Fragment, null,
-                content,
-                tabs));
+        let cnContainer, header, footer;
+        let visibility = { visibility: 'hidden' };
+        if (tabPosition === 'top') {
+            cnContainer = 'tv-page-header';
+            header = React.createElement(React.Fragment, null,
+                React.createElement("section", { className: cnContainer },
+                    React.createElement("header", null, tabs)),
+                React.createElement("header", { style: visibility }, tabs));
+        }
+        else {
+            cnContainer = 'tv-page-footer';
+            footer = React.createElement(React.Fragment, null,
+                React.createElement("footer", { style: visibility }, tabs),
+                React.createElement("section", { className: cnContainer },
+                    React.createElement("footer", null, tabs)));
+        }
+        let displayNone = { display: 'none' };
+        let content = React.createElement("ul", { className: "va" }, this.tabs.map((v, index) => {
+            let style;
+            if (v.selected === false)
+                style = displayNone;
+            return React.createElement("li", { key: index, className: classNames(this.contentBg), style: style },
+                React.createElement("article", null,
+                    header,
+                    v.content,
+                    footer));
+        }));
+        return content;
+        /*
+        return <article>
+            {content}
+            <section className={cnContainer}>
+                {tabs}
+            </section>
+        </article>
+        */
     }
 };
 __decorate([
@@ -175,4 +203,11 @@ Tabs = __decorate([
 ], Tabs);
 export { Tabs };
 ;
+/*
+{
+    tabPosition === 'top'?
+        <>{tabs}{content}</> :
+        <>{content}{tabs}</>
+}
+*/ 
 //# sourceMappingURL=tabs.js.map

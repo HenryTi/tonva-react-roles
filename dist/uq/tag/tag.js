@@ -21,13 +21,14 @@ export class Tag extends Entity {
         return this._view = new TagView(this);
     }
     nameFromId(id) {
-        return this.coll[id].name;
+        let c = this.coll[id];
+        return c === undefined ? undefined : c.name;
     }
     namesFromIds(ids) {
-        var _a;
         let ret = [];
         for (let id of ids.split('|')) {
-            let name = (_a = this.coll[Number(id)]) === null || _a === void 0 ? void 0 : _a.name;
+            let c = this.coll[Number(id)];
+            let name = c === undefined ? undefined : c.name;
             if (name !== undefined)
                 ret.push(name);
         }

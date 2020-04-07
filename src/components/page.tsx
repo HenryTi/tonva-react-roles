@@ -72,16 +72,18 @@ class ScrollView extends React.Component<ScrollViewProps, null> {
             console.log(child.toString());
             this.eachChild(child, direct);
         });
-    }
+	}
+	
     render() {
-        return (
-            <main className={this.props.className} onScroll={this.onScroll}>
-                {this.props.children}
-            </main>
-        );
+		let {className} = this.props;
+		//if (className) className = 'vpage ' + className;
+		//else className = 'vpage';
+        return <article className={className} onScroll={this.onScroll}>
+			{this.props.children}
+		</article>;
     }
 }
-
+/*
 export interface Tab extends ScrollProps {
     title: string | JSX.Element;    
     icon?: string;
@@ -95,6 +97,7 @@ export interface Tab extends ScrollProps {
 export interface TabState extends Tab {
     isMounted?: boolean;
 }
+*/
 export interface PageProps extends ScrollProps {
     back?: 'close' | 'back' | 'none';
     header?: boolean | string | JSX.Element;
@@ -102,23 +105,25 @@ export interface PageProps extends ScrollProps {
     right?: JSX.Element;
     sideBar?: JSX.Element;
     footer?: JSX.Element;
-    tabs?: Tab[];
+    //tabs?: Tab[];
     tabPosition?: 'top' | 'bottom';
     logout?: boolean | (()=>Promise<void>);
     headerClassName?: string;
 	afterBack?: () => void;
 }
+/*
 export interface PageState {
     cur?: Tab;
     tabs?: TabState[];
 }
-
+*/
 @observer
-export class Page extends React.Component<PageProps, PageState> {
-    private tabs:TabState[];
+export class Page extends React.Component<PageProps/*, PageState*/> {
+	//private tabs:TabState[];
+	/*
     constructor(props: PageProps) {
         super(props);
-        let {tabs} = props;
+		let {tabs} = props;
         if (tabs === undefined || tabs.length === 0) return;
         this.tabs = tabs;
         let cur:Tab;
@@ -141,8 +146,10 @@ export class Page extends React.Component<PageProps, PageState> {
             cur: cur,
             tabs: tabStates,
         };
-    }
+	}
+	*/
 
+	/*
     async componentDidMount() {
         if (this.tabs === undefined) return;
         let t0 = this.state.tabs.find(v => v.isSelected === true);
@@ -150,10 +157,11 @@ export class Page extends React.Component<PageProps, PageState> {
             t0 = this.state.tabs[0];
             if (t0 === undefined) return;
         }
-        await t0.load && await t0.load();
-        //await this.onTabClick(t0);
-    }
+        await t0.load?.();
+	}
+	*/
 
+	/*
     private async onTabClick(tab: TabState) {
         if (tab.isSelected === true) return;
         let cur:TabState;
@@ -242,7 +250,8 @@ export class Page extends React.Component<PageProps, PageState> {
             {tabPosition!=='top' && tabs}
             {footer}
         </article>;
-    }
+	}
+	*/
     private renderSingle(footer: JSX.Element) {
         const {back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName, afterBack} = this.props;
         let pageHeader = header !== false && <PageHeader 
@@ -253,30 +262,55 @@ export class Page extends React.Component<PageProps, PageState> {
             className={headerClassName}
 			afterBack={afterBack}
 			/>;
-        return (
-            <article className='page-container' onTouchStart={this.onTouchStart}>
-                {pageHeader}
-                <section className="position-relative">
-                    {this.props.sideBar}
-                    <ScrollView
-                        onScroll={onScroll}
-                        onScrollTop={onScrollTop}
-                        onScrollBottom={onScrollBottom}
-                    >
-                        {children}
-                    </ScrollView>
-                </section>
-                {footer}
-            </article>
-        );
+
+		return <ScrollView
+			onScroll={onScroll}
+			onScrollTop={onScrollTop}
+			onScrollBottom={onScrollBottom}
+		>
+			{pageHeader}
+			<main>
+			{children}
+			</main>
+			{footer}
+		</ScrollView>;
+
+		/*
+        return <article onTouchStart={this.onTouchStart}>
+			<section className="vpage-header">
+				{pageHeader}
+			</section>
+			<section className="position-relative vpage-body">
+				{this.props.sideBar}
+				<ScrollView
+					onScroll={onScroll}
+					onScrollTop={onScrollTop}
+					onScrollBottom={onScrollBottom}
+				>
+					{pageHeader}
+					{children}
+					{footer}
+				</ScrollView>
+			</section>
+			<section className="vpage-footer">
+				{footer}
+			</section>
+		</article>;
+		*/
     }
 
     render() {
         const {footer} = this.props;
-        let elFooter = footer !== undefined && <footer>{footer}</footer>;
-        if (this.tabs !== undefined)
-            return this.renderTabs(elFooter);
-        else
+		let elFooter:any;
+		if (footer) elFooter = <>
+			<section className="tv-page-footer"><footer>{footer}</footer></section>
+			<footer>
+				{footer}
+			</footer>
+		</>;
+        //if (this.tabs !== undefined)
+        //    return this.renderTabs(elFooter);
+        //else
             return this.renderSingle(elFooter);
     }
 }

@@ -15,8 +15,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import classNames from 'classnames';
-import _ from 'lodash';
 import { PageHeader } from './pageHeader';
 const scrollAfter = 20; // 20ms之后，scroll执行
 export class Scroller {
@@ -80,20 +78,30 @@ class ScrollView extends React.Component {
         });
     }
     render() {
-        return (React.createElement("main", { className: this.props.className, onScroll: this.onScroll }, this.props.children));
+        let { className } = this.props;
+        //if (className) className = 'vpage ' + className;
+        //else className = 'vpage';
+        return React.createElement("article", { className: className, onScroll: this.onScroll }, this.props.children);
     }
 }
+/*
+export interface PageState {
+    cur?: Tab;
+    tabs?: TabState[];
+}
+*/
 let Page = class Page extends React.Component {
-    constructor(props) {
+    //private tabs:TabState[];
+    /*
+    constructor(props: PageProps) {
         super(props);
-        let { tabs } = props;
-        if (tabs === undefined || tabs.length === 0)
-            return;
+        let {tabs} = props;
+        if (tabs === undefined || tabs.length === 0) return;
         this.tabs = tabs;
-        let cur;
-        let tabStates = [];
+        let cur:Tab;
+        let tabStates:Tab[] = [];
         for (let tab of tabs) {
-            let t = _.clone(tab);
+            let t:TabState = _.clone(tab);
             if (cur === undefined) {
                 if (t.isSelected === true)
                     cur = t;
@@ -111,108 +119,151 @@ let Page = class Page extends React.Component {
             tabs: tabStates,
         };
     }
-    componentDidMount() {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.tabs === undefined)
-                return;
-            let t0 = this.state.tabs.find(v => v.isSelected === true);
-            if (t0 === undefined) {
-                t0 = this.state.tabs[0];
-                if (t0 === undefined)
-                    return;
+    */
+    /*
+    async componentDidMount() {
+        if (this.tabs === undefined) return;
+        let t0 = this.state.tabs.find(v => v.isSelected === true);
+        if (t0 === undefined) {
+            t0 = this.state.tabs[0];
+            if (t0 === undefined) return;
+        }
+        await t0.load?.();
+    }
+    */
+    /*
+    private async onTabClick(tab: TabState) {
+        if (tab.isSelected === true) return;
+        let cur:TabState;
+        let tabs = this.state.tabs;
+        for (let t of tabs) {
+            if (t === tab) {
+                t.isSelected = true;
+                cur = t;
             }
-            (yield t0.load) && (yield t0.load());
-            //await this.onTabClick(t0);
+            else
+                t.isSelected = false;
+        }
+        if (cur.isMounted !== true) {
+            let {load} = cur;
+            if (load !== undefined) {
+                await load();
+            }
+        }
+        this.setState({
+            cur: cur,
+            tabs: tabs
         });
     }
-    onTabClick(tab) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (tab.isSelected === true)
-                return;
-            let cur;
-            let tabs = this.state.tabs;
-            for (let t of tabs) {
-                if (t === tab) {
-                    t.isSelected = true;
-                    cur = t;
-                }
-                else
-                    t.isSelected = false;
-            }
-            if (cur.isMounted !== true) {
-                let { load } = cur;
-                if (load !== undefined) {
-                    yield load();
-                }
-            }
-            this.setState({
-                cur: cur,
-                tabs: tabs
-            });
-        });
+
+    private onTouchStart(evt: React.TouchEvent<HTMLElement>) {
     }
-    onTouchStart(evt) {
-    }
-    renderTabs(footer) {
-        const { header, back, right, keepHeader, headerClassName, tabPosition, afterBack } = this.props;
+
+    private renderTabs(footer: JSX.Element) {
+        const {header, back, right, keepHeader, headerClassName, tabPosition, afterBack} = this.props;
         let cur = this.state.cur;
-        let tabs = React.createElement("div", null, this.state.tabs.map((tab, index) => {
-            const { icon, isSelected, title, redDot, className } = tab;
-            let img, redDotView, cn;
-            if (icon !== undefined)
-                img = React.createElement("img", { src: icon, alt: "tab icon" });
-            if (redDot !== undefined) {
-                let v = redDot.get();
-                if (v < 0) {
-                    cn = classNames('red-dot', className);
-                    redDotView = React.createElement("u", null);
-                }
-                else if (v > 0) {
-                    cn = classNames('red-dot', 'num', className);
-                    redDotView = React.createElement("u", null, v);
-                }
-            }
-            return React.createElement("div", { key: index, className: classNames('va-tab', { cur: isSelected }), onClick: () => this.onTabClick(tab) },
-                img,
-                React.createElement("div", { className: cn },
-                    title,
-                    redDotView));
-        }));
-        let pageHeader = header !== false &&
-            React.createElement(PageHeader, { back: back, center: keepHeader === true ? header : (cur && (cur.header || cur.title)), right: right, className: headerClassName, afterBack: afterBack });
-        return React.createElement("article", { className: 'page-container' },
-            pageHeader,
-            tabPosition === 'top' && tabs,
-            React.createElement("section", { className: "position-relative" },
-                this.props.sideBar,
+        let tabs = <div>{
                 this.state.tabs.map((tab, index) => {
-                    let { isSelected, isMounted, content } = tab;
+                    const {icon, isSelected, title, redDot, className} = tab;
+                    let img:any, redDotView:any, cn:any;
+                    if (icon !== undefined) img = <img src={icon} alt="tab icon" />;
+                    if (redDot !== undefined) {
+                        let v = redDot.get();
+                        if (v < 0) {
+                            cn = classNames('red-dot', className);
+                            redDotView = <u />;
+                        }
+                        else if (v > 0) {
+                            cn = classNames('red-dot', 'num', className);
+                            redDotView = <u>{v}</u>;
+                        }
+                    }
+                    return <div key={index}
+                        className= {classNames('va-tab', {cur: isSelected})}
+                        onClick={() => this.onTabClick(tab)}>
+                        {img}<div className={cn}>{title}{redDotView}</div>
+                    </div>
+                })
+            }</div>;
+        let pageHeader = header !== false &&
+            <PageHeader
+                back={back}
+                center={keepHeader===true? (header as string) : (cur && (cur.header || cur.title))}
+                right={right}
+                className={headerClassName}
+                afterBack={afterBack}
+            />;
+
+        return <article className='page-container'>
+            {pageHeader}
+            {tabPosition==='top' && tabs}
+            <section className="position-relative">
+            {this.props.sideBar}
+            {
+                this.state.tabs.map((tab, index) => {
+                    let {isSelected, isMounted, content} = tab;
                     if (isSelected === true || isMounted === true) {
                         tab.isMounted = true;
-                        return React.createElement(ScrollView, { key: index, className: classNames({ invisible: isSelected === false }), onScroll: tab.onScroll, onScrollTop: tab.onScrollTop, onScrollBottom: tab.onScrollBottom }, (typeof content) === 'function' ? content() : content);
+                        return <ScrollView key={index}
+                            className={classNames({invisible: isSelected===false})}
+                            onScroll={tab.onScroll}
+                            onScrollTop={tab.onScrollTop}
+                            onScrollBottom={tab.onScrollBottom}
+                        >
+                            {(typeof content)==='function'? (content as ()=>JSX.Element)():content}
+                        </ScrollView>;
                     }
                     return undefined;
-                })),
-            tabPosition !== 'top' && tabs,
-            footer);
+                })
+            }
+            </section>
+            {tabPosition!=='top' && tabs}
+            {footer}
+        </article>;
     }
+    */
     renderSingle(footer) {
         const { back, header, right, onScroll, onScrollTop, onScrollBottom, children, headerClassName, afterBack } = this.props;
         let pageHeader = header !== false && React.createElement(PageHeader, { back: back, center: header, right: right, logout: this.props.logout, className: headerClassName, afterBack: afterBack });
-        return (React.createElement("article", { className: 'page-container', onTouchStart: this.onTouchStart },
+        return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
             pageHeader,
-            React.createElement("section", { className: "position-relative" },
-                this.props.sideBar,
-                React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom }, children)),
-            footer));
+            React.createElement("main", null, children),
+            footer);
+        /*
+        return <article onTouchStart={this.onTouchStart}>
+            <section className="vpage-header">
+                {pageHeader}
+            </section>
+            <section className="position-relative vpage-body">
+                {this.props.sideBar}
+                <ScrollView
+                    onScroll={onScroll}
+                    onScrollTop={onScrollTop}
+                    onScrollBottom={onScrollBottom}
+                >
+                    {pageHeader}
+                    {children}
+                    {footer}
+                </ScrollView>
+            </section>
+            <section className="vpage-footer">
+                {footer}
+            </section>
+        </article>;
+        */
     }
     render() {
         const { footer } = this.props;
-        let elFooter = footer !== undefined && React.createElement("footer", null, footer);
-        if (this.tabs !== undefined)
-            return this.renderTabs(elFooter);
-        else
-            return this.renderSingle(elFooter);
+        let elFooter;
+        if (footer)
+            elFooter = React.createElement(React.Fragment, null,
+                React.createElement("section", { className: "tv-page-footer" },
+                    React.createElement("footer", null, footer)),
+                React.createElement("footer", null, footer));
+        //if (this.tabs !== undefined)
+        //    return this.renderTabs(elFooter);
+        //else
+        return this.renderSingle(elFooter);
     }
 };
 Page = __decorate([

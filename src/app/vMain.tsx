@@ -3,6 +3,38 @@ import { VPage, Page, FA, nav, LMR, List } from "../components";
 import { appInFrame } from '../net';
 import { CAppBase } from "./CAppBase";
 
+/*
+export class VAppMain extends VPage<CMainBase> {
+    async open(param?:any) {
+        this.openPage(this.appPage);
+    }
+
+    render(param?:any) {
+        return this.appContent();
+    }
+
+    protected appPage = () => {
+        let {caption} = this.controller;
+        return <Page header={caption} logout={async()=>{appInFrame.unit = undefined}}>
+            {this.appContent()}
+        </Page>;
+    }
+
+    protected appContent = () => {
+        let {cUqArr} = this.controller;
+        let content:any;
+        if (cUqArr.length === 0) {
+            content = <div className="text-danger">
+                <FA name="" /> 此APP没有绑定任何的UQ
+            </div>;
+        }
+        else {
+            content = cUqArr.map((v,i) => <div key={i}>{v.render()}</div>);
+        }
+        return <>{content}</>;
+    };
+}
+*/
 export class VUnsupportedUnit extends VPage<CAppBase> {
     async open(predefinedUnit: number) {
         this.openPage(this.page, {predefinedUnit:predefinedUnit});
@@ -84,7 +116,7 @@ export class VErrorsPage extends VPage<CAppBase> {
     }
 
     private page = (errors:{errors:string[]}) => {
-        return <Page header="ERROR" back="close">
+        return <Page header="ERROR">
             <div className="m-3">
 				<div className="p-3 d-flex justify-content-center align-items-center">
 					<button className="btn btn-danger" onClick={nav.resetAll}>重启网页</button>

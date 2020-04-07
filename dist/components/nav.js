@@ -16,7 +16,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as React from 'react';
 import { observable } from 'mobx';
 import marked from 'marked';
-import { Page } from './page';
+import { Page } from './page/page';
 import { netToken } from '../net/netToken';
 import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
@@ -36,6 +36,12 @@ const regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
 const isMobile = regEx.test(navigator.userAgent);
+/*
+export const mobileHeaderStyle = isMobile? {
+    minHeight:  '3em'
+} : undefined;
+*/
+//const logo = require('../img/logo.svg');
 let logMark;
 const logs = [];
 ;
@@ -361,17 +367,17 @@ export class NavView extends React.Component {
         if (fetchError)
             elError = React.createElement(FetchErrorView, Object.assign({ clearError: this.clearError }, fetchError));
         let test = nav.testing === true &&
-            React.createElement("span", { className: "cursor-pointer position-absolute", style: { lineHeight: 0 } },
+            React.createElement("span", { className: "cursor-pointer position-fixed", style: { top: 0, left: '0.2rem', zIndex: 90001 } },
                 React.createElement(FA, { className: "text-warning", name: "info-circle" }));
         //onClick={this.onClick}
-        return (React.createElement("ul", { className: "va" },
+        return React.createElement(React.Fragment, null,
             stack.map((item, index) => {
                 let { key, view } = item;
-                return React.createElement("li", { key: key, style: index < top ? { visibility: 'hidden' } : undefined }, view);
+                return React.createElement("div", { key: key, style: index < top ? { visibility: 'hidden' } : undefined }, view);
             }),
             elWait,
             elError,
-            test));
+            test);
     }
     refresh() {
         // this.setState({flag: !this.state.flag});

@@ -213,6 +213,7 @@ class GetSheetCaller extends SheetCaller {
 class SheetArchiveCaller extends SheetCaller {
     constructor() {
         super(...arguments);
+        //protected readonly params: number;  // id
         this.method = 'GET';
     }
     //protected readonly suffix = 'archive';

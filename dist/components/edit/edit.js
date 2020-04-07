@@ -79,9 +79,8 @@ let Edit = class Edit extends React.Component {
         return React.createElement("div", null,
             this.topBorder,
             schema.map((itemSchema, index) => {
-                var _a;
                 let { name } = itemSchema;
-                let uiItem = (_a = this.uiSchema) === null || _a === void 0 ? void 0 : _a[name];
+                let uiItem = this.uiSchema === undefined ? undefined : this.uiSchema[name];
                 let label, labelHide;
                 if (uiItem !== undefined) {
                     label = uiItem.label || name;
@@ -107,7 +106,7 @@ let Edit = class Edit extends React.Component {
                     sep,
                     React.createElement("div", { className: 'd-flex align-items-center' + this.rowContainerClassName, onClick: () => __awaiter(this, void 0, void 0, function* () { return yield this.rowClick(itemEdit); }) },
                         divLabel,
-                        React.createElement("div", { className: cn }, itemEdit === null || itemEdit === void 0 ? void 0 : itemEdit.renderContent()),
+                        React.createElement("div", { className: cn }, itemEdit === undefined ? undefined : itemEdit.renderContent()),
                         this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
                             React.createElement("i", { className: "fa fa-angle-right" }))));
                 sep = this.sep;

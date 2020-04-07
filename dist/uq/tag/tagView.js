@@ -23,9 +23,9 @@ export class TagView {
         return this.renderView(options, content);
     }
     renderChecks(values, options) {
-        let arr = values === null || values === void 0 ? void 0 : values.split('|').map(v => Number(v));
+        let arr = values === undefined ? undefined : values.split('|').map(v => Number(v));
         let content = this.tag.values.map((item, index) => {
-            let checked = (arr === null || arr === void 0 ? void 0 : arr.indexOf(item.id)) >= 0;
+            let checked = arr === undefined ? undefined : arr.indexOf(item.id) >= 0;
             return React.createElement("div", { className: "col", key: index }, this.renderCheck(item, checked, options));
         });
         return this.renderView(options, content);

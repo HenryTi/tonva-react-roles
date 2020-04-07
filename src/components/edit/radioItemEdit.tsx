@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ItemSchema, UiRadio } from '../schema';
 import { nav } from '../nav';
-import { Page } from '../page';
+import { Page } from '../page/page';
 import { observer } from 'mobx-react';
 import { ItemEdit } from './itemEdit';
 
@@ -10,7 +10,7 @@ export class RadioItemEdit extends ItemEdit {
 
 	init() {
         if (this.value === undefined) {
-            this.value = this._uiItem?.defaultValue;
+            this.value = this._uiItem===undefined? undefined : this._uiItem.defaultValue;
         }
 	}
 

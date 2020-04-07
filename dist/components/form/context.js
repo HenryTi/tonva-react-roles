@@ -238,6 +238,7 @@ __decorate([
 ], Context.prototype, "hasError", null);
 let rowKeySeed = 1;
 export class RowContext extends Context {
+    //readonly uiSchema: UiArr;
     constructor(parentContext, arrSchema, data, inNode) {
         let uiArr;
         let { uiSchema } = parentContext;

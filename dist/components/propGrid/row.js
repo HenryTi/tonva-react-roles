@@ -29,7 +29,7 @@ export class PropGap extends PropRow {
                 break;
         }
         let cn = className(w);
-        return React.createElement("div", { key: '_g_' + key, className: cn, style: { backgroundColor: '#f0f0f0' } });
+        return React.createElement("div", { key: '_g_' + key, className: cn });
     }
 }
 const valueAlignStart = 'justify-content-start';

@@ -75,7 +75,7 @@ export default class Login extends React.Component {
             header = '登录';
         }
         return React.createElement(Page, { header: header, footer: footer },
-            React.createElement("div", { className: "d-flex h-100 flex-column justify-content-center align-items-center" },
+            React.createElement("div", { className: "d-flex m-5 p-5 flex-column justify-content-center align-items-center" },
                 React.createElement("div", { className: "flex-fill" }),
                 React.createElement("div", { className: "w-20c" },
                     tonvaTop(),

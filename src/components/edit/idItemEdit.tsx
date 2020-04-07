@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UiIdItem } from '../schema';
-import { Page } from '../page';
+import { Page } from '../page/page';
 import { observer } from 'mobx-react';
 import { ItemEdit } from './itemEdit';
 

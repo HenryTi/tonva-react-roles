@@ -5,6 +5,7 @@ export declare class TextWidget extends Widget {
     protected inputType: string;
     protected get ui(): UiTextItem;
     protected input: HTMLInputElement;
+    protected hasFocus: boolean;
     protected setElementValue(value: any): void;
     protected get placeholder(): string;
     protected onKeyDown: (evt: React.KeyboardEvent<HTMLInputElement>) => Promise<void>;

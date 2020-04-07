@@ -206,7 +206,7 @@ class GetSheetCaller extends SheetCaller<number> {
 }
 
 class SheetArchiveCaller extends SheetCaller<number> {
-    protected readonly params: number;  // id
+    //protected readonly params: number;  // id
     method = 'GET';
     //protected readonly suffix = 'archive';
     buildParams() {}

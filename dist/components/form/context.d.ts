@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form } from './form';
-import { UiSchema, UiArr, UiItem } from '../schema';
+import { UiSchema, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
 import { Widget } from './widgets/widget';
 import { ContextRule } from './rules';
@@ -50,7 +50,6 @@ export declare abstract class Context {
 export declare class RowContext extends Context {
     readonly parentContext: Context;
     readonly arrSchema: ArrSchema;
-    readonly uiSchema: UiArr;
     readonly rowKey: number;
     readonly data: any;
     constructor(parentContext: Context, arrSchema: ArrSchema, data: any, inNode: boolean);

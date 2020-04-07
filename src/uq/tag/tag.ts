@@ -19,13 +19,15 @@ export class Tag extends Entity {
 	}
 
 	nameFromId(id:number) {
-		return this.coll[id].name;
+		let c = this.coll[id]; 
+		return c===undefined? undefined : c.name;
 	}
 
 	namesFromIds(ids:string):string[] {
 		let ret:string[] = [];
 		for (let id of ids.split('|')) {
-			let name = this.coll[Number(id)]?.name;
+			let c = this.coll[Number(id)];
+			let name = c===undefined? undefined : c.name;
 			if (name !== undefined) ret.push(name);
 		}
 		return ret;

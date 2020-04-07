@@ -93,10 +93,26 @@ export class PageHeader extends React.Component {
             right,
             " ",
             debugLogout);
-        return React.createElement("header", { className: className },
+        let header = React.createElement("header", { className: className },
             back,
             React.createElement("div", null, center),
             rightView);
+        return React.createElement(React.Fragment, null,
+            React.createElement("section", { className: "tv-page-header" }, header),
+            header);
+        /*
+            <header className={className}>
+            <section>
+                <header>
+                    {back}
+                    <div>{center}</div>
+                    {rightView}
+                </header>
+            </section>
+            {back}
+            <div>{center}</div>
+            {rightView}
+        </header>;*/
     }
 }
 //# sourceMappingURL=pageHeader.js.map

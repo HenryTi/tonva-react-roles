@@ -59,7 +59,7 @@ class Tab {
 export const TabCaptionComponent = (label:string, icon:string, color:string) => <div 
     className={'d-flex justify-content-center align-items-center flex-column cursor-pointer ' + color}>
     <div><i className={'fa fa-lg fa-' + icon} /></div>
-    <small>{label}</small>
+    <small><small>{label}</small></small>
 </div>;
 
 @observer export class Tabs extends React.Component<TabsProps> {
@@ -86,9 +86,9 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
             tab.onShown = onShown;
             return tab;
         });
-        this.tabBg = tabBack || 'bg-light';
+        this.tabBg = tabBack; // || 'bg-light';
         this.contentBg = contentBack;
-        this.sep = sep || 'border-top border-gray';
+        this.sep = sep; // || 'border-top border-gray';
         if (selected !== undefined) {
             this.selectedTab = this.tabs.find(v => v.name === selected);
         }
@@ -118,15 +118,6 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
     }
 
     render() {
-        let cn = classNames('tab', 'tab-' + this.size);
-        let content = <div className={classNames(this.contentBg, 'tab-content')}>
-            {this.tabs.map((v,index) => {
-                let style:React.CSSProperties={
-                    display: v.selected===true? undefined : 'none'};
-                return <div key={index} style={style}>{v.content}</div>;
-            })}
-        </div>;        
-
         let {tabPosition, borderColor} = this.props;
         let bsCur:React.CSSProperties, bsTab:React.CSSProperties
         if (borderColor) {
@@ -160,7 +151,14 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
             }
         }
 
-        let tabs = <div className={classNames(this.tabBg, this.sep, 'tab-tabs')}>
+		/*
+		let cnContainer = classNames(
+			tabPosition==='top'? 'tv-page-header':'tv-page-footer'
+		);
+		*/
+		let cn = classNames('tv-tabs', this.tabBg, this.sep, 'tv-tabs-' + this.size);
+
+		let tabs = <div className={cn}>
             {this.tabs.map((v,index) => {
                 let {selected, caption, notify} = v;
                 let notifyCircle:any;
@@ -171,21 +169,63 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
                         else if (num < 0) notifyCircle = <u className="dot" />;
                     }
                 }
-                return <div key={index} className="" onClick={()=>this.tabClick(v)} style={selected===true? bsCur:bsTab}>
-                    <div className="align-self-center">
-                        {notifyCircle}
-                        {caption(selected)}
-                    </div>
+                return <div key={index} onClick={()=>this.tabClick(v)} style={selected===true? bsCur:bsTab}>
+					{notifyCircle}
+					{caption(selected)}
                 </div>
             })}
-        </div>;
+		</div>;
 
-        return <div className={cn}>
-            {
-                tabPosition === 'top'? 
-                    <>{tabs}{content}</> :
-                    <>{content}{tabs}</>
-            }
-        </div>
+		let cnContainer:string, header:any, footer:any;
+		let visibility:React.CSSProperties = {visibility:'hidden'};
+		if (tabPosition === 'top') {
+			cnContainer = 'tv-page-header';
+			header = <>
+				<section className={cnContainer}>
+					<header>{tabs}</header>
+				</section>
+				<header style={visibility}>{tabs}</header>
+			</>;
+		}
+		else {
+			cnContainer = 'tv-page-footer';
+			footer = <>
+				<footer style={visibility}>{tabs}</footer>
+				<section className={cnContainer}>
+					<footer>{tabs}</footer>
+				</section>
+			</>;
+		}
+
+		let displayNone:React.CSSProperties = {display: 'none'};
+		let content = <ul className="va">
+			{this.tabs.map((v,index) => {
+				let style:React.CSSProperties;
+				if (v.selected===false) style = displayNone;
+				return <li key={index} className={classNames(this.contentBg)} style={style}>
+					<article>
+						{header}
+						{v.content}
+						{footer}
+					</article>
+				</li>
+			})}
+		</ul>;
+		return content;
+		/*
+        return <article>
+			{content}
+			<section className={cnContainer}>
+				{tabs}
+			</section>
+		</article>
+		*/
     }
 };
+/*
+{
+	tabPosition === 'top'? 
+		<>{tabs}{content}</> :
+		<>{content}{tabs}</>
+}
+*/
