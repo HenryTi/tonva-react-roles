@@ -2,6 +2,7 @@ import * as React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
+import { IVPage } from './page';
 import { IObservableValue } from 'mobx/lib/internal';
 import '../../css/va-tab.css';
 
@@ -10,7 +11,8 @@ export type TabCaption = (selected:boolean) => JSX.Element;
 export interface TabProp {
     name: string;
     caption: TabCaption;
-    content: () => JSX.Element;
+	content?: () => JSX.Element;
+	page?: IVPage;
     notify?: IObservableValue<number>;
     load?: () => Promise<void>;
 	onShown?: () => Promise<void>;
@@ -34,7 +36,8 @@ class Tab {
     name: string;
     @observable selected: boolean;
     caption: TabCaption;
-    contentBuilder: ()=>JSX.Element;
+	contentBuilder: ()=>JSX.Element;
+	page: IVPage;
     notify: IObservableValue<number>;
     load?: () => Promise<void>;
     onShown?: () => Promise<void>;
@@ -45,7 +48,15 @@ class Tab {
 		if (this.load && this.loaded === false) return;
 		if (this.selected === false) return this._content;
 		if (!this._content) {
-			this._content = this.contentBuilder();
+			if (this.contentBuilder !== undefined) {
+				this._content = this.contentBuilder();
+			}
+			else if (this.page !== undefined) {
+				this._content = this.page.content();
+			}
+			else {
+				this._content = <div className="p-5">tab 应该定义content或者page</div>;
+			}
 		}
 		return this._content;
     }
@@ -84,14 +95,20 @@ export class TabsView {
 		this.size = size || 'md';
         this.tabArr = tabs.map(v => {
             let tab = new Tab();
-            let {name, caption, content, notify, load, onShown, isSelected} = v;
+            let {name, caption, content, page, notify, load, onShown, isSelected} = v;
 			tab.name = name;
 			if (isSelected === true || name === selected) {
 				this.selectedTab = tab;
 			}
 			tab.selected = false;
-            tab.caption = caption;
-            tab.contentBuilder = content;
+			tab.caption = caption;
+			if (content !== undefined) {
+				tab.contentBuilder = content;
+			}
+			else if (page !== undefined) {
+				tab.page = page;
+				//contentBuilder = () => {return page.content()};
+			}
             tab.notify = notify;
             tab.load = load;
             tab.onShown = onShown;
@@ -193,34 +210,55 @@ export class TabsView {
 		return <>
 			{this.tabArr.map((v,index) => {
 				let {tabPosition} = this.props;
+				let {content, page} = v;
 				let tabs = <this.tabs />;
-				let cnContainer:string, main:any;
+				let pageHeader:any, pageFooter:any;
+				if (page !== undefined) {
+					pageHeader = page.header();
+					pageFooter = page.footer();
+				}
+				let header:any, footer:any;
 				let visibility:React.CSSProperties = {visibility:'hidden'};
 				if (tabPosition === 'top') {
-					cnContainer = 'tv-page-header';
-					main = <>
-						<section className={cnContainer}>
-							<header>{tabs}</header>
+					header = <>
+						<section className="tv-page-header">
+							<header>{tabs}{pageHeader}</header>
 						</section>
-						<header style={visibility}>{tabs}</header>
-						{v.content}
+						<header style={visibility}>{tabs}{pageHeader}</header>
 					</>;
+					if (pageFooter !== undefined) {
+						footer = <>
+							<footer style={visibility}>{pageFooter}</footer>
+							<section className="tv-page-footer">
+								<footer>{pageFooter}</footer>
+							</section>
+						</>;
+					}
 				}
 				else {
-					cnContainer = 'tv-page-footer';
-					main = <>
-						{v.content}
-						<footer style={visibility}>{tabs}</footer>
-						<section className={cnContainer}>
-							<footer>{tabs}</footer>
+					if (pageHeader !== undefined) {
+						header = <>
+							<section className='tv-page-header'>
+								<header>{pageHeader}</header>
+							</section>
+							<header style={visibility}>{pageHeader}</header>
+						</>;
+					}
+					footer = <>
+						<footer style={visibility}>{pageFooter}{tabs}</footer>
+						<section className='tv-page-footer'>
+							<footer>{pageFooter}{tabs}</footer>
 						</section>
 					</>;
 				}
+
 				let style:React.CSSProperties;
 				if (v.selected===false) style = displayNone;
 				return <div key={index} className={classNames('tv-page', this.contentBg)} style={style}>
 					<article>
-						{main}
+						{header}
+						{content}
+						{footer}
 					</article>
 				</div>;
 			})}

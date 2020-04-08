@@ -1,4 +1,4 @@
-import { Controller } from "../components";
+import { Controller } from "../vm";
 export class CBase extends Controller {
     constructor(cApp) {
         super(undefined);

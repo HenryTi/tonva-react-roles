@@ -1,4 +1,4 @@
-import { VPage } from "../components";
+import { VPage } from '../vm';
 import { CAppBase } from "./CAppBase";
 export declare class VUnsupportedUnit extends VPage<CAppBase> {
     open(predefinedUnit: number): Promise<void>;

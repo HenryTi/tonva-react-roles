@@ -1,5 +1,10 @@
 import * as React from 'react';
 import { TabsProps } from './tabs';
+export interface IVPage {
+    content(): JSX.Element;
+    header(): JSX.Element;
+    footer(): JSX.Element;
+}
 export declare class Scroller {
     private el;
     constructor(el: HTMLBaseElement);
@@ -14,12 +19,12 @@ export interface ScrollProps {
 export interface PageProps extends ScrollProps {
     back?: 'close' | 'back' | 'none';
     header?: boolean | string | JSX.Element;
-    keepHeader?: boolean;
     right?: JSX.Element;
-    sideBar?: JSX.Element;
     footer?: JSX.Element;
     logout?: boolean | (() => Promise<void>);
     headerClassName?: string;
+    className?: string;
+    bgClassName?: string;
     afterBack?: () => void;
     tabsProps?: TabsProps;
 }

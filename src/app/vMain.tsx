@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { VPage, Page, FA, nav, LMR, List } from "../components";
+import { Page, FA, nav, LMR, List } from "../components";
+import { VPage } from '../vm';
 import { appInFrame } from '../net';
 import { CAppBase } from "./CAppBase";
 

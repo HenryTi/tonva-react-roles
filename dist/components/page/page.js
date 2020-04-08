@@ -15,6 +15,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
+import classNames from 'classnames';
 import { PageHeader } from './pageHeader';
 import { TabsView } from './tabs';
 const scrollAfter = 20; // 20ms之后，scroll执行
@@ -80,8 +81,6 @@ class ScrollView extends React.Component {
     }
     render() {
         let { className } = this.props;
-        //if (className) className = 'vpage ' + className;
-        //else className = 'vpage';
         return React.createElement("article", { className: className, onScroll: this.onScroll }, this.props.children);
     }
 }
@@ -276,10 +275,10 @@ let Page = class Page extends React.Component {
         }
     }
     render() {
-        const { onScroll, onScrollTop, onScrollBottom, children, tabsProps } = this.props;
+        const { onScroll, onScrollTop, onScrollBottom, children, tabsProps, className, bgClassName } = this.props;
         if (tabsProps === undefined) {
-            return React.createElement("div", { className: "tv-page" },
-                React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
+            return React.createElement("div", { className: classNames('tv-page', bgClassName) },
+                React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className },
                     this.renderHeader(),
                     React.createElement("main", null, children),
                     this.renderFooter()));

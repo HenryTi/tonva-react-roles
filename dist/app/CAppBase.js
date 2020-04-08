@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 //import _ from 'lodash';
-import { Controller, nav, t, setGlobalRes } from "../components";
+import { nav, t, setGlobalRes } from "../components";
+import { Controller } from '../vm';
 import { UQsMan } from "../uq";
 import { appInFrame, loadAppUqs } from "../net";
 import { centerApi } from "./centerApi";

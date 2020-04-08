@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { VPage, Page, FA, nav, LMR, List } from "../components";
+import { Page, FA, nav, LMR, List } from "../components";
+import { VPage } from '../vm';
 import { appInFrame } from '../net';
 /*
 export class VAppMain extends VPage<CMainBase> {

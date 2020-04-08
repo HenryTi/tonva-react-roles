@@ -1,4 +1,4 @@
-import { Controller } from '../components';
+import { Controller } from '../vm';
 import '../css/va-form.css';
 export interface Values {
     user: string;

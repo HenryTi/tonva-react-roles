@@ -8,7 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as React from 'react';
-import { nav, Page, Form, resLang, Controller, VPage } from '../components';
+import { nav, Page, Form, resLang } from '../components';
+import { Controller, VPage } from '../vm';
 import { userApi } from '../net';
 import '../css/va-form.css';
 import { registerRes } from './res';

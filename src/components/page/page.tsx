@@ -1,8 +1,15 @@
 import * as React from 'react';
 import _ from 'lodash';
 import {observer} from 'mobx-react';
+import classNames from 'classnames';
 import {PageHeader} from './pageHeader';
 import { TabsProps, TabsView } from './tabs';
+
+export interface IVPage {
+	content():JSX.Element;
+	header():JSX.Element;
+	footer():JSX.Element;
+}
 
 const scrollAfter = 20; // 20ms之后，scroll执行
 export class Scroller {
@@ -75,8 +82,6 @@ class ScrollView extends React.Component<ScrollViewProps, null> {
 	
     render() {
 		let {className} = this.props;
-		//if (className) className = 'vpage ' + className;
-		//else className = 'vpage';
         return <article className={className} onScroll={this.onScroll}>
 			{this.props.children}
 		</article>;
@@ -100,14 +105,16 @@ export interface TabState extends Tab {
 export interface PageProps extends ScrollProps {
     back?: 'close' | 'back' | 'none';
     header?: boolean | string | JSX.Element;
-    keepHeader?: boolean;
+    //keepHeader?: boolean;
     right?: JSX.Element;
-    sideBar?: JSX.Element;
+    //sideBar?: JSX.Element;
     footer?: JSX.Element;
     //tabs?: Tab[];
     //tabPosition?: 'top' | 'bottom';
     logout?: boolean | (()=>Promise<void>);
-    headerClassName?: string;
+	headerClassName?: string;
+	className?: string;
+	bgClassName?: string;
 	afterBack?: () => void;
 	tabsProps?: TabsProps;
 }
@@ -334,12 +341,13 @@ export class Page extends React.Component<PageProps/*, PageState*/> {
 	}
 
     render() {
-		const {onScroll, onScrollTop, onScrollBottom, children, tabsProps} = this.props;
+		const {onScroll, onScrollTop, onScrollBottom, children, tabsProps, className, bgClassName} = this.props;
 		if (tabsProps === undefined) {
-			return <div className="tv-page"><ScrollView
+			return <div className={classNames('tv-page', bgClassName)}><ScrollView
 				onScroll={onScroll}
 				onScrollTop={onScrollTop}
 				onScrollBottom={onScrollBottom}
+				className={className}
 			>
 				{this.renderHeader()}
 				<main>{children}</main>

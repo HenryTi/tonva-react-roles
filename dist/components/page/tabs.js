@@ -28,7 +28,15 @@ class Tab {
         if (this.selected === false)
             return this._content;
         if (!this._content) {
-            this._content = this.contentBuilder();
+            if (this.contentBuilder !== undefined) {
+                this._content = this.contentBuilder();
+            }
+            else if (this.page !== undefined) {
+                this._content = this.page.content();
+            }
+            else {
+                this._content = React.createElement("div", { className: "p-5" }, "tab \u5E94\u8BE5\u5B9A\u4E49content\u6216\u8005page");
+            }
         }
         return this._content;
     }
@@ -137,30 +145,55 @@ export class TabsView {
             let displayNone = { visibility: 'hidden' };
             return React.createElement(React.Fragment, null, this.tabArr.map((v, index) => {
                 let { tabPosition } = this.props;
+                let { content, page } = v;
                 let tabs = React.createElement(this.tabs, null);
-                let cnContainer, main;
+                let pageHeader, pageFooter;
+                if (page !== undefined) {
+                    pageHeader = page.header();
+                    pageFooter = page.footer();
+                }
+                let header, footer;
                 let visibility = { visibility: 'hidden' };
                 if (tabPosition === 'top') {
-                    cnContainer = 'tv-page-header';
-                    main = React.createElement(React.Fragment, null,
-                        React.createElement("section", { className: cnContainer },
-                            React.createElement("header", null, tabs)),
-                        React.createElement("header", { style: visibility }, tabs),
-                        v.content);
+                    header = React.createElement(React.Fragment, null,
+                        React.createElement("section", { className: "tv-page-header" },
+                            React.createElement("header", null,
+                                tabs,
+                                pageHeader)),
+                        React.createElement("header", { style: visibility },
+                            tabs,
+                            pageHeader));
+                    if (pageFooter !== undefined) {
+                        footer = React.createElement(React.Fragment, null,
+                            React.createElement("footer", { style: visibility }, pageFooter),
+                            React.createElement("section", { className: "tv-page-footer" },
+                                React.createElement("footer", null, pageFooter)));
+                    }
                 }
                 else {
-                    cnContainer = 'tv-page-footer';
-                    main = React.createElement(React.Fragment, null,
-                        v.content,
-                        React.createElement("footer", { style: visibility }, tabs),
-                        React.createElement("section", { className: cnContainer },
-                            React.createElement("footer", null, tabs)));
+                    if (pageHeader !== undefined) {
+                        header = React.createElement(React.Fragment, null,
+                            React.createElement("section", { className: 'tv-page-header' },
+                                React.createElement("header", null, pageHeader)),
+                            React.createElement("header", { style: visibility }, pageHeader));
+                    }
+                    footer = React.createElement(React.Fragment, null,
+                        React.createElement("footer", { style: visibility },
+                            pageFooter,
+                            tabs),
+                        React.createElement("section", { className: 'tv-page-footer' },
+                            React.createElement("footer", null,
+                                pageFooter,
+                                tabs)));
                 }
                 let style;
                 if (v.selected === false)
                     style = displayNone;
                 return React.createElement("div", { key: index, className: classNames('tv-page', this.contentBg), style: style },
-                    React.createElement("article", null, main));
+                    React.createElement("article", null,
+                        header,
+                        content,
+                        footer));
             }));
         });
         this.props = props;
@@ -168,14 +201,20 @@ export class TabsView {
         this.size = size || 'md';
         this.tabArr = tabs.map(v => {
             let tab = new Tab();
-            let { name, caption, content, notify, load, onShown, isSelected } = v;
+            let { name, caption, content, page, notify, load, onShown, isSelected } = v;
             tab.name = name;
             if (isSelected === true || name === selected) {
                 this.selectedTab = tab;
             }
             tab.selected = false;
             tab.caption = caption;
-            tab.contentBuilder = content;
+            if (content !== undefined) {
+                tab.contentBuilder = content;
+            }
+            else if (page !== undefined) {
+                tab.page = page;
+                //contentBuilder = () => {return page.content()};
+            }
             tab.notify = notify;
             tab.load = load;
             tab.onShown = onShown;

@@ -1,6 +1,5 @@
 export * from './nav';
 export * from './page';
-export * from './VM';
 export * from './schema';
 export * from './form';
 export * from './edit';

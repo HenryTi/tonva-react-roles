@@ -1,4 +1,4 @@
-import { Controller } from "../components";
+import { Controller } from "../vm";
 import { IConstructor } from "./CAppBase";
 
 export abstract class CBase extends Controller {

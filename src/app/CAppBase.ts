@@ -1,5 +1,6 @@
 //import _ from 'lodash';
-import { Controller, nav, t, setRes, setGlobalRes } from "../components";
+import { nav, t, setGlobalRes } from "../components";
+import { Controller } from '../vm';
 import { UQsMan, TVs } from "../uq";
 import { appInFrame, loadAppUqs, UqAppData } from "../net";
 import { centerApi } from "./centerApi";

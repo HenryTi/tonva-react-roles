@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { IVPage } from './page';
 import { IObservableValue } from 'mobx/lib/internal';
 import '../../css/va-tab.css';
 export declare type TabCaption = (selected: boolean) => JSX.Element;
 export interface TabProp {
     name: string;
     caption: TabCaption;
-    content: () => JSX.Element;
+    content?: () => JSX.Element;
+    page?: IVPage;
     notify?: IObservableValue<number>;
     load?: () => Promise<void>;
     onShown?: () => Promise<void>;
@@ -28,6 +30,7 @@ declare class Tab {
     selected: boolean;
     caption: TabCaption;
     contentBuilder: () => JSX.Element;
+    page: IVPage;
     notify: IObservableValue<number>;
     load?: () => Promise<void>;
     onShown?: () => Promise<void>;

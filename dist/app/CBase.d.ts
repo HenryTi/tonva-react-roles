@@ -1,4 +1,4 @@
-import { Controller } from "../components";
+import { Controller } from "../vm";
 import { IConstructor } from "./CAppBase";
 export declare abstract class CBase extends Controller {
     protected readonly _uqs: any;

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Controller } from "../components";
+import { Controller } from '../vm';
 import { UQsMan, TVs } from "../uq";
 export interface IConstructor<T> {
     new (...args: any[]): T;
