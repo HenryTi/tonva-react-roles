@@ -80,8 +80,9 @@ class ScrollView extends React.Component {
         });
     }
     render() {
-        let { className } = this.props;
-        return React.createElement("article", { className: className, onScroll: this.onScroll }, this.props.children);
+        let { className, bgClassName } = this.props;
+        return React.createElement("div", { className: classNames('tv-page', bgClassName), onScroll: this.onScroll },
+            React.createElement("article", { className: className }, this.props.children));
     }
 }
 /*
@@ -270,18 +271,17 @@ let Page = class Page extends React.Component {
         if (footer) {
             let elFooter = React.createElement("footer", null, footer);
             return React.createElement(React.Fragment, null,
-                React.createElement("section", { className: "tv-page-footer" }, footer),
-                footer);
+                React.createElement("section", { className: "tv-page-footer" }, elFooter),
+                elFooter);
         }
     }
     render() {
         const { onScroll, onScrollTop, onScrollBottom, children, tabsProps, className, bgClassName } = this.props;
         if (tabsProps === undefined) {
-            return React.createElement("div", { className: classNames('tv-page', bgClassName) },
-                React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className },
-                    this.renderHeader(),
-                    React.createElement("main", null, children),
-                    this.renderFooter()));
+            return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className, bgClassName: bgClassName },
+                this.renderHeader(),
+                React.createElement("main", null, children),
+                this.renderFooter());
         }
         else {
             let tabContent = React.createElement(this.tabsView.content, null);

@@ -29,7 +29,8 @@ export class Scroller {
 export interface ScrollProps {
     onScroll?: (e:any) => void;
     onScrollTop?: (scroller: Scroller) => void;
-    onScrollBottom?: (scroller: Scroller) => void;
+	onScrollBottom?: (scroller: Scroller) => void;
+	bgClassName?: string;
 }
 interface ScrollViewProps extends ScrollProps {
     className?: string;
@@ -81,10 +82,12 @@ class ScrollView extends React.Component<ScrollViewProps, null> {
 	}
 	
     render() {
-		let {className} = this.props;
-        return <article className={className} onScroll={this.onScroll}>
-			{this.props.children}
-		</article>;
+		let {className, bgClassName} = this.props;
+        return <div className={classNames('tv-page', bgClassName)} onScroll={this.onScroll}>
+			<article className={className}>
+				{this.props.children}
+			</article>
+		</div>;
     }
 }
 /*
@@ -334,8 +337,8 @@ export class Page extends React.Component<PageProps/*, PageState*/> {
 		if (footer) {
 			let elFooter = <footer>{footer}</footer>;
 			return <>
-				<section className="tv-page-footer">{footer}</section>
-				{footer}
+				<section className="tv-page-footer">{elFooter}</section>
+				{elFooter}
 			</>;
 		}
 	}
@@ -343,16 +346,17 @@ export class Page extends React.Component<PageProps/*, PageState*/> {
     render() {
 		const {onScroll, onScrollTop, onScrollBottom, children, tabsProps, className, bgClassName} = this.props;
 		if (tabsProps === undefined) {
-			return <div className={classNames('tv-page', bgClassName)}><ScrollView
+			return <ScrollView
 				onScroll={onScroll}
 				onScrollTop={onScrollTop}
 				onScrollBottom={onScrollBottom}
 				className={className}
+				bgClassName={bgClassName}
 			>
 				{this.renderHeader()}
 				<main>{children}</main>
 				{this.renderFooter()}
-			</ScrollView></div>;
+			</ScrollView>;
 		}
 		else {			
 			let tabContent = <this.tabsView.content />;

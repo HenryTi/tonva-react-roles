@@ -15,6 +15,7 @@ export interface ScrollProps {
     onScroll?: (e: any) => void;
     onScrollTop?: (scroller: Scroller) => void;
     onScrollBottom?: (scroller: Scroller) => void;
+    bgClassName?: string;
 }
 export interface PageProps extends ScrollProps {
     back?: 'close' | 'back' | 'none';
