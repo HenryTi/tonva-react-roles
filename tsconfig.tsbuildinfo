@@ -927,7 +927,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "55223d76e91a517c724a010631eb7ce41891e1abff79cbcbf825ac378dbc5014",
-        "signature": "8d0abc466c9b2aaea8ba2fd6641f69525f40b3f0d9a066c0844a4914d11e58a3"
+        "signature": "b10145bde3f511937a893133e3fd30b9f6f64b4aae77d3c1d4b7b06501b0ce06"
       },
       "./src/uq/index.ts": {
         "version": "557885a8fc63fa5cd10e29f10ba869695f12ae7861c70e002f099545ff2b3d05",
@@ -2097,93 +2097,522 @@
       ]
     },
     "exportedModulesMap": {
+      "./src/tool/index.ts": [
+        "./src/tool/left0.ts",
+        "./src/tool/user.ts",
+        "./src/tool/uid.ts",
+        "./src/tool/pageitems.ts",
+        "./src/tool/cacheids.ts",
+        "./src/tool/localdb.ts",
+        "./src/tool/local.ts",
+        "./src/tool/env.ts"
+      ],
+      "./src/index.ts": [
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/components/index.ts",
+        "./src/entry/index.ts",
+        "./src/uq/index.ts",
+        "./src/app/index.ts",
+        "./src/vm/index.ts"
+      ],
+      "./src/uq/uqman.ts": [
+        "./src/uq/tuid/index.ts",
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/uq/uqsman.ts",
+        "./src/uq/action.ts",
+        "./src/uq/sheet.ts",
+        "./src/uq/query.ts",
+        "./src/uq/book.ts",
+        "./src/uq/map.ts",
+        "./src/uq/history.ts",
+        "./src/uq/pending.ts",
+        "./src/uq/tag/tag.ts"
+      ],
+      "./src/uq/index.ts": [
+        "./src/uq/uqman.ts",
+        "./src/uq/entity.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts",
+        "./src/uq/sheet.ts",
+        "./src/uq/tuid/index.ts",
+        "./src/uq/book.ts",
+        "./src/uq/map.ts",
+        "./src/uq/history.ts",
+        "./src/uq/pending.ts",
+        "./src/uq/uqsman.ts",
+        "./src/uq/tag/tag.ts"
+      ],
+      "./src/app/cappbase.ts": [
+        "./src/uq/index.ts",
+        "./src/vm/index.ts"
+      ],
+      "./src/app/index.ts": [
+        "./src/app/cappbase.ts",
+        "./src/app/start.ts",
+        "./src/app/cbase.ts"
+      ],
+      "./src/app/cbase.ts": [
+        "./src/app/cappbase.ts",
+        "./src/vm/index.ts"
+      ],
+      "./src/app/start.ts": [
+        "./src/app/cappbase.ts"
+      ],
+      "./src/app/vmain.tsx": [
+        "./src/vm/index.ts",
+        "./src/app/cappbase.ts"
+      ],
+      "./src/uq/uqsman.ts": [
+        "./src/tool/index.ts",
+        "./src/uq/uqman.ts",
+        "./src/net/index.ts"
+      ],
+      "./src/uq/map.ts": [
+        "./src/uq/uqman.ts",
+        "./src/uq/entity.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/tuid/tuidscache.ts": [
+        "./src/uq/uqman.ts"
+      ],
+      "./src/uq/tuid/index.ts": [
+        "./src/uq/tuid/boxid.tsx",
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/tuidscache.ts",
+        "./src/uq/tuid/reactboxid.tsx"
+      ],
+      "./src/uq/boxid.tsx": [
+        "./src/uq/tuid/index.ts"
+      ],
+      "./src/uq/entity.ts": [
+        "./src/uq/uqman.ts",
+        "./src/tool/index.ts",
+        "./src/net/index.ts",
+        "./src/uq/tuid/index.ts"
+      ],
+      "./src/uq/tag.ts": [
+        "./src/uq/entity.ts"
+      ],
+      "./src/uq/tag/tag.ts": [
+        "./src/uq/tag/tagview.tsx",
+        "./src/uq/entity.ts"
+      ],
+      "./src/uq/tag/index.ts": [
+        "./src/uq/tag/tag.ts",
+        "./src/uq/tag/tagview.tsx"
+      ],
+      "./src/uq/tag/tagview.tsx": [
+        "./src/uq/tag/tag.ts",
+        "./src/components/index.ts"
+      ],
+      "./src/uq/sheet.ts": [
+        "./src/uq/entity.ts",
+        "./src/tool/pageitems.ts"
+      ],
+      "./src/uq/tuid/tuid.ts": [
+        "./src/uq/tuid/boxid.tsx",
+        "./src/uq/entity.ts",
+        "./src/uq/uqman.ts",
+        "./src/uq/tuid/idcache.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/uq/tuid/reactboxid.tsx": [
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/boxid.tsx"
+      ],
+      "./src/uq/tuid/boxid.tsx": [
+        "./src/uq/tuid/tuid.ts"
+      ],
+      "./src/uq/tuid/idcache.ts": [
+        "./src/tool/index.ts",
+        "./src/uq/tuid/tuid.ts",
+        "./src/uq/tuid/boxid.tsx"
+      ],
+      "./src/uq/caller.ts": [
+        "./src/uq/entity.ts",
+        "./src/net/index.ts",
+        "./src/uq/action.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/book.ts": [
+        "./src/uq/caller.ts",
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/query.ts": [
+        "./src/tool/index.ts",
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/uq/uqman.ts",
+        "./src/uq/caller.ts",
+        "./src/uq/entity.ts"
+      ],
+      "./src/uq/pending.ts": [
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/history.ts": [
+        "./src/uq/query.ts"
+      ],
+      "./src/uq/action.ts": [
+        "./src/uq/entity.ts",
+        "./src/uq/caller.ts"
+      ],
+      "./src/net/httpchannel.ts": [
+        "./src/net/httpchannelui.ts",
+        "./src/net/caller.ts"
+      ],
+      "./src/net/apibase.ts": [
+        "./src/net/httpchannel.ts",
+        "./src/net/caller.ts"
+      ],
+      "./src/net/index.ts": [
+        "./src/net/wschannel.ts",
+        "./src/net/apibase.ts",
+        "./src/net/guestapi.ts",
+        "./src/net/caller.ts",
+        "./src/net/uqapi.ts",
+        "./src/net/appbridge.ts",
+        "./src/net/host.ts"
+      ],
+      "./src/app/centerapi.ts": [
+        "./src/net/index.ts"
+      ],
+      "./src/entry/meinfo.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/index.ts": [
+        "./src/entry/meinfo.tsx"
+      ],
+      "./src/components/usericon.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/tool/index.ts"
+      ],
+      "./src/components/index.ts": [
+        "./src/components/nav.tsx",
+        "./src/components/page/index.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/form/index.ts",
+        "./src/components/edit/index.tsx",
+        "./src/components/res.ts",
+        "./src/components/loading.tsx",
+        "./src/components/image.tsx",
+        "./src/components/resuploader.tsx",
+        "./src/components/rules/index.ts",
+        "./src/components/list/index.tsx",
+        "./src/components/dropdownactions/index.tsx",
+        "./src/components/easydate/index.tsx",
+        "./src/components/propgrid/index.tsx",
+        "./src/components/simple/index.ts",
+        "./src/components/media.tsx",
+        "./src/components/searchbox.tsx",
+        "./src/components/usericon.tsx"
+      ],
+      "./src/entry/forget.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/nav.tsx": [
+        "./src/net/fetcherror.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/tool/user.ts"
+      ],
+      "./src/components/edit/tagitemedit.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/edit.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/edit/index.tsx": [
+        "./src/components/edit/edit.tsx"
+      ],
+      "./src/components/edit/selectitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/radioitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/stringitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/imageitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/form/widgets/imagewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/index.ts": [
+        "./src/components/form/widgets/factory.tsx",
+        "./src/components/form/widgets/widget.tsx",
+        "./src/components/form/widgets/textwidget.tsx",
+        "./src/components/form/widgets/textareawidget.tsx",
+        "./src/components/form/widgets/passwordwidget.tsx",
+        "./src/components/form/widgets/updownwidget.tsx",
+        "./src/components/form/widgets/numberwidget.tsx",
+        "./src/components/form/widgets/datewidget.tsx",
+        "./src/components/form/widgets/checkboxwidget.tsx",
+        "./src/components/form/widgets/imagewidget.tsx",
+        "./src/components/form/context.tsx",
+        "./src/components/form/widgets/selectwidget.tsx",
+        "./src/components/form/widgets/radiowidget.tsx",
+        "./src/components/form/widgets/rangewidget.tsx",
+        "./src/components/form/widgets/idwidget.tsx",
+        "./src/components/form/widgets/buttonwidget.tsx",
+        "./src/components/form/widgets/unknown.tsx"
+      ],
+      "./src/components/form/index.ts": [
+        "./src/components/form/form.tsx",
+        "./src/components/form/field.tsx",
+        "./src/components/form/context.tsx",
+        "./src/components/form/widgets/index.ts"
+      ],
+      "./src/components/schema/uischema.ts": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/schema.ts",
+        "./src/components/form/field.tsx",
+        "./src/components/form/widgets/index.ts",
+        "./src/components/form/rules/index.ts",
+        "./src/components/schema/ivaluesview.tsx"
+      ],
+      "./src/components/schema/index.ts": [
+        "./src/components/schema/schema.ts",
+        "./src/components/schema/uischema.ts",
+        "./src/components/schema/touiselectitems.ts",
+        "./src/components/schema/ivaluesview.tsx"
+      ],
+      "./src/components/form/widgets/selectbasewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/edit/selectbaseitemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/edit/iditemedit.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/edit/itemedit.tsx"
+      ],
+      "./src/components/form/context.tsx": [
+        "./src/components/form/form.tsx",
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx",
+        "./src/components/form/rules/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/form.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./src/components/form/formres.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/widgets/factory.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/field.tsx"
+      ],
+      "./src/components/form/widgets/arrcomponent.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/widgets/tagwidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/radiowidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/widget.tsx": [
+        "./src/components/form/context.tsx",
+        "./src/components/form/field.tsx",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/schema/index.ts",
+        "./src/components/form/rules/index.ts"
+      ],
+      "./src/components/form/widgets/buttonwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/idwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/rangewidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/selectwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/checkboxwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/textareawidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/textwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/widget.tsx"
+      ],
+      "./src/components/form/widgets/datewidget.tsx": [
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/widgets/numberwidget.tsx": [
+        "./src/components/schema/index.ts",
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/widgets/updownwidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/form/widgets/numberwidget.tsx"
+      ],
+      "./src/components/form/widgets/passwordwidget.tsx": [
+        "./src/components/form/widgets/textwidget.tsx"
+      ],
+      "./src/components/form/rules/index.ts": [
+        "./src/components/form/context.tsx",
+        "./src/components/form/formres.ts"
+      ],
+      "./src/components/edit/itemedit.tsx": [
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/form/field.tsx": [
+        "./src/components/form/context.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/form/widgets/unknown.tsx": [
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/schema/touiselectitems.ts": [
+        "./src/components/schema/uischema.ts"
+      ],
+      "./src/components/resuploader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/image.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/reloadpage.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/net/httpchannelui.ts": [
+        "./src/net/fetcherror.ts"
+      ],
+      "./src/net/uqapi.ts": [
+        "./src/net/httpchannel.ts",
+        "./src/net/apibase.ts"
+      ],
+      "./src/net/guestapi.ts": [
+        "./src/net/uqapi.ts"
+      ],
+      "./src/components/page/pageheader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/page/page.tsx": [
+        "./src/components/page/tabs.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/page/index.ts": [
+        "./src/components/page/page.tsx",
+        "./src/components/page/tabs.tsx"
+      ],
+      "./src/components/fetcherrorview.tsx": [
+        "./src/net/fetcherror.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/page/tabs.tsx": [
+        "./src/components/page/page.tsx",
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/media.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/easydate/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/changepassword.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/login.tsx": [
+        "./src/tool/user.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/entry/register.tsx": [
+        "./src/vm/index.ts"
+      ],
+      "./src/entry/res/register.ts": [
+        "./src/components/index.ts"
+      ],
+      "./src/entry/res/index.ts": [
+        "./src/entry/res/login.ts",
+        "./src/entry/res/register.ts"
+      ],
+      "./src/entry/res/login.ts": [
+        "./src/components/index.ts"
+      ],
+      "./src/vm/controller.tsx": [
+        "./src/tool/index.ts",
+        "./src/vm/vpage.tsx",
+        "./src/vm/view.tsx"
+      ],
+      "./src/vm/index.ts": [
+        "./src/vm/controller.tsx",
+        "./src/vm/view.tsx",
+        "./src/vm/vpage.tsx"
+      ],
+      "./src/vm/vpage.tsx": [
+        "./src/vm/controller.tsx",
+        "./src/components/index.ts",
+        "./src/vm/view.tsx"
+      ],
+      "./src/vm/view.tsx": [
+        "./src/vm/controller.tsx",
+        "./src/vm/vpage.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/net/fetcherror.ts": [
+        "./src/net/httpchannel.ts"
+      ],
+      "./src/components/list/selectable.tsx": [
+        "./src/components/list/index.tsx",
+        "./src/components/list/base.tsx"
+      ],
+      "./src/components/list/index.tsx": [
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/tool/pageitems.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/list/base.tsx": [
+        "./src/components/list/index.tsx",
+        "./node_modules/mobx/lib/mobx.d.ts"
+      ],
+      "./src/components/list/static.tsx": [
+        "./src/components/list/base.tsx"
+      ],
+      "./src/components/list/clickable.tsx": [
+        "./src/components/list/base.tsx"
+      ],
+      "./src/tool/pageitems.ts": [
+        "./node_modules/mobx/lib/mobx.d.ts"
+      ],
       "./node_modules/mobx/lib/utils/utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/atom.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/mobx/lib/utils/utils.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observabledecorator.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/computed.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablevalue.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/computedvalue.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/derivation.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/globalstate.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/observable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/reaction.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/core/spy.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/actiondecorator.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/action.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/autorun.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/become-observed.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/extendobservable.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/mobx/lib/api/observabledecorator.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/intercept-read.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/intercept.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/object-api.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/observe.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/api/when.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/intercept-utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/listen-utils.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablearray.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observablemap.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observableset.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/observableobject.d.ts": [
-        "./node_modules/mobx/lib/internal.d.ts"
-      ],
-      "./node_modules/mobx/lib/types/type-utils.d.ts": [
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/internal.d.ts": [
@@ -2236,8 +2665,97 @@
       "./node_modules/mobx/lib/mobx.d.ts": [
         "./node_modules/mobx/lib/internal.d.ts"
       ],
-      "./src/tool/pageitems.ts": [
-        "./node_modules/mobx/lib/mobx.d.ts"
+      "./src/components/simple/image.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/searchbox.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/type-utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observableobject.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observableset.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablemap.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablearray.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/listen-utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/intercept-utils.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/when.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observe.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/object-api.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/intercept.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/intercept-read.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/extendobservable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/mobx/lib/api/observabledecorator.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/become-observed.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/autorun.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/action.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/actiondecorator.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/spy.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/reaction.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/observable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/globalstate.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/derivation.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/computedvalue.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/types/observablevalue.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/computed.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observable.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/observabledecorator.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/core/atom.d.ts": [
+        "./node_modules/mobx/lib/internal.d.ts",
+        "./node_modules/mobx/lib/utils/utils.d.ts"
       ],
       "./src/tool/env.ts": [
         "./src/tool/localdb.ts"
@@ -2245,23 +2763,61 @@
       "./src/tool/local.ts": [
         "./src/tool/localdb.ts"
       ],
-      "./src/tool/index.ts": [
-        "./src/tool/left0.ts",
-        "./src/tool/user.ts",
-        "./src/tool/uid.ts",
-        "./src/tool/pageitems.ts",
-        "./src/tool/cacheids.ts",
-        "./src/tool/localdb.ts",
-        "./src/tool/local.ts",
-        "./src/tool/env.ts"
-      ],
       "./node_modules/@types/react/index.d.ts": [
         "./node_modules/csstype/index.d.ts",
         "./node_modules/@types/prop-types/index.d.ts",
         "./node_modules/@types/react/global.d.ts"
       ],
-      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+      "./node_modules/@types/react-dom/index.d.ts": [
         "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/resuploader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/fileupload/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/propgrid/row.tsx": [
+        "./src/components/propgrid/propgrid.tsx",
+        "./src/components/propgrid/propview.tsx"
+      ],
+      "./src/components/propgrid/index.tsx": [
+        "./src/components/propgrid/propview.tsx",
+        "./src/components/propgrid/row.tsx",
+        "./src/components/propgrid/propgrid.tsx"
+      ],
+      "./src/components/propgrid/propview.tsx": [
+        "./src/components/propgrid/propgrid.tsx"
+      ],
+      "./src/components/propgrid/propgrid.tsx": [
+        "./src/components/propgrid/propview.tsx",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/dropdownactions/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/index.ts": [
+        "./src/components/simple/badge.tsx",
+        "./src/components/simple/lmr.tsx",
+        "./src/components/simple/fa.tsx",
+        "./src/components/simple/icontext.tsx",
+        "./src/components/simple/muted.tsx"
+      ],
+      "./src/components/simple/icontext.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/fa.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/lmr.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./src/components/simple/badge.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/mobx-react.d.ts": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/index.d.ts"
       ],
       "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": [
         "./node_modules/@types/react/index.d.ts"
@@ -2279,564 +2835,11 @@
         "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts",
         "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts"
       ],
-      "./node_modules/mobx-react/dist/mobx-react.d.ts": [
-        "./node_modules/@types/react/index.d.ts",
-        "./node_modules/mobx-react-lite/dist/index.d.ts"
-      ],
-      "./src/components/page/pageheader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/page/tabs.tsx": [
-        "./src/components/page/page.tsx",
-        "./node_modules/mobx/lib/internal.d.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/page/page.tsx": [
-        "./src/components/page/tabs.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/net/fetcherror.ts": [
-        "./src/net/httpchannel.ts"
-      ],
-      "./src/net/httpchannelui.ts": [
-        "./src/net/fetcherror.ts"
-      ],
-      "./src/net/uqapi.ts": [
-        "./src/net/httpchannel.ts",
-        "./src/net/apibase.ts"
-      ],
-      "./src/components/fetcherrorview.tsx": [
-        "./src/net/fetcherror.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/badge.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/lmr.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/fa.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/icontext.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/index.ts": [
-        "./src/components/simple/badge.tsx",
-        "./src/components/simple/lmr.tsx",
-        "./src/components/simple/fa.tsx",
-        "./src/components/simple/icontext.tsx",
-        "./src/components/simple/muted.tsx"
-      ],
-      "./src/components/reloadpage.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/vm/view.tsx": [
-        "./src/vm/controller.tsx",
-        "./src/vm/vpage.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/vm/vpage.tsx": [
-        "./src/vm/controller.tsx",
-        "./src/components/index.ts",
-        "./src/vm/view.tsx"
-      ],
-      "./src/vm/controller.tsx": [
-        "./src/tool/index.ts",
-        "./src/vm/vpage.tsx",
-        "./src/vm/view.tsx"
-      ],
-      "./src/vm/index.ts": [
-        "./src/vm/controller.tsx",
-        "./src/vm/view.tsx",
-        "./src/vm/vpage.tsx"
-      ],
-      "./src/entry/res/login.ts": [
-        "./src/components/index.ts"
-      ],
-      "./src/entry/res/register.ts": [
-        "./src/components/index.ts"
-      ],
-      "./src/entry/res/index.ts": [
-        "./src/entry/res/login.ts",
-        "./src/entry/res/register.ts"
-      ],
-      "./src/entry/register.tsx": [
-        "./src/vm/index.ts"
-      ],
-      "./src/entry/login.tsx": [
-        "./src/tool/user.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/changepassword.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/nav.tsx": [
-        "./src/net/fetcherror.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/tool/user.ts"
-      ],
-      "./src/components/page/index.ts": [
-        "./src/components/page/page.tsx",
-        "./src/components/page/tabs.tsx"
-      ],
-      "./src/components/form/field.tsx": [
-        "./src/components/form/context.tsx",
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/form/formres.ts": [
         "./src/components/res.ts"
-      ],
-      "./src/components/form/rules/index.ts": [
-        "./src/components/form/context.tsx",
-        "./src/components/form/formres.ts"
-      ],
-      "./src/components/form/widgets/widget.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/form/field.tsx",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/form/rules/index.ts"
-      ],
-      "./src/components/form/widgets/textwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/textareawidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/passwordwidget.tsx": [
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/widgets/numberwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/widgets/updownwidget.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/numberwidget.tsx"
-      ],
-      "./src/components/form/widgets/datewidget.tsx": [
-        "./src/components/form/widgets/textwidget.tsx"
-      ],
-      "./src/components/form/widgets/checkboxwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/selectwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/radiowidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/rangewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/idwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/unknown.tsx": [
-        "./src/components/schema/index.ts"
-      ],
-      "./src/components/form/widgets/buttonwidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/arrcomponent.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/image.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/resuploader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/edit/itemedit.tsx": [
-        "./src/components/schema/index.ts"
-      ],
-      "./src/components/edit/imageitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/form/widgets/imagewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/tagwidget.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/form/widgets/factory.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/form/field.tsx"
-      ],
-      "./src/components/form/widgets/index.ts": [
-        "./src/components/form/widgets/factory.tsx",
-        "./src/components/form/widgets/widget.tsx",
-        "./src/components/form/widgets/textwidget.tsx",
-        "./src/components/form/widgets/textareawidget.tsx",
-        "./src/components/form/widgets/passwordwidget.tsx",
-        "./src/components/form/widgets/updownwidget.tsx",
-        "./src/components/form/widgets/numberwidget.tsx",
-        "./src/components/form/widgets/datewidget.tsx",
-        "./src/components/form/widgets/checkboxwidget.tsx",
-        "./src/components/form/widgets/imagewidget.tsx",
-        "./src/components/form/context.tsx",
-        "./src/components/form/widgets/selectwidget.tsx",
-        "./src/components/form/widgets/radiowidget.tsx",
-        "./src/components/form/widgets/rangewidget.tsx",
-        "./src/components/form/widgets/idwidget.tsx",
-        "./src/components/form/widgets/buttonwidget.tsx",
-        "./src/components/form/widgets/unknown.tsx"
-      ],
-      "./src/components/form/form.tsx": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/formres.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/context.tsx": [
-        "./src/components/form/form.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx",
-        "./src/components/form/rules/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/schema/uischema.ts": [
-        "./src/components/form/context.tsx",
-        "./src/components/schema/schema.ts",
-        "./src/components/form/field.tsx",
-        "./src/components/form/widgets/index.ts",
-        "./src/components/form/rules/index.ts",
-        "./src/components/schema/ivaluesview.tsx"
-      ],
-      "./src/components/schema/touiselectitems.ts": [
-        "./src/components/schema/uischema.ts"
-      ],
-      "./src/components/schema/index.ts": [
-        "./src/components/schema/schema.ts",
-        "./src/components/schema/uischema.ts",
-        "./src/components/schema/touiselectitems.ts",
-        "./src/components/schema/ivaluesview.tsx"
-      ],
-      "./src/components/form/index.ts": [
-        "./src/components/form/form.tsx",
-        "./src/components/form/field.tsx",
-        "./src/components/form/context.tsx",
-        "./src/components/form/widgets/index.ts"
-      ],
-      "./src/components/edit/stringitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/radioitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/selectitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/iditemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/tagitemedit.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/edit/edit.tsx": [
-        "./src/components/schema/index.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/edit/index.tsx": [
-        "./src/components/edit/edit.tsx"
-      ],
-      "./src/components/list/base.tsx": [
-        "./src/components/list/index.tsx",
-        "./node_modules/mobx/lib/mobx.d.ts"
-      ],
-      "./src/components/list/clickable.tsx": [
-        "./src/components/list/base.tsx"
-      ],
-      "./src/components/list/static.tsx": [
-        "./src/components/list/base.tsx"
-      ],
-      "./src/components/list/selectable.tsx": [
-        "./src/components/list/index.tsx",
-        "./src/components/list/base.tsx"
-      ],
-      "./src/components/list/index.tsx": [
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/tool/pageitems.ts",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/dropdownactions/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/easydate/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/propgrid/propgrid.tsx": [
-        "./src/components/propgrid/propview.tsx",
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/propgrid/row.tsx": [
-        "./src/components/propgrid/propgrid.tsx",
-        "./src/components/propgrid/propview.tsx"
-      ],
-      "./src/components/propgrid/propview.tsx": [
-        "./src/components/propgrid/propgrid.tsx"
-      ],
-      "./src/components/propgrid/index.tsx": [
-        "./src/components/propgrid/propview.tsx",
-        "./src/components/propgrid/row.tsx",
-        "./src/components/propgrid/propgrid.tsx"
-      ],
-      "./src/components/media.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/searchbox.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/usericon.tsx": [
-        "./node_modules/@types/react/index.d.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/components/index.ts": [
-        "./src/components/nav.tsx",
-        "./src/components/page.tsx",
-        "./src/components/schema/index.ts",
-        "./src/components/form/index.ts",
-        "./src/components/edit/index.tsx",
-        "./src/components/res.ts",
-        "./src/components/loading.tsx",
-        "./src/components/image.tsx",
-        "./src/components/resuploader.tsx",
-        "./src/components/rules/index.ts",
-        "./src/components/list/index.tsx",
-        "./src/components/dropdownactions/index.tsx",
-        "./src/components/easydate/index.tsx",
-        "./src/components/propgrid/index.tsx",
-        "./src/components/simple/index.ts",
-        "./src/components/media.tsx",
-        "./src/components/searchbox.tsx",
-        "./src/components/usericon.tsx"
-      ],
-      "./src/net/httpchannel.ts": [
-        "./src/net/httpchannelui.ts",
-        "./src/net/caller.ts"
-      ],
-      "./src/net/apibase.ts": [
-        "./src/net/httpchannel.ts",
-        "./src/net/caller.ts"
-      ],
-      "./src/net/guestapi.ts": [
-        "./src/net/uqapi.ts"
-      ],
-      "./src/net/index.ts": [
-        "./src/net/wschannel.ts",
-        "./src/net/apibase.ts",
-        "./src/net/guestapi.ts",
-        "./src/net/caller.ts",
-        "./src/net/uqapi.ts",
-        "./src/net/appbridge.ts",
-        "./src/net/host.ts"
-      ],
-      "./src/entry/meinfo.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/index.ts": [
-        "./src/entry/meinfo.tsx"
-      ],
-      "./src/uq/entity.ts": [
-        "./src/uq/uqman.ts",
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/uq/tuid/index.ts"
-      ],
-      "./src/uq/action.ts": [
-        "./src/uq/entity.ts",
-        "./src/uq/caller.ts"
-      ],
-      "./src/uq/query.ts": [
-        "./src/tool/index.ts",
-        "./node_modules/mobx/lib/mobx.d.ts",
-        "./src/uq/uqman.ts",
-        "./src/uq/caller.ts",
-        "./src/uq/entity.ts"
-      ],
-      "./src/uq/caller.ts": [
-        "./src/uq/entity.ts",
-        "./src/net/index.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/tuid/idcache.ts": [
-        "./src/tool/index.ts",
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/boxid.tsx"
-      ],
-      "./src/uq/tuid/tuid.ts": [
-        "./src/uq/tuid/boxid.tsx",
-        "./src/uq/entity.ts",
-        "./src/uq/uqman.ts",
-        "./src/uq/tuid/idcache.ts",
-        "./src/tool/index.ts"
-      ],
-      "./src/uq/tuid/boxid.tsx": [
-        "./src/uq/tuid/tuid.ts"
-      ],
-      "./src/uq/tuid/tuidscache.ts": [
-        "./src/uq/uqman.ts"
-      ],
-      "./src/uq/tuid/reactboxid.tsx": [
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/boxid.tsx"
-      ],
-      "./src/uq/tuid/index.ts": [
-        "./src/uq/tuid/boxid.tsx",
-        "./src/uq/tuid/tuid.ts",
-        "./src/uq/tuid/tuidscache.ts",
-        "./src/uq/tuid/reactboxid.tsx"
-      ],
-      "./src/uq/sheet.ts": [
-        "./src/uq/entity.ts",
-        "./src/tool/pageitems.ts"
-      ],
-      "./src/uq/book.ts": [
-        "./src/uq/caller.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/history.ts": [
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/map.ts": [
-        "./src/uq/uqman.ts",
-        "./src/uq/entity.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/pending.ts": [
-        "./src/uq/query.ts"
-      ],
-      "./src/uq/uqsman.ts": [
-        "./src/tool/index.ts",
-        "./src/uq/uqman.ts",
-        "./src/net/index.ts"
-      ],
-      "./src/uq/tag/tagview.tsx": [
-        "./src/uq/tag/tag.ts",
-        "./src/components/index.ts"
-      ],
-      "./src/uq/tag/tag.ts": [
-        "./src/uq/tag/tagview.tsx",
-        "./src/uq/entity.ts"
-      ],
-      "./src/uq/uqman.ts": [
-        "./src/uq/tuid/index.ts",
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/uq/uqsman.ts",
-        "./src/uq/action.ts",
-        "./src/uq/sheet.ts",
-        "./src/uq/query.ts",
-        "./src/uq/book.ts",
-        "./src/uq/map.ts",
-        "./src/uq/history.ts",
-        "./src/uq/pending.ts",
-        "./src/uq/tag/tag.ts"
-      ],
-      "./src/uq/index.ts": [
-        "./src/uq/uqman.ts",
-        "./src/uq/entity.ts",
-        "./src/uq/action.ts",
-        "./src/uq/query.ts",
-        "./src/uq/sheet.ts",
-        "./src/uq/tuid/index.ts",
-        "./src/uq/book.ts",
-        "./src/uq/map.ts",
-        "./src/uq/history.ts",
-        "./src/uq/pending.ts",
-        "./src/uq/uqsman.ts",
-        "./src/uq/tag/tag.ts"
-      ],
-      "./src/app/centerapi.ts": [
-        "./src/net/index.ts"
-      ],
-      "./src/app/vmain.tsx": [
-        "./src/vm/index.ts",
-        "./src/app/cappbase.ts"
-      ],
-      "./src/app/cappbase.ts": [
-        "./src/uq/index.ts",
-        "./src/vm/index.ts"
-      ],
-      "./src/app/start.ts": [
-        "./src/app/cappbase.ts"
-      ],
-      "./src/app/cbase.ts": [
-        "./src/app/cappbase.ts",
-        "./src/vm/index.ts"
-      ],
-      "./src/app/index.ts": [
-        "./src/app/cappbase.ts",
-        "./src/app/start.ts",
-        "./src/app/cbase.ts"
-      ],
-      "./src/index.ts": [
-        "./src/tool/index.ts",
-        "./src/net/index.ts",
-        "./src/components/index.ts",
-        "./src/entry/index.ts",
-        "./src/uq/index.ts",
-        "./src/app/index.ts",
-        "./src/vm/index.ts"
-      ],
-      "./src/components/edit/selectbaseitemedit.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/edit/itemedit.tsx"
-      ],
-      "./src/components/fileupload/index.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/form/widgets/selectbasewidget.tsx": [
-        "./src/components/schema/index.ts",
-        "./src/components/form/widgets/widget.tsx"
-      ],
-      "./src/components/simple/image.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/components/simple/resuploader.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/entry/forget.tsx": [
-        "./node_modules/@types/react/index.d.ts"
-      ],
-      "./src/uq/boxid.tsx": [
-        "./src/uq/tuid/index.ts"
-      ],
-      "./src/uq/tag.ts": [
-        "./src/uq/entity.ts"
-      ],
-      "./src/uq/tag/index.ts": [
-        "./src/uq/tag/tag.ts",
-        "./src/uq/tag/tagview.tsx"
       ],
       "./node_modules/@types/node/inspector.d.ts": [
         "./node_modules/@types/node/index.d.ts"
@@ -2847,51 +2850,9 @@
       ],
       "./node_modules/@types/node-fetch/index.d.ts": [
         "./node_modules/@types/node/index.d.ts"
-      ],
-      "./node_modules/@types/react-dom/index.d.ts": [
-        "./node_modules/@types/react/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.iterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.intl.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.array.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.object.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.symbol.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.bigint.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.promise.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.string.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
-      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "./src/tool/left0.ts",
       "./node_modules/@types/jwt-decode/index.d.ts",
       "./src/tool/user.ts",
@@ -2971,11 +2932,14 @@
       "./node_modules/mobx-react/dist/mobx-react.d.ts",
       "./node_modules/@types/classnames/index.d.ts",
       "./src/components/page/pageheader.tsx",
+      "./src/components/page/tabs.tsx",
+      "./src/components/page/page.tsx",
       "./src/net/fetcherror.ts",
       "./src/net/httpchannelui.ts",
       "./src/net/host.ts",
       "./src/net/uqapi.ts",
       "./src/net/nettoken.ts",
+      "./src/components/fetcherrorview.tsx",
       "./src/components/res.ts",
       "./src/components/loading.tsx",
       "./src/components/simple/badge.tsx",
@@ -2984,6 +2948,20 @@
       "./src/components/simple/icontext.tsx",
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
+      "./src/components/reloadpage.tsx",
+      "./src/vm/view.tsx",
+      "./src/vm/vpage.tsx",
+      "./src/vm/controller.tsx",
+      "./src/vm/index.ts",
+      "./src/entry/res/login.ts",
+      "./src/entry/res/register.ts",
+      "./src/entry/res/index.ts",
+      "./src/entry/tools.tsx",
+      "./src/entry/register.tsx",
+      "./src/entry/login.tsx",
+      "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
+      "./src/components/page/index.ts",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
       "./src/components/form/formres.ts",
@@ -3004,6 +2982,7 @@
       "./src/components/form/widgets/buttonwidget.tsx",
       "./src/components/form/widgets/arrcomponent.tsx",
       "./src/components/image.tsx",
+      "./src/components/resuploader.tsx",
       "./src/components/edit/itemedit.tsx",
       "./src/components/edit/imageitemedit.tsx",
       "./src/components/form/widgets/imagewidget.tsx",
@@ -3017,6 +2996,11 @@
       "./src/components/schema/touiselectitems.ts",
       "./src/components/schema/index.ts",
       "./src/components/form/index.ts",
+      "./src/components/edit/stringitemedit.tsx",
+      "./src/components/edit/radioitemedit.tsx",
+      "./src/components/edit/selectitemedit.tsx",
+      "./src/components/edit/iditemedit.tsx",
+      "./src/components/edit/tagitemedit.tsx",
       "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
       "./src/components/rules/index.ts",
@@ -3026,62 +3010,23 @@
       "./src/components/list/selectable.tsx",
       "./src/components/list/index.tsx",
       "./src/components/dropdownactions/index.tsx",
+      "./src/components/easydate/index.tsx",
       "./src/components/propgrid/propgrid.tsx",
       "./src/components/propgrid/row.tsx",
       "./src/components/propgrid/propview.tsx",
       "./src/components/propgrid/index.tsx",
+      "./src/components/media.tsx",
       "./src/components/searchbox.tsx",
       "./src/components/usericon.tsx",
+      "./src/components/index.ts",
+      "./src/net/appbridge.ts",
       "./src/net/caller.ts",
       "./src/net/httpchannel.ts",
       "./src/net/apibase.ts",
       "./src/net/guestapi.ts",
       "./src/net/index.ts",
-      "./src/entry/index.ts",
-      "./src/app/centerapi.ts",
-      "./src/components/callbacks.ts",
-      "./src/components/edit/selectbaseitemedit.tsx",
-      "./src/components/fileupload/index.tsx",
-      "./src/components/form/widgets/selectbasewidget.tsx",
-      "./src/components/simple/image.tsx",
-      "./src/components/simple/resuploader.tsx",
-      "./src/net/serializejson.ts",
-      "./src/res/index.ts",
-      "./src/res/res.tsx",
-      "./src/uq/ui.ts",
-      "./node_modules/@types/node/inspector.d.ts",
-      "./node_modules/@types/node/index.d.ts",
-      "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/react-dom/index.d.ts",
-      "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/components/page/page.tsx",
-      "./src/components/edit/tagitemedit.tsx",
-      "./src/components/edit/iditemedit.tsx",
-      "./src/components/edit/selectitemedit.tsx",
-      "./src/components/edit/radioitemedit.tsx",
-      "./src/components/edit/stringitemedit.tsx",
-      "./src/components/resuploader.tsx",
-      "./src/components/page/index.ts",
-      "./src/components/nav.tsx",
-      "./src/components/reloadpage.tsx",
-      "./src/components/fetcherrorview.tsx",
-      "./src/components/page/tabs.tsx",
-      "./src/vm/view.tsx",
-      "./src/vm/vpage.tsx",
-      "./src/vm/controller.tsx",
-      "./src/vm/index.ts",
-      "./src/entry/res/login.ts",
-      "./src/entry/res/register.ts",
-      "./src/entry/res/index.ts",
-      "./src/entry/tools.tsx",
-      "./src/entry/register.tsx",
-      "./src/entry/login.tsx",
-      "./src/entry/changepassword.tsx",
-      "./src/components/easydate/index.tsx",
-      "./src/components/media.tsx",
-      "./src/components/index.ts",
-      "./src/net/appbridge.ts",
       "./src/entry/meinfo.tsx",
+      "./src/entry/index.ts",
       "./src/uq/entity.ts",
       "./src/uq/action.ts",
       "./src/uq/query.ts",
@@ -3102,16 +3047,71 @@
       "./src/uq/tag/tag.ts",
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
+      "./src/app/centerapi.ts",
       "./src/app/vmain.tsx",
       "./src/app/cappbase.ts",
       "./src/app/start.ts",
       "./src/app/cbase.ts",
       "./src/app/index.ts",
       "./src/index.ts",
+      "./src/components/callbacks.ts",
+      "./src/components/edit/selectbaseitemedit.tsx",
+      "./src/components/fileupload/index.tsx",
+      "./src/components/form/widgets/selectbasewidget.tsx",
+      "./src/components/simple/image.tsx",
+      "./src/components/simple/resuploader.tsx",
       "./src/entry/forget.tsx",
+      "./src/net/serializejson.ts",
+      "./src/res/index.ts",
+      "./src/res/res.tsx",
       "./src/uq/boxid.tsx",
       "./src/uq/tag.ts",
-      "./src/uq/tag/index.ts"
+      "./src/uq/ui.ts",
+      "./src/uq/tag/index.ts",
+      "./node_modules/@types/node/inspector.d.ts",
+      "./node_modules/@types/node/index.d.ts",
+      "./node_modules/@types/node-fetch/index.d.ts",
+      "./node_modules/@types/react-dom/index.d.ts",
+      "../../../node_modules/@types/ejs/index.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.iterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.intl.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.regexp.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.array.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.object.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.symbol.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.bigint.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.promise.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.string.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts",
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.intl.d.ts"
     ]
   },
   "version": "3.8.3"
