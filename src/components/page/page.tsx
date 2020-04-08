@@ -358,23 +358,6 @@ export class Page extends React.Component<PageProps/*, PageState*/> {
 				{this.renderFooter()}
 			</ScrollView>;
 		}
-		else {			
-			let tabContent = <this.tabsView.content />;
-			return tabContent;
-			/*
-			let main:any;
-			if (tabsProps.tabPosition === 'top') {
-				main = <>{tabContent}{children}</>;
-			}
-			else {
-				main = <>{children}{tabContent}</>;
-			}
-			return <main className="tv-tabs">
-				{this.renderHeader()}
-				{main}
-				{this.renderFooter()}
-			</main>;
-			*/
-		}
+		return <this.tabsView.content />;
 	}
 }

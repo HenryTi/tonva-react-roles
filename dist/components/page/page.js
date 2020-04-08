@@ -283,24 +283,7 @@ let Page = class Page extends React.Component {
                 React.createElement("main", null, children),
                 this.renderFooter());
         }
-        else {
-            let tabContent = React.createElement(this.tabsView.content, null);
-            return tabContent;
-            /*
-            let main:any;
-            if (tabsProps.tabPosition === 'top') {
-                main = <>{tabContent}{children}</>;
-            }
-            else {
-                main = <>{children}{tabContent}</>;
-            }
-            return <main className="tv-tabs">
-                {this.renderHeader()}
-                {main}
-                {this.renderFooter()}
-            </main>;
-            */
-        }
+        return React.createElement(this.tabsView.content, null);
     }
 };
 Page = __decorate([

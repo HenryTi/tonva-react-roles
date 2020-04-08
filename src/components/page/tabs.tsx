@@ -32,7 +32,7 @@ export interface TabsProps {
 }
 
 class Tab {
-	private loaded: boolean = false;
+	@observable private loaded: boolean = false;
     name: string;
     @observable selected: boolean;
     caption: TabCaption;
@@ -67,8 +67,8 @@ class Tab {
         }
         if (this.load !== undefined) {
 			if (this.loaded === false) {
-				this.loaded = true;
 				await this.load();
+				this.loaded = true;
 			}
         }
     }
@@ -133,10 +133,11 @@ export class TabsView {
 			}
 		}
 
-        await tab.shown();
         this.selectedTab.selected = false;
         tab.selected = true;
-        this.selectedTab = tab;
+		this.selectedTab = tab;
+		
+		await tab.shown();
     }
 
 	/*

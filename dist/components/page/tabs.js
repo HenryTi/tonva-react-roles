@@ -47,13 +47,16 @@ class Tab {
             }
             if (this.load !== undefined) {
                 if (this.loaded === false) {
-                    this.loaded = true;
                     yield this.load();
+                    this.loaded = true;
                 }
             }
         });
     }
 }
+__decorate([
+    observable
+], Tab.prototype, "loaded", void 0);
 __decorate([
     observable
 ], Tab.prototype, "selected", void 0);
@@ -74,10 +77,10 @@ export class TabsView {
                     tab = this.tabArr[0];
                 }
             }
-            yield tab.shown();
             this.selectedTab.selected = false;
             tab.selected = true;
             this.selectedTab = tab;
+            yield tab.shown();
         });
         /*
         showTab(tabName: string) {
