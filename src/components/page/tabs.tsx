@@ -80,6 +80,8 @@ export const TabCaptionComponent = (label:string, icon:string, color:string) => 
     <small>{label}</small>
 </div>;
 
+export const TabCaption = TabCaptionComponent;
+
 export class TabsView {
 	private props: TabsProps;
     private size: string;

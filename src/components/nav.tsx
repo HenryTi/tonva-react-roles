@@ -391,7 +391,7 @@ export class NavView extends React.Component<Props, NavViewState> {
         return <>
 			{stack.map((item, index) => {
 				let {key, view} = item;
-				return <div key={key} style={index<top? {visibility: 'hidden'}:undefined}>
+				return <div key={key} style={index<top? {visibility: 'hidden', position: 'absolute'}:undefined}>
 					{view}
 				</div>
 			})}

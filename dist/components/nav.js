@@ -373,7 +373,7 @@ export class NavView extends React.Component {
         return React.createElement(React.Fragment, null,
             stack.map((item, index) => {
                 let { key, view } = item;
-                return React.createElement("div", { key: key, style: index < top ? { visibility: 'hidden' } : undefined }, view);
+                return React.createElement("div", { key: key, style: index < top ? { visibility: 'hidden', position: 'absolute' } : undefined }, view);
             }),
             elWait,
             elError,

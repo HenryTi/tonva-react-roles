@@ -64,6 +64,7 @@ export const TabCaptionComponent = (label, icon, color) => React.createElement("
     React.createElement("div", null,
         React.createElement("i", { className: 'fa fa-lg fa-' + icon })),
     React.createElement("small", null, label));
+export const TabCaption = TabCaptionComponent;
 export class TabsView {
     constructor(props) {
         this.tabClick = (tab) => __awaiter(this, void 0, void 0, function* () {
