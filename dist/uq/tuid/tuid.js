@@ -201,38 +201,18 @@ export class TuidInner extends Tuid {
     }
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
-            /*
-            let {fields} = this.schema;
-            let params:any = {$id: id};
-            for (let field of fields as Field[]) {
-                let {name, tuid, type} = field;
-                let val = props[name];
-                if (tuid !== undefined) {
-                    if (typeof val === 'object') {
-                        if (val !== null) val = val.id;
-                    }
-                }
-                else {
-                    switch (type) {
-                        case 'date':
-                        case 'datetime':
-                            val = new Date(val).toISOString();
-                            val = (val as string).replace('T', ' ');
-                            val = (val as string).replace('Z', '');
-                            break;
-                    }
-                }
-                params[name] = val;
-            }
-            let ret = await this.uqApi.tuidSave(this.name, params);
-            return ret;
-            */
             let ret = new SaveCaller(this, { id: id, props: props }).request();
             if (id !== undefined) {
                 this.idCache.remove(id);
                 this.localArr.removeItem(id);
             }
             return ret;
+        });
+    }
+    saveProp(id, prop, value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            new SavePropCaller(this, { id, prop, value }).request();
+            this.idCache.remove(id);
         });
     }
     all() {
@@ -383,6 +363,9 @@ class LoadArrCaller extends TuidCaller {
         return `tuid-arr/${this.entity.name}/${owner}/${arr}/${id}`;
     }
 }
+class SavePropCaller extends TuidCaller {
+    get path() { return `tuid-prop/${this.entity.name}/`; }
+}
 class SaveArrCaller extends TuidCaller {
     get path() {
         let { arr, owner } = this.params;
@@ -440,6 +423,11 @@ export class TuidImport extends Tuid {
     save(id, props) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield this.tuidLocal.save(id, props);
+        });
+    }
+    saveProp(id, prop, value) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.tuidLocal.saveProp(id, prop, value);
         });
     }
     all() {

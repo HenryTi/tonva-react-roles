@@ -37,19 +37,18 @@ export default class FetchErrorView extends React.Component {
         else {
             errContent = React.createElement("div", null, error);
         }
-        return React.createElement("li", null,
-            React.createElement("article", { className: "page-container" },
-                React.createElement("section", null,
-                    React.createElement("div", { className: "va-error" },
-                        React.createElement("div", null, "\u7F51\u7EDC\u51FA\u73B0\u95EE\u9898"),
-                        React.createElement("div", null, "\u70B9\u51FB\u91CD\u65B0\u8BBF\u95EE"),
-                        React.createElement("div", { style: { wordWrap: "break-word" } },
-                            "url: ",
-                            url),
-                        errContent,
-                        React.createElement("div", { className: "p-3" },
-                            React.createElement("button", { type: 'button', onClick: this.reApi }, "\u91CD\u65B0API"),
-                            React.createElement("button", { type: 'button', onClick: this.close }, "\u5173\u95ED"))))));
+        return React.createElement("div", null,
+            React.createElement("article", null,
+                React.createElement("main", { className: "va-error" },
+                    React.createElement("div", null, "\u7F51\u7EDC\u51FA\u73B0\u95EE\u9898"),
+                    React.createElement("div", null, "\u70B9\u51FB\u91CD\u65B0\u8BBF\u95EE"),
+                    React.createElement("div", { style: { wordWrap: "break-word" } },
+                        "url: ",
+                        url),
+                    errContent,
+                    React.createElement("div", { className: "p-3" },
+                        React.createElement("button", { type: 'button', onClick: this.reApi }, "\u91CD\u65B0API"),
+                        React.createElement("button", { type: 'button', onClick: this.close }, "\u5173\u95ED")))));
     }
 }
 export const SystemNotifyPage = ({ message }) => {

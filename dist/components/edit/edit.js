@@ -49,9 +49,12 @@ let Edit = class Edit extends React.Component {
             try {
                 changeValue = yield itemEdit.start();
                 if (changeValue !== value) {
+                    // 2020-04-15：改值之后，应该赋值吧。所以移到这里来
+                    this.props.data[itemSchema.name] = changeValue;
                     if (onItemChanged === undefined) {
                         alert(`${itemSchema.name} value changed, new: ${changeValue}, pre: ${value}`);
-                        this.props.data[itemSchema.name] = changeValue;
+                        // 2020-04-15：改值之后，应该赋值吧。所以这一句移到前面去
+                        //this.props.data[itemSchema.name] = changeValue;
                     }
                     else {
                         yield onItemChanged(itemSchema, changeValue, value);

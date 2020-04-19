@@ -32,6 +32,7 @@ export declare abstract class Tuid extends Entity {
     abstract load(id: number | BoxId): Promise<any>;
     abstract all(): Promise<any[]>;
     abstract save(id: number, props: any): Promise<TuidSaveResult>;
+    abstract saveProp(id: number, prop: string, value: any): Promise<void>;
     abstract search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
     abstract searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
     abstract loadArr(arr: string, owner: number, id: number): Promise<any>;
@@ -62,6 +63,7 @@ export declare class TuidInner extends Tuid {
     buildFieldsTuid(): void;
     unpackTuidIds(values: string[]): any[];
     save(id: number, props: any): Promise<TuidSaveResult>;
+    saveProp(id: number, prop: string, value: any): Promise<void>;
     all(): Promise<any[]>;
     search(key: string, pageStart: string | number, pageSize: number): Promise<any[]>;
     searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
@@ -85,6 +87,7 @@ export declare class TuidImport extends Tuid {
     loadMain(id: number | BoxId): Promise<any>;
     load(id: number | BoxId): Promise<any>;
     save(id: number, props: any): Promise<TuidSaveResult>;
+    saveProp(id: number, prop: string, value: any): Promise<void>;
     all(): Promise<any[]>;
     search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
     searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;

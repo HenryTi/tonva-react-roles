@@ -111,9 +111,12 @@ export class Edit extends React.Component<EditProps> {
         try {
             changeValue = await itemEdit.start();
             if (changeValue !== value) {
+				// 2020-04-15：改值之后，应该赋值吧。所以移到这里来
+				this.props.data[itemSchema.name] = changeValue;
                 if (onItemChanged === undefined) {
                     alert(`${itemSchema.name} value changed, new: ${changeValue}, pre: ${value}`);
-                    this.props.data[itemSchema.name] = changeValue;
+					// 2020-04-15：改值之后，应该赋值吧。所以这一句移到前面去
+                    //this.props.data[itemSchema.name] = changeValue;
                 }
                 else {
                     await onItemChanged(itemSchema, changeValue, value);
