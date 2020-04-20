@@ -1,5 +1,5 @@
 /*eslint no-template-curly-in-string: 0*/
-export const formRes = {
+export var formRes = {
     _: {
         required: 'required',
         number: 'not valid number',

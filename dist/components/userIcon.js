@@ -4,14 +4,14 @@ import { nav } from './nav';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { userApi } from '../net';
-export class UserCache {
-    constructor(loader) {
+var UserCache = /** @class */ (function () {
+    function UserCache(loader) {
         this.map = observable(new Map());
         if (loader === undefined)
-            loader = (userId) => userApi.user(userId);
+            loader = function (userId) { return userApi.user(userId); };
         this.loader = loader;
     }
-    use(id) {
+    UserCache.prototype.use = function (id) {
         if (!id)
             return;
         if (typeof id === 'object')
@@ -19,12 +19,13 @@ export class UserCache {
         if (!id)
             return;
         id = Number(id);
-        let ret = this.map.get(id);
+        var ret = this.map.get(id);
         if (ret === undefined) {
             this.map.set(id, id);
         }
-    }
-    getValue(id) {
+    };
+    UserCache.prototype.getValue = function (id) {
+        var _this = this;
         if (!id)
             return;
         switch (typeof (id)) {
@@ -34,7 +35,7 @@ export class UserCache {
                     return;
                 break;
         }
-        let ret = this.map.get(id);
+        var ret = this.map.get(id);
         if (!ret)
             return;
         switch (typeof (ret)) {
@@ -44,27 +45,29 @@ export class UserCache {
                 if (ret < 0)
                     return id;
                 this.map.set(id, -id);
-                this.loader(id).then(v => {
+                this.loader(id).then(function (v) {
                     if (!v)
                         v = null;
-                    this.map.set(id, v);
-                }).catch(reason => {
+                    _this.map.set(id, v);
+                }).catch(function (reason) {
                     console.error(reason);
                 });
                 return id;
         }
-    }
-}
-const userCache = new UserCache(undefined);
-export const UserIcon = observer((props) => {
-    let { className, style, id, altImage, noneImage } = props;
-    let user = userCache.getValue(id);
+    };
+    return UserCache;
+}());
+export { UserCache };
+var userCache = new UserCache(undefined);
+export var UserIcon = observer(function (props) {
+    var className = props.className, style = props.style, id = props.id, altImage = props.altImage, noneImage = props.noneImage;
+    var user = userCache.getValue(id);
     switch (typeof user) {
         case 'undefined':
         case 'number':
             return React.createElement("div", { className: classNames(className, 'image-none'), style: style }, noneImage || React.createElement("i", { className: "fa fa-file-o" }));
     }
-    let { icon } = user;
+    var icon = user.icon;
     if (!icon) {
         return React.createElement("div", { className: classNames(className, 'image-none'), style: style },
             React.createElement("i", { className: "fa fa-file-o" }));
@@ -72,16 +75,16 @@ export const UserIcon = observer((props) => {
     if (icon.startsWith(':') === true) {
         icon = nav.resUrl + icon.substr(1);
     }
-    return React.createElement("img", { src: icon, className: className, alt: "img", style: style, onError: evt => {
+    return React.createElement("img", { src: icon, className: className, alt: "img", style: style, onError: function (evt) {
             if (altImage)
                 evt.currentTarget.src = altImage;
             else
                 evt.currentTarget.src = 'https://tv.jkchemical.com/imgs/0001.png';
         } });
 });
-export const UserView = observer((props) => {
-    let { id, render } = props;
-    let user = userCache.getValue(id);
+export var UserView = observer(function (props) {
+    var id = props.id, render = props.render;
+    var user = userCache.getValue(id);
     switch (typeof user) {
         case 'undefined':
         case 'number':

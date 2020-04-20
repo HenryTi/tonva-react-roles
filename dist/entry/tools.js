@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { nav, mobileRegex, emailRegex } from '../components';
-const logo = require('../img/logo.svg');
+var logo = require('../img/logo.svg');
 export function tonvaTop() {
     return nav.loginTop(React.createElement("div", { className: "d-flex align-items-center position-relative" },
         React.createElement("img", { className: "App-logo h-3c position-absolute", src: logo, alt: "img" }),
@@ -8,12 +8,12 @@ export function tonvaTop() {
             React.createElement("span", { className: "text-primary mr-3" }, "\u540C"),
             React.createElement("span", { className: "text-danger" }, "\u82B1"))));
 }
-const senders = [
+var senders = [
     { type: 'mobile', caption: '手机号', regex: mobileRegex },
     { type: 'email', caption: '邮箱', regex: emailRegex }
 ];
 export function getSender(un) {
-    let sender = senders.find(v => v.regex.test(un) === true);
+    var sender = senders.find(function (v) { return v.regex.test(un) === true; });
     return sender;
 }
 //# sourceMappingURL=tools.js.map

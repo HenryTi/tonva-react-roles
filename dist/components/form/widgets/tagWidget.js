@@ -1,90 +1,120 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-class TagWidget extends Widget {
-    constructor() {
-        super(...arguments);
-        this.inputs = {};
+var TagWidget = /** @class */ (function (_super) {
+    __extends(TagWidget, _super);
+    function TagWidget() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.inputs = {};
+        return _this;
     }
-    get ui() { return this._ui; }
+    Object.defineProperty(TagWidget.prototype, "ui", {
+        get: function () { return this._ui; },
+        enumerable: true,
+        configurable: true
+    });
     ;
-    setElementValue(value) {
-        for (let i in this.inputs) {
-            let input = this.inputs[i];
+    TagWidget.prototype.setElementValue = function (value) {
+        for (var i in this.inputs) {
+            var input = this.inputs[i];
             input.checked = value === input.value;
         }
-    }
-    setReadOnly(value) {
+    };
+    TagWidget.prototype.setReadOnly = function (value) {
         this.readOnly = value;
-        for (let i in this.inputs)
+        for (var i in this.inputs)
             this.inputs[i].readOnly = value;
-    }
-    setDisabled(value) {
+    };
+    TagWidget.prototype.setDisabled = function (value) {
         this.disabled = value;
-        for (let i in this.inputs)
+        for (var i in this.inputs)
             this.inputs[i].disabled = value;
+    };
+    return TagWidget;
+}(Widget));
+var TagSingleWidget = /** @class */ (function (_super) {
+    __extends(TagSingleWidget, _super);
+    function TagSingleWidget() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
-export class TagSingleWidget extends TagWidget {
-    render() {
-        let { valuesView, wrapClassName } = this.ui;
+    TagSingleWidget.prototype.render = function () {
+        var _a = this.ui, valuesView = _a.valuesView, wrapClassName = _a.wrapClassName;
         if (valuesView === undefined)
             return React.createElement(React.Fragment, null, "valuesView must be defined");
-        let { isRow } = this.context;
-        let rowKey;
+        var isRow = this.context.isRow;
+        var rowKey;
         if (isRow === true) {
             rowKey = this.context.rowKey;
         }
-        let cn = classNames(this.className, 'py-0');
-        let name = this.name;
+        var cn = classNames(this.className, 'py-0');
+        var name = this.name;
         if (rowKey !== undefined)
             name += '-' + rowKey;
-        let options = {
+        var options = {
             className: cn,
             inputName: name,
-            wrapClassName,
+            wrapClassName: wrapClassName,
             onInputChange: this.onInputChange
         };
         return valuesView.renderRadios(this.defaultValue, options);
-    }
-}
-export class TagMultiWidget extends TagWidget {
-    constructor() {
-        super(...arguments);
-        this.onInputChange = (evt) => {
-            let values = [];
-            for (let i in this.inputs) {
-                let input = this.inputs[i];
+    };
+    return TagSingleWidget;
+}(TagWidget));
+export { TagSingleWidget };
+var TagMultiWidget = /** @class */ (function (_super) {
+    __extends(TagMultiWidget, _super);
+    function TagMultiWidget() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.onInputChange = function (evt) {
+            var values = [];
+            for (var i in _this.inputs) {
+                var input = _this.inputs[i];
                 if (input.checked === true)
                     values.push(input.value);
             }
-            this.changeValue(values.join('|'), true);
+            _this.changeValue(values.join('|'), true);
         };
+        return _this;
     }
-    init() {
-        super.init();
-        let def = this.defaultValue;
+    TagMultiWidget.prototype.init = function () {
+        _super.prototype.init.call(this);
+        var def = this.defaultValue;
         switch (typeof def) {
             default:
                 this.defaultArr = [];
                 break;
             case 'string':
-                this.defaultArr = def.split('|').map(v => Number(v));
+                this.defaultArr = def.split('|').map(function (v) { return Number(v); });
                 break;
         }
-    }
-    render() {
-        let { valuesView, wrapClassName } = this.ui;
+    };
+    TagMultiWidget.prototype.render = function () {
+        var _a = this.ui, valuesView = _a.valuesView, wrapClassName = _a.wrapClassName;
         if (valuesView === undefined)
             return React.createElement(React.Fragment, null, "valuesView must be defined");
-        let cn = classNames(this.className, 'py-0');
-        let options = {
+        var cn = classNames(this.className, 'py-0');
+        var options = {
             className: cn,
             inputs: this.inputs,
-            wrapClassName,
+            wrapClassName: wrapClassName,
             onInputChange: this.onInputChange
         };
         return valuesView.renderChecks(this.defaultValue, options);
-    }
-}
+    };
+    return TagMultiWidget;
+}(TagWidget));
+export { TagMultiWidget };
 //# sourceMappingURL=tagWidget.js.map

@@ -5,18 +5,19 @@ import classNames from 'classnames';
 import { RowContext, ContextContainer } from '../context';
 import { Unknown } from './unknown';
 import { factory } from './factory';
-export const ArrComponent = observer(({ parentContext, arrSchema, children }) => {
-    let { name, arr } = arrSchema;
-    let data = parentContext.initData[name];
-    let { form } = parentContext;
-    let arrRowContexts = parentContext.getArrRowContexts(name);
-    let ui = parentContext.getUiItem(name);
-    let arrLabel = name;
-    let Templet;
-    let selectable, deletable, restorable;
-    let { ArrContainer, RowContainer, RowSeperator, uiSchema } = form;
+export var ArrComponent = observer(function (_a) {
+    var parentContext = _a.parentContext, arrSchema = _a.arrSchema, children = _a.children;
+    var name = arrSchema.name, arr = arrSchema.arr;
+    var data = parentContext.initData[name];
+    var form = parentContext.form;
+    var arrRowContexts = parentContext.getArrRowContexts(name);
+    var ui = parentContext.getUiItem(name);
+    var arrLabel = name;
+    var Templet;
+    var selectable, deletable, restorable;
+    var ArrContainer = form.ArrContainer, RowContainer = form.RowContainer, RowSeperator = form.RowSeperator, uiSchema = form.uiSchema;
     if (uiSchema !== undefined) {
-        let { selectable: formSelectable, deletable: formDeletable, restorable: formRestorable } = uiSchema;
+        var formSelectable = uiSchema.selectable, formDeletable = uiSchema.deletable, formRestorable = uiSchema.restorable;
         if (selectable !== true)
             selectable = formSelectable;
         if (deletable !== true)
@@ -25,7 +26,7 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             restorable = formRestorable;
     }
     if (ui !== undefined) {
-        let { widget: widgetType, label, selectable: arrSelectable, deletable: arrDeletable, restorable: arrRestorable, ArrContainer: ac, RowContainer: rc, RowSeperator: rs } = ui;
+        var widgetType = ui.widget, label = ui.label, arrSelectable = ui.selectable, arrDeletable = ui.deletable, arrRestorable = ui.restorable, ac = ui.ArrContainer, rc = ui.RowContainer, rs = ui.RowSeperator;
         if (arrSelectable !== undefined)
             selectable = arrSelectable;
         if (arrDeletable !== undefined)
@@ -43,11 +44,11 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             return Unknown(arrSchema.type, widgetType, ['arr']);
         arrLabel = label || arrLabel;
     }
-    let first = true;
-    return ArrContainer(arrLabel, React.createElement(React.Fragment, null, data.map((row, index) => {
-        let rowContext;
-        let rowContent;
-        let sep = undefined;
+    var first = true;
+    return ArrContainer(arrLabel, React.createElement(React.Fragment, null, data.map(function (row, index) {
+        var rowContext;
+        var rowContent;
+        var sep = undefined;
         if (first === false)
             sep = RowSeperator;
         else
@@ -57,7 +58,7 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             rowContent = React.createElement(React.Fragment, null, children);
         }
         else {
-            let typeofTemplet = typeof Templet;
+            var typeofTemplet = typeof Templet;
             if (typeofTemplet === 'function') {
                 rowContext = new RowContext(parentContext, arrSchema, row, true);
                 rowContent = React.createElement(observer(Templet), row);
@@ -68,19 +69,19 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             }
             else {
                 rowContext = new RowContext(parentContext, arrSchema, row, false);
-                rowContent = React.createElement(React.Fragment, null, arr.map((v, index) => {
+                rowContent = React.createElement(React.Fragment, null, arr.map(function (v, index) {
                     return React.createElement(React.Fragment, { key: v.name }, factory(rowContext, v, undefined));
                 }));
             }
         }
-        let { rowKey } = rowContext;
+        var rowKey = rowContext.rowKey;
         arrRowContexts[rowKey] = rowContext;
-        let selectCheck, deleteIcon;
+        var selectCheck, deleteIcon;
         if (selectable === true) {
-            let onClick = (evt) => {
-                let { checked } = evt.target;
+            var onClick = function (evt) {
+                var checked = evt.target.checked;
                 row.$isSelected = checked;
-                let { $source } = row;
+                var $source = row.$source;
                 if ($source !== undefined)
                     $source.$isSelected = checked;
                 rowContext.clearErrors();
@@ -88,18 +89,18 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             selectCheck = React.createElement("div", { className: "form-row-checkbox" },
                 React.createElement("input", { type: "checkbox", onClick: onClick, defaultChecked: row.$isSelected }));
         }
-        let isDeleted = !(row.$isDeleted === undefined || row.$isDeleted === false);
+        var isDeleted = !(row.$isDeleted === undefined || row.$isDeleted === false);
         if (deletable === true) {
-            let icon = isDeleted ? 'fa-undo' : 'fa-trash';
-            let onDelClick = () => {
+            var icon = isDeleted ? 'fa-undo' : 'fa-trash';
+            var onDelClick = function () {
                 if (restorable === true) {
                     row.$isDeleted = !isDeleted;
-                    let { $source } = row;
+                    var $source = row.$source;
                     if ($source !== undefined)
                         $source.$isDeleted = !isDeleted;
                 }
                 else {
-                    let p = data.indexOf(row);
+                    var p = data.indexOf(row);
                     if (p >= 0)
                         data.splice(p, 1);
                 }
@@ -108,14 +109,14 @@ export const ArrComponent = observer(({ parentContext, arrSchema, children }) =>
             deleteIcon = React.createElement("div", { className: "form-row-edit text-info", onClick: onDelClick },
                 React.createElement("i", { className: classNames('fa', icon, 'fa-fw') }));
         }
-        let editContainer = selectable === true || deletable === true ?
-            (content) => React.createElement("fieldset", { disabled: isDeleted },
+        var editContainer = selectable === true || deletable === true ?
+            function (content) { return React.createElement("fieldset", { disabled: isDeleted },
                 React.createElement("div", { className: classNames('d-flex', { 'deleted': isDeleted, 'row-selected': row.$isSelected }) },
                     selectCheck,
                     React.createElement("div", { className: selectable === true && deletable === true ? "form-row-content" : "form-row-content-1" }, content),
-                    deleteIcon))
+                    deleteIcon)); }
             :
-                (content) => content;
+                function (content) { return content; };
         return React.createElement(ContextContainer.Provider, { key: rowKey, value: rowContext },
             sep,
             RowContainer(editContainer(React.createElement(React.Fragment, null,

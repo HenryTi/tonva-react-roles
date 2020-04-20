@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,76 +26,127 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 import * as React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import '../../css/va-tab.css';
-class Tab {
-    constructor() {
+var Tab = /** @class */ (function () {
+    function Tab() {
         this.loaded = false;
     }
-    get content() {
-        if (this.load && this.loaded === false)
-            return;
-        if (this.selected === false)
-            return this._content;
-        if (!this._content) {
-            if (this.contentBuilder !== undefined) {
-                this._content = this.contentBuilder();
-            }
-            else if (this.page !== undefined) {
-                this._content = this.page.content();
-            }
-            else {
-                this._content = React.createElement("div", { className: "p-5" }, "tab \u5E94\u8BE5\u5B9A\u4E49content\u6216\u8005page");
-            }
-        }
-        return this._content;
-    }
-    shown() {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.onShown !== undefined) {
-                yield this.onShown();
-            }
-            if (this.load !== undefined) {
-                if (this.loaded === false) {
-                    yield this.load();
-                    this.loaded = true;
+    Object.defineProperty(Tab.prototype, "content", {
+        get: function () {
+            if (this.load && this.loaded === false)
+                return;
+            if (this.selected === false)
+                return this._content;
+            if (!this._content) {
+                if (this.contentBuilder !== undefined) {
+                    this._content = this.contentBuilder();
+                }
+                else if (this.page !== undefined) {
+                    this._content = this.page.content();
+                }
+                else {
+                    this._content = React.createElement("div", { className: "p-5" }, "tab \u5E94\u8BE5\u5B9A\u4E49content\u6216\u8005page");
                 }
             }
+            return this._content;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Tab.prototype.shown = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(this.onShown !== undefined)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.onShown()];
+                    case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2:
+                        if (!(this.load !== undefined)) return [3 /*break*/, 4];
+                        if (!(this.loaded === false)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.load()];
+                    case 3:
+                        _a.sent();
+                        this.loaded = true;
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
-    }
-}
-__decorate([
-    observable
-], Tab.prototype, "loaded", void 0);
-__decorate([
-    observable
-], Tab.prototype, "selected", void 0);
-export const TabCaptionComponent = (label, icon, color) => React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
+    };
+    __decorate([
+        observable
+    ], Tab.prototype, "loaded", void 0);
+    __decorate([
+        observable
+    ], Tab.prototype, "selected", void 0);
+    return Tab;
+}());
+export var TabCaptionComponent = function (label, icon, color) { return React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
     React.createElement("div", null,
         React.createElement("i", { className: 'fa fa-lg fa-' + icon })),
-    React.createElement("small", null, label));
-export const TabCaption = TabCaptionComponent;
-export class TabsView {
-    constructor(props) {
-        this.tabClick = (tab) => __awaiter(this, void 0, void 0, function* () {
-            if (!tab) {
-                tab = this.selectedTab;
-                if (tab === undefined) {
-                    if (this.tabArr === undefined)
-                        return;
-                    if (this.tabArr.length === 0)
-                        return;
-                    tab = this.tabArr[0];
+    React.createElement("small", null, label)); };
+export var TabCaption = TabCaptionComponent;
+var TabsView = /** @class */ (function () {
+    function TabsView(props) {
+        var _this = this;
+        this.tabClick = function (tab) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!tab) {
+                            tab = this.selectedTab;
+                            if (tab === undefined) {
+                                if (this.tabArr === undefined)
+                                    return [2 /*return*/];
+                                if (this.tabArr.length === 0)
+                                    return [2 /*return*/];
+                                tab = this.tabArr[0];
+                            }
+                        }
+                        this.selectedTab.selected = false;
+                        tab.selected = true;
+                        this.selectedTab = tab;
+                        return [4 /*yield*/, tab.shown()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
-            }
-            this.selectedTab.selected = false;
-            tab.selected = true;
-            this.selectedTab = tab;
-            yield tab.shown();
-        });
+            });
+        }); };
         /*
         showTab(tabName: string) {
             let tab = this.tabs.find(v => v.name === tabName);
@@ -92,9 +156,9 @@ export class TabsView {
             this.selectedTab = tab;
         }
         */
-        this.tabs = observer(() => {
-            let { tabPosition, borderColor } = this.props;
-            let bsCur, bsTab;
+        this.tabs = observer(function () {
+            var _a = _this.props, tabPosition = _a.tabPosition, borderColor = _a.borderColor;
+            var bsCur, bsTab;
             if (borderColor) {
                 bsCur = {
                     borderColor: borderColor,
@@ -125,12 +189,12 @@ export class TabsView {
                     bsTab.borderBottomWidth = 0;
                 }
             }
-            let cn = classNames('tv-tabs', this.tabBg, this.sep, 'tv-tabs-' + this.size);
-            let tabs = React.createElement("div", { className: cn }, this.tabArr.map((v, index) => {
-                let { selected, caption, notify } = v;
-                let notifyCircle;
+            var cn = classNames('tv-tabs', _this.tabBg, _this.sep, 'tv-tabs-' + _this.size);
+            var tabs = React.createElement("div", { className: cn }, _this.tabArr.map(function (v, index) {
+                var selected = v.selected, caption = v.caption, notify = v.notify;
+                var notifyCircle;
                 if (notify !== undefined) {
-                    let num = notify.get();
+                    var num = notify.get();
                     if (num !== undefined) {
                         if (num > 0)
                             notifyCircle = React.createElement("u", null, num > 99 ? '99+' : num);
@@ -138,26 +202,26 @@ export class TabsView {
                             notifyCircle = React.createElement("u", { className: "dot" });
                     }
                 }
-                return React.createElement("div", { key: index, onClick: () => this.tabClick(v), style: selected === true ? bsCur : bsTab },
+                return React.createElement("div", { key: index, onClick: function () { return _this.tabClick(v); }, style: selected === true ? bsCur : bsTab },
                     React.createElement("div", null,
                         notifyCircle,
                         caption(selected)));
             }));
             return tabs;
         });
-        this.content = observer(() => {
-            let displayNone = { visibility: 'hidden' };
-            return React.createElement(React.Fragment, null, this.tabArr.map((v, index) => {
-                let { tabPosition } = this.props;
-                let { content, page } = v;
-                let tabs = React.createElement(this.tabs, null);
-                let pageHeader, pageFooter;
+        this.content = observer(function () {
+            var displayNone = { visibility: 'hidden' };
+            return React.createElement(React.Fragment, null, _this.tabArr.map(function (v, index) {
+                var tabPosition = _this.props.tabPosition;
+                var content = v.content, page = v.page;
+                var tabs = React.createElement(_this.tabs, null);
+                var pageHeader, pageFooter;
                 if (page !== undefined) {
                     pageHeader = page.header();
                     pageFooter = page.footer();
                 }
-                let header, footer;
-                let visibility = { visibility: 'hidden' };
+                var header, footer;
+                var visibility = { visibility: 'hidden' };
                 if (tabPosition === 'top') {
                     header = React.createElement(React.Fragment, null,
                         React.createElement("section", { className: "tv-page-header" },
@@ -190,10 +254,10 @@ export class TabsView {
                                 pageFooter,
                                 tabs)));
                 }
-                let style;
+                var style;
                 if (v.selected === false)
                     style = displayNone;
-                return React.createElement("div", { key: index, className: classNames('tv-page', this.contentBg), style: style },
+                return React.createElement("div", { key: index, className: classNames('tv-page', _this.contentBg), style: style },
                     React.createElement("article", null,
                         header,
                         content,
@@ -201,14 +265,14 @@ export class TabsView {
             }));
         });
         this.props = props;
-        let { size, tabs, tabBg: tabBack, contentBg: contentBack, sep, selected } = props;
+        var size = props.size, tabs = props.tabs, tabBack = props.tabBg, contentBack = props.contentBg, sep = props.sep, selected = props.selected;
         this.size = size || 'md';
-        this.tabArr = tabs.map(v => {
-            let tab = new Tab();
-            let { name, caption, content, page, notify, load, onShown, isSelected } = v;
+        this.tabArr = tabs.map(function (v) {
+            var tab = new Tab();
+            var name = v.name, caption = v.caption, content = v.content, page = v.page, notify = v.notify, load = v.load, onShown = v.onShown, isSelected = v.isSelected;
             tab.name = name;
             if (isSelected === true || name === selected) {
-                this.selectedTab = tab;
+                _this.selectedTab = tab;
             }
             tab.selected = false;
             tab.caption = caption;
@@ -232,11 +296,12 @@ export class TabsView {
         }
         this.selectedTab.selected = true;
     }
-    render() {
-        let { tabPosition } = this.props;
-        let tabs = React.createElement(this.tabs, null);
-        let cnContainer, header, footer;
-        let visibility = { display: 'none' };
+    TabsView.prototype.render = function () {
+        var _this = this;
+        var tabPosition = this.props.tabPosition;
+        var tabs = React.createElement(this.tabs, null);
+        var cnContainer, header, footer;
+        var visibility = { display: 'none' };
         if (tabPosition === 'top') {
             cnContainer = 'tv-page-header';
             header = React.createElement("header", null, tabs);
@@ -247,37 +312,42 @@ export class TabsView {
         }
         return React.createElement(React.Fragment, null,
             header,
-            this.tabArr.map((v, index) => {
-                let style;
+            this.tabArr.map(function (v, index) {
+                var style;
                 if (v.selected === false)
                     style = visibility;
-                return React.createElement("div", { key: index, className: classNames(this.contentBg), style: style }, v.content);
+                return React.createElement("div", { key: index, className: classNames(_this.contentBg), style: style }, v.content);
             }),
             footer);
-    }
-}
-__decorate([
-    observable
-], TabsView.prototype, "selectedTab", void 0);
-__decorate([
-    observable
-], TabsView.prototype, "tabArr", void 0);
+    };
+    __decorate([
+        observable
+    ], TabsView.prototype, "selectedTab", void 0);
+    __decorate([
+        observable
+    ], TabsView.prototype, "tabArr", void 0);
+    return TabsView;
+}());
+export { TabsView };
 ;
-let Tabs = class Tabs extends React.Component {
-    constructor(props) {
-        super(props);
-        this.tabsView = new TabsView(props);
-        setTimeout(() => {
-            this.tabsView.tabClick(undefined);
+var Tabs = /** @class */ (function (_super) {
+    __extends(Tabs, _super);
+    function Tabs(props) {
+        var _this = _super.call(this, props) || this;
+        _this.tabsView = new TabsView(props);
+        setTimeout(function () {
+            _this.tabsView.tabClick(undefined);
         }, 100);
+        return _this;
     }
-    render() {
+    Tabs.prototype.render = function () {
         return this.tabsView.render();
-    }
-};
-Tabs = __decorate([
-    observer
-], Tabs);
+    };
+    Tabs = __decorate([
+        observer
+    ], Tabs);
+    return Tabs;
+}(React.Component));
 export { Tabs };
 ;
 /*

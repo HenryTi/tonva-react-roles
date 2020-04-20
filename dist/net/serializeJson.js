@@ -1,18 +1,18 @@
 export function serializeJson(obj) {
-    let source = [];
-    let result = [];
+    var source = [];
+    var result = [];
     function serialize(obj) {
-        let p = source.findIndex(v => v === obj);
+        var p = source.findIndex(function (v) { return v === obj; });
         if (p <= 0) {
             p = result.length;
             source.push(obj);
             if (Array.isArray(obj) === true) {
-                let retObj = [];
+                var retObj = [];
                 result.push(retObj);
                 serializeArr(obj, retObj);
             }
             else {
-                let retObj = {};
+                var retObj = {};
                 result.push(retObj);
                 serializeObj(obj, retObj);
             }
@@ -20,13 +20,13 @@ export function serializeJson(obj) {
         return '___' + p;
     }
     function serializeArr(obj, retObj) {
-        let len = obj.length;
-        for (let i = 0; i < len; i++) {
+        var len = obj.length;
+        for (var i = 0; i < len; i++) {
             retObj[i] = serial(obj[i]);
         }
     }
     function serializeObj(obj, retObj) {
-        for (let i in obj) {
+        for (var i in obj) {
             retObj[i] = serial(obj[i]);
         }
     }
@@ -39,7 +39,7 @@ export function serializeJson(obj) {
     }
     serialize(obj);
     try {
-        let ret = JSON.stringify(result);
+        var ret = JSON.stringify(result);
         return ret;
     }
     catch (err) {
@@ -47,8 +47,8 @@ export function serializeJson(obj) {
     }
 }
 export function deserializeJson(str) {
-    let arr = JSON.parse(str);
-    let obj = arr[0];
+    var arr = JSON.parse(str);
+    var obj = arr[0];
     deserialize(obj);
     return obj;
     function deserialize(obj) {
@@ -60,21 +60,21 @@ export function deserializeJson(str) {
         }
     }
     function deserializeArr(obj) {
-        let len = obj.length;
-        for (let i = 0; i < len; i++) {
+        var len = obj.length;
+        for (var i = 0; i < len; i++) {
             obj[i] = deserial(obj[i]);
         }
     }
     function deserializeObj(obj) {
-        for (let i in obj) {
+        for (var i in obj) {
             obj[i] = deserial(obj[i]);
         }
     }
     function deserial(obj) {
         if (typeof obj === 'string') {
             if (obj.startsWith('___') === true) {
-                let p = Number(obj.substr(3));
-                let ret = arr[p];
+                var p = Number(obj.substr(3));
+                var ret = arr[p];
                 deserialize(ret);
                 return ret;
             }

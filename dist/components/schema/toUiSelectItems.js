@@ -1,11 +1,12 @@
 export function toUiSelectItems(items) {
     if (items === undefined)
         return;
-    let ret = [];
-    for (let item of items) {
-        let pos = item.indexOf(':');
-        let val;
-        let title;
+    var ret = [];
+    for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+        var item = items_1[_i];
+        var pos = item.indexOf(':');
+        var val = void 0;
+        var title = void 0;
         if (pos < 0) {
             val = Number(item);
         }

@@ -14,7 +14,7 @@ import { ButtonWidget } from './buttonWidget';
 import { ArrComponent } from './arrComponent';
 import { ImageWidget } from './imageWidget';
 import { TagSingleWidget, TagMultiWidget } from './tagWidget';
-const widgetsFactory = {
+var widgetsFactory = {
     id: {
         dataTypes: ['id'],
         widget: IdWidget,
@@ -105,16 +105,16 @@ export function factory(context, itemSchema, children, fieldProps) {
     }
     if (itemSchema === undefined)
         return undefined;
-    let { name, type } = itemSchema;
+    var name = itemSchema.name, type = itemSchema.type;
     switch (type) {
         case 'arr':
-            let arrSchema = context.getItemSchema(name);
+            var arrSchema = context.getItemSchema(name);
             return React.createElement(ArrComponent, { parentContext: context, arrSchema: arrSchema, children: children });
         default:
             break;
     }
-    let typeWidget;
-    let ui = context.getUiItem(name);
+    var typeWidget;
+    var ui = context.getUiItem(name);
     function getTypeWidget(t) {
         switch (t) {
             default: return TextWidget;
@@ -132,11 +132,11 @@ export function factory(context, itemSchema, children, fieldProps) {
         typeWidget = getTypeWidget(type);
     }
     else {
-        let { widget: widgetType } = ui;
+        var widgetType = ui.widget;
         switch (widgetType) {
             default:
                 if (widgetType !== undefined) {
-                    let widgetFactory = widgetsFactory[widgetType];
+                    var widgetFactory = widgetsFactory[widgetType];
                     typeWidget = widgetFactory.widget;
                 }
                 if (typeWidget === undefined)
@@ -150,8 +150,8 @@ export function factory(context, itemSchema, children, fieldProps) {
         }
         //label = uiLabel || name;
     }
-    let { widgets } = context;
-    let widget = new typeWidget(context, itemSchema, fieldProps, children);
+    var widgets = context.widgets;
+    var widget = new typeWidget(context, itemSchema, fieldProps, children);
     widget.init();
     widgets[name] = widget;
     return React.createElement(widget.container, null);

@@ -1,10 +1,29 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 import * as React from 'react';
 import { Page } from '../components';
-export default class Forget extends React.Component {
-    render() {
-        return React.createElement(Page, { header: '\u627E\u56DE\u5BC6\u7801' }, "\u6B63\u5728\u8BBE\u8BA1\u4E2D...");
+var Forget = /** @class */ (function (_super) {
+    __extends(Forget, _super);
+    function Forget() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-}
+    Forget.prototype.render = function () {
+        return React.createElement(Page, { header: '\u627E\u56DE\u5BC6\u7801' }, "\u6B63\u5728\u8BBE\u8BA1\u4E2D...");
+    };
+    return Forget;
+}(React.Component));
+export default Forget;
 /*
 export class ForgetController extends Controller {
     account:string;

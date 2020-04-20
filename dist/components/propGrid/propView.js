@@ -1,15 +1,16 @@
 import { PropBorder, PropGap, StringPropRow, NumberPropRow, ListPropRow, ComponentPropRow } from './row';
-export class PropView {
-    constructor(gridProps, props) {
+var PropView = /** @class */ (function () {
+    function PropView(gridProps, props) {
         this.gridProps = gridProps;
         this.props = props;
         //this.values = values;
         this.buildRows();
     }
-    buildRows() {
+    PropView.prototype.buildRows = function () {
         this.rows = [];
-        let isGap = true;
-        for (let prop of this.props) {
+        var isGap = true;
+        for (var _i = 0, _a = this.props; _i < _a.length; _i++) {
+            var prop = _a[_i];
             if (typeof prop === 'string') {
                 this.rows.push(new PropGap(prop));
                 isGap = true;
@@ -17,7 +18,7 @@ export class PropView {
             else {
                 if (!isGap)
                     this.rows.push(new PropBorder());
-                let row;
+                var row = void 0;
                 switch (prop.type) {
                     default: continue;
                     case 'string':
@@ -37,13 +38,17 @@ export class PropView {
                 isGap = false;
             }
         }
-    }
-    setValues(values) {
-        for (let r of this.rows)
+    };
+    PropView.prototype.setValues = function (values) {
+        for (var _i = 0, _a = this.rows; _i < _a.length; _i++) {
+            var r = _a[_i];
             r.setValues(values);
-    }
-    render() {
-        return this.rows.map((row, index) => row.render(String(index)));
-    }
-}
+        }
+    };
+    PropView.prototype.render = function () {
+        return this.rows.map(function (row, index) { return row.render(String(index)); });
+    };
+    return PropView;
+}());
+export { PropView };
 //# sourceMappingURL=propView.js.map

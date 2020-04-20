@@ -1,4 +1,4 @@
-export const registerRes = {
+export var registerRes = {
     _: {
         a: 'd',
     }
