@@ -32,7 +32,10 @@ export abstract class Controller {
         this.res = res || {};
 		this.x = this.res.x || {};
 		this.t = (str:string):any => this.internalT(str) || str;
+		this.init();
 	}
+
+	protected init() {}
 
 	internalT(str:string):any {
 		return this._t[str];

@@ -414,40 +414,6 @@ var NavView = /** @class */ (function (_super) {
     NavView.prototype.confirmBox = function (message) {
         return window.confirm(message);
     };
-    /*
-    private clickCount = 0;
-    private firstClick: number = 0;
-    private clickRange = 3000;
-    private clickMax = 6;
-    private onClick = () => {
-        let now = Date.now();
-        if (now - this.firstClick > this.clickRange) {
-            this.clickCount = 1;
-            this.firstClick = now;
-            return;
-        }
-        ++this.clickCount;
-        if (this.clickCount >= this.clickMax) {
-            nav.reverseTest();
-            this.firstClick = 0;
-            return;
-        }
-    }
-    */
-    /*
-    private onTestClick = () => {
-        nav.testing = false;
-        nav.push(<Page header={false}>
-            <div className="m-5 border border-info bg-white rounded p-4 text-center">
-                <div>当前运行在测试模式</div>
-                <div className="mt-4">
-                    <button className="btn btn-danger" onClick={nav.toNormal}>正常模式</button>
-                    <button className="btn btn-outline-info ml-3" onClick={()=>{nav.testing=true;this.pop()}}>测试模式</button>
-                </div>
-            </div>
-        </Page>);
-    }
-    */
     NavView.prototype.render = function () {
         var _a = this.state, wait = _a.wait, fetchError = _a.fetchError;
         var stack = this.state.stack;
@@ -455,10 +421,10 @@ var NavView = /** @class */ (function (_super) {
         var elWait = null, elError = null;
         switch (wait) {
             case 1:
-                elWait = React.createElement("li", { className: "va-wait va-wait1" });
+                elWait = React.createElement("div", { className: "va-wait va-wait1" });
                 break;
             case 2:
-                elWait = React.createElement("li", { className: "va-wait va-wait2" },
+                elWait = React.createElement("div", { className: "va-wait va-wait2" },
                     React.createElement(Loading, null));
                 break;
         }
@@ -467,7 +433,6 @@ var NavView = /** @class */ (function (_super) {
         var test = nav.testing === true &&
             React.createElement("span", { className: "cursor-pointer position-fixed", style: { top: 0, left: '0.2rem', zIndex: 90001 } },
                 React.createElement(FA, { className: "text-warning", name: "info-circle" }));
-        //onClick={this.onClick}
         return React.createElement(React.Fragment, null,
             stack.map(function (item, index) {
                 var key = item.key, view = item.view;
@@ -478,9 +443,7 @@ var NavView = /** @class */ (function (_super) {
             test);
     };
     NavView.prototype.refresh = function () {
-        // this.setState({flag: !this.state.flag});
         this.setState({ stack: this.stack });
-        // this.forceUpdate();
     };
     return NavView;
 }(React.Component));
@@ -605,47 +568,6 @@ var Nav = /** @class */ (function () {
             return;
         this.ws.endWsReceive(handlerId);
     };
-    /*
-    private static testMode = '测试';
-    private static normalMode = '正常';
-    private setTesting(testing:boolean) {
-        this.testing = testing;
-        this.local.testing.set(testing);
-    };
-    private resetTest = () => {
-        this.setTesting(!this.testing);
-        //this.pop();
-        this.start();
-    }
-    toNormal = () => {
-        this.setTesting(false);
-        this.start();
-    }
-    reverseTest() {
-        let m1:string, m2:string;
-        if (this.testing === true) {
-            m1 = Nav.testMode;
-            m2 = Nav.normalMode;
-        }
-        else {
-            m1 = Nav.normalMode;
-            m2 = Nav.testMode;
-        }
-
-        this.push(<Page back="close" header={false}>
-            <div className="m-5 border border-info bg-white rounded p-4 text-center">
-                <div>
-                    <p>从{m1}模式切换到{m2}模式吗?</p>
-                    <p className="small text-muted">测试模式下，页面左上角会有一个 <FA className="text-warning" name="info-circle" /></p>
-                </div>
-                <div className="mt-4">
-                    <button className="btn btn-danger" onClick={this.resetTest}>切换</button>
-                    <button className="btn btn-outline-info ml-3" onClick={()=>this.pop()}>取消</button>
-                </div>
-            </div>
-        </Page>);
-    }
-    */
     Nav.prototype.onReceive = function (msg) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
