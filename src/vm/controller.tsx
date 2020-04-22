@@ -35,7 +35,7 @@ export abstract class Controller {
 		this.init();
 	}
 
-	protected init() {}
+	init() {}
 
 	internalT(str:string):any {
 		return this._t[str];

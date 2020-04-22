@@ -550,8 +550,8 @@
         "signature": "26ed034d0d9bab229551887f7eb581fe14f712404e5b3ad23d34e821e44f9fc9"
       },
       "./src/vm/controller.tsx": {
-        "version": "ec31bf4ad258130a66d68c0330ab2c182d5a42f55acfdfdbc2e50f1fa7724f94",
-        "signature": "d091fdbda899cbcc511747f7ec23385d6b6d3fa2f20ecfa648ccaefc6ee0e56d"
+        "version": "ff2aa273eb9ed0b079f93a81830686cc0085c4d66940d02397a7fae8a9bb2985",
+        "signature": "33884002ac55dc552a2a78157b31b477b95dcdfffd9d9aff6928633c742f1b73"
       },
       "./src/vm/index.ts": {
         "version": "8a53427eec25078e4096554327f5c6dad93d23532609c10f10803590d2b56bce",
@@ -2993,6 +2993,7 @@
       "./src/entry/res/index.ts",
       "./src/entry/tools.tsx",
       "./src/entry/changepassword.tsx",
+      "./src/components/nav.tsx",
       "./src/components/page/index.ts",
       "./src/components/schema/schema.ts",
       "./src/components/form/field.tsx",
@@ -3103,7 +3104,6 @@
       "./src/vm/index.ts",
       "./src/vm/vpage.tsx",
       "./src/vm/view.tsx",
-      "./src/components/nav.tsx",
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",
       "./src/app/vmain.tsx",
