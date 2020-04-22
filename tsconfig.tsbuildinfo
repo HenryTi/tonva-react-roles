@@ -550,7 +550,7 @@
         "signature": "26ed034d0d9bab229551887f7eb581fe14f712404e5b3ad23d34e821e44f9fc9"
       },
       "./src/vm/controller.tsx": {
-        "version": "ff2aa273eb9ed0b079f93a81830686cc0085c4d66940d02397a7fae8a9bb2985",
+        "version": "b186e71ce90dc13285f7a9791b9532f98fec4672805f2edfa3494a3c99670def",
         "signature": "33884002ac55dc552a2a78157b31b477b95dcdfffd9d9aff6928633c742f1b73"
       },
       "./src/vm/index.ts": {
@@ -2988,10 +2988,15 @@
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
       "./src/components/reloadpage.tsx",
+      "./src/vm/view.tsx",
+      "./src/vm/vpage.tsx",
+      "./src/vm/index.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
       "./src/entry/tools.tsx",
+      "./src/entry/register.tsx",
+      "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
       "./src/components/nav.tsx",
       "./src/components/page/index.ts",
@@ -3081,6 +3086,12 @@
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
       "./src/app/centerapi.ts",
+      "./src/app/vmain.tsx",
+      "./src/app/cappbase.ts",
+      "./src/app/start.ts",
+      "./src/app/cbase.ts",
+      "./src/app/index.ts",
+      "./src/index.ts",
       "./src/components/callbacks.ts",
       "./src/components/edit/selectbaseitemedit.tsx",
       "./src/components/fileupload/index.tsx",
@@ -3100,18 +3111,7 @@
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/vm/controller.tsx",
-      "./src/vm/index.ts",
-      "./src/vm/vpage.tsx",
-      "./src/vm/view.tsx",
-      "./src/entry/register.tsx",
-      "./src/entry/login.tsx",
-      "./src/app/vmain.tsx",
-      "./src/app/cappbase.ts",
-      "./src/app/start.ts",
-      "./src/app/cbase.ts",
-      "./src/app/index.ts",
-      "./src/index.ts"
+      "./src/vm/controller.tsx"
     ]
   },
   "version": "3.8.3"

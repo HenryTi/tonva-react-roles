@@ -63,7 +63,6 @@ var Controller = /** @class */ (function () {
         this.res = res || {};
         this.x = this.res.x || {};
         this.t = function (str) { return _this.internalT(str) || str; };
-        this.init();
     }
     Object.defineProperty(Controller.prototype, "user", {
         get: function () { return nav.user; },
