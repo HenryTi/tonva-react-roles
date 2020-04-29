@@ -15,6 +15,9 @@ export interface AppConfig {
     oem?: string;
     privacy?: string;
 }
+export interface Elements {
+    [id: string]: (element: HTMLElement) => void;
+}
 export declare abstract class CAppBase extends Controller {
     protected _uqs: any;
     protected readonly name: string;
@@ -25,6 +28,7 @@ export declare abstract class CAppBase extends Controller {
     get uqs(): any;
     internalT(str: string): any;
     protected setRes(res: any): void;
+    protected hookElements(elements: Elements): void;
     protected beforeStart(): Promise<boolean>;
     userFromId(userId: number): Promise<any>;
     private load;

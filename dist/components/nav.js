@@ -583,35 +583,50 @@ var Nav = /** @class */ (function () {
             });
         });
     };
-    Nav.prototype.getPredefinedUnitName = function () {
+    Nav.prototype.loadUnitJson = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var json, res, err_1, unitJsonPath, unitRes, res, err1_1;
+            var unitJsonPath, unitRes, res, err1_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 1, , 7]);
-                        json = document.getElementById('unit.json').innerHTML;
-                        res = JSON.parse(json);
-                        return [2 /*return*/, res.unit];
-                    case 1:
-                        err_1 = _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 5, , 6]);
+                        _a.trys.push([0, 3, , 4]);
                         unitJsonPath = this.unitJsonPath();
                         return [4 /*yield*/, fetch(unitJsonPath, {})];
-                    case 3:
+                    case 1:
                         unitRes = _a.sent();
                         return [4 /*yield*/, unitRes.json()];
-                    case 4:
+                    case 2:
                         res = _a.sent();
                         return [2 /*return*/, res.unit];
-                    case 5:
+                    case 3:
                         err1_1 = _a.sent();
                         this.local.unit.remove();
                         return [2 /*return*/];
-                    case 6: return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Nav.prototype.getPredefinedUnitName = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var el, json, res, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        el = document.getElementById('unit.json');
+                        if (!!el) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.loadUnitJson()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2:
+                        _a.trys.push([2, 3, , 5]);
+                        json = el.innerHTML;
+                        res = JSON.parse(json);
+                        return [2 /*return*/, res.unit];
+                    case 3:
+                        err_1 = _a.sent();
+                        return [4 /*yield*/, this.loadUnitJson()];
+                    case 4: return [2 /*return*/, _a.sent()];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

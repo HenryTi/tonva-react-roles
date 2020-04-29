@@ -17,8 +17,9 @@ export interface UserIconProps {
 }
 export declare const UserIcon: (props: UserIconProps) => JSX.Element;
 export interface UserViewProps {
-    id: number;
+    id?: number;
+    user?: number | User;
     render: (user: User) => JSX.Element;
 }
 export declare const UserView: (props: UserViewProps) => JSX.Element;
-export declare function useUser(id: number): void;
+export declare function useUser(id: number | object): void;

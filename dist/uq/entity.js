@@ -125,6 +125,7 @@ var Entity = /** @class */ (function () {
         this.setJName(name);
         this.cache.set(schema);
         this.schema = schema;
+        this.buildFieldsTuid();
     };
     Entity.prototype.setJName = function (name) {
         if (name !== this.name)
@@ -293,6 +294,10 @@ var Entity = /** @class */ (function () {
                                     break;
                                 case 10:
                                     r += d.substring(p, i) + '\\n';
+                                    p = i + 1;
+                                    break;
+                                case 92:
+                                    r += d.substring(p, i) + '\\\\';
                                     p = i + 1;
                                     break;
                             }

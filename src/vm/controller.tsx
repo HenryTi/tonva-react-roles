@@ -109,7 +109,9 @@ export abstract class Controller {
         console.log('return true');
         */
         return true;
-    }
+	}
+	protected async afterStart():Promise<void> {
+	}
     protected registerReceiveHandler() {
         this.receiveHandlerId = nav.registerReceiveHandler(this.onMessageReceive);
     }
@@ -120,7 +122,8 @@ export abstract class Controller {
         this.registerReceiveHandler();
         let ret = await this.beforeStart();
         if (ret === false) return;
-        await this.internalStart(param, ...params);
+		await this.internalStart(param, ...params);
+		await this.afterStart();
     }
 
     get isCalling():boolean {return this._resolve_$ !== undefined}

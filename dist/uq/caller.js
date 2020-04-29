@@ -144,8 +144,9 @@ var EntityCaller = /** @class */ (function (_super) {
         var uq = schema.uq, entity = schema.entity;
         if (uq !== undefined)
             this.entity.uq.buildEntities(uq);
-        if (entity !== undefined)
+        if (entity !== undefined) {
             this.entity.setSchema(entity);
+        }
     };
     return EntityCaller;
 }(Caller));

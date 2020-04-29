@@ -425,23 +425,31 @@ export class Nav {
         await this.ws.receive(msg);
     }
 
+	private async loadUnitJson() {
+		try {
+			let unitJsonPath = this.unitJsonPath();
+			let unitRes = await fetch(unitJsonPath, {});
+			let res = await unitRes.json();
+			return res.unit;
+		}
+		catch (err1) {
+			this.local.unit.remove();
+			return;
+		}
+	}
+
     private async getPredefinedUnitName() {
-        try {
-            let json = document.getElementById('unit.json').innerHTML;
+		let el = document.getElementById('unit.json');
+		if (!el) {
+			return await this.loadUnitJson();
+		}
+		try {
+            let json = el.innerHTML;
             let res = JSON.parse(json);
             return res.unit;
         }
         catch (err) {
-            try {
-                let unitJsonPath = this.unitJsonPath();
-                let unitRes = await fetch(unitJsonPath, {});
-                let res = await unitRes.json();
-                return res.unit;
-            }
-            catch (err1) {
-                this.local.unit.remove();
-                return;
-            }
+			return await this.loadUnitJson();
         }
     }
 

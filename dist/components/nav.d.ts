@@ -76,6 +76,7 @@ export declare class Nav {
     registerReceiveHandler(handler: (message: any) => Promise<void>): number;
     unregisterReceiveHandler(handlerId: number): void;
     onReceive(msg: any): Promise<void>;
+    private loadUnitJson;
     private getPredefinedUnitName;
     private loadPredefinedUnit;
     setSettings(settings?: NavSettings): void;

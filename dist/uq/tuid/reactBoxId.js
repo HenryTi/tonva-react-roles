@@ -40,9 +40,9 @@ var TuidContent = function (tuidName, values, x) {
     return React.createElement(React.Fragment, null,
         tuidName,
         ": ",
-        stringify(values));
+        uqStringify(values));
 };
-function stringify(values) {
+export function uqStringify(values) {
     var s = '{';
     if (values === undefined)
         return 'undefined';

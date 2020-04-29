@@ -37,6 +37,7 @@ export declare abstract class Controller {
     protected onMessage(message: any): Promise<void>;
     private onMessageReceive;
     protected beforeStart(): Promise<boolean>;
+    protected afterStart(): Promise<void>;
     protected registerReceiveHandler(): void;
     protected abstract internalStart(param?: any, ...params: any[]): Promise<void>;
     start(param?: any, ...params: any[]): Promise<void>;

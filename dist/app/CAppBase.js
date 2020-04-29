@@ -79,6 +79,19 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.setRes = function (res) {
         setGlobalRes(res);
     };
+    CAppBase.prototype.hookElements = function (elements) {
+        if (elements === undefined)
+            return;
+        //nav.setSettings(appConfig);
+        //let cApp:CApp = (await start(CApp, appConfig)) as CApp;
+        for (var i in elements) {
+            var el = document.getElementById(i);
+            if (el) {
+                elements[i](el);
+            }
+        }
+    };
+    ;
     CAppBase.prototype.beforeStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             var retErrors, predefinedUnit_1, user, _a, appUnit, err_1;

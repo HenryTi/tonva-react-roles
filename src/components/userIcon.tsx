@@ -93,13 +93,22 @@ export const UserIcon = observer((props: UserIconProps):JSX.Element => {
 });
 
 export interface UserViewProps {
-    id: number;
+	id?: number;
+	user?: number|User;
     render: (user:User) => JSX.Element;
 }
 
 export const UserView = observer((props: UserViewProps):JSX.Element => {
-    let {id, render} = props;
-    let user = userCache.getValue(id);
+	let {id, user, render} = props;
+	if (!user) {
+		user = userCache.getValue(id);
+	}
+	else {
+		let {obj, id} = user as any;
+		if (typeof obj !== 'object') {
+			user = userCache.getValue(id);
+		}
+	}
     switch (typeof user) {
 		case 'undefined':
 		case 'number':
@@ -108,6 +117,10 @@ export const UserView = observer((props: UserViewProps):JSX.Element => {
     return render(user);
 });
 
-export function useUser(id: number) {
+export function useUser(id: number|object) {
+	if (!id) return;
+	if (typeof(id) === 'object') {
+		id = (id as any).id;
+	}
 	userCache.use(id);
 }

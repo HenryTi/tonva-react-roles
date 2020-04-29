@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { BoxId } from './boxId';
 import { Tuid } from './tuid';
+export declare function uqStringify(values: any): string;
 export declare class ReactBoxId implements BoxId {
     readonly id: number;
     protected tuid: Tuid;

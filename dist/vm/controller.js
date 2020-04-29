@@ -162,6 +162,13 @@ var Controller = /** @class */ (function () {
             });
         });
     };
+    Controller.prototype.afterStart = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
     Controller.prototype.registerReceiveHandler = function () {
         this.receiveHandlerId = nav.registerReceiveHandler(this.onMessageReceive);
     };
@@ -184,6 +191,9 @@ var Controller = /** @class */ (function () {
                             return [2 /*return*/];
                         return [4 /*yield*/, this.internalStart.apply(this, __spreadArrays([param], params))];
                     case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.afterStart()];
+                    case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }
