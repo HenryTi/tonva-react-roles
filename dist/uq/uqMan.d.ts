@@ -93,9 +93,9 @@ export declare class UqMan {
     init(): Promise<void>;
     loadEntities(): Promise<string>;
     buildEntities(entities: any): void;
+    private buildTuids;
     loadEntitySchema(entityName: string): Promise<any>;
     getTuid(name: string): Tuid;
-    private buildTuids;
     private buildAccess;
     cacheTuids(defer: number): void;
     newAction(name: string, id: number): Action;

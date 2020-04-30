@@ -50,28 +50,15 @@ var LocalCache = /** @class */ (function () {
         }
     };
     LocalCache.prototype.set = function (value) {
-        //this.value = value;
-        var t = JSON.stringify(value);
+        var t = JSON.stringify(value, function (key, value) {
+            if (key !== '_tuid')
+                return value;
+        });
         this.local.setItem(this.key, t);
-        /*
-        let text = Flatted.stringify(value, undefined, undefined);
-        let objs:object[] = [];
-        let circular:any = {};
-        let path:string[] = [];
-        try {
-            if (testCircular(value, objs, circular, path) === true) debugger;
-            let t = JSON.stringify(value);
-            this.local.setItem(this.key, t);
-        }
-        catch (e) {
-            let s = null;
-        }
-        */
     };
     LocalCache.prototype.remove = function (local) {
         if (local === undefined) {
             this.local.removeItem(this.key);
-            //this.value = undefined;
         }
         else {
             this.local.removeLocal(local);

@@ -59,10 +59,6 @@ var Tuid = /** @class */ (function (_super) {
         _this.isImport = false;
         return _this;
     }
-    /*
-    constructor(uq:UqMan, name:string, typeId:number) {
-        super(uq, name, typeId)
-    }*/
     Tuid.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         var id = schema.id;

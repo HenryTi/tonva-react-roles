@@ -195,12 +195,6 @@ var UqMan = /** @class */ (function () {
             });
         });
     };
-    /*
-    async loadEntities() {
-        let accesses = await this.uqApi.loadEntities();
-        this.buildEntities(accesses);
-    }
-    */
     UqMan.prototype.buildEntities = function (entities) {
         if (entities === undefined) {
             debugger;
@@ -210,24 +204,6 @@ var UqMan = /** @class */ (function () {
         this.uqVersion = version;
         this.buildTuids(tuids);
         this.buildAccess(access);
-    };
-    /*
-    async checkAccess() {
-        return await this.uqApi.checkAccess();
-    }
-    */
-    UqMan.prototype.loadEntitySchema = function (entityName) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.uqApi.schema(entityName)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
-    UqMan.prototype.getTuid = function (name) {
-        return this.tuids[name];
     };
     UqMan.prototype.buildTuids = function (tuids) {
         for (var i in tuids) {
@@ -245,6 +221,19 @@ var UqMan = /** @class */ (function () {
             var tuid = this.tuids[i];
             tuid.buildFieldsTuid();
         }
+    };
+    UqMan.prototype.loadEntitySchema = function (entityName) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.uqApi.schema(entityName)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UqMan.prototype.getTuid = function (name) {
+        return this.tuids[name];
     };
     UqMan.prototype.buildAccess = function (access) {
         for (var a in access) {

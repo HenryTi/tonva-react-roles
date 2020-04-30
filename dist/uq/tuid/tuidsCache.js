@@ -47,8 +47,6 @@ var TuidsCache = /** @class */ (function () {
             }
         };
         this.uq = uq;
-        //this.uqApi = uq.uqApi;
-        //this.tuids = uq.tuids;
     }
     TuidsCache.prototype.cacheTuids = function (defer) {
         this.clearCacheTimer();
