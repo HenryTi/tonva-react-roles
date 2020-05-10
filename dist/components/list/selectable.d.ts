@@ -9,7 +9,6 @@ export interface SelectableItem {
 export declare class Selectable extends ListBase {
     private _items;
     private inputItems;
-    private disposer;
     constructor(list: List);
     private listenArraySplice;
     private buildItems;

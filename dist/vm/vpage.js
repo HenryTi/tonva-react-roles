@@ -47,17 +47,17 @@ var VPage = /** @class */ (function (_super) {
         configurable: true
     });
     Object.defineProperty(VPage.prototype, "headerClassName", {
-        get: function () { return; },
+        get: function () { return null; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(VPage.prototype, "bgClassName", {
-        get: function () { return; },
+        get: function () { return null; },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(VPage.prototype, "tabsProps", {
-        get: function () { return; },
+        get: function () { return null; },
         enumerable: true,
         configurable: true
     });

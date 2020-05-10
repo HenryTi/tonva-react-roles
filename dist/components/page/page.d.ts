@@ -32,7 +32,6 @@ export interface PageProps extends ScrollProps {
 export declare class Page extends React.Component<PageProps> {
     private tabsView;
     constructor(props: PageProps);
-    private renderSingle;
     private renderHeader;
     private renderFooter;
     render(): JSX.Element;

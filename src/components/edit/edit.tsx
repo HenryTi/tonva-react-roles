@@ -1,11 +1,10 @@
 import * as React from 'react';
 //import _ from 'lodash';
 import { observer } from 'mobx-react';
-import { Schema, UiSchema, ItemSchema, UiItem, UiSelectBase, UiRadio, UiTagSingle, UiTagMulti } from '../schema';
+import { Schema, UiSchema, ItemSchema, UiItem, UiRadio, UiTagSingle, UiTagMulti } from '../schema';
 import { ItemEdit } from './itemEdit';
 import { StringItemEdit } from './stringItemEdit';
 import { ImageItemEdit } from './imageItemEdit';
-import { Image } from '../image';
 import { RadioItemEdit } from './radioItemEdit';
 import { SelectItemEdit } from './selectItemEdit';
 import { IdItemEdit } from './idItemEdit';

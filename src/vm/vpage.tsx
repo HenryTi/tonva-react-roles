@@ -42,7 +42,7 @@ export abstract class VPage<C extends Controller> extends View<C> {
 	protected onPageScrollBottom(scroller: Scroller): void {}
 	protected afterBack():void {}
 	protected get back(): 'close' | 'back' | 'none' {return 'back'}
-	protected get headerClassName(): string {return;}
-	protected get bgClassName(): string {return;}
-	protected get tabsProps(): TabsProps {return;}
+	protected get headerClassName(): string {return null;}
+	protected get bgClassName(): string {return null;}
+	protected get tabsProps(): TabsProps {return null;}
 }

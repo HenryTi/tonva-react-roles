@@ -42,7 +42,7 @@ var TagView = /** @class */ (function () {
             React.createElement("div", { className: wrapClassName }, content));
     };
     TagView.prototype.renderRadio = function (item, value, options) {
-        var id = item.id, name = item.name, ext = item.ext;
+        var id = item.id, name = item.name;
         var inputs = options.inputs, inputName = options.inputName, onInputChange = options.onInputChange;
         var ref = inputs && (function (input) { return inputs[id] = input; });
         return React.createElement("label", { className: "form-radio-inline" },
@@ -50,7 +50,7 @@ var TagView = /** @class */ (function () {
             name);
     };
     TagView.prototype.renderCheck = function (item, checked, options) {
-        var id = item.id, name = item.name, ext = item.ext;
+        var id = item.id, name = item.name;
         var inputs = options.inputs, onInputChange = options.onInputChange;
         var ref = inputs && (function (input) { return inputs[id] = input; });
         return React.createElement("label", { className: "form-radio-inline" },

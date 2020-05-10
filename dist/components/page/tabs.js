@@ -65,7 +65,7 @@ var Tab = /** @class */ (function () {
     Object.defineProperty(Tab.prototype, "content", {
         get: function () {
             if (this.load && this.loaded === false)
-                return;
+                return null;
             if (this.selected === false)
                 return this._content;
             if (!this._content) {
@@ -300,14 +300,12 @@ var TabsView = /** @class */ (function () {
         var _this = this;
         var tabPosition = this.props.tabPosition;
         var tabs = React.createElement(this.tabs, null);
-        var cnContainer, header, footer;
+        var header, footer;
         var visibility = { display: 'none' };
         if (tabPosition === 'top') {
-            cnContainer = 'tv-page-header';
             header = React.createElement("header", null, tabs);
         }
         else {
-            cnContainer = 'tv-page-footer';
             footer = React.createElement("footer", null, tabs);
         }
         return React.createElement(React.Fragment, null,

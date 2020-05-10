@@ -90,7 +90,7 @@ var ItemEdit = /** @class */ (function () {
     };
     ItemEdit.prototype.renderContent = function () {
         var _this = this;
-        var _a = this._itemSchema, name = _a.name, type = _a.type, required = _a.required;
+        var _a = this._itemSchema, name = _a.name, type = _a.type;
         var divValue;
         var uiItem = this._uiItem;
         var label, labelHide;

@@ -116,15 +116,13 @@ var Selectable = /** @class */ (function (_super) {
                         } }),
                     React.createElement("label", { className: "", style: { flex: 1, marginBottom: 0 }, htmlFor: labelId }, _this.renderContent(obItem, index))));
         });
-        //this.disposer = autorun(this.buildItems);
         _this.buildItems();
         _this.listenArraySplice();
         return _this;
     }
-    //dispose() {this.disposer()};
     Selectable.prototype.listenArraySplice = function () {
         var _this = this;
-        var _a = this.list.props, items = _a.items, selectedItems = _a.selectedItems, compare = _a.compare;
+        var items = this.list.props.items;
         if (items === undefined)
             return;
         if (items === null)

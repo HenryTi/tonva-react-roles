@@ -59,8 +59,6 @@ var TagItemEdit = /** @class */ (function (_super) {
         _this.inputs = {};
         _this.page = observer(function (props) {
             var resolve = props.resolve;
-            var name = _this.itemSchema.name;
-            //let {valuesView} = this.uiItem;
             var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !_this.isChanged, onClick: function () {
                     _this.verifyValue();
                     if (_this.error === undefined)

@@ -3,6 +3,7 @@ export declare abstract class PageItems<T> {
     constructor(itemObservable?: boolean);
     private isFirst;
     private pageItemAction;
+    private itemConverter;
     loading: boolean;
     private beforeLoad;
     protected loaded: boolean;
@@ -12,6 +13,9 @@ export declare abstract class PageItems<T> {
     setEachPageItem(pageItemAction: (item: T, results: {
         [name: string]: any[];
     }) => void): void;
+    setItemConverter(itemConverter: (item: any, queryResults: {
+        [name: string]: any[];
+    }) => T): void;
     topDiv: string;
     bottomDiv: string;
     scrollToTop(): void;

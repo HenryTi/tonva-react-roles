@@ -70,6 +70,9 @@ var PageItems = /** @class */ (function () {
     PageItems.prototype.setEachPageItem = function (pageItemAction) {
         this.pageItemAction = pageItemAction;
     };
+    PageItems.prototype.setItemConverter = function (itemConverter) {
+        this.itemConverter = itemConverter;
+    };
     PageItems.prototype.scrollToTop = function () {
         this.topDiv = '$$' + uid();
     };
@@ -78,13 +81,22 @@ var PageItems = /** @class */ (function () {
     };
     PageItems.prototype.load = function (param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
-            var results, pageList, len, i;
+            var results, pageList, ret, len, i, item, len, i;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.loadResults(param, pageStart, pageSize)];
                     case 1:
                         results = _a.sent();
                         pageList = results.$page;
+                        if (this.itemConverter) {
+                            ret = [];
+                            len = pageList.length;
+                            for (i = 0; i < len; i++) {
+                                item = this.itemConverter(pageList[i], results);
+                                ret.push(item);
+                            }
+                            return [2 /*return*/, ret];
+                        }
                         if (this.pageItemAction !== undefined) {
                             len = pageList.length;
                             for (i = 0; i < len; i++) {
