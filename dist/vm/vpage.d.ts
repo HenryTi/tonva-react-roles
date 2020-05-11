@@ -10,6 +10,7 @@ export declare abstract class VPage<C extends Controller> extends View<C> {
     right(): JSX.Element;
     content(): JSX.Element;
     footer(): JSX.Element;
+    logout(): boolean | (() => Promise<void>);
     renderPage(): JSX.Element;
     protected onPageScroll(e: any): void;
     protected onPageScrollTop(scroller: Scroller): void;

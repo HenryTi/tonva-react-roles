@@ -21,6 +21,7 @@ export abstract class VPage<C extends Controller> extends View<C> {
 	right():JSX.Element {return null;}
 	content():JSX.Element {return null;}
 	footer():JSX.Element {return null;}
+	logout(): boolean | (()=>Promise<void>) {return false;}
 	renderPage():JSX.Element {
 		return <Page
 			header={this.header()} right={this.right()} footer={this.footer()}
@@ -32,6 +33,7 @@ export abstract class VPage<C extends Controller> extends View<C> {
 			bgClassName={this.bgClassName}
 			afterBack={()=>this.afterBack()}
 			tabsProps={this.tabsProps}
+			logout={this.logout()}
 		>
 			{this.content()}
 		</Page>;

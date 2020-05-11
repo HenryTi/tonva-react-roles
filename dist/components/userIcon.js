@@ -83,20 +83,33 @@ export var UserIcon = observer(function (props) {
         } });
 });
 export var UserView = observer(function (props) {
-    var id = props.id, user = props.user, render = props.render;
-    if (!user) {
-        user = userCache.getValue(id);
-    }
-    else {
-        var _a = user, obj = _a.obj, id_1 = _a.id;
-        if (typeof obj !== 'object') {
-            user = userCache.getValue(id_1);
-        }
+    var idProp = props.id, user = props.user, render = props.render;
+    if (user === null)
+        return React.createElement(React.Fragment, null, "null");
+    switch (typeof user) {
+        case 'undefined':
+            user = userCache.getValue(idProp);
+            break;
+        case 'object':
+            var _a = user, obj = _a.obj, id = _a.id;
+            if (typeof obj !== 'object') {
+                user = userCache.getValue(id);
+            }
+            break;
+        case 'number':
+            user = userCache.getValue(user);
+            break;
+        case 'string':
+            user = userCache.getValue(Number(user));
+            break;
+        default:
+            user = undefined;
+            break;
     }
     switch (typeof user) {
         case 'undefined':
         case 'number':
-            return React.createElement(React.Fragment, null);
+            return React.createElement(React.Fragment, null, user);
     }
     return render(user);
 });

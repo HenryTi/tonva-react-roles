@@ -99,20 +99,32 @@ export interface UserViewProps {
 }
 
 export const UserView = observer((props: UserViewProps):JSX.Element => {
-	let {id, user, render} = props;
-	if (!user) {
-		user = userCache.getValue(id);
-	}
-	else {
-		let {obj, id} = user as any;
-		if (typeof obj !== 'object') {
-			user = userCache.getValue(id);
-		}
+	let {id:idProp, user, render} = props;
+	if (user === null) return <>null</>;
+	switch (typeof user) {
+		case 'undefined': 
+			user = userCache.getValue(idProp);
+			break;
+		case 'object': 
+			let {obj, id} = user as any;
+			if (typeof obj !== 'object') {
+				user = userCache.getValue(id);
+			}
+			break;
+		case 'number':
+			user = userCache.getValue(user as number);
+			break;
+		case 'string':
+			user = userCache.getValue(Number(user));
+			break;
+		default:
+			user = undefined;
+			break;
 	}
     switch (typeof user) {
 		case 'undefined':
 		case 'number':
-        	return <></>;
+        	return <>{user}</>;
     }
     return render(user);
 });
