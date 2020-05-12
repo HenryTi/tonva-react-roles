@@ -814,7 +814,7 @@
         "signature": "b7d3c0e4135ced540df2b914aeafc1c4d3bca10092895bd0ef0d9ecc1eb9bbac"
       },
       "./src/components/usericon.tsx": {
-        "version": "aae925c0e660c288f2e776e2fddb4ed21c4fc9aff6a60190e98223cf2f08281c",
+        "version": "57d723aa59ed9f4a8ab43430b79c24575db12efbaaa4763bec3ece5b96a1dc3e",
         "signature": "b46cfac0dd3e9bea87de162e34009e29121312fc38d08595acf20e49fbc611c5"
       },
       "./src/components/index.ts": {
@@ -2985,10 +2985,16 @@
       "./src/components/simple/muted.tsx",
       "./src/components/simple/index.ts",
       "./src/components/reloadpage.tsx",
+      "./src/vm/view.tsx",
+      "./src/vm/vpage.tsx",
+      "./src/vm/controller.tsx",
+      "./src/vm/index.ts",
       "./src/entry/res/login.ts",
       "./src/entry/res/register.ts",
       "./src/entry/res/index.ts",
       "./src/entry/tools.tsx",
+      "./src/entry/register.tsx",
+      "./src/entry/login.tsx",
       "./src/entry/changepassword.tsx",
       "./src/components/nav.tsx",
       "./src/components/page/index.ts",
@@ -3031,6 +3037,7 @@
       "./src/components/edit/selectitemedit.tsx",
       "./src/components/edit/iditemedit.tsx",
       "./src/components/edit/tagitemedit.tsx",
+      "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
       "./src/components/rules/index.ts",
       "./src/components/list/base.tsx",
@@ -3076,6 +3083,12 @@
       "./src/uq/uqman.ts",
       "./src/uq/index.ts",
       "./src/app/centerapi.ts",
+      "./src/app/vmain.tsx",
+      "./src/app/cappbase.ts",
+      "./src/app/start.ts",
+      "./src/app/cbase.ts",
+      "./src/app/index.ts",
+      "./src/index.ts",
       "./src/components/callbacks.ts",
       "./src/components/edit/selectbaseitemedit.tsx",
       "./src/components/fileupload/index.tsx",
@@ -3095,20 +3108,7 @@
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "../../../node_modules/@types/ejs/index.d.ts",
-      "./src/vm/vpage.tsx",
-      "./src/vm/index.ts",
-      "./src/vm/controller.tsx",
-      "./src/vm/view.tsx",
-      "./src/components/edit/edit.tsx",
-      "./src/components/usericon.tsx",
-      "./src/entry/register.tsx",
-      "./src/entry/login.tsx",
-      "./src/app/vmain.tsx",
-      "./src/app/cappbase.ts",
-      "./src/app/start.ts",
-      "./src/app/cbase.ts",
-      "./src/app/index.ts",
-      "./src/index.ts"
+      "./src/components/usericon.tsx"
     ]
   },
   "version": "3.8.3"

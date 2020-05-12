@@ -91,11 +91,11 @@ export var UserView = observer(function (props) {
             user = userCache.getValue(idProp);
             break;
         case 'object':
-            var _a = user, obj = _a.obj, id = _a.id;
-            if (typeof obj !== 'object') {
-                useUser(id);
-                user = userCache.getValue(id);
-            }
+            var /*obj, */ id = user.id;
+            //if (typeof obj !== 'object') {
+            useUser(id);
+            user = userCache.getValue(id);
+            //}
             break;
         case 'number':
             useUser(user);

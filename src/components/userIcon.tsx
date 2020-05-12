@@ -106,11 +106,11 @@ export const UserView = observer((props: UserViewProps):JSX.Element => {
 			user = userCache.getValue(idProp);
 			break;
 		case 'object': 
-			let {obj, id} = user as any;
-			if (typeof obj !== 'object') {
+			let {/*obj, */id} = user as any;
+			//if (typeof obj !== 'object') {
 				useUser(id);
 				user = userCache.getValue(id);
-			}
+			//}
 			break;
 		case 'number':
 			useUser(user as number);
