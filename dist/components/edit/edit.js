@@ -116,6 +116,7 @@ var Edit = /** @class */ (function (_super) {
                         err_1 = _b.sent();
                         // 如果直接back，会触发reject，就到这里了
                         console.log('no value changed');
+                        console.error(err_1);
                         return [3 /*break*/, 10];
                     case 10: return [2 /*return*/];
                 }

@@ -12,7 +12,8 @@ export abstract class VPage<C extends Controller> extends View<C> {
 
 	render(param?:any):JSX.Element {
 		this.init(param);
-		return this.content();
+		//return this.content();
+		return this.renderPage();
 	}
 
 	init(param?:any):void {return;}
@@ -22,9 +23,11 @@ export abstract class VPage<C extends Controller> extends View<C> {
 	content():JSX.Element {return null;}
 	footer():JSX.Element {return null;}
 	logout(): boolean | (()=>Promise<void>) {return false;}
-	renderPage():JSX.Element {
+	protected renderPage():JSX.Element {
+		let header = this.header();
+		if (!header) header = false;
 		return <Page
-			header={this.header()} right={this.right()} footer={this.footer()}
+			header={header} right={this.right()} footer={this.footer()}
 			onScroll={(e:any)=>this.onPageScroll(e)}
 			onScrollTop={(scroller: Scroller) => this.onPageScrollTop(scroller)}
 			onScrollBottom={(scroller: Scroller) => this.onPageScrollBottom(scroller)}

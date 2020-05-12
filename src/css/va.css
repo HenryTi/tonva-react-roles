@@ -221,12 +221,11 @@ div.tv-page {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-/*
-  ul.va>li>* {
-	margin-left: auto;
-	margin-right: auto;
- }
-*/
+div.tv-page div.tv-page {
+	overflow-y: unset !important;
+	overflow-x: unset !important;
+}
+
   ul.va>li>iframe {
       height: 100%;
       border: none;

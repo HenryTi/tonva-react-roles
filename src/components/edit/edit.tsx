@@ -125,7 +125,8 @@ export class Edit extends React.Component<EditProps> {
         }
         catch (err) {
             // 如果直接back，会触发reject，就到这里了
-            console.log('no value changed');
+			console.log('no value changed');
+			console.error(err);
         }
     }
 }

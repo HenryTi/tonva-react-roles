@@ -546,8 +546,8 @@
         "signature": "521759355dab136973d5fcf44d7eef7424b0ab8bd78ab3b73490c697d9eba5f1"
       },
       "./src/vm/vpage.tsx": {
-        "version": "d96ce348cfb49e6dfbbf22d55c62803df081128e49b454f22b314931c01990ee",
-        "signature": "1deb5f093ea169f966ec93cdec1e29ca7bf8f4db6f15428db30ebf65fbd0ec51"
+        "version": "3a38f0f05f76a0ba038ad65de4b0943d83f97b26e6803a99a4618a73a8ec4a3a",
+        "signature": "7cef7797f3951d552d74c592d1139e0bebde16cdb17ce9b5be854921ca9da049"
       },
       "./src/vm/controller.tsx": {
         "version": "8d165eaf156409665ac7bd16de69e6f726f02a90a6c44df962120a2e6a5d253a",
@@ -750,7 +750,7 @@
         "signature": "a76f5f1119964495b3d3cd4120a070ad9053b5a3b6111a2179c9f16ecda0875a"
       },
       "./src/components/edit/edit.tsx": {
-        "version": "d52703abad97e25b52db79991d9447e1872e8d028f5ba9e0448a3d790692b6b8",
+        "version": "b2cc1da89fc3b33694131dcef35b979ff24ddc5a9686bd3dcee0c5ffac311b5e",
         "signature": "4f7c5f409e50c260c37f4f3318fd7cbe05f457785284cd7c73298f6742547b7d"
       },
       "./src/components/edit/index.tsx": {
@@ -814,7 +814,7 @@
         "signature": "b7d3c0e4135ced540df2b914aeafc1c4d3bca10092895bd0ef0d9ecc1eb9bbac"
       },
       "./src/components/usericon.tsx": {
-        "version": "6f46f65e4102657ac7929ce106c23e45d4d03fefa54021046a86587094a57450",
+        "version": "aae925c0e660c288f2e776e2fddb4ed21c4fc9aff6a60190e98223cf2f08281c",
         "signature": "b46cfac0dd3e9bea87de162e34009e29121312fc38d08595acf20e49fbc611c5"
       },
       "./src/components/index.ts": {
@@ -3031,7 +3031,6 @@
       "./src/components/edit/selectitemedit.tsx",
       "./src/components/edit/iditemedit.tsx",
       "./src/components/edit/tagitemedit.tsx",
-      "./src/components/edit/edit.tsx",
       "./src/components/edit/index.tsx",
       "./src/components/rules/index.ts",
       "./src/components/list/base.tsx",
@@ -3100,6 +3099,7 @@
       "./src/vm/index.ts",
       "./src/vm/controller.tsx",
       "./src/vm/view.tsx",
+      "./src/components/edit/edit.tsx",
       "./src/components/usericon.tsx",
       "./src/entry/register.tsx",
       "./src/entry/login.tsx",

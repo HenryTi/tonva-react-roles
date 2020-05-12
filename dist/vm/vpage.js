@@ -26,7 +26,8 @@ var VPage = /** @class */ (function (_super) {
     };
     VPage.prototype.render = function (param) {
         this.init(param);
-        return this.content();
+        //return this.content();
+        return this.renderPage();
     };
     VPage.prototype.init = function (param) { return; };
     VPage.prototype.header = function () { return null; };
@@ -36,7 +37,10 @@ var VPage = /** @class */ (function (_super) {
     VPage.prototype.logout = function () { return false; };
     VPage.prototype.renderPage = function () {
         var _this = this;
-        return React.createElement(Page, { header: this.header(), right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, bgClassName: this.bgClassName, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout() }, this.content());
+        var header = this.header();
+        if (!header)
+            header = false;
+        return React.createElement(Page, { header: header, right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, bgClassName: this.bgClassName, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout() }, this.content());
     };
     VPage.prototype.onPageScroll = function (e) { };
     VPage.prototype.onPageScrollTop = function (scroller) { };
