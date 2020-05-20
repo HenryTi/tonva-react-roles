@@ -12,6 +12,9 @@ export interface TabProp {
     load?: () => Promise<void>;
     onShown?: () => Promise<void>;
     isSelected?: boolean;
+    onScroll?: () => void;
+    onScrollTop?: () => void;
+    onScrollBottom?: () => void;
 }
 export interface TabsProps {
     tabs: TabProp[];
@@ -34,6 +37,9 @@ declare class Tab {
     notify: IObservableValue<number>;
     load?: () => Promise<void>;
     onShown?: () => Promise<void>;
+    onScroll?: () => void;
+    onScrollTop?: () => void;
+    onScrollBottom?: () => void;
     private _content;
     get content(): JSX.Element;
     shown(): Promise<void>;
@@ -58,5 +64,10 @@ export declare class Tabs extends React.Component<TabsProps> {
     private readonly tabsView;
     constructor(props: TabsProps);
     render(): JSX.Element;
+}
+export declare class RootTabs extends React.Component<TabsProps> {
+    private readonly tabsView;
+    constructor(props: TabsProps);
+    render(): React.FunctionComponentElement<{}>;
 }
 export {};

@@ -1,21 +1,10 @@
 import * as React from 'react';
 import { TabsProps } from './tabs';
+import { ScrollProps } from './scrollView';
 export interface IVPage {
     content(): JSX.Element;
     header(): JSX.Element;
     footer(): JSX.Element;
-}
-export declare class Scroller {
-    private el;
-    constructor(el: HTMLBaseElement);
-    scrollToTop(): void;
-    scrollToBottom(): void;
-}
-export interface ScrollProps {
-    onScroll?: (e: any) => void;
-    onScrollTop?: (scroller: Scroller) => void;
-    onScrollBottom?: (scroller: Scroller) => void;
-    bgClassName?: string;
 }
 export interface PageProps extends ScrollProps {
     back?: 'close' | 'back' | 'none';

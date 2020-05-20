@@ -19,9 +19,14 @@ var VPage = /** @class */ (function (_super) {
     function VPage() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    VPage.prototype.open = function (param) {
+    VPage.prototype.open = function (param, onClosePage) {
+        var _this = this;
+        //this.onClosePage = onClosePage;
         this.init(param);
-        this.openPageElement(this.renderPage());
+        var _onClosePage;
+        if (onClosePage !== undefined)
+            _onClosePage = function () { return onClosePage(_this.retOnClosePage); };
+        this.openPageElement(this.renderPage(), _onClosePage);
         return;
     };
     VPage.prototype.render = function (param) {

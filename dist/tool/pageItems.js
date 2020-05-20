@@ -114,6 +114,7 @@ var PageItems = /** @class */ (function () {
         this.loaded = false;
         this.param = undefined;
         this.allLoaded = false;
+        this.pageStart = undefined;
         this._items.clear();
         //this.setPageStart(undefined);
     };
@@ -177,13 +178,6 @@ var PageItems = /** @class */ (function () {
                         this.loading = false;
                         this.loaded = true;
                         len = ret.length;
-                        /*
-                        if (this.itemAction !== undefined) {
-                            for (let i=0; i<len; i++) {
-                                this.itemAction(ret[i], ret);
-                            }
-                        }
-                        */
                         if ((this.isFirst === true && len > this.firstSize) ||
                             (this.isFirst === false && len > this.pageSize)) {
                             this.allLoaded = false;

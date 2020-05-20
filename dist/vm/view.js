@@ -52,11 +52,11 @@ var View = /** @class */ (function () {
     View.prototype.renderVm = function (vm, param) {
         return (new vm(this.controller)).render(param);
     };
-    View.prototype.openVPage = function (vp, param) {
+    View.prototype.openVPage = function (vp, param, afterBack) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (new vp(this.controller)).open(param)];
+                    case 0: return [4 /*yield*/, (new vp(this.controller)).open(param, afterBack)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -114,8 +114,8 @@ var View = /** @class */ (function () {
     View.prototype.replacePage = function (view, param) {
         this.controller.replacePage(React.createElement(view, param));
     };
-    View.prototype.openPageElement = function (page) {
-        this.controller.openPage(page);
+    View.prototype.openPageElement = function (page, onClosePage) {
+        this.controller.openPage(page, onClosePage);
     };
     View.prototype.replacePageElement = function (page) {
         this.controller.replacePage(page);

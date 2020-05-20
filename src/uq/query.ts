@@ -1,4 +1,4 @@
-//import _ from 'lodash';
+import _ from 'lodash';
 import {observable, IObservableArray} from 'mobx';
 import { PageItems } from '../tool';
 import {Field, ArrFields} from './uqMan';
@@ -26,78 +26,98 @@ export class QueryPager<T extends any> extends PageItems<T> {
     }
 
     protected async loadResults(param:any, pageStart:number, pageSize:number):Promise<{[name:string]:any[]}> {
-        //if (pageStart === undefined) pageStart = 0;
-        //let ret = await this.query.page(param, pageStart, pageSize);
-		//return ret;
 		let ret = await this.query.page(param, pageStart, pageSize);
 		return ret;
-    }
-    protected setPageStart(item:T) {
+	}
+	private get$Page() {
         let {schema} = this.query;
         if (schema === undefined) return;
         let $page = (schema.returns as any[]).find(v => v.name === '$page');
-        if ($page === undefined) return;
-        
+		if ($page === undefined) return;
+		return $page;
+	}
+	private getPageStart(item:T) {
+		let $page = this.get$Page();
         let {order} = $page;
         if (order === undefined) return;
-        /*
-        if (order === 'desc') {
-            this.appendPosition = 'head';
-        }
-        else {
-            this.appendPosition = 'tail';
-        }
-        */
-        if (item !== undefined) {
-            let field = $page.fields[0];
-            if (field) {
-                let start = item[field.name];
-                if (start === null)
-                    start = undefined;
-                else if (start !== undefined) {
-                    if (typeof start === 'object') {
-                        start = start.id;
-                    }
-                }
-                this.pageStart = start;
-            }
-        }
+		if (item === undefined) return;
+		let field = $page.fields[0];
+		if (!field) return;
 
-        /*
-        let {field, type, asc} = order;
-        let start:any;
-        if (item !== undefined) start = item[field];
-        if (asc === false) {
-            this.appendPosition = 'head';
-            switch (type) {
-                default:
-                case 'tinyint':
-                case 'smallint':
-                case 'int':
-                case 'bigint':
-                case 'dec': start = 999999999999; break;
-                case 'date':
-                case 'datetime': start = undefined; break;          // 会自动使用现在
-                case 'char': start = ''; break;
-            }
-        }
-        else {
-            this.appendPosition = 'tail';
-            switch (type) {
-                default:
-                case 'tinyint':
-                case 'smallint':
-                case 'int':
-                case 'bigint':
-                case 'dec': start = 0; break;
-                case 'date':
-                case 'datetime': start = '1970-1-1'; break;
-                case 'char': start = ''; break;
-            }
-        }
-        this.pageStart = start;
-        */
-    }
+		let start = item[field.name];
+		if (start === null) return;
+		if (start === undefined) return;
+		if (typeof start === 'object') {
+			return start.id;
+		}
+		return start;
+	}
+    protected setPageStart(item:T) {
+		this.pageStart = this.getPageStart(item);
+	}
+	findItem(id:any):T {
+		let $page = this.get$Page();
+		if (!$page) return;
+        let {fields} = $page;
+		let field = fields[0];
+		if (!field) return;
+		let fn = field.name;
+
+		let newId = id;
+		if (newId === undefined || newId === null) return;
+		if (typeof newId === 'object') newId = newId.id;
+		let oldItem = this._items.find(v => {
+			let oldId = v[fn];
+			if (oldId === undefined || oldId === null) return false;
+			if (typeof oldId === 'object') oldId = oldId.id;
+			return oldId = newId;
+		});
+		return oldItem;
+	}
+	async refreshItems(item:T) {
+		let $page = this.get$Page();
+		if (!$page) return;
+        let {fields} = $page;
+		let index = this._items.indexOf(item);
+		if (index < 0) return;
+		let startIndex:number;
+		if (this.appendPosition === 'tail') {
+			startIndex = index - 1;
+		}
+		else {
+			startIndex = index + 1;
+		}
+		let field = fields[0];
+		if (!field) return;
+		let pageStart = this.getPageStart(this._items[startIndex]);
+		let pageSize = 1;
+        let ret = await this.load(
+			this.param, 
+			pageStart,
+			pageSize);
+		let len = ret.length;
+		if (len === 0) {
+			this._items.splice(index, 1);
+			return;
+		}
+		let fn = field.name;
+		for (let i=0; i<len; i++) {
+			let newItem = ret[i];
+			if (!newItem) continue;
+			let newId = newItem[fn];
+			if (newId === undefined || newId === null) continue;
+			if (typeof newId === 'object') newId = newId.id;
+			let oldItem = this._items.find(v => {
+				let oldId = v[fn];
+				if (oldId === undefined || oldId === null) return false;
+				if (typeof oldId === 'object') oldId = oldId.id;
+				return oldId = newId;
+			});
+			if (oldItem) {
+				_.merge(oldItem, newItem);
+			}
+		}
+	}
 }
 
 export class Query extends Entity {

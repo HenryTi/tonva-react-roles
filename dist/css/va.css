@@ -224,6 +224,10 @@ div.tv-page {
 div.tv-page div.tv-page {
 	overflow-y: unset !important;
 	overflow-x: unset !important;
+	position: unset !important;
+}
+div.tv-page div.tv-page>footer {
+	position: unset !important;
 }
 
   ul.va>li>iframe {

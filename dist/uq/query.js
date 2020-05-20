@@ -53,7 +53,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//import _ from 'lodash';
+import _ from 'lodash';
 import { observable } from 'mobx';
 import { PageItems } from '../tool';
 import { Entity } from './entity';
@@ -102,72 +102,124 @@ var QueryPager = /** @class */ (function (_super) {
             });
         });
     };
-    QueryPager.prototype.setPageStart = function (item) {
+    QueryPager.prototype.get$Page = function () {
         var schema = this.query.schema;
         if (schema === undefined)
             return;
         var $page = schema.returns.find(function (v) { return v.name === '$page'; });
         if ($page === undefined)
             return;
+        return $page;
+    };
+    QueryPager.prototype.getPageStart = function (item) {
+        var $page = this.get$Page();
         var order = $page.order;
         if (order === undefined)
             return;
-        /*
-        if (order === 'desc') {
-            this.appendPosition = 'head';
+        if (item === undefined)
+            return;
+        var field = $page.fields[0];
+        if (!field)
+            return;
+        var start = item[field.name];
+        if (start === null)
+            return;
+        if (start === undefined)
+            return;
+        if (typeof start === 'object') {
+            return start.id;
         }
-        else {
-            this.appendPosition = 'tail';
-        }
-        */
-        if (item !== undefined) {
-            var field = $page.fields[0];
-            if (field) {
-                var start = item[field.name];
-                if (start === null)
-                    start = undefined;
-                else if (start !== undefined) {
-                    if (typeof start === 'object') {
-                        start = start.id;
-                    }
+        return start;
+    };
+    QueryPager.prototype.setPageStart = function (item) {
+        this.pageStart = this.getPageStart(item);
+    };
+    QueryPager.prototype.findItem = function (id) {
+        var $page = this.get$Page();
+        if (!$page)
+            return;
+        var fields = $page.fields;
+        var field = fields[0];
+        if (!field)
+            return;
+        var fn = field.name;
+        var newId = id;
+        if (newId === undefined || newId === null)
+            return;
+        if (typeof newId === 'object')
+            newId = newId.id;
+        var oldItem = this._items.find(function (v) {
+            var oldId = v[fn];
+            if (oldId === undefined || oldId === null)
+                return false;
+            if (typeof oldId === 'object')
+                oldId = oldId.id;
+            return oldId = newId;
+        });
+        return oldItem;
+    };
+    QueryPager.prototype.refreshItems = function (item) {
+        return __awaiter(this, void 0, void 0, function () {
+            var $page, fields, index, startIndex, field, pageStart, pageSize, ret, len, fn, _loop_1, this_1, i;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        $page = this.get$Page();
+                        if (!$page)
+                            return [2 /*return*/];
+                        fields = $page.fields;
+                        index = this._items.indexOf(item);
+                        if (index < 0)
+                            return [2 /*return*/];
+                        if (this.appendPosition === 'tail') {
+                            startIndex = index - 1;
+                        }
+                        else {
+                            startIndex = index + 1;
+                        }
+                        field = fields[0];
+                        if (!field)
+                            return [2 /*return*/];
+                        pageStart = this.getPageStart(this._items[startIndex]);
+                        pageSize = 1;
+                        return [4 /*yield*/, this.load(this.param, pageStart, pageSize)];
+                    case 1:
+                        ret = _a.sent();
+                        len = ret.length;
+                        if (len === 0) {
+                            this._items.splice(index, 1);
+                            return [2 /*return*/];
+                        }
+                        fn = field.name;
+                        _loop_1 = function (i) {
+                            var newItem = ret[i];
+                            if (!newItem)
+                                return "continue";
+                            var newId = newItem[fn];
+                            if (newId === undefined || newId === null)
+                                return "continue";
+                            if (typeof newId === 'object')
+                                newId = newId.id;
+                            var oldItem = this_1._items.find(function (v) {
+                                var oldId = v[fn];
+                                if (oldId === undefined || oldId === null)
+                                    return false;
+                                if (typeof oldId === 'object')
+                                    oldId = oldId.id;
+                                return oldId = newId;
+                            });
+                            if (oldItem) {
+                                _.merge(oldItem, newItem);
+                            }
+                        };
+                        this_1 = this;
+                        for (i = 0; i < len; i++) {
+                            _loop_1(i);
+                        }
+                        return [2 /*return*/];
                 }
-                this.pageStart = start;
-            }
-        }
-        /*
-        let {field, type, asc} = order;
-        let start:any;
-        if (item !== undefined) start = item[field];
-        if (asc === false) {
-            this.appendPosition = 'head';
-            switch (type) {
-                default:
-                case 'tinyint':
-                case 'smallint':
-                case 'int':
-                case 'bigint':
-                case 'dec': start = 999999999999; break;
-                case 'date':
-                case 'datetime': start = undefined; break;          // 会自动使用现在
-                case 'char': start = ''; break;
-            }
-        }
-        else {
-            this.appendPosition = 'tail';
-            switch (type) {
-                default:
-                case 'tinyint':
-                case 'smallint':
-                case 'int':
-                case 'bigint':
-                case 'dec': start = 0; break;
-                case 'date':
-                case 'datetime': start = '1970-1-1'; break;
-                case 'char': start = ''; break;
-            }
-        }
-        this.pageStart = start;
-        */
+            });
+        });
     };
     return QueryPager;
 }(PageItems));

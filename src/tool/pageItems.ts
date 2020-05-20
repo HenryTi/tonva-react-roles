@@ -71,7 +71,8 @@ export abstract class PageItems<T> {
         this.beforeLoad = true;
         this.loaded = false;
         this.param = undefined;
-        this.allLoaded = false;
+		this.allLoaded = false;
+		this.pageStart = undefined;
         this._items.clear();
         //this.setPageStart(undefined);
     }
@@ -110,13 +111,6 @@ export abstract class PageItems<T> {
         this.loading = false;
         this.loaded = true;
 		let len = ret.length;
-		/*
-		if (this.itemAction !== undefined) {
-			for (let i=0; i<len; i++) {
-				this.itemAction(ret[i], ret);
-			}
-		}
-		*/
         if ((this.isFirst===true && len>this.firstSize) ||
             (this.isFirst===false && len>this.pageSize))
         {

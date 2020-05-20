@@ -50,6 +50,11 @@ var Controller = /** @class */ (function () {
         var _this = this;
         this._t = {};
         this.isDev = env.isDevelopment;
+        this.dispose = function () {
+            // message listener的清理
+            nav.unregisterReceiveHandler(_this.receiveHandlerId);
+            _this.onDispose();
+        };
         this.onMessageReceive = function (message) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -99,18 +104,13 @@ var Controller = /** @class */ (function () {
             }
         }
     };
-    Controller.prototype.dispose = function () {
-        // message listener的清理
-        nav.unregisterReceiveHandler(this.receiveHandlerId);
-        this.onDispose();
-    };
     Controller.prototype.onDispose = function () {
     };
-    Controller.prototype.openVPage = function (vp, param) {
+    Controller.prototype.openVPage = function (vp, param, afterBack) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (new vp(this)).open(param)];
+                    case 0: return [4 /*yield*/, (new vp(this)).open(param, afterBack)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -182,7 +182,7 @@ var Controller = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.disposer = this.dispose.bind(this);
+                        this.disposer = this.dispose;
                         this.registerReceiveHandler();
                         return [4 /*yield*/, this.beforeStart()];
                     case 1:
@@ -261,8 +261,17 @@ var Controller = /** @class */ (function () {
         }
         resolve(value);
     };
-    Controller.prototype.openPage = function (page) {
-        nav.push(page, this.disposer);
+    Controller.prototype.openPage = function (page, onClosePage) {
+        var _this = this;
+        var disposer;
+        if (onClosePage !== undefined) {
+            disposer = function () {
+                if (_this.disposer)
+                    _this.disposer();
+                onClosePage();
+            };
+        }
+        nav.push(page, disposer);
         this.disposer = undefined;
     };
     Controller.prototype.replacePage = function (page) {

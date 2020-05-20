@@ -12,7 +12,11 @@ export declare class QueryPager<T extends any> extends PageItems<T> {
     protected loadResults(param: any, pageStart: number, pageSize: number): Promise<{
         [name: string]: any[];
     }>;
+    private get$Page;
+    private getPageStart;
     protected setPageStart(item: T): void;
+    findItem(id: any): T;
+    refreshItems(item: T): Promise<void>;
 }
 export declare class Query extends Entity {
     get typeName(): string;

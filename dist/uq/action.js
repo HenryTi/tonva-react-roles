@@ -61,10 +61,15 @@ var Action = /** @class */ (function (_super) {
     });
     Action.prototype.submit = function (data) {
         return __awaiter(this, void 0, void 0, function () {
+            var caller, ret;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, new ActionSubmitCaller(this, data).request()];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 0:
+                        caller = new ActionSubmitCaller(this, data);
+                        return [4 /*yield*/, caller.request()];
+                    case 1:
+                        ret = _a.sent();
+                        return [2 /*return*/, ret];
                 }
             });
         });

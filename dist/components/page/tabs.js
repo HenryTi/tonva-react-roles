@@ -58,6 +58,7 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import '../../css/va-tab.css';
+import { ScrollView } from './scrollView';
 var Tab = /** @class */ (function () {
     function Tab() {
         this.loaded = false;
@@ -213,8 +214,8 @@ var TabsView = /** @class */ (function () {
             var displayNone = { visibility: 'hidden' };
             return React.createElement(React.Fragment, null, _this.tabArr.map(function (v, index) {
                 var tabPosition = _this.props.tabPosition;
-                var content = v.content, page = v.page;
-                var tabs = React.createElement(_this.tabs, null);
+                var content = v.content, page = v.page, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom;
+                var tabs = React.createElement(_this.tabs);
                 var pageHeader, pageFooter;
                 if (page !== undefined) {
                     pageHeader = page.header();
@@ -257,11 +258,20 @@ var TabsView = /** @class */ (function () {
                 var style;
                 if (v.selected === false)
                     style = displayNone;
-                return React.createElement("div", { key: index, className: classNames('tv-page', _this.contentBg), style: style },
-                    React.createElement("article", null,
-                        header,
-                        content,
-                        footer));
+                /*return <ScrollView key={index} className={classNames('tv-page', this.contentBg)}
+                    style={style}
+                    onScroll={onScroll} onScrollTop={onScrollTop} onScrollBottom={onScrollBottom}>
+                    <article data-a="tab" className={this.contentBg}>
+                        {header}
+                        {content}
+                        {footer}
+                    </article>
+                </ScrollView>;
+                */
+                return React.createElement(ScrollView, { key: index, className: classNames(_this.contentBg), style: style, onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
+                    header,
+                    content,
+                    footer);
             }));
         });
         this.props = props;
@@ -269,7 +279,7 @@ var TabsView = /** @class */ (function () {
         this.size = size || 'md';
         this.tabArr = tabs.map(function (v) {
             var tab = new Tab();
-            var name = v.name, caption = v.caption, content = v.content, page = v.page, notify = v.notify, load = v.load, onShown = v.onShown, isSelected = v.isSelected;
+            var name = v.name, caption = v.caption, content = v.content, page = v.page, notify = v.notify, load = v.load, onShown = v.onShown, isSelected = v.isSelected, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom;
             tab.name = name;
             if (isSelected === true || name === selected) {
                 _this.selectedTab = tab;
@@ -286,6 +296,9 @@ var TabsView = /** @class */ (function () {
             tab.notify = notify;
             tab.load = load;
             tab.onShown = onShown;
+            tab.onScroll = onScroll;
+            tab.onScrollTop = onScrollTop;
+            tab.onScrollBottom = onScrollBottom;
             return tab;
         });
         this.tabBg = tabBack;
@@ -347,6 +360,26 @@ var Tabs = /** @class */ (function (_super) {
     return Tabs;
 }(React.Component));
 export { Tabs };
+;
+var RootTabs = /** @class */ (function (_super) {
+    __extends(RootTabs, _super);
+    function RootTabs(props) {
+        var _this = _super.call(this, props) || this;
+        _this.tabsView = new TabsView(props);
+        setTimeout(function () {
+            _this.tabsView.tabClick(undefined);
+        }, 100);
+        return _this;
+    }
+    RootTabs.prototype.render = function () {
+        return React.createElement(this.tabsView.content);
+    };
+    RootTabs = __decorate([
+        observer
+    ], RootTabs);
+    return RootTabs;
+}(React.Component));
+export { RootTabs };
 ;
 /*
 {
