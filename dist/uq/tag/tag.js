@@ -58,7 +58,7 @@ var Tag = /** @class */ (function (_super) {
     }
     Object.defineProperty(Tag.prototype, "typeName", {
         get: function () { return 'tag'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Tag.prototype, "view", {
@@ -67,7 +67,7 @@ var Tag = /** @class */ (function (_super) {
                 return this._view;
             return this._view = new TagView(this);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Tag.prototype.nameFromId = function (id) {

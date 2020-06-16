@@ -69,14 +69,21 @@ var StringItemEdit = /** @class */ (function (_super) {
         };
         _this.page = observer(function (props) {
             var resolve = props.resolve;
-            var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !_this.isChanged, onClick: function () {
-                    _this.verifyValue();
-                    if (_this.error === undefined)
-                        resolve(_this.newValue);
-                } }, "\u4FDD\u5B58");
+            var onSave = function () {
+                _this.verifyValue();
+                if (_this.error === undefined) {
+                    var val = _this.newValue;
+                    resolve(val);
+                }
+            };
+            var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !_this.isChanged, onClick: onSave }, "\u4FDD\u5B58");
+            var onKeyDown = function (evt) {
+                if (evt.keyCode === 13)
+                    onSave();
+            };
             return React.createElement(Page, { header: _this.label, right: right },
                 React.createElement("div", { className: "m-3" },
-                    React.createElement("input", { type: "text", onChange: _this.onChange, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value }),
+                    React.createElement("input", { type: "text", onChange: _this.onChange, onKeyDown: onKeyDown, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value }),
                     _this.uiItem && React.createElement("div", { className: "small muted m-2" }, _this.uiItem.placeholder),
                     _this.error && React.createElement("div", { className: "text-danger" }, _this.error)));
         });
@@ -84,7 +91,7 @@ var StringItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(StringItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     StringItemEdit.prototype.internalStart = function () {

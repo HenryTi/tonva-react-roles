@@ -191,7 +191,15 @@ export abstract class Controller {
 
     regConfirmClose(confirmClose: ()=>Promise<boolean>) {
         nav.regConfirmClose(confirmClose);
-    }
+	}
+
+	private topPageKey:any;
+	protected startAction() {
+		this.topPageKey = nav.topKey();
+	}
+	public popToTopPage() {
+		nav.popTo(this.topPageKey);
+	}
 
     async confirm(options: ConfirmOptions): Promise<'ok'|'yes'|'no'|undefined> {
         return new Promise<'ok'|'yes'|'no'|undefined> (async (resolve, reject) => {

@@ -56,7 +56,7 @@ var Action = /** @class */ (function (_super) {
     }
     Object.defineProperty(Action.prototype, "typeName", {
         get: function () { return 'action'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Action.prototype.submit = function (data) {
@@ -104,7 +104,7 @@ var ActionSubmitCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(ActionSubmitCaller.prototype, "path", {
         get: function () { return 'action/' + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ActionSubmitCaller.prototype.buildParams = function () { return { data: this.entity.pack(this.params) }; };
@@ -118,7 +118,7 @@ var SubmitReturnsCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SubmitReturnsCaller.prototype, "path", {
         get: function () { return 'action/' + this.entity.name + '/returns'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SubmitReturnsCaller.prototype.xresult = function (res) {
@@ -140,7 +140,7 @@ var SubmitConvertCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SubmitConvertCaller.prototype, "path", {
         get: function () { return 'action-convert/' + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SubmitConvertCaller.prototype.buildParams = function () {

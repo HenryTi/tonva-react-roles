@@ -21,7 +21,7 @@ var History = /** @class */ (function (_super) {
     }
     Object.defineProperty(History.prototype, "typeName", {
         get: function () { return 'history'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return History;

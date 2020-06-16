@@ -21,7 +21,7 @@ var Pending = /** @class */ (function (_super) {
     }
     Object.defineProperty(Pending.prototype, "typeName", {
         get: function () { return 'pending'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Pending;

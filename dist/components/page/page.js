@@ -50,8 +50,8 @@ var Page = /** @class */ (function (_super) {
         if (this.tabsView) {
             return React.createElement(this.tabsView.content);
         }
-        var _a = this.props, onScroll = _a.onScroll, onScrollTop = _a.onScrollTop, onScrollBottom = _a.onScrollBottom, children = _a.children, className = _a.className, bgClassName = _a.bgClassName;
-        return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className, bgClassName: bgClassName },
+        var _a = this.props, onScroll = _a.onScroll, onScrollTop = _a.onScrollTop, onScrollBottom = _a.onScrollBottom, children = _a.children, className = _a.className;
+        return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className },
             this.renderHeader(),
             React.createElement("main", null, children),
             this.renderFooter());

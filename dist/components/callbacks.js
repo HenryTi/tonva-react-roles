@@ -3,7 +3,7 @@ var Callbacks = /** @class */ (function () {
     }
     Object.defineProperty(Callbacks.prototype, "has", {
         get: function () { return this.list !== undefined && this.list.length > 0; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Callbacks.prototype.register = function (callback) {

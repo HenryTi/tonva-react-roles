@@ -103,7 +103,7 @@ var TextWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(TextWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -114,7 +114,7 @@ var TextWidget = /** @class */ (function (_super) {
     };
     Object.defineProperty(TextWidget.prototype, "placeholder", {
         get: function () { return (this.ui && this.ui.placeholder) || this.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     TextWidget.prototype.internalOnKeyDown = function (evt) {

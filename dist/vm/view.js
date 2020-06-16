@@ -46,7 +46,7 @@ var View = /** @class */ (function () {
     }
     Object.defineProperty(View.prototype, "isDev", {
         get: function () { return env.isDevelopment; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     View.prototype.renderVm = function (vm, param) {
@@ -134,6 +134,9 @@ var View = /** @class */ (function () {
     };
     View.prototype.regConfirmClose = function (confirmClose) {
         this.controller.regConfirmClose(confirmClose);
+    };
+    View.prototype.popToTopPage = function () {
+        this.controller.popToTopPage();
     };
     return View;
 }());

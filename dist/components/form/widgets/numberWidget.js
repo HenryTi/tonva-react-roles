@@ -23,7 +23,7 @@ var NumberWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(NumberWidget.prototype, "itemSchema", {
         get: function () { return this._itemSchema; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

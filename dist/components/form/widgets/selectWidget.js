@@ -32,7 +32,7 @@ var SelectWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(SelectWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

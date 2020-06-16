@@ -60,7 +60,7 @@ var EntityCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(EntityCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //大多的entityCaller都不需要这个
@@ -122,7 +122,7 @@ var EntityCaller = /** @class */ (function (_super) {
                 en: "" + ver,
             };
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     EntityCaller.prototype.retry = function (schema) {
@@ -158,7 +158,7 @@ var ActionCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(ActionCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return ActionCaller;
@@ -171,13 +171,13 @@ var QueryQueryCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(QueryQueryCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(QueryQueryCaller.prototype, "path", {
         get: function () { return "query/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     QueryQueryCaller.prototype.xresult = function (res) {
@@ -195,20 +195,20 @@ var QueryPageCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(QueryPageCaller.prototype, "params", {
         get: function () { return this._params; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(QueryPageCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(QueryPageCaller.prototype, "path", {
         //results: {[name:string]:any[]};
         get: function () { return "query-page/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     QueryPageCaller.prototype.buildParams = function () {

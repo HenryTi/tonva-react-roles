@@ -6,13 +6,13 @@ var Caller = /** @class */ (function () {
     }
     Object.defineProperty(Caller.prototype, "params", {
         get: function () { return this._params; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Caller.prototype.buildParams = function () { return this.params; };
     Object.defineProperty(Caller.prototype, "headers", {
         get: function () { return undefined; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Caller;

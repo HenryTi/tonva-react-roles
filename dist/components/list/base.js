@@ -15,7 +15,7 @@ var ListBase = /** @class */ (function () {
             var items = this.list.props.items;
             return (items !== null && items !== undefined && Array.isArray(items) === false);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ListBase.prototype, "items", {
@@ -30,7 +30,7 @@ var ListBase = /** @class */ (function () {
             else
                 return items.items;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ListBase.prototype, "loading", {
@@ -45,12 +45,12 @@ var ListBase = /** @class */ (function () {
                 return false;
             return pageItems.loading;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ListBase.prototype, "selectedItems", {
         get: function () { return undefined; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //updateProps(nextProps:any) {}

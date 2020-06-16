@@ -23,10 +23,11 @@ export interface ListProps {
     onFocus?: (evt: React.FocusEvent<HTMLUListElement>) => void;
 }
 export declare class List extends React.Component<ListProps> {
+    private static res;
     private listBase;
     private selectable;
     constructor(props: ListProps);
-    _$scroll: (direct: "top" | "bottom") => void;
+    _$scroll: (direct: 'top' | 'bottom') => void;
     private buildBase;
     componentWillUnmount(): void;
     selectAll(): void;

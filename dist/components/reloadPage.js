@@ -22,7 +22,12 @@ var ReloadPage = /** @class */ (function (_super) {
             clearInterval(_this.timerHandler);
             nav.reload();
         };
-        _this.state = { seconds: props.seconds };
+        var seconds = props.seconds;
+        if (seconds === undefined)
+            return _this;
+        _this.state = { seconds: seconds };
+        if (seconds <= 0)
+            return _this;
         _this.timerHandler = setInterval(function () {
             var seconds = _this.state.seconds;
             seconds--;
@@ -36,13 +41,22 @@ var ReloadPage = /** @class */ (function (_super) {
         return _this;
     }
     ReloadPage.prototype.render = function () {
+        var seconds = this.state.seconds;
+        var title, msg;
+        if (seconds > 0) {
+            title = '程序升级中...';
+            msg = this.state.seconds + '秒钟之后自动重启动';
+        }
+        else {
+            title = '程序需要升级';
+            msg = '请点击下面按钮重启';
+        }
         return React.createElement(Page, { header: false },
             React.createElement("div", { className: "text-center p-5" },
                 React.createElement("div", { className: "text-info py-5" },
-                    "\u7A0B\u5E8F\u5347\u7EA7\u4E2D...",
+                    React.createElement("span", { className: "text-danger" }, title),
                     React.createElement("br", null),
-                    this.state.seconds,
-                    "\u79D2\u949F\u4E4B\u540E\u81EA\u52A8\u91CD\u542F\u52A8",
+                    msg,
                     React.createElement("br", null),
                     React.createElement("span", { className: "small text-muted" }, this.props.message)),
                 React.createElement("button", { className: "btn btn-danger", onClick: this.reload }, "\u7ACB\u523B\u91CD\u542F")));

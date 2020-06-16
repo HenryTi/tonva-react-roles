@@ -85,7 +85,7 @@ var IdItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(IdItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     IdItemEdit.prototype.internalStart = function () {

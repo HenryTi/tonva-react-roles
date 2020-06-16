@@ -62,13 +62,14 @@ import { RadioItemEdit } from './radioItemEdit';
 import { SelectItemEdit } from './selectItemEdit';
 import { IdItemEdit } from './idItemEdit';
 import { TagSingleItemEdit, TagMultiItemEdit } from './tagItemEdit';
+import { TextAreaItemEdit } from './textAreaItemEdit';
 var Edit = /** @class */ (function (_super) {
     __extends(Edit, _super);
     function Edit(props) {
         var _this = _super.call(this, props) || this;
         _this.defaultSepClassName = 'border-top edit-sep-light-gray';
         _this.defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
-        _this.rowClick = function (itemEdit /*, itemSchema: ItemSchema, uiItem: UiItem, label:string, value: any*/) { return __awaiter(_this, void 0, void 0, function () {
+        _this.rowClick = function (itemEdit) { return __awaiter(_this, void 0, void 0, function () {
             var itemSchema, uiItem, value, _a, onItemChanged, onItemClick, stopEdit, changeValue, err_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
@@ -197,11 +198,17 @@ function createItemEdit(itemSchema, uiItem, label, value) {
             case 'text':
                 itemEdit = StringItemEdit;
                 break;
+            case 'textarea':
+                itemEdit = TextAreaItemEdit;
+                break;
             case 'image':
                 itemEdit = ImageItemEdit;
                 break;
             case 'select':
                 itemEdit = SelectItemEdit;
+                break;
+            case 'range':
+                itemEdit = StringItemEdit;
                 break;
             case 'radio':
                 ie = new RadioItemEdit(itemSchema, uiItem, label, value);

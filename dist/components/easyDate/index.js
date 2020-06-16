@@ -40,7 +40,8 @@ setRes(timeRes, timeRes);
 function tt(str) {
     return timeRes[str];
 }
-function renderDate(vDate, withTime) {
+function renderDate(vDate, withTime, always) {
+    if (always === void 0) { always = false; }
     if (!vDate)
         return null;
     var date;
@@ -56,7 +57,7 @@ function renderDate(vDate, withTime) {
             break;
     }
     var now = new Date();
-    var tick, nDate, _date, month, year, hm, nowYear;
+    var tick, nDate, _date, month, year, nowYear;
     var d = date;
     tick = now.getTime() - d.getTime();
     var hour = d.getHours(), minute = d.getMinutes();
@@ -65,22 +66,56 @@ function renderDate(vDate, withTime) {
     month = d.getMonth() + 1;
     year = d.getFullYear();
     nowYear = now.getFullYear();
-    hm = withTime === true ? hour + ((minute < 10 ? ':0' : ':') + minute) : '';
-    if (tick < -24 * 3600 * 1000) {
+    var appendTime = false;
+    var dPart = (function () {
+        if (tick < -24 * 3600 * 1000) {
+            if (year === nowYear) {
+                appendTime = true;
+                return tt('md')(month, _date);
+            }
+            else {
+                appendTime = true;
+                return tt('ymd')(year, month, _date);
+            }
+        }
+        if (tick < 24 * 3600 * 1000) {
+            if (_date !== nDate) {
+                appendTime = true;
+                return tt(tick < 0 ? 'tomorrow' : 'yesterday');
+            }
+            if (withTime === true) {
+                appendTime = true;
+                return '';
+            }
+            return tt('today');
+        }
+        if (year === nowYear) {
+            return tt('md')(month, _date);
+        }
+        return tt('ymd')(year, month, _date);
+    })();
+    var hm = hour + ((minute < 10 ? ':0' : ':') + minute);
+    /*
+    if (tick < -24*3600*1000) {
         if (year === nowYear)
             return tt('md')(month, _date) + ' ' + hm;
         else
             return tt('ymd')(year, month, _date) + ' ' + hm;
     }
-    if (tick < 24 * 3600 * 1000) {
-        return _date !== nDate ?
-            tt(tick < 0 ? 'tomorrow' : 'yesterday') + ' ' + hm
-            : withTime === true ? hm : tt('today');
+    if (always === true || tick < 24*3600*1000) {
+        return _date!==nDate?
+            tt(tick < 0? 'tomorrow' : 'yesterday') + ' ' + hm
+            : withTime===true? hm : tt('today');
     }
     if (year === nowYear) {
         return tt('md')(month, _date);
     }
     return tt('ymd')(year, month, _date);
+    */
+    if (appendTime === true || always === true) {
+        return dPart + ' ' + hm;
+    }
+    return dPart;
 }
 var EasyDate = /** @class */ (function (_super) {
     __extends(EasyDate, _super);
@@ -99,7 +134,8 @@ var EasyTime = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     EasyTime.prototype.render = function () {
-        return renderDate(this.props.date, true);
+        var _a = this.props, date = _a.date, always = _a.always;
+        return renderDate(date, true, always);
     };
     return EasyTime;
 }(React.Component));

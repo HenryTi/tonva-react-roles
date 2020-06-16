@@ -82,7 +82,7 @@ var Tab = /** @class */ (function () {
             }
             return this._content;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Tab.prototype.shown = function () {
@@ -214,7 +214,7 @@ var TabsView = /** @class */ (function () {
             var displayNone = { visibility: 'hidden' };
             return React.createElement(React.Fragment, null, _this.tabArr.map(function (v, index) {
                 var tabPosition = _this.props.tabPosition;
-                var content = v.content, page = v.page, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom;
+                var content = v.content, page = v.page, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom, className = v.className;
                 var tabs = React.createElement(_this.tabs);
                 var pageHeader, pageFooter;
                 if (page !== undefined) {
@@ -258,28 +258,18 @@ var TabsView = /** @class */ (function () {
                 var style;
                 if (v.selected === false)
                     style = displayNone;
-                /*return <ScrollView key={index} className={classNames('tv-page', this.contentBg)}
-                    style={style}
-                    onScroll={onScroll} onScrollTop={onScrollTop} onScrollBottom={onScrollBottom}>
-                    <article data-a="tab" className={this.contentBg}>
-                        {header}
-                        {content}
-                        {footer}
-                    </article>
-                </ScrollView>;
-                */
-                return React.createElement(ScrollView, { key: index, className: classNames(_this.contentBg), style: style, onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
+                return React.createElement(ScrollView, { key: index, className: className, style: style, onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
                     header,
                     content,
                     footer);
             }));
         });
         this.props = props;
-        var size = props.size, tabs = props.tabs, tabBack = props.tabBg, contentBack = props.contentBg, sep = props.sep, selected = props.selected;
+        var size = props.size, tabs = props.tabs, tabBack = props.tabBg, sep = props.sep, selected = props.selected;
         this.size = size || 'md';
         this.tabArr = tabs.map(function (v) {
             var tab = new Tab();
-            var name = v.name, caption = v.caption, content = v.content, page = v.page, notify = v.notify, load = v.load, onShown = v.onShown, isSelected = v.isSelected, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom;
+            var name = v.name, caption = v.caption, content = v.content, page = v.page, notify = v.notify, load = v.load, onShown = v.onShown, isSelected = v.isSelected, onScroll = v.onScroll, onScrollTop = v.onScrollTop, onScrollBottom = v.onScrollBottom, className = v.className;
             tab.name = name;
             if (isSelected === true || name === selected) {
                 _this.selectedTab = tab;
@@ -299,10 +289,11 @@ var TabsView = /** @class */ (function () {
             tab.onScroll = onScroll;
             tab.onScrollTop = onScrollTop;
             tab.onScrollBottom = onScrollBottom;
+            tab.className = className;
             return tab;
         });
         this.tabBg = tabBack;
-        this.contentBg = contentBack;
+        //this.contentBg = contentBack;
         this.sep = sep;
         if (this.selectedTab === undefined) {
             this.selectedTab = this.tabArr[0];
@@ -310,7 +301,6 @@ var TabsView = /** @class */ (function () {
         this.selectedTab.selected = true;
     }
     TabsView.prototype.render = function () {
-        var _this = this;
         var tabPosition = this.props.tabPosition;
         var tabs = React.createElement(this.tabs, null);
         var header, footer;
@@ -327,7 +317,7 @@ var TabsView = /** @class */ (function () {
                 var style;
                 if (v.selected === false)
                     style = visibility;
-                return React.createElement("div", { key: index, className: classNames(_this.contentBg), style: style }, v.content);
+                return React.createElement("div", { key: index, className: classNames(v.className), style: style }, v.content);
             }),
             footer);
     };
@@ -381,11 +371,4 @@ var RootTabs = /** @class */ (function (_super) {
 }(React.Component));
 export { RootTabs };
 ;
-/*
-{
-    tabPosition === 'top'?
-        <>{tabs}{content}</> :
-        <>{content}{tabs}</>
-}
-*/ 
 //# sourceMappingURL=tabs.js.map

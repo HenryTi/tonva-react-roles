@@ -84,7 +84,7 @@ var TagItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(TagItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

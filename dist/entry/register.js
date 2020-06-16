@@ -52,7 +52,7 @@ import { nav, Page, Form, resLang } from '../components';
 import { Controller, VPage } from '../vm';
 import { userApi } from '../net';
 import '../css/va-form.css';
-import { registerRes } from './res';
+import { registerRes } from '../res';
 import { tonvaTop, getSender } from './tools';
 /*
 class AccountInput extends TextWidget {

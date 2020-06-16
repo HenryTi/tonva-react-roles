@@ -22,12 +22,12 @@ var CBase = /** @class */ (function (_super) {
     }
     Object.defineProperty(CBase.prototype, "uqs", {
         get: function () { return this._uqs; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(CBase.prototype, "cApp", {
         get: function () { return this._cApp; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     CBase.prototype.internalT = function (str) {
@@ -60,7 +60,7 @@ var CSub = /** @class */ (function (_super) {
     };
     Object.defineProperty(CSub.prototype, "owner", {
         get: function () { return this._owner; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return CSub;

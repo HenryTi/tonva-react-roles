@@ -40,20 +40,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import _ from 'lodash';
 import { observable, computed } from 'mobx';
-import { uid } from './uid';
 var PageItems = /** @class */ (function () {
     function PageItems(itemObservable) {
+        var _this = this;
         if (itemObservable === void 0) { itemObservable = false; }
         this.isFirst = true;
         this.loading = false;
         this.beforeLoad = true;
         this.loaded = false;
         this.allLoaded = false;
+        this.topDiv = '$$top';
+        this.bottomDiv = '$$bottom';
+        this.scrollToTop = function () {
+            _this.scrollIntoView(_this.topDiv);
+            //let id = '$$top'+uid();
+            //this.topDiv = id;
+            /*
+            setTimeout(() => {
+                let div = document.getElementById(this.topDiv);
+                div?.scrollIntoView();
+            }, 20);
+            */
+        };
+        this.scrollToBottom = function () {
+            _this.scrollIntoView(_this.bottomDiv);
+            //let id = '$$bottom'+uid();
+            //this.bottomDiv = id;
+            /*
+            setTimeout(() => {
+                let div = document.getElementById(this.bottomDiv);
+                div?.scrollIntoView();
+            }, 20);
+            */
+        };
         this.firstSize = 100;
         this.pageStart = undefined;
         this.pageSize = 30;
         this.appendPosition = 'tail';
+        this.changing = false;
         this._items = observable.array([], { deep: itemObservable });
     }
     Object.defineProperty(PageItems.prototype, "items", {
@@ -64,7 +90,7 @@ var PageItems = /** @class */ (function () {
                 return undefined;
             return this._items;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     PageItems.prototype.setEachPageItem = function (pageItemAction) {
@@ -73,11 +99,15 @@ var PageItems = /** @class */ (function () {
     PageItems.prototype.setItemConverter = function (itemConverter) {
         this.itemConverter = itemConverter;
     };
-    PageItems.prototype.scrollToTop = function () {
-        this.topDiv = '$$' + uid();
+    PageItems.prototype.scrollIntoView = function (divId) {
+        setTimeout(function () {
+            var div = document.getElementById(divId);
+            div === null || div === void 0 ? void 0 : div.scrollIntoView();
+        }, 20);
     };
-    PageItems.prototype.scrollToBottom = function () {
-        this.bottomDiv = '$$' + uid();
+    PageItems.prototype.getPageId = function (item) { return; };
+    PageItems.prototype.setPageStart = function (item) {
+        this.pageStart = this.getPageId(item);
     };
     PageItems.prototype.load = function (param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
@@ -140,6 +170,126 @@ var PageItems = /** @class */ (function () {
             });
         });
     };
+    PageItems.prototype.attach = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var items, isAsc, endItem, scrollToEnd, pushItem, endIndex_1, startId, pid, sum, max, ret, len, i, item;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.sortOrder === undefined) {
+                            console.error('没有定义增减序，无法attach');
+                            return [2 /*return*/];
+                        }
+                        if (this.changing === true)
+                            return [2 /*return*/];
+                        this.changing = true;
+                        items = this._items;
+                        isAsc = this.sortOrder === 'asc';
+                        if (this.appendPosition === 'tail') {
+                            //isTail = true;
+                            endItem = items[0];
+                            scrollToEnd = this.scrollToTop;
+                            pushItem = function (item) { return items.unshift(item); };
+                        }
+                        else {
+                            endIndex_1 = items.length;
+                            endItem = items[endIndex_1 - 1];
+                            scrollToEnd = this.scrollToBottom;
+                            pushItem = function (item) { return items.splice(endIndex_1, 0, item); };
+                        }
+                        startId = this.getPageId(endItem);
+                        pid = undefined;
+                        sum = 0, max = 50;
+                        _a.label = 1;
+                    case 1:
+                        if (!(sum < max)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.load(this.param, pid, 3)];
+                    case 2:
+                        ret = _a.sent();
+                        len = ret.length;
+                        if (len === 0)
+                            return [3 /*break*/, 4];
+                        for (i = 0; i < len; i++) {
+                            item = ret[i];
+                            pid = this.getPageId(item);
+                            if (isAsc === true) {
+                                if (pid >= startId) {
+                                    max = 0;
+                                    break;
+                                }
+                            }
+                            else {
+                                if (pid <= startId) {
+                                    max = 0;
+                                    break;
+                                }
+                            }
+                            pushItem(item);
+                            /*
+                            if (isTail === true) {
+                                this._items.unshift(item);
+                            }
+                            else {
+                                this._items.push(item);
+                            }
+                            */
+                            ++sum;
+                        }
+                        _a.label = 3;
+                    case 3: return [3 /*break*/, 1];
+                    case 4:
+                        this.changing = false;
+                        if (sum > 0) {
+                            scrollToEnd();
+                            /*
+                            if (isTail === true) this.scrollToTop();
+                            else this.scrollToBottom();
+                            */
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    PageItems.prototype.refresh = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (this.changing === true)
+                            return [2 /*return*/];
+                        this.changing = true;
+                        return [4 /*yield*/, this.load(this.param, undefined, this.firstSize > this.pageSize ? this.firstSize : this.pageSize)];
+                    case 1:
+                        ret = _a.sent();
+                        this._items.clear();
+                        this.setLoaded(ret);
+                        /*
+                        for (let i=0; i<len; i++) {
+                            let item = ret[i];
+                            let pid = this.getRefreshPageId(item);
+                            let index = this._items.findIndex(v => this.getRefreshPageId(v) === pid);
+                            //let index = _.sortedIndexBy(this._items, item, v=>this.getRefreshPageId(v));
+                            //let oldItem = this._items[index];
+                            //let oid = this.getRefreshPageId(oldItem);
+                            if (index >= 0) {
+                                _.merge(this._items[index], item);
+                            }
+                            else {
+                                this._items.splice(0, 0, item);
+                            }
+                        }
+                        */
+                        this.changing = false;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    PageItems.prototype.getRefreshPageId = function (item) {
+        return this.getPageId(item);
+    };
     PageItems.prototype.onLoad = function () {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
@@ -153,18 +303,20 @@ var PageItems = /** @class */ (function () {
     PageItems.prototype.more = function () {
         return __awaiter(this, void 0, void 0, function () {
             var pageSize, ret, len;
-            var _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         if (this.allLoaded === true)
-                            return [2 /*return*/];
+                            return [2 /*return*/, false];
                         if (this.loading === true)
-                            return [2 /*return*/];
+                            return [2 /*return*/, true];
+                        if (this.changing === true)
+                            return [2 /*return*/, true];
                         this.loading = true;
+                        this.changing = true;
                         return [4 /*yield*/, this.onLoad()];
                     case 1:
-                        _c.sent();
+                        _a.sent();
                         if (this.pageStart === undefined)
                             this.setPageStart(undefined);
                         pageSize = this.pageSize + 1;
@@ -174,8 +326,7 @@ var PageItems = /** @class */ (function () {
                         }
                         return [4 /*yield*/, this.load(this.param, this.pageStart, pageSize)];
                     case 2:
-                        ret = _c.sent();
-                        this.loading = false;
+                        ret = _a.sent();
                         this.loaded = true;
                         len = ret.length;
                         if ((this.isFirst === true && len > this.firstSize) ||
@@ -187,23 +338,58 @@ var PageItems = /** @class */ (function () {
                         else {
                             this.allLoaded = true;
                         }
+                        /*
                         if (len === 0) {
+                            this.setPageStart(undefined);
                             this._items.clear();
-                            return [2 /*return*/];
-                        }
-                        this.setPageStart(ret[len - 1]);
-                        if (this.appendPosition === 'tail') {
-                            (_a = this._items).push.apply(_a, ret);
                         }
                         else {
-                            (_b = this._items).unshift.apply(_b, ret.reverse());
+                            this.setPageStart(ret[len-1]);
+                            if (this.appendPosition === 'tail') {
+                                this._items.push(...ret);
+                            }
+                            else {
+                                this._items.unshift(...ret.reverse());
+                            }
                         }
+                        */
+                        this.setLoaded(ret);
                         this.isFirst = false;
                         this.onLoaded();
-                        return [2 /*return*/];
+                        this.changing = false;
+                        this.loading = false;
+                        return [2 /*return*/, !this.allLoaded];
                 }
             });
         });
+    };
+    PageItems.prototype.setLoaded = function (data) {
+        var _a, _b;
+        var len = data.length;
+        if (len === 0) {
+            this.setPageStart(undefined);
+            this._items.clear();
+        }
+        else {
+            this.setPageStart(data[len - 1]);
+            if (this.appendPosition === 'tail') {
+                (_a = this._items).push.apply(_a, data);
+            }
+            else {
+                (_b = this._items).unshift.apply(_b, data.reverse());
+            }
+        }
+    };
+    PageItems.prototype.findItem = function (item) {
+        var _this = this;
+        var pid = this.getPageId(item);
+        var index = _.findIndex(this._items, function (v) { return _this.getPageId(v) === pid; });
+        if (index < 0)
+            return;
+        return this._items[index];
+        //let oldItem = this._items[index];
+        //let oid = this.getPageId(oldItem);
+        //if (pid === oid) return oldItem;
     };
     __decorate([
         observable

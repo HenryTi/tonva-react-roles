@@ -135,7 +135,7 @@ var UqMan = /** @class */ (function () {
         get: function () {
             return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids, this.tags);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     UqMan.prototype.tuid = function (name) { return this.tuids[name.toLowerCase()]; };

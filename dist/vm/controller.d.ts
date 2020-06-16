@@ -53,5 +53,8 @@ export declare abstract class Controller {
     ceasePage(level?: number): void;
     removeCeased(): void;
     regConfirmClose(confirmClose: () => Promise<boolean>): void;
+    private topPageKey;
+    protected startAction(): void;
+    popToTopPage(): void;
     confirm(options: ConfirmOptions): Promise<'ok' | 'yes' | 'no' | undefined>;
 }

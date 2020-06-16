@@ -3,9 +3,10 @@ import { User } from '../tool';
 export declare type UserLoader = (userId: number) => Promise<any>;
 export declare class UserCache<T> {
     private loader;
+    private onLoaded;
     private map;
     constructor(loader: UserLoader);
-    use(id: number | any): void;
+    use(id: number | any, onLoaded?: (user: User) => void): void;
     getValue(id: number | any): any;
 }
 export interface UserIconProps {
@@ -20,6 +21,7 @@ export interface UserViewProps {
     id?: number;
     user?: number | User;
     render: (user: User) => JSX.Element;
+    onLoaded?: (user: User) => void;
 }
 export declare const UserView: (props: UserViewProps) => JSX.Element;
-export declare function useUser(id: number | object): void;
+export declare function useUser(id: number | object, onLoaded?: (user: User) => void): void;

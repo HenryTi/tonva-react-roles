@@ -19,7 +19,7 @@ var SelectItemBaseEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(SelectItemBaseEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return SelectItemBaseEdit;

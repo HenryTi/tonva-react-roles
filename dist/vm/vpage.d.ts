@@ -14,11 +14,11 @@ export declare abstract class VPage<C extends Controller> extends View<C> {
     logout(): boolean | (() => Promise<void>);
     protected renderPage(): JSX.Element;
     protected onPageScroll(e: any): void;
-    protected onPageScrollTop(scroller: Scroller): void;
-    protected onPageScrollBottom(scroller: Scroller): void;
+    protected onPageScrollTop(scroller: Scroller): Promise<boolean>;
+    protected onPageScrollBottom(scroller: Scroller): Promise<void>;
     protected afterBack(): void;
     protected get back(): 'close' | 'back' | 'none';
     protected get headerClassName(): string;
-    protected get bgClassName(): string;
+    protected get className(): string;
     protected get tabsProps(): TabsProps;
 }

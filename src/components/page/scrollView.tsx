@@ -18,9 +18,9 @@ export class Scroller {
 
 export interface ScrollProps {
     onScroll?: (e:any) => void;
-    onScrollTop?: (scroller: Scroller) => void;
-	onScrollBottom?: (scroller: Scroller) => void;
-	bgClassName?: string;
+    onScrollTop?: (scroller?: Scroller) => Promise<boolean>;
+	onScrollBottom?: (scroller?: Scroller) => Promise<void>;
+	className?: string;
 }
 interface ScrollViewProps extends ScrollProps {
 	className?: string;
@@ -29,7 +29,23 @@ interface ScrollViewProps extends ScrollProps {
 const scrollTimeGap = 100;
 export class ScrollView extends React.Component<ScrollViewProps, null> {
     private bottomTime:number = 0;
-    private topTime:number = 0;
+	private topTime:number = 0;
+	private div: HTMLDivElement;
+
+	private refDiv = (div:HTMLDivElement) => {
+		if (!div) {
+			if (this.div) {
+				this.div.removeEventListener('resize', this.onResize)
+			}
+			return;
+		}
+		this.div = div;
+		this.div.addEventListener('resize', this.onResize);
+	}
+
+	private onResize = (ev:UIEvent) => {
+		console.error('div resize');
+	};
 
     private onScroll = async (e:any) => {
         let {onScroll, onScrollTop, onScrollBottom} = this.props;
@@ -37,12 +53,19 @@ export class ScrollView extends React.Component<ScrollViewProps, null> {
         let el = e.target as HTMLBaseElement;
         let scroller = new Scroller(el);
         if (el.scrollTop < 30) {
-            //this.eachChild(this, 'top');
             if (onScrollTop !== undefined) {
                 let topTime = new Date().getTime();
                 if (topTime-this.topTime > scrollTimeGap) {
                     this.topTime = topTime;
-                    onScrollTop(scroller);
+					onScrollTop(scroller).then(ret => {
+						 // has more
+						if (ret === true) {
+							let sh = el.scrollHeight;
+							let top = 200;
+							if (top > sh) top = sh;
+							el.scrollTop = top;
+						}
+					});
                 }
             }
         }
@@ -73,20 +96,13 @@ export class ScrollView extends React.Component<ScrollViewProps, null> {
 	}
 	
     render() {
-		let {className, bgClassName, style} = this.props;
-        return <div data-a="ScrollView" className={classNames('tv-page', bgClassName)} onScroll={this.onScroll} style={style}>
+		let {className, style} = this.props;
+		return <div ref={this.refDiv} className={classNames('tv-page')}
+			onScroll={this.onScroll} style={style}>
 			<article className={className}>
 				{this.props.children}
 			</article>
 		</div>;
-
-		/*
-        return <div className={classNames('tv-page', bgClassName)} onScroll={this.onScroll}>
-			<article className={className}>
-				{this.props.children}
-			</article>
-		</div>;
-		*/
     }
 }
 

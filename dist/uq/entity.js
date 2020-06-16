@@ -51,7 +51,7 @@ var Entity = /** @class */ (function () {
     }
     Object.defineProperty(Entity.prototype, "sName", {
         get: function () { return this.jName || this.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Entity.prototype.fieldMap = function (arr) {

@@ -71,7 +71,7 @@ var Controller = /** @class */ (function () {
     }
     Object.defineProperty(Controller.prototype, "user", {
         get: function () { return nav.user; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Controller.prototype, "isLogined", {
@@ -81,7 +81,7 @@ var Controller = /** @class */ (function () {
                 return false;
             return user.id > 0;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Controller.prototype.init = function () { };
@@ -202,7 +202,7 @@ var Controller = /** @class */ (function () {
     };
     Object.defineProperty(Controller.prototype, "isCalling", {
         get: function () { return this._resolve_$ !== undefined; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Controller.prototype.call = function (param) {
@@ -292,6 +292,12 @@ var Controller = /** @class */ (function () {
     };
     Controller.prototype.regConfirmClose = function (confirmClose) {
         nav.regConfirmClose(confirmClose);
+    };
+    Controller.prototype.startAction = function () {
+        this.topPageKey = nav.topKey();
+    };
+    Controller.prototype.popToTopPage = function () {
+        nav.popTo(this.topPageKey);
     };
     Controller.prototype.confirm = function (options) {
         return __awaiter(this, void 0, void 0, function () {

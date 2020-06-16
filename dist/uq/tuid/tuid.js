@@ -174,7 +174,7 @@ var TuidInner = /** @class */ (function (_super) {
     TuidInner.prototype.cacheTuids = function (defer) { this.uq.cacheTuids(defer); };
     Object.defineProperty(TuidInner.prototype, "hasDiv", {
         get: function () { return this.divs !== undefined; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     TuidInner.prototype.div = function (name) {
@@ -405,7 +405,7 @@ var TuidCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(TuidCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -422,7 +422,7 @@ var GetCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(GetCaller.prototype, "path", {
         get: function () { return "tuid/" + this.entity.name + "/" + this.params; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return GetCaller;
@@ -437,7 +437,7 @@ var IdsCaller = /** @class */ (function (_super) {
             var divName = this.params.divName;
             return "tuidids/" + this.entity.name + "/" + (divName !== undefined ? divName : '$');
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     IdsCaller.prototype.buildParams = function () { return this.params.ids; };
@@ -453,7 +453,7 @@ var SaveCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SaveCaller.prototype, "path", {
         get: function () { return "tuid/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SaveCaller.prototype.buildParams = function () {
@@ -521,7 +521,7 @@ var SearchCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SearchCaller.prototype, "path", {
         get: function () { return "tuids/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return SearchCaller;
@@ -535,7 +535,7 @@ var AllCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(AllCaller.prototype, "path", {
         get: function () { return "tuid-all/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return AllCaller;
@@ -552,7 +552,7 @@ var LoadArrCaller = /** @class */ (function (_super) {
             var _a = this.params, arr = _a.arr, owner = _a.owner, id = _a.id;
             return "tuid-arr/" + this.entity.name + "/" + owner + "/" + arr + "/" + id;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return LoadArrCaller;
@@ -564,7 +564,7 @@ var SavePropCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SavePropCaller.prototype, "path", {
         get: function () { return "tuid-prop/" + this.entity.name + "/"; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return SavePropCaller;
@@ -579,7 +579,7 @@ var SaveArrCaller = /** @class */ (function (_super) {
             var _a = this.params, arr = _a.arr, owner = _a.owner;
             return "tuid-arr/" + this.entity.name + "/" + owner + "/" + arr + "/";
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SaveArrCaller.prototype.buildParams = function () {
@@ -600,7 +600,7 @@ var ArrPosCaller = /** @class */ (function (_super) {
             var _a = this.params, arr = _a.arr, owner = _a.owner;
             return "tuid-arr-pos/" + this.entity.name + "/" + owner + "/" + arr + "/";
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ArrPosCaller.prototype.buildParams = function () {
@@ -638,7 +638,7 @@ var TuidImport = /** @class */ (function (_super) {
     };
     Object.defineProperty(TuidImport.prototype, "hasDiv", {
         get: function () { return this.tuidLocal.hasDiv; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     TuidImport.prototype.div = function (name) { return this.tuidLocal.div(name); };
@@ -795,7 +795,7 @@ var TuidDiv = /** @class */ (function (_super) {
     }
     Object.defineProperty(TuidDiv.prototype, "owner", {
         get: function () { return this.tuid; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /*

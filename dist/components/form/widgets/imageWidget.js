@@ -100,7 +100,7 @@ var ImageWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(ImageWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

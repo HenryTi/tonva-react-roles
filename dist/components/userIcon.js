@@ -11,13 +11,14 @@ var UserCache = /** @class */ (function () {
             loader = function (userId) { return userApi.user(userId); };
         this.loader = loader;
     }
-    UserCache.prototype.use = function (id) {
+    UserCache.prototype.use = function (id, onLoaded) {
         if (!id)
             return;
         if (typeof id === 'object')
             id = id.id;
         if (!id)
             return;
+        this.onLoaded = onLoaded;
         id = Number(id);
         var ret = this.map.get(id);
         if (ret === undefined) {
@@ -49,6 +50,8 @@ var UserCache = /** @class */ (function () {
                     if (!v)
                         v = null;
                     _this.map.set(id, v);
+                    if (_this.onLoaded)
+                        _this.onLoaded(v);
                 }).catch(function (reason) {
                     console.error(reason);
                 });
@@ -83,7 +86,7 @@ export var UserIcon = observer(function (props) {
         } });
 });
 export var UserView = observer(function (props) {
-    var idProp = props.id, user = props.user, render = props.render;
+    var idProp = props.id, user = props.user, render = props.render, onLoaded = props.onLoaded;
     if (user === null)
         return React.createElement(React.Fragment, null, "null");
     switch (typeof user) {
@@ -93,16 +96,16 @@ export var UserView = observer(function (props) {
         case 'object':
             var /*obj, */ id = user.id;
             //if (typeof obj !== 'object') {
-            useUser(id);
+            useUser(id, onLoaded);
             user = userCache.getValue(id);
             //}
             break;
         case 'number':
-            useUser(user);
+            useUser(user, onLoaded);
             user = userCache.getValue(user);
             break;
         case 'string':
-            useUser(Number(user));
+            useUser(Number(user), onLoaded);
             user = userCache.getValue(Number(user));
             break;
         default:
@@ -116,12 +119,12 @@ export var UserView = observer(function (props) {
     }
     return render(user);
 });
-export function useUser(id) {
+export function useUser(id, onLoaded) {
     if (!id)
         return;
     if (typeof (id) === 'object') {
         id = id.id;
     }
-    userCache.use(id);
+    userCache.use(id, onLoaded);
 }
 //# sourceMappingURL=userIcon.js.map

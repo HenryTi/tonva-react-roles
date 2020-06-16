@@ -7,9 +7,9 @@ export declare class Scroller {
 }
 export interface ScrollProps {
     onScroll?: (e: any) => void;
-    onScrollTop?: (scroller: Scroller) => void;
-    onScrollBottom?: (scroller: Scroller) => void;
-    bgClassName?: string;
+    onScrollTop?: (scroller?: Scroller) => Promise<boolean>;
+    onScrollBottom?: (scroller?: Scroller) => Promise<void>;
+    className?: string;
 }
 interface ScrollViewProps extends ScrollProps {
     className?: string;
@@ -18,6 +18,9 @@ interface ScrollViewProps extends ScrollProps {
 export declare class ScrollView extends React.Component<ScrollViewProps, null> {
     private bottomTime;
     private topTime;
+    private div;
+    private refDiv;
+    private onResize;
     private onScroll;
     private eachChild;
     render(): JSX.Element;

@@ -13,7 +13,7 @@ var TagView = /** @class */ (function () {
             names = this.tag.namesFromIds(values);
         }
         return React.createElement("div", { className: "d-flex flex-wrap " }, names.map(function (name, index) {
-            return React.createElement("div", { className: "mx-2 border border-muted rounded px-3 bg-light" }, name);
+            return React.createElement("div", { key: index, className: "mx-2 border border-muted rounded px-3 bg-light" }, name);
         }));
     };
     TagView.prototype.renderRadios = function (value, options) {

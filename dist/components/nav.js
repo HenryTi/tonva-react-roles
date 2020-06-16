@@ -74,7 +74,7 @@ import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge
 import { LocalData, env } from '../tool';
 import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, host, resUrlFromHost } from '../net';
 import { wsBridge } from '../net/wsChannel';
-import { resOptions } from './res';
+import { resOptions } from '../res/res';
 import { Loading } from './loading';
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
@@ -178,7 +178,7 @@ var NavView = /** @class */ (function (_super) {
         get: function () {
             return this.stack.length;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     NavView.prototype.startWait = function () {
@@ -549,7 +549,7 @@ var Nav = /** @class */ (function () {
                 return 0;
             return g.guest;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Nav.prototype.set = function (nav) {
@@ -677,7 +677,7 @@ var Nav = /** @class */ (function () {
         get: function () {
             return this.navSettings && this.navSettings.oem;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Nav.prototype.unitJsonPath = function () {
@@ -986,7 +986,7 @@ var Nav = /** @class */ (function () {
         get: function () {
             return this.nav.level;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Nav.prototype.startWait = function () {
@@ -1096,7 +1096,7 @@ var Nav = /** @class */ (function () {
     };
     Object.defineProperty(Nav.prototype, "logs", {
         get: function () { return logs; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -1112,9 +1112,13 @@ var Nav = /** @class */ (function () {
         logs.push(step + ': ' + (new Date().getTime() - logMark));
     };
     Nav.prototype.showReloadPage = function (msg) {
-        var seconds = 5;
+        var seconds = -1;
         this.push(React.createElement(ReloadPage, { message: msg, seconds: seconds }));
-        env.setTimeout(undefined, this.reload, seconds * 1000);
+        /*
+        if (seconds > 0) {
+            env.setTimeout(undefined, this.reload, seconds*1000);
+        }
+        */
     };
     Nav.prototype.checkVersion = function () {
         return __awaiter(this, void 0, void 0, function () {

@@ -99,7 +99,7 @@ var Context = /** @class */ (function () {
     };
     Object.defineProperty(Context.prototype, "arrName", {
         get: function () { return undefined; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Context.prototype.getValue = function (itemName) { return this.initData[itemName]; };
@@ -279,7 +279,7 @@ var Context = /** @class */ (function () {
         get: function () {
             return this.checkHasError();
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -331,7 +331,7 @@ var RowContext = /** @class */ (function (_super) {
     };
     Object.defineProperty(RowContext.prototype, "arrName", {
         get: function () { return this.arrSchema.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     RowContext.prototype.clearErrors = function () {
@@ -340,7 +340,7 @@ var RowContext = /** @class */ (function (_super) {
     };
     Object.defineProperty(RowContext.prototype, "parentData", {
         get: function () { return this.parentContext.data; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return RowContext;
@@ -353,7 +353,7 @@ var FormContext = /** @class */ (function (_super) {
     }
     Object.defineProperty(FormContext.prototype, "data", {
         get: function () { return this.form.data; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     FormContext.prototype.getItemSchema = function (itemName) { return this.form.itemSchemas[itemName]; };

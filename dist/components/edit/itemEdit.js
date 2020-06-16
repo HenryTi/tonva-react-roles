@@ -56,12 +56,12 @@ var ItemEdit = /** @class */ (function () {
     }
     Object.defineProperty(ItemEdit.prototype, "itemSchema", {
         get: function () { return this._itemSchema; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ItemEdit.prototype.init = function () {

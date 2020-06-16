@@ -53,8 +53,8 @@ import classNames from 'classnames';
 import { factory } from './widgets';
 import 'font-awesome/css/font-awesome.min.css';
 import { ContextContainer, FormContext } from './context';
-import { formRes } from './formRes';
-import { resLang } from '../res';
+import { formRes } from '../../res';
+import { resLang } from '../../res/res';
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form(props) {

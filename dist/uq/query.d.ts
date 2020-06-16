@@ -6,16 +6,15 @@ import { QueryQueryCaller, QueryPageCaller } from './caller';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
 export declare class QueryPager<T extends any> extends PageItems<T> {
     private query;
+    private $page;
+    protected idFieldName: any;
     constructor(query: Query, pageSize?: number, firstSize?: number, itemObservable?: boolean);
     setReverse(): void;
     protected onLoad(): Promise<void>;
     protected loadResults(param: any, pageStart: number, pageSize: number): Promise<{
         [name: string]: any[];
     }>;
-    private get$Page;
-    private getPageStart;
-    protected setPageStart(item: T): void;
-    findItem(id: any): T;
+    protected getPageId(item: T): any;
     refreshItems(item: T): Promise<void>;
 }
 export declare class Query extends Entity {

@@ -23,7 +23,7 @@ var RangeWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(RangeWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

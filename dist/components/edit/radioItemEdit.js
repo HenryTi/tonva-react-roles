@@ -90,7 +90,7 @@ var RadioItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(RadioItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     RadioItemEdit.prototype.init = function () {

@@ -8,13 +8,15 @@ import { QueryQueryCaller, QueryPageCaller } from './caller';
 export type QueryPageApi = (name:string, pageStart:any, pageSize:number, params:any) => Promise<string>;
 
 export class QueryPager<T extends any> extends PageItems<T> {
-    private query: Query;
+	private query: Query;
+	private $page: any;
+	protected idFieldName: any;
     constructor(query: Query, pageSize?: number, firstSize?: number, itemObservable?:boolean) {
         super(itemObservable);
         this.query = query;
         if (pageSize !== undefined) this.pageSize = pageSize;
-        if (firstSize !== undefined) this.firstSize = firstSize;
-    }
+		if (firstSize !== undefined) this.firstSize = firstSize;
+	}
 
 	setReverse() {
 		this.appendPosition = 'head';
@@ -22,62 +24,37 @@ export class QueryPager<T extends any> extends PageItems<T> {
 
     protected async onLoad() {
         let {schema} = this.query;
-        if (schema === undefined) await this.query.loadSchema();
+        if (schema !== undefined) return;
+		await this.query.loadSchema();
+		schema = this.query.schema;
+		if (schema === undefined) return;
+		let $page = this.$page = (schema.returns as any[]).find(v => v.name === '$page');
+		if ($page === undefined) return;
+		this.sortOrder = $page.order;
+		let fields = $page.fields;
+		if (fields !== undefined) {
+			let field = fields[0];
+			if (field) this.idFieldName = field.name;
+		}
     }
 
     protected async loadResults(param:any, pageStart:number, pageSize:number):Promise<{[name:string]:any[]}> {
 		let ret = await this.query.page(param, pageStart, pageSize);
 		return ret;
 	}
-	private get$Page() {
-        let {schema} = this.query;
-        if (schema === undefined) return;
-        let $page = (schema.returns as any[]).find(v => v.name === '$page');
-		if ($page === undefined) return;
-		return $page;
-	}
-	private getPageStart(item:T) {
-		let $page = this.get$Page();
-        let {order} = $page;
-        if (order === undefined) return;
+	protected getPageId(item:T) {
 		if (item === undefined) return;
-		let field = $page.fields[0];
-		if (!field) return;
-
-		let start = item[field.name];
+		if (typeof item === 'number') return item;
+		let start = item[this.idFieldName];
 		if (start === null) return;
 		if (start === undefined) return;
 		if (typeof start === 'object') {
-			return start.id;
+			let id = start.id;
+			if (id !== undefined) return id;
 		}
 		return start;
 	}
-    protected setPageStart(item:T) {
-		this.pageStart = this.getPageStart(item);
-	}
-	findItem(id:any):T {
-		let $page = this.get$Page();
-		if (!$page) return;
-        let {fields} = $page;
-		let field = fields[0];
-		if (!field) return;
-		let fn = field.name;
-
-		let newId = id;
-		if (newId === undefined || newId === null) return;
-		if (typeof newId === 'object') newId = newId.id;
-		let oldItem = this._items.find(v => {
-			let oldId = v[fn];
-			if (oldId === undefined || oldId === null) return false;
-			if (typeof oldId === 'object') oldId = oldId.id;
-			return oldId = newId;
-		});
-		return oldItem;
-	}
 	async refreshItems(item:T) {
-		let $page = this.get$Page();
-		if (!$page) return;
-        let {fields} = $page;
 		let index = this._items.indexOf(item);
 		if (index < 0) return;
 		let startIndex:number;
@@ -87,9 +64,7 @@ export class QueryPager<T extends any> extends PageItems<T> {
 		else {
 			startIndex = index + 1;
 		}
-		let field = fields[0];
-		if (!field) return;
-		let pageStart = this.getPageStart(this._items[startIndex]);
+		let pageStart = this.getPageId(this._items[startIndex]);
 		let pageSize = 1;
         let ret = await this.load(
 			this.param, 
@@ -100,15 +75,14 @@ export class QueryPager<T extends any> extends PageItems<T> {
 			this._items.splice(index, 1);
 			return;
 		}
-		let fn = field.name;
 		for (let i=0; i<len; i++) {
 			let newItem = ret[i];
 			if (!newItem) continue;
-			let newId = newItem[fn];
+			let newId = newItem[this.idFieldName];
 			if (newId === undefined || newId === null) continue;
 			if (typeof newId === 'object') newId = newId.id;
 			let oldItem = this._items.find(v => {
-				let oldId = v[fn];
+				let oldId = v[this.idFieldName];
 				if (oldId === undefined || oldId === null) return false;
 				if (typeof oldId === 'object') oldId = oldId.id;
 				return oldId = newId;

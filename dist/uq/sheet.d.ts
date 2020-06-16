@@ -35,5 +35,5 @@ export declare class PageStateItems<T> extends PageItems<T> {
     protected loadResults(param: any, pageStart: any, pageSize: number): Promise<{
         [name: string]: any[];
     }>;
-    protected setPageStart(item: any): void;
+    protected getPageId(item: T): any;
 }

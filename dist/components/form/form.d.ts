@@ -3,7 +3,7 @@ import { Schema, ItemSchema } from '../schema';
 import { UiSchema } from '../schema';
 import 'font-awesome/css/font-awesome.min.css';
 import { FormContext, Context } from './context';
-import { FormRes } from './formRes';
+import { FormRes } from '../../res';
 export declare type FormButtonClick = (name: string, context: Context) => Promise<any>;
 export declare type InputEnter = (name: string, context: Context) => Promise<any>;
 export interface FormProps {

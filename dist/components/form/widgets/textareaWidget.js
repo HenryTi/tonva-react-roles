@@ -35,13 +35,13 @@ var TextAreaWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(TextAreaWidget.prototype, "itemSchema", {
         get: function () { return this._itemSchema; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(TextAreaWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

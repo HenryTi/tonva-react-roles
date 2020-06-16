@@ -29,7 +29,7 @@ var CheckBoxWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(CheckBoxWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

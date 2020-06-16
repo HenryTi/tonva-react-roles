@@ -1,4 +1,9 @@
-export var res = {
+export * from './res';
+export * from './formRes';
+export * from './listRes';
+export * from './entry';
+/*
+export const res = {
     _: {
         form: {
             required: 'required',
@@ -7,7 +12,9 @@ export var res = {
             min: 'min value is ',
             max: 'max value is ',
         },
-        entry: {}
+        entry: {
+            
+        }
     },
     zh: {
         _: {
@@ -18,8 +25,11 @@ export var res = {
                 min: '不能小于',
                 max: '不能大于',
             },
-            entry: {}
+            entry: {
+
+            }
         }
     }
-};
+}
+*/ 
 //# sourceMappingURL=index.js.map

@@ -72,6 +72,19 @@ var ScrollView = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.bottomTime = 0;
         _this.topTime = 0;
+        _this.refDiv = function (div) {
+            if (!div) {
+                if (_this.div) {
+                    _this.div.removeEventListener('resize', _this.onResize);
+                }
+                return;
+            }
+            _this.div = div;
+            _this.div.addEventListener('resize', _this.onResize);
+        };
+        _this.onResize = function (ev) {
+            console.error('div resize');
+        };
         _this.onScroll = function (e) { return __awaiter(_this, void 0, void 0, function () {
             var _a, onScroll, onScrollTop, onScrollBottom, el, scroller, topTime, bottomTime;
             return __generator(this, function (_b) {
@@ -81,12 +94,20 @@ var ScrollView = /** @class */ (function (_super) {
                 el = e.target;
                 scroller = new Scroller(el);
                 if (el.scrollTop < 30) {
-                    //this.eachChild(this, 'top');
                     if (onScrollTop !== undefined) {
                         topTime = new Date().getTime();
                         if (topTime - this.topTime > scrollTimeGap) {
                             this.topTime = topTime;
-                            onScrollTop(scroller);
+                            onScrollTop(scroller).then(function (ret) {
+                                // has more
+                                if (ret === true) {
+                                    var sh = el.scrollHeight;
+                                    var top_1 = 200;
+                                    if (top_1 > sh)
+                                        top_1 = sh;
+                                    el.scrollTop = top_1;
+                                }
+                            });
                         }
                     }
                 }
@@ -122,16 +143,9 @@ var ScrollView = /** @class */ (function (_super) {
         });
     };
     ScrollView.prototype.render = function () {
-        var _a = this.props, className = _a.className, bgClassName = _a.bgClassName, style = _a.style;
-        return React.createElement("div", { "data-a": "ScrollView", className: classNames('tv-page', bgClassName), onScroll: this.onScroll, style: style },
+        var _a = this.props, className = _a.className, style = _a.style;
+        return React.createElement("div", { ref: this.refDiv, className: classNames('tv-page'), onScroll: this.onScroll, style: style },
             React.createElement("article", { className: className }, this.props.children));
-        /*
-        return <div className={classNames('tv-page', bgClassName)} onScroll={this.onScroll}>
-            <article className={className}>
-                {this.props.children}
-            </article>
-        </div>;
-        */
     };
     return ScrollView;
 }(React.Component));

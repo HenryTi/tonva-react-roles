@@ -3,8 +3,12 @@ export interface EasyDateProps {
     date: Date | number;
 }
 export declare class EasyDate extends React.Component<EasyDateProps> {
-    render(): any;
+    render(): string;
 }
-export declare class EasyTime extends React.Component<EasyDateProps> {
-    render(): any;
+interface EasyTimeProps extends EasyDateProps {
+    always?: boolean;
 }
+export declare class EasyTime extends React.Component<EasyTimeProps> {
+    render(): string;
+}
+export {};

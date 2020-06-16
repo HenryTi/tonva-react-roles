@@ -14,7 +14,6 @@ export interface PageProps extends ScrollProps {
     logout?: boolean | (() => Promise<void>);
     headerClassName?: string;
     className?: string;
-    bgClassName?: string;
     afterBack?: () => void;
     tabsProps?: TabsProps;
 }

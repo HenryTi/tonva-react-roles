@@ -23,4 +23,5 @@ export declare abstract class View<C extends Controller> {
     protected ceasePage(level?: number): void;
     protected removeCeased(): void;
     protected regConfirmClose(confirmClose: () => Promise<boolean>): void;
+    protected popToTopPage(): void;
 }

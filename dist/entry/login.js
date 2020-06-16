@@ -51,7 +51,7 @@ import * as React from 'react';
 import { nav, Page, Form, resLang } from '../components';
 import { RegisterController, ForgetController } from './register';
 import { userApi } from '../net';
-import { loginRes } from './res';
+import { loginRes } from '../res';
 import { tonvaTop, getSender } from './tools';
 var schema = [
     { name: 'username', type: 'string', required: true, maxLength: 100 },

@@ -54,7 +54,7 @@ var AppInFrameClass = /** @class */ (function () {
         get: function () { return this._unit; } // unit id
         ,
         set: function (val) { this._unit = val; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return AppInFrameClass;
@@ -70,14 +70,15 @@ export function isBridged() {
     return window.self !== window.parent;
 }
 window.addEventListener('message', function (evt) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var message, _a, ret;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var message, _b, ret;
+        return __generator(this, function (_c) {
+            switch (_c.label) {
                 case 0:
                     message = evt.data;
-                    _a = message.type;
-                    switch (_a) {
+                    _b = message.type;
+                    switch (_b) {
                         case 'sub-frame-started': return [3 /*break*/, 1];
                         case 'ws': return [3 /*break*/, 2];
                         case 'init-sub-win': return [3 /*break*/, 4];
@@ -96,26 +97,26 @@ window.addEventListener('message', function (evt) {
                 return [4 /*yield*/, nav.onReceive(message.msg)];
                 case 3:
                     //wsBridge.receive(message.msg);
-                    _b.sent();
+                    _c.sent();
                     return [3 /*break*/, 15];
                 case 4: return [4 /*yield*/, initSubWin(message)];
                 case 5:
-                    _b.sent();
+                    _c.sent();
                     return [3 /*break*/, 15];
                 case 6:
-                    this.console.log('///\\\\\\ pop-app');
+                    console.log('///\\\\\\ pop-app');
                     nav.navBack();
                     return [3 /*break*/, 15];
                 case 7: return [4 /*yield*/, callCenterApiFromMessage(evt.source, message)];
                 case 8:
-                    _b.sent();
+                    _c.sent();
                     return [3 /*break*/, 15];
                 case 9:
                     bridgeCenterApiReturn(message);
                     return [3 /*break*/, 15];
                 case 10: return [4 /*yield*/, onReceiveAppApiMessage(message.hash, message.apiName)];
                 case 11:
-                    ret = _b.sent();
+                    ret = _c.sent();
                     evt.source.postMessage({
                         type: 'app-api-return',
                         apiName: message.apiName,
@@ -129,10 +130,12 @@ window.addEventListener('message', function (evt) {
                     console.log('await onAppApiReturn(message);');
                     return [4 /*yield*/, onAppApiReturn(message)];
                 case 13:
-                    _b.sent();
+                    _c.sent();
                     return [3 /*break*/, 15];
                 case 14:
-                    this.console.log('message: %s', JSON.stringify(message));
+                    if (((_a = message.source) === null || _a === void 0 ? void 0 : _a.startsWith('react-devtools')) === true)
+                        return [3 /*break*/, 15];
+                    console.log('message: %s', JSON.stringify(message));
                     return [3 /*break*/, 15];
                 case 15: return [2 /*return*/];
             }

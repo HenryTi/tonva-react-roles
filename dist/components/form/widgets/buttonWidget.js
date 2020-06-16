@@ -108,13 +108,13 @@ var ButtonWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(ButtonWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(ButtonWidget.prototype, "label", {
         get: function () { return null; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ButtonWidget.prototype.render = function () {

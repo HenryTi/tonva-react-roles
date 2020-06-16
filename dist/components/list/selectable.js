@@ -158,7 +158,7 @@ var Selectable = /** @class */ (function (_super) {
             //this.buildItems();
             return this._items;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Selectable.prototype.checkAll = function (on) {
@@ -187,7 +187,7 @@ var Selectable = /** @class */ (function (_super) {
         }
         */
         get: function () { return this._items.some(function (v) { return v.selected; }); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Selectable.prototype.onSelect = function (item, selected) {
@@ -198,7 +198,7 @@ var Selectable = /** @class */ (function (_super) {
         get: function () {
             return this._items.filter(function (v) { return v.selected === true; }).map(function (v) { return v.item; });
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     __decorate([

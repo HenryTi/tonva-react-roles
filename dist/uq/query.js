@@ -74,17 +74,30 @@ var QueryPager = /** @class */ (function (_super) {
     };
     QueryPager.prototype.onLoad = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var schema;
+            var schema, $page, fields, field;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         schema = this.query.schema;
-                        if (!(schema === undefined)) return [3 /*break*/, 2];
+                        if (schema !== undefined)
+                            return [2 /*return*/];
                         return [4 /*yield*/, this.query.loadSchema()];
                     case 1:
                         _a.sent();
-                        _a.label = 2;
-                    case 2: return [2 /*return*/];
+                        schema = this.query.schema;
+                        if (schema === undefined)
+                            return [2 /*return*/];
+                        $page = this.$page = schema.returns.find(function (v) { return v.name === '$page'; });
+                        if ($page === undefined)
+                            return [2 /*return*/];
+                        this.sortOrder = $page.order;
+                        fields = $page.fields;
+                        if (fields !== undefined) {
+                            field = fields[0];
+                            if (field)
+                                this.idFieldName = field.name;
+                        }
+                        return [2 /*return*/];
                 }
             });
         });
@@ -102,72 +115,30 @@ var QueryPager = /** @class */ (function (_super) {
             });
         });
     };
-    QueryPager.prototype.get$Page = function () {
-        var schema = this.query.schema;
-        if (schema === undefined)
-            return;
-        var $page = schema.returns.find(function (v) { return v.name === '$page'; });
-        if ($page === undefined)
-            return;
-        return $page;
-    };
-    QueryPager.prototype.getPageStart = function (item) {
-        var $page = this.get$Page();
-        var order = $page.order;
-        if (order === undefined)
-            return;
+    QueryPager.prototype.getPageId = function (item) {
         if (item === undefined)
             return;
-        var field = $page.fields[0];
-        if (!field)
-            return;
-        var start = item[field.name];
+        if (typeof item === 'number')
+            return item;
+        var start = item[this.idFieldName];
         if (start === null)
             return;
         if (start === undefined)
             return;
         if (typeof start === 'object') {
-            return start.id;
+            var id = start.id;
+            if (id !== undefined)
+                return id;
         }
         return start;
     };
-    QueryPager.prototype.setPageStart = function (item) {
-        this.pageStart = this.getPageStart(item);
-    };
-    QueryPager.prototype.findItem = function (id) {
-        var $page = this.get$Page();
-        if (!$page)
-            return;
-        var fields = $page.fields;
-        var field = fields[0];
-        if (!field)
-            return;
-        var fn = field.name;
-        var newId = id;
-        if (newId === undefined || newId === null)
-            return;
-        if (typeof newId === 'object')
-            newId = newId.id;
-        var oldItem = this._items.find(function (v) {
-            var oldId = v[fn];
-            if (oldId === undefined || oldId === null)
-                return false;
-            if (typeof oldId === 'object')
-                oldId = oldId.id;
-            return oldId = newId;
-        });
-        return oldItem;
-    };
     QueryPager.prototype.refreshItems = function (item) {
         return __awaiter(this, void 0, void 0, function () {
-            var $page, fields, index, startIndex, field, pageStart, pageSize, ret, len, fn, _loop_1, this_1, i;
+            var index, startIndex, pageStart, pageSize, ret, len, _loop_1, this_1, i;
+            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        $page = this.get$Page();
-                        if (!$page)
-                            return [2 /*return*/];
-                        fields = $page.fields;
                         index = this._items.indexOf(item);
                         if (index < 0)
                             return [2 /*return*/];
@@ -177,10 +148,7 @@ var QueryPager = /** @class */ (function (_super) {
                         else {
                             startIndex = index + 1;
                         }
-                        field = fields[0];
-                        if (!field)
-                            return [2 /*return*/];
-                        pageStart = this.getPageStart(this._items[startIndex]);
+                        pageStart = this.getPageId(this._items[startIndex]);
                         pageSize = 1;
                         return [4 /*yield*/, this.load(this.param, pageStart, pageSize)];
                     case 1:
@@ -190,18 +158,17 @@ var QueryPager = /** @class */ (function (_super) {
                             this._items.splice(index, 1);
                             return [2 /*return*/];
                         }
-                        fn = field.name;
                         _loop_1 = function (i) {
                             var newItem = ret[i];
                             if (!newItem)
                                 return "continue";
-                            var newId = newItem[fn];
+                            var newId = newItem[this_1.idFieldName];
                             if (newId === undefined || newId === null)
                                 return "continue";
                             if (typeof newId === 'object')
                                 newId = newId.id;
                             var oldItem = this_1._items.find(function (v) {
-                                var oldId = v[fn];
+                                var oldId = v[_this.idFieldName];
                                 if (oldId === undefined || oldId === null)
                                     return false;
                                 if (typeof oldId === 'object')
@@ -231,7 +198,7 @@ var Query = /** @class */ (function (_super) {
     }
     Object.defineProperty(Query.prototype, "typeName", {
         get: function () { return 'query'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Query.prototype.setSchema = function (schema) {
@@ -249,7 +216,7 @@ var Query = /** @class */ (function (_super) {
     };
     Object.defineProperty(Query.prototype, "hasMore", {
         get: function () { return this.more; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Query.prototype.loadPage = function () {

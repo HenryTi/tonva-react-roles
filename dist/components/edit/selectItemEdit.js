@@ -78,7 +78,7 @@ var SelectItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(SelectItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SelectItemEdit.prototype.internalStart = function () {

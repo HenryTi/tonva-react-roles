@@ -75,7 +75,7 @@ var LabeledPropRow = /** @class */ (function (_super) {
     }
     Object.defineProperty(LabeledPropRow.prototype, "prop", {
         get: function () { return this._prop; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     LabeledPropRow.prototype.render = function (key) {
@@ -144,7 +144,7 @@ var StringPropRow = /** @class */ (function (_super) {
     }
     Object.defineProperty(StringPropRow.prototype, "prop", {
         get: function () { return this._prop; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     StringPropRow.prototype.setValues = function (values) {
@@ -163,7 +163,7 @@ var NumberPropRow = /** @class */ (function (_super) {
     }
     Object.defineProperty(NumberPropRow.prototype, "prop", {
         get: function () { return this._prop; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     NumberPropRow.prototype.setValues = function (values) {
@@ -182,7 +182,7 @@ var ListPropRow = /** @class */ (function (_super) {
     }
     Object.defineProperty(ListPropRow.prototype, "prop", {
         get: function () { return this._prop; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ListPropRow.prototype.setValues = function (values) {
@@ -216,7 +216,7 @@ var ComponentPropRow = /** @class */ (function (_super) {
     }
     Object.defineProperty(ComponentPropRow.prototype, "prop", {
         get: function () { return this._prop; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ComponentPropRow.prototype.renderPropBody = function () {

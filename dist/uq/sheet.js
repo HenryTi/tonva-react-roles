@@ -57,7 +57,7 @@ var Sheet = /** @class */ (function (_super) {
     }
     Object.defineProperty(Sheet.prototype, "typeName", {
         get: function () { return 'sheet'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     /*
@@ -258,12 +258,12 @@ var SheetCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SheetCaller.prototype, "entity", {
         get: function () { return this._entity; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(SheetCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name + "/" + this.suffix; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return SheetCaller;
@@ -275,7 +275,7 @@ var SaveCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(SaveCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     SaveCaller.prototype.buildParams = function () {
@@ -298,7 +298,7 @@ var ActionCaller = /** @class */ (function (_super) {
     }
     Object.defineProperty(ActionCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return ActionCaller;
@@ -316,7 +316,7 @@ var GetSheetCaller = /** @class */ (function (_super) {
     GetSheetCaller.prototype.buildParams = function () { };
     Object.defineProperty(GetSheetCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name + "/get/" + this.params; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return GetSheetCaller;
@@ -333,7 +333,7 @@ var SheetArchiveCaller = /** @class */ (function (_super) {
     SheetArchiveCaller.prototype.buildParams = function () { };
     Object.defineProperty(SheetArchiveCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name + "/archive/" + this.params; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return SheetArchiveCaller;
@@ -427,8 +427,8 @@ var PageStateItems = /** @class */ (function (_super) {
         return ret;
     }
     */
-    PageStateItems.prototype.setPageStart = function (item) {
-        this.pageStart = item === undefined ? 0 : item.id;
+    PageStateItems.prototype.getPageId = function (item) {
+        return item === undefined ? 0 : item.id;
     };
     return PageStateItems;
 }(PageItems));

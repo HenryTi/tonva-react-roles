@@ -63,18 +63,18 @@ var Widget = /** @class */ (function () {
     }
     Object.defineProperty(Widget.prototype, "hasError", {
         get: function () { return (this.errors.length + this.contextErrors.length) > 0; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Widget.prototype, "itemSchema", {
         get: function () { return this._itemSchema; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
     Object.defineProperty(Widget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;
@@ -119,7 +119,7 @@ var Widget = /** @class */ (function () {
         get: function () {
             return this.errors.length === 0;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Widget.prototype.setError = function (err) {
@@ -201,7 +201,7 @@ var Widget = /** @class */ (function () {
                 fieldClass = 'form-control';
             return classNames(fieldClass, this.context.form.FieldClass, this.ui && this.ui.className);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Widget.prototype.renderBody = function () {
@@ -231,7 +231,7 @@ var Widget = /** @class */ (function () {
             }
             return label;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Widget.prototype.renderTemplet = function () {

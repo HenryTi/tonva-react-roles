@@ -88,5 +88,9 @@ export abstract class View<C extends Controller> {
 
     protected regConfirmClose(confirmClose: ()=>Promise<boolean>) {
         this.controller.regConfirmClose(confirmClose);
-    }
+	}
+
+	protected popToTopPage() {
+		this.controller.popToTopPage();
+	}
 }

@@ -25,7 +25,7 @@ var RadioWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(RadioWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

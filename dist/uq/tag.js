@@ -55,7 +55,7 @@ var Tag = /** @class */ (function (_super) {
     }
     Object.defineProperty(Tag.prototype, "typeName", {
         get: function () { return 'tag'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Tag.prototype.loadValues = function () {

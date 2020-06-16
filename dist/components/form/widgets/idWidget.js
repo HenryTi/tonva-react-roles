@@ -86,7 +86,7 @@ var IdWidget = /** @class */ (function (_super) {
     }
     Object.defineProperty(IdWidget.prototype, "ui", {
         get: function () { return this._ui; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ;

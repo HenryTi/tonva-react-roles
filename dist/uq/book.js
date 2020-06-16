@@ -22,7 +22,7 @@ var Book = /** @class */ (function (_super) {
     }
     Object.defineProperty(Book.prototype, "typeName", {
         get: function () { return 'book'; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Book.prototype.queryCaller = function (params) {
@@ -39,7 +39,7 @@ var BookQueryCaller = /** @class */ (function (_super) {
     Object.defineProperty(BookQueryCaller.prototype, "path", {
         //protected get entity(): Query {return this._entity as Query};
         get: function () { return "book/" + this.entity.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return BookQueryCaller;

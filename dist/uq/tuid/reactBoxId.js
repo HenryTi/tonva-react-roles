@@ -83,7 +83,7 @@ var ReactBoxId = /** @class */ (function () {
         get: function () {
             return this.tuid.valueFromId(this.id);
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ReactBoxId.prototype.equ = function (id) {
@@ -135,7 +135,7 @@ var ReactBoxId = /** @class */ (function () {
     };
     Object.defineProperty(ReactBoxId.prototype, "boxName", {
         get: function () { return this.tuid.name; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     // ui(): TvTemplet {return this.tuid.ui}

@@ -14,6 +14,7 @@ export interface AppConfig {
     loginTop?: JSX.Element;
     oem?: string;
     privacy?: string;
+    noUnit?: boolean;
 }
 export interface Elements {
     [id: string]: (element: HTMLElement) => void;
@@ -22,6 +23,7 @@ export declare abstract class CAppBase extends Controller {
     protected _uqs: any;
     protected readonly name: string;
     protected readonly version: string;
+    protected readonly noUnit: boolean;
     readonly uqsMan: UQsMan;
     appUnits: any[];
     constructor(config: AppConfig);

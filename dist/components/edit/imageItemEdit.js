@@ -124,7 +124,7 @@ var ImageItemEdit = /** @class */ (function (_super) {
     }
     Object.defineProperty(ImageItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ImageItemEdit.prototype.internalStart = function () {
