@@ -407,7 +407,7 @@ var ImageUploader = /** @class */ (function (_super) {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     };
     var ImageUploader_1;
-    ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
+    ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'apng', 'bmp', 'ico', 'cur', 'tiff', 'tif', 'webp'];
     __decorate([
         observable
     ], ImageUploader.prototype, "file", void 0);

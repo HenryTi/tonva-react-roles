@@ -119,7 +119,7 @@ const smallSize = 180;
 
 @observer
 export class ImageUploader extends React.Component<ImageUploaderProps> {
-	private static imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
+	private static imageTypes = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'apng', 'bmp', 'ico', 'cur', 'tiff', 'tif', 'webp'];
     private imgBaseSize: number;
     private suffix: string;
     private resUploader: ResUploader;
