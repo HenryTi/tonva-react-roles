@@ -157,8 +157,17 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
             let reader = new FileReader();
             reader.readAsDataURL(this.file);
             reader.onload = async () => {
-                this.srcImage = reader.result as string;
-                await this.setSize(this.props.size);
+				this.srcImage = reader.result as string;
+				switch (this.suffix ) {
+					default:
+						await this.setSize(this.props.size);
+						break;
+					case 'svg':
+						this.imgBaseSize = mediumSize;
+						this.desImgSize = this.srcImage.length;
+						this.desImage = this.srcImage;
+						break;
+				}
             };
         }
     }
@@ -172,8 +181,8 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                 this.imgBaseSize = mediumSize; break;
             case 'lg':
                 this.imgBaseSize = largeSize; break;
-        }
-        this.desImage = await this.compress();
+		}
+		this.desImage = await this.compress();
     }
 
     private compress = ():Promise<string> => {

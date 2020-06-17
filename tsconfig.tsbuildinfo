@@ -867,7 +867,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "0c62a4a15eba6850cfd1c7def59e48c2a0c5fab5740152df58aaf9c3eba79d36",
+        "version": "34a19b485f5be2dddb8a6a62f78bb2cbb473738ac432044e704062a47f82d4c3",
         "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
         "affectsGlobalScope": false
       },
@@ -1294,6 +1294,11 @@
       "./src/net/serializejson.ts": {
         "version": "979d2923838827962942ddb3fb898dfc9fbab719be44c39424e1b6d4d32c98f7",
         "signature": "2eab7ad785b4f87ae903fb9799f0b92d153a28e296972a7b1a462a0033e2b072",
+        "affectsGlobalScope": false
+      },
+      "./src/res/res.tsx": {
+        "version": "e23d98810e5a5b3ca82c5608d20748a838916f670268d2d570131b5013e9249c",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
       "./src/uq/boxid.tsx": {
@@ -2241,6 +2246,9 @@
       ],
       "./src/res/res.ts": [
         "./node_modules/@types/lodash/index.d.ts"
+      ],
+      "./src/res/res.tsx": [
+        "./node_modules/@types/react/index.d.ts"
       ],
       "./src/tool/cacheids.ts": [
         "./node_modules/mobx/lib/mobx.d.ts"
@@ -3408,7 +3416,6 @@
       "./src/components/propgrid/row.tsx",
       "./src/components/reloadpage.tsx",
       "./src/components/res.ts",
-      "./src/components/resuploader.tsx",
       "./src/components/rules/index.ts",
       "./src/components/schema/index.ts",
       "./src/components/schema/ivaluesview.tsx",
