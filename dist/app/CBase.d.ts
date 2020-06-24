@@ -7,12 +7,12 @@ export declare abstract class CBase extends Controller {
     protected get uqs(): any;
     get cApp(): any;
     internalT(str: string): any;
-    protected newC<T extends CBase>(type: IConstructor<T>): T;
-    protected newSub<T extends CSub>(type: IConstructor<T>): T;
+    protected newC<T extends CBase>(type: IConstructor<T>, param?: any): T;
+    protected newSub<O extends CBase, T extends CSub<O>>(type: IConstructor<T>): T;
 }
-export declare abstract class CSub extends CBase {
-    protected _owner: CBase;
-    constructor(owner: CBase);
+export declare abstract class CSub<T extends CBase> extends CBase {
+    protected _owner: T;
+    constructor(owner: T);
     internalT(str: string): any;
     protected get owner(): CBase;
 }

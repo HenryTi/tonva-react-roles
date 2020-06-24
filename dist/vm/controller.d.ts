@@ -21,13 +21,14 @@ export declare abstract class Controller {
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
-    init(): void;
+    init(param?: any): void;
     internalT(str: string): any;
     protected setRes(res: any): void;
     private receiveHandlerId;
     private disposer;
     private dispose;
     protected onDispose(): void;
+    isMe(id: any): boolean;
     protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
     protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
     event(type: string, value: any): Promise<void>;

@@ -289,21 +289,32 @@ var TuidInner = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
-                ret = new SaveCaller(this, { id: id, props: props }).request();
-                if (id !== undefined) {
-                    this.idCache.remove(id);
-                    this.localArr.removeItem(id);
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new SaveCaller(this, { id: id, props: props }).request()];
+                    case 1:
+                        ret = _a.sent();
+                        if (id !== undefined) {
+                            this.idCache.remove(id);
+                            this.localArr.removeItem(id);
+                        }
+                        return [2 /*return*/, ret];
                 }
-                return [2 /*return*/, ret];
             });
         });
     };
     TuidInner.prototype.saveProp = function (id, prop, value) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                new SavePropCaller(this, { id: id, prop: prop, value: value }).request();
-                this.idCache.remove(id);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new SavePropCaller(this, { id: id, prop: prop, value: value }).request()];
+                    case 1:
+                        _a.sent();
+                        this.idCache.remove(id);
+                        return [4 /*yield*/, this.idCache.assureObj(id)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };

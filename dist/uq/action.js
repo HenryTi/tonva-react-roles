@@ -107,7 +107,9 @@ var ActionSubmitCaller = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    ActionSubmitCaller.prototype.buildParams = function () { return { data: this.entity.pack(this.params) }; };
+    ActionSubmitCaller.prototype.buildParams = function () {
+        return { data: this.entity.pack(this.params) };
+    };
     return ActionSubmitCaller;
 }(ActionCaller));
 export { ActionSubmitCaller };

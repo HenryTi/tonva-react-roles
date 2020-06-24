@@ -76,7 +76,7 @@ var StringItemEdit = /** @class */ (function (_super) {
                     resolve(val);
                 }
             };
-            var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !_this.isChanged, onClick: onSave }, "\u4FDD\u5B58");
+            var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !_this.isChanged, onClick: onSave }, "\u4FDD\u5B58");
             var onKeyDown = function (evt) {
                 if (evt.keyCode === 13)
                     onSave();

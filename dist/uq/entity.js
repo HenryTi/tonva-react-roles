@@ -264,7 +264,11 @@ var Entity = /** @class */ (function () {
         if (arrs !== undefined) {
             for (var _i = 0, arrs_2 = arrs; _i < arrs_2.length; _i++) {
                 var arr = arrs_2[_i];
-                this.packArr(ret, arr.fields, data[arr.name]);
+                var name_3 = arr.name, fields_4 = arr.fields;
+                var arrData = data[name_3];
+                if (!arrData)
+                    arrData = data[name_3.toLowerCase()];
+                this.packArr(ret, fields_4, arrData);
             }
         }
         return ret.join('');
@@ -331,12 +335,12 @@ var Entity = /** @class */ (function () {
     Entity.prototype.cacheFieldsInValue = function (values, fields) {
         for (var _i = 0, _a = fields; _i < _a.length; _i++) {
             var f = _a[_i];
-            var name_3 = f.name, _tuid = f._tuid;
+            var name_4 = f.name, _tuid = f._tuid;
             if (_tuid === undefined)
                 continue;
-            var id = values[name_3];
+            var id = values[name_4];
             //_tuid.useId(id);
-            values[name_3] = _tuid.boxId(id);
+            values[name_4] = _tuid.boxId(id);
         }
     };
     Entity.prototype.unpackTuidIdsOfFields = function (values, fields) {
@@ -404,15 +408,15 @@ var Entity = /** @class */ (function () {
             ch = data.charCodeAt(p);
             if (ch === 9) {
                 var f_1 = fields[i];
-                var name_4 = f_1.name;
+                var name_5 = f_1.name;
                 if (ch0 !== 8) {
                     if (p > c) {
                         var v = data.substring(c, p);
-                        ret[name_4] = this.to(ret, v, f_1);
+                        ret[name_5] = this.to(ret, v, f_1);
                     }
                 }
                 else {
-                    ret[name_4] = null;
+                    ret[name_5] = null;
                 }
                 c = p + 1;
                 ++i;
@@ -427,15 +431,15 @@ var Entity = /** @class */ (function () {
             }
             else if (ch === 10) {
                 var f_2 = fields[i];
-                var name_5 = f_2.name;
+                var name_6 = f_2.name;
                 if (ch0 !== 8) {
                     if (p > c) {
                         var v = data.substring(c, p);
-                        ret[name_5] = this.to(ret, v, f_2);
+                        ret[name_6] = this.to(ret, v, f_2);
                     }
                 }
                 else {
-                    ret[name_5] = null;
+                    ret[name_6] = null;
                 }
                 ++p;
                 ++i;

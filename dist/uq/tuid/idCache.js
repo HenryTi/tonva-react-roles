@@ -241,9 +241,7 @@ var IdCache = /** @class */ (function () {
                         return [4 /*yield*/, this.loadTuidIdsOrLocal([id])];
                     case 1:
                         ret = _a.sent();
-                        return [4 /*yield*/, this.cacheIdValues(ret)];
-                    case 2:
-                        _a.sent();
+                        this.cacheIdValues(ret);
                         return [2 /*return*/];
                 }
             });

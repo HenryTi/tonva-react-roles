@@ -104,7 +104,7 @@ window.addEventListener('message', function (evt) {
                     _c.sent();
                     return [3 /*break*/, 15];
                 case 6:
-                    console.log('///\\\\\\ pop-app');
+                    window.console.log('///\\\\\\ pop-app');
                     nav.navBack();
                     return [3 /*break*/, 15];
                 case 7: return [4 /*yield*/, callCenterApiFromMessage(evt.source, message)];
@@ -135,7 +135,7 @@ window.addEventListener('message', function (evt) {
                 case 14:
                     if (((_a = message.source) === null || _a === void 0 ? void 0 : _a.startsWith('react-devtools')) === true)
                         return [3 /*break*/, 15];
-                    console.log('message: %s', JSON.stringify(message));
+                    window.console.log('message: %s', JSON.stringify(message));
                     return [3 /*break*/, 15];
                 case 15: return [2 /*return*/];
             }

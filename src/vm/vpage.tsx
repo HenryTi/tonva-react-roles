@@ -4,11 +4,9 @@ import { View } from "./view";
 import { Controller } from "./controller";
 
 export abstract class VPage<C extends Controller> extends View<C> {
-	// private onClosePage:(ret:any)=>void;
 	protected retOnClosePage: any;
 
     open(param?:any, onClosePage?:(ret:any)=>void):Promise<void> {
-		//this.onClosePage = onClosePage;
 		this.init(param);
 		let _onClosePage: ()=>void;
 		if (onClosePage !== undefined) _onClosePage = () => onClosePage(this.retOnClosePage);
@@ -18,7 +16,6 @@ export abstract class VPage<C extends Controller> extends View<C> {
 
 	render(param?:any):JSX.Element {
 		this.init(param);
-		//return this.content();
 		return this.renderPage();
 	}
 
@@ -50,7 +47,7 @@ export abstract class VPage<C extends Controller> extends View<C> {
 
 	protected onPageScroll(e:any) {}
 	protected async onPageScrollTop(scroller: Scroller): Promise<boolean> {return false;}
-	protected async onPageScrollBottom(scroller: Scroller): Promise<void> {return;}
+	protected async onPageScrollBottom(scroller: Scroller): Promise<boolean> {return false;}
 	protected afterBack():void {}
 	protected get back(): 'close' | 'back' | 'none' {return 'back'}
 	protected get headerClassName(): string {return null;}

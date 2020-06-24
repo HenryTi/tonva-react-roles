@@ -17,8 +17,8 @@ export abstract class View<C extends Controller> {
 		this.t = controller.t;
     }
 
-    protected get isDev() {return  env.isDevelopment}
-
+	protected get isDev() {return  env.isDevelopment}
+	protected isMe(id:any) {return this.controller.isMe(id)}
     abstract render(param?:any): JSX.Element;
 
     protected renderVm(vm: new (controller: C)=>View<C>, param?:any) {

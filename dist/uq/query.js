@@ -78,13 +78,16 @@ var QueryPager = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        schema = this.query.schema;
-                        if (schema !== undefined)
+                        if (this.$page)
                             return [2 /*return*/];
+                        schema = this.query.schema;
+                        if (!(schema === undefined)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.query.loadSchema()];
                     case 1:
                         _a.sent();
                         schema = this.query.schema;
+                        _a.label = 2;
+                    case 2:
                         if (schema === undefined)
                             return [2 /*return*/];
                         $page = this.$page = schema.returns.find(function (v) { return v.name === '$page'; });

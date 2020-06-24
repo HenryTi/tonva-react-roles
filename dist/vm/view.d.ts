@@ -8,6 +8,7 @@ export declare abstract class View<C extends Controller> {
     protected readonly t: (str: string) => any;
     constructor(controller: C);
     protected get isDev(): boolean;
+    protected isMe(id: any): boolean;
     abstract render(param?: any): JSX.Element;
     protected renderVm(vm: new (controller: C) => View<C>, param?: any): JSX.Element;
     protected openVPage(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: () => Promise<void>): Promise<void>;

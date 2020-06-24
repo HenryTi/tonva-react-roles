@@ -602,13 +602,13 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/scrollview.tsx": {
-        "version": "0e8b7bfc51d04c0dc34c0d9fda9dd54d7916c8357011a8b5e22abceb79e70ba6",
-        "signature": "a921197c7f18aa15629f865b33f849bce6a2a882121c193d233fa40c14869b10",
+        "version": "7ecf5bc0a64d5b79f0c5cbee18a304f793e1a25ae494781e2b05a31523e9a80c",
+        "signature": "ad092a6a25019fc448ea687559672cded39d1e81165638889e6dc87586ec891e",
         "affectsGlobalScope": false
       },
       "./src/components/page/tabs.tsx": {
-        "version": "cba2b78721c9c1da2b0ac0f52c7a15d23828ba9352b7fafec4f421632ab9fc13",
-        "signature": "993079a90d93d7bfa811efee963d5398650b8c130b4c9c60fec36c8797d4a9d5",
+        "version": "23099dafd32133b91f969ba55e2e9631b7d08f6032fc2a82bf133612d766dc9d",
+        "signature": "edda8fe1d6fd2905832225c58e107c07d42bcf85ad745a76c7e6ea44bc3df617",
         "affectsGlobalScope": false
       },
       "./src/components/page/page.tsx": {
@@ -692,18 +692,18 @@
         "affectsGlobalScope": false
       },
       "./src/vm/view.tsx": {
-        "version": "34cf1d3249107604cec65a081fe63d87b3d39f983483f88fc77911bf8fd4d93c",
-        "signature": "af94f00b35a324df8a0c51351a7d43030943925c3f19c9f0a4c0195a16675ade",
+        "version": "545a7022f8a0ad1c266a6d631eabd23caf04ef83b3d399a0cfbfcadc8cec63aa",
+        "signature": "6baf44d3ac32cb08511d76cc0fec418c335994c010fafab547ec55439e703137",
         "affectsGlobalScope": false
       },
       "./src/vm/vpage.tsx": {
-        "version": "22ed38c21526ca7efb92801729be7593820717ca01dd39cd2fe3f3723f07be35",
-        "signature": "03125509ff42009649f1bee1f23c507ea2b3519cab3a5c1f496bc2b97ad12700",
+        "version": "2e6dc96ace0749ada2dfdd4dec9081e238f9ff240cf25be767bdda9eee76bf9e",
+        "signature": "a86f0cb4e4eca7dd30f9470d1c8b7cfad2347e995cec317b504a22b9172c02a1",
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "839fff7c6091fc4a93170e913d599931d72e6f7cebde22763f128843e721940e",
-        "signature": "cac1fc399efda74403c8f8ed0e1dada474f3a2c33ac12ff177fed4751dfdc232",
+        "version": "a732d32d9d387cbe485b61f156d9500a2b622437d8ca58019c23d32d37b5e9f0",
+        "signature": "db2aaacfa05d2e493e522251a155ea24060e83ee1ccc8d6c0b9e319a44fb36c4",
         "affectsGlobalScope": false
       },
       "./src/vm/index.ts": {
@@ -867,7 +867,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "34a19b485f5be2dddb8a6a62f78bb2cbb473738ac432044e704062a47f82d4c3",
+        "version": "3f68ae48a8e9985609d5dc0c7bfc67c549f2e8e7260aa454bbf3142e7373a1d2",
         "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
         "affectsGlobalScope": false
       },
@@ -937,7 +937,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/edit/stringitemedit.tsx": {
-        "version": "95c638cd52c55c4277021d97efc2eeac3e702cf168c814d293eb604ac093bb0c",
+        "version": "bdc9d740fce85f35d6bd8afee2f6a09792e00c4d133aa616024d0314e6722a14",
         "signature": "2807dc9b77e4f986e6d9f68a8b74b05c4d3f7b2799e787fbf4e3fc1aaed1efde",
         "affectsGlobalScope": false
       },
@@ -962,7 +962,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/edit/textareaitemedit.tsx": {
-        "version": "f57feadb3723d7003fc85e96e4b79f5c4b0fd20fb1399d8f4647f8796f12323f",
+        "version": "71976e155711a28ecfdee71b877411b637cf731ed2a3d6fc8dacbbce708f0ce8",
         "signature": "2d8636f600bc0e127cb37454660c93695ce36a01e8dc2c7467872cfdd1d9282e",
         "affectsGlobalScope": false
       },
@@ -1057,7 +1057,7 @@
         "affectsGlobalScope": false
       },
       "./src/net/appbridge.ts": {
-        "version": "6defc0c33db64049bf9bbff0ed03da93b1270ff000af07160748dad8e713fe82",
+        "version": "8b6f705bc43c77f6c4c555795d298d0b28dc68125e8aa8cb0c84576096817bf0",
         "signature": "a0699e369afedccc1ad48136d84ff225c4fc8944feee0b3071d6eb74edab0b87",
         "affectsGlobalScope": false
       },
@@ -1097,17 +1097,17 @@
         "affectsGlobalScope": false
       },
       "./src/uq/entity.ts": {
-        "version": "f6797c8c0e9ed9132ebce984cf67b88340cd373ceec0e93c0e41aca882f33d25",
+        "version": "1ca917ace40594083ea130c444aac773a883bd1737f72a0e1f1593e4e7e5228d",
         "signature": "613e1d2196f5fc800c6efee308eab22db7fae2fd730882bb6ccfdde4f75c5361",
         "affectsGlobalScope": false
       },
       "./src/uq/action.ts": {
-        "version": "5d6be560d3a4353f0f4aa36f3e03f4a79cb238f4c08ad8278a2836690a92318f",
+        "version": "666dd8f392ed9d157c655e87b1afbad45223e6bf8ef53b39eb1abf258a8a5621",
         "signature": "63f24acdd32f514f8e07ac7d3c461055537912e75d8bc84373ff21b1d4133566",
         "affectsGlobalScope": false
       },
       "./src/uq/query.ts": {
-        "version": "19880922d66defa46a7908ec872263cdb72d911c96316366a0631fab57e2437c",
+        "version": "c33cca9523e547a0cbf6d7f09f434f3eb4b16bc4f37ff94ffd6c197fc71f0a09",
         "signature": "7157670f31ed90c3516032cc3c7234ab7aebf51dcdc0c7ae586da3774f21c5a6",
         "affectsGlobalScope": false
       },
@@ -1117,18 +1117,18 @@
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/idcache.ts": {
-        "version": "68a07f3024aae88f64ea5a4a1600b576a6cd4458d400291b26d03b0c8f77403e",
+        "version": "ac197d969f7e471b49a5370e7359b37ce0d9b8cf4e488e321c6b1b7c61dbe9da",
         "signature": "d19f5c584342d44bc912eaac32143a853f73164021d4f400045c53b4bfa018a9",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/tuid.ts": {
-        "version": "3d6e4c573396d43e75448b5110f3fe4eb890135ba4b1dcdf8f2ee7ac7c2f478a",
+        "version": "981545c9fa36009a789902c1e97c8f7b903f317c28b58be3be32590aa7793e5a",
         "signature": "2404356cc9da86a9f172e74bc210730d779da03a0990aa801992d8bb91e29343",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/boxid.tsx": {
-        "version": "e147affc7979448f5854f54d68f57ce396c3eff0538b3954c19fc2a8d5732292",
-        "signature": "1121c35415cb84988112b2f3c1ebe4b0fe9c53e5a241db14d1795900c02f3b7b",
+        "version": "d3c67ab1b53df296652bcf26ecff779460d4fba24d2d2bad80561faece7718a6",
+        "signature": "4a7ebd89c7134ad60ad92e00980f6d83dc39c2b980ecb7f8fd50ddac6e75d3c4",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/tuidscache.ts": {
@@ -1217,8 +1217,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "4bc66ef99944aa6b290133c5625438e4a94cece22f261e5edae610d7a4769961",
-        "signature": "2acaf4bf971346bb28b615acc29bfa52860515f0f294edcbab7c14476708a5ab",
+        "version": "a432d3be71d00863c3208af13927a0393e986b03c8d7a7f0703fdcccd91ea6e9",
+        "signature": "ccaf9b0033777f220871b68449dc1bda9f2d78c4daf2b4229e9b03f6e2c07e51",
         "affectsGlobalScope": false
       },
       "./src/app/index.ts": {
@@ -1294,11 +1294,6 @@
       "./src/net/serializejson.ts": {
         "version": "979d2923838827962942ddb3fb898dfc9fbab719be44c39424e1b6d4d32c98f7",
         "signature": "2eab7ad785b4f87ae903fb9799f0b92d153a28e296972a7b1a462a0033e2b072",
-        "affectsGlobalScope": false
-      },
-      "./src/res/res.tsx": {
-        "version": "e23d98810e5a5b3ca82c5608d20748a838916f670268d2d570131b5013e9249c",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
       "./src/uq/boxid.tsx": {
@@ -2246,9 +2241,6 @@
       ],
       "./src/res/res.ts": [
         "./node_modules/@types/lodash/index.d.ts"
-      ],
-      "./src/res/res.tsx": [
-        "./node_modules/@types/react/index.d.ts"
       ],
       "./src/tool/cacheids.ts": [
         "./node_modules/mobx/lib/mobx.d.ts"
@@ -3416,6 +3408,7 @@
       "./src/components/propgrid/row.tsx",
       "./src/components/reloadpage.tsx",
       "./src/components/res.ts",
+      "./src/components/resuploader.tsx",
       "./src/components/rules/index.ts",
       "./src/components/schema/index.ts",
       "./src/components/schema/ivaluesview.tsx",

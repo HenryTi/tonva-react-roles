@@ -188,26 +188,14 @@ var ImageUploader = /** @class */ (function (_super) {
                 var reader_1 = new FileReader();
                 reader_1.readAsDataURL(_this.file);
                 reader_1.onload = function () { return __awaiter(_this, void 0, void 0, function () {
-                    var _a;
-                    return __generator(this, function (_b) {
-                        switch (_b.label) {
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
                             case 0:
                                 this.srcImage = reader_1.result;
-                                _a = this.suffix;
-                                switch (_a) {
-                                    case 'svg': return [3 /*break*/, 3];
-                                }
-                                return [3 /*break*/, 1];
-                            case 1: return [4 /*yield*/, this.setSize(this.props.size)];
-                            case 2:
-                                _b.sent();
-                                return [3 /*break*/, 4];
-                            case 3:
-                                this.imgBaseSize = mediumSize;
-                                this.desImgSize = this.srcImage.length;
-                                this.desImage = this.srcImage;
-                                return [3 /*break*/, 4];
-                            case 4: return [2 /*return*/];
+                                return [4 /*yield*/, this.setSize(this.props.size)];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
                         }
                     });
                 }); };
@@ -419,7 +407,7 @@ var ImageUploader = /** @class */ (function (_super) {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     };
     var ImageUploader_1;
-    ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'apng', 'bmp', 'ico', 'cur', 'tiff', 'tif', 'webp'];
+    ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png'];
     __decorate([
         observable
     ], ImageUploader.prototype, "file", void 0);

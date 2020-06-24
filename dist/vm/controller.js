@@ -84,7 +84,7 @@ var Controller = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Controller.prototype.init = function () { };
+    Controller.prototype.init = function (param) { };
     Controller.prototype.internalT = function (str) {
         return this._t[str];
     };
@@ -105,6 +105,18 @@ var Controller = /** @class */ (function () {
         }
     };
     Controller.prototype.onDispose = function () {
+    };
+    Controller.prototype.isMe = function (id) {
+        if (id === null)
+            return false;
+        var user = this.user;
+        var userId = user.id;
+        switch (typeof id) {
+            default: return false;
+            case 'string': return Number(id) === userId;
+            case 'number': return id === userId;
+            case 'object': return id.id === userId;
+        }
     };
     Controller.prototype.openVPage = function (vp, param, afterBack) {
         return __awaiter(this, void 0, void 0, function () {

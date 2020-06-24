@@ -36,8 +36,10 @@ var CBase = /** @class */ (function (_super) {
             return r;
         return this._cApp.internalT(str);
     };
-    CBase.prototype.newC = function (type) {
-        return new type(this.cApp);
+    CBase.prototype.newC = function (type, param) {
+        var c = new type(this.cApp);
+        c.init(param);
+        return c;
     };
     CBase.prototype.newSub = function (type) {
         return new type(this);

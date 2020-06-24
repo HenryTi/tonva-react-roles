@@ -57,7 +57,6 @@ var VPage = /** @class */ (function (_super) {
     }
     VPage.prototype.open = function (param, onClosePage) {
         var _this = this;
-        //this.onClosePage = onClosePage;
         this.init(param);
         var _onClosePage;
         if (onClosePage !== undefined)
@@ -67,7 +66,6 @@ var VPage = /** @class */ (function (_super) {
     };
     VPage.prototype.render = function (param) {
         this.init(param);
-        //return this.content();
         return this.renderPage();
     };
     VPage.prototype.init = function (param) { return; };
@@ -91,7 +89,7 @@ var VPage = /** @class */ (function (_super) {
     };
     VPage.prototype.onPageScrollBottom = function (scroller) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/];
+            return [2 /*return*/, false];
         }); });
     };
     VPage.prototype.afterBack = function () { };

@@ -14,7 +14,7 @@ export interface TabProp {
     isSelected?: boolean;
     onScroll?: () => void;
     onScrollTop?: () => Promise<boolean>;
-    onScrollBottom?: () => Promise<void>;
+    onScrollBottom?: () => Promise<boolean>;
     className?: string;
 }
 export interface TabsProps {
@@ -40,7 +40,7 @@ declare class Tab {
     onShown?: () => Promise<void>;
     onScroll?: () => void;
     onScrollTop?: () => Promise<boolean>;
-    onScrollBottom?: () => Promise<void>;
+    onScrollBottom?: () => Promise<boolean>;
     className?: string;
     private _content;
     get content(): JSX.Element;
