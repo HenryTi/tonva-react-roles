@@ -89,7 +89,7 @@ var VPage = /** @class */ (function (_super) {
     };
     VPage.prototype.onPageScrollBottom = function (scroller) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, false];
+            return [2 /*return*/];
         }); });
     };
     VPage.prototype.afterBack = function () { };

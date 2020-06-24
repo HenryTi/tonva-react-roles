@@ -15,7 +15,7 @@ export declare abstract class VPage<C extends Controller> extends View<C> {
     protected renderPage(): JSX.Element;
     protected onPageScroll(e: any): void;
     protected onPageScrollTop(scroller: Scroller): Promise<boolean>;
-    protected onPageScrollBottom(scroller: Scroller): Promise<boolean>;
+    protected onPageScrollBottom(scroller: Scroller): Promise<void>;
     protected afterBack(): void;
     protected get back(): 'close' | 'back' | 'none';
     protected get headerClassName(): string;
