@@ -15,6 +15,9 @@ export declare abstract class View<C extends Controller> {
     protected event(type: string, value?: any): Promise<void>;
     vCall<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<any>;
     protected returnCall(value: any): void;
+    protected renderUser(user: any, imageClassName?: string, textClassName?: string): JSX.Element;
+    protected renderUserText(user: any): JSX.Element;
+    protected renderMe(imageClassName?: string, textClassName?: string): JSX.Element;
     protected openPage(view: React.StatelessComponent<any>, param?: any): void;
     protected replacePage(view: React.StatelessComponent<any>, param?: any): void;
     protected openPageElement(page: JSX.Element, onClosePage?: () => void): void;

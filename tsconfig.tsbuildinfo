@@ -692,8 +692,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/view.tsx": {
-        "version": "545a7022f8a0ad1c266a6d631eabd23caf04ef83b3d399a0cfbfcadc8cec63aa",
-        "signature": "6baf44d3ac32cb08511d76cc0fec418c335994c010fafab547ec55439e703137",
+        "version": "c7b64ffb0a581709026bb611307e2bd08e38cedaad43e7cde5106e04fdc5c8c6",
+        "signature": "b6e9e09b59e3836400073c9a9916e284b2c1ef2b4e726a4ddd3a6d273e169dc7",
         "affectsGlobalScope": false
       },
       "./src/vm/vpage.tsx": {
@@ -867,7 +867,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "3f68ae48a8e9985609d5dc0c7bfc67c549f2e8e7260aa454bbf3142e7373a1d2",
+        "version": "34a19b485f5be2dddb8a6a62f78bb2cbb473738ac432044e704062a47f82d4c3",
         "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
         "affectsGlobalScope": false
       },

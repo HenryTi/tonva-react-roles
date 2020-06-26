@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as React from 'react';
-import { Page } from '../components';
+import { Page, Image, UserView } from '../components';
 import { env } from '../tool';
 var View = /** @class */ (function () {
     function View(controller) {
@@ -69,19 +69,8 @@ var View = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: 
-                    /*
-                    if (this._resolve_$_ !== undefined) {
-                        await this._resolve_$_({type:type, value:value});
-                        return;
-                    }*/
-                    return [4 /*yield*/, this.controller.event(type, value)];
+                    case 0: return [4 /*yield*/, this.controller.event(type, value)];
                     case 1:
-                        /*
-                        if (this._resolve_$_ !== undefined) {
-                            await this._resolve_$_({type:type, value:value});
-                            return;
-                        }*/
                         _a.sent();
                         return [2 /*return*/];
                 }
@@ -100,6 +89,28 @@ var View = /** @class */ (function () {
     };
     View.prototype.returnCall = function (value) {
         this.controller.returnCall(value);
+    };
+    View.prototype.renderUser = function (user, imageClassName, textClassName) {
+        var renderUser = function (user) {
+            var name = user.name, nick = user.nick, icon = user.icon;
+            return React.createElement(React.Fragment, null,
+                React.createElement(Image, { src: icon, className: imageClassName || 'w-1c h-1c mr-2' }),
+                React.createElement("span", { className: textClassName }, nick || name));
+        };
+        return React.createElement(UserView, { user: user, render: renderUser });
+    };
+    View.prototype.renderUserText = function (user) {
+        var renderUser = function (user) {
+            var name = user.name, nick = user.nick;
+            return React.createElement(React.Fragment, null, nick || name);
+        };
+        return React.createElement(UserView, { user: user, render: renderUser });
+    };
+    View.prototype.renderMe = function (imageClassName, textClassName) {
+        var user = this.controller.user;
+        if (!user)
+            return;
+        return this.renderUser(user.id, imageClassName, textClassName);
     };
     View.prototype.openPage = function (view, param) {
         var type = typeof param;
