@@ -209,6 +209,13 @@ var Host = /** @class */ (function () {
     };
     Host.prototype.getUrlOrTest = function (db, url, urlTest) {
         var path;
+        if (!urlTest) {
+            urlTest = url;
+            if (!urlTest) {
+                console.error('no server set for ' + db);
+                debugger;
+            }
+        }
         if (this.testing === true) {
             if (urlTest !== '-')
                 url = urlTest;
@@ -218,6 +225,9 @@ var Host = /** @class */ (function () {
             path = 'uq/prod/' + db + '/';
         }
         url = this.getUrlOrDebug(url);
+        if (url.endsWith('/') === false) {
+            url += '/';
+        }
         return url + path;
     };
     Host.prototype.localCheck = function (urlDebug) {
