@@ -53,8 +53,11 @@ var DropdownActions = /** @class */ (function (_super) {
         var hasIcon = actions.some(function (v) { return v.icon !== undefined; });
         var dropdownOpen = this.state.dropdownOpen;
         //isOpen={this.state.dropdownOpen} toggle={this.toggle}
-        return React.createElement("div", { className: classNames('dropdown', className) },
-            React.createElement("button", { ref: function (v) { return _this.button = v; }, className: "cursor-pointer dropdown-toggle btn btn-sm", "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
+        var cn = 'cursor-pointer dropdown-toggle btn btn-sm ';
+        if (className)
+            cn += className;
+        return React.createElement("div", { className: 'dropdown' },
+            React.createElement("button", { ref: function (v) { return _this.button = v; }, className: cn, "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
                 React.createElement("i", { className: classNames('fa', 'fa-' + (icon || 'ellipsis-v')) })),
             React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
                 var icon = v.icon, caption = v.caption, action = v.action;
