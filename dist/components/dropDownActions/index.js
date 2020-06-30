@@ -58,7 +58,7 @@ var DropdownActions = /** @class */ (function (_super) {
             cn += className;
         return React.createElement("div", { className: 'dropdown' },
             React.createElement("button", { ref: function (v) { return _this.button = v; }, className: cn, "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
-                React.createElement("i", { className: classNames('fa', 'fa-' + (icon || 'ellipsis-v')) })),
+                React.createElement("i", { className: classNames('fa fa-fw ', 'fa-' + (icon || 'ellipsis-v')) })),
             React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
                 var icon = v.icon, caption = v.caption, action = v.action;
                 if (icon === undefined && caption === undefined)
