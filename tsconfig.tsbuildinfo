@@ -867,7 +867,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "34a19b485f5be2dddb8a6a62f78bb2cbb473738ac432044e704062a47f82d4c3",
+        "version": "c7cecbeeef04b5762e6a57e4e4e6514723710099ca9597c2d42678d9b4d01650",
         "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
         "affectsGlobalScope": false
       },

@@ -254,8 +254,8 @@ var ImageUploader = /** @class */ (function (_super) {
                     var base64 = canvas.toDataURL('image/' + _this.suffix, quality);
                     var blob = _this.convertBase64UrlToBlob(base64);
                     _this.desImgSize = blob.size;
-                    if (_this.desImgSize > 5000000) {
-                        _this.fileError = "图片大于4M，无法上传";
+                    if (_this.desImgSize > 3 * 1024 * 1024) {
+                        _this.fileError = "图片大于3M，无法上传";
                         _this.enableUploadButton = false;
                     }
                     resolve(base64);

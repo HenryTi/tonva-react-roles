@@ -226,8 +226,8 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
                 let base64 = canvas.toDataURL('image/' + this.suffix , quality);
                 let blob = this.convertBase64UrlToBlob(base64);
                 this.desImgSize = blob.size;
-                if (this.desImgSize > 5000000) {
-                    this.fileError = "图片大于4M，无法上传";
+                if (this.desImgSize > 3*1024*1024) {
+                    this.fileError = "图片大于3M，无法上传";
                     this.enableUploadButton = false;
                 }
                 resolve(base64);
