@@ -762,7 +762,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "da8f2fe6588ef4e0a8925d08acbb8d0f0b6b881db441914b2c6a296827dd4b15",
+        "version": "f43b1de8f99335e0ef8dcd300ab7894746e383fc69ae13067603bf14c6961d5d",
         "signature": "ae67a76eae4380991d8fc4f939533b1af1795ad5ed0fcc3e61d6a1a1127abd6b",
         "affectsGlobalScope": false
       },

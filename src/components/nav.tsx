@@ -873,7 +873,22 @@ export class Nav {
             let registration =await Promise.race([waiting, navigator.serviceWorker.ready]);
             if (registration) registration.unregister();
         }
-        window.document.location.reload();
+		window.document.location.reload();
+		// dcloud hbuilder里面的app自动升级，需要清webview的缓存
+		let plus = (window as any).plus;
+		if (plus) {
+			let webview = plus.webview;
+			if (webview) {
+				if (webview.reload) webview.reload(true);
+			}
+			else {
+				let webView = plus.webView;
+				if (webView) {
+					if (webView.reload) webView.reload(true);
+				}
+			}
+			//plus.webview.reload(true)
+		}
     }
 
     resetAll = () => {

@@ -497,7 +497,7 @@ var Nav = /** @class */ (function () {
             });
         }); };
         this.reload = function () { return __awaiter(_this, void 0, void 0, function () {
-            var waiting, registration;
+            var waiting, registration, plus, webview, webView;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -513,6 +513,22 @@ var Nav = /** @class */ (function () {
                         _a.label = 2;
                     case 2:
                         window.document.location.reload();
+                        plus = window.plus;
+                        if (plus) {
+                            webview = plus.webview;
+                            if (webview) {
+                                if (webview.reload)
+                                    webview.reload(true);
+                            }
+                            else {
+                                webView = plus.webView;
+                                if (webView) {
+                                    if (webView.reload)
+                                        webView.reload(true);
+                                }
+                            }
+                            //plus.webview.reload(true)
+                        }
                         return [2 /*return*/];
                 }
             });
