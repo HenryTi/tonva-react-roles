@@ -36,14 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 export function start(CApp, appConfig) {
     return __awaiter(this, void 0, void 0, function () {
-        var html, version, cApp;
+        var htmlTitle, html, html0, version, cApp;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    htmlTitle = appConfig.htmlTitle;
+                    if (htmlTitle) {
+                        document.title = htmlTitle;
+                    }
                     html = document.getElementsByTagName('html');
-                    version = html[0].getAttribute('data-version');
-                    if (version)
-                        appConfig.version = version;
+                    html0 = html[0];
+                    if (html0) {
+                        version = html0 === null || html0 === void 0 ? void 0 : html0.getAttribute('data-version');
+                        if (version)
+                            appConfig.version = version;
+                    }
                     cApp = new CApp(appConfig);
                     return [4 /*yield*/, cApp.start()];
                 case 1:

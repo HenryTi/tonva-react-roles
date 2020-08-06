@@ -18,6 +18,7 @@ export interface AppConfig {
     oem?: string;               // 用户注册发送验证码的oem厂家，默认同花
 	privacy?: string;
 	noUnit?: boolean;			// app的运行，不跟unit绑定
+	htmlTitle?: string;
 }
 
 export interface Elements {

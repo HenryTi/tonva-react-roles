@@ -45,5 +45,6 @@ export declare abstract class Entity {
     };
     protected unpackRow(ret: any, fields: Field[], data: string, p: number): number;
     private to;
+    private reverseNT;
     private unpackArr;
 }

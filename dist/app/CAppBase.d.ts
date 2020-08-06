@@ -15,6 +15,7 @@ export interface AppConfig {
     oem?: string;
     privacy?: string;
     noUnit?: boolean;
+    htmlTitle?: string;
 }
 export interface Elements {
     [id: string]: (element: HTMLElement) => void;

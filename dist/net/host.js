@@ -94,6 +94,8 @@ function centerWsFromHost(host) {
     return "ws://" + host + "/tv/";
 }
 export function resUrlFromHost(host) {
+    if (!host)
+        return;
     var url = urlFromHost(host);
     return url + 'res/';
 }

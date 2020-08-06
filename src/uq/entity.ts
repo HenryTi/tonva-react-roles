@@ -2,10 +2,13 @@ import { UqApi } from '../net';
 import { LocalCache } from '../tool';
 import { UqMan, Field, ArrFields, FieldMap } from './uqMan';
 import { Tuid } from './tuid';
-//import { EntityCache } from './caches';
 
 const tab = '\t';
 const ln = '\n';
+const backSlashNT = '\\nt';
+const backSlashCode = backSlashNT.charCodeAt(0);
+const backSlashN = backSlashNT.charCodeAt(1);
+const backSlashT = backSlashNT.charCodeAt(2);
 
 export abstract class Entity {
     private jName: string;
@@ -377,7 +380,10 @@ export abstract class Entity {
 
     private to(ret:any, v:string, f:Field):any {
         switch (f.type) {
-            default: return v;
+			default: return v;
+			case 'text':
+			case 'char':
+				return this.reverseNT(v);
             case 'datetime':
             case 'time':
 			case 'timestamp':
@@ -399,7 +405,33 @@ export abstract class Entity {
                 if (_tuid === undefined) return id;
                 return _tuid.boxId(id);
         }
-    }
+	}
+	
+	private reverseNT(text:string):string {
+		if (text === undefined) return;
+		if (text === null) return;
+		let len = text.length;
+		let r = '';
+		let p = 0;
+		for (let i=0; i<len; i++) {
+			let c = text.charCodeAt(i);
+			if (c === backSlashCode) {
+				if (i===len-1) break;
+				let c1 = text.charCodeAt(i+1);
+				let ch:string;
+				switch (c1) {
+					default: continue;
+					case backSlashCode: ch = '\\'; break;
+					case backSlashN: ch = '\n'; break;
+					case backSlashT: ch = '\t'; break;
+				}
+				r += text.substring(p, i) + ch;
+				p = i+2;
+			}
+		}
+		r += text.substring(p, len);
+		return r;
+	}
 
     private unpackArr(ret:any, arr:ArrFields, data:string, p:number):number {
         let vals:any[] = [], len = data.length;

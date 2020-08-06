@@ -34,9 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-//import { EntityCache } from './caches';
 var tab = '\t';
 var ln = '\n';
+var backSlashNT = '\\nt';
+var backSlashCode = backSlashNT.charCodeAt(0);
+var backSlashN = backSlashNT.charCodeAt(1);
+var backSlashT = backSlashNT.charCodeAt(2);
 var Entity = /** @class */ (function () {
     function Entity(uq, name, typeId) {
         this.ver = 0;
@@ -457,6 +460,9 @@ var Entity = /** @class */ (function () {
     Entity.prototype.to = function (ret, v, f) {
         switch (f.type) {
             default: return v;
+            case 'text':
+            case 'char':
+                return this.reverseNT(v);
             case 'datetime':
             case 'time':
             case 'timestamp':
@@ -479,6 +485,40 @@ var Entity = /** @class */ (function () {
                     return id;
                 return _tuid.boxId(id);
         }
+    };
+    Entity.prototype.reverseNT = function (text) {
+        if (text === undefined)
+            return;
+        if (text === null)
+            return;
+        var len = text.length;
+        var r = '';
+        var p = 0;
+        for (var i = 0; i < len; i++) {
+            var c = text.charCodeAt(i);
+            if (c === backSlashCode) {
+                if (i === len - 1)
+                    break;
+                var c1 = text.charCodeAt(i + 1);
+                var ch = void 0;
+                switch (c1) {
+                    default: continue;
+                    case backSlashCode:
+                        ch = '\\';
+                        break;
+                    case backSlashN:
+                        ch = '\n';
+                        break;
+                    case backSlashT:
+                        ch = '\t';
+                        break;
+                }
+                r += text.substring(p, i) + ch;
+                p = i + 2;
+            }
+        }
+        r += text.substring(p, len);
+        return r;
     };
     Entity.prototype.unpackArr = function (ret, arr, data, p) {
         var vals = [], len = data.length;
