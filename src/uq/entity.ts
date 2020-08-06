@@ -427,6 +427,7 @@ export abstract class Entity {
 				}
 				r += text.substring(p, i) + ch;
 				p = i+2;
+				++i;
 			}
 		}
 		r += text.substring(p, len);
