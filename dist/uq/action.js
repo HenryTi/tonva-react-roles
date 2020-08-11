@@ -59,7 +59,8 @@ var Action = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    Action.prototype.submit = function (data) {
+    Action.prototype.submit = function (data, waiting) {
+        if (waiting === void 0) { waiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var caller, ret;
             return __generator(this, function (_a) {

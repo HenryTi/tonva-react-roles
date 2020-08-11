@@ -323,7 +323,7 @@ var centerHost;
 export function setCenterUrl(url) {
     console.log('setCenterUrl %s', url);
     centerHost = url;
-    centerToken = undefined;
+    //centerToken = undefined;
     centerChannel = undefined;
     centerChannelUI = undefined;
 }

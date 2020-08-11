@@ -21,7 +21,7 @@ export declare abstract class Tuid extends Entity {
     abstract boxId(id: number): BoxId;
     abstract valueFromId(id: number): any;
     abstract resetCache(id: number | BoxId): void;
-    abstract assureBox<T>(id: number): Promise<T>;
+    abstract assureBox<T>(id: number | BoxId): Promise<T>;
     static equ(id1: BoxId | number, id2: BoxId | number): boolean;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
@@ -50,7 +50,7 @@ export declare class TuidInner extends Tuid {
     boxId(id: number): BoxId;
     valueFromId(id: number): any;
     resetCache(id: number | BoxId): void;
-    assureBox<T>(id: number): Promise<T>;
+    assureBox<T>(id: number | BoxId): Promise<T>;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
     cacheTuids(defer: number): void;

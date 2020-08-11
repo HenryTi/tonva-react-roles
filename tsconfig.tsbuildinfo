@@ -501,6 +501,11 @@
         "signature": "52b1d8102cd5ad7d1df6ef0c9962fca593400b72927f1912a6629e2eca2bb96d",
         "affectsGlobalScope": false
       },
+      "./src/components/navigo.ts": {
+        "version": "8d53e817fc215c764c31732301280558c9362dd5a6c41941cc674ef885e632a5",
+        "signature": "cd7a3e096007604d26013977b7eccc53fafa920415b8097679338152f03f6852",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@types/react/global.d.ts": {
         "version": "2bbdfc5ed049f38787376bb01b7bcfe5299eac853c76c16a3e21ab0279078314",
         "signature": "2bbdfc5ed049f38787376bb01b7bcfe5299eac853c76c16a3e21ab0279078314",
@@ -632,7 +637,7 @@
         "affectsGlobalScope": false
       },
       "./src/net/uqapi.ts": {
-        "version": "e3d736759dc21a9cd53d12bdbeabbfc1569fdac7c345ae4eb210fb63d059eea4",
+        "version": "fe104a0ec9fd26a6513c5ff7793580b1df5e15c5863417649cf2a7e466700ab3",
         "signature": "b69d50efb4eeaabe5153ecdb0ed1aeff2bb53d26d28abdb370b99a9d225f5db8",
         "affectsGlobalScope": false
       },
@@ -692,8 +697,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/view.tsx": {
-        "version": "c7b64ffb0a581709026bb611307e2bd08e38cedaad43e7cde5106e04fdc5c8c6",
-        "signature": "b6e9e09b59e3836400073c9a9916e284b2c1ef2b4e726a4ddd3a6d273e169dc7",
+        "version": "7218c93ae86f3cac8bb5cdb25ea5508b47c6a01789b3f6e0a28f9922402ae270",
+        "signature": "988a123958bf0b7a360fb6871cc5b513b69a4124efe9a2336bcba6dfa8b14382",
         "affectsGlobalScope": false
       },
       "./src/vm/vpage.tsx": {
@@ -702,8 +707,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "a732d32d9d387cbe485b61f156d9500a2b622437d8ca58019c23d32d37b5e9f0",
-        "signature": "db2aaacfa05d2e493e522251a155ea24060e83ee1ccc8d6c0b9e319a44fb36c4",
+        "version": "b2e61a0a63c96d6a2054eaf4f831bf87572760b5ab2ee8ec30cd20fc24a4d9b3",
+        "signature": "9686aef6c2ea0436b2426bdb3571d1d770c5a2fb5ad420de5106eaed47d580e2",
         "affectsGlobalScope": false
       },
       "./src/vm/index.ts": {
@@ -762,8 +767,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "f43b1de8f99335e0ef8dcd300ab7894746e383fc69ae13067603bf14c6961d5d",
-        "signature": "ae67a76eae4380991d8fc4f939533b1af1795ad5ed0fcc3e61d6a1a1127abd6b",
+        "version": "2bdb4f00f34bafe1d9b32d083b643b3c93be17e2dfb89fa0f30d32565c713f92",
+        "signature": "02c8072158e07d91d5615bf035ecbb4b0914ca00b4c29292613b7191bbd5c5bf",
         "affectsGlobalScope": false
       },
       "./src/components/page/index.ts": {
@@ -1002,8 +1007,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/list/index.tsx": {
-        "version": "c9ef76cd659e8688a63cf64f5aabcca7940be73bd9d8e1a3ad783ce0b7ff6ec7",
-        "signature": "93915e976b243c3303a378ec1e3574fd938ccc8eae314fb6967a88c17727ed71",
+        "version": "ca87d0a4f4cc6a0da6dae9b9bfef64c6c8f9c420de71f40964a40cf61ab9e117",
+        "signature": "6d0273a0b6b0f28699fb89687a358734654d5145fc2c77ef127876b520ed37cf",
         "affectsGlobalScope": false
       },
       "./src/components/dropdownactions/index.tsx": {
@@ -1052,12 +1057,12 @@
         "affectsGlobalScope": false
       },
       "./src/components/index.ts": {
-        "version": "09e3e80555ec41d1ae8acd80b8c2098cdf31cc426136a4b1b0c8b08d84c54095",
-        "signature": "281a557a8be58786c80148bb25c463a2c40cf89f67ba0c6d9d41548b8c01f272",
+        "version": "a1ac0f647bfdeabc0a79497f00b1a09fa4ee11f653fe30f20941cacdaa583dd5",
+        "signature": "db0948bd4e58c56607309f63a8c9fbd65fefa2948c496481692c4b3b06578c3b",
         "affectsGlobalScope": false
       },
       "./src/net/appbridge.ts": {
-        "version": "8b6f705bc43c77f6c4c555795d298d0b28dc68125e8aa8cb0c84576096817bf0",
+        "version": "3b4614b49b6f7331ff23485373282ec5467ac25dfb2cc842fb69834e40b29088",
         "signature": "a0699e369afedccc1ad48136d84ff225c4fc8944feee0b3071d6eb74edab0b87",
         "affectsGlobalScope": false
       },
@@ -1097,13 +1102,13 @@
         "affectsGlobalScope": false
       },
       "./src/uq/entity.ts": {
-        "version": "41a602b37a0df08b64e0ffabae326869068d134d90027c30f170b1bf160ab557",
+        "version": "49ef2e264dfb7eeb4df67209a4ec37c702ffb7a01d3e604aeb10f3ce7a1e0b91",
         "signature": "5b25e534b5897ef54e4b31aceaa37f2b93fad9a70b899ce63b4997728cc8d1c3",
         "affectsGlobalScope": false
       },
       "./src/uq/action.ts": {
-        "version": "666dd8f392ed9d157c655e87b1afbad45223e6bf8ef53b39eb1abf258a8a5621",
-        "signature": "63f24acdd32f514f8e07ac7d3c461055537912e75d8bc84373ff21b1d4133566",
+        "version": "48d89ab3bed01453ea74fdc35944daea299e5932239bc46241a83c22897dd045",
+        "signature": "bf6d4ca6059b79fa5f5acc4665251896a0dd1a113c4f9264e2220937d7c073ae",
         "affectsGlobalScope": false
       },
       "./src/uq/query.ts": {
@@ -1117,13 +1122,13 @@
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/idcache.ts": {
-        "version": "ac197d969f7e471b49a5370e7359b37ce0d9b8cf4e488e321c6b1b7c61dbe9da",
+        "version": "05dcc97014649fbd27ed244a48c818cf7f9f6be8be63ba22babef722342ad70b",
         "signature": "d19f5c584342d44bc912eaac32143a853f73164021d4f400045c53b4bfa018a9",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/tuid.ts": {
-        "version": "981545c9fa36009a789902c1e97c8f7b903f317c28b58be3be32590aa7793e5a",
-        "signature": "2404356cc9da86a9f172e74bc210730d779da03a0990aa801992d8bb91e29343",
+        "version": "fee157effd4044c2cdcfe6967c2e625b3746972cf938c7e886092507e924d9d0",
+        "signature": "b2b022132bad027c3288f39737b82dca4fbc672a948789ada6619016fa75a07f",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/boxid.tsx": {
@@ -1172,8 +1177,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/uqsman.ts": {
-        "version": "0018d0226e5303482f4c043b2d4f1104034004869bb98936282008266b7c2d83",
-        "signature": "4ea170ea4a639e324ae875507c732ed9d2dca943b215d8621bad4442a8b981a9",
+        "version": "14268ff0e9e83f8ca9e169d5f5b7febf0e1cd8930fc31a92b572c5f6aa785c0f",
+        "signature": "33de2af2eef33047ee54a834aa9f1f793c2942732f52a33007f58127e2cfcb2f",
         "affectsGlobalScope": false
       },
       "./src/uq/tag/tagview.tsx": {
@@ -1188,7 +1193,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "f49e3a6823a43af241f77fcebe063024613c223af39c7fa68647b0b2f60bdff9",
-        "signature": "11f3b672faa69ae78605a6c159827a80adf7d1b8082a2a2d5b0f0363f89822ae",
+        "signature": "6b18d063422a2c8ae0def4aeee83285933e9edb283defa126ba70749f6fb9bf4",
         "affectsGlobalScope": false
       },
       "./src/uq/index.ts": {
@@ -1202,32 +1207,37 @@
         "affectsGlobalScope": false
       },
       "./src/app/vmain.tsx": {
-        "version": "90f56b4647786bf0e5c863266eccedb5392d6335cb37dd49b60e25929c7e2f3a",
+        "version": "213691539d158d18473ef431d194a9d9ab9a8b3426565d36ab72a86b5b485168",
         "signature": "fa93eb1c42ca45d7a6098921cf1d78b8d26e7b69d26e5c5e1dba36acbcaaae83",
         "affectsGlobalScope": false
       },
       "./src/app/cappbase.ts": {
-        "version": "e92bc4b1b16bc040d7a3294da55679549dce992d295ee0cb3a9e2189590a5c96",
-        "signature": "ae18bbd07b3ecc8a50ea6e2efada4e69b6f9ff40b7f142e6a8c14bd35552362a",
+        "version": "c74ec18893e16de45f4f59d25a08e6a8e5a78e9eb58d17a90c96a2ea7cb40c10",
+        "signature": "d172473694572c57b6e3358fdbb7dad5a2b9597c3aa1421377be22c9a414f668",
         "affectsGlobalScope": false
       },
       "./src/app/start.ts": {
-        "version": "24fce2e4e97e029f1451f351a27f40046c56561ab145bcac847a9fe397b2edd0",
+        "version": "5342e53c453fb8244ea3a278b63351015e4370bafeee6339d20b0f90a86f1b2b",
         "signature": "702d0507ad97b95b3eff0f78da5a02da810b31d99f7b5e7463f63c55b08e3ea6",
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "a432d3be71d00863c3208af13927a0393e986b03c8d7a7f0703fdcccd91ea6e9",
-        "signature": "ccaf9b0033777f220871b68449dc1bda9f2d78c4daf2b4229e9b03f6e2c07e51",
+        "version": "ff43aa1570aff6d1aa86085ba68ce9ba155fe24e8afa068800e35df37ef00011",
+        "signature": "786a793bd485ad2dcd4b3d5da6264237f24e72058cd350f7c722fe4698dd248f",
+        "affectsGlobalScope": false
+      },
+      "./src/app/startroute.tsx": {
+        "version": "92a0374e9b49d80ccc2eb714de98e045ab94f1e2778ae8f06296c168596529a6",
+        "signature": "7b7cd22351c028424fef0e00aa5537417f82823d2360517b89e525f53cbc0a41",
         "affectsGlobalScope": false
       },
       "./src/app/index.ts": {
-        "version": "288a26986b0e3fade29b350cabe0c1ff9c73a73bd72b22c0d1429a3435d59be4",
-        "signature": "288a26986b0e3fade29b350cabe0c1ff9c73a73bd72b22c0d1429a3435d59be4",
+        "version": "9741b8814a232a4943d5d68e1b312defa5ed7929c082693ac5b8b990b8be584b",
+        "signature": "9741b8814a232a4943d5d68e1b312defa5ed7929c082693ac5b8b990b8be584b",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
-        "version": "a30f10ca12a5bfaee7a1ac505745680664730edde646509aea78f7fa71b0812f",
+        "version": "916460955732d4ac368205c4ca2e286dc8fe6fd04406dbc3e0779a9635770dcb",
         "signature": "916460955732d4ac368205c4ca2e286dc8fe6fd04406dbc3e0779a9635770dcb",
         "affectsGlobalScope": false
       },
@@ -1317,14 +1327,19 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/node/inspector.d.ts": {
-        "version": "a330a33374a30cb51770f772cf606e8ae1f2910d852bbb0003c0471a9bd34804",
-        "signature": "a330a33374a30cb51770f772cf606e8ae1f2910d852bbb0003c0471a9bd34804",
+        "version": "7e49dbf1543b3ee54853ade4c5e9fa460b6a4eca967efe6bf943e0c505d087ed",
+        "signature": "7e49dbf1543b3ee54853ade4c5e9fa460b6a4eca967efe6bf943e0c505d087ed",
         "affectsGlobalScope": false
       },
-      "./node_modules/@types/node/index.d.ts": {
-        "version": "9b62d0ef1e260d8e6002ff30cd85be05a6c4fa523c2a32f8ebd0ba23d6ded0dd",
-        "signature": "9b62d0ef1e260d8e6002ff30cd85be05a6c4fa523c2a32f8ebd0ba23d6ded0dd",
+      "./node_modules/@types/node/base.d.ts": {
+        "version": "55b94397e95c26d9ffd9739c092fcd7b3a319f07dfb4a44f3d5945cb4f690e7f",
+        "signature": "55b94397e95c26d9ffd9739c092fcd7b3a319f07dfb4a44f3d5945cb4f690e7f",
         "affectsGlobalScope": true
+      },
+      "./node_modules/@types/node/ts3.2/index.d.ts": {
+        "version": "1de0ff6200b92798a5aef43f57029c79dbf69932037dee1c007fdd2c562db258",
+        "signature": "1de0ff6200b92798a5aef43f57029c79dbf69932037dee1c007fdd2c562db258",
+        "affectsGlobalScope": false
       },
       "./node_modules/@types/node-fetch/index.d.ts": {
         "version": "ffff2ac872614b40f5606d17e094129ccf6417699ec1d60b91933c2f4de1fcb2",
@@ -1372,25 +1387,237 @@
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
-      "./node_modules/@types/node-fetch/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
-      "./node_modules/@types/node/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/inspector.d.ts"
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.dom.iterable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.collection.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.core.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.generator.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.iterable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.promise.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.proxy.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.reflect.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.array.include.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2016.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.intl.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.object.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.string.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.asynciterable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.intl.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.promise.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2018.regexp.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.array.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.object.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.string.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2019.symbol.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.bigint.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.promise.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.string.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es2020.symbol.wellknown.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.es5.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.intl.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.promise.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../appdata/roaming/npm/node_modules/typescript/lib/lib.esnext.string.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "../../../node_modules/@types/ejs/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/classnames/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/jwt-decode/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/lodash/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/marked/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/node-fetch/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/node/base.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/inspector.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/@types/node/inspector.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/node/ts3.2/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts"
+      ],
+      "./node_modules/@types/prop-types/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/@types/react-dom/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./node_modules/@types/react/global.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/@types/react/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/prop-types/index.d.ts",
         "./node_modules/@types/react/global.d.ts",
         "./node_modules/csstype/index.d.ts"
       ],
+      "./node_modules/csstype/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/assertenvironment.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx-react-lite/dist/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx-react-lite/dist/assertenvironment.d.ts",
         "./node_modules/mobx-react-lite/dist/observer.d.ts",
         "./node_modules/mobx-react-lite/dist/observercomponent.d.ts",
@@ -1404,78 +1631,198 @@
         "./node_modules/mobx-react-lite/dist/utils.d.ts"
       ],
       "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./node_modules/mobx-react-lite/dist/staticrendering.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/usecomputed.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/usedisposable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useobservable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useobserver.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx-react/dist/mobx-react.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react-lite/dist/index.d.ts"
       ],
       "./node_modules/mobx/lib/api/action.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/actiondecorator.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/autorun.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/become-observed.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/computed.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/api/configure.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/decorate.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/api/extendobservable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/api/observabledecorator.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/api/extras.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/flow.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/api/intercept-read.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/intercept.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/api/iscomputed.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/isobservable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/api/object-api.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/observable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/observabledecorator.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/api/observe.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/tojs.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/trace.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/api/transaction.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/mobx/lib/api/when.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/core/action.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/core/atom.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts",
         "./node_modules/mobx/lib/utils/utils.d.ts"
       ],
       "./node_modules/mobx/lib/core/computedvalue.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/core/derivation.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/core/globalstate.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/core/observable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/core/reaction.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/core/spy.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/internal.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/api/action.d.ts",
         "./node_modules/mobx/lib/api/actiondecorator.d.ts",
         "./node_modules/mobx/lib/api/autorun.d.ts",
@@ -1523,36 +1870,82 @@
         "./node_modules/mobx/lib/utils/utils.d.ts"
       ],
       "./node_modules/mobx/lib/mobx.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/types/dynamicobject.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/types/intercept-utils.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/listen-utils.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/types/modifiers.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/types/observablearray.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/observablemap.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/observableobject.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/observableset.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/observablevalue.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./node_modules/mobx/lib/types/type-utils.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
+      "./node_modules/mobx/lib/utils/comparer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/utils/decorators.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/utils/eq.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx/lib/utils/iterable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./node_modules/mobx/lib/utils/utils.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./src/app/cappbase.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/centerapi.ts",
         "./src/app/vmain.tsx",
         "./src/components/index.ts",
@@ -1561,36 +1954,65 @@
         "./src/vm/index.ts"
       ],
       "./src/app/cbase.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts",
         "./src/vm/index.ts"
       ],
       "./src/app/centerapi.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts"
       ],
       "./src/app/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts",
         "./src/app/cbase.ts",
-        "./src/app/start.ts"
+        "./src/app/start.ts",
+        "./src/app/startroute.tsx"
       ],
       "./src/app/start.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts"
       ],
+      "./src/app/startroute.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/app/cappbase.ts",
+        "./src/components/index.ts",
+        "./src/uq/index.ts"
+      ],
       "./src/app/vmain.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/app/cappbase.ts",
         "./src/components/index.ts",
         "./src/net/index.ts",
+        "./src/uq/index.ts",
         "./src/vm/index.ts"
+      ],
+      "./src/components/callbacks.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/components/dropdownactions/index.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/easydate/index.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/components/edit/edit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/iditemedit.tsx",
@@ -1604,6 +2026,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/iditemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1611,6 +2035,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/imageitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1620,9 +2046,13 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/index.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/edit/edit.tsx"
       ],
       "./src/components/edit/itemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/form/rules/index.ts",
@@ -1631,6 +2061,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/radioitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1639,10 +2071,14 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/selectbaseitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/edit/itemedit.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/selectitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1651,6 +2087,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/stringitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1659,6 +2097,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/tagitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1667,6 +2107,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/textareaitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/edit/itemedit.tsx",
@@ -1675,15 +2117,21 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/fetcherrorview.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/page/page.tsx",
         "./src/net/fetcherror.ts",
         "./src/net/index.ts"
       ],
       "./src/components/fileupload/index.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/form/context.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1693,12 +2141,16 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/field.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/widgets/index.ts"
       ],
       "./src/components/form/form.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/form/context.tsx",
@@ -1708,9 +2160,13 @@
         "./src/res/res.ts"
       ],
       "./src/components/form/formres.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/res.ts"
       ],
       "./src/components/form/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/field.tsx",
         "./src/components/form/form.tsx",
@@ -1718,11 +2174,15 @@
       ],
       "./src/components/form/rules/index.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/res/formres.ts"
       ],
       "./src/components/form/widgets/arrcomponent.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/form/context.tsx",
@@ -1731,6 +2191,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/buttonwidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/form/widgets/unknown.tsx",
@@ -1739,14 +2201,20 @@
       ],
       "./src/components/form/widgets/checkboxwidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/datewidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/widgets/textwidget.tsx"
       ],
       "./src/components/form/widgets/factory.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/field.tsx",
@@ -1769,6 +2237,8 @@
       ],
       "./src/components/form/widgets/idwidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/form/widgets/widget.tsx",
@@ -1776,6 +2246,8 @@
       ],
       "./src/components/form/widgets/imagewidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1785,6 +2257,8 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/widgets/buttonwidget.tsx",
         "./src/components/form/widgets/checkboxwidget.tsx",
@@ -1804,15 +2278,21 @@
         "./src/components/form/widgets/widget.tsx"
       ],
       "./src/components/form/widgets/numberwidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/rules/index.ts",
         "./src/components/form/widgets/textwidget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/passwordwidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/widgets/textwidget.tsx"
       ],
       "./src/components/form/widgets/radiowidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/widgets/widget.tsx",
@@ -1820,16 +2300,22 @@
       ],
       "./src/components/form/widgets/rangewidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/selectbasewidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/selectwidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/form/widgets/widget.tsx",
@@ -1837,6 +2323,8 @@
       ],
       "./src/components/form/widgets/tagwidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/widgets/widget.tsx",
@@ -1844,27 +2332,37 @@
       ],
       "./src/components/form/widgets/textareawidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/textwidget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/unknown.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/updownwidget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/numberwidget.tsx"
       ],
       "./src/components/form/widgets/widget.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1875,10 +2373,14 @@
       ],
       "./src/components/image.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/nav.tsx"
       ],
       "./src/components/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/dropdownactions/index.tsx",
         "./src/components/easydate/index.tsx",
         "./src/components/edit/index.tsx",
@@ -1888,6 +2390,7 @@
         "./src/components/loading.tsx",
         "./src/components/media.tsx",
         "./src/components/nav.tsx",
+        "./src/components/navigo.ts",
         "./src/components/page/index.ts",
         "./src/components/propgrid/index.tsx",
         "./src/components/resuploader.tsx",
@@ -1899,6 +2402,8 @@
         "./src/res/res.ts"
       ],
       "./src/components/list/base.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/list/index.tsx",
@@ -1906,11 +2411,16 @@
       ],
       "./src/components/list/clickable.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/list/base.tsx"
       ],
       "./src/components/list/index.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1924,6 +2434,8 @@
       ],
       "./src/components/list/selectable.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -1934,24 +2446,33 @@
       ],
       "./src/components/list/static.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/list/base.tsx",
         "./src/tool/uid.ts"
       ],
       "./src/components/loading.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/media.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/components/nav.tsx": [
         "./node_modules/@types/marked/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/fetcherrorview.tsx",
         "./src/components/loading.tsx",
+        "./src/components/navigo.ts",
         "./src/components/page/page.tsx",
         "./src/components/reloadpage.tsx",
         "./src/components/simple/index.ts",
@@ -1966,12 +2487,20 @@
         "./src/tool/index.ts",
         "./src/tool/user.ts"
       ],
+      "./src/components/navigo.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/components/page/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/page/page.tsx",
         "./src/components/page/scrollview.tsx",
         "./src/components/page/tabs.tsx"
       ],
       "./src/components/page/page.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/page/pageheader.tsx",
@@ -1979,15 +2508,21 @@
         "./src/components/page/tabs.tsx"
       ],
       "./src/components/page/pageheader.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/nav.tsx"
       ],
       "./src/components/page/scrollview.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/page/tabs.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/internal.d.ts",
@@ -1996,35 +2531,49 @@
         "./src/components/page/scrollview.tsx"
       ],
       "./src/components/propgrid/index.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/propgrid/propgrid.tsx",
         "./src/components/propgrid/propview.tsx",
         "./src/components/propgrid/row.tsx"
       ],
       "./src/components/propgrid/propgrid.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/components/propgrid/propview.tsx"
       ],
       "./src/components/propgrid/propview.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/propgrid/propgrid.tsx",
         "./src/components/propgrid/row.tsx"
       ],
       "./src/components/propgrid/row.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/propgrid/propgrid.tsx",
         "./src/components/propgrid/propview.tsx"
       ],
       "./src/components/reloadpage.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/nav.tsx",
         "./src/components/page/page.tsx"
       ],
       "./src/components/res.ts": [
-        "./node_modules/@types/lodash/index.d.ts"
+        "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/components/resuploader.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -2034,16 +2583,34 @@
         "./src/components/page/page.tsx",
         "./src/components/simple/index.ts"
       ],
+      "./src/components/rules/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/components/schema/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/schema/ivaluesview.tsx",
         "./src/components/schema/schema.ts",
         "./src/components/schema/touiselectitems.ts",
         "./src/components/schema/uischema.ts"
       ],
+      "./src/components/schema/ivaluesview.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./src/components/schema/schema.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/components/schema/touiselectitems.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/schema/uischema.ts"
       ],
       "./src/components/schema/uischema.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/form/context.tsx",
         "./src/components/form/field.tsx",
         "./src/components/form/rules/index.ts",
@@ -2053,28 +2620,40 @@
       ],
       "./src/components/searchbox.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts"
       ],
       "./src/components/simple/badge.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts"
       ],
       "./src/components/simple/fa.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/simple/icontext.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/simple/fa.tsx"
       ],
       "./src/components/simple/image.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts"
       ],
       "./src/components/simple/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/simple/badge.tsx",
         "./src/components/simple/fa.tsx",
         "./src/components/simple/icontext.tsx",
@@ -2083,18 +2662,26 @@
       ],
       "./src/components/simple/lmr.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts"
       ],
       "./src/components/simple/muted.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/simple/resuploader.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/usericon.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
@@ -2103,18 +2690,26 @@
         "./src/tool/index.ts"
       ],
       "./src/entry/changepassword.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/net/index.ts"
       ],
       "./src/entry/forget.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/entry/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/entry/meinfo.tsx"
       ],
       "./src/entry/login.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/entry/register.tsx",
@@ -2124,12 +2719,16 @@
         "./src/tool/user.ts"
       ],
       "./src/entry/meinfo.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/components/index.ts",
         "./src/net/index.ts"
       ],
       "./src/entry/register.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/entry/tools.tsx",
@@ -2138,20 +2737,30 @@
         "./src/vm/index.ts"
       ],
       "./src/entry/res/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/entry/res/login.ts",
         "./src/entry/res/register.ts"
       ],
       "./src/entry/res/login.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/entry/res/register.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/entry/tools.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
       "./src/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/index.ts",
         "./src/components/index.ts",
         "./src/entry/index.ts",
@@ -2161,28 +2770,44 @@
         "./src/vm/index.ts"
       ],
       "./src/net/apibase.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/caller.ts",
         "./src/net/httpchannel.ts"
       ],
       "./src/net/appbridge.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/index.ts",
         "./src/net/host.ts",
         "./src/net/uqapi.ts",
         "./src/net/wschannel.ts",
         "./src/tool/uid.ts"
       ],
+      "./src/net/caller.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/net/fetcherror.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/httpchannel.ts"
       ],
       "./src/net/guestapi.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/uqapi.ts",
         "./src/tool/user.ts"
       ],
       "./src/net/host.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/index.ts"
       ],
       "./src/net/httpchannel.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/nav.tsx",
         "./src/net/appbridge.ts",
         "./src/net/caller.ts",
@@ -2191,10 +2816,14 @@
         "./src/tool/index.ts"
       ],
       "./src/net/httpchannelui.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/nav.tsx",
         "./src/net/fetcherror.ts"
       ],
       "./src/net/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/apibase.ts",
         "./src/net/appbridge.ts",
         "./src/net/caller.ts",
@@ -2204,11 +2833,19 @@
         "./src/net/wschannel.ts"
       ],
       "./src/net/nettoken.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/uqapi.ts",
         "./src/net/wschannel.ts"
       ],
+      "./src/net/serializejson.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/net/uqapi.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/apibase.ts",
         "./src/net/appbridge.ts",
         "./src/net/host.ts",
@@ -2217,38 +2854,62 @@
         "./src/tool/index.ts",
         "./src/tool/user.ts"
       ],
+      "./src/net/wschannel.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/res/entry/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/entry/login.ts",
         "./src/res/entry/register.ts"
       ],
       "./src/res/entry/login.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/res.ts"
       ],
       "./src/res/entry/register.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/res.ts"
       ],
       "./src/res/formres.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/res.ts"
       ],
       "./src/res/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/entry/index.ts",
         "./src/res/formres.ts",
         "./src/res/listres.ts",
         "./src/res/res.ts"
       ],
       "./src/res/listres.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/res/res.ts"
       ],
       "./src/res/res.ts": [
-        "./node_modules/@types/lodash/index.d.ts"
+        "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/tool/cacheids.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts"
       ],
       "./src/tool/env.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/localdb.ts"
       ],
       "./src/tool/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/cacheids.ts",
         "./src/tool/env.ts",
         "./src/tool/left0.ts",
@@ -2258,46 +2919,76 @@
         "./src/tool/uid.ts",
         "./src/tool/user.ts"
       ],
+      "./src/tool/left0.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/tool/local.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/env.ts"
       ],
       "./src/tool/localdb.ts": [
-        "./node_modules/@types/lodash/index.d.ts"
+        "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/tool/pageitems.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts"
       ],
+      "./src/tool/uid.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/tool/user.ts": [
-        "./node_modules/@types/jwt-decode/index.d.ts"
+        "./node_modules/@types/jwt-decode/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/uq/action.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/caller.ts",
         "./src/uq/entity.ts"
       ],
       "./src/uq/book.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/caller.ts",
         "./src/uq/query.ts"
       ],
       "./src/uq/boxid.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/tuid/index.ts"
       ],
       "./src/uq/caller.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts",
         "./src/uq/action.ts",
         "./src/uq/entity.ts",
         "./src/uq/query.ts"
       ],
       "./src/uq/entity.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts",
         "./src/tool/index.ts",
         "./src/uq/tuid/index.ts",
         "./src/uq/uqman.ts"
       ],
       "./src/uq/history.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/query.ts"
       ],
       "./src/uq/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/action.ts",
         "./src/uq/book.ts",
         "./src/uq/entity.ts",
@@ -2312,6 +3003,8 @@
         "./src/uq/uqsman.ts"
       ],
       "./src/uq/map.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/action.ts",
         "./src/uq/caller.ts",
         "./src/uq/entity.ts",
@@ -2319,10 +3012,14 @@
         "./src/uq/uqman.ts"
       ],
       "./src/uq/pending.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/query.ts"
       ],
       "./src/uq/query.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/tool/index.ts",
         "./src/uq/caller.ts",
@@ -2330,44 +3027,61 @@
         "./src/uq/uqman.ts"
       ],
       "./src/uq/sheet.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/pageitems.ts",
         "./src/uq/caller.ts",
         "./src/uq/entity.ts"
       ],
       "./src/uq/tag.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/entity.ts"
       ],
       "./src/uq/tag/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/tag/tag.ts",
         "./src/uq/tag/tagview.tsx"
       ],
       "./src/uq/tag/tag.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/entity.ts",
         "./src/uq/tag/tagview.tsx"
       ],
       "./src/uq/tag/tagview.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/uq/tag/tag.ts"
       ],
       "./src/uq/tuid/boxid.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/tuid/tuid.ts"
       ],
       "./src/uq/tuid/idcache.ts": [
         "./node_modules/@types/lodash/index.d.ts",
-        "./node_modules/@types/node/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
         "./src/tool/index.ts",
         "./src/uq/tuid/boxid.tsx",
         "./src/uq/tuid/tuid.ts"
       ],
       "./src/uq/tuid/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/uq/tuid/boxid.tsx",
         "./src/uq/tuid/reactboxid.tsx",
         "./src/uq/tuid/tuid.ts",
         "./src/uq/tuid/tuidscache.ts"
       ],
       "./src/uq/tuid/reactboxid.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
         "./src/uq/tuid/boxid.tsx",
@@ -2375,6 +3089,8 @@
       ],
       "./src/uq/tuid/tuid.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/index.ts",
         "./src/uq/caller.ts",
         "./src/uq/entity.ts",
@@ -2383,12 +3099,20 @@
         "./src/uq/uqman.ts"
       ],
       "./src/uq/tuid/tuidscache.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/index.ts",
         "./src/uq/tuid/tuid.ts",
         "./src/uq/uqman.ts"
       ],
+      "./src/uq/ui.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/uq/uqman.ts": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts",
         "./src/tool/index.ts",
         "./src/uq/action.ts",
@@ -2404,6 +3128,8 @@
         "./src/uq/uqsman.ts"
       ],
       "./src/uq/uqsman.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/index.ts",
         "./src/net/index.ts",
         "./src/tool/index.ts",
@@ -2412,6 +3138,8 @@
       ],
       "./src/vm/controller.tsx": [
         "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/tool/index.ts",
@@ -2419,11 +3147,15 @@
         "./src/vm/vpage.tsx"
       ],
       "./src/vm/index.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/vm/controller.tsx",
         "./src/vm/view.tsx",
         "./src/vm/vpage.tsx"
       ],
       "./src/vm/view.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/tool/index.ts",
@@ -2431,6 +3163,8 @@
         "./src/vm/vpage.tsx"
       ],
       "./src/vm/vpage.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
         "./src/vm/controller.tsx",
@@ -2441,12 +3175,17 @@
       "./node_modules/@types/node-fetch/index.d.ts": [
         "./node_modules/@types/node/index.d.ts"
       ],
-      "./node_modules/@types/node/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/inspector.d.ts"
+      "./node_modules/@types/node/base.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/inspector.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/@types/node/inspector.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/@types/node/ts3.2/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts"
       ],
       "./node_modules/@types/react-dom/index.d.ts": [
         "./node_modules/@types/react/index.d.ts"
@@ -2632,9 +3371,13 @@
       "./src/app/index.ts": [
         "./src/app/cappbase.ts",
         "./src/app/cbase.ts",
-        "./src/app/start.ts"
+        "./src/app/start.ts",
+        "./src/app/startroute.tsx"
       ],
       "./src/app/start.ts": [
+        "./src/app/cappbase.ts"
+      ],
+      "./src/app/startroute.tsx": [
         "./src/app/cappbase.ts"
       ],
       "./src/app/vmain.tsx": [
@@ -2843,6 +3586,7 @@
         "./src/components/loading.tsx",
         "./src/components/media.tsx",
         "./src/components/nav.tsx",
+        "./src/components/navigo.ts",
         "./src/components/page/index.ts",
         "./src/components/propgrid/index.tsx",
         "./src/components/resuploader.tsx",
@@ -2877,6 +3621,7 @@
       ],
       "./src/components/nav.tsx": [
         "./node_modules/@types/react/index.d.ts",
+        "./src/components/navigo.ts",
         "./src/net/fetcherror.ts",
         "./src/tool/user.ts"
       ],
@@ -3272,8 +4017,9 @@
       "./node_modules/@types/lodash/index.d.ts",
       "./node_modules/@types/marked/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
-      "./node_modules/@types/node/index.d.ts",
+      "./node_modules/@types/node/base.d.ts",
       "./node_modules/@types/node/inspector.d.ts",
+      "./node_modules/@types/node/ts3.2/index.d.ts",
       "./node_modules/@types/prop-types/index.d.ts",
       "./node_modules/@types/react-dom/index.d.ts",
       "./node_modules/@types/react/global.d.ts",
@@ -3344,6 +4090,7 @@
       "./src/app/centerapi.ts",
       "./src/app/index.ts",
       "./src/app/start.ts",
+      "./src/app/startroute.tsx",
       "./src/app/vmain.tsx",
       "./src/components/callbacks.ts",
       "./src/components/dropdownactions/index.tsx",
@@ -3397,6 +4144,7 @@
       "./src/components/loading.tsx",
       "./src/components/media.tsx",
       "./src/components/nav.tsx",
+      "./src/components/navigo.ts",
       "./src/components/page/index.ts",
       "./src/components/page/page.tsx",
       "./src/components/page/pageheader.tsx",

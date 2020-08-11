@@ -8,7 +8,7 @@ export declare abstract class CBase extends Controller {
     get cApp(): any;
     internalT(str: string): any;
     protected newC<T extends CBase>(type: IConstructor<T>, param?: any): T;
-    protected newSub<O extends CBase, T extends CSub<O>>(type: IConstructor<T>): T;
+    protected newSub<O extends CBase, T extends CSub<O>>(type: IConstructor<T>, param?: any): T;
 }
 export declare abstract class CSub<T extends CBase> extends CBase {
     protected _owner: T;

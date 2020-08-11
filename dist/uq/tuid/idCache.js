@@ -157,8 +157,10 @@ var IdCache = /** @class */ (function () {
                         return [4 /*yield*/, this.loadIds()];
                     case 1:
                         tuidValues = _a.sent();
-                        if (tuidValues === undefined)
+                        if (tuidValues === undefined || tuidValues.length === 0) {
+                            this.waitingIds.splice(0, this.waitingIds.length);
                             return [2 /*return*/];
+                        }
                         this.cacheIdValues(tuidValues);
                         return [2 /*return*/];
                 }

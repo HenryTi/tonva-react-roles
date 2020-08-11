@@ -8,6 +8,10 @@ export interface TVs {
     };
 }
 export declare class UQsMan {
+    static _uqs: any;
+    static value: UQsMan;
+    static errors: string[];
+    static load(tonvaAppName: string, version: string, tvs: TVs): Promise<string[]>;
     private collection;
     private readonly tvs;
     readonly name: string;
@@ -16,7 +20,7 @@ export declare class UQsMan {
     readonly localMap: LocalMap;
     readonly localData: LocalCache;
     id: number;
-    constructor(tonvaAppName: string, tvs: TVs);
+    private constructor();
     addUq(uq: UqMan): void;
     private buildTVs;
     init(uqsData: UqData[]): Promise<void>;

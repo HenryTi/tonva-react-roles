@@ -13,6 +13,7 @@ export declare abstract class View<C extends Controller> {
     protected renderVm(vm: new (controller: C) => View<C>, param?: any): JSX.Element;
     protected openVPage(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: () => Promise<void>): Promise<void>;
     protected event(type: string, value?: any): Promise<void>;
+    protected go(showPage: () => void, url: string, absolute?: boolean): void;
     vCall<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<any>;
     protected returnCall(value: any): void;
     protected renderUser(user: any, imageClassName?: string, textClassName?: string): JSX.Element;

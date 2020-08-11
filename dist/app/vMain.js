@@ -51,6 +51,7 @@ import * as React from 'react';
 import { Page, FA, nav, LMR, List } from "../components";
 import { VPage } from '../vm';
 import { appInFrame } from '../net';
+import { UQsMan } from '../uq';
 /*
 export class VAppMain extends VPage<CMainBase> {
     async open(param?:any) {
@@ -91,7 +92,7 @@ var VUnsupportedUnit = /** @class */ (function (_super) {
             var predefinedUnit = _a.predefinedUnit;
             var user = nav.user;
             var userName = user ? user.name : '[未登录]';
-            var _b = _this.controller.uqsMan, appOwner = _b.appOwner, appName = _b.appName;
+            var _b = UQsMan.value, appOwner = _b.appOwner, appName = _b.appName;
             return React.createElement(Page, { header: "APP\u65E0\u6CD5\u8FD0\u884C", logout: true },
                 React.createElement("div", { className: "m-3 text-danger container" },
                     React.createElement("div", { className: "form-group row" },

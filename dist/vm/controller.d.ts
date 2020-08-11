@@ -52,6 +52,7 @@ export declare abstract class Controller {
     backPage(): void;
     closePage(level?: number): void;
     ceasePage(level?: number): void;
+    go(showPage: () => void, url: string, absolute?: boolean): void;
     removeCeased(): void;
     regConfirmClose(confirmClose: () => Promise<boolean>): void;
     private topPageKey;

@@ -185,7 +185,7 @@ function onReceiveAppApiMessage(hash, apiName) {
                     unit = appInFrame.unit, predefinedUnit = appInFrame.predefinedUnit;
                     unit = unit || predefinedUnit;
                     if (!unit) {
-                        console.error('no unit defined in unit.json or not logined in', unit);
+                        console.error('no unit defined in unit.json or in index.html, or not logined in', unit);
                     }
                     parts = apiName.split('/');
                     param = { unit: unit, uqOwner: parts[0], uqName: parts[1], appOwner: parts[2], appName: parts[3] };

@@ -50,7 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { nav, t, setGlobalRes } from "../components";
 import { Controller } from '../vm';
 import { UQsMan } from "../uq";
-import { appInFrame, loadAppUqs } from "../net";
+import { appInFrame } from "../net";
 import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 var CAppBase = /** @class */ (function (_super) {
@@ -58,15 +58,17 @@ var CAppBase = /** @class */ (function (_super) {
     // appName: owner/name
     function CAppBase(config) {
         var _this = _super.call(this, undefined) || this;
-        var appName = config.appName, version = config.version, tvs = config.tvs, noUnit = config.noUnit;
+        _this.appConfig = config || nav.navSettings;
+        var _a = _this.appConfig, appName = _a.appName, noUnit = _a.noUnit;
         _this.name = appName;
         if (appName === undefined) {
             throw new Error('appName like "owner/app" must be defined in MainConfig');
         }
-        _this.version = version;
         _this.noUnit = noUnit;
-        _this.uqsMan = new UQsMan(_this.name, tvs);
         return _this;
+        //this._uqs = UQsMan._uqs;
+        //this.version = version;
+        //this.uqsMan = new UQsMan(this.name, tvs);
     }
     Object.defineProperty(CAppBase.prototype, "uqs", {
         get: function () { return this._uqs; },
@@ -94,21 +96,27 @@ var CAppBase = /** @class */ (function (_super) {
     ;
     CAppBase.prototype.beforeStart = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var retErrors, predefinedUnit_1, user, _a, appUnit, err_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var _a, appName, version, tvs, retErrors, predefinedUnit_1, user, _b, appUnit, err_1;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
-                        _b.trys.push([0, 4, , 5]);
-                        return [4 /*yield*/, this.load()];
+                        _c.trys.push([0, 5, , 6]);
+                        if (!!nav.isRouting) return [3 /*break*/, 2];
+                        _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
+                        return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
-                        retErrors = _b.sent();
+                        _c.sent();
+                        _c.label = 2;
+                    case 2:
+                        this._uqs = UQsMan._uqs;
+                        retErrors = UQsMan.errors;
                         predefinedUnit_1 = appInFrame.predefinedUnit;
                         user = nav.user;
-                        if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 3];
-                        _a = this;
-                        return [4 /*yield*/, centerApi.userAppUnits(this.uqsMan.id)];
-                    case 2:
-                        _a.appUnits = _b.sent();
+                        if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 4];
+                        _b = this;
+                        return [4 /*yield*/, centerApi.userAppUnits(UQsMan.value.id)];
+                    case 3:
+                        _b.appUnits = _c.sent();
                         if (this.noUnit === true)
                             return [2 /*return*/, true];
                         switch (this.appUnits.length) {
@@ -132,18 +140,18 @@ var CAppBase = /** @class */ (function (_super) {
                                 this.openVPage(VUnitSelect);
                                 return [2 /*return*/, false];
                         }
-                        _b.label = 3;
-                    case 3:
+                        _c.label = 4;
+                    case 4:
                         if (retErrors !== undefined) {
                             this.openVPage(VErrorsPage, retErrors);
                             return [2 /*return*/, false];
                         }
                         return [2 /*return*/, true];
-                    case 4:
-                        err_1 = _b.sent();
+                    case 5:
+                        err_1 = _c.sent();
                         this.openVPage(VStartError, err_1);
                         return [2 /*return*/, false];
-                    case 5: return [2 /*return*/];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
@@ -158,53 +166,37 @@ var CAppBase = /** @class */ (function (_super) {
             });
         });
     };
-    CAppBase.prototype.load = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a, appOwner, appName, localData, uqAppData, _i, _b, uq, id, uqs, retErrors;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        _a = this.uqsMan, appOwner = _a.appOwner, appName = _a.appName;
-                        localData = this.uqsMan.localData;
-                        uqAppData = localData.get();
-                        if (!(!uqAppData || uqAppData.version !== this.version)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, loadAppUqs(appOwner, appName)];
-                    case 1:
-                        uqAppData = _c.sent();
-                        if (!uqAppData.id) {
-                            return [2 /*return*/, [
-                                    appOwner + "/" + appName + "\u4E0D\u5B58\u5728\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5app\u5168\u540D\u3002"
-                                ]];
-                        }
-                        uqAppData.version = this.version;
-                        localData.set(uqAppData);
-                        // 
-                        for (_i = 0, _b = uqAppData.uqs; _i < _b.length; _i++) {
-                            uq = _b[_i];
-                            uq.newVersion = true;
-                        }
-                        _c.label = 2;
-                    case 2:
-                        id = uqAppData.id, uqs = uqAppData.uqs;
-                        this.uqsMan.id = id;
-                        return [4 /*yield*/, this.uqsMan.init(uqs)];
-                    case 3:
-                        _c.sent();
-                        return [4 /*yield*/, this.uqsMan.load()];
-                    case 4:
-                        retErrors = _c.sent();
-                        if (retErrors.length === 0) {
-                            retErrors.push.apply(retErrors, this.uqsMan.setTuidImportsLocal());
-                            if (retErrors.length === 0) {
-                                this._uqs = this.uqsMan.buildUQs();
-                                return [2 /*return*/];
-                            }
-                        }
-                        return [2 /*return*/, retErrors];
-                }
-            });
-        });
-    };
+    /*
+    private async load(): Promise<string[]> {
+        let {appOwner, appName} = this.uqsMan;
+        let {localData} = this.uqsMan;
+        let uqAppData:UqAppData = localData.get();
+        if (!uqAppData || uqAppData.version !== this.version) {
+            uqAppData = await loadAppUqs(appOwner, appName);
+            if (!uqAppData.id) {
+                return [
+                    `${appOwner}/${appName}不存在。请仔细检查app全名。`
+                ];
+            }
+            uqAppData.version = this.version;
+            localData.set(uqAppData);
+            //
+            for (let uq of uqAppData.uqs) uq.newVersion = true;
+        }
+        let {id, uqs} = uqAppData;
+        this.uqsMan.id = id;
+        await this.uqsMan.init(uqs);
+        let retErrors = await this.uqsMan.load();
+        if (retErrors.length === 0) {
+            retErrors.push(...this.uqsMan.setTuidImportsLocal());
+            if (retErrors.length === 0) {
+                this._uqs = this.uqsMan.buildUQs();
+                return;
+            }
+        }
+        return retErrors;
+    }
+    */
     CAppBase.prototype.showUnsupport = function (predefinedUnit) {
         nav.clear();
         this.openVPage(VUnsupportedUnit, predefinedUnit);

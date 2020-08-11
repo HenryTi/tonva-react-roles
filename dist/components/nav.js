@@ -76,6 +76,7 @@ import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFra
 import { wsBridge } from '../net/wsChannel';
 import { resOptions } from '../res/res';
 import { Loading } from './loading';
+import { Navigo } from './navigo';
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
@@ -157,6 +158,7 @@ var NavView = /** @class */ (function (_super) {
             wait: 0,
             fetchError: undefined
         };
+        nav.set(_this);
         return _this;
     }
     NavView.prototype.componentDidMount = function () {
@@ -165,9 +167,13 @@ var NavView = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         window.addEventListener('popstate', this.navBack);
-                        nav.set(this);
-                        return [4 /*yield*/, nav.start()];
+                        if (!!nav.isRouting) return [3 /*break*/, 2];
+                        return [4 /*yield*/, nav.init()];
                     case 1:
+                        _a.sent();
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, nav.start()];
+                    case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }
@@ -455,10 +461,12 @@ var Nav = /** @class */ (function () {
         this.user = undefined;
         this.arrs = ['/test', '/test/'];
         this.windowOnError = function (event, source, lineno, colno, error) {
+            debugger;
             console.error('windowOnError');
             console.error(error);
         };
         this.windowOnUnhandledRejection = function (ev) {
+            debugger;
             console.error('windowOnUnhandledRejection');
             console.error(ev.reason);
         };
@@ -554,6 +562,8 @@ var Nav = /** @class */ (function () {
         this.language = lang;
         this.culture = district;
         this.testing = false;
+        this.navigo = new Navigo();
+        this.isRouting = false;
     }
     Object.defineProperty(Nav.prototype, "guest", {
         get: function () {
@@ -629,6 +639,10 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        el = document.getElementById('unit');
+                        if (el) {
+                            return [2 /*return*/, el.innerText];
+                        }
                         el = document.getElementById('unit.json');
                         if (!!el) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.loadUnitJson()];
@@ -698,7 +712,6 @@ var Nav = /** @class */ (function () {
     });
     Nav.prototype.unitJsonPath = function () {
         var _a = document.location, origin = _a.origin, pathname = _a.pathname;
-        //href = href.toLowerCase();
         pathname = pathname.toLowerCase();
         for (var _i = 0, _b = this.arrs; _i < _b.length; _i++) {
             var item = _b[_i];
@@ -712,24 +725,12 @@ var Nav = /** @class */ (function () {
         }
         return origin + pathname + '/unit.json';
     };
-    Nav.prototype.start = function () {
+    Nav.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var hash, pos, url, ws, resHost, guest, exHash, appInFrame_1, predefinedUnit, user, notLogined, err_2;
+            var hash, pos, url, ws, resHost, guest, exHash, appInFrame, predefinedUnit;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 11, 12, 13]);
-                        window.onerror = this.windowOnError;
-                        window.onunhandledrejection = this.windowOnUnhandledRejection;
-                        //window.addEventListener('click', this.windowOnClick);
-                        //window.addEventListener('mousemove', this.windowOnMouseMove);
-                        //window.addEventListener('touchmove', this.windowOnMouseMove);
-                        //window.addEventListener('scroll', this.windowOnScroll);
-                        if (isMobile === true) {
-                            document.onselectstart = function () { return false; };
-                            document.oncontextmenu = function () { return false; };
-                        }
-                        //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
                         this.testing = env.testing;
                         return [4 /*yield*/, host.start(this.testing)];
                     case 1:
@@ -741,8 +742,6 @@ var Nav = /** @class */ (function () {
                                 pos = undefined;
                             this.hashParam = hash.substring(1, pos);
                         }
-                        nav.clear();
-                        this.startWait();
                         url = host.url, ws = host.ws, resHost = host.resHost;
                         this.centerHost = url;
                         this.resUrl = resUrlFromHost(resHost);
@@ -755,17 +754,21 @@ var Nav = /** @class */ (function () {
                         guest = _a.sent();
                         _a.label = 3;
                     case 3:
+                        if (!guest) {
+                            debugger;
+                            throw Error('guest can not be undefined');
+                        }
                         nav.setGuest(guest);
                         exHash = getExHash();
-                        appInFrame_1 = setAppInFrame(exHash);
+                        appInFrame = setAppInFrame(exHash);
                         if (exHash !== undefined && window !== window.parent) {
                             // is in frame
-                            if (appInFrame_1 !== undefined) {
+                            if (appInFrame !== undefined) {
                                 this.ws = wsBridge;
                                 console.log('this.ws = wsBridge in sub frame');
                                 //nav.user = {id:0} as User;
                                 if (window.self !== window.parent) {
-                                    window.parent.postMessage({ type: 'sub-frame-started', hash: appInFrame_1.hash }, '*');
+                                    window.parent.postMessage({ type: 'sub-frame-started', hash: appInFrame.hash }, '*');
                                 }
                                 // 下面这一句，已经移到 appBridge.ts 里面的 initSubWin，也就是响应从main frame获得user之后开始。
                                 //await this.showAppView();
@@ -775,34 +778,83 @@ var Nav = /** @class */ (function () {
                         return [4 /*yield*/, this.loadPredefinedUnit()];
                     case 4:
                         predefinedUnit = _a.sent();
-                        appInFrame_1.predefinedUnit = predefinedUnit;
-                        user = this.local.user.get();
-                        if (!(user === undefined)) return [3 /*break*/, 9];
-                        notLogined = this.nav.props.notLogined;
-                        if (!(notLogined !== undefined)) return [3 /*break*/, 6];
-                        return [4 /*yield*/, notLogined()];
-                    case 5:
-                        _a.sent();
-                        return [3 /*break*/, 8];
-                    case 6: return [4 /*yield*/, nav.showLogin(undefined)];
-                    case 7:
-                        _a.sent();
-                        _a.label = 8;
-                    case 8: return [2 /*return*/];
-                    case 9: return [4 /*yield*/, nav.logined(user)];
-                    case 10:
-                        _a.sent();
-                        return [3 /*break*/, 13];
-                    case 11:
-                        err_2 = _a.sent();
-                        return [3 /*break*/, 13];
-                    case 12:
-                        this.endWait();
-                        return [7 /*endfinally*/];
-                    case 13: return [2 /*return*/];
+                        appInFrame.predefinedUnit = predefinedUnit;
+                        return [2 /*return*/];
                 }
             });
         });
+    };
+    Nav.prototype.start = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, notLogined, err_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 7, 8, 9]);
+                        window.onerror = this.windowOnError;
+                        window.onunhandledrejection = this.windowOnUnhandledRejection;
+                        //window.addEventListener('click', this.windowOnClick);
+                        //window.addEventListener('mousemove', this.windowOnMouseMove);
+                        //window.addEventListener('touchmove', this.windowOnMouseMove);
+                        //window.addEventListener('scroll', this.windowOnScroll);
+                        if (isMobile === true) {
+                            document.onselectstart = function () { return false; };
+                            document.oncontextmenu = function () { return false; };
+                        }
+                        //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
+                        nav.clear();
+                        this.startWait();
+                        user = this.local.user.get();
+                        if (!(user === undefined)) return [3 /*break*/, 5];
+                        notLogined = this.nav.props.notLogined;
+                        if (!(notLogined !== undefined)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, notLogined()];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, nav.showLogin(undefined)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [2 /*return*/];
+                    case 5: return [4 /*yield*/, nav.logined(user)];
+                    case 6:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 7:
+                        err_2 = _a.sent();
+                        console.error(err_2);
+                        debugger;
+                        return [3 /*break*/, 9];
+                    case 8:
+                        this.endWait();
+                        return [7 /*endfinally*/];
+                    case 9: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Nav.prototype.resolveRoute = function () {
+        this.isRouting = true;
+        this.navigo.resolve();
+    };
+    Nav.prototype.on = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return this.navigo.on(args[0], args[1], args[2]);
+    };
+    Nav.prototype.navigate = function (url, absolute) {
+        return this.navigo.navigate(url, absolute);
+    };
+    Nav.prototype.go = function (showPage, url, absolute) {
+        if (this.isRouting) {
+            this.navigate(url, absolute);
+        }
+        else {
+            showPage();
+        }
     };
     Nav.prototype.showAppView = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -1006,10 +1058,12 @@ var Nav = /** @class */ (function () {
         configurable: true
     });
     Nav.prototype.startWait = function () {
-        this.nav.startWait();
+        var _a;
+        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.startWait();
     };
     Nav.prototype.endWait = function () {
-        this.nav.endWait();
+        var _a;
+        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.endWait();
     };
     Nav.prototype.onError = function (error) {
         return __awaiter(this, void 0, void 0, function () {
@@ -1055,7 +1109,8 @@ var Nav = /** @class */ (function () {
         this.nav.popTo(key);
     };
     Nav.prototype.clear = function () {
-        this.nav.clear();
+        var _a;
+        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.clear();
     };
     Nav.prototype.navBack = function () {
         this.nav.navBack();

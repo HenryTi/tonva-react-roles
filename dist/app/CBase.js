@@ -41,8 +41,10 @@ var CBase = /** @class */ (function (_super) {
         c.init(param);
         return c;
     };
-    CBase.prototype.newSub = function (type) {
-        return new type(this);
+    CBase.prototype.newSub = function (type, param) {
+        var s = new type(this);
+        s.init(param);
+        return s;
     };
     return CBase;
 }(Controller));

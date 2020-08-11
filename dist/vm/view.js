@@ -77,6 +77,9 @@ var View = /** @class */ (function () {
             });
         });
     };
+    View.prototype.go = function (showPage, url, absolute) {
+        this.controller.go(showPage, url, absolute);
+    };
     View.prototype.vCall = function (vp, param) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

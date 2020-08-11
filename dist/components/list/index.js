@@ -20,6 +20,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import * as React from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
+import _ from 'lodash';
 import { Clickable } from './clickable';
 import { Static } from './static';
 import { Selectable } from './selectable';
@@ -47,11 +48,12 @@ var List = /** @class */ (function (_super) {
         else
             this.listBase = new Static(this);
     };
-    /*
-    componentWillUpdate(nextProps:ListProps, nextState, nextContext) {
-        //this.listBase.updateProps(nextProps);
-    }
-    */
+    List.prototype.componentDidUpdate = function (prevProps, prevState) {
+        if (_.isEqual(this.props.item, prevProps.item) === false) {
+            this.buildBase();
+            this.forceUpdate();
+        }
+    };
     List.prototype.componentWillUnmount = function () {
         this.listBase.dispose();
     };

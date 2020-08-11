@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { env } from '../tool';
+import { loadAppUqs } from '../net';
 import { UqMan } from './uqMan';
 import { nav } from '../components';
 var UQsMan = /** @class */ (function () {
@@ -51,6 +52,55 @@ var UQsMan = /** @class */ (function () {
         this.localMap = env.localDb.map(tonvaAppName);
         this.localData = this.localMap.child('uqData');
     }
+    UQsMan.load = function (tonvaAppName, version, tvs) {
+        return __awaiter(this, void 0, void 0, function () {
+            var uqsMan, appOwner, appName, localData, uqAppData, _i, _a, uq, id, uqs, retErrors;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        uqsMan = UQsMan.value = new UQsMan(tonvaAppName, tvs);
+                        appOwner = uqsMan.appOwner, appName = uqsMan.appName;
+                        localData = uqsMan.localData;
+                        uqAppData = localData.get();
+                        if (!(!uqAppData || uqAppData.version !== version)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, loadAppUqs(appOwner, appName)];
+                    case 1:
+                        uqAppData = _b.sent();
+                        if (!uqAppData.id) {
+                            return [2 /*return*/, [
+                                    appOwner + "/" + appName + "\u4E0D\u5B58\u5728\u3002\u8BF7\u4ED4\u7EC6\u68C0\u67E5app\u5168\u540D\u3002"
+                                ]];
+                        }
+                        uqAppData.version = version;
+                        localData.set(uqAppData);
+                        // 
+                        for (_i = 0, _a = uqAppData.uqs; _i < _a.length; _i++) {
+                            uq = _a[_i];
+                            uq.newVersion = true;
+                        }
+                        _b.label = 2;
+                    case 2:
+                        id = uqAppData.id, uqs = uqAppData.uqs;
+                        uqsMan.id = id;
+                        return [4 /*yield*/, uqsMan.init(uqs)];
+                    case 3:
+                        _b.sent();
+                        return [4 /*yield*/, uqsMan.load()];
+                    case 4:
+                        retErrors = _b.sent();
+                        if (retErrors.length === 0) {
+                            retErrors.push.apply(retErrors, uqsMan.setTuidImportsLocal());
+                            if (retErrors.length === 0) {
+                                UQsMan._uqs = uqsMan.buildUQs();
+                                return [2 /*return*/];
+                            }
+                        }
+                        UQsMan.errors = retErrors;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     // to be removed in the future
     UQsMan.prototype.addUq = function (uq) {
         this.collection[uq.name] = uq;

@@ -144,7 +144,12 @@ var TuidInner = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.idCache.assureObj(id)];
+                    case 0:
+                        if (!id)
+                            return [2 /*return*/];
+                        if (typeof id === 'object')
+                            id = id.id;
+                        return [4 /*yield*/, this.idCache.assureObj(id)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/, this.idCache.getValue(id)];
@@ -277,10 +282,17 @@ var TuidInner = /** @class */ (function (_super) {
     };
     TuidInner.prototype.buildFieldsTuid = function () {
         _super.prototype.buildFieldsTuid.call(this);
-        var mainFields = this.schema.mainFields;
+        var _a = this.schema, mainFields = _a.mainFields, $create = _a.$create, $update = _a.$update, stampOnMain = _a.stampOnMain;
         if (mainFields === undefined)
             debugger;
-        this.uq.buildFieldTuid(this.cacheFields = mainFields || this.fields);
+        this.cacheFields = mainFields || this.fields;
+        if (stampOnMain === true) {
+            if ($create === true)
+                this.cacheFields.push({ name: '$create', type: 'timestamp', _tuid: undefined });
+            if ($update === true)
+                this.cacheFields.push({ name: '$update', type: 'timestamp', _tuid: undefined });
+        }
+        this.uq.buildFieldTuid(this.cacheFields);
     };
     TuidInner.prototype.unpackTuidIds = function (values) {
         return this.unpackTuidIdsOfFields(values, this.cacheFields);

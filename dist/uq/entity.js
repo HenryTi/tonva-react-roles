@@ -36,10 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var tab = '\t';
 var ln = '\n';
-var backSlashNT = '\\nt';
-var backSlashCode = backSlashNT.charCodeAt(0);
-var backSlashN = backSlashNT.charCodeAt(1);
-var backSlashT = backSlashNT.charCodeAt(2);
+var chars = '\\ntbfvr';
+var codeBackSlash = chars.charCodeAt(0);
+var codeN = chars.charCodeAt(1);
+var codeT = chars.charCodeAt(2);
+var codeB = chars.charCodeAt(3);
+var codeF = chars.charCodeAt(4);
+var codeV = chars.charCodeAt(5);
+var codeR = chars.charCodeAt(6);
+var codes = '\n\t\b\f\v\r';
+var codeBN = codes.charCodeAt(0);
+var codeBT = codes.charCodeAt(1);
+var codeBB = codes.charCodeAt(2);
+var codeBF = codes.charCodeAt(3);
+var codeBV = codes.charCodeAt(4);
+var codeBR = codes.charCodeAt(5);
 var Entity = /** @class */ (function () {
     function Entity(uq, name, typeId) {
         this.ver = 0;
@@ -293,21 +304,33 @@ var Entity = /** @class */ (function () {
                         var len = d.length;
                         var r = '', p = 0;
                         for (var i = 0; i < len; i++) {
-                            var c = d.charCodeAt(i);
+                            var c = d.charCodeAt(i), ch = void 0;
                             switch (c) {
-                                case 9:
-                                    r += d.substring(p, i) + '\\t';
-                                    p = i + 1;
+                                default: continue;
+                                case codeBackSlash:
+                                    ch = '\\\\';
                                     break;
-                                case 10:
-                                    r += d.substring(p, i) + '\\n';
-                                    p = i + 1;
+                                case codeBT:
+                                    ch = '\\t';
                                     break;
-                                case 92:
-                                    r += d.substring(p, i) + '\\\\';
-                                    p = i + 1;
+                                case codeBN:
+                                    ch = '\\n';
+                                    break;
+                                case codeBF:
+                                    ch = '\\f';
+                                    break;
+                                case codeBV:
+                                    ch = '\\v';
+                                    break;
+                                case codeBB:
+                                    ch = '\\b';
+                                    break;
+                                case codeBR:
+                                    ch = '\\r';
                                     break;
                             }
+                            r += d.substring(p, i) + ch;
+                            p = i + 1;
                         }
                         return r + d.substring(p);
                     case 'undefined': return '';
@@ -496,25 +519,38 @@ var Entity = /** @class */ (function () {
         var p = 0;
         for (var i = 0; i < len; i++) {
             var c = text.charCodeAt(i);
-            if (c === backSlashCode) {
+            if (c === codeBackSlash) {
                 if (i === len - 1)
                     break;
                 var c1 = text.charCodeAt(i + 1);
                 var ch = void 0;
                 switch (c1) {
                     default: continue;
-                    case backSlashCode:
+                    case codeBackSlash:
                         ch = '\\';
                         break;
-                    case backSlashN:
+                    case codeN:
                         ch = '\n';
                         break;
-                    case backSlashT:
+                    case codeT:
                         ch = '\t';
+                        break;
+                    case codeB:
+                        ch = '\b';
+                        break;
+                    case codeF:
+                        ch = '\f';
+                        break;
+                    case codeV:
+                        ch = '\v';
+                        break;
+                    case codeR:
+                        ch = '\r';
                         break;
                 }
                 r += text.substring(p, i) + ch;
                 p = i + 2;
+                ++i;
             }
         }
         r += text.substring(p, len);

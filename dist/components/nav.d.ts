@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { User, Guest } from '../tool/user';
 import { FetchError } from '../net/fetchError';
+import { Navigo, RouteFunc, Hooks, NamedRoute } from './navigo';
 import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
@@ -64,7 +65,9 @@ export declare class Nav {
     private ws;
     private wsHost;
     private local;
-    private navSettings;
+    private navigo;
+    isRouting: boolean;
+    navSettings: NavSettings;
     user: User;
     testing: boolean;
     language: string;
@@ -90,7 +93,17 @@ export declare class Nav {
     private windowOnClick;
     private windowOnMouseMove;
     private windowOnScroll;
+    init(): Promise<void>;
     start(): Promise<void>;
+    resolveRoute(): void;
+    on(routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    on(url: string, routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    on(regex: RegExp, routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    on(options: {
+        [url: string]: RouteFunc | NamedRoute;
+    }): Navigo;
+    navigate(url: string, absolute?: boolean): Navigo;
+    go(showPage: () => void, url: string, absolute?: boolean): void;
     showAppView(): Promise<void>;
     setGuest(guest: Guest): void;
     saveLocalUser(): void;

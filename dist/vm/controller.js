@@ -299,6 +299,9 @@ var Controller = /** @class */ (function () {
     Controller.prototype.ceasePage = function (level) {
         nav.ceaseTop(level);
     };
+    Controller.prototype.go = function (showPage, url, absolute) {
+        nav.go(showPage, url, absolute);
+    };
     Controller.prototype.removeCeased = function () {
         nav.removeCeased();
     };
