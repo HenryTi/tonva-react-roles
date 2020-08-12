@@ -102,6 +102,7 @@ var Selectable = /** @class */ (function (_super) {
         //m-0 w-100
         _this.render = function (item, index) {
             var key = _this.list.props.item.key;
+            //return <this.row item={item} index={index} key={key===undefined?index:key(item)} />;
             return React.createElement(_this.row, { item: item, index: index, key: key === undefined ? index : key(item) });
         };
         _this.row = observer(function (props) {

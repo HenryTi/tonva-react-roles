@@ -1002,7 +1002,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/list/selectable.tsx": {
-        "version": "ca65cbf5a988134a5222226a5059b3b01c0f3b11c49c75d1a91b13e76d1d8bd6",
+        "version": "e2245955949b9fa787cf3864f6c9aba871e366a3e5ff077faf533f1f9921fdce",
         "signature": "dd23afcd0b0578dba57578eac95458e79991ad4215aefd9093b792cfd029125a",
         "affectsGlobalScope": false
       },
