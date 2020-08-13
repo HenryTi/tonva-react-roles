@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { RouteFunc, Hooks, Navigo, NamedRoute } from "../components";
 import { Controller } from '../vm';
 import { TVs } from "../uq";
 export interface IConstructor<T> {
@@ -32,6 +33,14 @@ export declare abstract class CAppBase extends Controller {
     protected setRes(res: any): void;
     protected hookElements(elements: Elements): void;
     protected beforeStart(): Promise<boolean>;
+    protected afterStart(): Promise<void>;
     userFromId(userId: number): Promise<any>;
+    protected on(routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    protected on(url: string, routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    protected on(regex: RegExp, routeFunc: RouteFunc, hooks?: Hooks): Navigo;
+    protected on(options: {
+        [url: string]: RouteFunc | NamedRoute;
+    }): Navigo;
+    protected onRoute(): void;
     private showUnsupport;
 }

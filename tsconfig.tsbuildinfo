@@ -767,8 +767,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "2bdb4f00f34bafe1d9b32d083b643b3c93be17e2dfb89fa0f30d32565c713f92",
-        "signature": "02c8072158e07d91d5615bf035ecbb4b0914ca00b4c29292613b7191bbd5c5bf",
+        "version": "c91e230b1ecf40843b0d1b28bb8879be8cc1f19e9a16a32874e3f81643cb9871",
+        "signature": "cce4ba38704fb222c5f53c1ac1114f7079693aa4f7c16c4d6c56584563d49875",
         "affectsGlobalScope": false
       },
       "./src/components/page/index.ts": {
@@ -1193,7 +1193,7 @@
       },
       "./src/uq/uqman.ts": {
         "version": "f49e3a6823a43af241f77fcebe063024613c223af39c7fa68647b0b2f60bdff9",
-        "signature": "6b18d063422a2c8ae0def4aeee83285933e9edb283defa126ba70749f6fb9bf4",
+        "signature": "11f3b672faa69ae78605a6c159827a80adf7d1b8082a2a2d5b0f0363f89822ae",
         "affectsGlobalScope": false
       },
       "./src/uq/index.ts": {
@@ -1212,8 +1212,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/cappbase.ts": {
-        "version": "c74ec18893e16de45f4f59d25a08e6a8e5a78e9eb58d17a90c96a2ea7cb40c10",
-        "signature": "d172473694572c57b6e3358fdbb7dad5a2b9597c3aa1421377be22c9a414f668",
+        "version": "491b3b7437be53134e8a626a51cf8779af0a0e91219a03d193ec0e49b2dc28af",
+        "signature": "3c932a5c45cf2f165213da554c60ece3d7a03c517e8adfb5c09f691328b9ec0b",
         "affectsGlobalScope": false
       },
       "./src/app/start.ts": {
@@ -3358,6 +3358,7 @@
         "./node_modules/mobx/lib/internal.d.ts"
       ],
       "./src/app/cappbase.ts": [
+        "./src/components/index.ts",
         "./src/uq/index.ts",
         "./src/vm/index.ts"
       ],

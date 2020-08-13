@@ -167,7 +167,7 @@ var NavView = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         window.addEventListener('popstate', this.navBack);
-                        if (!!nav.isRouting) return [3 /*break*/, 2];
+                        if (!(nav.isInAppRouting || !nav.isRouting)) return [3 /*break*/, 2];
                         return [4 /*yield*/, nav.init()];
                     case 1:
                         _a.sent();
@@ -386,6 +386,9 @@ var NavView = /** @class */ (function (_super) {
         var item = this.stack.pop();
         if (item === undefined)
             return;
+        //if (nav.isRouting) {
+        //	window.history.back();
+        //}
         var disposer = item.disposer;
         this.dispose(disposer);
         this.removeCeased();
@@ -564,6 +567,7 @@ var Nav = /** @class */ (function () {
         this.testing = false;
         this.navigo = new Navigo();
         this.isRouting = false;
+        this.isInAppRouting = false;
     }
     Object.defineProperty(Nav.prototype, "guest", {
         get: function () {
@@ -846,6 +850,7 @@ var Nav = /** @class */ (function () {
         return this.navigo.on(args[0], args[1], args[2]);
     };
     Nav.prototype.navigate = function (url, absolute) {
+        this.clear();
         return this.navigo.navigate(url, absolute);
     };
     Nav.prototype.go = function (showPage, url, absolute) {

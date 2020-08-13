@@ -101,7 +101,8 @@ var CAppBase = /** @class */ (function (_super) {
                 switch (_c.label) {
                     case 0:
                         _c.trys.push([0, 5, , 6]);
-                        if (!!nav.isRouting) return [3 /*break*/, 2];
+                        this.onRoute();
+                        if (!(nav.isInAppRouting === true || !nav.isRouting)) return [3 /*break*/, 2];
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
@@ -156,6 +157,15 @@ var CAppBase = /** @class */ (function (_super) {
             });
         });
     };
+    CAppBase.prototype.afterStart = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                if (nav.isInAppRouting)
+                    nav.resolveRoute();
+                return [2 /*return*/];
+            });
+        });
+    };
     CAppBase.prototype.userFromId = function (userId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -165,6 +175,16 @@ var CAppBase = /** @class */ (function (_super) {
                 }
             });
         });
+    };
+    CAppBase.prototype.on = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        nav.isInAppRouting = true;
+        return nav.on(args[0], args[1], args[2]);
+    };
+    CAppBase.prototype.onRoute = function () {
     };
     /*
     private async load(): Promise<string[]> {
