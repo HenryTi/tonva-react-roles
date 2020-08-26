@@ -63,12 +63,21 @@ var CenterApi = /** @class */ (function (_super) {
             });
         });
     };
-    ;
     CenterApi.prototype.userFromId = function (userId) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.get('user/user-name-nick-icon-from-id', { userId: userId })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    CenterApi.prototype.userFromKey = function (userName) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('tie/user-from-key', { key: userName })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

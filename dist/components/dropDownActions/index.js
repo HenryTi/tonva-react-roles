@@ -47,29 +47,26 @@ var DropdownActions = /** @class */ (function (_super) {
     };
     DropdownActions.prototype.render = function () {
         var _this = this;
-        var _a = this.props, icon = _a.icon, actions = _a.actions, isRight = _a.isRight, className = _a.className;
+        var _a = this.props, icon = _a.icon, actions = _a.actions, isRight = _a.isRight, className = _a.className, itemIconClass = _a.itemIconClass, itemCaptionClass = _a.itemCaptionClass;
         if (isRight === undefined)
             isRight = true;
         var hasIcon = actions.some(function (v) { return v.icon !== undefined; });
         var dropdownOpen = this.state.dropdownOpen;
         //isOpen={this.state.dropdownOpen} toggle={this.toggle}
-        var cn = 'cursor-pointer dropdown-toggle btn btn-sm ';
-        if (className)
-            cn += className;
+        var cn = className || 'cursor-pointer dropdown-toggle btn btn-sm';
+        //if (className) cn += className;
         return React.createElement("div", { className: 'dropdown' },
             React.createElement("button", { ref: function (v) { return _this.button = v; }, className: cn, "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
                 React.createElement("i", { className: classNames('fa fa-fw ', 'fa-' + (icon || 'ellipsis-v')) })),
             React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
-                var icon = v.icon, caption = v.caption, action = v.action;
+                var icon = v.icon, caption = v.caption, action = v.action, iconClass = v.iconClass, captionClass = v.captionClass;
                 if (icon === undefined && caption === undefined)
                     return React.createElement("div", { className: "dropdown-divider" });
                 var i;
                 if (hasIcon === true) {
                     if (icon !== undefined)
                         icon = 'fa-' + icon;
-                    i = React.createElement(React.Fragment, null,
-                        React.createElement("i", { className: classNames('fa', icon, 'fa-fw'), "aria-hidden": true }),
-                        "\u00A0 ");
+                    i = React.createElement("i", { className: classNames('mr-2', 'fa', icon, 'fa-fw', iconClass || itemIconClass), "aria-hidden": true });
                 }
                 if (action === undefined)
                     return React.createElement("h6", { className: "dropdown-header" },
@@ -87,7 +84,7 @@ var DropdownActions = /** @class */ (function (_super) {
                 return React.createElement("a", { className: "dropdown-item", key: index, href: "#/", onClick: onMenuItemClick, onTouchStart: onTouchStart },
                     i,
                     " ",
-                    caption);
+                    React.createElement("span", { className: captionClass || itemCaptionClass }, caption));
             })));
     };
     return DropdownActions;

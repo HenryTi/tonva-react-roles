@@ -54,6 +54,7 @@ export function startRoute(appConfig) {
                             appConfig.version = version_1;
                     }
                     nav.setSettings(appConfig);
+                    nav.isRouting = true;
                     return [4 /*yield*/, nav.init()];
                 case 1:
                     _a.sent();

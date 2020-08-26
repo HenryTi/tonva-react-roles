@@ -288,8 +288,6 @@ var Query = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.pageCaller(p, showWaiting).request()];
                     case 1:
                         res = _a.sent();
-                        //let data = this.unpackReturns(res);
-                        //return data.$page;// as any[];
                         return [2 /*return*/, res];
                 }
             });
@@ -308,8 +306,6 @@ var Query = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, this.queryCaller(params, showWaiting).request()];
                     case 1:
                         res = _a.sent();
-                        //let data = this.unpackReturns(res);
-                        //return data;
                         return [2 /*return*/, res];
                 }
             });

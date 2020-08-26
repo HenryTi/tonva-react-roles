@@ -67,7 +67,6 @@ export declare class Nav {
     private local;
     private navigo;
     isRouting: boolean;
-    isInAppRouting: boolean;
     navSettings: NavSettings;
     user: User;
     testing: boolean;

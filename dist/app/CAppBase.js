@@ -102,7 +102,7 @@ var CAppBase = /** @class */ (function (_super) {
                     case 0:
                         _c.trys.push([0, 5, , 6]);
                         this.onRoute();
-                        if (!(nav.isInAppRouting === true || !nav.isRouting)) return [3 /*break*/, 2];
+                        if (!(nav.isRouting === false)) return [3 /*break*/, 2];
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
@@ -160,8 +160,7 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.afterStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                if (nav.isInAppRouting)
-                    nav.resolveRoute();
+                nav.resolveRoute();
                 return [2 /*return*/];
             });
         });
@@ -181,7 +180,6 @@ var CAppBase = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        nav.isInAppRouting = true;
         return nav.on(args[0], args[1], args[2]);
     };
     CAppBase.prototype.onRoute = function () {

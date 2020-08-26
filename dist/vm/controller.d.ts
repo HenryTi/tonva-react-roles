@@ -25,9 +25,9 @@ export declare abstract class Controller {
     internalT(str: string): any;
     protected setRes(res: any): void;
     private receiveHandlerId;
-    private disposer;
-    private dispose;
+    protected dispose: () => void;
     protected onDispose(): void;
+    get isRouting(): boolean;
     isMe(id: any): boolean;
     protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
     protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
@@ -47,8 +47,8 @@ export declare abstract class Controller {
     call<T>(param?: any, ...params: any[]): Promise<T>;
     vCall<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any): Promise<any>;
     returnCall(value: any): void;
-    openPage(page: JSX.Element, onClosePage?: () => void): void;
-    replacePage(page: JSX.Element): void;
+    openPage(page: JSX.Element, onClosePage?: (ret: any) => void): void;
+    replacePage(page: JSX.Element, onClosePage?: () => void): void;
     backPage(): void;
     closePage(level?: number): void;
     ceasePage(level?: number): void;

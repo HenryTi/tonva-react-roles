@@ -37,7 +37,6 @@ var BookQueryCaller = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Object.defineProperty(BookQueryCaller.prototype, "path", {
-        //protected get entity(): Query {return this._entity as Query};
         get: function () { return "book/" + this.entity.name; },
         enumerable: false,
         configurable: true

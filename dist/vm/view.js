@@ -115,15 +115,15 @@ var View = /** @class */ (function () {
             return;
         return this.renderUser(user.id, imageClassName, textClassName);
     };
-    View.prototype.openPage = function (view, param) {
+    View.prototype.openPage = function (view, param, onClosePage) {
         var type = typeof param;
         if (type === 'object' || type === 'undefined') {
-            this.controller.openPage(React.createElement(view, param));
+            this.controller.openPage(React.createElement(view, param), onClosePage);
         }
         else {
             this.controller.openPage(React.createElement(Page, { header: "param type error" },
                 "View.openPage param must be object, but here is ",
-                type));
+                type), onClosePage);
         }
     };
     View.prototype.replacePage = function (view, param) {

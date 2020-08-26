@@ -418,6 +418,16 @@ var TuidInner = /** @class */ (function (_super) {
             });
         });
     };
+    TuidInner.prototype.no = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new TuidNoCaller(this, undefined).request()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     return TuidInner;
 }(Tuid));
 export { TuidInner };
@@ -632,6 +642,27 @@ var ArrPosCaller = /** @class */ (function (_super) {
     };
     return ArrPosCaller;
 }(TuidCaller));
+var TuidNoCaller = /** @class */ (function (_super) {
+    __extends(TuidNoCaller, _super);
+    function TuidNoCaller() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(TuidNoCaller.prototype, "path", {
+        get: function () {
+            return "tuid-no/" + this.entity.name + "/";
+        },
+        enumerable: false,
+        configurable: true
+    });
+    TuidNoCaller.prototype.buildParams = function () {
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var date = d.getDate();
+        return { year: year, month: month, date: date };
+    };
+    return TuidNoCaller;
+}(TuidCaller));
 var TuidImport = /** @class */ (function (_super) {
     __extends(TuidImport, _super);
     function TuidImport(uq, name, typeId, from) {
@@ -770,6 +801,16 @@ var TuidImport = /** @class */ (function (_super) {
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
+                }
+            });
+        });
+    };
+    TuidImport.prototype.no = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.tuidLocal.no()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });

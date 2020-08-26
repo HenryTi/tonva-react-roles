@@ -19,7 +19,7 @@ export declare abstract class View<C extends Controller> {
     protected renderUser(user: any, imageClassName?: string, textClassName?: string): JSX.Element;
     protected renderUserText(user: any): JSX.Element;
     protected renderMe(imageClassName?: string, textClassName?: string): JSX.Element;
-    protected openPage(view: React.StatelessComponent<any>, param?: any): void;
+    protected openPage(view: React.StatelessComponent<any>, param?: any, onClosePage?: (ret: any) => void): void;
     protected replacePage(view: React.StatelessComponent<any>, param?: any): void;
     protected openPageElement(page: JSX.Element, onClosePage?: () => void): void;
     protected replacePageElement(page: JSX.Element): void;

@@ -3,12 +3,16 @@ export interface DropdownAction {
     icon?: string;
     caption?: string;
     action?: () => void;
+    iconClass?: string;
+    captionClass?: string;
 }
 export interface DropdownActionsProps {
     icon?: string;
     actions: DropdownAction[];
     isRight?: boolean;
     className?: string;
+    itemIconClass?: string;
+    itemCaptionClass?: string;
 }
 export interface DropdownActionsState {
     dropdownOpen: boolean;

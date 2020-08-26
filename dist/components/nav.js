@@ -167,7 +167,7 @@ var NavView = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         window.addEventListener('popstate', this.navBack);
-                        if (!(nav.isInAppRouting || !nav.isRouting)) return [3 /*break*/, 2];
+                        if (!(nav.isRouting === false)) return [3 /*break*/, 2];
                         return [4 /*yield*/, nav.init()];
                     case 1:
                         _a.sent();
@@ -461,6 +461,7 @@ var Nav = /** @class */ (function () {
     function Nav() {
         var _this = this;
         this.local = new LocalData();
+        this.isRouting = false;
         this.user = undefined;
         this.arrs = ['/test', '/test/'];
         this.windowOnError = function (event, source, lineno, colno, error) {
@@ -565,9 +566,6 @@ var Nav = /** @class */ (function () {
         this.language = lang;
         this.culture = district;
         this.testing = false;
-        this.navigo = new Navigo();
-        this.isRouting = false;
-        this.isInAppRouting = false;
     }
     Object.defineProperty(Nav.prototype, "guest", {
         get: function () {
@@ -839,13 +837,19 @@ var Nav = /** @class */ (function () {
         });
     };
     Nav.prototype.resolveRoute = function () {
-        this.isRouting = true;
+        if (this.isRouting === false)
+            return;
+        if (this.navigo === undefined)
+            return;
         this.navigo.resolve();
     };
     Nav.prototype.on = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
+        }
+        if (this.navigo === undefined) {
+            this.navigo = new Navigo();
         }
         return this.navigo.on(args[0], args[1], args[2]);
     };
@@ -854,7 +858,7 @@ var Nav = /** @class */ (function () {
         return this.navigo.navigate(url, absolute);
     };
     Nav.prototype.go = function (showPage, url, absolute) {
-        if (this.isRouting) {
+        if (this.navigo !== undefined) {
             this.navigate(url, absolute);
         }
         else {
@@ -913,6 +917,7 @@ var Nav = /** @class */ (function () {
                         this.user = user;
                         this.saveLocalUser();
                         netToken.set(user.id, user.token);
+                        nav.clear();
                         if (!(callback !== undefined)) return [3 /*break*/, 1];
                         callback(user);
                         return [3 /*break*/, 3];
@@ -1027,6 +1032,7 @@ var Nav = /** @class */ (function () {
                         guest = this.local.guest.get();
                         setCenterToken(0, guest && guest.token);
                         this.ws = undefined;
+                        this.clear();
                         if (!(callback === undefined)) return [3 /*break*/, 2];
                         return [4 /*yield*/, nav.start()];
                     case 1:

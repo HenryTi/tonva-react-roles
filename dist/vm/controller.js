@@ -50,6 +50,7 @@ var Controller = /** @class */ (function () {
         var _this = this;
         this._t = {};
         this.isDev = env.isDevelopment;
+        //private disposer:()=>void;
         this.dispose = function () {
             // message listener的清理
             nav.unregisterReceiveHandler(_this.receiveHandlerId);
@@ -106,6 +107,11 @@ var Controller = /** @class */ (function () {
     };
     Controller.prototype.onDispose = function () {
     };
+    Object.defineProperty(Controller.prototype, "isRouting", {
+        get: function () { return nav.isRouting; },
+        enumerable: false,
+        configurable: true
+    });
     Controller.prototype.isMe = function (id) {
         if (id === null)
             return false;
@@ -194,7 +200,7 @@ var Controller = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.disposer = this.dispose;
+                        //this.disposer = this.dispose;
                         this.registerReceiveHandler();
                         return [4 /*yield*/, this.beforeStart()];
                     case 1:
@@ -274,21 +280,19 @@ var Controller = /** @class */ (function () {
         resolve(value);
     };
     Controller.prototype.openPage = function (page, onClosePage) {
-        var _this = this;
         var disposer;
         if (onClosePage !== undefined) {
             disposer = function () {
-                if (_this.disposer)
-                    _this.disposer();
-                onClosePage();
+                //if (this.disposer) this.disposer();
+                onClosePage(undefined);
             };
         }
         nav.push(page, disposer);
-        this.disposer = undefined;
+        //this.disposer = undefined;
     };
-    Controller.prototype.replacePage = function (page) {
-        nav.replace(page, this.disposer);
-        this.disposer = undefined;
+    Controller.prototype.replacePage = function (page, onClosePage) {
+        nav.replace(page, onClosePage);
+        //this.disposer = undefined;
     };
     Controller.prototype.backPage = function () {
         nav.back();

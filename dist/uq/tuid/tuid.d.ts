@@ -38,6 +38,10 @@ export declare abstract class Tuid extends Entity {
     abstract loadArr(arr: string, owner: number, id: number): Promise<any>;
     abstract saveArr(arr: string, owner: number, id: number, props: any): Promise<void>;
     abstract posArr(arr: string, owner: number, id: number, order: number): Promise<void>;
+    abstract no(): Promise<{
+        date: Date;
+        no: string;
+    }>;
 }
 export declare class TuidInner extends Tuid {
     private divs;
@@ -70,6 +74,10 @@ export declare class TuidInner extends Tuid {
     loadArr(arr: string, owner: number, id: number): Promise<any>;
     saveArr(arr: string, owner: number, id: number, props: any): Promise<any>;
     posArr(arr: string, owner: number, id: number, order: number): Promise<any>;
+    no(): Promise<{
+        date: Date;
+        no: string;
+    }>;
 }
 export declare class TuidImport extends Tuid {
     private tuidLocal;
@@ -94,6 +102,10 @@ export declare class TuidImport extends Tuid {
     loadArr(arr: string, owner: number, id: number): Promise<any>;
     saveArr(arr: string, owner: number, id: number, props: any): Promise<void>;
     posArr(arr: string, owner: number, id: number, order: number): Promise<void>;
+    no(): Promise<{
+        date: Date;
+        no: string;
+    }>;
 }
 export declare class TuidBox {
     tuid: Tuid;

@@ -68,7 +68,6 @@ var Map = /** @class */ (function (_super) {
         this.schemaFrom = this.schema.from;
         var actions = schema.actions, queries = schema.queries, keys = schema.keys;
         this.uq.buildFieldTuid(this.keys = keys);
-        //let t = this.schemaStringify();
         for (var i in actions) {
             var actionSchema = actions[i];
             var name_1 = actionSchema.name;

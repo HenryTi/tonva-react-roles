@@ -213,22 +213,36 @@ var Entity = /** @class */ (function () {
             var name_2 = field.name, type = field.type;
             var d = params[name_2];
             var val = void 0;
-            if (type === 'datetime') {
-                val = this.buildDateTimeParam(d);
-            }
-            else {
-                switch (typeof d) {
-                    default:
+            switch (type) {
+                case 'datetime':
+                    val = this.buildDateTimeParam(d);
+                    break;
+                case 'date':
+                    if (d instanceof Date) {
+                        val = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+                    }
+                    else {
                         val = d;
-                        break;
-                    case 'object':
-                        var tuid = field._tuid;
-                        if (tuid === undefined)
-                            val = d.id;
-                        else
-                            val = tuid.getIdFromObj(d);
-                        break;
-                }
+                    }
+                    break;
+                default:
+                    switch (typeof d) {
+                        default:
+                            val = d;
+                            break;
+                        case 'object':
+                            if (d instanceof Date) {
+                                val = d;
+                                break;
+                            }
+                            var tuid = field._tuid;
+                            if (tuid === undefined)
+                                val = d.id;
+                            else
+                                val = tuid.getIdFromObj(d);
+                            break;
+                    }
+                    break;
             }
             result[name_2] = val;
         }
@@ -351,10 +365,18 @@ var Entity = /** @class */ (function () {
     };
     Entity.prototype.packArr = function (result, fields, data) {
         if (data !== undefined) {
-            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-                var row = data_1[_i];
-                this.packRow(result, fields, row);
+            if (data.length === 0) {
+                result.push(ln);
             }
+            else {
+                for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                    var row = data_1[_i];
+                    this.packRow(result, fields, row);
+                }
+            }
+        }
+        else {
+            result.push(ln);
         }
         result.push(ln);
     };
