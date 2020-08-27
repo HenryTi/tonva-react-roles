@@ -34,6 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import { getObjPropIgnoreCase } from 'tool/getObjPropIgnoreCase';
 var tab = '\t';
 var ln = '\n';
 var chars = '\\ntbfvr';
@@ -293,9 +294,8 @@ var Entity = /** @class */ (function () {
             for (var _i = 0, arrs_2 = arrs; _i < arrs_2.length; _i++) {
                 var arr = arrs_2[_i];
                 var name_3 = arr.name, fields_4 = arr.fields;
-                var arrData = data[name_3];
-                if (!arrData)
-                    arrData = data[name_3.toLowerCase()];
+                var arrData = getObjPropIgnoreCase(data, name_3);
+                //if (!arrData) arrData = data[name.toLowerCase()];
                 this.packArr(ret, fields_4, arrData);
             }
         }

@@ -1101,8 +1101,13 @@
         "signature": "a8b3b736fa42e209d6a32c215470fccec8279479c45460d79fc3288c59b12cd8",
         "affectsGlobalScope": false
       },
+      "./src/tool/getobjpropignorecase.ts": {
+        "version": "d7bad70af816e277ac8c1ae04560a704ead8c9c469042683d5758b91d1eaa81b",
+        "signature": "6a88429f6b9210c0d6853bc4cd6bc1ee5961a50e99bfa82bd02f1bd3cb486f46",
+        "affectsGlobalScope": false
+      },
       "./src/uq/entity.ts": {
-        "version": "ffc714eeed9440b5365668e035e59af703f20505382f661a35785f7b48036230",
+        "version": "581cd03d7bcb6b748f2de4a2630e584a875879c770ec72e8055ac073dd498e57",
         "signature": "5b25e534b5897ef54e4b31aceaa37f2b93fad9a70b899ce63b4997728cc8d1c3",
         "affectsGlobalScope": false
       },
@@ -2907,6 +2912,10 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/localdb.ts"
       ],
+      "./src/tool/getobjpropignorecase.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/tool/index.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
@@ -2977,6 +2986,7 @@
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts",
+        "./src/tool/getobjpropignorecase.ts",
         "./src/tool/index.ts",
         "./src/uq/tuid/index.ts",
         "./src/uq/uqman.ts"
@@ -4207,6 +4217,7 @@
       "./src/res/res.ts",
       "./src/tool/cacheids.ts",
       "./src/tool/env.ts",
+      "./src/tool/getobjpropignorecase.ts",
       "./src/tool/index.ts",
       "./src/tool/left0.ts",
       "./src/tool/local.ts",
