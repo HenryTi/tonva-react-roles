@@ -579,11 +579,19 @@ var Entity = /** @class */ (function () {
         return r;
     };
     Entity.prototype.unpackArr = function (ret, arr, data, p) {
+        var p0 = p;
         var vals = [], len = data.length;
         var name = arr.name, fields = arr.fields;
         while (p < len) {
             var ch = data.charCodeAt(p);
             if (ch === 10) {
+                if (p === p0) {
+                    ch = data.charCodeAt(p);
+                    if (ch !== 10) {
+                        throw new Error('upackArr: arr第一个字符是10，则必须紧跟一个10，表示整个arr的结束');
+                    }
+                    ++p;
+                }
                 ++p;
                 break;
             }

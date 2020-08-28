@@ -98,7 +98,7 @@ export class ResUploader extends React.Component<ResUploaderProps> {
 }
 
 function formatSize(size:number, pointLength:number=2, units?:string[]) {
-    var unit;
+    let unit:string;
     units = units || [ 'B', 'K', 'M', 'G', 'TB' ];
     while ( (unit = units.shift()) && size > 1024 ) {
         size = size / 1024;
