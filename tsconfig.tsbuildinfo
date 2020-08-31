@@ -491,9 +491,14 @@
         "signature": "16954ee3d4b4b2ad18205d24af00034bbaa463c1ea088b8a7c0507730fa620ac",
         "affectsGlobalScope": false
       },
+      "./src/tool/getobjpropignorecase.ts": {
+        "version": "d7bad70af816e277ac8c1ae04560a704ead8c9c469042683d5758b91d1eaa81b",
+        "signature": "6a88429f6b9210c0d6853bc4cd6bc1ee5961a50e99bfa82bd02f1bd3cb486f46",
+        "affectsGlobalScope": false
+      },
       "./src/tool/index.ts": {
-        "version": "5d0f5932859fcabd7cbe4a8db318be215df7cd9dde396f9261d7e1cfc29f559a",
-        "signature": "735997356499e4c297946dc2271137519885d9f906f17ff5f4731c1b7a39d318",
+        "version": "bf129f69971288ab40e65eda4e87a1900a21ffc4b459fdcc6abaf977fbdaffb9",
+        "signature": "b726f546fea0ed0299700951e7f5c741091dc7660080983cee9e4cac188fc5ab",
         "affectsGlobalScope": false
       },
       "./src/net/wschannel.ts": {
@@ -1101,13 +1106,8 @@
         "signature": "a8b3b736fa42e209d6a32c215470fccec8279479c45460d79fc3288c59b12cd8",
         "affectsGlobalScope": false
       },
-      "./src/tool/getobjpropignorecase.ts": {
-        "version": "d7bad70af816e277ac8c1ae04560a704ead8c9c469042683d5758b91d1eaa81b",
-        "signature": "6a88429f6b9210c0d6853bc4cd6bc1ee5961a50e99bfa82bd02f1bd3cb486f46",
-        "affectsGlobalScope": false
-      },
       "./src/uq/entity.ts": {
-        "version": "b555ef38a4d3e92054e67d92de1b24e9ffae586d5d1a5893f21615d1b1f06903",
+        "version": "d8f061cb8c0d2d73a1c501ba47a0887255e6a381249bcb583c0b89260d601615",
         "signature": "5b25e534b5897ef54e4b31aceaa37f2b93fad9a70b899ce63b4997728cc8d1c3",
         "affectsGlobalScope": false
       },
@@ -2911,6 +2911,7 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/cacheids.ts",
         "./src/tool/env.ts",
+        "./src/tool/getobjpropignorecase.ts",
         "./src/tool/left0.ts",
         "./src/tool/local.ts",
         "./src/tool/localdb.ts",
@@ -2976,7 +2977,6 @@
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/net/index.ts",
-        "./src/tool/getobjpropignorecase.ts",
         "./src/tool/index.ts",
         "./src/uq/tuid/index.ts",
         "./src/uq/uqman.ts"
@@ -3811,6 +3811,7 @@
       "./src/tool/index.ts": [
         "./src/tool/cacheids.ts",
         "./src/tool/env.ts",
+        "./src/tool/getobjpropignorecase.ts",
         "./src/tool/left0.ts",
         "./src/tool/local.ts",
         "./src/tool/localdb.ts",

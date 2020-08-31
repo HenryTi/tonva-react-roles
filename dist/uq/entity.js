@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getObjPropIgnoreCase } from 'tool/getObjPropIgnoreCase';
+import { getObjPropIgnoreCase } from '../tool';
 var tab = '\t';
 var ln = '\n';
 var chars = '\\ntbfvr';

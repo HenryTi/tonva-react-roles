@@ -2,7 +2,7 @@ import { UqApi } from '../net';
 import { LocalCache } from '../tool';
 import { UqMan, Field, ArrFields, FieldMap } from './uqMan';
 import { Tuid } from './tuid';
-import { getObjPropIgnoreCase } from 'tool/getObjPropIgnoreCase';
+import { getObjPropIgnoreCase } from '../tool';
 
 const tab = '\t';
 const ln = '\n';

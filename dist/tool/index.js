@@ -6,4 +6,5 @@ export { CacheIds } from './cacheIds';
 export { LocalMap, LocalArr, LocalCache } from './localDb';
 export { LocalData } from './local';
 export { env } from './env';
+export { getObjPropIgnoreCase } from './getObjPropIgnoreCase';
 //# sourceMappingURL=index.js.map
