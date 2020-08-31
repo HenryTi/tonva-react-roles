@@ -72,8 +72,8 @@ import { netToken } from '../net/netToken';
 import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
 import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
 import { LocalData, env } from '../tool';
-import { guestApi, logoutApis, setCenterUrl, setCenterToken, WSChannel, appInFrame, host, resUrlFromHost } from '../net';
-import { wsBridge } from '../net/wsChannel';
+import { guestApi, logoutApis, setCenterUrl, setCenterToken, appInFrame, host, resUrlFromHost, messageHub } from '../net';
+//import { WsBase, wsBridge } from '../net/wsChannel';
 import { resOptions } from '../res/res';
 import { Loading } from './loading';
 import { Navigo } from './navigo';
@@ -150,8 +150,6 @@ var NavView = /** @class */ (function (_super) {
         _this.clearError = function () {
             _this.setState({ fetchError: undefined });
         };
-        //this.back = this.back.bind(this);
-        //this.navBack = this.navBack.bind(this);
         _this.stack = [];
         _this.state = {
             stack: _this.stack,
@@ -584,27 +582,27 @@ var Nav = /** @class */ (function () {
         //this.logo = logo;
         this.nav = nav;
     };
-    Nav.prototype.registerReceiveHandler = function (handler) {
-        if (this.ws === undefined)
-            return;
-        return this.ws.onWsReceiveAny(handler);
-    };
-    Nav.prototype.unregisterReceiveHandler = function (handlerId) {
-        if (this.ws === undefined)
-            return;
-        if (handlerId === undefined)
-            return;
-        this.ws.endWsReceive(handlerId);
-    };
+    /*
+    registerReceiveHandler(handler: (message:any)=>Promise<void>):number {
+        //if (this.ws === undefined) return;
+        return messageHub.onReceiveAny(handler);
+    }
+
+    unregisterReceiveHandler(handlerId:number) {
+        //if (this.ws === undefined) return;
+        if (handlerId === undefined) return;
+        messageHub.endReceive(handlerId);
+    }
+    */
     Nav.prototype.onReceive = function (msg) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        if (this.ws === undefined)
-                            return [2 /*return*/];
-                        return [4 /*yield*/, this.ws.receive(msg)];
+                    case 0: 
+                    //if (this.ws === undefined) return;
+                    return [4 /*yield*/, messageHub.dispatch(msg)];
                     case 1:
+                        //if (this.ws === undefined) return;
                         _a.sent();
                         return [2 /*return*/];
                 }
@@ -766,7 +764,7 @@ var Nav = /** @class */ (function () {
                         if (exHash !== undefined && window !== window.parent) {
                             // is in frame
                             if (appInFrame !== undefined) {
-                                this.ws = wsBridge;
+                                //this.ws = wsBridge;
                                 console.log('this.ws = wsBridge in sub frame');
                                 //nav.user = {id:0} as User;
                                 if (window.self !== window.parent) {
@@ -865,7 +863,7 @@ var Nav = /** @class */ (function () {
             showPage();
         }
     };
-    Nav.prototype.showAppView = function () {
+    Nav.prototype.showAppView = function (isUserLogin) {
         return __awaiter(this, void 0, void 0, function () {
             var onLogined;
             return __generator(this, function (_a) {
@@ -877,7 +875,7 @@ var Nav = /** @class */ (function () {
                             return [2 /*return*/];
                         }
                         nav.clear();
-                        return [4 /*yield*/, onLogined()];
+                        return [4 /*yield*/, onLogined(isUserLogin)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -907,7 +905,7 @@ var Nav = /** @class */ (function () {
             });
         });
     };
-    Nav.prototype.logined = function (user, callback) {
+    Nav.prototype.internalLogined = function (user, callback, isUserLogin) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -921,7 +919,7 @@ var Nav = /** @class */ (function () {
                         if (!(callback !== undefined)) return [3 /*break*/, 1];
                         callback(user);
                         return [3 /*break*/, 3];
-                    case 1: return [4 /*yield*/, this.showAppView()];
+                    case 1: return [4 /*yield*/, this.showAppView(isUserLogin)];
                     case 2:
                         _a.sent();
                         _a.label = 3;
@@ -930,10 +928,36 @@ var Nav = /** @class */ (function () {
             });
         });
     };
-    Nav.prototype.wsConnect = function () {
-        var ws = this.ws = new WSChannel(this.wsHost, this.user.token);
-        ws.connect();
+    // 缓冲登录
+    Nav.prototype.logined = function (user, callback) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.internalLogined(user, callback, false)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
+    // 用户操作之后登录
+    Nav.prototype.userLogined = function (user, callback) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.internalLogined(user, callback, true)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    //wsConnect() {
+    //let ws:WSChannel = this.ws = new WSChannel(this.wsHost, this.user.token);
+    //ws.connect();
+    //}
     Nav.prototype.loginTop = function (defaultTop) {
         return (this.navSettings && this.navSettings.loginTop) || defaultTop;
     };
@@ -1031,7 +1055,7 @@ var Nav = /** @class */ (function () {
                         logoutApis();
                         guest = this.local.guest.get();
                         setCenterToken(0, guest && guest.token);
-                        this.ws = undefined;
+                        //this.ws = undefined;
                         this.clear();
                         if (!(callback === undefined)) return [3 /*break*/, 2];
                         return [4 /*yield*/, nav.start()];
@@ -1232,4 +1256,12 @@ var Nav = /** @class */ (function () {
 }());
 export { Nav };
 export var nav = new Nav();
+var TonvaView = /** @class */ (function (_super) {
+    __extends(TonvaView, _super);
+    function TonvaView() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TonvaView;
+}(NavView));
+export { TonvaView };
 //# sourceMappingURL=nav.js.map

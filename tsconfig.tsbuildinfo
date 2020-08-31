@@ -501,9 +501,14 @@
         "signature": "b726f546fea0ed0299700951e7f5c741091dc7660080983cee9e4cac188fc5ab",
         "affectsGlobalScope": false
       },
+      "./src/net/messagehub.ts": {
+        "version": "72906ba82dccd5fe67d0dd688f46cb77aa5680afb3ced2ccbb1cd56c00cfb3e6",
+        "signature": "408894ead253ff1a8011af9d3ff765d9cb638b0edd7fb835ed46c0cc3404ae37",
+        "affectsGlobalScope": false
+      },
       "./src/net/wschannel.ts": {
-        "version": "dcafe2887b8c7267d73cdbd7d4f359919bfcb3473581185c302108ad32fb9a5a",
-        "signature": "52b1d8102cd5ad7d1df6ef0c9962fca593400b72927f1912a6629e2eca2bb96d",
+        "version": "1309b13a29a21eedd5f21e7acdcf532203b11f4b1d464cee08fc17e7b0dfee80",
+        "signature": "f8a34adfd2057f0e6894fb6c927a4e86bfe67fe5a783acc0ff4f884024a02e81",
         "affectsGlobalScope": false
       },
       "./src/components/navigo.ts": {
@@ -712,7 +717,7 @@
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "3106a19d4e8eaa41a8449fe619d06be835c01d104e2c43d7c113590173d62f1e",
+        "version": "158632746d62fb4320deac6b4d45854932f753a2ebeaae55bd10707dcba8eb06",
         "signature": "2e088efa8b44aac6ac90ef2cd5282835c28cecbbc0ab3ff056ae6bf0d447b3c2",
         "affectsGlobalScope": false
       },
@@ -757,12 +762,12 @@
         "affectsGlobalScope": false
       },
       "./src/entry/register.tsx": {
-        "version": "74f262c25ff4408352fd2ff4279b8b6e95e7e0c5d04a06f1fcc072e2495e5f2a",
+        "version": "a44003ba6557b2665ea552f5054be7fc8315363e7a44f8c2e61dfd58914e7329",
         "signature": "e690afe2d61f385f98c743902b84a79512dda2a21556c596592c07c82cf77586",
         "affectsGlobalScope": false
       },
       "./src/entry/login.tsx": {
-        "version": "b6786dd441c2685b730a232394a144e34e4d6323dafe0151992f2e23dc1bf2a9",
+        "version": "d83df09071cdd0bc95b525f8d3ac07c2375ff9510b884b04a446e247a7af8ece",
         "signature": "18bc3d3b2fd87d98812469c65ee9fa8d0c29e91395d4d16fa3715bf5ac21adf9",
         "affectsGlobalScope": false
       },
@@ -772,8 +777,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "0295ec61870e3e43d73cf23d53f7065731cecb3160c2b65952601a81aeef0766",
-        "signature": "02c8072158e07d91d5615bf035ecbb4b0914ca00b4c29292613b7191bbd5c5bf",
+        "version": "a05796538251c1de3e88b2a5ecb70701be2042c22e057ed2aaa9f80dfab44ed0",
+        "signature": "92dbc3c4c490dffacf922e864c8db1da25860b10c7289148db5200ba739660f7",
         "affectsGlobalScope": false
       },
       "./src/components/page/index.ts": {
@@ -877,7 +882,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "f06091fca07550dce807dbbbd0c03041feb22aee297e8bf52c8fffa720fa7553",
+        "version": "c7cecbeeef04b5762e6a57e4e4e6514723710099ca9597c2d42678d9b4d01650",
         "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
         "affectsGlobalScope": false
       },
@@ -1092,8 +1097,8 @@
         "affectsGlobalScope": false
       },
       "./src/net/index.ts": {
-        "version": "1296192f6579cc770c8b5611ed6dc6a4a073a941bcd3c7f9fc49a5034031c687",
-        "signature": "8f844c6b04d949ce777d523b44c7540f9d8e0512d3c44e836256e4d82aec3d8a",
+        "version": "aef10a679d9f799ce0cd011b7c92331e87569bd43089e933dd81f19ceb5b8c82",
+        "signature": "abc7761e4688a63c15a96f5cd33b1946799a6353b6d8b48b378dd542f2d17f89",
         "affectsGlobalScope": false
       },
       "./src/entry/meinfo.tsx": {
@@ -1222,8 +1227,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/start.ts": {
-        "version": "5342e53c453fb8244ea3a278b63351015e4370bafeee6339d20b0f90a86f1b2b",
-        "signature": "702d0507ad97b95b3eff0f78da5a02da810b31d99f7b5e7463f63c55b08e3ea6",
+        "version": "bfb5f1156fc706025f202349a7bf6706f174174577db00c16aa48d97646f3003",
+        "signature": "7d57c386d9c9010732d09e715c3b6141bf05675d926f600bcd6ce3a955388099",
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
@@ -1279,6 +1284,11 @@
       "./src/components/simple/image.tsx": {
         "version": "4068895a94aa9ca2235e33e3edadd9a0d7d7b0e96a99523e67bac7e19330e235",
         "signature": "3e8345113bc7821506509d3975d02086dfe3e2099280e1430f1afdd4cf030c33",
+        "affectsGlobalScope": false
+      },
+      "./src/components/simple/resuploader.tsx": {
+        "version": "83b5c316642b15f63f332c7d0367e888578768701d2e78233e52daab64b2824e",
+        "signature": "18874fca41ed384530277b3155c8394bcae60298340c80506c7f41d088be24ef",
         "affectsGlobalScope": false
       },
       "./src/entry/forget.tsx": {
@@ -2482,7 +2492,6 @@
         "./src/net/fetcherror.ts",
         "./src/net/index.ts",
         "./src/net/nettoken.ts",
-        "./src/net/wschannel.ts",
         "./src/res/res.ts",
         "./src/tool/index.ts",
         "./src/tool/user.ts"
@@ -2673,6 +2682,11 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./src/components/simple/resuploader.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
       "./src/components/usericon.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
         "./node_modules/@types/node/base.d.ts",
@@ -2824,8 +2838,13 @@
         "./src/net/caller.ts",
         "./src/net/guestapi.ts",
         "./src/net/host.ts",
+        "./src/net/messagehub.ts",
         "./src/net/uqapi.ts",
         "./src/net/wschannel.ts"
+      ],
+      "./src/net/messagehub.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./src/net/nettoken.ts": [
         "./node_modules/@types/node/base.d.ts",
@@ -2851,7 +2870,8 @@
       ],
       "./src/net/wschannel.ts": [
         "./node_modules/@types/node/base.d.ts",
-        "./node_modules/@types/node/ts3.2/index.d.ts"
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/net/messagehub.ts"
       ],
       "./src/res/entry/index.ts": [
         "./node_modules/@types/node/base.d.ts",
@@ -3142,6 +3162,7 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts",
+        "./src/net/index.ts",
         "./src/tool/index.ts",
         "./src/vm/view.tsx",
         "./src/vm/vpage.tsx"
@@ -3711,6 +3732,9 @@
       "./src/components/simple/lmr.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./src/components/simple/resuploader.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
       "./src/components/usericon.tsx": [
         "./node_modules/@types/react/index.d.ts",
         "./src/tool/index.ts"
@@ -3776,6 +3800,7 @@
         "./src/net/caller.ts",
         "./src/net/guestapi.ts",
         "./src/net/host.ts",
+        "./src/net/messagehub.ts",
         "./src/net/uqapi.ts",
         "./src/net/wschannel.ts"
       ],
@@ -4170,6 +4195,7 @@
       "./src/components/simple/index.ts",
       "./src/components/simple/lmr.tsx",
       "./src/components/simple/muted.tsx",
+      "./src/components/simple/resuploader.tsx",
       "./src/components/usericon.tsx",
       "./src/entry/changepassword.tsx",
       "./src/entry/forget.tsx",
@@ -4191,6 +4217,7 @@
       "./src/net/httpchannel.ts",
       "./src/net/httpchannelui.ts",
       "./src/net/index.ts",
+      "./src/net/messagehub.ts",
       "./src/net/nettoken.ts",
       "./src/net/serializejson.ts",
       "./src/net/uqapi.ts",

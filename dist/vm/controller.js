@@ -45,6 +45,7 @@ import * as React from 'react';
 import _ from 'lodash';
 import { nav, Page, resOptions } from '../components';
 import { env } from '../tool';
+import { messageHub } from '../net';
 var Controller = /** @class */ (function () {
     function Controller(res) {
         var _this = this;
@@ -53,7 +54,8 @@ var Controller = /** @class */ (function () {
         //private disposer:()=>void;
         this.dispose = function () {
             // message listener的清理
-            nav.unregisterReceiveHandler(_this.receiveHandlerId);
+            //nav.unregisterReceiveHandler(this.receiveHandlerId);
+            messageHub.unregisterReceiveHandler(_this.receiveHandlerId);
             _this.onDispose();
         };
         this.onMessageReceive = function (message) { return __awaiter(_this, void 0, void 0, function () {
@@ -188,7 +190,7 @@ var Controller = /** @class */ (function () {
         });
     };
     Controller.prototype.registerReceiveHandler = function () {
-        this.receiveHandlerId = nav.registerReceiveHandler(this.onMessageReceive);
+        this.receiveHandlerId = messageHub.registerReceiveHandler(this.onMessageReceive);
     };
     Controller.prototype.start = function (param) {
         var params = [];

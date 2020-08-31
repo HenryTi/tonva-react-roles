@@ -47,6 +47,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+import { messageHub } from "./messageHub";
 var subAppWindow;
 function postWsToSubApp(msg) {
     if (subAppWindow === undefined)
@@ -67,67 +68,35 @@ export function postWsToTop(msg) {
 }
 var WsBase = /** @class */ (function () {
     function WsBase() {
-        this.handlerSeed = 1;
-        this.anyHandlers = {};
-        this.msgHandlers = {};
+        this.messageHub = messageHub;
     }
-    WsBase.prototype.onWsReceiveAny = function (handler) {
-        var seed = this.handlerSeed++;
+    /*
+    wsBaseId:string;
+    private handlerSeed = 1;
+    private anyHandlers:{[id:number]:(msg:any)=>Promise<void>} = {};
+    private msgHandlers:{[id:number]:{type:string, handler:(msg:any)=>Promise<void>}} = {};
+    */
+    /*
+    onWsReceiveAny(handler:(msg:any)=>Promise<void>):number {
+        let seed = this.handlerSeed++;
         this.anyHandlers[seed] = handler;
         return seed;
-    };
-    WsBase.prototype.onWsReceive = function (type, handler) {
-        var seed = this.handlerSeed++;
-        this.msgHandlers[seed] = { type: type, handler: handler };
+    }
+    onWsReceive(type:string, handler:(msg:any)=>Promise<void>):number {
+        let seed = this.handlerSeed++;
+        this.msgHandlers[seed] = {type:type, handler: handler};
         return seed;
-    };
-    WsBase.prototype.endWsReceive = function (handlerId) {
+    }
+    endWsReceive(handlerId:number) {
         delete this.anyHandlers[handlerId];
         delete this.msgHandlers[handlerId];
-    };
+    }
+    */
     WsBase.prototype.receive = function (msg) {
         return __awaiter(this, void 0, void 0, function () {
-            var $type, _a, _b, _i, i, _c, _d, _e, i, _f, type, handler;
-            return __generator(this, function (_g) {
-                switch (_g.label) {
-                    case 0:
-                        $type = msg.$type;
-                        _a = [];
-                        for (_b in this.anyHandlers)
-                            _a.push(_b);
-                        _i = 0;
-                        _g.label = 1;
-                    case 1:
-                        if (!(_i < _a.length)) return [3 /*break*/, 4];
-                        i = _a[_i];
-                        return [4 /*yield*/, this.anyHandlers[i](msg)];
-                    case 2:
-                        _g.sent();
-                        _g.label = 3;
-                    case 3:
-                        _i++;
-                        return [3 /*break*/, 1];
-                    case 4:
-                        _c = [];
-                        for (_d in this.msgHandlers)
-                            _c.push(_d);
-                        _e = 0;
-                        _g.label = 5;
-                    case 5:
-                        if (!(_e < _c.length)) return [3 /*break*/, 8];
-                        i = _c[_e];
-                        _f = this.msgHandlers[i], type = _f.type, handler = _f.handler;
-                        if (type !== $type)
-                            return [3 /*break*/, 7];
-                        return [4 /*yield*/, handler(msg)];
-                    case 6:
-                        _g.sent();
-                        _g.label = 7;
-                    case 7:
-                        _e++;
-                        return [3 /*break*/, 5];
-                    case 8: return [2 /*return*/];
-                }
+            return __generator(this, function (_a) {
+                this.messageHub.dispatch(msg);
+                return [2 /*return*/];
             });
         });
     };

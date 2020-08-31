@@ -114,7 +114,7 @@ var RegisterController = /** @class */ (function (_super) {
                             alert('something wrong!');
                             return [2 /*return*/];
                         }
-                        return [4 /*yield*/, nav.logined(retUser)];
+                        return [4 /*yield*/, nav.userLogined(retUser)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];

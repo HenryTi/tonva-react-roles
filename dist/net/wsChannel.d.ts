@@ -1,13 +1,7 @@
 export declare function setSubAppWindow(win: Window): void;
 export declare function postWsToTop(msg: any): void;
 export declare abstract class WsBase {
-    wsBaseId: string;
-    private handlerSeed;
-    private anyHandlers;
-    private msgHandlers;
-    onWsReceiveAny(handler: (msg: any) => Promise<void>): number;
-    onWsReceive(type: string, handler: (msg: any) => Promise<void>): number;
-    endWsReceive(handlerId: number): void;
+    private messageHub;
     receive(msg: any): Promise<void>;
 }
 export declare class WsBridge extends WsBase {

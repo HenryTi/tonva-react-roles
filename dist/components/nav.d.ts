@@ -7,7 +7,7 @@ import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
 export interface Props {
-    onLogined: () => Promise<void>;
+    onLogined: (isUserLogin?: boolean) => Promise<void>;
     notLogined?: () => Promise<void>;
 }
 export interface StackItem {
@@ -62,7 +62,6 @@ export interface NavSettings {
 }
 export declare class Nav {
     private nav;
-    private ws;
     private wsHost;
     private local;
     private navigo;
@@ -76,8 +75,6 @@ export declare class Nav {
     constructor();
     get guest(): number;
     set(nav: NavView): void;
-    registerReceiveHandler(handler: (message: any) => Promise<void>): number;
-    unregisterReceiveHandler(handlerId: number): void;
     onReceive(msg: any): Promise<void>;
     private loadUnitJson;
     private getPredefinedUnitName;
@@ -104,12 +101,13 @@ export declare class Nav {
     }): Navigo;
     navigate(url: string, absolute?: boolean): Navigo;
     go(showPage: () => void, url: string, absolute?: boolean): void;
-    showAppView(): Promise<void>;
+    showAppView(isUserLogin?: boolean): Promise<void>;
     setGuest(guest: Guest): void;
     saveLocalUser(): void;
     loadMe(): Promise<void>;
+    private internalLogined;
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
-    wsConnect(): void;
+    userLogined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;
     loginTop(defaultTop: JSX.Element): JSX.Element;
     privacyEntry(): JSX.Element;
     private getPrivacyContent;
@@ -150,3 +148,5 @@ export declare class Nav {
     checkVersion(): Promise<string>;
 }
 export declare const nav: Nav;
+export declare class TonvaView extends NavView {
+}

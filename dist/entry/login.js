@@ -94,7 +94,7 @@ var Login = /** @class */ (function (_super) {
                             return [2 /*return*/, type + '或密码错！'];
                         }
                         console.log("onLoginSubmit: user=%s pwd:%s", user.name, user.token);
-                        return [4 /*yield*/, nav.logined(user, this.props.callback)];
+                        return [4 /*yield*/, nav.userLogined(user, this.props.callback)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
