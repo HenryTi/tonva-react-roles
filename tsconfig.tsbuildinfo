@@ -717,8 +717,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "158632746d62fb4320deac6b4d45854932f753a2ebeaae55bd10707dcba8eb06",
-        "signature": "2e088efa8b44aac6ac90ef2cd5282835c28cecbbc0ab3ff056ae6bf0d447b3c2",
+        "version": "59f5f4ca2a346bcec6306e09decde39bbaf287380be9cc419b4ba570fb234796",
+        "signature": "540a322212dbf1a6d73c487ab5706042b5acf9ccdd00a97ddc5e91f8060ee41b",
         "affectsGlobalScope": false
       },
       "./src/vm/index.ts": {

@@ -21,7 +21,7 @@ export declare abstract class Controller {
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
-    init(param?: any): void;
+    init(...param: any[]): void;
     internalT(str: string): any;
     protected setRes(res: any): void;
     private receiveHandlerId;

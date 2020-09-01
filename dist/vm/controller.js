@@ -87,7 +87,12 @@ var Controller = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Controller.prototype.init = function (param) { };
+    Controller.prototype.init = function () {
+        var param = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            param[_i] = arguments[_i];
+        }
+    };
     Controller.prototype.internalT = function (str) {
         return this._t[str];
     };
