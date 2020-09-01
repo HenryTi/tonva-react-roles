@@ -181,8 +181,8 @@ var ImageUploader = /** @class */ (function (_super) {
                 var pos = _this.file.name.lastIndexOf('.');
                 if (pos >= 0)
                     _this.suffix = _this.file.name.substr(pos + 1).toLowerCase();
-                if (ImageUploader_1.imageTypes.indexOf(_this.suffix) < 0) {
-                    _this.fileError = "\u56FE\u7247\u7C7B\u578B\u5FC5\u987B\u662F " + ImageUploader_1.imageTypes.join(', ') + " \u4E2D\u7684\u4E00\u79CD";
+                if (_this.imageTypes.indexOf(_this.suffix) < 0) {
+                    _this.fileError = "\u56FE\u7247\u7C7B\u578B\u5FC5\u987B\u662F " + _this.imageTypes.join(', ') + " \u4E2D\u7684\u4E00\u79CD";
                     return;
                 }
                 var reader_1 = new FileReader();
@@ -314,6 +314,7 @@ var ImageUploader = /** @class */ (function (_super) {
                     React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: _this.srcImage }))));
         };
         _this.resId = props.id;
+        _this.imageTypes = props.imageTypes || ImageUploader_1.imageTypes;
         return _this;
     }
     ImageUploader_1 = ImageUploader;
@@ -387,7 +388,7 @@ var ImageUploader = /** @class */ (function (_super) {
                         React.createElement(ResUploader, { ref: function (v) { return _this.resUploader = v; }, multiple: false, maxSize: 2048, label: "\u9009\u62E9\u56FE\u7247\u6587\u4EF6", onFilesChange: this.onFileChange }),
                         React.createElement("div", { className: "small text-muted" },
                             "\u652F\u6301 ",
-                            ImageUploader_1.imageTypes.join(', '),
+                            this.imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
                     React.createElement(LMR, { left: this.uploaded === true ?

@@ -882,8 +882,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/resuploader.tsx": {
-        "version": "c7cecbeeef04b5762e6a57e4e4e6514723710099ca9597c2d42678d9b4d01650",
-        "signature": "d611672fa4d0d18264e2b39b3e80f9f0e064d04f7f69002e0adc9bef690b6f2f",
+        "version": "deb8eb1118a21c5ed6dc7dbbf3b303377cf7ef52ef3b436a2ec44bab420b4326",
+        "signature": "1e21d399932e12a78d24bf38c0e9d3b394cd1ab177bb2fdcde1f0000cd0c2774",
         "affectsGlobalScope": false
       },
       "./src/components/edit/itemedit.tsx": {

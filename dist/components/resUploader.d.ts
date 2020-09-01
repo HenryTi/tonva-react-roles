@@ -22,10 +22,12 @@ interface ImageUploaderProps {
     label?: string;
     size?: 'sm' | 'md' | 'lg';
     onSaved?: (imageId: string) => Promise<void>;
+    imageTypes?: string[];
 }
 export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private static imageTypes;
     private imgBaseSize;
+    private imageTypes;
     private suffix;
     private resUploader;
     private file;
