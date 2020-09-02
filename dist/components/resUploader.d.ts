@@ -20,7 +20,7 @@ export declare class ResUploader extends React.Component<ResUploaderProps> {
 interface ImageUploaderProps {
     id?: string;
     label?: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg' | 'xl' | 'raw';
     onSaved?: (imageId: string) => Promise<void>;
     imageTypes?: string[];
 }

@@ -162,6 +162,7 @@ function formatSize(size, pointLength, units) {
     }
     return (unit === 'B' ? size : size.toFixed(pointLength === undefined ? 2 : pointLength)) + unit;
 }
+var xlargeSize = 1600;
 var largeSize = 800;
 var mediumSize = 400;
 var smallSize = 180;
@@ -225,7 +226,11 @@ var ImageUploader = /** @class */ (function (_super) {
                     _this.srcImgHeight = height;
                     var scale = width / height;
                     var w, h;
-                    if (width <= _this.imgBaseSize && height <= _this.imgBaseSize) {
+                    if (_this.imgBaseSize < 0) {
+                        w = width;
+                        h = height;
+                    }
+                    else if (width <= _this.imgBaseSize && height <= _this.imgBaseSize) {
                         w = width;
                         h = height;
                     }
@@ -335,6 +340,12 @@ var ImageUploader = /** @class */ (function (_super) {
                             case 'lg':
                                 this.imgBaseSize = largeSize;
                                 break;
+                            case 'xl':
+                                this.imgBaseSize = xlargeSize;
+                                break;
+                            case 'raw':
+                                this.imgBaseSize = -1;
+                                break;
                         }
                         _a = this;
                         return [4 /*yield*/, this.compress()];
@@ -366,6 +377,10 @@ var ImageUploader = /** @class */ (function (_super) {
         }
         if (this.srcImgHeight > largeSize || this.srcImgWidth > largeSize) {
             arr.push({ caption: '大图', size: 'lg' });
+        }
+        if (this.srcImgHeight > xlargeSize || this.srcImgWidth > xlargeSize) {
+            arr.push({ caption: '超大图', size: 'xl' });
+            arr.push({ caption: '原图', size: 'raw' });
         }
         if (arr.length < 2)
             return;
