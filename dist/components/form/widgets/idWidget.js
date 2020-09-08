@@ -57,6 +57,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
 import { observable } from 'mobx';
+var none = React.createElement("small", { className: "text-muted" }, "[\u65E0]");
 var IdWidget = /** @class */ (function (_super) {
     __extends(IdWidget, _super);
     function IdWidget() {
@@ -106,7 +107,7 @@ var IdWidget = /** @class */ (function (_super) {
         };
         var content;
         if (this.value === undefined || this.value === null) {
-            content = placeholder || React.createElement("small", { className: "text-muted" }, "[\u65E0]");
+            content = placeholder || none;
             cn['text-muted'] = true;
         }
         else if (Templet === undefined) {
@@ -117,7 +118,7 @@ var IdWidget = /** @class */ (function (_super) {
             else {
                 switch (typeof this.value) {
                     case 'undefined':
-                        c = React.createElement("small", { className: "text-muted" }, "[\u65E0]");
+                        c = none;
                         break;
                     case 'object':
                         c = this.value.id;

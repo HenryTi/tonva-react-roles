@@ -36,7 +36,7 @@ var Selectable = /** @class */ (function (_super) {
         var _this = _super.call(this, list) || this;
         _this.inputItems = {};
         _this.buildItems = function () {
-            var _a = _this.list.props, items = _a.items, selectedItems = _a.selectedItems, compare = _a.compare;
+            var _a = _this.list.props, items = _a.items, isItemSelected = _a.isItemSelected, selectedItems = _a.selectedItems, compare = _a.compare;
             var itemsArray;
             if (items === undefined) {
                 _this._items = undefined;
@@ -52,29 +52,39 @@ var Selectable = /** @class */ (function (_super) {
             else {
                 itemsArray = items.items;
             }
-            //let items = this.items;
-            //this._selectedItems = selectedItems;
-            var comp;
-            if (compare === undefined) {
-                comp = function (item, selectItem) { return item === selectItem; };
+            if (isItemSelected) {
+                var retItems = itemsArray.map(function (v) {
+                    return {
+                        selected: isItemSelected(v),
+                        item: v,
+                        labelId: uid()
+                    };
+                });
+                _this._items = retItems;
             }
             else {
-                comp = compare;
+                var comp_1;
+                if (compare === undefined) {
+                    comp_1 = function (item, selectItem) { return item === selectItem; };
+                }
+                else {
+                    comp_1 = compare;
+                }
+                var retItems = itemsArray.map(function (v) {
+                    //let isObserved = isObservable(v);
+                    //let obj = isObserved === true? toJS(v) : v;
+                    //let obj = v;
+                    var selected = selectedItems === undefined ?
+                        false
+                        : selectedItems.find(function (si) { return comp_1(v, si); }) !== undefined;
+                    return {
+                        selected: selected,
+                        item: v,
+                        labelId: uid()
+                    };
+                });
+                _this._items = retItems;
             }
-            var retItems = itemsArray.map(function (v) {
-                //let isObserved = isObservable(v);
-                //let obj = isObserved === true? toJS(v) : v;
-                //let obj = v;
-                var selected = selectedItems === undefined ?
-                    false
-                    : selectedItems.find(function (si) { return comp(v, si); }) !== undefined;
-                return {
-                    selected: selected,
-                    item: v,
-                    labelId: uid()
-                };
-            });
-            _this._items = retItems;
         };
         /*
         set selectedItems(value: any[]) {
