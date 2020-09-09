@@ -109,7 +109,7 @@ var ImageWidget = /** @class */ (function (_super) {
         this.imageSrc = this.value;
     };
     ImageWidget.prototype.render = function () {
-        return React.createElement(this.observerRender, null);
+        return React.createElement(this.observerRender);
     };
     __decorate([
         observable

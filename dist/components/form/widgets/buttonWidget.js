@@ -118,7 +118,7 @@ var ButtonWidget = /** @class */ (function (_super) {
         configurable: true
     });
     ButtonWidget.prototype.render = function () {
-        return React.createElement(this.observerRender, null);
+        return React.createElement(this.observerRender);
     };
     return ButtonWidget;
 }(Widget));

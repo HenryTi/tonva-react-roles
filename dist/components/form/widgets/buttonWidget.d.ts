@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { UiButton } from '../../schema';
 import { Widget } from './widget';
 export declare class ButtonWidget extends Widget {
@@ -6,5 +6,5 @@ export declare class ButtonWidget extends Widget {
     protected onClick: () => Promise<void>;
     private observerRender;
     protected get label(): string;
-    render(): JSX.Element;
+    render(): React.FunctionComponentElement<{}>;
 }

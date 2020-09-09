@@ -622,7 +622,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/tabs.tsx": {
-        "version": "cba2b78721c9c1da2b0ac0f52c7a15d23828ba9352b7fafec4f421632ab9fc13",
+        "version": "196121462edb5fba1eb79f095c2ad067cef5508b7d6bda2653b358f0528ccf39",
         "signature": "993079a90d93d7bfa811efee963d5398650b8c130b4c9c60fec36c8797d4a9d5",
         "affectsGlobalScope": false
       },
@@ -867,8 +867,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/form/widgets/buttonwidget.tsx": {
-        "version": "06aca1d1e86f350a243e227e6f2e1bbfd560981f724bd4ab173443a344d16d6d",
-        "signature": "e2d7b232454358aec3123f26c3ce5a43353e2e173f3ff9026ec99984aec56993",
+        "version": "a114f57bb5f866af8f131951bfa5813cec4aafa387c8ef4094061587720e9b83",
+        "signature": "cc494e07075fbfe78dd5bea2d33bd69ad8c69663ec167d33963e94c6fd3b9ee9",
         "affectsGlobalScope": false
       },
       "./src/components/form/widgets/arrcomponent.tsx": {
@@ -897,8 +897,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/form/widgets/imagewidget.tsx": {
-        "version": "a7116b3e3067532d06999c423f2e9066d121400a9555fc56e7c28fca9c7c915a",
-        "signature": "078e9218634c33d0a969be8b9a5f516ae1df0a808c288ddc20769d272b586dec",
+        "version": "203e38e4b3d8e7312735d67e4d6da25d3dbd968567c05abe8e1b645b33726b7e",
+        "signature": "7906d5f2cc2898f70a0e27d0037ad0c97c185c6634ca86a571c0897726baf375",
         "affectsGlobalScope": false
       },
       "./src/components/form/widgets/tagwidget.tsx": {
@@ -917,7 +917,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/form/form.tsx": {
-        "version": "48ee0415c9c96f407c3a1557eb6e98629b496b9733514c6960cc706179e4b84e",
+        "version": "85361f98c0316f6b1ff8a2e59f8cb0f6927a80d1e69a6fcbd67731d2dcb51dc4",
         "signature": "dcb1a0a9f7221cc2f4d6b62eda70197cb04427288cd0cfb55201ff9877638df3",
         "affectsGlobalScope": false
       },
@@ -1012,7 +1012,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/list/selectable.tsx": {
-        "version": "6ca88d6bbb429aabc660f8e2a01f574da4df672bd6322e531a003559705f5d09",
+        "version": "e3f6c98f611bfe47a37b0602d3ee08fad8c919dea2f72114cd2557d798d3a603",
         "signature": "dd23afcd0b0578dba57578eac95458e79991ad4215aefd9093b792cfd029125a",
         "affectsGlobalScope": false
       },
@@ -3498,6 +3498,7 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/buttonwidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],
@@ -3520,6 +3521,7 @@
         "./src/components/schema/index.ts"
       ],
       "./src/components/form/widgets/imagewidget.tsx": [
+        "./node_modules/@types/react/index.d.ts",
         "./src/components/form/widgets/widget.tsx",
         "./src/components/schema/index.ts"
       ],

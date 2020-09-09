@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Widget } from './widget';
 import { UiImageItem } from '../../schema';
 export declare class ImageWidget extends Widget {
@@ -7,6 +7,6 @@ export declare class ImageWidget extends Widget {
     private imageSrc;
     init(): void;
     protected onClick: () => Promise<void>;
-    render(): JSX.Element;
+    render(): React.FunctionComponentElement<{}>;
     private observerRender;
 }

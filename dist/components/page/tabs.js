@@ -302,7 +302,7 @@ var TabsView = /** @class */ (function () {
     }
     TabsView.prototype.render = function () {
         var tabPosition = this.props.tabPosition;
-        var tabs = React.createElement(this.tabs, null);
+        var tabs = React.createElement(this.tabs);
         var header, footer;
         var visibility = { display: 'none' };
         if (tabPosition === 'top') {

@@ -249,7 +249,7 @@ var Form = /** @class */ (function (_super) {
     Form.prototype.render = function () {
         var content = this.renderContent();
         return React.createElement(ContextContainer.Provider, { value: this.formContext },
-            React.createElement(this.formContext.renderErrors, null),
+            React.createElement(this.formContext.renderErrors),
             this.Container(content));
     };
     Form.prototype.buttonClick = function (buttonName) {
