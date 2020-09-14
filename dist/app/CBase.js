@@ -15,7 +15,7 @@ import { Controller } from "../vm";
 var CBase = /** @class */ (function (_super) {
     __extends(CBase, _super);
     function CBase(cApp) {
-        var _this = _super.call(this, undefined) || this;
+        var _this = _super.call(this, cApp.res) || this;
         _this._cApp = cApp;
         _this._uqs = cApp && cApp.uqs;
         return _this;

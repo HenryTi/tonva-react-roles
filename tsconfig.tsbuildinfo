@@ -1022,7 +1022,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/dropdownactions/index.tsx": {
-        "version": "341a3903cce13eb88580410f73a30b0f37912e51ba423acd5288794f91f48201",
+        "version": "3debac530b5667362ad1c6277021ab12073834b31e6569605bf7d421e80ed2a2",
         "signature": "cf44d65e3432028b7dc156b307bbb205e1da128956aa8643645dfff04922b806",
         "affectsGlobalScope": false
       },
@@ -1137,8 +1137,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/tuid.ts": {
-        "version": "7655b365c9a8daf92d81364c0bbb118d6b5695f987141e84dd776445d0174656",
-        "signature": "cd44d6208162bc11827abe88bb8ba737bca8a236f19ca6b32ae088d614a7c46c",
+        "version": "17d5914e9322f7f15b202e3885a23bbfcf79ff7dc2810d30d7c333ae0f0a7c9c",
+        "signature": "7a7831489d74240793bf46f813d8c247061593d8c776f3ca819b44853222590b",
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/boxid.tsx": {
@@ -1157,8 +1157,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/tuid/index.ts": {
-        "version": "652e53c4d179f465ecb8d466c6f4f0e55fbd2eac4fcf15351d4458eba730e4cf",
-        "signature": "43d7abd3574c3efce2e5f62ef36890258a8f29ba31d749342e69491a83d21d83",
+        "version": "4072bf15567b87536ec204c2bf0028b37b953465b494c3fe9f4f02945f28c3aa",
+        "signature": "23dc26f979ff40553c87002f0b3a4f218cb96b9f28804c6c8d364d8a5d2c0fab",
         "affectsGlobalScope": false
       },
       "./src/uq/sheet.ts": {
@@ -1232,7 +1232,7 @@
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "ff43aa1570aff6d1aa86085ba68ce9ba155fe24e8afa068800e35df37ef00011",
+        "version": "a6aa3cf071e4000abf8bd659bca7b842397a7d87b5a132ad1d9ae51bffd0a7cc",
         "signature": "786a793bd485ad2dcd4b3d5da6264237f24e72058cd350f7c722fe4698dd248f",
         "affectsGlobalScope": false
       },
@@ -1242,8 +1242,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/index.ts": {
-        "version": "9741b8814a232a4943d5d68e1b312defa5ed7929c082693ac5b8b990b8be584b",
-        "signature": "9741b8814a232a4943d5d68e1b312defa5ed7929c082693ac5b8b990b8be584b",
+        "version": "239c45cc82bd90a2a8c356e749dd0ac42c73d56560d13eadce8d8cfdf23be249",
+        "signature": "239c45cc82bd90a2a8c356e749dd0ac42c73d56560d13eadce8d8cfdf23be249",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -1979,6 +1979,7 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts",
         "./src/app/cbase.ts",
+        "./src/app/centerapi.ts",
         "./src/app/start.ts",
         "./src/app/startroute.tsx"
       ],
@@ -3393,6 +3394,7 @@
       "./src/app/index.ts": [
         "./src/app/cappbase.ts",
         "./src/app/cbase.ts",
+        "./src/app/centerapi.ts",
         "./src/app/start.ts",
         "./src/app/startroute.tsx"
       ],
