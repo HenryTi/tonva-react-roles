@@ -54,8 +54,17 @@ main.tv-tabs>header,
 main.tv-tabs>footer {
 	visibility: hidden;
 }
+div.tv-page-webnav>article>header,
+div.tv-page-webnav>article>footer {
+	visibility: visible;
+}
 div.tv-page-webnav>header>main,
-div.tv-page-webnav>footer>main {
+div.tv-page-webnav>footer>main,
+div.tv-page-webnav>article, 
+div.tv-page-webnav>article>header, 
+div.tv-page-webnav>article>main,
+div.tv-page-webnav>article>footer
+{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -114,22 +123,30 @@ div.tv-page-webnav>article {
 	}
 }
 
+div.tv-page-webnav>article>header>nav,
 article>header>nav,
 article>section>header>nav {
 	display: block;
 }
 article>header>nav,
 article>section>header>nav {
-	/*position: relative;*/
 	display: flex;
 	flex-direction: row;
-	min-height: 2.3em;
 	background-color: #555;
 	color: white;
 	align-items: center;
 	padding: 0px;
 	min-height: 3rem;
 }
+div.tv-page-webnav>article>header>nav {
+	background-color: inherit;
+	color: inherit;
+	align-items: inherit;
+	padding: inherit;
+	min-height: inherit;
+}
+
+div.tv-page-webnav>article>header>nav>nav,
 article>header>nav>nav,
 article>section>header>nav>nav {
 	display: flex;
@@ -139,6 +156,7 @@ article>section>header>nav>nav {
 	justify-content: center;
 	align-items: center;
 }
+div.tv-page-webnav>article>header>nav>div,
 article>header>nav>div,
 article>section>header>nav>div {
 	display: flex;
@@ -146,6 +164,7 @@ article>section>header>nav>div {
 	align-items: center;
 	justify-content: flex-start;
 }
+div.tv-page-webnav>article>header>nav>aside,
 article>header>nav>aside,
 article>section>header>nav>aside {
 	right: 2px;
@@ -155,6 +174,7 @@ article>section>header>nav>aside {
 	justify-content: flex-end;
 	padding: 2px;
 }
+div.tv-page-webnav>article>header>nav>aside .dropdown-toggle,
 article>header>nav>aside .dropdown-toggle {
   font-size: 1.5rem;
   width: 1.5rem;
