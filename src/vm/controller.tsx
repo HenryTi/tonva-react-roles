@@ -16,10 +16,10 @@ export interface ConfirmOptions {
 }
 
 export interface WebNav<C extends Controller> {
-	navHeader?: new (controller: C) => View<C>;
-	navRawHeader?: new (controller: C) => View<C>;
-	navFooter?: new (controller: C) => View<C>;
-	navRawFooter?: new (controller: C) => View<C>;
+	VNavHeader?: new (controller: C) => View<C>;
+	VNavRawHeader?: new (controller: C) => View<C>;
+	VNavFooter?: new (controller: C) => View<C>;
+	VNavRawFooter?: new (controller: C) => View<C>;
 	renderPageHeader?: (props: PageHeaderProps) => JSX.Element;
 }
 
@@ -56,12 +56,20 @@ export abstract class Controller {
 	getPageWebNav(): PageWebNav {
 		let webNav =  this.getWebNav();
 		if (webNav === undefined) return;
-		let {navHeader, navRawHeader, navFooter, navRawFooter, renderPageHeader} = webNav;
+		let {VNavHeader, VNavRawHeader, VNavFooter, VNavRawFooter, renderPageHeader} = webNav;
+		let navHeader:JSX.Element;
+		if (VNavHeader) navHeader = this.renderView(VNavHeader);
+		let navRawHeader:JSX.Element;
+		if (VNavRawHeader) navRawHeader = this.renderView(VNavRawHeader);
+		let navFooter:JSX.Element; 
+		if (VNavFooter) navFooter = this.renderView(VNavFooter);
+		let navRawFooter:JSX.Element;
+		if (VNavRawFooter) navRawFooter = this.renderView(VNavRawFooter);
 		let ret:PageWebNav = {
-			navHeader: navHeader && this.renderView(navHeader),
-			navRawHeader: navRawHeader && this.renderView(navRawHeader),
-			navFooter: navFooter && this.renderView(navFooter),
-			navRawFooter: navRawFooter && this.renderView(navRawFooter),
+			navHeader,
+			navRawHeader,
+			navFooter,
+			navRawFooter,
 			renderPageHeader,
 		};
 		return ret;

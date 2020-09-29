@@ -12,10 +12,10 @@ export interface ConfirmOptions {
     no?: string;
 }
 export interface WebNav<C extends Controller> {
-    navHeader?: new (controller: C) => View<C>;
-    navRawHeader?: new (controller: C) => View<C>;
-    navFooter?: new (controller: C) => View<C>;
-    navRawFooter?: new (controller: C) => View<C>;
+    VNavHeader?: new (controller: C) => View<C>;
+    VNavRawHeader?: new (controller: C) => View<C>;
+    VNavFooter?: new (controller: C) => View<C>;
+    VNavRawFooter?: new (controller: C) => View<C>;
     renderPageHeader?: (props: PageHeaderProps) => JSX.Element;
 }
 export declare abstract class Controller {

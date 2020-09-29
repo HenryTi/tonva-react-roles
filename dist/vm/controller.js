@@ -106,12 +106,24 @@ var Controller = /** @class */ (function () {
         var webNav = this.getWebNav();
         if (webNav === undefined)
             return;
-        var navHeader = webNav.navHeader, navRawHeader = webNav.navRawHeader, navFooter = webNav.navFooter, navRawFooter = webNav.navRawFooter, renderPageHeader = webNav.renderPageHeader;
+        var VNavHeader = webNav.VNavHeader, VNavRawHeader = webNav.VNavRawHeader, VNavFooter = webNav.VNavFooter, VNavRawFooter = webNav.VNavRawFooter, renderPageHeader = webNav.renderPageHeader;
+        var navHeader;
+        if (VNavHeader)
+            navHeader = this.renderView(VNavHeader);
+        var navRawHeader;
+        if (VNavRawHeader)
+            navRawHeader = this.renderView(VNavRawHeader);
+        var navFooter;
+        if (VNavFooter)
+            navFooter = this.renderView(VNavFooter);
+        var navRawFooter;
+        if (VNavRawFooter)
+            navRawFooter = this.renderView(VNavRawFooter);
         var ret = {
-            navHeader: navHeader && this.renderView(navHeader),
-            navRawHeader: navRawHeader && this.renderView(navRawHeader),
-            navFooter: navFooter && this.renderView(navFooter),
-            navRawFooter: navRawFooter && this.renderView(navRawFooter),
+            navHeader: navHeader,
+            navRawHeader: navRawHeader,
+            navFooter: navFooter,
+            navRawFooter: navRawFooter,
             renderPageHeader: renderPageHeader,
         };
         return ret;
