@@ -63,6 +63,9 @@ import { SelectItemEdit } from './selectItemEdit';
 import { IdItemEdit } from './idItemEdit';
 import { TagSingleItemEdit, TagMultiItemEdit } from './tagItemEdit';
 import { TextAreaItemEdit } from './textAreaItemEdit';
+import { CheckBoxItemEdit } from './checkBoxItemEdit';
+import { RangeItemEdit } from './rangeItemEdit';
+import { NumberItemEdit } from './numberItemEdit';
 var Edit = /** @class */ (function (_super) {
     __extends(Edit, _super);
     function Edit(props) {
@@ -70,7 +73,7 @@ var Edit = /** @class */ (function (_super) {
         _this.defaultSepClassName = 'border-top edit-sep-light-gray';
         _this.defaultRowContainerClassName = 'd-flex px-3 py-2 bg-white align-items-center';
         _this.rowClick = function (itemEdit) { return __awaiter(_this, void 0, void 0, function () {
-            var itemSchema, uiItem, value, _a, onItemChanged, onItemClick, stopEdit, changeValue, err_1;
+            var itemSchema, uiItem, value, editInRow, _a, onItemChanged, onItemClick, stopEdit, changeValue, err_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -78,9 +81,13 @@ var Edit = /** @class */ (function (_super) {
                             alert('item has no edit');
                             return [2 /*return*/];
                         }
-                        itemSchema = itemEdit.itemSchema, uiItem = itemEdit.uiItem, value = itemEdit.value;
+                        itemSchema = itemEdit.itemSchema, uiItem = itemEdit.uiItem, value = itemEdit.value, editInRow = itemEdit.editInRow;
+                        if (editInRow === true)
+                            return [2 /*return*/];
                         _a = this.props, onItemChanged = _a.onItemChanged, onItemClick = _a.onItemClick, stopEdit = _a.stopEdit;
                         if (stopEdit === true)
+                            return [2 /*return*/];
+                        if ((uiItem === null || uiItem === void 0 ? void 0 : uiItem.readOnly) === true)
                             return [2 /*return*/];
                         if (!(onItemClick !== undefined)) return [3 /*break*/, 2];
                         return [4 /*yield*/, onItemClick(itemSchema, uiItem, value)];
@@ -123,12 +130,11 @@ var Edit = /** @class */ (function (_super) {
                 }
             });
         }); };
-        var topBorderClassName = props.topBorderClassName, bottomBorderClassName = props.bottomBorderClassName, sepClassName = props.sepClassName, rowContainerClassName = props.rowContainerClassName, uiSchema = props.uiSchema, stopEdit = props.stopEdit;
+        var topBorderClassName = props.topBorderClassName, bottomBorderClassName = props.bottomBorderClassName, sepClassName = props.sepClassName, rowContainerClassName = props.rowContainerClassName, uiSchema = props.uiSchema;
         _this.topBorder = React.createElement("div", { className: topBorderClassName || _this.defaultSepClassName });
         _this.bottomBorder = React.createElement("div", { className: bottomBorderClassName || _this.defaultSepClassName });
         _this.rowContainerClassName = rowContainerClassName || _this.defaultRowContainerClassName;
-        if (stopEdit !== true)
-            _this.rowContainerClassName += ' cursor-pointer';
+        //if (stopEdit !== true) this.rowContainerClassName += ' cursor-pointer';
         _this.sep = React.createElement("div", { className: sepClassName || _this.defaultSepClassName });
         _this.uiSchema = (uiSchema && uiSchema.items) || {};
         return _this;
@@ -140,6 +146,7 @@ var Edit = /** @class */ (function (_super) {
         return React.createElement("div", null,
             this.topBorder,
             schema.map(function (itemSchema, index) {
+                var stopEdit = _this.props.stopEdit;
                 var name = itemSchema.name;
                 var uiItem = _this.uiSchema === undefined ? undefined : _this.uiSchema[name];
                 var label, labelHide;
@@ -149,7 +156,15 @@ var Edit = /** @class */ (function (_super) {
                 }
                 ;
                 var value = _this.props.data[name];
-                var itemEdit = createItemEdit(itemSchema, uiItem, label, value);
+                var itemEdit = createItemEdit(_this, itemSchema, uiItem, label, value);
+                var rowContainerClassName = _this.rowContainerClassName;
+                var editInRow = itemEdit.editInRow;
+                if (editInRow === false) {
+                    if (stopEdit !== true)
+                        editInRow = false;
+                }
+                if (editInRow === false)
+                    rowContainerClassName += ' cursor-pointer';
                 var required = itemSchema.required;
                 var requireFlag = required === true && React.createElement("span", { className: "text-danger" }, "*");
                 var divLabel, cn = 'flex-fill d-flex ';
@@ -165,7 +180,7 @@ var Edit = /** @class */ (function (_super) {
                 }
                 var ret = React.createElement(React.Fragment, { key: index },
                     sep,
-                    React.createElement("div", { className: 'd-flex align-items-center' + _this.rowContainerClassName, onClick: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    React.createElement("div", { className: 'd-flex align-items-center' + rowContainerClassName, onClick: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, this.rowClick(itemEdit)];
                                 case 1: return [2 /*return*/, _a.sent()];
@@ -173,12 +188,37 @@ var Edit = /** @class */ (function (_super) {
                         }); }); } },
                         divLabel,
                         React.createElement("div", { className: cn }, itemEdit === undefined ? undefined : itemEdit.renderContent()),
-                        _this.props.stopEdit !== true && React.createElement("div", { className: "w-2c text-right" },
+                        editInRow === false && React.createElement("div", { className: "w-2c text-right" },
                             React.createElement("i", { className: "fa fa-angle-right" }))));
                 sep = _this.sep;
                 return ret;
             }),
             this.bottomBorder);
+    };
+    Edit.prototype.onItemChanged = function (itemEdit, newValue) {
+        return __awaiter(this, void 0, void 0, function () {
+            var itemSchema, uiItem, value, _a, onItemChanged, stopEdit;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        itemSchema = itemEdit.itemSchema, uiItem = itemEdit.uiItem, value = itemEdit.value;
+                        this.props.data[itemSchema.name] = newValue;
+                        _a = this.props, onItemChanged = _a.onItemChanged, stopEdit = _a.stopEdit;
+                        if (stopEdit === true)
+                            return [2 /*return*/];
+                        if ((uiItem === null || uiItem === void 0 ? void 0 : uiItem.readOnly) === true)
+                            return [2 /*return*/];
+                        if (!(onItemChanged === undefined)) return [3 /*break*/, 1];
+                        alert(itemSchema.name + " value changed, new: " + newValue + ", pre: " + value);
+                        return [3 /*break*/, 3];
+                    case 1: return [4 /*yield*/, onItemChanged(itemSchema, newValue, value)];
+                    case 2:
+                        _b.sent();
+                        _b.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     Edit = __decorate([
         observer
@@ -186,7 +226,7 @@ var Edit = /** @class */ (function (_super) {
     return Edit;
 }(React.Component));
 export { Edit };
-function createItemEdit(itemSchema, uiItem, label, value) {
+function createItemEdit(edit, itemSchema, uiItem, label, value) {
     var ie;
     var itemEdit;
     if (uiItem !== undefined) {
@@ -208,16 +248,23 @@ function createItemEdit(itemSchema, uiItem, label, value) {
                 itemEdit = SelectItemEdit;
                 break;
             case 'range':
-                itemEdit = StringItemEdit;
+                itemEdit = RangeItemEdit;
+                break;
+            case 'number':
+            case 'updown':
+                itemEdit = NumberItemEdit;
+                break;
+            case 'checkbox':
+                itemEdit = CheckBoxItemEdit;
                 break;
             case 'radio':
-                ie = new RadioItemEdit(itemSchema, uiItem, label, value);
+                ie = new RadioItemEdit(edit, itemSchema, uiItem, label, value);
                 break;
             case 'tagSingle':
-                ie = new TagSingleItemEdit(itemSchema, uiItem, label, value);
+                ie = new TagSingleItemEdit(edit, itemSchema, uiItem, label, value);
                 break;
             case 'tagMulti':
-                ie = new TagMultiItemEdit(itemSchema, uiItem, label, value);
+                ie = new TagMultiItemEdit(edit, itemSchema, uiItem, label, value);
                 break;
         }
     }
@@ -230,11 +277,18 @@ function createItemEdit(itemSchema, uiItem, label, value) {
                 case 'image':
                     itemEdit = ImageItemEdit;
                     break;
+                case 'boolean':
+                    itemEdit = CheckBoxItemEdit;
+                    break;
+                case 'number':
+                case 'integer':
+                    itemEdit = RangeItemEdit;
+                    break;
             }
         }
         if (itemEdit === undefined)
             return;
-        ie = new itemEdit(itemSchema, uiItem, label, value);
+        ie = new itemEdit(edit, itemSchema, uiItem, label, value);
     }
     ie.init();
     return ie;

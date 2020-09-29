@@ -19,9 +19,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { PageHeader } from './pageHeader';
+import { renderPageHeader } from './pageHeader';
 import { TabsView } from './tabs';
-import { ScrollView } from './scrollView';
+import { ScrollView, WebNavScrollView } from './scrollView';
 var Page = /** @class */ (function (_super) {
     __extends(Page, _super);
     function Page(props) {
@@ -33,28 +33,67 @@ var Page = /** @class */ (function (_super) {
         return _this;
     }
     Page.prototype.renderHeader = function () {
-        var _a = this.props, back = _a.back, header = _a.header, right = _a.right, headerClassName = _a.headerClassName, afterBack = _a.afterBack;
-        var pageHeader = header !== false && React.createElement(PageHeader, { back: back, center: header, right: right, logout: this.props.logout, className: headerClassName, afterBack: afterBack });
+        var _a = this.props, back = _a.back, header = _a.header, right = _a.right, headerClassName = _a.headerClassName, afterBack = _a.afterBack, logout = _a.logout;
+        if (header === false)
+            return;
+        var webNav = this.props.webNav;
+        var inWebNav = false;
+        var pageHeaderProps = {
+            back: back,
+            center: header,
+            right: right,
+            logout: logout,
+            className: headerClassName,
+            afterBack: afterBack,
+        };
+        if (webNav !== undefined) {
+            inWebNav = true;
+            var rph = webNav.renderPageHeader;
+            if (rph)
+                return rph(pageHeaderProps);
+        }
+        else {
+            inWebNav = false;
+        }
+        return renderPageHeader(pageHeaderProps, inWebNav);
+        /*
+        let pageHeader = header !== false && <PageHeader
+            back={back}
+            center={header as any}
+            right={right}
+            logout={this.props.logout}
+            className={headerClassName}
+            afterBack={afterBack}
+            />;
         return pageHeader;
+        */
     };
     Page.prototype.renderFooter = function () {
-        var footer = this.props.footer;
-        if (footer) {
-            var elFooter = React.createElement("footer", null, footer);
-            return React.createElement(React.Fragment, null,
-                React.createElement("section", { className: "tv-page-footer" }, elFooter),
-                elFooter);
-        }
+        var _a = this.props, footer = _a.footer, webNav = _a.webNav;
+        if (!footer)
+            return;
+        var elFooter = React.createElement("footer", null, footer);
+        if (webNav)
+            return elFooter;
+        return React.createElement(React.Fragment, null,
+            React.createElement("section", { className: "tv-page-footer" }, elFooter),
+            elFooter);
     };
     Page.prototype.render = function () {
         if (this.tabsView) {
             return React.createElement(this.tabsView.content);
         }
-        var _a = this.props, onScroll = _a.onScroll, onScrollTop = _a.onScrollTop, onScrollBottom = _a.onScrollBottom, children = _a.children, className = _a.className;
-        return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className },
+        var _a = this.props, onScroll = _a.onScroll, onScrollTop = _a.onScrollTop, onScrollBottom = _a.onScrollBottom, children = _a.children, className = _a.className, webNav = _a.webNav;
+        var content = React.createElement(React.Fragment, null,
             this.renderHeader(),
             React.createElement("main", null, children),
             this.renderFooter());
+        if (webNav) {
+            return React.createElement(WebNavScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className, webNav: webNav }, content);
+        }
+        else {
+            return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className }, content);
+        }
     };
     Page = __decorate([
         observer

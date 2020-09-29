@@ -6,7 +6,7 @@ import { FieldProps } from '../form/field';
 import { Widget } from '../form/widgets';
 import { IValuesView } from './IValuesView';
 export declare type TypeWidget = new (context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode) => Widget;
-export declare type UiType = 'form' | 'arr' | 'group' | 'button' | 'submit' | 'custom' | 'image' | 'id' | 'text' | 'textarea' | 'password' | 'date' | 'datetime' | 'select' | 'url' | 'email' | 'updown' | 'color' | 'checkbox' | 'checkboxes' | 'radio' | 'range' | 'tagSingle' | 'tagMulti';
+export declare type UiType = 'form' | 'arr' | 'group' | 'button' | 'submit' | 'custom' | 'image' | 'id' | 'text' | 'textarea' | 'password' | 'date' | 'datetime' | 'select' | 'url' | 'email' | 'updown' | 'number' | 'color' | 'checkbox' | 'checkboxes' | 'radio' | 'range' | 'tagSingle' | 'tagMulti';
 export declare type ChangingHandler = (context: Context, value: any, prev: any) => boolean;
 export declare type ChangedHandler = (context: Context, value: any, prev: any) => Promise<void>;
 export interface UiItem {
@@ -54,6 +54,12 @@ export interface UiPasswordItem extends UiInputItem {
 }
 export interface UiRange extends UiInputItem {
     widget: 'range';
+    min?: number;
+    max?: number;
+    step?: number;
+}
+export interface UiNumberItem extends UiInputItem {
+    widget: 'number';
     min?: number;
     max?: number;
     step?: number;

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Schema, UiSchema, ItemSchema, UiItem } from '../schema';
+import { ItemEdit } from './itemEdit';
 export interface EditProps {
     className?: string;
     schema: Schema;
@@ -23,5 +24,6 @@ export declare class Edit extends React.Component<EditProps> {
     private uiSchema;
     constructor(props: EditProps);
     render(): JSX.Element;
+    onItemChanged(itemEdit: ItemEdit, newValue: any): Promise<void>;
     private rowClick;
 }

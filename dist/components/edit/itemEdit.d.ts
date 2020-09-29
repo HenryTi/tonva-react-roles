@@ -1,5 +1,7 @@
 import { ItemSchema, UiItem } from '../schema';
+import { Edit } from './edit';
 export declare abstract class ItemEdit {
+    protected edit: Edit;
     protected name: string;
     protected _itemSchema: ItemSchema;
     get itemSchema(): ItemSchema;
@@ -7,10 +9,11 @@ export declare abstract class ItemEdit {
     get uiItem(): UiItem;
     value: any;
     label: string;
+    get editInRow(): boolean;
     protected error: string;
     protected isChanged: boolean;
     protected newValue: any;
-    constructor(itemSchema: ItemSchema, uiItem: UiItem, label: string, value: any);
+    constructor(edit: Edit, itemSchema: ItemSchema, uiItem: UiItem, label: string, value: any);
     init(): void;
     start(): Promise<any>;
     protected abstract internalStart(): Promise<any>;

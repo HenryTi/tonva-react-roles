@@ -8,10 +8,7 @@ export interface PageHeaderProps {
     afterBack?: () => void;
     ex?: JSX.Element;
 }
+export declare function renderPageHeader(props: PageHeaderProps, inWebNav?: boolean): JSX.Element;
 export declare class PageHeader extends React.Component<PageHeaderProps> {
-    private back;
-    openWindow(): void;
-    private logoutClick;
-    private logout;
     render(): JSX.Element;
 }

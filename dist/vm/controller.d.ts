@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import { PageHeaderProps, PageWebNav } from '../components';
 import { User } from '../tool';
 import { VPage } from './vpage';
 import { View } from './view';
@@ -9,6 +10,13 @@ export interface ConfirmOptions {
     ok?: string;
     yes?: string;
     no?: string;
+}
+export interface WebNav<C extends Controller> {
+    navHeader?: new (controller: C) => View<C>;
+    navRawHeader?: new (controller: C) => View<C>;
+    navFooter?: new (controller: C) => View<C>;
+    navRawFooter?: new (controller: C) => View<C>;
+    renderPageHeader?: (props: PageHeaderProps) => JSX.Element;
 }
 export declare abstract class Controller {
     readonly res: any;
@@ -23,6 +31,9 @@ export declare abstract class Controller {
     constructor(res: any);
     init(...param: any[]): void;
     internalT(str: string): any;
+    get webNav(): WebNav<any>;
+    getWebNav(): WebNav<any>;
+    getPageWebNav(): PageWebNav;
     protected setRes(res: any): void;
     private receiveHandlerId;
     protected dispose: () => void;

@@ -96,6 +96,26 @@ var Controller = /** @class */ (function () {
     Controller.prototype.internalT = function (str) {
         return this._t[str];
     };
+    Object.defineProperty(Controller.prototype, "webNav", {
+        get: function () { return; },
+        enumerable: false,
+        configurable: true
+    });
+    Controller.prototype.getWebNav = function () { return this.webNav; };
+    Controller.prototype.getPageWebNav = function () {
+        var webNav = this.getWebNav();
+        if (webNav === undefined)
+            return;
+        var navHeader = webNav.navHeader, navRawHeader = webNav.navRawHeader, navFooter = webNav.navFooter, navRawFooter = webNav.navRawFooter, renderPageHeader = webNav.renderPageHeader;
+        var ret = {
+            navHeader: navHeader && this.renderView(navHeader),
+            navRawHeader: navRawHeader && this.renderView(navRawHeader),
+            navFooter: navFooter && this.renderView(navFooter),
+            navRawFooter: navRawFooter && this.renderView(navRawFooter),
+            renderPageHeader: renderPageHeader,
+        };
+        return ret;
+    };
     Controller.prototype.setRes = function (res) {
         if (res === undefined)
             return;

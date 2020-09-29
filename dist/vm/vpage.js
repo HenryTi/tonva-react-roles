@@ -79,7 +79,7 @@ var VPage = /** @class */ (function (_super) {
         var header = this.header();
         if (!header)
             header = false;
-        return React.createElement(Page, { header: header, right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, className: this.className, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout() }, this.content());
+        return React.createElement(Page, { header: header, right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, className: this.className, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout(), webNav: this.controller.getPageWebNav() }, this.content());
     };
     VPage.prototype.onPageScroll = function (e) { };
     VPage.prototype.onPageScrollTop = function (scroller) {

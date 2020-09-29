@@ -1,6 +1,6 @@
 import * as React from 'react';
 import _ from 'lodash';
-import {nav, Page, resOptions} from '../components';
+import {nav, Page, resOptions, PageHeaderProps, PageWebNav} from '../components';
 import { User, env } from '../tool';
 import { VPage } from './vpage';
 import { View } from './view';
@@ -13,6 +13,14 @@ export interface ConfirmOptions {
     ok?: string;
     yes?: string;
     no?: string;
+}
+
+export interface WebNav<C extends Controller> {
+	navHeader?: new (controller: C) => View<C>;
+	navRawHeader?: new (controller: C) => View<C>;
+	navFooter?: new (controller: C) => View<C>;
+	navRawFooter?: new (controller: C) => View<C>;
+	renderPageHeader?: (props: PageHeaderProps) => JSX.Element;
 }
 
 export abstract class Controller {
@@ -39,6 +47,24 @@ export abstract class Controller {
 
 	internalT(str:string):any {
 		return this._t[str];
+	}
+
+	get webNav(): WebNav<any> {return;}
+
+	getWebNav(): WebNav<any> {return this.webNav;}
+
+	getPageWebNav(): PageWebNav {
+		let webNav =  this.getWebNav();
+		if (webNav === undefined) return;
+		let {navHeader, navRawHeader, navFooter, navRawFooter, renderPageHeader} = webNav;
+		let ret:PageWebNav = {
+			navHeader: navHeader && this.renderView(navHeader),
+			navRawHeader: navRawHeader && this.renderView(navRawHeader),
+			navFooter: navFooter && this.renderView(navFooter),
+			navRawFooter: navRawFooter && this.renderView(navRawFooter),
+			renderPageHeader,
+		};
+		return ret;
 	}
 	
 	protected setRes(res:any) {

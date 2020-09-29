@@ -49,33 +49,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import * as React from 'react';
 import { nav } from '../nav';
-var PageHeader = /** @class */ (function (_super) {
-    __extends(PageHeader, _super);
-    function PageHeader() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.back = function () { return __awaiter(_this, void 0, void 0, function () {
-            var afterBack;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, nav.back()];
-                    case 1:
-                        _a.sent(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
-                        afterBack = this.props.afterBack;
-                        if (afterBack)
-                            afterBack();
-                        return [2 /*return*/];
-                }
-            });
-        }); };
-        _this.logoutClick = function () {
-            nav.showLogout(_this.logout);
-        };
-        _this.logout = function () { return __awaiter(_this, void 0, void 0, function () {
+export function renderPageHeader(props, inWebNav) {
+    var _this = this;
+    var onBack = function () { return __awaiter(_this, void 0, void 0, function () {
+        var afterBack;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, nav.back()];
+                case 1:
+                    _a.sent(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
+                    afterBack = props.afterBack;
+                    if (afterBack)
+                        afterBack();
+                    return [2 /*return*/];
+            }
+        });
+    }); };
+    var onLogoutClick = function () {
+        var logout = function () { return __awaiter(_this, void 0, void 0, function () {
             var logout;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        logout = this.props.logout;
+                        logout = props.logout;
                         if (!(typeof logout === 'function')) return [3 /*break*/, 2];
                         return [4 /*yield*/, logout()];
                     case 1:
@@ -88,79 +84,72 @@ var PageHeader = /** @class */ (function (_super) {
                 }
             });
         }); };
-        return _this;
+        nav.showLogout(logout);
+    };
+    var b = nav.level > 1 || window.self !== window.top;
+    var back = props.back, right = props.right, center = props.center, logout = props.logout, className = props.className, ex = props.ex;
+    if (inWebNav === true && !back && !right && !center)
+        return;
+    var vBack, debugLogout;
+    if (logout !== undefined && window.self === window.top) {
+        if ((typeof logout === 'boolean' && logout === true)
+            || typeof logout === 'function') {
+            var user = nav.user;
+            if (user !== undefined) {
+                var nick = user.nick, name_1 = user.name;
+                debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
+                    React.createElement("small", { className: "text-light" }, nick || name_1),
+                    // eslint-disable-next-line
+                    React.createElement("div", { className: "ml-2 py-2 px-3 cursor-pointer", role: "button", onClick: onLogoutClick },
+                        React.createElement("i", { className: "fa fa-sign-out fa-lg" })));
+            }
+        }
     }
-    PageHeader.prototype.openWindow = function () {
-        window.open(document.location.href);
-    };
-    PageHeader.prototype.render = function () {
-        var b = nav.level > 1 || window.self !== window.top;
-        var _a = this.props, right = _a.right, center = _a.center, logout = _a.logout, className = _a.className, ex = _a.ex;
-        var back, debugLogout;
-        if (logout !== undefined && window.self === window.top) {
-            if ((typeof logout === 'boolean' && logout === true)
-                || typeof logout === 'function') {
-                var user = nav.user;
-                if (user !== undefined) {
-                    var nick = user.nick, name_1 = user.name;
-                    debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
-                        React.createElement("small", { className: "text-light" }, nick || name_1),
-                        // eslint-disable-next-line
-                        React.createElement("div", { className: "ml-2 py-2 px-3 cursor-pointer", role: "button", onClick: this.logoutClick },
-                            React.createElement("i", { className: "fa fa-sign-out fa-lg" })));
-                }
-            }
+    if (b) {
+        switch (props.back) {
+            case 'none':
+                vBack = undefined;
+                break;
+            default:
+            case 'back':
+                vBack = React.createElement("nav", { onClick: onBack },
+                    React.createElement("i", { className: "fa fa-angle-left" }));
+                break;
+            case 'close':
+                vBack = React.createElement("nav", { onClick: onBack },
+                    React.createElement("i", { className: "fa fa-close" }));
+                break;
         }
-        if (b) {
-            switch (this.props.back) {
-                case 'none':
-                    back = undefined;
-                    break;
-                default:
-                case 'back':
-                    back = React.createElement("nav", { onClick: this.back },
-                        React.createElement("i", { className: "fa fa-angle-left" }));
-                    break;
-                case 'close':
-                    back = React.createElement("nav", { onClick: this.back },
-                        React.createElement("i", { className: "fa fa-close" }));
-                    break;
-            }
-        }
-        if (window.self !== window.top) {
-            console.log(document.location.href);
-            // pop = <header onClick={this.openWindow} className="mx-1"><FA name="external-link" /></header>;
-        }
-        if (back === undefined && typeof center === 'string') {
-            center = React.createElement("div", { className: "px-3" }, center);
-        }
-        var rightView = (right || debugLogout) && React.createElement("aside", null,
-            right,
-            " ",
-            debugLogout);
-        var header = React.createElement("header", { className: className },
-            React.createElement("nav", null,
-                back,
-                React.createElement("div", null, center),
-                rightView),
-            ex);
-        return React.createElement(React.Fragment, null,
-            React.createElement("section", { className: "tv-page-header" }, header),
-            header);
-        /*
-            <header className={className}>
-            <section>
-                <header>
-                    {back}
-                    <div>{center}</div>
-                    {rightView}
-                </header>
-            </section>
-            {back}
-            <div>{center}</div>
-            {rightView}
-        </header>;*/
-    };
+    }
+    if (window.self !== window.top) {
+        console.log(document.location.href);
+        // pop = <header onClick={this.openWindow} className="mx-1"><FA name="external-link" /></header>;
+    }
+    if (vBack === undefined && typeof center === 'string') {
+        center = React.createElement("div", { className: "px-3" }, center);
+    }
+    var rightView = (right || debugLogout) && React.createElement("aside", null,
+        right,
+        " ",
+        debugLogout);
+    var header = React.createElement("header", { className: className },
+        React.createElement("nav", null,
+            vBack,
+            React.createElement("div", null, center),
+            rightView),
+        ex);
+    if (inWebNav === true)
+        return header;
+    return React.createElement(React.Fragment, null,
+        React.createElement("section", { className: "tv-page-header" }, header),
+        header);
+}
+var PageHeader = /** @class */ (function (_super) {
+    __extends(PageHeader, _super);
+    function PageHeader() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageHeader.prototype.render = function () { return renderPageHeader(this.props); };
     return PageHeader;
 }(React.Component));
 export { PageHeader };

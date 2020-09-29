@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+import _ from 'lodash';
 import { Controller } from "../vm";
 var CBase = /** @class */ (function (_super) {
     __extends(CBase, _super);
@@ -46,6 +47,15 @@ var CBase = /** @class */ (function (_super) {
         s.init(param);
         return s;
     };
+    CBase.prototype.getWebNav = function () {
+        var _a;
+        var wn = (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.getWebNav();
+        if (wn === undefined)
+            return;
+        var ret = _.clone(wn);
+        _.merge(ret, this.webNav);
+        return ret;
+    };
     return CBase;
 }(Controller));
 export { CBase };
@@ -67,6 +77,25 @@ var CSub = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    CSub.prototype.getWebNav = function () {
+        var _a, _b;
+        var wn = (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.getWebNave();
+        if (wn === undefined)
+            return;
+        var ownerWNs = [];
+        for (var p = this.owner; p !== undefined; p = (_b = p) === null || _b === void 0 ? void 0 : _b.owner) {
+            ownerWNs.push(p.webNav);
+        }
+        var ret = _.clone(wn);
+        for (;;) {
+            var own = ownerWNs.pop();
+            if (own === undefined)
+                break;
+            _.merge(ret, own);
+        }
+        _.merge(ret, this.webNav);
+        return ret;
+    };
     return CSub;
 }(CBase));
 export { CSub };

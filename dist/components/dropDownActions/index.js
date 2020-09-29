@@ -60,7 +60,7 @@ var DropdownActions = /** @class */ (function (_super) {
                 React.createElement("i", { className: classNames('fa fa-fw ', 'fa-' + (icon || 'ellipsis-v')) })),
             React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
                 if (!v) {
-                    return React.createElement("div", { className: "dropdown-divider" });
+                    return React.createElement("div", { className: "dropdown-divider", key: index });
                 }
                 var icon = v.icon, caption = v.caption, action = v.action, iconClass = v.iconClass, captionClass = v.captionClass;
                 if (icon === undefined && caption === undefined)

@@ -45,8 +45,9 @@ import { nav } from '../nav';
 import { observable } from 'mobx';
 import { Image } from '../image';
 var ItemEdit = /** @class */ (function () {
-    function ItemEdit(itemSchema, uiItem, label, value) {
+    function ItemEdit(edit, itemSchema, uiItem, label, value) {
         this.isChanged = false;
+        this.edit = edit;
         this._itemSchema = itemSchema;
         this._uiItem = uiItem;
         this.value = value;
@@ -61,6 +62,11 @@ var ItemEdit = /** @class */ (function () {
     });
     Object.defineProperty(ItemEdit.prototype, "uiItem", {
         get: function () { return this._uiItem; },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ItemEdit.prototype, "editInRow", {
+        get: function () { return false; },
         enumerable: false,
         configurable: true
     });

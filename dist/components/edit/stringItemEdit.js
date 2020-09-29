@@ -81,9 +81,10 @@ var StringItemEdit = /** @class */ (function (_super) {
                 if (evt.keyCode === 13)
                     onSave();
             };
+            var _a = _this.inputOptions(), type = _a.type, max = _a.max, min = _a.min, step = _a.step;
             return React.createElement(Page, { header: _this.label, right: right },
                 React.createElement("div", { className: "m-3" },
-                    React.createElement("input", { type: "text", onChange: _this.onChange, onKeyDown: onKeyDown, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value }),
+                    React.createElement("input", { type: type, onChange: _this.onChange, onKeyDown: onKeyDown, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value, min: min, max: max, step: step }),
                     _this.uiItem && React.createElement("div", { className: "small muted m-2" }, _this.uiItem.placeholder),
                     _this.error && React.createElement("div", { className: "text-danger" }, _this.error)));
         });
@@ -104,6 +105,11 @@ var StringItemEdit = /** @class */ (function (_super) {
                     })];
             });
         });
+    };
+    StringItemEdit.prototype.inputOptions = function () {
+        return {
+            type: 'text',
+        };
     };
     return StringItemEdit;
 }(ItemEdit));

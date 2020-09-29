@@ -69,7 +69,7 @@ var ImageWidget = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        edit = new ImageItemEdit(this.itemSchema, this.ui, this.ui.label, this.value);
+                        edit = new ImageItemEdit(undefined, this.itemSchema, this.ui, this.ui.label, this.value);
                         return [4 /*yield*/, edit.start()];
                     case 1:
                         ret = _a.sent();

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TabsProps } from './tabs';
-import { ScrollProps } from './scrollView';
+import { ScrollProps, PageWebNav } from './scrollView';
 export interface IVPage {
     content(): JSX.Element;
     header(): JSX.Element;
@@ -16,6 +16,7 @@ export interface PageProps extends ScrollProps {
     className?: string;
     afterBack?: () => void;
     tabsProps?: TabsProps;
+    webNav?: PageWebNav;
 }
 export declare class Page extends React.Component<PageProps> {
     private tabsView;

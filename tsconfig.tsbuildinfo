@@ -607,8 +607,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/pageheader.tsx": {
-        "version": "f491aa0cbf806a6c580f49e7758c6c7fe6e2f1bfa5928d7e9c92f77843ab82d3",
-        "signature": "6efa6762cad11fcdad14caff604f785ed9505d44c98988d58b0782167eeaaacc",
+        "version": "0333e90cd2de38e9ff35721c85502a1572d8c135a1143029a2e99aea2922663f",
+        "signature": "7a4740904cba18115cb0658d9b00446b2c116724fb613bd968cbdc59d9dcdc23",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/classnames/index.d.ts": {
@@ -617,8 +617,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/scrollview.tsx": {
-        "version": "f40f7429bb609f4bec54a837cc09fb32bfc8e9c174329ad1622f91ebe092b5f3",
-        "signature": "6289da7b14ec705474303d22f442c3d86333c71d36b1f6f4d514f0dcb39b4f76",
+        "version": "7f6788b8c3992c311006ffd22cd7f2515e2a30709d0da4cf4556d2d6f5542f2e",
+        "signature": "03fadfcb75e7a52e616a5ab45b31a519a08bbf067109628aaf59a3e9f10fedc9",
         "affectsGlobalScope": false
       },
       "./src/components/page/tabs.tsx": {
@@ -627,8 +627,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/page.tsx": {
-        "version": "be12a73f64dddc4312d2e2ec39be511441ddcabe5aafbbaf3b55b9f0b9bb70bb",
-        "signature": "22425c75ddd8b022907df854e2d3a35d7b3e25af27d217fc91182562dd580794",
+        "version": "b4a36ccbe6f0dd5d79ea46aa0b782581f17468174661cc30544b4da4b840a5ce",
+        "signature": "867ff9ebee818673cac4b1bec5e9a453d66f8fd4ecedede82b0802cf632cd5a7",
         "affectsGlobalScope": false
       },
       "./src/net/fetcherror.ts": {
@@ -712,18 +712,23 @@
         "affectsGlobalScope": false
       },
       "./src/vm/vpage.tsx": {
-        "version": "739c8b19f59606f245ebd5acbe7dd55f5526459d685b2349441af6848f2b9234",
+        "version": "2b17e3ed1a2886ea23b06ed7ae8b9d48ab9e00ba6a59d9f84a23417b6ddc3ea3",
         "signature": "03125509ff42009649f1bee1f23c507ea2b3519cab3a5c1f496bc2b97ad12700",
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "59f5f4ca2a346bcec6306e09decde39bbaf287380be9cc419b4ba570fb234796",
-        "signature": "540a322212dbf1a6d73c487ab5706042b5acf9ccdd00a97ddc5e91f8060ee41b",
+        "version": "87ae58ceab26a3824c90971baedddd4c38b7afe6ef54b7abb9fc0706b1ba5a74",
+        "signature": "69154c17d5c7d70c2bb79f338ea2c8cab0fa8769762fd1bc3f87dd581d5aa1bb",
+        "affectsGlobalScope": false
+      },
+      "./src/vm/components/cstringedit.tsx": {
+        "version": "cb7ea0140bb421bd560b5af3ef4b205d6336de8dfbfc5d7061c0103fb141c218",
+        "signature": "03217ae445318676813b9cb76766bdd7ef75aa18fbee281915821c7da74f726b",
         "affectsGlobalScope": false
       },
       "./src/vm/index.ts": {
-        "version": "8a53427eec25078e4096554327f5c6dad93d23532609c10f10803590d2b56bce",
-        "signature": "2851204ae66a86e9952d927272ff94facb0bdef29edff688e91c1491bd57e54d",
+        "version": "b5d93491d889b4edbb6e0520e479279f3897ceb069cc83cb0095503c3fb4ac74",
+        "signature": "433e750ed742566baed5f392b192b71db437ee2d844156cdcd56b200667d05f5",
         "affectsGlobalScope": false
       },
       "./src/res/formres.ts": {
@@ -782,8 +787,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/index.ts": {
-        "version": "6226cac50579f6ea0812bcbda6a8778760275b966ea0905f8b2b9680d2109aaa",
-        "signature": "6226cac50579f6ea0812bcbda6a8778760275b966ea0905f8b2b9680d2109aaa",
+        "version": "0ca0c7f1d6642b55c92488a5449719dd1c48a0801127ed280b7edf39934e0769",
+        "signature": "56f7abab8f3efde44f97a397dbfc10a22db220fb3269626c9a5594d7fb80456a",
         "affectsGlobalScope": false
       },
       "./src/components/schema/schema.ts": {
@@ -886,9 +891,59 @@
         "signature": "dccb088ccf12dc97615036af6979edfea8ab97100d4269f97bfbba4e676b462f",
         "affectsGlobalScope": false
       },
+      "./src/components/edit/stringitemedit.tsx": {
+        "version": "067e7140c9abd0b84f856e05b184be653ff6f560454c989e545cdb02eaba2d6c",
+        "signature": "48b39b8bef7ffa8a11d436f4f887e6e8c13ff9ee53b541799ee1a6ad28dda5e7",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/radioitemedit.tsx": {
+        "version": "13310bca2bdf1e77c83d6d61ed55533d1a337ec825a926038604954784f5f14a",
+        "signature": "1a87e44e55227adb28031cb608fa7117734e39a5d3e295996c69a238cbee8d9e",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/selectitemedit.tsx": {
+        "version": "0de9d6f33300c04363308347f571171ab70b84da39e887edd8b0af948fd1bbe4",
+        "signature": "113579a25d0958299bbe7f0d2451b8f58d59a42998205669bc52fbec63ffcb5e",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/iditemedit.tsx": {
+        "version": "f4287c117e6f98f970f828a905c041848ee2ebf270654f6371f0e049de492c97",
+        "signature": "0ea7ca8b99e740e66b5aefbf98d5d253619acb0da811312d2d5d71cc4ec38103",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/tagitemedit.tsx": {
+        "version": "60ff07b8b93c24f2721f0b8452751967728ea5ca489e5d474b489e4ed967f572",
+        "signature": "a76f5f1119964495b3d3cd4120a070ad9053b5a3b6111a2179c9f16ecda0875a",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/textareaitemedit.tsx": {
+        "version": "71976e155711a28ecfdee71b877411b637cf731ed2a3d6fc8dacbbce708f0ce8",
+        "signature": "2d8636f600bc0e127cb37454660c93695ce36a01e8dc2c7467872cfdd1d9282e",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/checkboxitemedit.tsx": {
+        "version": "2b4a7f496c70f788f8da81578ae2c9edf035b33364198c8444df03f734a74079",
+        "signature": "12d2bc184d935254b178285036ee73dde3bba2f2669e97d2843c3f1262a5a6a4",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/rangeitemedit.tsx": {
+        "version": "6f191a50d74b0c19da2df1ed435118b738e8927a8a55d07c3726911b3028bc4e",
+        "signature": "efd242225363d3fe259f8bc3202945783b969eda2b1fe3e3b41d6d70f3842b96",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/numberitemedit.tsx": {
+        "version": "e93070272433812236d8f4408270f1e8310f712c5111f4ee8ecd24ed5da519bb",
+        "signature": "5c0fe1b80fb98acb4192473e5c9750d5415454c0d3db179de613d2de8ac1c8a6",
+        "affectsGlobalScope": false
+      },
+      "./src/components/edit/edit.tsx": {
+        "version": "0e341c21513847a5986f8941961a6ff2ff81e31f2b464250b993a57511a83ea1",
+        "signature": "7127415ef8106abeee97b95e5b4e189806efa017ed67e39477a2949ded31d18c",
+        "affectsGlobalScope": false
+      },
       "./src/components/edit/itemedit.tsx": {
-        "version": "f9c26317423b0a42df69a19f12aa44d90904f210d0a9d2e0bf5bc6a5a326bc11",
-        "signature": "37139f6432ff64a15820f85775cf3b8ad9411d3766c0ed786042bc8356b1f174",
+        "version": "a09e70a08f2ea406a4e76689d024d0ac7c95769a74d43d3836b2baff12e8f517",
+        "signature": "ebbf312102cad8847e8af87bd871491b8e281aea4dfef2218f60ef704200fa10",
         "affectsGlobalScope": false
       },
       "./src/components/edit/imageitemedit.tsx": {
@@ -897,7 +952,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/form/widgets/imagewidget.tsx": {
-        "version": "203e38e4b3d8e7312735d67e4d6da25d3dbd968567c05abe8e1b645b33726b7e",
+        "version": "6452ca004e97244d465d7d93913e5e0c864e1d74340b9fab635a6f04f65b35ce",
         "signature": "7906d5f2cc2898f70a0e27d0037ad0c97c185c6634ca86a571c0897726baf375",
         "affectsGlobalScope": false
       },
@@ -932,8 +987,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/schema/uischema.ts": {
-        "version": "2193286037690fd0e37e935e3ca2d5191bab501c2f72b1a7de5295dd49370bef",
-        "signature": "7e2a0d5db80e8a70ab246d483badd220f432c8e77d24f9168a39d2669478a3d5",
+        "version": "cc01f32965136311e616672fcee97df970c3d8824d257a1c0c4aa8bfb541c857",
+        "signature": "c8beb4bce8630c71b52eea9fc9dbc9cac71860f7ec27c738dbb65cae6c298837",
         "affectsGlobalScope": false
       },
       "./src/components/schema/touiselectitems.ts": {
@@ -949,41 +1004,6 @@
       "./src/components/form/index.ts": {
         "version": "31144f2faec365ac154c9897c0704c8d8d13c1b27c7d30b824d9ddc76b4eb73b",
         "signature": "a3f93fa096c839777cedd9106e79a830ed3c686e01c1de9585d24c2c6facc3c6",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/stringitemedit.tsx": {
-        "version": "bdc9d740fce85f35d6bd8afee2f6a09792e00c4d133aa616024d0314e6722a14",
-        "signature": "2807dc9b77e4f986e6d9f68a8b74b05c4d3f7b2799e787fbf4e3fc1aaed1efde",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/radioitemedit.tsx": {
-        "version": "13310bca2bdf1e77c83d6d61ed55533d1a337ec825a926038604954784f5f14a",
-        "signature": "1a87e44e55227adb28031cb608fa7117734e39a5d3e295996c69a238cbee8d9e",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/selectitemedit.tsx": {
-        "version": "0de9d6f33300c04363308347f571171ab70b84da39e887edd8b0af948fd1bbe4",
-        "signature": "113579a25d0958299bbe7f0d2451b8f58d59a42998205669bc52fbec63ffcb5e",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/iditemedit.tsx": {
-        "version": "f4287c117e6f98f970f828a905c041848ee2ebf270654f6371f0e049de492c97",
-        "signature": "0ea7ca8b99e740e66b5aefbf98d5d253619acb0da811312d2d5d71cc4ec38103",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/tagitemedit.tsx": {
-        "version": "60ff07b8b93c24f2721f0b8452751967728ea5ca489e5d474b489e4ed967f572",
-        "signature": "a76f5f1119964495b3d3cd4120a070ad9053b5a3b6111a2179c9f16ecda0875a",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/textareaitemedit.tsx": {
-        "version": "71976e155711a28ecfdee71b877411b637cf731ed2a3d6fc8dacbbce708f0ce8",
-        "signature": "2d8636f600bc0e127cb37454660c93695ce36a01e8dc2c7467872cfdd1d9282e",
-        "affectsGlobalScope": false
-      },
-      "./src/components/edit/edit.tsx": {
-        "version": "dbd93f7ed8e11174a6478f8ada8ab3a5897a8a16794d28c718f56a638a20329a",
-        "signature": "4f7c5f409e50c260c37f4f3318fd7cbe05f457785284cd7c73298f6742547b7d",
         "affectsGlobalScope": false
       },
       "./src/components/edit/index.tsx": {
@@ -1022,7 +1042,7 @@
         "affectsGlobalScope": false
       },
       "./src/components/dropdownactions/index.tsx": {
-        "version": "3debac530b5667362ad1c6277021ab12073834b31e6569605bf7d421e80ed2a2",
+        "version": "6103dd5bc6be71f26f0f9f39f3bf18117cc03e8af6ed001117e9b87eb0548fd1",
         "signature": "cf44d65e3432028b7dc156b307bbb205e1da128956aa8643645dfff04922b806",
         "affectsGlobalScope": false
       },
@@ -1232,8 +1252,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "a6aa3cf071e4000abf8bd659bca7b842397a7d87b5a132ad1d9ae51bffd0a7cc",
-        "signature": "786a793bd485ad2dcd4b3d5da6264237f24e72058cd350f7c722fe4698dd248f",
+        "version": "eff2b9153718d58ac05b84d1352bd4ce69b743ed50178a599323d0435f189ac8",
+        "signature": "14c1d09be0636ff7848896757bca3a5d66b61f2fb098d764c168813b019753b5",
         "affectsGlobalScope": false
       },
       "./src/app/startroute.tsx": {
@@ -1964,6 +1984,7 @@
         "./src/vm/index.ts"
       ],
       "./src/app/cbase.ts": [
+        "./node_modules/@types/lodash/index.d.ts",
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts",
@@ -2021,15 +2042,25 @@
         "./node_modules/@types/react/index.d.ts",
         "./src/components/index.ts"
       ],
+      "./src/components/edit/checkboxitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/edit/itemedit.tsx",
+        "./src/components/schema/index.ts"
+      ],
       "./src/components/edit/edit.tsx": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx-react/dist/mobx-react.d.ts",
+        "./src/components/edit/checkboxitemedit.tsx",
         "./src/components/edit/iditemedit.tsx",
         "./src/components/edit/imageitemedit.tsx",
         "./src/components/edit/itemedit.tsx",
+        "./src/components/edit/numberitemedit.tsx",
         "./src/components/edit/radioitemedit.tsx",
+        "./src/components/edit/rangeitemedit.tsx",
         "./src/components/edit/selectitemedit.tsx",
         "./src/components/edit/stringitemedit.tsx",
         "./src/components/edit/tagitemedit.tsx",
@@ -2066,9 +2097,16 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/components/edit/edit.tsx",
         "./src/components/form/rules/index.ts",
         "./src/components/image.tsx",
         "./src/components/nav.tsx",
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/edit/numberitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/components/edit/stringitemedit.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/radioitemedit.tsx": [
@@ -2079,6 +2117,12 @@
         "./src/components/edit/itemedit.tsx",
         "./src/components/nav.tsx",
         "./src/components/page/page.tsx",
+        "./src/components/schema/index.ts"
+      ],
+      "./src/components/edit/rangeitemedit.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/components/edit/stringitemedit.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/selectbaseitemedit.tsx": [
@@ -2505,6 +2549,7 @@
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/components/page/page.tsx",
+        "./src/components/page/pageheader.tsx",
         "./src/components/page/scrollview.tsx",
         "./src/components/page/tabs.tsx"
       ],
@@ -2524,10 +2569,10 @@
         "./src/components/nav.tsx"
       ],
       "./src/components/page/scrollview.tsx": [
-        "./node_modules/@types/classnames/index.d.ts",
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
-        "./node_modules/@types/react/index.d.ts"
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/page/pageheader.tsx"
       ],
       "./src/components/page/tabs.tsx": [
         "./node_modules/@types/classnames/index.d.ts",
@@ -3157,6 +3202,16 @@
         "./src/uq/tuid/index.ts",
         "./src/uq/uqman.ts"
       ],
+      "./src/vm/components/cstringedit.tsx": [
+        "./node_modules/@types/lodash/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/mobx-react.d.ts",
+        "./node_modules/mobx/lib/mobx.d.ts",
+        "./src/components/index.ts",
+        "./src/vm/controller.tsx"
+      ],
       "./src/vm/controller.tsx": [
         "./node_modules/@types/lodash/index.d.ts",
         "./node_modules/@types/node/base.d.ts",
@@ -3171,6 +3226,7 @@
       "./src/vm/index.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/vm/components/cstringedit.tsx",
         "./src/vm/controller.tsx",
         "./src/vm/view.tsx",
         "./src/vm/vpage.tsx"
@@ -3414,8 +3470,13 @@
       "./src/components/easydate/index.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
+      "./src/components/edit/checkboxitemedit.tsx": [
+        "./src/components/edit/itemedit.tsx",
+        "./src/components/schema/index.ts"
+      ],
       "./src/components/edit/edit.tsx": [
         "./node_modules/@types/react/index.d.ts",
+        "./src/components/edit/itemedit.tsx",
         "./src/components/schema/index.ts"
       ],
       "./src/components/edit/iditemedit.tsx": [
@@ -3430,11 +3491,18 @@
         "./src/components/edit/edit.tsx"
       ],
       "./src/components/edit/itemedit.tsx": [
+        "./src/components/edit/edit.tsx",
         "./src/components/schema/index.ts"
+      ],
+      "./src/components/edit/numberitemedit.tsx": [
+        "./src/components/edit/stringitemedit.tsx"
       ],
       "./src/components/edit/radioitemedit.tsx": [
         "./src/components/edit/itemedit.tsx",
         "./src/components/schema/index.ts"
+      ],
+      "./src/components/edit/rangeitemedit.tsx": [
+        "./src/components/edit/stringitemedit.tsx"
       ],
       "./src/components/edit/selectbaseitemedit.tsx": [
         "./src/components/edit/itemedit.tsx",
@@ -3653,6 +3721,7 @@
       ],
       "./src/components/page/index.ts": [
         "./src/components/page/page.tsx",
+        "./src/components/page/pageheader.tsx",
         "./src/components/page/scrollview.tsx",
         "./src/components/page/tabs.tsx"
       ],
@@ -3665,7 +3734,8 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/page/scrollview.tsx": [
-        "./node_modules/@types/react/index.d.ts"
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/page/pageheader.tsx"
       ],
       "./src/components/page/tabs.tsx": [
         "./node_modules/@types/react/index.d.ts",
@@ -3976,12 +4046,18 @@
         "./src/tool/index.ts",
         "./src/uq/uqman.ts"
       ],
+      "./src/vm/components/cstringedit.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./src/vm/controller.tsx"
+      ],
       "./src/vm/controller.tsx": [
+        "./src/components/index.ts",
         "./src/tool/index.ts",
         "./src/vm/view.tsx",
         "./src/vm/vpage.tsx"
       ],
       "./src/vm/index.ts": [
+        "./src/vm/components/cstringedit.tsx",
         "./src/vm/controller.tsx",
         "./src/vm/view.tsx",
         "./src/vm/vpage.tsx"
@@ -4123,12 +4199,15 @@
       "./src/components/callbacks.ts",
       "./src/components/dropdownactions/index.tsx",
       "./src/components/easydate/index.tsx",
+      "./src/components/edit/checkboxitemedit.tsx",
       "./src/components/edit/edit.tsx",
       "./src/components/edit/iditemedit.tsx",
       "./src/components/edit/imageitemedit.tsx",
       "./src/components/edit/index.tsx",
       "./src/components/edit/itemedit.tsx",
+      "./src/components/edit/numberitemedit.tsx",
       "./src/components/edit/radioitemedit.tsx",
+      "./src/components/edit/rangeitemedit.tsx",
       "./src/components/edit/selectbaseitemedit.tsx",
       "./src/components/edit/selectitemedit.tsx",
       "./src/components/edit/stringitemedit.tsx",
@@ -4267,6 +4346,7 @@
       "./src/uq/ui.ts",
       "./src/uq/uqman.ts",
       "./src/uq/uqsman.ts",
+      "./src/vm/components/cstringedit.tsx",
       "./src/vm/controller.tsx",
       "./src/vm/index.ts",
       "./src/vm/view.tsx",

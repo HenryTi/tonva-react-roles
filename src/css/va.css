@@ -54,6 +54,13 @@ main.tv-tabs>header,
 main.tv-tabs>footer {
 	visibility: hidden;
 }
+div.tv-page-webnav>header>main,
+div.tv-page-webnav>footer>main {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 article,
 article>main {
 	width: 100%;
@@ -63,8 +70,13 @@ article>main {
 	min-height: 100%;
 }
 
+div.tv-page-webnav>article {
+	background: inherit;
+}
+
 @media (min-width: 576px) {
-	article,
+	div.tv-page-webnav>header>main,
+	div.tv-page-webnav>footer>main,
 	article>section>header,
 	article>section>footer,
 	article>header, article.footer, article>main {
@@ -73,7 +85,8 @@ article>main {
 }
 
 @media (min-width: 768px) {
-	article,
+	div.tv-page-webnav>header>main,
+	div.tv-page-webnav>footer>main,
 	article>section>header,
 	article>section>footer,
 	article>header, article>footer, article>main {
@@ -82,7 +95,8 @@ article>main {
 }
 
 @media (min-width: 992px) {
-	article,
+	div.tv-page-webnav>header>main,
+	div.tv-page-webnav>footer>main,
 	article>section>header,
 	article>section>footer,
 	article>header, article>footer, article>main {
@@ -91,7 +105,8 @@ article>main {
 }
 
 @media (min-width: 1200px) {
-	article,
+	div.tv-page-webnav>header>main,
+	div.tv-page-webnav>footer>main,
 	article>section>header,
 	article>section>footer,
 	article>header, article>footer, article>main {

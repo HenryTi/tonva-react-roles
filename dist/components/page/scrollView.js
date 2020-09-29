@@ -48,7 +48,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import React from 'react';
-import classNames from 'classnames';
 var scrollAfter = 20; // 20ms之后，scroll执行
 var Scroller = /** @class */ (function () {
     function Scroller(el) {
@@ -66,9 +65,9 @@ var Scroller = /** @class */ (function () {
 }());
 export { Scroller };
 var scrollTimeGap = 100;
-var ScrollView = /** @class */ (function (_super) {
-    __extends(ScrollView, _super);
-    function ScrollView() {
+var ScrollViewBase = /** @class */ (function (_super) {
+    __extends(ScrollViewBase, _super);
+    function ScrollViewBase() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.bottomTime = 0;
         _this.topTime = 0;
@@ -126,7 +125,7 @@ var ScrollView = /** @class */ (function (_super) {
         }); };
         return _this;
     }
-    ScrollView.prototype.eachChild = function (c, direct) {
+    ScrollViewBase.prototype.eachChild = function (c, direct) {
         var _this = this;
         var props = c.props;
         if (props === undefined)
@@ -142,12 +141,46 @@ var ScrollView = /** @class */ (function (_super) {
             _this.eachChild(child, direct);
         });
     };
+    return ScrollViewBase;
+}(React.Component));
+var ScrollView = /** @class */ (function (_super) {
+    __extends(ScrollView, _super);
+    function ScrollView() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     ScrollView.prototype.render = function () {
         var _a = this.props, className = _a.className, style = _a.style;
-        return React.createElement("div", { ref: this.refDiv, className: classNames('tv-page'), onScroll: this.onScroll, style: style },
+        return React.createElement("div", { ref: this.refDiv, className: "tv-page", onScroll: this.onScroll, style: style },
             React.createElement("article", { className: className }, this.props.children));
     };
     return ScrollView;
-}(React.Component));
+}(ScrollViewBase));
 export { ScrollView };
+var WebNavScrollView = /** @class */ (function (_super) {
+    __extends(WebNavScrollView, _super);
+    function WebNavScrollView() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    WebNavScrollView.prototype.render = function () {
+        var _a = this.props, className = _a.className, style = _a.style, webNav = _a.webNav;
+        var navHeader = webNav.navHeader, navRawHeader = webNav.navRawHeader, navFooter = webNav.navFooter, navRawFooter = webNav.navRawFooter;
+        var vHeader, vFooter;
+        if (navRawHeader)
+            vHeader = navRawHeader;
+        else if (navHeader)
+            vHeader = React.createElement("header", null,
+                React.createElement("main", null, navHeader));
+        if (navRawFooter)
+            vFooter = navRawFooter;
+        else if (navFooter)
+            vFooter = React.createElement("footer", null,
+                React.createElement("main", null, navFooter));
+        return React.createElement("div", { ref: this.refDiv, className: "tv-page-webnav", onScroll: this.onScroll, style: style },
+            vHeader,
+            React.createElement("article", { className: className }, this.props.children),
+            vFooter);
+    };
+    return WebNavScrollView;
+}(ScrollViewBase));
+export { WebNavScrollView };
 //# sourceMappingURL=scrollView.js.map
