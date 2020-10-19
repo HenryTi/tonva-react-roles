@@ -32,6 +32,10 @@ export declare abstract class CAppBase extends Controller {
     internalT(str: string): any;
     protected setRes(res: any): void;
     protected hookElements(elements: Elements): void;
+    private appUnit;
+    private roleDefines;
+    hasRole(role: string | number): boolean;
+    setAppUnit(appUnit: any): void;
     protected beforeStart(): Promise<boolean>;
     protected afterStart(): Promise<void>;
     userFromId(userId: number): Promise<any>;

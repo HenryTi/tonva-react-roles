@@ -30,7 +30,8 @@ export abstract class Controller {
 	readonly t: (str:string)=>any;
     icon: string|JSX.Element;
     label:string;
-    readonly isDev:boolean = env.isDevelopment;
+	readonly isDev:boolean = env.isDevelopment;
+	readonly pageWebNav: PageWebNav;
     get user():User {return nav.user}
     get isLogined():boolean {
         let {user} = nav;
@@ -41,6 +42,7 @@ export abstract class Controller {
         this.res = res || {};
 		this.x = this.res.x || {};
 		this.t = (str:string):any => this.internalT(str) || str;
+		this.pageWebNav = this.getPageWebNav();
 	}
 
 	init(...param: any[]) {}
@@ -49,11 +51,11 @@ export abstract class Controller {
 		return this._t[str];
 	}
 
-	get webNav(): WebNav<any> {return;}
+	get webNav(): WebNav<any> {return undefined;}
 
 	getWebNav(): WebNav<any> {return this.webNav;}
 
-	getPageWebNav(): PageWebNav {
+	private getPageWebNav(): PageWebNav {
 		let webNav =  this.getWebNav();
 		if (webNav === undefined) return;
 		let {VNavHeader, VNavRawHeader, VNavFooter, VNavRawFooter, renderPageHeader} = webNav;
@@ -120,6 +122,10 @@ export abstract class Controller {
 
     protected async openVPage<C extends Controller>(vp: new (controller: C)=>VPage<C>, param?:any, afterBack?:(ret:any)=>void):Promise<void> {
         await (new vp((this as any) as C)).open(param, afterBack);
+    }
+
+    protected async replaceVPage<C extends Controller>(vp: new (controller: C)=>VPage<C>, param?:any, afterBack?:(ret:any)=>void):Promise<void> {
+        await (new vp((this as any) as C)).replaceOpen(param, afterBack);
     }
 
     protected renderView<C extends Controller>(view: new (controller: C)=>View<C>, param?:any) {
@@ -250,7 +256,13 @@ export abstract class Controller {
 	private topPageKey:any;
 	protected startAction() {
 		this.topPageKey = nav.topKey();
-	}
+    }
+    get TopKey() {
+        return this.topPageKey;
+    }
+    SetTopKey(key:any) {
+        this.topPageKey = key;
+    }
 	public popToTopPage() {
 		nav.popTo(this.topPageKey);
 	}

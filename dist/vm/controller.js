@@ -71,6 +71,7 @@ var Controller = /** @class */ (function () {
         this.res = res || {};
         this.x = this.res.x || {};
         this.t = function (str) { return _this.internalT(str) || str; };
+        this.pageWebNav = this.getPageWebNav();
     }
     Object.defineProperty(Controller.prototype, "user", {
         get: function () { return nav.user; },
@@ -97,7 +98,7 @@ var Controller = /** @class */ (function () {
         return this._t[str];
     };
     Object.defineProperty(Controller.prototype, "webNav", {
-        get: function () { return; },
+        get: function () { return undefined; },
         enumerable: false,
         configurable: true
     });
@@ -168,6 +169,18 @@ var Controller = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, (new vp(this)).open(param, afterBack)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Controller.prototype.replaceVPage = function (vp, param, afterBack) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (new vp(this)).replaceOpen(param, afterBack)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -353,6 +366,16 @@ var Controller = /** @class */ (function () {
     };
     Controller.prototype.startAction = function () {
         this.topPageKey = nav.topKey();
+    };
+    Object.defineProperty(Controller.prototype, "TopKey", {
+        get: function () {
+            return this.topPageKey;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Controller.prototype.SetTopKey = function (key) {
+        this.topPageKey = key;
     };
     Controller.prototype.popToTopPage = function () {
         nav.popTo(this.topPageKey);

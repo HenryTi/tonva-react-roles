@@ -22,7 +22,7 @@ export declare abstract class View<C extends Controller> {
     protected openPage(view: React.StatelessComponent<any>, param?: any, onClosePage?: (ret: any) => void): void;
     protected replacePage(view: React.StatelessComponent<any>, param?: any): void;
     protected openPageElement(page: JSX.Element, onClosePage?: () => void): void;
-    protected replacePageElement(page: JSX.Element): void;
+    protected replacePageElement(page: JSX.Element, onClosePage?: () => void): void;
     protected backPage(): void;
     protected closePage(level?: number): void;
     protected ceasePage(level?: number): void;

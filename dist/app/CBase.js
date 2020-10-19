@@ -31,6 +31,10 @@ var CBase = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    CBase.prototype.hasRole = function (role) {
+        var _a;
+        return (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.hasRole(role);
+    };
     CBase.prototype.internalT = function (str) {
         var r = _super.prototype.internalT.call(this, str);
         if (r !== undefined)

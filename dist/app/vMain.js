@@ -156,11 +156,12 @@ var VUnitSelect = /** @class */ (function (_super) {
             return React.createElement(LMR, { className: "px-3 py-2", right: 'id: ' + id },
                 React.createElement("div", null, nick || name));
         };
-        _this.onRowClick = function (item) { return __awaiter(_this, void 0, void 0, function () {
+        _this.onRowClick = function (appUnit) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        appInFrame.unit = item.id; // 25;
+                        appInFrame.unit = appUnit.id; // 25;
+                        this.controller.setAppUnit(appUnit);
                         return [4 /*yield*/, this.controller.start()];
                     case 1:
                         _a.sent();

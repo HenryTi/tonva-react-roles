@@ -55,7 +55,6 @@ import { centerApi } from "./centerApi";
 import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
 var CAppBase = /** @class */ (function (_super) {
     __extends(CAppBase, _super);
-    // appName: owner/name
     function CAppBase(config) {
         var _this = _super.call(this, undefined) || this;
         _this.appConfig = config || nav.navSettings;
@@ -66,9 +65,6 @@ var CAppBase = /** @class */ (function (_super) {
         }
         _this.noUnit = noUnit;
         return _this;
-        //this._uqs = UQsMan._uqs;
-        //this.version = version;
-        //this.uqsMan = new UQsMan(this.name, tvs);
     }
     Object.defineProperty(CAppBase.prototype, "uqs", {
         get: function () { return this._uqs; },
@@ -84,8 +80,6 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.hookElements = function (elements) {
         if (elements === undefined)
             return;
-        //nav.setSettings(appConfig);
-        //let cApp:CApp = (await start(CApp, appConfig)) as CApp;
         for (var i in elements) {
             var el = document.getElementById(i);
             if (el) {
@@ -94,30 +88,74 @@ var CAppBase = /** @class */ (function (_super) {
         }
     };
     ;
+    CAppBase.prototype.hasRole = function (role) {
+        var nRole;
+        if (typeof role === 'string') {
+            if (role.length === 0)
+                return false;
+            var index = this.roleDefines.findIndex(function (v) { return v === role; });
+            if (index < 0)
+                return false;
+            nRole = 1 << index;
+        }
+        else {
+            nRole = role;
+        }
+        return (this.appUnit.roles & nRole) !== 0;
+    };
+    CAppBase.prototype.setAppUnit = function (appUnit) {
+        this.appUnit = appUnit;
+        var roleDefs = appUnit.roleDefs;
+        if (roleDefs !== undefined) {
+            this.roleDefines = roleDefs.split('\t');
+        }
+        else {
+            this.roleDefines = [];
+        }
+    };
     CAppBase.prototype.beforeStart = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, appName, version, tvs, retErrors, predefinedUnit_1, user, _b, appUnit, err_1;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var _a, appName, version, tvs, retErrors, predefinedUnit_1, user, result, appUnit, id, appUnitId, err_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _c.trys.push([0, 5, , 6]);
+                        _b.trys.push([0, 5, , 6]);
                         this.onRoute();
                         if (!(nav.isRouting === false)) return [3 /*break*/, 2];
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
-                        _c.sent();
-                        _c.label = 2;
+                        _b.sent();
+                        _b.label = 2;
                     case 2:
                         this._uqs = UQsMan._uqs;
                         retErrors = UQsMan.errors;
                         predefinedUnit_1 = appInFrame.predefinedUnit;
                         user = nav.user;
                         if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 4];
-                        _b = this;
                         return [4 /*yield*/, centerApi.userAppUnits(UQsMan.value.id)];
                     case 3:
-                        _b.appUnits = _c.sent();
+                        result = _b.sent();
+                        this.appUnits = result;
+                        /*
+                        // 老版本，只返回一个数组。新版本，返回两个数组。下面做两个数组的判断
+                        if (result.length === 0) {
+                            this.appUnits = result;
+                        }
+                        else {
+                            if (Array.isArray(result[0]) === true) {
+                                this.appUnits = result[0];
+                                let result1 = result[1];
+                                if (Array.isArray(result1) === true) {
+                                    this.roleDefines = result1[0]?.roles?.split('\t');
+                                    if (this.roleDefines === undefined) this.roleDefines = [];
+                                }
+                            }
+                            else {
+                                this.appUnits = result;
+                            }
+                        }
+                        */
                         if (this.noUnit === true)
                             return [2 /*return*/, true];
                         switch (this.appUnits.length) {
@@ -125,13 +163,16 @@ var CAppBase = /** @class */ (function (_super) {
                                 this.showUnsupport(predefinedUnit_1);
                                 return [2 /*return*/, false];
                             case 1:
-                                appUnit = this.appUnits[0].id;
-                                if (appUnit === undefined || appUnit < 0 ||
-                                    (predefinedUnit_1 !== undefined && appUnit !== predefinedUnit_1)) {
+                                appUnit = this.appUnits[0];
+                                this.setAppUnit(appUnit);
+                                id = appUnit.id;
+                                appUnitId = id;
+                                if (appUnitId === undefined || appUnitId < 0 ||
+                                    (predefinedUnit_1 !== undefined && appUnitId !== predefinedUnit_1)) {
                                     this.showUnsupport(predefinedUnit_1);
                                     return [2 /*return*/, false];
                                 }
-                                appInFrame.unit = appUnit;
+                                appInFrame.unit = appUnitId;
                                 break;
                             default:
                                 if (predefinedUnit_1 > 0 && this.appUnits.find(function (v) { return v.id === predefinedUnit_1; }) !== undefined) {
@@ -141,7 +182,7 @@ var CAppBase = /** @class */ (function (_super) {
                                 this.openVPage(VUnitSelect);
                                 return [2 /*return*/, false];
                         }
-                        _c.label = 4;
+                        _b.label = 4;
                     case 4:
                         if (retErrors !== undefined) {
                             this.openVPage(VErrorsPage, retErrors);
@@ -149,7 +190,7 @@ var CAppBase = /** @class */ (function (_super) {
                         }
                         return [2 /*return*/, true];
                     case 5:
-                        err_1 = _c.sent();
+                        err_1 = _b.sent();
                         this.openVPage(VStartError, err_1);
                         return [2 /*return*/, false];
                     case 6: return [2 /*return*/];
@@ -184,37 +225,6 @@ var CAppBase = /** @class */ (function (_super) {
     };
     CAppBase.prototype.onRoute = function () {
     };
-    /*
-    private async load(): Promise<string[]> {
-        let {appOwner, appName} = this.uqsMan;
-        let {localData} = this.uqsMan;
-        let uqAppData:UqAppData = localData.get();
-        if (!uqAppData || uqAppData.version !== this.version) {
-            uqAppData = await loadAppUqs(appOwner, appName);
-            if (!uqAppData.id) {
-                return [
-                    `${appOwner}/${appName}不存在。请仔细检查app全名。`
-                ];
-            }
-            uqAppData.version = this.version;
-            localData.set(uqAppData);
-            //
-            for (let uq of uqAppData.uqs) uq.newVersion = true;
-        }
-        let {id, uqs} = uqAppData;
-        this.uqsMan.id = id;
-        await this.uqsMan.init(uqs);
-        let retErrors = await this.uqsMan.load();
-        if (retErrors.length === 0) {
-            retErrors.push(...this.uqsMan.setTuidImportsLocal());
-            if (retErrors.length === 0) {
-                this._uqs = this.uqsMan.buildUQs();
-                return;
-            }
-        }
-        return retErrors;
-    }
-    */
     CAppBase.prototype.showUnsupport = function (predefinedUnit) {
         nav.clear();
         this.openVPage(VUnsupportedUnit, predefinedUnit);

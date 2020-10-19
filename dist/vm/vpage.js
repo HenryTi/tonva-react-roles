@@ -64,6 +64,15 @@ var VPage = /** @class */ (function (_super) {
         this.openPageElement(this.renderPage(), _onClosePage);
         return;
     };
+    VPage.prototype.replaceOpen = function (param, onClosePage) {
+        var _this = this;
+        this.init(param);
+        var _onClosePage;
+        if (onClosePage !== undefined)
+            _onClosePage = function () { return onClosePage(_this.retOnClosePage); };
+        this.replacePageElement(this.renderPage(), _onClosePage);
+        return;
+    };
     VPage.prototype.render = function (param) {
         this.init(param);
         return this.renderPage();
@@ -79,7 +88,7 @@ var VPage = /** @class */ (function (_super) {
         var header = this.header();
         if (!header)
             header = false;
-        return React.createElement(Page, { header: header, right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, className: this.className, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout(), webNav: this.controller.getPageWebNav() }, this.content());
+        return React.createElement(Page, { header: header, right: this.right(), footer: this.footer(), onScroll: function (e) { return _this.onPageScroll(e); }, onScrollTop: function (scroller) { return _this.onPageScrollTop(scroller); }, onScrollBottom: function (scroller) { return _this.onPageScrollBottom(scroller); }, back: this.back, headerClassName: this.headerClassName, className: this.className, afterBack: function () { return _this.afterBack(); }, tabsProps: this.tabsProps, logout: this.logout(), webNav: this.controller.pageWebNav }, this.content());
     };
     VPage.prototype.onPageScroll = function (e) { };
     VPage.prototype.onPageScrollTop = function (scroller) {

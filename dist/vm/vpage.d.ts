@@ -5,6 +5,7 @@ import { Controller } from "./controller";
 export declare abstract class VPage<C extends Controller> extends View<C> {
     protected retOnClosePage: any;
     open(param?: any, onClosePage?: (ret: any) => void): Promise<void>;
+    replaceOpen(param?: any, onClosePage?: (ret: any) => void): Promise<void>;
     render(param?: any): JSX.Element;
     init(param?: any): void;
     header(): string | boolean | JSX.Element;

@@ -26,6 +26,7 @@ export declare abstract class Controller {
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
+    readonly pageWebNav: PageWebNav;
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
@@ -33,7 +34,7 @@ export declare abstract class Controller {
     internalT(str: string): any;
     get webNav(): WebNav<any>;
     getWebNav(): WebNav<any>;
-    getPageWebNav(): PageWebNav;
+    private getPageWebNav;
     protected setRes(res: any): void;
     private receiveHandlerId;
     protected dispose: () => void;
@@ -41,6 +42,7 @@ export declare abstract class Controller {
     get isRouting(): boolean;
     isMe(id: any): boolean;
     protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
+    protected replaceVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
     protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
     event(type: string, value: any): Promise<void>;
     protected onEvent(type: string, value: any): Promise<void>;
@@ -68,6 +70,8 @@ export declare abstract class Controller {
     regConfirmClose(confirmClose: () => Promise<boolean>): void;
     private topPageKey;
     protected startAction(): void;
+    get TopKey(): any;
+    SetTopKey(key: any): void;
     popToTopPage(): void;
     confirm(options: ConfirmOptions): Promise<'ok' | 'yes' | 'no' | undefined>;
 }

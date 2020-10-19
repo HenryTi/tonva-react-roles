@@ -132,8 +132,8 @@ var View = /** @class */ (function () {
     View.prototype.openPageElement = function (page, onClosePage) {
         this.controller.openPage(page, onClosePage);
     };
-    View.prototype.replacePageElement = function (page) {
-        this.controller.replacePage(page);
+    View.prototype.replacePageElement = function (page, onClosePage) {
+        this.controller.replacePage(page, onClosePage);
     };
     View.prototype.backPage = function () {
         this.controller.backPage();
