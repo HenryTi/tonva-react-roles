@@ -111,7 +111,8 @@ var HttpChannel = /** @class */ (function () {
                         if (headers !== undefined) {
                             h = options.headers;
                             for (i in headers) {
-                                h.append(i, encodeURI(headers[i]));
+                                //h.append(i, encodeURI(headers[i]));
+                                h[i] = encodeURI(headers[i]);
                             }
                         }
                         options.method = method;
@@ -363,6 +364,7 @@ var HttpChannel = /** @class */ (function () {
             });
         });
     };
+    //private buildOptions(): {method:string; headers:Headers; body:any} {
     HttpChannel.prototype.buildOptions = function () {
         var headers = this.buildHeaders();
         var options = {
@@ -372,17 +374,35 @@ var HttpChannel = /** @class */ (function () {
         };
         return options;
     };
-    HttpChannel.prototype.buildHeaders = function () {
-        var language = nav.language, culture = nav.culture;
-        var headers = new Headers();
+    /*
+    protected buildHeaders():Headers {
+        let {language, culture} = nav;
+        let headers = new Headers();
         //headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Content-Type', 'application/json;charset=UTF-8');
-        var lang = language;
-        if (culture)
-            lang += '-' + culture;
+        let lang = language;
+        if (culture) lang += '-' + culture;
         headers.append('Accept-Language', lang);
         if (this.apiToken) {
             headers.append('Authorization', this.apiToken);
+        }
+        return headers;
+    }
+    */
+    HttpChannel.prototype.buildHeaders = function () {
+        var language = nav.language, culture = nav.culture;
+        var headers = {}; //new Headers();
+        //headers.append('Access-Control-Allow-Origin', '*');
+        //headers.append('Content-Type', 'application/json;charset=UTF-8');
+        headers['Content-Type'] = 'application/json;charset=UTF-8';
+        var lang = language;
+        if (culture)
+            lang += '-' + culture;
+        //headers.append('Accept-Language', lang);
+        headers['Accept-Language'] = lang;
+        if (this.apiToken) {
+            //headers.append('Authorization', this.apiToken); 
+            headers['Authorization'] = this.apiToken;
         }
         return headers;
     };

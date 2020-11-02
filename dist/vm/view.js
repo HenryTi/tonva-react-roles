@@ -49,6 +49,11 @@ var View = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(View.prototype, "isWebNav", {
+        get: function () { return this.controller.isWebNav; },
+        enumerable: false,
+        configurable: true
+    });
     View.prototype.isMe = function (id) { return this.controller.isMe(id); };
     View.prototype.renderVm = function (vm, param) {
         return (new vm(this.controller)).render(param);

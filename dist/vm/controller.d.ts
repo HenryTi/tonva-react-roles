@@ -26,7 +26,7 @@ export declare abstract class Controller {
     icon: string | JSX.Element;
     label: string;
     readonly isDev: boolean;
-    readonly pageWebNav: PageWebNav;
+    pageWebNav: PageWebNav;
     get user(): User;
     get isLogined(): boolean;
     constructor(res: any);
@@ -35,6 +35,7 @@ export declare abstract class Controller {
     get webNav(): WebNav<any>;
     getWebNav(): WebNav<any>;
     private getPageWebNav;
+    get isWebNav(): boolean;
     protected setRes(res: any): void;
     private receiveHandlerId;
     protected dispose: () => void;

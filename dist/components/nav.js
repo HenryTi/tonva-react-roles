@@ -851,7 +851,25 @@ var Nav = /** @class */ (function () {
         }
         return this.navigo.on(args[0], args[1], args[2]);
     };
+    Object.defineProperty(Nav.prototype, "isWebNav", {
+        get: function () {
+            if (!this.navigo)
+                return false;
+            return !isMobile;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Nav.prototype, "isMobile", {
+        get: function () { return isMobile; },
+        enumerable: false,
+        configurable: true
+    });
     Nav.prototype.navigate = function (url, absolute) {
+        if (!this.navigo) {
+            alert('Is not in webnav state, cannot navigate to url "' + url + '"');
+            return;
+        }
         this.clear();
         return this.navigo.navigate(url, absolute);
     };

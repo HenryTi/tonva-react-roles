@@ -6,7 +6,7 @@ import { ScrollProps, ScrollView, PageWebNav, WebNavScrollView } from './scrollV
 
 export interface IVPage {
 	content():JSX.Element;
-	header():JSX.Element;
+	header():JSX.Element|string;
 	footer():JSX.Element;
 }
 

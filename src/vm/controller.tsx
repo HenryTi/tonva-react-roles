@@ -31,7 +31,7 @@ export abstract class Controller {
     icon: string|JSX.Element;
     label:string;
 	readonly isDev:boolean = env.isDevelopment;
-	readonly pageWebNav: PageWebNav;
+	pageWebNav: PageWebNav;
     get user():User {return nav.user}
     get isLogined():boolean {
         let {user} = nav;
@@ -42,10 +42,11 @@ export abstract class Controller {
         this.res = res || {};
 		this.x = this.res.x || {};
 		this.t = (str:string):any => this.internalT(str) || str;
-		this.pageWebNav = this.getPageWebNav();
 	}
 
-	init(...param: any[]) {}
+	init(...param: any[]) {
+		this.pageWebNav = this.getPageWebNav();
+	}
 
 	internalT(str:string):any {
 		return this._t[str];
@@ -56,6 +57,7 @@ export abstract class Controller {
 	getWebNav(): WebNav<any> {return this.webNav;}
 
 	private getPageWebNav(): PageWebNav {
+		if (nav.isWebNav === false) return;
 		let webNav =  this.getWebNav();
 		if (webNav === undefined) return;
 		let {VNavHeader, VNavRawHeader, VNavFooter, VNavRawFooter, renderPageHeader} = webNav;
@@ -76,6 +78,8 @@ export abstract class Controller {
 		};
 		return ret;
 	}
+
+	get isWebNav(): boolean {return nav.isWebNav}
 	
 	protected setRes(res:any) {
 		if (res === undefined) return;

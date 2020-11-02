@@ -71,7 +71,6 @@ var Controller = /** @class */ (function () {
         this.res = res || {};
         this.x = this.res.x || {};
         this.t = function (str) { return _this.internalT(str) || str; };
-        this.pageWebNav = this.getPageWebNav();
     }
     Object.defineProperty(Controller.prototype, "user", {
         get: function () { return nav.user; },
@@ -93,6 +92,7 @@ var Controller = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             param[_i] = arguments[_i];
         }
+        this.pageWebNav = this.getPageWebNav();
     };
     Controller.prototype.internalT = function (str) {
         return this._t[str];
@@ -104,6 +104,8 @@ var Controller = /** @class */ (function () {
     });
     Controller.prototype.getWebNav = function () { return this.webNav; };
     Controller.prototype.getPageWebNav = function () {
+        if (nav.isWebNav === false)
+            return;
         var webNav = this.getWebNav();
         if (webNav === undefined)
             return;
@@ -129,6 +131,11 @@ var Controller = /** @class */ (function () {
         };
         return ret;
     };
+    Object.defineProperty(Controller.prototype, "isWebNav", {
+        get: function () { return nav.isWebNav; },
+        enumerable: false,
+        configurable: true
+    });
     Controller.prototype.setRes = function (res) {
         if (res === undefined)
             return;

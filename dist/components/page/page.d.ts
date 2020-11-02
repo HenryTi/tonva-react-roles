@@ -3,7 +3,7 @@ import { TabsProps } from './tabs';
 import { ScrollProps, PageWebNav } from './scrollView';
 export interface IVPage {
     content(): JSX.Element;
-    header(): JSX.Element;
+    header(): JSX.Element | string;
     footer(): JSX.Element;
 }
 export interface PageProps extends ScrollProps {

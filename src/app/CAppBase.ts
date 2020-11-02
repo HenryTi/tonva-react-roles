@@ -84,7 +84,7 @@ export abstract class CAppBase extends Controller {
 	setAppUnit(appUnit:any) {
 		this.appUnit = appUnit;
 		let {roleDefs} = appUnit;
-		if (roleDefs !== undefined) {
+		if (roleDefs) {
 			this.roleDefines = roleDefs.split('\t');
 		}
 		else {

@@ -334,7 +334,7 @@ export class NavView extends React.Component<Props, NavViewState> {
     }
     render() {
         const {wait, fetchError} = this.state;
-        let stack = this.state.stack;
+        let {stack} = this.state;
         let top = stack.length - 1;
         let elWait = null, elError = null;
         switch (wait) {
@@ -632,7 +632,18 @@ export class Nav {
 		return this.navigo.on(args[0], args[1], args[2]);
 	}
 
+	get isWebNav():boolean { 
+		if (!this.navigo) return false;
+		return !isMobile;
+	}
+
+	get isMobile():boolean {return isMobile;}
+
 	navigate(url:string, absolute?:boolean) {
+		if (!this.navigo) {
+			alert('Is not in webnav state, cannot navigate to url "' + url + '"');
+			return;
+		}
 		this.clear();
 		return this.navigo.navigate(url, absolute);
 	}

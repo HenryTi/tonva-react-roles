@@ -106,7 +106,7 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.setAppUnit = function (appUnit) {
         this.appUnit = appUnit;
         var roleDefs = appUnit.roleDefs;
-        if (roleDefs !== undefined) {
+        if (roleDefs) {
             this.roleDefines = roleDefs.split('\t');
         }
         else {

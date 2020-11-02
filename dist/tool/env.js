@@ -6,16 +6,10 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 import { LocalMap } from './localDb';
-var testingTags = ['/test', '/test/', '-test', '-test/'];
+// 如果路径上有独立的test单词，则是test环境
 function isTesting() {
-    var pathname = document.location.pathname;
-    var pn = pathname.toLowerCase();
-    for (var _i = 0, testingTags_1 = testingTags; _i < testingTags_1.length; _i++) {
-        var item = testingTags_1[_i];
-        if (pn.endsWith(item) === true)
-            return true;
-    }
-    return false;
+    var ret = /(\btest\b)/i.test(document.location.href);
+    return ret;
 }
 export var env = (function () {
     var testing = isTesting();

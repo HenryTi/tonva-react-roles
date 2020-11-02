@@ -20,7 +20,9 @@ export declare abstract class HttpChannel {
     protected abstract innerFetch(url: string, options: any, waiting: boolean): Promise<any>;
     callFetch(url: string, method: string, body: any): Promise<any>;
     private buildOptions;
-    protected buildHeaders(): Headers;
+    protected buildHeaders(): {
+        [name: string]: string;
+    };
 }
 export declare class CenterHttpChannel extends HttpChannel {
     protected innerFetch(url: string, options: any, waiting: boolean): Promise<any>;

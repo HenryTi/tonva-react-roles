@@ -482,7 +482,7 @@
         "affectsGlobalScope": false
       },
       "./src/tool/env.ts": {
-        "version": "0a313ae0bd6f82cd3d9cdfb0ea360e5b815cc82993121771b8937b6c84cef7d6",
+        "version": "00c620f29b6c4e51241a88fdf22486da279f6ef140a8e0cc944c7cc8b006c0af",
         "signature": "806d66617d3f051a2c5c4af6e6d6ec52662666eb33a5a05eb1866af7f2c6dbc6",
         "affectsGlobalScope": false
       },
@@ -627,8 +627,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/page/page.tsx": {
-        "version": "b4a36ccbe6f0dd5d79ea46aa0b782581f17468174661cc30544b4da4b840a5ce",
-        "signature": "867ff9ebee818673cac4b1bec5e9a453d66f8fd4ecedede82b0802cf632cd5a7",
+        "version": "70cc9e92a8d5cca7068e1e040946727c55a82e64e8baf146384439d50d2df097",
+        "signature": "d03c4dc1c985f2b8f63f6eb23f13ea5ea078a9cda902276e0e07c44b6f290102",
         "affectsGlobalScope": false
       },
       "./src/net/fetcherror.ts": {
@@ -707,8 +707,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/view.tsx": {
-        "version": "838d43f496c55bf8ab0cd53792032858397a6e26dd2057a055dc7bd73b57c2e1",
-        "signature": "7f74cf8cee7c17f7a683fc5b78b285c6954722e03a2f002b85e365d3037ed264",
+        "version": "329530c565a8d764a187adbbacaffa79373f0b1f159817fcc228adc8f95f6809",
+        "signature": "8a001f769a653cd26f7bd3ee34f2387637a96ed39e834a32ea23a9d44b4564de",
         "affectsGlobalScope": false
       },
       "./src/vm/vpage.tsx": {
@@ -717,8 +717,8 @@
         "affectsGlobalScope": false
       },
       "./src/vm/controller.tsx": {
-        "version": "513f965902fb1c912b473d6558da119dd045fada4bfe9631b664bed61d915776",
-        "signature": "0a6b71af33e947faf5edc38182d44f526649cdf8fcfda8dd1b86f4d839dd176b",
+        "version": "451d9d9175662105a10293b9e39ddc4b7e6b70955f60dec16f8beaf740b341c9",
+        "signature": "29b37be00efa6dd54455546a3d5c487da317b49fb582ccf5ea5d8b14df32270f",
         "affectsGlobalScope": false
       },
       "./src/vm/components/cstringedit.tsx": {
@@ -782,8 +782,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "a05796538251c1de3e88b2a5ecb70701be2042c22e057ed2aaa9f80dfab44ed0",
-        "signature": "92dbc3c4c490dffacf922e864c8db1da25860b10c7289148db5200ba739660f7",
+        "version": "64bc0335528cd0a11c2575ef4d9323f57e7e69dd56a393e4326bbe6d077265f9",
+        "signature": "f58725bdc7dbda79bb71876b33d14684e4fb24801aa407ce19a87ac253089a09",
         "affectsGlobalScope": false
       },
       "./src/components/page/index.ts": {
@@ -1086,9 +1086,19 @@
         "signature": "7f68733bbf8f83ff7667e08e37ebc821909189f268c2d22e7f473118b0502b77",
         "affectsGlobalScope": false
       },
+      "./src/components/ax/index.tsx": {
+        "version": "30ef3df287c845552f4f532934c9171cacfe058a9d893d2b7fa13e75a17f8dc8",
+        "signature": "81f4953aacf706dc4f4df9a429c8be375deef3f141fb0c7580053a477ae2ddd9",
+        "affectsGlobalScope": false
+      },
+      "./src/components/autohidetips.tsx": {
+        "version": "f6fd155a7b8dd70b5299a2375fc77f3934cf2cd6e510617448b35734fe4d4234",
+        "signature": "e32cf1b58b71b77b8680aa1ac28548c2aebcc24be53f8b836bfec27233e840db",
+        "affectsGlobalScope": false
+      },
       "./src/components/index.ts": {
-        "version": "a1ac0f647bfdeabc0a79497f00b1a09fa4ee11f653fe30f20941cacdaa583dd5",
-        "signature": "db0948bd4e58c56607309f63a8c9fbd65fefa2948c496481692c4b3b06578c3b",
+        "version": "e71c38b39eb777904a45ef81d3204b140d4eff9392a2e6f124614cf5d7a3035b",
+        "signature": "e71c38b39eb777904a45ef81d3204b140d4eff9392a2e6f124614cf5d7a3035b",
         "affectsGlobalScope": false
       },
       "./src/net/appbridge.ts": {
@@ -1102,8 +1112,8 @@
         "affectsGlobalScope": false
       },
       "./src/net/httpchannel.ts": {
-        "version": "8ad4abbe3ebb482c1ded149b3737236f18236d353b27aaa72cbc0f69f74ebbf4",
-        "signature": "b9ac0d2bc488cc8a2a4142d1ae866bfdc0608494c3f16abd4f9ce794241eda81",
+        "version": "a4ffe0258f41727e42df47f0c03882b339e05e2f735dd365dc8e49e74dbf35af",
+        "signature": "d125da73ca83240d376595f71a9a5b7eec83020f9010ab93edebfbe9d7aee0e1",
         "affectsGlobalScope": false
       },
       "./src/net/apibase.ts": {
@@ -1242,7 +1252,7 @@
         "affectsGlobalScope": false
       },
       "./src/app/cappbase.ts": {
-        "version": "df37578eeef1db4c5c34a086ccf21c11bdfcc9e215ac4f7e4b267b4adbf66429",
+        "version": "da7df34455def0df0c0470f82dd630be3ab227189b48102e0bd2d213c9874f6a",
         "signature": "7fe6edbb7e5dc16d31252581d42e5663bb9450aba251ab9ae247647e60af088c",
         "affectsGlobalScope": false
       },
@@ -2026,6 +2036,20 @@
         "./src/uq/index.ts",
         "./src/vm/index.ts"
       ],
+      "./src/components/autohidetips.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/mobx-react.d.ts",
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./src/components/ax/index.tsx": [
+        "./node_modules/@types/classnames/index.d.ts",
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./src/components/nav.tsx"
+      ],
       "./src/components/callbacks.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts"
@@ -2436,6 +2460,8 @@
       "./src/components/index.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./src/components/autohidetips.tsx",
+        "./src/components/ax/index.tsx",
         "./src/components/dropdownactions/index.tsx",
         "./src/components/easydate/index.tsx",
         "./src/components/edit/index.tsx",
@@ -3464,6 +3490,13 @@
         "./src/app/cappbase.ts",
         "./src/vm/index.ts"
       ],
+      "./src/components/autohidetips.tsx": [
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx/lib/internal.d.ts"
+      ],
+      "./src/components/ax/index.tsx": [
+        "./node_modules/@types/react/index.d.ts"
+      ],
       "./src/components/dropdownactions/index.tsx": [
         "./node_modules/@types/react/index.d.ts"
       ],
@@ -3671,6 +3704,8 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./src/components/index.ts": [
+        "./src/components/autohidetips.tsx",
+        "./src/components/ax/index.tsx",
         "./src/components/dropdownactions/index.tsx",
         "./src/components/easydate/index.tsx",
         "./src/components/edit/index.tsx",
@@ -4196,6 +4231,8 @@
       "./src/app/start.ts",
       "./src/app/startroute.tsx",
       "./src/app/vmain.tsx",
+      "./src/components/autohidetips.tsx",
+      "./src/components/ax/index.tsx",
       "./src/components/callbacks.ts",
       "./src/components/dropdownactions/index.tsx",
       "./src/components/easydate/index.tsx",
