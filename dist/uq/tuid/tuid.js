@@ -69,18 +69,32 @@ var Tuid = /** @class */ (function (_super) {
     };
     Tuid.prototype.getIdFromObj = function (obj) { return obj[this.idName]; };
     Tuid.prototype.stopCache = function () { this.noCache = true; };
+    Tuid.idValue = function (id) {
+        switch (typeof id) {
+            default:
+                debugger;
+                throw new Error('unknown id');
+            case 'object': return id.id;
+            case 'number': return id;
+        }
+    };
     Tuid.equ = function (id1, id2) {
-        if (id1 === undefined)
+        if (id1 === undefined || id1 === null)
             return false;
-        if (id2 === undefined)
+        if (id2 === undefined || id2 === null)
             return false;
+        return Tuid.idValue(id1) === Tuid.idValue(id2);
+        /*
         if (typeof id1 === 'object') {
-            return id1.equ(id2);
+            let id1Id = id1.id;
+            return typeof id2 === 'object'? id1Id === id2.id : id1Id === id2;
         }
         if (typeof id2 === 'object') {
-            return id2.equ(id1);
+            let id2Id = id2.id;
+            return typeof id1 === 'object'? id2Id === id1.id : id2Id === id1;
         }
         return id1 === id2;
+        */
     };
     Tuid.prototype.cacheIds = function () { };
     Tuid.prototype.modifyIds = function (ids) {

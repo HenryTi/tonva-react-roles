@@ -177,35 +177,55 @@ var UqApi = /** @class */ (function (_super) {
     };
     UqApi.prototype.getHttpChannel = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var channels, channelUI, channel, uqToken, url, token;
+            var channels, channelUI, channel, arr;
+            var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (this.showWaiting === true || this.showWaiting === undefined) {
-                            channels = channelUIs;
-                            channelUI = new HttpChannelNavUI();
-                        }
-                        else {
-                            channels = channelNoUIs;
-                        }
-                        channel = channels[this.uq];
-                        if (channel !== undefined)
-                            return [2 /*return*/, channel];
-                        uqToken = appUq(this.uq);
-                        if (!!uqToken) return [3 /*break*/, 2];
-                        //debugger;
-                        return [4 /*yield*/, this.init()];
-                    case 1:
-                        //debugger;
-                        _a.sent();
-                        uqToken = appUq(this.uq);
-                        _a.label = 2;
-                    case 2:
-                        url = uqToken.url, token = uqToken.token;
-                        this.token = token;
-                        channel = new UqHttpChannel(url, token, channelUI);
-                        return [2 /*return*/, channels[this.uq] = channel];
+                if (this.showWaiting === true || this.showWaiting === undefined) {
+                    channels = channelUIs;
+                    channelUI = new HttpChannelNavUI();
                 }
+                else {
+                    channels = channelNoUIs;
+                }
+                channel = channels[this.uq];
+                if (channel !== undefined) {
+                    if (Array.isArray(channel) === false)
+                        return [2 /*return*/, channel];
+                }
+                else {
+                    channel = channels[this.uq] = [];
+                }
+                arr = channel;
+                return [2 /*return*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                        var uqToken, url, token, _i, arr_1, pv;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    arr.push({ resolve: resolve, reject: reject });
+                                    if (arr.length !== 1)
+                                        return [2 /*return*/];
+                                    uqToken = appUq(this.uq);
+                                    if (!!uqToken) return [3 /*break*/, 2];
+                                    //debugger;
+                                    return [4 /*yield*/, this.init()];
+                                case 1:
+                                    //debugger;
+                                    _a.sent();
+                                    uqToken = appUq(this.uq);
+                                    _a.label = 2;
+                                case 2:
+                                    url = uqToken.url, token = uqToken.token;
+                                    this.token = token;
+                                    channel = new UqHttpChannel(url, token, channelUI);
+                                    channels[this.uq] = channel;
+                                    for (_i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+                                        pv = arr_1[_i];
+                                        pv.resolve(channel);
+                                    }
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); })];
             });
         });
     };

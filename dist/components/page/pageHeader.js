@@ -112,12 +112,10 @@ export function renderPageHeader(props, inWebNav) {
                 break;
             default:
             case 'back':
-                vBack = React.createElement("nav", { onClick: onBack },
-                    React.createElement("i", { className: "fa fa-angle-left" }));
+                vBack = React.createElement("nav", { onClick: onBack }, nav.backIcon);
                 break;
             case 'close':
-                vBack = React.createElement("nav", { onClick: onBack },
-                    React.createElement("i", { className: "fa fa-close" }));
+                vBack = React.createElement("nav", { onClick: onBack }, nav.backIcon);
                 break;
         }
     }

@@ -26,7 +26,14 @@ export declare abstract class Tuid extends Entity {
     abstract valueFromId(id: number): any;
     abstract resetCache(id: number | BoxId): void;
     abstract assureBox<T>(id: number | BoxId): Promise<T>;
-    static equ(id1: BoxId | number, id2: BoxId | number): boolean;
+    static idValue(id: {
+        id: number;
+    } | number): number;
+    static equ(id1: {
+        id: number;
+    } | number, id2: {
+        id: number;
+    } | number): boolean;
     cacheIds(): void;
     modifyIds(ids: any[]): Promise<void>;
     isImport: boolean;

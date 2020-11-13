@@ -48,8 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as React from 'react';
-import { nav, Page, Form, resLang } from '../components';
-import { RegisterController, ForgetController } from './register';
+import { nav, Page, Form, resLang, Ax } from '../components';
 import { userApi } from '../net';
 import { loginRes } from '../res';
 import { tonvaTop, getSender } from './tools';
@@ -112,23 +111,24 @@ var Login = /** @class */ (function (_super) {
                 }
             });
         }); };
-        _this.clickReg = function () {
-            //nav.replace(<RegisterView />);
-            var register = new RegisterController(undefined);
-            register.start();
-        };
-        _this.clickForget = function () {
-            var forget = new ForgetController(undefined);
-            forget.start();
-        };
         return _this;
     }
+    /*
+    private clickReg = () => {
+        //nav.replace(<RegisterView />);
+        let register = new RegisterController(undefined);
+        register.start();
+    }
+    private clickForget = () => {
+        let forget = new ForgetController(undefined);
+        forget.start();
+    }
+    */
     Login.prototype.render = function () {
-        var _this = this;
         var footer = React.createElement("div", null,
             React.createElement("div", { className: "d-block" },
                 React.createElement("div", { className: 'text-center' },
-                    React.createElement("button", { className: "btn btn-link", style: { margin: '0px auto' }, onClick: this.clickReg }, "\u6CE8\u518C\u8D26\u53F7")),
+                    React.createElement(Ax, { href: "/register", className: "btn btn-link", style: { margin: '0px auto' } }, "\u6CE8\u518C\u8D26\u53F7")),
                 nav.privacyEntry()));
         var header = false;
         if (this.props.withBack === true) {
@@ -141,7 +141,7 @@ var Login = /** @class */ (function (_super) {
                     tonvaTop(),
                     React.createElement("div", { className: "h-2c" }),
                     React.createElement(Form, { schema: schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
-                    React.createElement("button", { className: "btn btn-link btn-block", onClick: function () { return _this.clickForget(); } }, "\u5FD8\u8BB0\u5BC6\u7801")),
+                    React.createElement(Ax, { className: "btn btn-link btn-block", href: "/forget" }, "\u5FD8\u8BB0\u5BC6\u7801")),
                 React.createElement("div", { className: "flex-fill" }),
                 React.createElement("div", { className: "flex-fill" })));
     };

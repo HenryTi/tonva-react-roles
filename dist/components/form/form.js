@@ -136,7 +136,9 @@ var Form = /** @class */ (function (_super) {
             this.formContext = new FormContext(this, true);
             return typeof (Templet) === 'function' ? Templet(this.data) : Templet;
         }
-        this.formContext = new FormContext(this, false);
+        if (!this.formContext) {
+            this.formContext = new FormContext(this, false);
+        }
         return React.createElement(React.Fragment, null, this.schema.map(function (v, index) {
             return React.createElement(React.Fragment, { key: index }, factory(_this.formContext, v, children));
         }));

@@ -67,6 +67,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import * as React from 'react';
 import { observable } from 'mobx';
 import marked from 'marked';
+import _ from 'lodash';
 import { Page } from './page/page';
 import { netToken } from '../net/netToken';
 import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
@@ -165,13 +166,15 @@ var NavView = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         window.addEventListener('popstate', this.navBack);
-                        if (!(nav.isRouting === false)) return [3 /*break*/, 2];
+                        //if (nav.isRouting === false) {
                         return [4 /*yield*/, nav.init()];
                     case 1:
+                        //if (nav.isRouting === false) {
                         _a.sent();
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, nav.start()];
-                    case 3:
+                        //}
+                        return [4 /*yield*/, nav.start()];
+                    case 2:
+                        //}
                         _a.sent();
                         return [2 /*return*/];
                 }
@@ -459,7 +462,6 @@ var Nav = /** @class */ (function () {
     function Nav() {
         var _this = this;
         this.local = new LocalData();
-        this.isRouting = false;
         this.user = undefined;
         this.arrs = ['/test', '/test/'];
         this.windowOnError = function (event, source, lineno, colno, error) {
@@ -482,6 +484,51 @@ var Nav = /** @class */ (function () {
         this.windowOnScroll = function (ev) {
             console.log('scroll event');
         };
+        this.navLogin = function (params) { return __awaiter(_this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                nav.showLogin(function (user) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    return [2 /*return*/, window.history.back()];
+                }); }); }, false);
+                return [2 /*return*/];
+            });
+        }); };
+        this.navLogout = function (params) { return __awaiter(_this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                nav.showLogout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                    return [2 /*return*/, window.history.back()];
+                }); }); });
+                return [2 /*return*/];
+            });
+        }); };
+        this.navRegister = function (params) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                nav.showRegister();
+                return [2 /*return*/];
+            });
+        }); };
+        this.navForget = function (params) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                nav.showForget();
+                return [2 /*return*/];
+            });
+        }); };
+        this.sysRoutes = {
+            '/login': this.navLogin,
+            '/logout': this.navLogout,
+            '/register': this.navRegister,
+            '/forget': this.navForget,
+        };
+        /*
+        get isWebNav():boolean {
+            if (!this.navigo) return false;
+            return !isMobile;
+        }
+        */
+        this.isWebNav = false;
+        this.backIcon = React.createElement("i", { className: "fa fa-angle-left" });
+        this.closeIcon = React.createElement("i", { className: "fa fa-close" });
         this.showPrivacyPage = function () {
             var privacy = _this.getPrivacyContent();
             if (privacy) {
@@ -578,9 +625,9 @@ var Nav = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Nav.prototype.set = function (nav) {
+    Nav.prototype.set = function (navView) {
         //this.logo = logo;
-        this.nav = nav;
+        this.navView = navView;
     };
     /*
     registerReceiveHandler(handler: (message:any)=>Promise<void>):number {
@@ -806,7 +853,7 @@ var Nav = /** @class */ (function () {
                         this.startWait();
                         user = this.local.user.get();
                         if (!(user === undefined)) return [3 /*break*/, 5];
-                        notLogined = this.nav.props.notLogined;
+                        notLogined = this.navView.props.notLogined;
                         if (!(notLogined !== undefined)) return [3 /*break*/, 2];
                         return [4 /*yield*/, notLogined()];
                     case 1:
@@ -835,8 +882,7 @@ var Nav = /** @class */ (function () {
         });
     };
     Nav.prototype.resolveRoute = function () {
-        if (this.isRouting === false)
-            return;
+        //if (this.isRouting === false) return;
         if (this.navigo === undefined)
             return;
         this.navigo.resolve();
@@ -848,18 +894,43 @@ var Nav = /** @class */ (function () {
         }
         if (this.navigo === undefined) {
             this.navigo = new Navigo();
+            if (this.isWebNav !== true)
+                this.navigo.historyAPIUpdateMethod('replaceState');
         }
         return this.navigo.on(args[0], args[1], args[2]);
     };
-    Object.defineProperty(Nav.prototype, "isWebNav", {
-        get: function () {
-            if (!this.navigo)
-                return false;
-            return !isMobile;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    Nav.prototype.onSysNavRoutes = function () {
+        this.onNavRoutes(this.sysRoutes);
+    };
+    Nav.prototype.routeFromNavPage = function (navPage) {
+        var _this = this;
+        return function (params, queryStr) {
+            if (navPage) {
+                if (_this.isWebNav)
+                    nav.clear();
+                navPage(params);
+            }
+        };
+    };
+    Nav.prototype.onNavRoute = function (navPage) {
+        this.on(this.routeFromNavPage(navPage));
+    };
+    Nav.prototype.onNavRoutes = function (navPageRoutes) {
+        if (!navPageRoutes)
+            return;
+        this.navPageRoutes = _.merge(this.navPageRoutes, navPageRoutes);
+        var navOns = {};
+        for (var route in navPageRoutes) {
+            var navPage = navPageRoutes[route];
+            navOns[route] = this.routeFromNavPage(navPage);
+        }
+        this.on(navOns);
+    };
+    Nav.prototype.setIsWebNav = function () {
+        this.isWebNav = true;
+        this.backIcon = React.createElement("i", { className: "fa fa-arrow-left" });
+        this.closeIcon = React.createElement("i", { className: "fa fa-close" });
+    };
     Object.defineProperty(Nav.prototype, "isMobile", {
         get: function () { return isMobile; },
         enumerable: false,
@@ -870,7 +941,8 @@ var Nav = /** @class */ (function () {
             alert('Is not in webnav state, cannot navigate to url "' + url + '"');
             return;
         }
-        this.clear();
+        if (this.testing === true)
+            url += '#test';
         return this.navigo.navigate(url, absolute);
     };
     Nav.prototype.go = function (showPage, url, absolute) {
@@ -887,7 +959,7 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        onLogined = this.nav.props.onLogined;
+                        onLogined = this.navView.props.onLogined;
                         if (onLogined === undefined) {
                             nav.push(React.createElement("div", null, "NavView has no prop onLogined"));
                             return [2 /*return*/];
@@ -1036,10 +1108,10 @@ var Nav = /** @class */ (function () {
                         lv = _a.sent();
                         loginView = React.createElement(lv.default, { withBack: withBack, callback: callback });
                         if (withBack !== true) {
-                            this.nav.clear();
+                            this.navView.clear();
                             this.pop();
                         }
-                        this.nav.push(loginView);
+                        this.navView.push(loginView);
                         return [2 /*return*/];
                 }
             });
@@ -1058,6 +1130,40 @@ var Nav = /** @class */ (function () {
                         React.createElement("div", { className: "mt-3 text-center" },
                             React.createElement("button", { className: "btn btn-danger", onClick: function () { return _this.logout(callback); } }, "\u5B89\u5168\u9000\u51FA")))));
                 return [2 /*return*/];
+            });
+        });
+    };
+    Nav.prototype.showRegister = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var lv, c;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, import('../entry/register')];
+                    case 1:
+                        lv = _a.sent();
+                        c = new lv.RegisterController(undefined);
+                        return [4 /*yield*/, c.start()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Nav.prototype.showForget = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var lv, c;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, import('../entry/register')];
+                    case 1:
+                        lv = _a.sent();
+                        c = new lv.ForgetController(undefined);
+                        return [4 /*yield*/, c.start()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -1105,24 +1211,24 @@ var Nav = /** @class */ (function () {
     };
     Object.defineProperty(Nav.prototype, "level", {
         get: function () {
-            return this.nav.level;
+            return this.navView.level;
         },
         enumerable: false,
         configurable: true
     });
     Nav.prototype.startWait = function () {
         var _a;
-        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.startWait();
+        (_a = this.navView) === null || _a === void 0 ? void 0 : _a.startWait();
     };
     Nav.prototype.endWait = function () {
         var _a;
-        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.endWait();
+        (_a = this.navView) === null || _a === void 0 ? void 0 : _a.endWait();
     };
     Nav.prototype.onError = function (error) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.nav.onError(error)];
+                    case 0: return [4 /*yield*/, this.navView.onError(error)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -1134,7 +1240,7 @@ var Nav = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.nav.showUpgradeUq(uq, version)];
+                    case 0: return [4 /*yield*/, this.navView.showUpgradeUq(uq, version)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -1143,43 +1249,43 @@ var Nav = /** @class */ (function () {
         });
     };
     Nav.prototype.show = function (view, disposer) {
-        this.nav.show(view, disposer);
+        this.navView.show(view, disposer);
     };
     Nav.prototype.push = function (view, disposer) {
-        this.nav.push(view, disposer);
+        this.navView.push(view, disposer);
     };
     Nav.prototype.replace = function (view, disposer) {
-        this.nav.replace(view, disposer);
+        this.navView.replace(view, disposer);
     };
     Nav.prototype.pop = function (level) {
         if (level === void 0) { level = 1; }
-        this.nav.pop(level);
+        this.navView.pop(level);
     };
     Nav.prototype.topKey = function () {
-        return this.nav.topKey();
+        return this.navView.topKey();
     };
     Nav.prototype.popTo = function (key) {
-        this.nav.popTo(key);
+        this.navView.popTo(key);
     };
     Nav.prototype.clear = function () {
         var _a;
-        (_a = this.nav) === null || _a === void 0 ? void 0 : _a.clear();
+        (_a = this.navView) === null || _a === void 0 ? void 0 : _a.clear();
     };
     Nav.prototype.navBack = function () {
-        this.nav.navBack();
+        this.navView.navBack();
     };
     Nav.prototype.ceaseTop = function (level) {
-        this.nav.ceaseTop(level);
+        this.navView.ceaseTop(level);
     };
     Nav.prototype.removeCeased = function () {
-        this.nav.removeCeased();
+        this.navView.removeCeased();
     };
     Nav.prototype.back = function (confirm) {
         if (confirm === void 0) { confirm = true; }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.nav.back(confirm)];
+                    case 0: return [4 /*yield*/, this.navView.back(confirm)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -1188,10 +1294,10 @@ var Nav = /** @class */ (function () {
         });
     };
     Nav.prototype.regConfirmClose = function (confirmClose) {
-        this.nav.regConfirmClose(confirmClose);
+        this.navView.regConfirmClose(confirmClose);
     };
     Nav.prototype.confirmBox = function (message) {
-        return this.nav.confirmBox(message);
+        return this.navView.confirmBox(message);
     };
     Nav.prototype.navToApp = function (url, unitId, apiId, sheetType, sheetId) {
         return __awaiter(this, void 0, void 0, function () {

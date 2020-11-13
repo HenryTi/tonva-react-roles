@@ -77,17 +77,6 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.setRes = function (res) {
         setGlobalRes(res);
     };
-    CAppBase.prototype.hookElements = function (elements) {
-        if (elements === undefined)
-            return;
-        for (var i in elements) {
-            var el = document.getElementById(i);
-            if (el) {
-                elements[i](el);
-            }
-        }
-    };
-    ;
     CAppBase.prototype.hasRole = function (role) {
         var nRole;
         if (typeof role === 'string') {
@@ -119,22 +108,21 @@ var CAppBase = /** @class */ (function (_super) {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 5, , 6]);
-                        this.onRoute();
-                        if (!(nav.isRouting === false)) return [3 /*break*/, 2];
+                        _b.trys.push([0, 4, , 5]);
+                        nav.onSysNavRoutes();
+                        this.onNavRoutes();
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
                         _b.sent();
-                        _b.label = 2;
-                    case 2:
+                        //}
                         this._uqs = UQsMan._uqs;
                         retErrors = UQsMan.errors;
                         predefinedUnit_1 = appInFrame.predefinedUnit;
                         user = nav.user;
-                        if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 4];
+                        if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 3];
                         return [4 /*yield*/, centerApi.userAppUnits(UQsMan.value.id)];
-                    case 3:
+                    case 2:
                         result = _b.sent();
                         this.appUnits = result;
                         /*
@@ -182,18 +170,18 @@ var CAppBase = /** @class */ (function (_super) {
                                 this.openVPage(VUnitSelect);
                                 return [2 /*return*/, false];
                         }
-                        _b.label = 4;
-                    case 4:
+                        _b.label = 3;
+                    case 3:
                         if (retErrors !== undefined) {
                             this.openVPage(VErrorsPage, retErrors);
                             return [2 /*return*/, false];
                         }
                         return [2 /*return*/, true];
-                    case 5:
+                    case 4:
                         err_1 = _b.sent();
                         this.openVPage(VStartError, err_1);
                         return [2 /*return*/, false];
-                    case 6: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -223,8 +211,7 @@ var CAppBase = /** @class */ (function (_super) {
         }
         return nav.on(args[0], args[1], args[2]);
     };
-    CAppBase.prototype.onRoute = function () {
-    };
+    CAppBase.prototype.onNavRoutes = function () { return; };
     CAppBase.prototype.showUnsupport = function (predefinedUnit) {
         nav.clear();
         this.openVPage(VUnsupportedUnit, predefinedUnit);

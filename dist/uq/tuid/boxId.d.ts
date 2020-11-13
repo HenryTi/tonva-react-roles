@@ -5,6 +5,8 @@ export interface BoxId {
     boxName: string;
     isUndefined: boolean;
     assure(): Promise<any>;
-    equ(id: BoxId | number): boolean;
+    equ(id: {
+        id: number;
+    } | number): boolean;
 }
 export declare type CreateBoxId = (tuid: Tuid, id: number) => BoxId;

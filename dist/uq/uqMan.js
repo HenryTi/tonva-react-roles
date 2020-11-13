@@ -101,8 +101,8 @@ var UqMan = /** @class */ (function () {
             this.createBoxId = this.createBoxIdFromTVs;
             this.tvs = tvs || {};
         }
-        var id = uqData.id, uqOwner = uqData.uqOwner, uqName = uqData.uqName, access = uqData.access, clearTuids = uqData.newVersion;
-        this.newVersion = clearTuids;
+        var id = uqData.id, uqOwner = uqData.uqOwner, uqName = uqData.uqName, access = uqData.access, newVersion = uqData.newVersion;
+        this.newVersion = newVersion;
         this.uqOwner = uqOwner;
         this.uqName = uqName;
         this.id = id;

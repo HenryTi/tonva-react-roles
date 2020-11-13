@@ -44,8 +44,13 @@ export abstract class Controller {
 		this.t = (str:string):any => this.internalT(str) || str;
 	}
 
+	protected beforeInit() {}
+	protected afterInit() {}
+
 	init(...param: any[]) {
+		this.beforeInit();
 		this.pageWebNav = this.getPageWebNav();
+		this.afterInit();
 	}
 
 	internalT(str:string):any {
@@ -56,30 +61,12 @@ export abstract class Controller {
 
 	getWebNav(): WebNav<any> {return this.webNav;}
 
-	private getPageWebNav(): PageWebNav {
-		if (nav.isWebNav === false) return;
-		let webNav =  this.getWebNav();
-		if (webNav === undefined) return;
-		let {VNavHeader, VNavRawHeader, VNavFooter, VNavRawFooter, renderPageHeader} = webNav;
-		let navHeader:JSX.Element;
-		if (VNavHeader) navHeader = this.renderView(VNavHeader);
-		let navRawHeader:JSX.Element;
-		if (VNavRawHeader) navRawHeader = this.renderView(VNavRawHeader);
-		let navFooter:JSX.Element; 
-		if (VNavFooter) navFooter = this.renderView(VNavFooter);
-		let navRawFooter:JSX.Element;
-		if (VNavRawFooter) navRawFooter = this.renderView(VNavRawFooter);
-		let ret:PageWebNav = {
-			navHeader,
-			navRawHeader,
-			navFooter,
-			navRawFooter,
-			renderPageHeader,
-		};
-		return ret;
-	}
+	getPageWebNav(): PageWebNav {return undefined;}
 
 	get isWebNav(): boolean {return nav.isWebNav}
+	navigate(url:string) {
+		nav.navigate(url);
+	}
 	
 	protected setRes(res:any) {
 		if (res === undefined) return;
@@ -110,7 +97,7 @@ export abstract class Controller {
     protected onDispose() {
 	}
 	
-	get isRouting() {return nav.isRouting;}
+	//get isRouting() {return nav.isRouting;}
 
 	isMe(id:any):boolean {
 		if (id === null) return false;

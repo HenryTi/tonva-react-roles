@@ -6,6 +6,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import '../css/va-form.css';
 import '../css/va.css';
 import '../css/animation.css';
+import { PageWebNav } from './page';
+export declare type NavPage = (params: any) => Promise<void>;
 export interface Props {
     onLogined: (isUserLogin?: boolean) => Promise<void>;
     notLogined?: () => Promise<void>;
@@ -61,11 +63,10 @@ export interface NavSettings {
     privacy?: string;
 }
 export declare class Nav {
-    private nav;
+    private navView;
     private wsHost;
     private local;
     private navigo;
-    isRouting: boolean;
     navSettings: NavSettings;
     user: User;
     testing: boolean;
@@ -74,7 +75,7 @@ export declare class Nav {
     resUrl: string;
     constructor();
     get guest(): number;
-    set(nav: NavView): void;
+    set(navView: NavView): void;
     onReceive(msg: any): Promise<void>;
     private loadUnitJson;
     private getPredefinedUnitName;
@@ -99,7 +100,23 @@ export declare class Nav {
     on(options: {
         [url: string]: RouteFunc | NamedRoute;
     }): Navigo;
-    get isWebNav(): boolean;
+    private navLogin;
+    private navLogout;
+    private navRegister;
+    private navForget;
+    private sysRoutes;
+    onSysNavRoutes(): void;
+    private navPageRoutes;
+    private routeFromNavPage;
+    onNavRoute(navPage: NavPage): void;
+    onNavRoutes(navPageRoutes: {
+        [url: string]: NavPage;
+    }): void;
+    isWebNav: boolean;
+    backIcon: JSX.Element;
+    closeIcon: JSX.Element;
+    setIsWebNav(): void;
+    pageWebNav: PageWebNav;
     get isMobile(): boolean;
     navigate(url: string, absolute?: boolean): Navigo;
     go(showPage: () => void, url: string, absolute?: boolean): void;
@@ -118,6 +135,8 @@ export declare class Nav {
     private getPrivacy;
     showLogin(callback?: (user: User) => Promise<void>, withBack?: boolean): Promise<void>;
     showLogout(callback?: () => Promise<void>): Promise<void>;
+    showRegister(): Promise<void>;
+    showForget(): Promise<void>;
     logout(callback?: () => Promise<void>): Promise<void>;
     changePassword(): Promise<void>;
     get level(): number;

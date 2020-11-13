@@ -9,7 +9,5 @@ export default class Login extends React.Component<LoginProps> {
     private uiSchema;
     private onSubmit;
     private onEnter;
-    private clickReg;
-    private clickForget;
     render(): JSX.Element;
 }

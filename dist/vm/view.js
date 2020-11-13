@@ -54,6 +54,7 @@ var View = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    View.prototype.navigate = function (url) { this.controller.navigate(url); };
     View.prototype.isMe = function (id) { return this.controller.isMe(id); };
     View.prototype.renderVm = function (vm, param) {
         return (new vm(this.controller)).render(param);

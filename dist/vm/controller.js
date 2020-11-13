@@ -87,12 +87,16 @@ var Controller = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Controller.prototype.beforeInit = function () { };
+    Controller.prototype.afterInit = function () { };
     Controller.prototype.init = function () {
         var param = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             param[_i] = arguments[_i];
         }
+        this.beforeInit();
         this.pageWebNav = this.getPageWebNav();
+        this.afterInit();
     };
     Controller.prototype.internalT = function (str) {
         return this._t[str];
@@ -103,39 +107,15 @@ var Controller = /** @class */ (function () {
         configurable: true
     });
     Controller.prototype.getWebNav = function () { return this.webNav; };
-    Controller.prototype.getPageWebNav = function () {
-        if (nav.isWebNav === false)
-            return;
-        var webNav = this.getWebNav();
-        if (webNav === undefined)
-            return;
-        var VNavHeader = webNav.VNavHeader, VNavRawHeader = webNav.VNavRawHeader, VNavFooter = webNav.VNavFooter, VNavRawFooter = webNav.VNavRawFooter, renderPageHeader = webNav.renderPageHeader;
-        var navHeader;
-        if (VNavHeader)
-            navHeader = this.renderView(VNavHeader);
-        var navRawHeader;
-        if (VNavRawHeader)
-            navRawHeader = this.renderView(VNavRawHeader);
-        var navFooter;
-        if (VNavFooter)
-            navFooter = this.renderView(VNavFooter);
-        var navRawFooter;
-        if (VNavRawFooter)
-            navRawFooter = this.renderView(VNavRawFooter);
-        var ret = {
-            navHeader: navHeader,
-            navRawHeader: navRawHeader,
-            navFooter: navFooter,
-            navRawFooter: navRawFooter,
-            renderPageHeader: renderPageHeader,
-        };
-        return ret;
-    };
+    Controller.prototype.getPageWebNav = function () { return undefined; };
     Object.defineProperty(Controller.prototype, "isWebNav", {
         get: function () { return nav.isWebNav; },
         enumerable: false,
         configurable: true
     });
+    Controller.prototype.navigate = function (url) {
+        nav.navigate(url);
+    };
     Controller.prototype.setRes = function (res) {
         if (res === undefined)
             return;
@@ -154,11 +134,7 @@ var Controller = /** @class */ (function () {
     };
     Controller.prototype.onDispose = function () {
     };
-    Object.defineProperty(Controller.prototype, "isRouting", {
-        get: function () { return nav.isRouting; },
-        enumerable: false,
-        configurable: true
-    });
+    //get isRouting() {return nav.isRouting;}
     Controller.prototype.isMe = function (id) {
         if (id === null)
             return false;

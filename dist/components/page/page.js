@@ -22,6 +22,7 @@ import { observer } from 'mobx-react';
 import { renderPageHeader } from './pageHeader';
 import { TabsView } from './tabs';
 import { ScrollView, WebNavScrollView } from './scrollView';
+import { nav } from '../nav';
 var Page = /** @class */ (function (_super) {
     __extends(Page, _super);
     function Page(props) {
@@ -32,11 +33,11 @@ var Page = /** @class */ (function (_super) {
         }
         return _this;
     }
-    Page.prototype.renderHeader = function () {
+    Page.prototype.renderHeader = function (webNav) {
         var _a = this.props, back = _a.back, header = _a.header, right = _a.right, headerClassName = _a.headerClassName, afterBack = _a.afterBack, logout = _a.logout;
         if (header === false)
             return;
-        var webNav = this.props.webNav;
+        //const {webNav} = this.props;
         var inWebNav = false;
         var pageHeaderProps = {
             back: back,
@@ -68,8 +69,8 @@ var Page = /** @class */ (function (_super) {
         return pageHeader;
         */
     };
-    Page.prototype.renderFooter = function () {
-        var _a = this.props, footer = _a.footer, webNav = _a.webNav;
+    Page.prototype.renderFooter = function (webNav) {
+        var footer = this.props.footer;
         if (!footer)
             return;
         var elFooter = React.createElement("footer", null, footer);
@@ -84,12 +85,19 @@ var Page = /** @class */ (function (_super) {
             return React.createElement(this.tabsView.content);
         }
         var _a = this.props, onScroll = _a.onScroll, onScrollTop = _a.onScrollTop, onScrollBottom = _a.onScrollBottom, children = _a.children, className = _a.className, webNav = _a.webNav;
+        var pageWebNav;
+        if (!webNav) {
+            pageWebNav = nav.pageWebNav;
+        }
+        else {
+            pageWebNav = webNav;
+        }
         var content = React.createElement(React.Fragment, null,
-            this.renderHeader(),
+            this.renderHeader(pageWebNav),
             React.createElement("main", null, children),
-            this.renderFooter());
-        if (webNav) {
-            return React.createElement(WebNavScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className, webNav: webNav }, content);
+            this.renderFooter(pageWebNav));
+        if (pageWebNav) {
+            return React.createElement(WebNavScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className, webNav: pageWebNav }, content);
         }
         else {
             return React.createElement(ScrollView, { onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom, className: className }, content);

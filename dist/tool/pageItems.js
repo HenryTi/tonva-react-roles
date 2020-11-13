@@ -80,6 +80,8 @@ var PageItems = /** @class */ (function () {
         this.pageSize = 30;
         this.appendPosition = 'tail';
         this.changing = false;
+        if (itemObservable === undefined)
+            itemObservable = false;
         this._items = observable.array([], { deep: itemObservable });
     }
     Object.defineProperty(PageItems.prototype, "items", {

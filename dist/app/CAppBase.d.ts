@@ -31,7 +31,6 @@ export declare abstract class CAppBase extends Controller {
     get uqs(): any;
     internalT(str: string): any;
     protected setRes(res: any): void;
-    protected hookElements(elements: Elements): void;
     private appUnit;
     private roleDefines;
     hasRole(role: string | number): boolean;
@@ -45,6 +44,6 @@ export declare abstract class CAppBase extends Controller {
     protected on(options: {
         [url: string]: RouteFunc | NamedRoute;
     }): Navigo;
-    protected onRoute(): void;
+    protected onNavRoutes(): void;
     private showUnsupport;
 }
