@@ -83,7 +83,7 @@ var CSub = /** @class */ (function (_super) {
     });
     CSub.prototype.getWebNav = function () {
         var _a, _b;
-        var wn = (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.getWebNave();
+        var wn = (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.getWebNav();
         if (wn === undefined)
             return;
         var ownerWNs = [];

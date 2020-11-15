@@ -1262,7 +1262,7 @@
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "a256be6b4beb4ff0ad42fd8287b7419cf4e93d422c12f5db3302931ccb29b91d",
+        "version": "281a24b5302f6cb2a8274ffda4bafe91ce40b81fb191865d6efdc1ce612c8135",
         "signature": "8461b4e74cae0b486c5efaee89baaab0f68834fd190d724bc3430cfdbf6809b8",
         "affectsGlobalScope": false
       },
@@ -1279,11 +1279,6 @@
       "./src/index.ts": {
         "version": "916460955732d4ac368205c4ca2e286dc8fe6fd04406dbc3e0779a9635770dcb",
         "signature": "916460955732d4ac368205c4ca2e286dc8fe6fd04406dbc3e0779a9635770dcb",
-        "affectsGlobalScope": false
-      },
-      "./src/app/startroute.tsx": {
-        "version": "3d557cc4d258fb1fb6e582c154306ee553adb21368a4956b8130f649a4af364f",
-        "signature": "7b7cd22351c028424fef0e00aa5537417f82823d2360517b89e525f53cbc0a41",
         "affectsGlobalScope": false
       },
       "./src/components/callbacks.ts": {
@@ -2029,13 +2024,6 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/app/cappbase.ts",
         "./src/components/index.ts"
-      ],
-      "./src/app/startroute.tsx": [
-        "./node_modules/@types/node/base.d.ts",
-        "./node_modules/@types/node/ts3.2/index.d.ts",
-        "./src/app/cappbase.ts",
-        "./src/components/index.ts",
-        "./src/uq/index.ts"
       ],
       "./src/app/vmain.tsx": [
         "./node_modules/@types/node/base.d.ts",
@@ -3500,9 +3488,6 @@
       "./src/app/startpage.tsx": [
         "./src/app/cappbase.ts"
       ],
-      "./src/app/startroute.tsx": [
-        "./src/app/cappbase.ts"
-      ],
       "./src/app/vmain.tsx": [
         "./src/app/cappbase.ts",
         "./src/vm/index.ts"
@@ -4248,19 +4233,6 @@
       "./src/app/index.ts",
       "./src/app/start.ts",
       "./src/app/startpage.tsx",
-      [
-        "./src/app/startroute.tsx",
-        [
-          {
-            "file": "./src/app/startroute.tsx",
-            "start": 489,
-            "length": 9,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'isRouting' does not exist on type 'Nav'."
-          }
-        ]
-      ],
       "./src/app/vmain.tsx",
       "./src/components/autohidetips.tsx",
       "./src/components/ax/index.tsx",
