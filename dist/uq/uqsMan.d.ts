@@ -14,7 +14,6 @@ export declare class UQsMan {
     static load(tonvaAppName: string, version: string, tvs: TVs): Promise<string[]>;
     private collection;
     private readonly tvs;
-    readonly name: string;
     readonly appOwner: string;
     readonly appName: string;
     readonly localMap: LocalMap;
@@ -26,6 +25,9 @@ export declare class UQsMan {
     init(uqsData: UqData[]): Promise<void>;
     load(): Promise<string[]>;
     buildUQs(): any;
+    getUqCollection(): {
+        [uqName: string]: UqMan;
+    };
     private showReload;
     setTuidImportsLocal(): string[];
     private setInner;

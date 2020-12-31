@@ -12,6 +12,7 @@ export declare class UqApi extends ApiBase {
     init(): Promise<void>;
     protected getHttpChannel(): Promise<HttpChannel>;
     loadAccess(): Promise<any>;
+    allSchemas(): Promise<any>;
     schema(name: string): Promise<any>;
     queueModify(start: number, page: number, entities: string): Promise<any>;
 }

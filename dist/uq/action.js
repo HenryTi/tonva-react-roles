@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -49,17 +49,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { Entity } from './entity';
 import { ActionCaller } from './caller';
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action() {
+var UqAction = /** @class */ (function (_super) {
+    __extends(UqAction, _super);
+    function UqAction() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(Action.prototype, "typeName", {
+    Object.defineProperty(UqAction.prototype, "typeName", {
         get: function () { return 'action'; },
         enumerable: false,
         configurable: true
     });
-    Action.prototype.submit = function (data, waiting) {
+    UqAction.prototype.submit = function (data, waiting) {
         if (waiting === void 0) { waiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var caller, ret;
@@ -75,7 +75,7 @@ var Action = /** @class */ (function (_super) {
             });
         });
     };
-    Action.prototype.submitReturns = function (data) {
+    UqAction.prototype.submitReturns = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -85,7 +85,7 @@ var Action = /** @class */ (function (_super) {
             });
         });
     };
-    Action.prototype.submitConvert = function (data) {
+    UqAction.prototype.submitConvert = function (data) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -95,8 +95,16 @@ var Action = /** @class */ (function (_super) {
             });
         });
     };
-    return Action;
+    return UqAction;
 }(Entity));
+export { UqAction };
+var Action = /** @class */ (function (_super) {
+    __extends(Action, _super);
+    function Action() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Action;
+}(UqAction));
 export { Action };
 var ActionSubmitCaller = /** @class */ (function (_super) {
     __extends(ActionSubmitCaller, _super);

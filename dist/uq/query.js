@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -194,35 +194,35 @@ var QueryPager = /** @class */ (function (_super) {
     return QueryPager;
 }(PageItems));
 export { QueryPager };
-var Query = /** @class */ (function (_super) {
-    __extends(Query, _super);
-    function Query() {
+var UqQuery = /** @class */ (function (_super) {
+    __extends(UqQuery, _super);
+    function UqQuery() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(Query.prototype, "typeName", {
+    Object.defineProperty(UqQuery.prototype, "typeName", {
         get: function () { return 'query'; },
         enumerable: false,
         configurable: true
     });
-    Query.prototype.setSchema = function (schema) {
+    UqQuery.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         var returns = schema.returns;
         //this.returns = returns;
         this.isPaged = returns && returns.find(function (v) { return v.name === '$page'; }) !== undefined;
     };
-    Query.prototype.resetPage = function (size, params) {
+    UqQuery.prototype.resetPage = function (size, params) {
         this.pageStart = undefined;
         this.pageSize = size;
         this.params = params;
         this.more = false;
         this.list = undefined;
     };
-    Object.defineProperty(Query.prototype, "hasMore", {
+    Object.defineProperty(UqQuery.prototype, "hasMore", {
         get: function () { return this.more; },
         enumerable: false,
         configurable: true
     });
-    Query.prototype.loadPage = function () {
+    UqQuery.prototype.loadPage = function () {
         return __awaiter(this, void 0, void 0, function () {
             var pageStart, ret, page, ret_1;
             var _a;
@@ -273,11 +273,11 @@ var Query = /** @class */ (function (_super) {
             });
         });
     };
-    Query.prototype.pageCaller = function (params, showWaiting) {
+    UqQuery.prototype.pageCaller = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return new QueryPageCaller(this, params, showWaiting);
     };
-    Query.prototype.page = function (params, pageStart, pageSize, showWaiting) {
+    UqQuery.prototype.page = function (params, pageStart, pageSize, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var p, res;
@@ -293,11 +293,11 @@ var Query = /** @class */ (function (_super) {
             });
         });
     };
-    Query.prototype.queryCaller = function (params, showWaiting) {
+    UqQuery.prototype.queryCaller = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return new QueryQueryCaller(this, params, showWaiting);
     };
-    Query.prototype.query = function (params, showWaiting) {
+    UqQuery.prototype.query = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var res;
@@ -311,7 +311,7 @@ var Query = /** @class */ (function (_super) {
             });
         });
     };
-    Query.prototype.table = function (params, showWaiting) {
+    UqQuery.prototype.table = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var ret, i;
@@ -328,7 +328,7 @@ var Query = /** @class */ (function (_super) {
             });
         });
     };
-    Query.prototype.obj = function (params, showWaiting) {
+    UqQuery.prototype.obj = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var ret;
@@ -344,7 +344,7 @@ var Query = /** @class */ (function (_super) {
             });
         });
     };
-    Query.prototype.scalar = function (params, showWaiting) {
+    UqQuery.prototype.scalar = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
         return __awaiter(this, void 0, void 0, function () {
             var ret, i;
@@ -362,8 +362,16 @@ var Query = /** @class */ (function (_super) {
     };
     __decorate([
         observable
-    ], Query.prototype, "list", void 0);
-    return Query;
+    ], UqQuery.prototype, "list", void 0);
+    return UqQuery;
 }(Entity));
+export { UqQuery };
+var Query = /** @class */ (function (_super) {
+    __extends(Query, _super);
+    function Query() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Query;
+}(UqQuery));
 export { Query };
 //# sourceMappingURL=query.js.map

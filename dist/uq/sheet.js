@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -50,12 +50,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { Entity } from './entity';
 import { PageItems } from '../tool/pageItems';
 import { EntityCaller } from './caller';
-var Sheet = /** @class */ (function (_super) {
-    __extends(Sheet, _super);
-    function Sheet() {
+var UqSheet = /** @class */ (function (_super) {
+    __extends(UqSheet, _super);
+    function UqSheet() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Object.defineProperty(Sheet.prototype, "typeName", {
+    Object.defineProperty(UqSheet.prototype, "typeName", {
         get: function () { return 'sheet'; },
         enumerable: false,
         configurable: true
@@ -66,11 +66,12 @@ var Sheet = /** @class */ (function (_super) {
             this.setStateAccess(this.states.find(s=>s.name==state.name), state);
         }
     }*/
-    Sheet.prototype.setSchema = function (schema) {
+    UqSheet.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         this.states = schema.states;
+        this.verify = schema.verify;
     };
-    Sheet.prototype.build = function (obj) {
+    UqSheet.prototype.build = function (obj) {
         this.states = [];
         for (var _i = 0, _a = obj.ops; _i < _a.length; _i++) {
             var op = _a[_i];
@@ -85,7 +86,7 @@ var Sheet = /** @class */ (function (_super) {
             }
         }*/
     };
-    Sheet.prototype.createSheetState = function (name, obj) {
+    UqSheet.prototype.createSheetState = function (name, obj) {
         var ret = { name: name, actions: [] };
         var actions = ret.actions;
         for (var p in obj) {
@@ -94,17 +95,7 @@ var Sheet = /** @class */ (function (_super) {
         }
         return ret;
     };
-    /*
-    private setStateAccess(s:SheetState, s1:SheetState) {
-        if (s === undefined) return;
-        for (let action of s1.actions) {
-            let acn = action.name;
-            let ac = s.actions.find(a=>a.name === acn);
-            if (ac === undefined) continue;
-            s.actions.push(action);
-        }
-    }*/
-    Sheet.prototype.save = function (discription, data) {
+    UqSheet.prototype.save = function (discription, data) {
         return __awaiter(this, void 0, void 0, function () {
             var id, params;
             return __generator(this, function (_a) {
@@ -118,22 +109,41 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.action = function (id, flow, state, action) {
+    UqSheet.prototype.saveDebugDirect = function (discription, data) {
         return __awaiter(this, void 0, void 0, function () {
+            var id, params;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, new ActionCaller(this, { id: id, flow: flow, state: state, action: action }).request()];
-                    case 1: 
-                    /*
-                    await this.loadSchema();
-                    return await this.uqApi.sheetAction(this.name, {id:id, flow:flow, state:state, action:action});
-                    */
-                    return [2 /*return*/, _a.sent()];
+                    case 0:
+                        id = this.uq.id;
+                        params = { app: id, discription: discription, data: data };
+                        return [4 /*yield*/, new SaveDirectCaller(this, params).request()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    Sheet.prototype.unpack = function (data) {
+    UqSheet.prototype.action = function (id, flow, state, action) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new ActionCaller(this, { id: id, flow: flow, state: state, action: action }).request()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UqSheet.prototype.actionDebugDirect = function (id, flow, state, action) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, new ActionDirectCaller(this, { id: id, flow: flow, state: state, action: action }).request()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UqSheet.prototype.unpack = function (data) {
         //if (this.schema === undefined) await this.loadSchema();
         var ret = data[0];
         var brief = ret[0];
@@ -145,7 +155,7 @@ var Sheet = /** @class */ (function (_super) {
             flows: flows,
         };
     };
-    Sheet.prototype.getSheet = function (id) {
+    UqSheet.prototype.getSheet = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -161,7 +171,7 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.getArchive = function (id) {
+    UqSheet.prototype.getArchive = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -174,7 +184,7 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.getArchives = function (pageStart, pageSize) {
+    UqSheet.prototype.getArchives = function (pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
@@ -187,7 +197,7 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.getStateSheets = function (state, pageStart, pageSize) {
+    UqSheet.prototype.getStateSheets = function (state, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
@@ -200,8 +210,8 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.createPageStateItems = function () { return new PageStateItems(this); };
-    Sheet.prototype.stateSheetCount = function () {
+    UqSheet.prototype.createPageStateItems = function () { return new PageStateItems(this); };
+    UqSheet.prototype.stateSheetCount = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -222,7 +232,7 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.userSheets = function (state, user, pageStart, pageSize) {
+    UqSheet.prototype.userSheets = function (state, user, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
@@ -235,7 +245,7 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    Sheet.prototype.mySheets = function (state, pageStart, pageSize) {
+    UqSheet.prototype.mySheets = function (state, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
             var params;
             return __generator(this, function (_a) {
@@ -248,8 +258,16 @@ var Sheet = /** @class */ (function (_super) {
             });
         });
     };
-    return Sheet;
+    return UqSheet;
 }(Entity));
+export { UqSheet };
+var Sheet = /** @class */ (function (_super) {
+    __extends(Sheet, _super);
+    function Sheet() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Sheet;
+}(UqSheet));
 export { Sheet };
 var SheetCaller = /** @class */ (function (_super) {
     __extends(SheetCaller, _super);
@@ -288,13 +306,24 @@ var SaveCaller = /** @class */ (function (_super) {
     };
     return SaveCaller;
 }(SheetCaller));
+var SaveDirectCaller = /** @class */ (function (_super) {
+    __extends(SaveDirectCaller, _super);
+    function SaveDirectCaller() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(SaveDirectCaller.prototype, "path", {
+        get: function () { return "sheet/" + this.entity.name + "/direct"; },
+        enumerable: false,
+        configurable: true
+    });
+    return SaveDirectCaller;
+}(SaveCaller));
 var ActionCaller = /** @class */ (function (_super) {
     __extends(ActionCaller, _super);
     function ActionCaller() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.method = 'PUT';
         return _this;
-        //buildParams() {return this.entity.buildParams(this.params);}
     }
     Object.defineProperty(ActionCaller.prototype, "path", {
         get: function () { return "sheet/" + this.entity.name; },
@@ -303,6 +332,18 @@ var ActionCaller = /** @class */ (function (_super) {
     });
     return ActionCaller;
 }(SheetCaller));
+var ActionDirectCaller = /** @class */ (function (_super) {
+    __extends(ActionDirectCaller, _super);
+    function ActionDirectCaller() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(ActionDirectCaller.prototype, "path", {
+        get: function () { return "sheet/" + this.entity.name + "/direct"; },
+        enumerable: false,
+        configurable: true
+    });
+    return ActionDirectCaller;
+}(ActionCaller));
 var GetSheetCaller = /** @class */ (function (_super) {
     __extends(GetSheetCaller, _super);
     function GetSheetCaller() {

@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -779,6 +779,9 @@ var Nav = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         this.testing = env.testing;
+                        if (this.forceDevelopment === true) {
+                            env.isDevelopment = true;
+                        }
                         return [4 /*yield*/, host.start(this.testing)];
                     case 1:
                         _a.sent();
@@ -850,6 +853,7 @@ var Nav = /** @class */ (function () {
                         }
                         //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
                         nav.clear();
+                        nav.onSysNavRoutes();
                         this.startWait();
                         user = this.local.user.get();
                         if (!(user === undefined)) return [3 /*break*/, 5];

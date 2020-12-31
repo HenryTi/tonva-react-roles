@@ -84,7 +84,6 @@ export abstract class CAppBase extends Controller {
 	
     protected async beforeStart():Promise<boolean> {
         try {
-			nav.onSysNavRoutes();
 			this.onNavRoutes();
 			//if (nav.isRouting === false) {
 				//await nav.init();

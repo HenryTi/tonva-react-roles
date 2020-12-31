@@ -23,5 +23,6 @@ export declare class Page extends React.Component<PageProps> {
     constructor(props: PageProps);
     private renderHeader;
     private renderFooter;
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void;
     render(): JSX.Element;
 }

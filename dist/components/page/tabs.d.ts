@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IVPage } from './page';
-import { IObservableValue } from 'mobx/lib/internal';
+import { IObservableValue } from 'mobx';
 import '../../css/va-tab.css';
 export declare type TabCaption = (selected: boolean) => JSX.Element;
 export interface TabProp {
@@ -47,7 +47,6 @@ declare class Tab {
     shown(): Promise<void>;
 }
 export declare const TabCaptionComponent: (label: string, icon: string, color: string) => JSX.Element;
-export declare const TabCaption: (label: string, icon: string, color: string) => JSX.Element;
 export declare class TabsView {
     private props;
     private size;

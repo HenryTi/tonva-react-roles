@@ -113,8 +113,9 @@ var Entity = /** @class */ (function () {
                         schema = _a.sent();
                         _a.label = 2;
                     case 2:
-                        this.setSchema(schema);
-                        this.buildFieldsTuid();
+                        //this.setSchema(schema);
+                        //this.buildFieldsTuid();
+                        this.buildSchema(schema);
                         return [4 /*yield*/, this.loadValues()];
                     case 3:
                         _a.sent();
@@ -122,6 +123,11 @@ var Entity = /** @class */ (function () {
                 }
             });
         });
+    };
+    Entity.prototype.buildSchema = function (schema) {
+        this.setSchema(schema);
+        this.buildFieldsTuid();
+        //await this.loadValues();
     };
     Entity.prototype.loadValues = function () {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
@@ -254,7 +260,7 @@ var Entity = /** @class */ (function () {
             default:
                 debugger;
                 throw new Error('escape datetime field in pack data error: value=' + val);
-            case 'undefined': return '';
+            case 'undefined': return undefined;
             case 'object':
                 dt = val;
                 break;

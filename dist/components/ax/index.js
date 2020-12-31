@@ -22,16 +22,27 @@ export var Ax = function (axProps) {
             return React.createElement("span", { className: "text-danger" }, "Error: href not defined in Ax");
         var onAxClick = function (evt) {
             evt.preventDefault();
-            onClick ? onClick(evt) : nav.navigate(href);
+            var ret;
+            if (onClick) {
+                ret = onClick(evt);
+            }
+            else {
+                nav.navigate(href);
+                ret = false;
+            }
+            return ret;
         };
-        return React.createElement("a", __assign({ className: classNames(className, aClassName), onClick: onAxClick }, axProps), children);
+        return React.createElement("a", __assign({}, axProps, { className: classNames(className, aClassName), onClick: onAxClick }), children);
     }
     else {
-        var onClick_1 = axProps.onClick, naClassName = axProps.naClassName;
-        if (!onClick_1) {
-            onClick_1 = function () { return nav.navigate(href); };
+        var naClassName = axProps.naClassName;
+        if (!onClick) {
+            onClick = function () {
+                nav.navigate(href);
+                return false;
+            };
         }
-        return React.createElement("span", { className: classNames(className, 'cursor-pointer', naClassName), onClick: onClick_1 }, children);
+        return React.createElement("span", { className: classNames(className, 'cursor-pointer', naClassName), onClick: onClick }, children);
     }
 };
 // 同普通的a tag
@@ -46,6 +57,7 @@ export var A = function (props) {
     var onClick = function (evt) {
         evt.preventDefault();
         nav.navigate(href);
+        return false;
     };
     return React.createElement("a", __assign({}, props, { href: href, onClick: onClick }), children);
 };

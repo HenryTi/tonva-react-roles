@@ -27,7 +27,8 @@
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": false,
         "experimentalDecorators": true,
-        "skipLibCheck": true
+		"skipLibCheck": true,
+		"typeRoots" : ["node_modules/@types", "src/types"]
     },
     /*
     "compilerOptions": {

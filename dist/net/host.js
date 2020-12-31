@@ -115,6 +115,8 @@ var Host = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        if (!centerHost)
+                            debugger;
                         this.testing = testing;
                         if (!(env.isDevelopment === true)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.tryLocal()];
@@ -218,6 +220,10 @@ var Host = /** @class */ (function () {
                 debugger;
             }
         }
+        else if (!url) {
+            url = urlTest;
+            this.testing = true;
+        }
         if (this.testing === true) {
             if (urlTest !== '-')
                 url = urlTest;
@@ -250,7 +256,7 @@ export var host = new Host();
 // 尽管timeout了，fetch仍然继续，没有cancel
 // 实际上，一秒钟不够。web服务器会自动停。重启的时候，可能会比较长时间。也许两秒甚至更多。
 //const timeout = 2000;
-var timeout = 200;
+var timeout = 2000;
 function fetchLocalCheck(url) {
     return new Promise(function (resolve, reject) {
         fetch(url, fetchOptions)

@@ -1,12 +1,12 @@
 import { Entity } from './entity';
 import { ActionCaller } from './caller';
-export declare class Action extends Entity {
+export declare class UqAction<P, R> extends Entity {
     get typeName(): string;
-    submit(data: object, waiting?: boolean): Promise<any>;
-    submitReturns(data: object): Promise<{
-        [ret: string]: any[];
-    }>;
-    submitConvert(data: object): Promise<any>;
+    submit(data: P, waiting?: boolean): Promise<any>;
+    submitReturns(data: P): Promise<R>;
+    submitConvert(data: P): Promise<any>;
+}
+export declare class Action extends UqAction<any, any> {
 }
 export declare class ActionSubmitCaller extends ActionCaller {
     get path(): string;

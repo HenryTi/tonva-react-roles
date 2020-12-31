@@ -81,9 +81,16 @@ export abstract class Entity {
         if (!schema) {
             schema = await this.uq.loadEntitySchema(this.name);
         }
+        //this.setSchema(schema);
+		//this.buildFieldsTuid();
+		this.buildSchema(schema);
+		await this.loadValues();
+	}
+
+	buildSchema(schema: any) {
         this.setSchema(schema);
 		this.buildFieldsTuid();
-		await this.loadValues();
+		//await this.loadValues();
 	}
 	
 	protected async loadValues():Promise<any> {}
@@ -202,7 +209,7 @@ export abstract class Entity {
         let dt: Date;
         switch (typeof val) {
             default: debugger; throw new Error('escape datetime field in pack data error: value=' + val);
-            case 'undefined': return '';
+            case 'undefined': return undefined;
             case 'object': dt = (val as Date); break;
             case 'string':
             case 'number': dt = new Date(val); break;

@@ -46,6 +46,7 @@ import { Map } from './map';
 import { Pending } from './pending';
 import { ReactBoxId } from './tuid/reactBoxId';
 import { Tag } from './tag/tag';
+import { UqEnum } from './enum';
 export function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':
@@ -67,6 +68,7 @@ export function fieldDefaultValue(type) {
 var UqMan = /** @class */ (function () {
     function UqMan(uqs, uqData, createBoxId, tvs) {
         var _this = this;
+        this.enums = {};
         this.actions = {};
         this.sheets = {};
         this.queries = {};
@@ -89,6 +91,7 @@ var UqMan = /** @class */ (function () {
         };
         this.tuidArr = [];
         this.actionArr = [];
+        this.enumArr = [];
         this.sheetArr = [];
         this.queryArr = [];
         this.bookArr = [];
@@ -232,6 +235,41 @@ var UqMan = /** @class */ (function () {
             });
         });
     };
+    UqMan.prototype.loadAllSchemas = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret, entities;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.uqApi.allSchemas()];
+                    case 1:
+                        ret = _a.sent();
+                        entities = [
+                            this.actionArr,
+                            this.enumArr,
+                            this.sheetArr,
+                            this.queryArr,
+                            this.bookArr,
+                            this.mapArr,
+                            this.historyArr,
+                            this.pendingArr,
+                            this.tagArr,
+                        ];
+                        entities.forEach(function (arr) {
+                            arr.forEach(function (v) {
+                                var entity = ret[v.name.toLowerCase()];
+                                if (!entity)
+                                    return;
+                                var schema = entity.call;
+                                if (!schema)
+                                    return;
+                                v.buildSchema(schema);
+                            });
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     UqMan.prototype.getTuid = function (name) {
         return this.tuids[name];
     };
@@ -250,6 +288,14 @@ var UqMan = /** @class */ (function () {
     };
     UqMan.prototype.cacheTuids = function (defer) {
         this.tuidsCache.cacheTuids(defer);
+    };
+    UqMan.prototype.newEnum = function (name, id) {
+        var enm = this.enums[name];
+        if (enm !== undefined)
+            return enm;
+        enm = this.enums[name] = new UqEnum(this, name, id);
+        this.enumArr.push(enm);
+        return enm;
     };
     UqMan.prototype.newAction = function (name, id) {
         var action = this.actions[name];
@@ -361,6 +407,9 @@ var UqMan = /** @class */ (function () {
                 break;
             case 'tag':
                 this.newTag(name, id);
+                break;
+            case 'enum':
+                this.newEnum(name, id);
                 break;
         }
     };

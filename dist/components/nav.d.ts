@@ -26,7 +26,6 @@ export interface NavViewState {
 }
 export declare class NavView extends React.Component<Props, NavViewState> {
     private stack;
-    private htmlTitle;
     private waitCount;
     private waitTimeHandler?;
     constructor(props: Props);
@@ -91,6 +90,7 @@ export declare class Nav {
     private windowOnClick;
     private windowOnMouseMove;
     private windowOnScroll;
+    forceDevelopment: boolean;
     init(): Promise<void>;
     start(): Promise<void>;
     resolveRoute(): void;

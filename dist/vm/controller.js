@@ -149,30 +149,38 @@ var Controller = /** @class */ (function () {
     };
     Controller.prototype.openVPage = function (vp, param, afterBack) {
         return __awaiter(this, void 0, void 0, function () {
+            var ret;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (new vp(this)).open(param, afterBack)];
+                    case 0:
+                        ret = new vp(this);
+                        return [4 /*yield*/, ret.open(param, afterBack)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [2 /*return*/, ret];
                 }
             });
         });
     };
     Controller.prototype.replaceVPage = function (vp, param, afterBack) {
         return __awaiter(this, void 0, void 0, function () {
+            var ret;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (new vp(this)).replaceOpen(param, afterBack)];
+                    case 0:
+                        ret = new vp(this);
+                        return [4 /*yield*/, ret.replaceOpen(param, afterBack)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [2 /*return*/, ret];
                 }
             });
         });
     };
     Controller.prototype.renderView = function (view, param) {
-        return (new view(this)).render(param);
+        var ret = new view(this);
+        ret.render(param);
+        return ret;
     };
     Controller.prototype.event = function (type, value) {
         return __awaiter(this, void 0, void 0, function () {

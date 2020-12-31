@@ -22,6 +22,7 @@ export declare abstract class Entity {
     private fieldMaps;
     fieldMap(arr?: string): FieldMap;
     loadSchema(): Promise<void>;
+    buildSchema(schema: any): void;
     protected loadValues(): Promise<any>;
     clearSchema(): void;
     setSchema(schema: any): void;
@@ -31,7 +32,7 @@ export declare abstract class Entity {
     tuidFromName(fieldName: string, arrName?: string): Tuid;
     buildParams(params: any): any;
     private buildFieldsParams;
-    buildDateTimeParam(val: any): number | "";
+    buildDateTimeParam(val: any): number;
     buildDateParam(val: any): string;
     pack(data: any): string;
     private escape;

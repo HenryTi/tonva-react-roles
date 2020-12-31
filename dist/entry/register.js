@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -54,45 +54,6 @@ import { userApi } from '../net';
 import '../css/va-form.css';
 import { registerRes } from '../res';
 import { tonvaTop, getSender } from './tools';
-/*
-class AccountInput extends TextWidget {
-    @observable private buttonDisabled: boolean = true;
-    private onClick = () => {
-        let {onButtonClick} = this.context.form.props;
-        if (onButtonClick === undefined) return;
-        onButtonClick(this.name, this.context);
-    }
-    protected onChange(evt: React.ChangeEvent<any>) {
-        this.buttonDisabled = (evt.target.value.trim().length === 0);
-    }
-    render() {
-        return <>
-            <div className="input-group">
-                <input ref={input=>this.input = input}
-                            className="form-control"
-                            type={this.inputType}
-                            defaultValue={this.value}
-                            onChange={(evt: React.ChangeEvent<any>) => this.onChange(evt)}
-                            placeholder='手机号/邮箱'
-                            readOnly={this.readOnly}
-                            disabled={this.disabled}
-                            onKeyDown = {this.onKeyDown}
-                            onFocus = {(evt: React.FocusEvent<any>) => this.onFocus(evt)}
-                            onBlur={(evt: React.FocusEvent<any>) => this.onBlur(evt)}
-                            maxLength={(this.itemSchema as StringSchema).maxLength} />
-                <div className="input-group-append">
-                    <button className="btn btn-sm btn-outline-primary"
-                        type="button" disabled={this.buttonDisabled}
-                        onClick={this.onClick}>
-                        <small>发送验证码</small>
-                    </button>
-                </div>
-            </div>
-            {this.renderErrors()}
-        </>;
-    }
-}
-*/
 var RegisterController = /** @class */ (function (_super) {
     __extends(RegisterController, _super);
     function RegisterController() {

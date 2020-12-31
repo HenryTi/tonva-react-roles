@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -63,6 +63,13 @@ export function logoutApis() {
     logoutUnitxApis();
     logoutUqTokens();
 }
+/*
+interface UqLocals {
+    user: number;
+    unit: number;
+    uqs: {[uq:string]: UqLocal};
+}
+*/
 /*
 const uqLocalEntities = 'uqLocalEntities';
 class CacheUqLocals {
@@ -266,6 +273,16 @@ var UqApi = /** @class */ (function (_super) {
         return await localUqs.checkAccess(this);
     }
     */
+    UqApi.prototype.allSchemas = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('all-schemas')];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     UqApi.prototype.schema = function (name) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { nav, mobileRegex, emailRegex } from '../components';
-var logo = require('../img/logo.svg');
+import logo from '../img/logo.svg';
 export function tonvaTop() {
     return nav.loginTop(React.createElement("div", { className: "d-flex align-items-center position-relative" },
         React.createElement("img", { className: "App-logo h-3c position-absolute", src: logo, alt: "img" }),

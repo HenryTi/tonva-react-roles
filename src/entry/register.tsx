@@ -14,45 +14,7 @@ export interface Values {
     mobile?: string;
     email?: string;
 }
-/*
-class AccountInput extends TextWidget {
-    @observable private buttonDisabled: boolean = true;
-    private onClick = () => {
-        let {onButtonClick} = this.context.form.props;
-        if (onButtonClick === undefined) return;
-        onButtonClick(this.name, this.context);
-    }
-    protected onChange(evt: React.ChangeEvent<any>) {
-        this.buttonDisabled = (evt.target.value.trim().length === 0);
-    }
-    render() {
-        return <>
-            <div className="input-group">
-                <input ref={input=>this.input = input}
-                            className="form-control"
-                            type={this.inputType}
-                            defaultValue={this.value}
-                            onChange={(evt: React.ChangeEvent<any>) => this.onChange(evt)}
-                            placeholder='手机号/邮箱'
-                            readOnly={this.readOnly}
-                            disabled={this.disabled}
-                            onKeyDown = {this.onKeyDown}
-                            onFocus = {(evt: React.FocusEvent<any>) => this.onFocus(evt)}
-                            onBlur={(evt: React.FocusEvent<any>) => this.onBlur(evt)}
-                            maxLength={(this.itemSchema as StringSchema).maxLength} />
-                <div className="input-group-append">
-                    <button className="btn btn-sm btn-outline-primary"
-                        type="button" disabled={this.buttonDisabled}
-                        onClick={this.onClick}>
-                        <small>发送验证码</small>
-                    </button>
-                </div>
-            </div>
-            {this.renderErrors()}
-        </>;
-    }
-}
-*/
+
 export class RegisterController extends Controller {
     account: string;
     type:'mobile'|'email';

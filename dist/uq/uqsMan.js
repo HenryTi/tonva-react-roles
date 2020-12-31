@@ -191,20 +191,16 @@ var UQsMan = /** @class */ (function () {
             //let n = uqMan.name;
             var uqName = uqMan.uqName;
             var l = uqName.toLowerCase();
+            var uqKey = uqName.split(/[-._]/).join('').toLowerCase();
             var entities = uqMan.entities;
             var keys = Object.keys(entities);
             for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
                 var key = keys_1[_i];
                 var entity = entities[key];
                 var name_1 = entity.name;
-                //if (name !== sName) 
-                //entities[sName] = entity;
                 entities[name_1.toLowerCase()] = entity;
             }
-            //uqs[i] = entities;
-            //uqs[uqName] = entities;
-            //if (l !== uqName) 
-            uqs[l] = new Proxy(entities, {
+            var proxy = uqs[l] = new Proxy(entities, {
                 get: function (target, key, receiver) {
                     var lk = key.toLowerCase();
                     var ret = target[lk];
@@ -217,6 +213,8 @@ var UQsMan = /** @class */ (function () {
                     return undefined;
                 }
             });
+            if (uqKey !== l)
+                uqs[uqKey] = proxy;
         };
         var this_1 = this;
         for (var i in this.collection) {
@@ -241,6 +239,9 @@ var UQsMan = /** @class */ (function () {
                 return undefined;
             },
         });
+    };
+    UQsMan.prototype.getUqCollection = function () {
+        return this.collection;
     };
     UQsMan.prototype.showReload = function (msg) {
         this.localMap.removeAll();

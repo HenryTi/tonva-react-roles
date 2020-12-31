@@ -62,7 +62,6 @@ export interface NavViewState {
 
 export class NavView extends React.Component<Props, NavViewState> {
     private stack: StackItem[];
-    private htmlTitle: string;
     private waitCount: number = 0;
     private waitTimeHandler?: NodeJS.Timer;
 
@@ -359,7 +358,7 @@ export class NavView extends React.Component<Props, NavViewState> {
         let test = nav.testing===true && 
 			<span className="cursor-pointer position-fixed" style={{top:0,left:'0.2rem',zIndex:90001}}>
                 <FA className="text-warning" name="info-circle" />
-            </span>;
+			</span>;
         return <>
 			{stack.map((item, index) => {
 				let {key, view} = item;
@@ -370,7 +369,7 @@ export class NavView extends React.Component<Props, NavViewState> {
 			{elWait}
 			{elError}
 			{test}
-        </>;
+		</>;
     }
 
     private refresh() {
@@ -535,9 +534,14 @@ export class Nav {
     private windowOnScroll = (ev: Event) => {
         console.log('scroll event');
 	}
+
+	forceDevelopment:boolean;
 	
 	async init() {
 		this.testing = env.testing;
+		if (this.forceDevelopment === true) {
+			env.isDevelopment = true;
+		}
 		await host.start(this.testing);
 		let hash = document.location.hash;
 		if (hash !== undefined && hash.length > 0) {
@@ -596,6 +600,7 @@ export class Nav {
             }
             //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
 			nav.clear();
+			nav.onSysNavRoutes();
 			this.startWait();
             
             let user: User = this.local.user.get();

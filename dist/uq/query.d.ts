@@ -17,7 +17,7 @@ export declare class QueryPager<T extends any> extends PageItems<T> {
     protected getPageId(item: T): any;
     refreshItems(item: T): Promise<void>;
 }
-export declare class Query extends Entity {
+export declare class UqQuery<P, R> extends Entity {
     get typeName(): string;
     private pageStart;
     private pageSize;
@@ -32,12 +32,12 @@ export declare class Query extends Entity {
     get hasMore(): boolean;
     loadPage(): Promise<void>;
     protected pageCaller(params: any, showWaiting?: boolean): QueryPageCaller;
-    page(params: any, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<{
-        [name: string]: any[];
-    }>;
-    protected queryCaller(params: any, showWaiting?: boolean): QueryQueryCaller;
-    query(params: any, showWaiting?: boolean): Promise<any>;
-    table(params: any, showWaiting?: boolean): Promise<any[]>;
-    obj(params: any, showWaiting?: boolean): Promise<any>;
-    scalar(params: any, showWaiting?: boolean): Promise<any>;
+    page(params: P, pageStart: any, pageSize: number, showWaiting?: boolean): Promise<R>;
+    protected queryCaller(params: P, showWaiting?: boolean): QueryQueryCaller;
+    query(params: P, showWaiting?: boolean): Promise<R>;
+    table(params: P, showWaiting?: boolean): Promise<any[]>;
+    obj(params: P, showWaiting?: boolean): Promise<any>;
+    scalar(params: P, showWaiting?: boolean): Promise<any>;
+}
+export declare class Query extends UqQuery<any, any> {
 }

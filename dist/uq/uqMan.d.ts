@@ -12,8 +12,9 @@ import { CreateBoxId } from './tuid';
 import { LocalMap, LocalCache } from '../tool';
 import { UQsMan } from './uqsMan';
 import { Tag } from './tag/tag';
+import { UqEnum } from './enum';
 export declare type FieldType = 'id' | 'tinyint' | 'smallint' | 'int' | 'bigint' | 'dec' | 'char' | 'text' | 'datetime' | 'date' | 'time' | 'timestamp';
-export declare function fieldDefaultValue(type: FieldType): 0 | "" | "2000-1-1" | "0:00";
+export declare function fieldDefaultValue(type: FieldType): "" | 0 | "2000-1-1" | "0:00";
 export interface Field {
     name: string;
     type: FieldType;
@@ -42,6 +43,7 @@ export interface TuidModify {
     seconds: number;
 }
 export declare class UqMan {
+    private readonly enums;
     private readonly actions;
     private readonly sheets;
     private readonly queries;
@@ -83,6 +85,7 @@ export declare class UqMan {
     sheetFromTypeId(typeId: number): Sheet;
     readonly tuidArr: Tuid[];
     readonly actionArr: Action[];
+    readonly enumArr: UqEnum[];
     readonly sheetArr: Sheet[];
     readonly queryArr: Query[];
     readonly bookArr: Book[];
@@ -95,9 +98,11 @@ export declare class UqMan {
     buildEntities(entities: any): void;
     private buildTuids;
     loadEntitySchema(entityName: string): Promise<any>;
+    loadAllSchemas(): Promise<void>;
     getTuid(name: string): Tuid;
     private buildAccess;
     cacheTuids(defer: number): void;
+    newEnum(name: string, id: number): UqEnum;
     newAction(name: string, id: number): Action;
     private newTuid;
     newQuery(name: string, id: number): Query;

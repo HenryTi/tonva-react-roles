@@ -11,7 +11,7 @@ export interface TuidNOResult {
     date: string;
     no: number;
 }
-export declare abstract class Tuid extends Entity {
+export declare abstract class UqTuid<M> extends Entity {
     protected noCache: boolean;
     readonly typeName: string;
     protected idName: string;
@@ -39,17 +39,19 @@ export declare abstract class Tuid extends Entity {
     isImport: boolean;
     abstract get hasDiv(): boolean;
     abstract div(name: string): TuidDiv;
-    abstract loadMain(id: number | BoxId): Promise<any>;
-    abstract load(id: number | BoxId): Promise<any>;
-    abstract all(): Promise<any[]>;
-    abstract save(id: number, props: any): Promise<TuidSaveResult>;
+    abstract loadMain(id: number | BoxId): Promise<M>;
+    abstract load(id: number | BoxId): Promise<M>;
+    abstract all(): Promise<M[]>;
+    abstract save(id: number, props: M): Promise<TuidSaveResult>;
     abstract saveProp(id: number, prop: string, value: any): Promise<void>;
-    abstract search(key: string, pageStart: string | number, pageSize: number): Promise<any>;
+    abstract search(key: string, pageStart: string | number, pageSize: number): Promise<M[]>;
     abstract searchArr(owner: number, key: string, pageStart: string | number, pageSize: number): Promise<any>;
     abstract loadArr(arr: string, owner: number, id: number): Promise<any>;
     abstract saveArr(arr: string, owner: number, id: number, props: any): Promise<void>;
     abstract posArr(arr: string, owner: number, id: number, order: number): Promise<void>;
     abstract no(): Promise<TuidNOResult>;
+}
+export declare abstract class Tuid extends UqTuid<any> {
 }
 export declare class TuidInner extends Tuid {
     private divs;

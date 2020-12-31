@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -109,7 +109,6 @@ var CAppBase = /** @class */ (function (_super) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 4, , 5]);
-                        nav.onSysNavRoutes();
                         this.onNavRoutes();
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];

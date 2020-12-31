@@ -2,7 +2,7 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
@@ -51,25 +51,25 @@ import _ from 'lodash';
 import { Entity } from '../entity';
 import { EntityCaller } from '../caller';
 import { IdCache, IdDivCache } from './idCache';
-var Tuid = /** @class */ (function (_super) {
-    __extends(Tuid, _super);
-    function Tuid() {
+var UqTuid = /** @class */ (function (_super) {
+    __extends(UqTuid, _super);
+    function UqTuid() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.typeName = 'tuid';
         _this.isImport = false;
         return _this;
     }
-    Tuid.prototype.setSchema = function (schema) {
+    UqTuid.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         var id = schema.id;
         this.idName = id;
     };
-    Tuid.prototype.buildTuidBox = function () {
+    UqTuid.prototype.buildTuidBox = function () {
         return new TuidBox(this);
     };
-    Tuid.prototype.getIdFromObj = function (obj) { return obj[this.idName]; };
-    Tuid.prototype.stopCache = function () { this.noCache = true; };
-    Tuid.idValue = function (id) {
+    UqTuid.prototype.getIdFromObj = function (obj) { return obj[this.idName]; };
+    UqTuid.prototype.stopCache = function () { this.noCache = true; };
+    UqTuid.idValue = function (id) {
         switch (typeof id) {
             default:
                 debugger;
@@ -78,7 +78,7 @@ var Tuid = /** @class */ (function (_super) {
             case 'number': return id;
         }
     };
-    Tuid.equ = function (id1, id2) {
+    UqTuid.equ = function (id1, id2) {
         if (id1 === undefined || id1 === null)
             return false;
         if (id2 === undefined || id2 === null)
@@ -96,14 +96,22 @@ var Tuid = /** @class */ (function (_super) {
         return id1 === id2;
         */
     };
-    Tuid.prototype.cacheIds = function () { };
-    Tuid.prototype.modifyIds = function (ids) {
+    UqTuid.prototype.cacheIds = function () { };
+    UqTuid.prototype.modifyIds = function (ids) {
         return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
             return [2 /*return*/];
         }); });
     };
-    return Tuid;
+    return UqTuid;
 }(Entity));
+export { UqTuid };
+var Tuid = /** @class */ (function (_super) {
+    __extends(Tuid, _super);
+    function Tuid() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Tuid;
+}(UqTuid));
 export { Tuid };
 var TuidInner = /** @class */ (function (_super) {
     __extends(TuidInner, _super);

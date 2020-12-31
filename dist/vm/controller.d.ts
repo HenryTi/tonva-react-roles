@@ -44,9 +44,9 @@ export declare abstract class Controller {
     protected dispose: () => void;
     protected onDispose(): void;
     isMe(id: any): boolean;
-    protected openVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
-    protected replaceVPage<C extends Controller>(vp: new (controller: C) => VPage<C>, param?: any, afterBack?: (ret: any) => void): Promise<void>;
-    protected renderView<C extends Controller>(view: new (controller: C) => View<C>, param?: any): JSX.Element;
+    protected openVPage<C extends Controller, P extends VPage<C>>(vp: new (controller: C) => P, param?: any, afterBack?: (ret: any) => void): Promise<P>;
+    protected replaceVPage<C extends Controller, P extends VPage<C>>(vp: new (controller: C) => P, param?: any, afterBack?: (ret: any) => void): Promise<P>;
+    protected renderView<C extends Controller, V extends View<C>>(view: new (controller: C) => V, param?: any): V;
     event(type: string, value: any): Promise<void>;
     protected onEvent(type: string, value: any): Promise<void>;
     protected msg(text: string): void;
