@@ -129,12 +129,14 @@ export class NavView extends React.Component<Props, NavViewState> {
         let err = fetchError.error;
         if (err !== undefined) {
             if (err.unauthorized === true) {
-                await nav.showLogin(undefined);
+				await nav.showLogin(undefined);
+				//nav.navigateToLogin();
                 return;
             }
             switch (err.type) {
                 case 'unauthorized':
                     await nav.showLogin(undefined);
+					//nav.navigateToLogin();
                     return;
                 case 'sheet-processing':
                     nav.push(<SystemNotifyPage message="单据正在处理中。请重新操作！" />);
@@ -611,6 +613,7 @@ export class Nav {
                 }
                 else {
                     await nav.showLogin(undefined);
+					//nav.navigateToLogin();
                 }
                 return;
             }
@@ -669,6 +672,19 @@ export class Nav {
 
 	onSysNavRoutes() {
 		this.onNavRoutes(this.sysRoutes);
+	}
+
+	navigateToLogin() {
+		nav.navigate('/login');
+	}
+
+	openSysPage(url: string) {
+		let navPage: NavPage = this.sysRoutes[url];
+		if (navPage === undefined) {
+			alert(url + ' is not defined in sysRoutes');
+			return;
+		}
+		navPage(undefined);
 	}
 
 	private navPageRoutes: {[url:string]: NavPage};

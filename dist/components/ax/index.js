@@ -38,7 +38,7 @@ export var Ax = function (axProps) {
         var naClassName = axProps.naClassName;
         if (!onClick) {
             onClick = function () {
-                nav.navigate(href);
+                nav.openSysPage(href); //.navigate(href);
                 return false;
             };
         }

@@ -48,7 +48,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import * as React from 'react';
-import { nav, Page, Form, resLang } from '../components';
+import { nav, Page, Form, resLang, Ax } from '../components';
 import { Controller, VPage } from '../vm';
 import { userApi } from '../net';
 import '../css/va-form.css';
@@ -87,7 +87,7 @@ var RegisterController = /** @class */ (function (_super) {
     RegisterController.prototype.internalStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.openVPage(AccountPage);
+                this.openVPage(VAccount);
                 return [2 /*return*/];
             });
         });
@@ -223,23 +223,15 @@ var ForgetController = /** @class */ (function (_super) {
     return ForgetController;
 }(RegisterController));
 export { ForgetController };
-var AccountPage = /** @class */ (function (_super) {
-    __extends(AccountPage, _super);
-    function AccountPage() {
+var VAccount = /** @class */ (function (_super) {
+    __extends(VAccount, _super);
+    function VAccount() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.schema = [
             { name: 'user', type: 'string', required: true, maxLength: 100 },
             { name: 'verify', type: 'submit' },
         ];
         _this.res = resLang(registerRes);
-        _this.page = function () {
-            return React.createElement(Page, { header: _this.controller.accountPageCaption },
-                React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
-                    tonvaTop(),
-                    React.createElement("div", { className: "h-3c" }),
-                    React.createElement(Form, { schema: _this.schema, uiSchema: _this.uiSchema, onButtonClick: _this.onSubmit, onEnter: _this.onEnter, requiredFlag: false }),
-                    nav.privacyEntry()));
-        };
         _this.onSubmit = function (name, context) { return __awaiter(_this, void 0, void 0, function () {
             var user, value, sender, type, ret;
             return __generator(this, function (_a) {
@@ -284,25 +276,31 @@ var AccountPage = /** @class */ (function (_super) {
         }); };
         return _this;
     }
-    AccountPage.prototype.open = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.uiSchema = {
-                    items: {
-                        user: {
-                            widget: 'text',
-                            label: this.controller.accountLabel,
-                            placeholder: '手机号或邮箱',
-                        },
-                        verify: { widget: 'button', className: 'btn btn-primary btn-block mt-3', label: '发送验证码' },
-                    }
-                };
-                this.openPage(this.page);
-                return [2 /*return*/];
-            });
-        });
+    VAccount.prototype.init = function () {
+        this.uiSchema = {
+            items: {
+                user: {
+                    widget: 'text',
+                    label: this.controller.accountLabel,
+                    placeholder: '手机号或邮箱',
+                },
+                verify: { widget: 'button', className: 'btn btn-primary btn-block mt-3', label: '发送验证码' },
+            }
+        };
     };
-    return AccountPage;
+    VAccount.prototype.header = function () { return this.controller.accountPageCaption; };
+    VAccount.prototype.footer = function () {
+        return React.createElement(Ax, { href: "/login" }, "\u767B\u5F55");
+    };
+    VAccount.prototype.content = function () {
+        return React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
+            tonvaTop(),
+            React.createElement("div", { className: "h-3c" }),
+            React.createElement(Ax, { href: "/login" }, "\u767B\u5F55"),
+            React.createElement(Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
+            nav.privacyEntry());
+    };
+    return VAccount;
 }(VPage));
 var VerifyPage = /** @class */ (function (_super) {
     __extends(VerifyPage, _super);

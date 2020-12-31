@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, NumSchema} from '../components';
+import {nav, Page, Schema, UiSchema, UiTextItem, UiPasswordItem, UiButton, Form, Context, resLang, StringSchema, NumSchema, Ax} from '../components';
 import { Controller, VPage } from '../vm';
 import { userApi, RegisterParameter } from '../net';
 import '../css/va-form.css';
@@ -29,7 +29,7 @@ export class RegisterController extends Controller {
     successText = '注册成功';
 
     protected async internalStart() {
-        this.openVPage(AccountPage);
+        this.openVPage(VAccount);
     }
 
     toVerify(account:string) {
@@ -140,7 +140,7 @@ export class ForgetController extends RegisterController {
     }
 }
 
-class AccountPage extends VPage<RegisterController> {
+class VAccount extends VPage<RegisterController> {
     private schema: Schema = [
         {name: 'user', type: 'string', required: true, maxLength: 100} as StringSchema,
         {name: 'verify', type: 'submit'},
@@ -148,7 +148,8 @@ class AccountPage extends VPage<RegisterController> {
     private uiSchema: UiSchema;
 
     protected res: RegisterRes = resLang(registerRes);
-    async open() {
+	
+	init() {
         this.uiSchema = {
             items: {
                 user: {
@@ -159,23 +160,25 @@ class AccountPage extends VPage<RegisterController> {
                 verify: {widget: 'button', className: 'btn btn-primary btn-block mt-3', label: '发送验证码'} as UiButton,
             }
         }
-                
-            this.openPage(this.page);
-    }
+	}
 
-    private page = ():JSX.Element => {
-        return <Page header={this.controller.accountPageCaption}>
-            <div className="w-max-20c my-5 py-5"
+	header() {return this.controller.accountPageCaption;}
+	footer() {
+		return <Ax href="/login">登录</Ax>;
+	}
+
+    content():JSX.Element {
+        return <div className="w-max-20c my-5 py-5"
                 style={{marginLeft:'auto', marginRight:'auto'}}>
-                {tonvaTop()}
-                <div className="h-3c" />
-                <Form schema={this.schema} uiSchema={this.uiSchema} 
-                    onButtonClick={this.onSubmit}
-                    onEnter={this.onEnter} 
-                    requiredFlag={false} />
-                {nav.privacyEntry()}
-            </div>
-        </Page>;
+			{tonvaTop()}
+			<div className="h-3c" />
+			<Ax href="/login">登录</Ax>
+			<Form schema={this.schema} uiSchema={this.uiSchema} 
+				onButtonClick={this.onSubmit}
+				onEnter={this.onEnter} 
+				requiredFlag={false} />
+			{nav.privacyEntry()}
+		</div>;
     }
 
     private onSubmit = async (name:string, context:Context):Promise<string> => {

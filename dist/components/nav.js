@@ -232,6 +232,7 @@ var NavView = /** @class */ (function (_super) {
                         return [4 /*yield*/, nav.showLogin(undefined)];
                     case 1:
                         _b.sent();
+                        //nav.navigateToLogin();
                         return [2 /*return*/];
                     case 2:
                         _a = err.type;
@@ -243,6 +244,7 @@ var NavView = /** @class */ (function (_super) {
                     case 3: return [4 /*yield*/, nav.showLogin(undefined)];
                     case 4:
                         _b.sent();
+                        //nav.navigateToLogin();
                         return [2 /*return*/];
                     case 5:
                         nav.push(React.createElement(SystemNotifyPage, { message: "\u5355\u636E\u6B63\u5728\u5904\u7406\u4E2D\u3002\u8BF7\u91CD\u65B0\u64CD\u4F5C\uFF01" }));
@@ -905,6 +907,17 @@ var Nav = /** @class */ (function () {
     };
     Nav.prototype.onSysNavRoutes = function () {
         this.onNavRoutes(this.sysRoutes);
+    };
+    Nav.prototype.navigateToLogin = function () {
+        nav.navigate('/login');
+    };
+    Nav.prototype.openSysPage = function (url) {
+        var navPage = this.sysRoutes[url];
+        if (navPage === undefined) {
+            alert(url + ' is not defined in sysRoutes');
+            return;
+        }
+        navPage(undefined);
     };
     Nav.prototype.routeFromNavPage = function (navPage) {
         var _this = this;

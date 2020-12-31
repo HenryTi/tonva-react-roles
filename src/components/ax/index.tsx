@@ -38,7 +38,7 @@ export const Ax = (axProps: AxProps) => {
 		let {naClassName} = axProps;
 		if (!onClick) {
 			onClick = () => {
-				nav.navigate(href);
+				nav.openSysPage(href); //.navigate(href);
 				return false;
 			}
 		}

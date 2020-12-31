@@ -106,6 +106,8 @@ export declare class Nav {
     private navForget;
     private sysRoutes;
     onSysNavRoutes(): void;
+    navigateToLogin(): void;
+    openSysPage(url: string): void;
     private navPageRoutes;
     private routeFromNavPage;
     onNavRoute(navPage: NavPage): void;
