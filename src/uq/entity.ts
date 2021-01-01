@@ -359,18 +359,16 @@ export abstract class Entity {
     }
 
 	unpackReturns(data:string, returns?:ArrFields[]):{[name:string]:any[]} {
-		{
-			if (data === undefined) debugger;
-			let ret = {} as any;
-			let p = 0;
-			let arrs = returns || this.returns;
-			if (arrs !== undefined) {
-				for (let arr of arrs) {
-					p = this.unpackArr(ret, arr, data, p);
-				}
+		if (data === undefined) debugger;
+		let ret = {} as any;
+		let p = 0;
+		let arrs = returns || this.returns;
+		if (arrs !== undefined) {
+			for (let arr of arrs) {
+				p = this.unpackArr(ret, arr, data, p);
 			}
-			return ret;
 		}
+		return ret;
 	}
 
     protected unpackRow(ret:any, fields:Field[], data:string, p:number):number {
