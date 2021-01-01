@@ -304,6 +304,19 @@ var SaveCaller = /** @class */ (function (_super) {
             data: this.entity.pack(data)
         };
     };
+    SaveCaller.prototype.xresult = function (res) {
+        var verify = this.entity.verify;
+        if (verify === undefined)
+            return res;
+        var resVerify = res.verify;
+        if (resVerify === undefined || resVerify.length === 0) {
+            res.verify = undefined;
+            return res;
+        }
+        var returns = verify.returns;
+        res.verify = this.entity.unpackReturns(resVerify, returns);
+        return res;
+    };
     return SaveCaller;
 }(SheetCaller));
 var SaveDirectCaller = /** @class */ (function (_super) {

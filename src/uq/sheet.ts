@@ -1,7 +1,7 @@
 import { Entity } from './entity';
 import { PageItems } from '../tool/pageItems';
 import { EntityCaller } from './caller';
-import { Field } from './uqMan';
+import { ArrFields, Field } from './uqMan';
 
 export interface SheetState {
     name: string;
@@ -21,7 +21,7 @@ export interface SheetSaveReturnV<V> {
 	id: number;
 	flow: number;
 	state: string;
-	error: V[];
+	verify: V[];
 }
 
 export interface SheetSaveReturn extends SheetSaveReturnV<any> {
@@ -30,7 +30,7 @@ export interface SheetSaveReturn extends SheetSaveReturnV<any> {
 export class UqSheet<M, V> extends Entity {
     get typeName(): string { return 'sheet';}
 	states: SheetState[];
-	verify: {returns: Field[]};
+	verify: {returns: ArrFields[]};
 
     /*
     setStates(states: SheetState[]) {
@@ -182,6 +182,18 @@ class SaveCaller extends SheetCaller<{app:number; discription:string; data:any}>
             discription: discription,
             data: this.entity.pack(data)
         };
+    }
+    xresult(res:any):any {
+		let {verify} = this.entity;
+		if (verify === undefined) return res;
+		let resVerify = res.verify;
+		if (resVerify === undefined || resVerify.length === 0) {
+			res.verify = undefined;
+			return res;
+		}
+		let {returns} = verify;
+		res.verify = this.entity.unpackReturns(resVerify, returns);
+        return res;
     }
 }
 

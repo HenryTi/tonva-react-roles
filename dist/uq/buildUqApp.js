@@ -493,8 +493,14 @@ function buildSheetInterface(sheet) {
     if (verify) {
         var returns = verify.returns;
         ts += "\nexport interface Verify" + capitalCaseString(sName) + " {";
-        ts += buildFields(returns);
-        ts += '}';
+        for (var _i = 0, returns_3 = returns; _i < returns_3.length; _i++) {
+            var item = returns_3[_i];
+            var arrName = item.name, fields_2 = item.fields;
+            ts += '\n\t' + arrName + ': {';
+            ts += buildFields(fields_2, 2);
+            ts += '\n\t}[];';
+        }
+        ts += '\n}';
     }
     return ts;
 }

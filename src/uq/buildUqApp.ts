@@ -511,11 +511,16 @@ function buildSheetInterface(sheet: Sheet) {
 	ts += buildArrs(arrFields);
 	ts += '}';
 
-	if (verify) {		
+	if (verify) {
 		let {returns} = verify;
 		ts += `\nexport interface Verify${capitalCaseString(sName)} {`;
-		ts += buildFields(returns);
-		ts += '}';
+		for (let item of returns) {
+			let {name:arrName, fields} = item;
+			ts += '\n\t' + arrName + ': {';
+			ts += buildFields(fields, 2);
+			ts += '\n\t}[];';
+		}
+		ts += '\n}';
 	}
 	return ts;
 }

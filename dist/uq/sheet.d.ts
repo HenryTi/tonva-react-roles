@@ -1,6 +1,6 @@
 import { Entity } from './entity';
 import { PageItems } from '../tool/pageItems';
-import { Field } from './uqMan';
+import { ArrFields } from './uqMan';
 export interface SheetState {
     name: string;
     actions: SheetAction[];
@@ -16,7 +16,7 @@ export interface SheetSaveReturnV<V> {
     id: number;
     flow: number;
     state: string;
-    error: V[];
+    verify: V[];
 }
 export interface SheetSaveReturn extends SheetSaveReturnV<any> {
 }
@@ -24,7 +24,7 @@ export declare class UqSheet<M, V> extends Entity {
     get typeName(): string;
     states: SheetState[];
     verify: {
-        returns: Field[];
+        returns: ArrFields[];
     };
     setSchema(schema: any): void;
     build(obj: any): void;

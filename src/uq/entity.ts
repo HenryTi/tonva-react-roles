@@ -358,22 +358,20 @@ export abstract class Entity {
         return ret;
     }
 
-    unpackReturns(data:string):{[name:string]:any[]} {
-        if (data === undefined) debugger;
-        let ret = {} as any;
-        //if (schema === undefined || data === undefined) return;
-        //let fields = schema.fields;
-        let p = 0;
-        //if (fields !== undefined) p = unpackRow(ret, schema.fields, data, p);
-        let arrs = this.returns; //schema['returns'];
-        if (arrs !== undefined) {
-            for (let arr of arrs) {
-                //let creater = this.newRet[arr.name];
-                p = this.unpackArr(ret, arr, data, p);
-            }
-        }
-        return ret;
-    }
+	unpackReturns(data:string, returns?:ArrFields[]):{[name:string]:any[]} {
+		{
+			if (data === undefined) debugger;
+			let ret = {} as any;
+			let p = 0;
+			let arrs = returns || this.returns;
+			if (arrs !== undefined) {
+				for (let arr of arrs) {
+					p = this.unpackArr(ret, arr, data, p);
+				}
+			}
+			return ret;
+		}
+	}
 
     protected unpackRow(ret:any, fields:Field[], data:string, p:number):number {
         let ch0 = 0, ch = 0, c = p, i = 0, len = data.length, fLen = fields.length;
