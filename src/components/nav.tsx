@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {observable} from 'mobx';
-import marked from 'marked';
 import _ from 'lodash';
 import {User, Guest/*, UserInNav*/} from '../tool/user';
 import {Page} from './page/page';
@@ -835,14 +834,15 @@ export class Nav {
         }
     }
 
-    private privacyPage = async (privacy:string) => {
-        let html = await this.getPrivacy(privacy);
-        let content = {__html: marked(html)};
+    private privacyPage = async (htmlString: string) => {
+        //let html = await this.getPrivacy(privacy);
+		//let content = {__html: marked(html)};
+		let content = {__html: htmlString};
         nav.push(<Page header="隐私政策">
             <div className="p-3" dangerouslySetInnerHTML={content} />
         </Page>);
     }
-
+/*
     private async getPrivacy(privacy:string):Promise<string> {
         const headers = new  Headers({
             "Content-Type":'text/plain'
@@ -866,7 +866,7 @@ export class Nav {
         }
         return privacy;
     }
-
+*/
     async showLogin(callback?: (user:User)=>Promise<void>, withBack?:boolean) {
         let lv = await import('../entry/login');
         let loginView = React.createElement(

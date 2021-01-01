@@ -66,7 +66,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import * as React from 'react';
 import { observable } from 'mobx';
-import marked from 'marked';
 import _ from 'lodash';
 import { Page } from './page/page';
 import { netToken } from '../net/netToken';
@@ -541,18 +540,13 @@ var Nav = /** @class */ (function () {
                     React.createElement("div", { className: "p-3" }, "AppConfig \u4E2D\u6CA1\u6709\u5B9A\u4E49 privacy\u3002\u53EF\u4EE5\u5B9A\u4E49\u4E3A\u5B57\u7B26\u4E32\uFF0C\u6216\u8005url\u3002markdown\u683C\u5F0F")));
             }
         };
-        this.privacyPage = function (privacy) { return __awaiter(_this, void 0, void 0, function () {
-            var html, content;
+        this.privacyPage = function (htmlString) { return __awaiter(_this, void 0, void 0, function () {
+            var content;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getPrivacy(privacy)];
-                    case 1:
-                        html = _a.sent();
-                        content = { __html: marked(html) };
-                        nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
-                            React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
-                        return [2 /*return*/];
-                }
+                content = { __html: htmlString };
+                nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
+                    React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
+                return [2 /*return*/];
             });
         }); };
         this.reload = function () { return __awaiter(_this, void 0, void 0, function () {
@@ -1081,40 +1075,31 @@ var Nav = /** @class */ (function () {
         var privacy = this.navSettings.privacy;
         return privacy;
     };
-    Nav.prototype.getPrivacy = function (privacy) {
-        return __awaiter(this, void 0, void 0, function () {
-            var headers, pos, http, res, text, err_3;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        headers = new Headers({
-                            "Content-Type": 'text/plain'
+    /*
+        private async getPrivacy(privacy:string):Promise<string> {
+            const headers = new  Headers({
+                "Content-Type":'text/plain'
+           })
+            let pos = privacy.indexOf('://');
+            if (pos > 0) {
+                let http = privacy.substring(0, pos).toLowerCase();
+                if (http === 'http' || http === 'https') {
+                    try {
+                        let res = await fetch(privacy, {
+                            method:'GET',
+                            headers: headers,
                         });
-                        pos = privacy.indexOf('://');
-                        if (!(pos > 0)) return [3 /*break*/, 5];
-                        http = privacy.substring(0, pos).toLowerCase();
-                        if (!(http === 'http' || http === 'https')) return [3 /*break*/, 5];
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 4, , 5]);
-                        return [4 /*yield*/, fetch(privacy, {
-                                method: 'GET',
-                                headers: headers,
-                            })];
-                    case 2:
-                        res = _a.sent();
-                        return [4 /*yield*/, res.text()];
-                    case 3:
-                        text = _a.sent();
-                        return [2 /*return*/, text];
-                    case 4:
-                        err_3 = _a.sent();
-                        return [2 /*return*/, err_3.message];
-                    case 5: return [2 /*return*/, privacy];
+                        let text = await res.text();
+                        return text;
+                    }
+                    catch (err) {
+                        return err.message;
+                    }
                 }
-            });
-        });
-    };
+            }
+            return privacy;
+        }
+    */
     Nav.prototype.showLogin = function (callback, withBack) {
         return __awaiter(this, void 0, void 0, function () {
             var lv, loginView;

@@ -551,11 +551,6 @@
         "signature": "c491e7f2d9261f84d648ef1096d577e4317ac3dff5df49acc055cd9196de3a88",
         "affectsGlobalScope": true
       },
-      "./node_modules/@types/marked/index.d.ts": {
-        "version": "d2b32e11f2deb40e71fe344f79f67b3f80b79d16e2f788d10f2ff10447acafc4",
-        "signature": "d2b32e11f2deb40e71fe344f79f67b3f80b79d16e2f788d10f2ff10447acafc4",
-        "affectsGlobalScope": false
-      },
       "./node_modules/mobx-react-lite/dist/assertenvironment.d.ts": {
         "version": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
@@ -802,8 +797,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "4bc605299960ce48f60580e9edc20790c39408b004dc150ad521e3b8fae1ca78",
-        "signature": "a96eb1eedfe5e946de73de4822af292338faa0b29a8bb3227cdcbd9627c1efe7",
+        "version": "082f80af86822eafe1221882253b3b9162ae95a7ffa4a971881e81f411c8cf03",
+        "signature": "1443794da06ad3c14a7126d05c6549346967aa9d760b9a255f6efb7f868015b1",
         "affectsGlobalScope": false
       },
       "./src/components/schema/schema.ts": {
@@ -1641,10 +1636,6 @@
         "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/@types/lodash/index.d.ts": [
-        "./node_modules/@types/node/base.d.ts",
-        "./node_modules/@types/node/ts3.2/index.d.ts"
-      ],
-      "./node_modules/@types/marked/index.d.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
@@ -2583,7 +2574,6 @@
       ],
       "./src/components/nav.tsx": [
         "./node_modules/@types/lodash/index.d.ts",
-        "./node_modules/@types/marked/index.d.ts",
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/index.d.ts",
@@ -3520,10 +3510,6 @@
         "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
       "./node_modules/@types/lodash/index.d.ts": [
-        "./node_modules/@types/node/base.d.ts",
-        "./node_modules/@types/node/ts3.2/index.d.ts"
-      ],
-      "./node_modules/@types/marked/index.d.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts"
       ],
@@ -4610,7 +4596,6 @@
       "./node_modules/@types/classnames/index.d.ts",
       "./node_modules/@types/jwt-decode/index.d.ts",
       "./node_modules/@types/lodash/index.d.ts",
-      "./node_modules/@types/marked/index.d.ts",
       "./node_modules/@types/node-fetch/index.d.ts",
       "./node_modules/@types/node/base.d.ts",
       "./node_modules/@types/node/inspector.d.ts",

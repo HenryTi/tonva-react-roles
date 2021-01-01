@@ -134,7 +134,6 @@ export declare class Nav {
     private getPrivacyContent;
     showPrivacyPage: () => void;
     private privacyPage;
-    private getPrivacy;
     showLogin(callback?: (user: User) => Promise<void>, withBack?: boolean): Promise<void>;
     showLogout(callback?: () => Promise<void>): Promise<void>;
     showRegister(): Promise<void>;
