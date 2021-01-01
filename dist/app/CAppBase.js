@@ -58,12 +58,14 @@ var CAppBase = /** @class */ (function (_super) {
     function CAppBase(config) {
         var _this = _super.call(this, undefined) || this;
         _this.appConfig = config || nav.navSettings;
-        var _a = _this.appConfig, appName = _a.appName, noUnit = _a.noUnit;
-        _this.name = appName;
-        if (appName === undefined) {
-            throw new Error('appName like "owner/app" must be defined in MainConfig');
+        if (_this.appConfig) {
+            var _a = _this.appConfig, appName = _a.appName, noUnit = _a.noUnit;
+            _this.name = appName;
+            if (appName === undefined) {
+                throw new Error('appName like "owner/app" must be defined in MainConfig');
+            }
+            _this.noUnit = noUnit;
         }
-        _this.noUnit = noUnit;
         return _this;
     }
     Object.defineProperty(CAppBase.prototype, "uqs", {
@@ -110,11 +112,12 @@ var CAppBase = /** @class */ (function (_super) {
                     case 0:
                         _b.trys.push([0, 4, , 5]);
                         this.onNavRoutes();
+                        if (!this.appConfig)
+                            return [2 /*return*/, true];
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
                         return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
                     case 1:
                         _b.sent();
-                        //}
                         this._uqs = UQsMan._uqs;
                         retErrors = UQsMan.errors;
                         predefinedUnit_1 = appInFrame.predefinedUnit;

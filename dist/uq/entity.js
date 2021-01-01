@@ -438,20 +438,18 @@ var Entity = /** @class */ (function () {
         return ret;
     };
     Entity.prototype.unpackReturns = function (data, returns) {
-        {
-            if (data === undefined)
-                debugger;
-            var ret = {};
-            var p = 0;
-            var arrs = returns || this.returns;
-            if (arrs !== undefined) {
-                for (var _i = 0, arrs_4 = arrs; _i < arrs_4.length; _i++) {
-                    var arr = arrs_4[_i];
-                    p = this.unpackArr(ret, arr, data, p);
-                }
+        if (data === undefined)
+            debugger;
+        var ret = {};
+        var p = 0;
+        var arrs = returns || this.returns;
+        if (arrs !== undefined) {
+            for (var _i = 0, arrs_4 = arrs; _i < arrs_4.length; _i++) {
+                var arr = arrs_4[_i];
+                p = this.unpackArr(ret, arr, data, p);
             }
-            return ret;
         }
+        return ret;
     };
     Entity.prototype.unpackRow = function (ret, fields, data, p) {
         var ch0 = 0, ch = 0, c = p, i = 0, len = data.length, fLen = fields.length;
