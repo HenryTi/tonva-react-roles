@@ -178,9 +178,8 @@ var Controller = /** @class */ (function () {
         });
     };
     Controller.prototype.renderView = function (view, param) {
-        var ret = new view(this);
-        ret.render(param);
-        return ret;
+        var v = new view(this);
+        return v.render(param);
     };
     Controller.prototype.event = function (type, value) {
         return __awaiter(this, void 0, void 0, function () {

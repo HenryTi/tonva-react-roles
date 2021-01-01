@@ -123,10 +123,9 @@ export abstract class Controller {
 		return ret;
     }
 
-    protected renderView<C extends Controller, V extends View<C>>(view: new (controller: C)=>V, param?:any):V {
-		let ret = new view((this as any) as C);
-		ret.render(param);
-		return ret;
+    protected renderView<C extends Controller, V extends View<C>>(view: new (controller: C)=>V, param?:any):JSX.Element {
+		let v = new view((this as any) as C);
+		return v.render(param);
     }
 
     async event(type:string, value:any) {
