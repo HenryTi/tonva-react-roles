@@ -20,6 +20,11 @@ export interface SheetSaveReturnV<V> {
 }
 export interface SheetSaveReturn extends SheetSaveReturnV<any> {
 }
+interface GetSheetReturn<M> {
+    brief: any;
+    data: M;
+    flows: any[];
+}
 export declare class UqSheet<M, V> extends Entity {
     get typeName(): string;
     states: SheetState[];
@@ -34,16 +39,8 @@ export declare class UqSheet<M, V> extends Entity {
     action(id: number, flow: number, state: string, action: string): Promise<any>;
     actionDebugDirect(id: number, flow: number, state: string, action: string): Promise<any>;
     private unpack;
-    getSheet(id: number): Promise<{
-        brief: string;
-        data: M;
-        flows: any[];
-    }>;
-    getArchive(id: number): Promise<{
-        brief: string;
-        data: M;
-        flows: any[];
-    }>;
+    getSheet(id: number): Promise<GetSheetReturn<M>>;
+    getArchive(id: number): Promise<GetSheetReturn<M>>;
     getArchives(pageStart: number, pageSize: number): Promise<any>;
     getStateSheets(state: string, pageStart: number, pageSize: number): Promise<any[]>;
     createPageStateItems<T>(): PageStateItems<T>;
@@ -61,3 +58,4 @@ export declare class PageStateItems<T> extends PageItems<T> {
     }>;
     protected getPageId(item: T): any;
 }
+export {};
