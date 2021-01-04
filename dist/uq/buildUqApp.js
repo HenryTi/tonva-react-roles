@@ -165,12 +165,12 @@ function buildTsVMain() {
 }
 function buildUqsFolder(uqsFolder, options) {
     return __awaiter(this, void 0, void 0, function () {
-        var uqsMan, coll, promiseArr, uqs, i, lowerI, error, _i, uqs_1, uq, tsUqsIndexHeader, tsUqsIndexContent, tsUqsExports, _a, uqs_2, uq, uqOwner, uqName, o1, n1, tsUq;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var uqsMan, coll, promiseArr, uqs, i, lowerI, error, _i, uqs_1, uq, tsUqsIndexHeader, tsUqsIndexContent, tsUqsExports, _a, uqs_2, uq, uqOwner, uqName, o1, n1, tsUq, _b, _c, enm, enmName;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
                 case 0: return [4 /*yield*/, uqAppStart(options)];
                 case 1:
-                    _b.sent();
+                    _d.sent();
                     uqsMan = UQsMan.value;
                     coll = uqsMan.getUqCollection();
                     promiseArr = [];
@@ -191,7 +191,7 @@ function buildUqsFolder(uqsFolder, options) {
                     }
                     return [4 /*yield*/, Promise.all(promiseArr)];
                 case 2:
-                    _b.sent();
+                    _d.sent();
                     if (!fs.existsSync(uqsFolder)) {
                         fs.mkdirSync(uqsFolder);
                     }
@@ -205,9 +205,16 @@ function buildUqsFolder(uqsFolder, options) {
                         n1 = getUqName(uqName);
                         tsUq = buildTsUq(uq);
                         overrideTsFile(uqsFolder, o1 + n1, tsUq);
+                        // as ${o1}${n1}
                         tsUqsIndexHeader += "\nimport { " + o1 + n1 + " } from './" + o1 + n1 + "';";
                         tsUqsIndexContent += "\n\t" + o1 + n1 + ": " + o1 + n1 + ".Uq" + o1 + n1 + ";";
-                        tsUqsExports += "\nexport type {" + o1 + n1 + "} from './" + o1 + n1 + "';";
+                        tsUqsExports += "\nexport {";
+                        for (_b = 0, _c = uq.enumArr; _b < _c.length; _b++) {
+                            enm = _c[_b];
+                            enmName = "" + capitalCaseString(enm.sName);
+                            tsUqsExports += "\n\t" + enmName + " as " + o1 + n1 + enmName + ",";
+                        }
+                        tsUqsExports += "\n} from './" + o1 + n1 + "';";
                     }
                     overrideTsFile(uqsFolder, 'index', tsUqsIndexHeader + tsUqsIndexContent + '\n}' + tsUqsExports + '\n');
                     return [2 /*return*/];
@@ -325,10 +332,11 @@ function loadUqEntities(uq) {
 }
 function buildUQ(uq) {
     var uqOwner = uq.uqOwner, uqName = uq.uqName;
-    var ts = "export namespace " + getUqOwnerName(uqOwner) + getUqName(uqName) + " {";
+    var ts = "";
+    uq.enumArr.forEach(function (v) { return ts += uqEntityInterface(v, buildEnumInterface); });
+    ts += "\nexport declare namespace " + getUqOwnerName(uqOwner) + getUqName(uqName) + " {";
     uq.tuidArr.forEach(function (v) { return ts += uqEntityInterface(v, buildTuidInterface); });
     uq.actionArr.forEach(function (v) { return ts += uqEntityInterface(v, buildActionInterface); });
-    uq.enumArr.forEach(function (v) { return ts += uqEntityInterface(v, buildEnumInterface); });
     uq.sheetArr.forEach(function (v) { return ts += uqEntityInterface(v, buildSheetInterface); });
     uq.queryArr.forEach(function (v) { return ts += uqEntityInterface(v, buildQueryInterface); });
     uq.bookArr.forEach(function (v) { return ts += uqEntityInterface(v, buildBookInterface); });
@@ -445,7 +453,7 @@ function buildEnumInterface(enm) {
     if (!schema)
         return;
     var values = schema.values;
-    var ts = "export enum Uq" + capitalCaseString(enm.sName) + " {";
+    var ts = "export enum " + capitalCaseString(enm.sName) + " {";
     var first = true;
     for (var i in values) {
         if (first === false) {
