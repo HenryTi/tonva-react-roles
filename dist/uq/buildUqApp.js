@@ -157,7 +157,7 @@ function buildTsAppConfig(options) {
             return null;
         return "'" + s + "'";
     }
-    return buildTsHeader() + "\nimport { AppConfig } from \"tonva\";\nimport { appName } from \"./appName\";\n\nexport const appConfig: AppConfig = {\n    appName: appName,\n\tversion: " + toString(version) + ",\n\tnoUnit: " + noUnit + ",\n    tvs: " + JSON.stringify(tvs) + ",\n\toem: " + toString(oem) + ",\n\thtmlTitle: " + toString(htmlTitle) + ",\n};\n";
+    return buildTsHeader() + "\nimport { AppConfig } from \"tonva-react\";\nimport { appName } from \"./appName\";\n\nexport const appConfig: AppConfig = {\n    appName: appName,\n\tversion: " + toString(version) + ",\n\tnoUnit: " + noUnit + ",\n    tvs: " + JSON.stringify(tvs) + ",\n\toem: " + toString(oem) + ",\n\thtmlTitle: " + toString(htmlTitle) + ",\n};\n";
 }
 function buildTsIndex() {
     return buildTsHeader() + "\nexport { appConfig } from './appConfig';\nexport { CUqApp, CUqBase, CUqSub } from './CBase';\nexport { CApp } from './CApp';\nexport * from './uqs';\n";
@@ -232,7 +232,7 @@ function buildUqsFolder(uqsFolder, options) {
 }
 function buildTsUq(uq) {
     var ret = buildTsHeader();
-    ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva";';
+    ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva-react";';
     //for (let uq of uqs) {
     ret += '\n';
     ret += '\n//===============================';

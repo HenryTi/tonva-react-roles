@@ -97,7 +97,7 @@ function buildTsAppConfig(options: UqAppOptions):string {
 		return `'${s}'`;
 	}
 	return `${buildTsHeader()}
-import { AppConfig } from "tonva";
+import { AppConfig } from "tonva-react";
 import { appName } from "./appName";
 
 export const appConfig: AppConfig = {
@@ -234,7 +234,7 @@ async function buildUqsFolder(uqsFolder:string, options: UqAppOptions) {
 
 function buildTsUq(uq: UqMan) {
 	let ret = buildTsHeader();
-	ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva";';
+	ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva-react";';
 
 	//for (let uq of uqs) {
 		ret += '\n';

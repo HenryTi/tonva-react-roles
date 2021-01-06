@@ -537,23 +537,23 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react/global.d.ts": {
-        "version": "2bbdfc5ed049f38787376bb01b7bcfe5299eac853c76c16a3e21ab0279078314",
-        "signature": "2bbdfc5ed049f38787376bb01b7bcfe5299eac853c76c16a3e21ab0279078314",
+        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
         "affectsGlobalScope": true
       },
       "./node_modules/csstype/index.d.ts": {
-        "version": "599c67cf56a35a8a7bee5bcd877dece4cb71553efb763ebf1050c6987acfaefc",
-        "signature": "599c67cf56a35a8a7bee5bcd877dece4cb71553efb763ebf1050c6987acfaefc",
+        "version": "ea58e4cbcf3d760a15f9300978a360c46360f544b355c737b60c733a385b8858",
+        "signature": "ea58e4cbcf3d760a15f9300978a360c46360f544b355c737b60c733a385b8858",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/prop-types/index.d.ts": {
-        "version": "0d6e7a44a6b86683505d6aba8ce4d8b0566c6414300e40e015cafe97538b5106",
-        "signature": "0d6e7a44a6b86683505d6aba8ce4d8b0566c6414300e40e015cafe97538b5106",
+        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react/index.d.ts": {
-        "version": "c491e7f2d9261f84d648ef1096d577e4317ac3dff5df49acc055cd9196de3a88",
-        "signature": "c491e7f2d9261f84d648ef1096d577e4317ac3dff5df49acc055cd9196de3a88",
+        "version": "277e380acf34d4f66398100a66ac29213ea43674f114906f007204f29cc9a8b7",
+        "signature": "277e380acf34d4f66398100a66ac29213ea43674f114906f007204f29cc9a8b7",
         "affectsGlobalScope": true
       },
       "./node_modules/mobx-react-lite/dist/assertenvironment.d.ts": {
@@ -1292,7 +1292,7 @@
         "affectsGlobalScope": false
       },
       "./src/uq/builduqapp.ts": {
-        "version": "99198c435ccbdcc317d5a4d2f22d803136d9342b76b1f5f1f1bc96d8a075fee8",
+        "version": "5e2a02ba8818c2c3d12866078647af51f14093a2699bfc8c8019ac481ac18ac0",
         "signature": "b3aa263046dee6779c418a2adaa441846f1ef94446a2aae89d68cb386e9ff8fe",
         "affectsGlobalScope": false
       },
@@ -1417,8 +1417,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react-dom/index.d.ts": {
-        "version": "66a69dbb56cb094e025c78b4620615e9b8a432487e2c242a955626ce85ebe7de",
-        "signature": "66a69dbb56cb094e025c78b4620615e9b8a432487e2c242a955626ce85ebe7de",
+        "version": "8483a29c17f7feb768a1f4333cf12ccf1e7341bd89dadcf407e012d5315228d0",
+        "signature": "8483a29c17f7feb768a1f4333cf12ccf1e7341bd89dadcf407e012d5315228d0",
         "affectsGlobalScope": false
       }
     },
