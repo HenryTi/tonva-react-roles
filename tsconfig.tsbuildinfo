@@ -511,9 +511,14 @@
         "signature": "6a88429f6b9210c0d6853bc4cd6bc1ee5961a50e99bfa82bd02f1bd3cb486f46",
         "affectsGlobalScope": false
       },
+      "./src/tool/date.ts": {
+        "version": "1845fd6915b430de247c3e7396ecc0749d497b551b482230adbf70b62b08cc85",
+        "signature": "680f7ccff8c8c2ed25f4882c5c6ec17ef4cc324b18fd071ce1f72d7c948ecd2a",
+        "affectsGlobalScope": false
+      },
       "./src/tool/index.ts": {
-        "version": "bf129f69971288ab40e65eda4e87a1900a21ffc4b459fdcc6abaf977fbdaffb9",
-        "signature": "b726f546fea0ed0299700951e7f5c741091dc7660080983cee9e4cac188fc5ab",
+        "version": "8332361107374922e51563a2a1a697a8e4c14cca0b5b9bf9e5a75e20e20691ba",
+        "signature": "3eafc04941c935895a8ff9e1919d04f5fbd9280f8a9db9c130f76024b5e3af4f",
         "affectsGlobalScope": false
       },
       "./src/net/messagehub.ts": {
@@ -1418,32 +1423,34 @@
       }
     },
     "options": {
-      "baseUrl": "./src",
-      "declaration": true,
-      "composite": true,
-      "outDir": "./dist",
-      "rootDir": "./src",
-      "module": 99,
-      "moduleResolution": 2,
-      "allowSyntheticDefaultImports": true,
-      "preserveSymlinks": true,
       "target": 1,
       "lib": [
         "lib.dom.d.ts",
         "lib.dom.iterable.d.ts",
         "lib.esnext.d.ts"
       ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "declaration": true,
+      "composite": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "module": 1,
+      "moduleResolution": 2,
+      "preserveSymlinks": true,
       "sourceMap": true,
-      "jsx": 2,
       "forceConsistentCasingInFileNames": true,
       "noImplicitReturns": false,
       "noImplicitThis": true,
       "noImplicitAny": false,
-      "strictNullChecks": false,
       "suppressImplicitAnyIndexErrors": true,
       "noUnusedLocals": false,
+      "jsx": 2,
+      "strictNullChecks": false,
       "experimentalDecorators": true,
-      "skipLibCheck": true,
+      "baseUrl": "./src",
       "typeRoots": [
         "./node_modules/@types",
         "./src/types"
@@ -3022,6 +3029,10 @@
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/mobx/lib/mobx.d.ts"
       ],
+      "./src/tool/date.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
       "./src/tool/env.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
@@ -3035,6 +3046,7 @@
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./src/tool/cacheids.ts",
+        "./src/tool/date.ts",
         "./src/tool/env.ts",
         "./src/tool/getobjpropignorecase.ts",
         "./src/tool/left0.ts",
@@ -4373,6 +4385,7 @@
       ],
       "./src/tool/index.ts": [
         "./src/tool/cacheids.ts",
+        "./src/tool/date.ts",
         "./src/tool/env.ts",
         "./src/tool/getobjpropignorecase.ts",
         "./src/tool/left0.ts",
@@ -4792,6 +4805,7 @@
       "./src/res/listres.ts",
       "./src/res/res.ts",
       "./src/tool/cacheids.ts",
+      "./src/tool/date.ts",
       "./src/tool/env.ts",
       "./src/tool/getobjpropignorecase.ts",
       "./src/tool/index.ts",

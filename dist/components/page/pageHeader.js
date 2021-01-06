@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,15 +67,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { nav } from '../nav';
-export function renderPageHeader(props, inWebNav) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageHeader = exports.renderPageHeader = void 0;
+var React = __importStar(require("react"));
+var nav_1 = require("../nav");
+function renderPageHeader(props, inWebNav) {
     var _this = this;
     var onBack = function () { return __awaiter(_this, void 0, void 0, function () {
         var afterBack;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, nav.back()];
+                case 0: return [4 /*yield*/, nav_1.nav.back()];
                 case 1:
                     _a.sent(); // 这个才会显示confirm box，在dataForm里面，如果输入了数据的话
                     afterBack = props.afterBack;
@@ -77,16 +99,16 @@ export function renderPageHeader(props, inWebNav) {
                     case 1:
                         _a.sent();
                         _a.label = 2;
-                    case 2: return [4 /*yield*/, nav.logout(undefined)];
+                    case 2: return [4 /*yield*/, nav_1.nav.logout(undefined)];
                     case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }
             });
         }); };
-        nav.showLogout(logout);
+        nav_1.nav.showLogout(logout);
     };
-    var b = nav.level > 1 || window.self !== window.top;
+    var b = nav_1.nav.level > 1 || window.self !== window.top;
     var back = props.back, right = props.right, center = props.center, logout = props.logout, className = props.className, ex = props.ex;
     if (inWebNav === true && !back && !right && !center)
         return;
@@ -94,7 +116,7 @@ export function renderPageHeader(props, inWebNav) {
     if (logout !== undefined && window.self === window.top) {
         if ((typeof logout === 'boolean' && logout === true)
             || typeof logout === 'function') {
-            var user = nav.user;
+            var user = nav_1.nav.user;
             if (user !== undefined) {
                 var nick = user.nick, name_1 = user.name;
                 debugLogout = React.createElement("div", { className: "d-flex align-items-center" },
@@ -112,10 +134,10 @@ export function renderPageHeader(props, inWebNav) {
                 break;
             default:
             case 'back':
-                vBack = React.createElement("nav", { onClick: onBack }, nav.backIcon);
+                vBack = React.createElement("nav", { onClick: onBack }, nav_1.nav.backIcon);
                 break;
             case 'close':
-                vBack = React.createElement("nav", { onClick: onBack }, nav.backIcon);
+                vBack = React.createElement("nav", { onClick: onBack }, nav_1.nav.backIcon);
                 break;
         }
     }
@@ -142,6 +164,7 @@ export function renderPageHeader(props, inWebNav) {
         React.createElement("section", { className: "tv-page-header" }, header),
         header);
 }
+exports.renderPageHeader = renderPageHeader;
 var PageHeader = /** @class */ (function (_super) {
     __extends(PageHeader, _super);
     function PageHeader() {
@@ -150,5 +173,5 @@ var PageHeader = /** @class */ (function (_super) {
     PageHeader.prototype.render = function () { return renderPageHeader(this.props); };
     return PageHeader;
 }(React.Component));
-export { PageHeader };
+exports.PageHeader = PageHeader;
 //# sourceMappingURL=pageHeader.js.map

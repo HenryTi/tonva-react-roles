@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Callbacks = void 0;
 var Callbacks = /** @class */ (function () {
     function Callbacks() {
     }
@@ -34,5 +37,5 @@ var Callbacks = /** @class */ (function () {
     };
     return Callbacks;
 }());
-export { Callbacks };
+exports.Callbacks = Callbacks;
 //# sourceMappingURL=callbacks.js.map

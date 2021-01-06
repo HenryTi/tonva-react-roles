@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,8 +12,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Query } from './query';
-import { QueryQueryCaller } from './caller';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BookQueryCaller = exports.Book = void 0;
+var query_1 = require("./query");
+var caller_1 = require("./caller");
 var Book = /** @class */ (function (_super) {
     __extends(Book, _super);
     function Book() {
@@ -29,8 +32,8 @@ var Book = /** @class */ (function (_super) {
         return new BookQueryCaller(this, params);
     };
     return Book;
-}(Query));
-export { Book };
+}(query_1.Query));
+exports.Book = Book;
 var BookQueryCaller = /** @class */ (function (_super) {
     __extends(BookQueryCaller, _super);
     function BookQueryCaller() {
@@ -42,6 +45,6 @@ var BookQueryCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return BookQueryCaller;
-}(QueryQueryCaller));
-export { BookQueryCaller };
+}(caller_1.QueryQueryCaller));
+exports.BookQueryCaller = BookQueryCaller;
 //# sourceMappingURL=book.js.map

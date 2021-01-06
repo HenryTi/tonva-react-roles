@@ -1,4 +1,7 @@
-export function toUiSelectItems(items) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.toUiSelectItems = void 0;
+function toUiSelectItems(items) {
     if (items === undefined)
         return;
     var ret = [];
@@ -18,4 +21,5 @@ export function toUiSelectItems(items) {
     }
     return ret;
 }
+exports.toUiSelectItems = toUiSelectItems;
 //# sourceMappingURL=toUiSelectItems.js.map

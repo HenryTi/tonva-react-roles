@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { ItemEdit } from './itemEdit';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SelectItemBaseEdit = void 0;
+var itemEdit_1 = require("./itemEdit");
 var SelectItemBaseEdit = /** @class */ (function (_super) {
     __extends(SelectItemBaseEdit, _super);
     function SelectItemBaseEdit() {
@@ -23,6 +26,6 @@ var SelectItemBaseEdit = /** @class */ (function (_super) {
         configurable: true
     });
     return SelectItemBaseEdit;
-}(ItemEdit));
-export { SelectItemBaseEdit };
+}(itemEdit_1.ItemEdit));
+exports.SelectItemBaseEdit = SelectItemBaseEdit;
 //# sourceMappingURL=selectBaseItemEdit.js.map

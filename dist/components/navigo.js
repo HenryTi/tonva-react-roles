@@ -1,4 +1,7 @@
+"use strict";
 // typescript version of krasimir/navigo
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.navigo = exports.Navigo = void 0;
 var Navigo = /** @class */ (function () {
     function Navigo(r, useHash, hash) {
         var _this = this;
@@ -508,7 +511,7 @@ var Navigo = /** @class */ (function () {
     Navigo.MATCH_REGEXP_FLAGS = '';
     return Navigo;
 }());
-export { Navigo };
+exports.Navigo = Navigo;
 //export default Navigo;
-export var navigo = new Navigo();
+exports.navigo = new Navigo();
 //# sourceMappingURL=navigo.js.map

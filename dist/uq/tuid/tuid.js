@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,10 +48,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { Entity } from '../entity';
-import { EntityCaller } from '../caller';
-import { IdCache, IdDivCache } from './idCache';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TuidBoxDiv = exports.TuidDiv = exports.TuidBox = exports.TuidImport = exports.TuidInner = exports.Tuid = exports.UqTuid = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var entity_1 = require("../entity");
+var caller_1 = require("../caller");
+var idCache_1 = require("./idCache");
 var UqTuid = /** @class */ (function (_super) {
     __extends(UqTuid, _super);
     function UqTuid() {
@@ -103,8 +109,8 @@ var UqTuid = /** @class */ (function (_super) {
         }); });
     };
     return UqTuid;
-}(Entity));
-export { UqTuid };
+}(entity_1.Entity));
+exports.UqTuid = UqTuid;
 var Tuid = /** @class */ (function (_super) {
     __extends(Tuid, _super);
     function Tuid() {
@@ -112,12 +118,12 @@ var Tuid = /** @class */ (function (_super) {
     }
     return Tuid;
 }(UqTuid));
-export { Tuid };
+exports.Tuid = Tuid;
 var TuidInner = /** @class */ (function (_super) {
     __extends(TuidInner, _super);
     function TuidInner(uq, name, typeId) {
         var _this = _super.call(this, uq, name, typeId) || this;
-        _this.idCache = new IdCache(_this);
+        _this.idCache = new idCache_1.IdCache(_this);
         _this.localArr = _this.cache.arr(_this.name + '.whole');
         if (uq.newVersion === true)
             _this.localArr.removeAll();
@@ -452,7 +458,7 @@ var TuidInner = /** @class */ (function (_super) {
     };
     return TuidInner;
 }(Tuid));
-export { TuidInner };
+exports.TuidInner = TuidInner;
 var TuidCaller = /** @class */ (function (_super) {
     __extends(TuidCaller, _super);
     function TuidCaller() {
@@ -465,7 +471,7 @@ var TuidCaller = /** @class */ (function (_super) {
     });
     ;
     return TuidCaller;
-}(EntityCaller));
+}(caller_1.EntityCaller));
 // 包含main字段的load id
 // 当前为了兼容，先调用的包含所有字段的内容
 var GetCaller = /** @class */ (function (_super) {
@@ -639,7 +645,7 @@ var SaveArrCaller = /** @class */ (function (_super) {
     });
     SaveArrCaller.prototype.buildParams = function () {
         var _a = this.params, id = _a.id, props = _a.props;
-        var params = _.clone(props);
+        var params = lodash_1.default.clone(props);
         params['$id'] = id;
         return params;
     };
@@ -839,7 +845,7 @@ var TuidImport = /** @class */ (function (_super) {
     };
     return TuidImport;
 }(Tuid));
-export { TuidImport };
+exports.TuidImport = TuidImport;
 // field._tuid 用这个接口
 // Tuid, TuidDiv 实现这个接口
 var TuidBox = /** @class */ (function () {
@@ -866,7 +872,7 @@ var TuidBox = /** @class */ (function () {
     };
     return TuidBox;
 }());
-export { TuidBox };
+exports.TuidBox = TuidBox;
 var TuidDiv = /** @class */ (function (_super) {
     __extends(TuidDiv, _super); /* Entity*/
     //ui: React.StatelessComponent<any>;
@@ -876,7 +882,7 @@ var TuidDiv = /** @class */ (function (_super) {
         _this.typeName = 'div';
         _this.tuid = tuid;
         _this.idName = 'id';
-        _this.idCache = new IdDivCache(tuid, _this);
+        _this.idCache = new idCache_1.IdDivCache(tuid, _this);
         return _this;
     }
     Object.defineProperty(TuidDiv.prototype, "owner", {
@@ -958,7 +964,7 @@ var TuidDiv = /** @class */ (function (_super) {
     };
     return TuidDiv;
 }(TuidInner /* Entity*/));
-export { TuidDiv };
+exports.TuidDiv = TuidDiv;
 var TuidBoxDiv = /** @class */ (function (_super) {
     __extends(TuidBoxDiv, _super);
     function TuidBoxDiv(tuid, div, ownerField) {
@@ -978,5 +984,5 @@ var TuidBoxDiv = /** @class */ (function (_super) {
     };
     return TuidBoxDiv;
 }(TuidBox));
-export { TuidBoxDiv };
+exports.TuidBoxDiv = TuidBoxDiv;
 //# sourceMappingURL=tuid.js.map

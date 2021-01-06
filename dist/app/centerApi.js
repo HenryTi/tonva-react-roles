@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,7 +48,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { CenterApiBase } from '../net';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.centerApi = exports.CenterApi = void 0;
+var net_1 = require("../net");
 var CenterApi = /** @class */ (function (_super) {
     __extends(CenterApi, _super);
     function CenterApi() {
@@ -84,7 +87,7 @@ var CenterApi = /** @class */ (function (_super) {
         });
     };
     return CenterApi;
-}(CenterApiBase));
-export { CenterApi };
-export var centerApi = new CenterApi('tv/', undefined);
+}(net_1.CenterApiBase));
+exports.CenterApi = CenterApi;
+exports.centerApi = new CenterApi('tv/', undefined);
 //# sourceMappingURL=centerApi.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,8 +48,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { Entity } from './entity';
-import { ActionCaller } from './caller';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActionSubmitCaller = exports.Action = exports.UqAction = void 0;
+var entity_1 = require("./entity");
+var caller_1 = require("./caller");
 var UqAction = /** @class */ (function (_super) {
     __extends(UqAction, _super);
     function UqAction() {
@@ -96,8 +99,8 @@ var UqAction = /** @class */ (function (_super) {
         });
     };
     return UqAction;
-}(Entity));
-export { UqAction };
+}(entity_1.Entity));
+exports.UqAction = UqAction;
 var Action = /** @class */ (function (_super) {
     __extends(Action, _super);
     function Action() {
@@ -105,7 +108,7 @@ var Action = /** @class */ (function (_super) {
     }
     return Action;
 }(UqAction));
-export { Action };
+exports.Action = Action;
 var ActionSubmitCaller = /** @class */ (function (_super) {
     __extends(ActionSubmitCaller, _super);
     function ActionSubmitCaller() {
@@ -120,8 +123,8 @@ var ActionSubmitCaller = /** @class */ (function (_super) {
         return { data: this.entity.pack(this.params) };
     };
     return ActionSubmitCaller;
-}(ActionCaller));
-export { ActionSubmitCaller };
+}(caller_1.ActionCaller));
+exports.ActionSubmitCaller = ActionSubmitCaller;
 var SubmitReturnsCaller = /** @class */ (function (_super) {
     __extends(SubmitReturnsCaller, _super);
     function SubmitReturnsCaller() {

@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formRes = void 0;
 /*eslint no-template-curly-in-string: 0*/
-export var formRes = {
+exports.formRes = {
     _: {
         required: 'required',
         number: 'not valid number',

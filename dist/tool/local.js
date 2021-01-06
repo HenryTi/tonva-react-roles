@@ -1,9 +1,12 @@
-import { env } from './env';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LocalData = void 0;
+var env_1 = require("./env");
 var LocalData = /** @class */ (function () {
     function LocalData() {
-        this.user = env.localDb.child('user');
-        this.guest = env.localDb.child('guest');
-        this.unit = env.localDb.child('unit');
+        this.user = env_1.env.localDb.child('user');
+        this.guest = env_1.env.localDb.child('guest');
+        this.unit = env_1.env.localDb.child('unit');
     }
     LocalData.prototype.readToMemory = function () {
         this._user = this.user.get();
@@ -23,5 +26,5 @@ var LocalData = /** @class */ (function () {
     };
     return LocalData;
 }());
-export { LocalData };
+exports.LocalData = LocalData;
 //# sourceMappingURL=local.js.map

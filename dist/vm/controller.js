@@ -1,3 +1,23 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -41,21 +61,26 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-import * as React from 'react';
-import _ from 'lodash';
-import { nav, Page, resOptions } from '../components';
-import { env } from '../tool';
-import { messageHub } from '../net';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Controller = void 0;
+var React = __importStar(require("react"));
+var lodash_1 = __importDefault(require("lodash"));
+var components_1 = require("../components");
+var tool_1 = require("../tool");
+var net_1 = require("../net");
 var Controller = /** @class */ (function () {
     function Controller(res) {
         var _this = this;
         this._t = {};
-        this.isDev = env.isDevelopment;
+        this.isDev = tool_1.env.isDevelopment;
         //private disposer:()=>void;
         this.dispose = function () {
             // message listener的清理
             //nav.unregisterReceiveHandler(this.receiveHandlerId);
-            messageHub.unregisterReceiveHandler(_this.receiveHandlerId);
+            net_1.messageHub.unregisterReceiveHandler(_this.receiveHandlerId);
             _this.onDispose();
         };
         this.onMessageReceive = function (message) { return __awaiter(_this, void 0, void 0, function () {
@@ -73,13 +98,13 @@ var Controller = /** @class */ (function () {
         this.t = function (str) { return _this.internalT(str) || str; };
     }
     Object.defineProperty(Controller.prototype, "user", {
-        get: function () { return nav.user; },
+        get: function () { return components_1.nav.user; },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(Controller.prototype, "isLogined", {
         get: function () {
-            var user = nav.user;
+            var user = components_1.nav.user;
             if (user === undefined)
                 return false;
             return user.id > 0;
@@ -109,25 +134,25 @@ var Controller = /** @class */ (function () {
     Controller.prototype.getWebNav = function () { return this.webNav; };
     Controller.prototype.getPageWebNav = function () { return undefined; };
     Object.defineProperty(Controller.prototype, "isWebNav", {
-        get: function () { return nav.isWebNav; },
+        get: function () { return components_1.nav.isWebNav; },
         enumerable: false,
         configurable: true
     });
     Controller.prototype.navigate = function (url) {
-        nav.navigate(url);
+        components_1.nav.navigate(url);
     };
     Controller.prototype.setRes = function (res) {
         if (res === undefined)
             return;
-        var $lang = resOptions.$lang, $district = resOptions.$district;
-        _.merge(this._t, res);
+        var $lang = components_1.resOptions.$lang, $district = components_1.resOptions.$district;
+        lodash_1.default.merge(this._t, res);
         if ($lang !== undefined) {
             var l = res[$lang];
             if (l !== undefined) {
-                _.merge(this._t, l);
+                lodash_1.default.merge(this._t, l);
                 var d = l[$district];
                 if (d !== undefined) {
-                    _.merge(this._t, d);
+                    lodash_1.default.merge(this._t, d);
                 }
             }
         }
@@ -204,7 +229,7 @@ var Controller = /** @class */ (function () {
         alert(text);
     };
     Controller.prototype.errorPage = function (header, err) {
-        this.openPage(React.createElement(Page, { header: "App error!" },
+        this.openPage(React.createElement(components_1.Page, { header: "App error!" },
             React.createElement("pre", null, typeof err === 'string' ? err : err.message)));
     };
     Controller.prototype.onMessage = function (message) {
@@ -230,7 +255,7 @@ var Controller = /** @class */ (function () {
         });
     };
     Controller.prototype.registerReceiveHandler = function () {
-        this.receiveHandlerId = messageHub.registerReceiveHandler(this.onMessageReceive);
+        this.receiveHandlerId = net_1.messageHub.registerReceiveHandler(this.onMessageReceive);
     };
     Controller.prototype.start = function (param) {
         var params = [];
@@ -329,33 +354,33 @@ var Controller = /** @class */ (function () {
                 onClosePage(undefined);
             };
         }
-        nav.push(page, disposer);
+        components_1.nav.push(page, disposer);
         //this.disposer = undefined;
     };
     Controller.prototype.replacePage = function (page, onClosePage) {
-        nav.replace(page, onClosePage);
+        components_1.nav.replace(page, onClosePage);
         //this.disposer = undefined;
     };
     Controller.prototype.backPage = function () {
-        nav.back();
+        components_1.nav.back();
     };
     Controller.prototype.closePage = function (level) {
-        nav.pop(level);
+        components_1.nav.pop(level);
     };
     Controller.prototype.ceasePage = function (level) {
-        nav.ceaseTop(level);
+        components_1.nav.ceaseTop(level);
     };
     Controller.prototype.go = function (showPage, url, absolute) {
-        nav.go(showPage, url, absolute);
+        components_1.nav.go(showPage, url, absolute);
     };
     Controller.prototype.removeCeased = function () {
-        nav.removeCeased();
+        components_1.nav.removeCeased();
     };
     Controller.prototype.regConfirmClose = function (confirmClose) {
-        nav.regConfirmClose(confirmClose);
+        components_1.nav.regConfirmClose(confirmClose);
     };
     Controller.prototype.startAction = function () {
-        this.topPageKey = nav.topKey();
+        this.topPageKey = components_1.nav.topKey();
     };
     Object.defineProperty(Controller.prototype, "TopKey", {
         get: function () {
@@ -368,7 +393,7 @@ var Controller = /** @class */ (function () {
         this.topPageKey = key;
     };
     Controller.prototype.popToTopPage = function () {
-        nav.popTo(this.topPageKey);
+        components_1.nav.popTo(this.topPageKey);
     };
     Controller.prototype.confirm = function (options) {
         return __awaiter(this, void 0, void 0, function () {
@@ -393,11 +418,11 @@ var Controller = /** @class */ (function () {
                             if (no !== undefined) {
                                 buttons.push(React.createElement("button", { key: "no", className: "btn btn-outline-danger mr-3", onClick: function () { return close('no'); } }, no));
                             }
-                            this.openPage(React.createElement(Page, { header: caption || '请确认', back: "close" },
+                            this.openPage(React.createElement(components_1.Page, { header: caption || '请确认', back: "close" },
                                 React.createElement("div", { className: classNames || "rounded bg-white m-5 p-3 border" },
                                     React.createElement("div", { className: "d-flex align-items-center justify-content-center" }, message),
                                     React.createElement("div", { className: "mt-3 d-flex align-items-center justify-content-center" }, buttons))));
-                            nav.regConfirmClose(function () { return __awaiter(_this, void 0, void 0, function () {
+                            components_1.nav.regConfirmClose(function () { return __awaiter(_this, void 0, void 0, function () {
                                 return __generator(this, function (_a) {
                                     resolve(undefined);
                                     return [2 /*return*/, true];
@@ -411,5 +436,5 @@ var Controller = /** @class */ (function () {
     };
     return Controller;
 }());
-export { Controller };
+exports.Controller = Controller;
 //# sourceMappingURL=controller.js.map

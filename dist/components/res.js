@@ -1,16 +1,23 @@
-import _ from 'lodash';
-export var resOptions = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.t = exports.setGlobalRes = exports.setRes = exports.resLang = exports.setResOptions = exports.resOptions = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+exports.resOptions = {
     lang: undefined,
     $lang: undefined,
     district: undefined,
     $district: undefined,
 };
-export function setResOptions(lang, district) {
-    resOptions.lang = lang;
-    resOptions.$lang = '$' + lang;
-    resOptions.district = district;
-    resOptions.$district = '$' + district;
+function setResOptions(lang, district) {
+    exports.resOptions.lang = lang;
+    exports.resOptions.$lang = '$' + lang;
+    exports.resOptions.district = district;
+    exports.resOptions.$district = '$' + district;
 }
+exports.setResOptions = setResOptions;
 (function () {
     var lang, district;
     var language = (navigator.languages && navigator.languages[0]) // Chrome / Firefox
@@ -28,20 +35,20 @@ export function setResOptions(lang, district) {
     }
     setResOptions(lang, district);
 }());
-export function resLang(res) {
-    var lang = resOptions.lang, district = resOptions.district;
+function resLang(res) {
+    var lang = exports.resOptions.lang, district = exports.resOptions.district;
     var ret = {};
     if (res === undefined)
         return ret;
-    _.merge(ret, res._);
+    lodash_1.default.merge(ret, res._);
     var l = res[lang];
     if (l === undefined)
         return ret;
-    _.merge(ret, l._);
+    lodash_1.default.merge(ret, l._);
     var d = l[district];
     if (d === undefined)
         return ret;
-    _.merge(ret, d);
+    lodash_1.default.merge(ret, d);
     var entity = ret.entity;
     if (entity !== undefined) {
         for (var i in entity) {
@@ -50,19 +57,20 @@ export function resLang(res) {
     }
     return ret;
 }
+exports.resLang = resLang;
 var resGlobal = {};
-export function setRes(target, res) {
+function setRes(target, res) {
     if (res === undefined)
         return;
-    var $lang = resOptions.$lang, $district = resOptions.$district;
-    _.merge(target, res);
+    var $lang = exports.resOptions.$lang, $district = exports.resOptions.$district;
+    lodash_1.default.merge(target, res);
     if ($lang !== undefined) {
         var l = res[$lang];
         if (l !== undefined) {
-            _.merge(target, l);
+            lodash_1.default.merge(target, l);
             var d = l[$district];
             if (d !== undefined) {
-                _.merge(target, d);
+                lodash_1.default.merge(target, d);
             }
         }
     }
@@ -70,10 +78,13 @@ export function setRes(target, res) {
         return target[str] || str;
     };
 }
-export function setGlobalRes(res) {
+exports.setRes = setRes;
+function setGlobalRes(res) {
     setRes(resGlobal, res);
 }
-export function t(str) {
+exports.setGlobalRes = setGlobalRes;
+function t(str) {
     return resGlobal[str] || str;
 }
+exports.t = t;
 //# sourceMappingURL=res.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,7 +41,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { observable } from 'mobx';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CacheIds = void 0;
+var mobx_1 = require("mobx");
 var CacheIds = /** @class */ (function () {
     function CacheIds(maxCount) {
         if (maxCount === void 0) { maxCount = 100; }
@@ -130,9 +133,9 @@ var CacheIds = /** @class */ (function () {
         });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], CacheIds.prototype, "dict", void 0);
     return CacheIds;
 }());
-export { CacheIds };
+exports.CacheIds = CacheIds;
 //# sourceMappingURL=cacheIds.js.map

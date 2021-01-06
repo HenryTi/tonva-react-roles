@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,8 +48,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { Entity } from "../entity";
-import { TagView } from "./tagView";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Tag = void 0;
+var entity_1 = require("../entity");
+var tagView_1 = require("./tagView");
 var Tag = /** @class */ (function (_super) {
     __extends(Tag, _super);
     function Tag() {
@@ -65,7 +68,7 @@ var Tag = /** @class */ (function (_super) {
         get: function () {
             if (this._view !== undefined)
                 return this._view;
-            return this._view = new TagView(this);
+            return this._view = new tagView_1.TagView(this);
         },
         enumerable: false,
         configurable: true
@@ -120,6 +123,6 @@ var Tag = /** @class */ (function (_super) {
         });
     };
     return Tag;
-}(Entity));
-export { Tag };
+}(entity_1.Entity));
+exports.Tag = Tag;
 //# sourceMappingURL=tag.js.map

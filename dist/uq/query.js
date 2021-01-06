@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -53,11 +54,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { observable } from 'mobx';
-import { PageItems } from '../tool';
-import { Entity } from './entity';
-import { QueryQueryCaller, QueryPageCaller } from './caller';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Query = exports.UqQuery = exports.QueryPager = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var mobx_1 = require("mobx");
+var tool_1 = require("../tool");
+var entity_1 = require("./entity");
+var caller_1 = require("./caller");
 var QueryPager = /** @class */ (function (_super) {
     __extends(QueryPager, _super);
     function QueryPager(query, pageSize, firstSize, itemObservable) {
@@ -179,7 +185,7 @@ var QueryPager = /** @class */ (function (_super) {
                                 return oldId = newId;
                             });
                             if (oldItem) {
-                                _.merge(oldItem, newItem);
+                                lodash_1.default.merge(oldItem, newItem);
                             }
                         };
                         this_1 = this;
@@ -192,8 +198,8 @@ var QueryPager = /** @class */ (function (_super) {
         });
     };
     return QueryPager;
-}(PageItems));
-export { QueryPager };
+}(tool_1.PageItems));
+exports.QueryPager = QueryPager;
 var UqQuery = /** @class */ (function (_super) {
     __extends(UqQuery, _super);
     function UqQuery() {
@@ -254,7 +260,7 @@ var UqQuery = /** @class */ (function (_super) {
                         let data = await this.unpackReturns(res);
                         let page = data['$page'] as any[];
                         */
-                        this.list = observable.array([], { deep: false });
+                        this.list = mobx_1.observable.array([], { deep: false });
                         if (page !== undefined) {
                             if (page.length > this.pageSize) {
                                 this.more = true;
@@ -275,7 +281,7 @@ var UqQuery = /** @class */ (function (_super) {
     };
     UqQuery.prototype.pageCaller = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
-        return new QueryPageCaller(this, params, showWaiting);
+        return new caller_1.QueryPageCaller(this, params, showWaiting);
     };
     UqQuery.prototype.page = function (params, pageStart, pageSize, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
@@ -295,7 +301,7 @@ var UqQuery = /** @class */ (function (_super) {
     };
     UqQuery.prototype.queryCaller = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
-        return new QueryQueryCaller(this, params, showWaiting);
+        return new caller_1.QueryQueryCaller(this, params, showWaiting);
     };
     UqQuery.prototype.query = function (params, showWaiting) {
         if (showWaiting === void 0) { showWaiting = true; }
@@ -361,11 +367,11 @@ var UqQuery = /** @class */ (function (_super) {
         });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], UqQuery.prototype, "list", void 0);
     return UqQuery;
-}(Entity));
-export { UqQuery };
+}(entity_1.Entity));
+exports.UqQuery = UqQuery;
 var Query = /** @class */ (function (_super) {
     __extends(Query, _super);
     function Query() {
@@ -373,5 +379,5 @@ var Query = /** @class */ (function (_super) {
     }
     return Query;
 }(UqQuery));
-export { Query };
+exports.Query = Query;
 //# sourceMappingURL=query.js.map

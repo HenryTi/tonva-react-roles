@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,8 +48,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { decodeGuestToken } from '../tool/user';
-import { CenterApiBase } from './uqApi';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.guestApi = exports.GuestApi = void 0;
+var user_1 = require("../tool/user");
+var uqApi_1 = require("./uqApi");
 var GuestApi = /** @class */ (function (_super) {
     __extends(GuestApi, _super);
     function GuestApi() {
@@ -64,9 +67,9 @@ var GuestApi = /** @class */ (function (_super) {
                         ret = _a.sent();
                         switch (typeof ret) {
                             default: return [2 /*return*/];
-                            case 'string': return [2 /*return*/, decodeGuestToken(ret)];
+                            case 'string': return [2 /*return*/, user_1.decodeGuestToken(ret)];
                             case 'object':
-                                guest = decodeGuestToken(ret.token);
+                                guest = user_1.decodeGuestToken(ret.token);
                                 return [2 /*return*/, guest];
                         }
                         return [2 /*return*/];
@@ -88,7 +91,7 @@ var GuestApi = /** @class */ (function (_super) {
         });
     };
     return GuestApi;
-}(CenterApiBase));
-export { GuestApi };
-export var guestApi = new GuestApi('tv/guest/', undefined);
+}(uqApi_1.CenterApiBase));
+exports.GuestApi = GuestApi;
+exports.guestApi = new GuestApi('tv/guest/', undefined);
 //# sourceMappingURL=guestApi.js.map

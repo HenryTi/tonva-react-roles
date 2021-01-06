@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { StringItemEdit } from "./stringItemEdit";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RangeItemEdit = void 0;
+var stringItemEdit_1 = require("./stringItemEdit");
 var RangeItemEdit = /** @class */ (function (_super) {
     __extends(RangeItemEdit, _super);
     function RangeItemEdit() {
@@ -30,6 +33,6 @@ var RangeItemEdit = /** @class */ (function (_super) {
         };
     };
     return RangeItemEdit;
-}(StringItemEdit));
-export { RangeItemEdit };
+}(stringItemEdit_1.StringItemEdit));
+exports.RangeItemEdit = RangeItemEdit;
 //# sourceMappingURL=rangeItemEdit.js.map

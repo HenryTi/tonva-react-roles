@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -40,8 +41,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { observable, computed } from 'mobx';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageItems = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var mobx_1 = require("mobx");
 var PageItems = /** @class */ (function () {
     function PageItems(itemObservable) {
         var _this = this;
@@ -82,7 +88,7 @@ var PageItems = /** @class */ (function () {
         this.changing = false;
         if (itemObservable === undefined)
             itemObservable = false;
-        this._items = observable.array([], { deep: itemObservable });
+        this._items = mobx_1.observable.array([], { deep: itemObservable });
     }
     Object.defineProperty(PageItems.prototype, "items", {
         get: function () {
@@ -385,7 +391,7 @@ var PageItems = /** @class */ (function () {
     PageItems.prototype.findItem = function (item) {
         var _this = this;
         var pid = this.getPageId(item);
-        var index = _.findIndex(this._items, function (v) { return _this.getPageId(v) === pid; });
+        var index = lodash_1.default.findIndex(this._items, function (v) { return _this.getPageId(v) === pid; });
         if (index < 0)
             return;
         return this._items[index];
@@ -394,27 +400,27 @@ var PageItems = /** @class */ (function () {
         //if (pid === oid) return oldItem;
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "loading", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "beforeLoad", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "loaded", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "allLoaded", void 0);
     __decorate([
-        computed
+        mobx_1.computed
     ], PageItems.prototype, "items", null);
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "topDiv", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], PageItems.prototype, "bottomDiv", void 0);
     return PageItems;
 }());
-export { PageItems };
+exports.PageItems = PageItems;
 //# sourceMappingURL=pageItems.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,8 +12,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import * as React from 'react';
-import classNames from 'classnames';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DropdownActions = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
 var DropdownActions = /** @class */ (function (_super) {
     __extends(DropdownActions, _super);
     function DropdownActions(props) {
@@ -57,8 +82,8 @@ var DropdownActions = /** @class */ (function (_super) {
         //if (className) cn += className;
         return React.createElement("div", { className: 'dropdown' },
             React.createElement("button", { ref: function (v) { return _this.button = v; }, className: cn, "data-toggle": "dropdown", "aria-expanded": dropdownOpen, onClick: this.toggle },
-                React.createElement("i", { className: classNames('fa fa-fw ', 'fa-' + (icon || 'ellipsis-v')) })),
-            React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classNames({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
+                React.createElement("i", { className: classnames_1.default('fa fa-fw ', 'fa-' + (icon || 'ellipsis-v')) })),
+            React.createElement("div", { ref: function (v) { return _this.menu = v; }, className: classnames_1.default({ "dropdown-menu": true, "dropdown-menu-right": isRight, "show": dropdownOpen }) }, actions.map(function (v, index) {
                 if (!v) {
                     return React.createElement("div", { className: "dropdown-divider", key: index });
                 }
@@ -69,7 +94,7 @@ var DropdownActions = /** @class */ (function (_super) {
                 if (hasIcon === true) {
                     if (icon !== undefined)
                         icon = 'fa-' + icon;
-                    i = React.createElement("i", { className: classNames('mr-2', 'fa', icon, 'fa-fw', iconClass || itemIconClass), "aria-hidden": true });
+                    i = React.createElement("i", { className: classnames_1.default('mr-2', 'fa', icon, 'fa-fw', iconClass || itemIconClass), "aria-hidden": true });
                 }
                 if (action === undefined)
                     return React.createElement("h6", { className: "dropdown-header" },
@@ -92,5 +117,5 @@ var DropdownActions = /** @class */ (function (_super) {
     };
     return DropdownActions;
 }(React.Component));
-export { DropdownActions };
+exports.DropdownActions = DropdownActions;
 //# sourceMappingURL=index.js.map

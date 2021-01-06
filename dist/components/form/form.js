@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,14 +67,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { observable, autorun } from 'mobx';
-import classNames from 'classnames';
-import { factory } from './widgets';
-import 'font-awesome/css/font-awesome.min.css';
-import { ContextContainer, FormContext } from './context';
-import { formRes } from '../../res';
-import { resLang } from '../../res/res';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Form = void 0;
+var React = __importStar(require("react"));
+var mobx_1 = require("mobx");
+var classnames_1 = __importDefault(require("classnames"));
+var widgets_1 = require("./widgets");
+require("font-awesome/css/font-awesome.min.css");
+var context_1 = require("./context");
+var res_1 = require("../../res");
+var res_2 = require("../../res/res");
 var Form = /** @class */ (function (_super) {
     __extends(Form, _super);
     function Form(props) {
@@ -67,7 +92,7 @@ var Form = /** @class */ (function (_super) {
             _this.calcSelectOrDelete();
         };
         _this.DefaultContainer = function (content) {
-            return React.createElement("form", { className: classNames(_this.props.className), onSubmit: function (e) { return e.preventDefault(); } }, content);
+            return React.createElement("form", { className: classnames_1.default(_this.props.className), onSubmit: function (e) { return e.preventDefault(); } }, content);
         };
         _this.DefaultFieldContainer = function (label, content) {
             var fieldLabelSize = _this.props.fieldLabelSize;
@@ -77,7 +102,7 @@ var Form = /** @class */ (function (_super) {
                     fieldLabelSize = 0;
                 }
                 else {
-                    labelView = React.createElement("label", { className: classNames('col-sm-' + fieldLabelSize, 'col-form-label') }, label);
+                    labelView = React.createElement("label", { className: classnames_1.default('col-sm-' + fieldLabelSize, 'col-form-label') }, label);
                 }
                 var fieldCol = 'col-sm-' + (12 - fieldLabelSize);
                 return React.createElement("div", { className: "form-group row" },
@@ -90,14 +115,14 @@ var Form = /** @class */ (function (_super) {
         };
         _this.DefaultFieldClass = undefined;
         _this.DefaultButtonClass = 'text-center py-2';
-        _this.DefaultRes = resLang(formRes);
+        _this.DefaultRes = res_2.resLang(res_1.formRes);
         _this.ArrContainer = function (label, content) {
             return React.createElement("div", null,
-                React.createElement("div", { className: classNames('small text-muted text-center bg-light py-1 px-3 mt-4 mb-1') }, label),
+                React.createElement("div", { className: classnames_1.default('small text-muted text-center bg-light py-1 px-3 mt-4 mb-1') }, label),
                 content);
         };
         _this.RowContainer = function (content) {
-            var cn = classNames({
+            var cn = classnames_1.default({
                 'py-3': true
             });
             return React.createElement("div", { className: cn }, content);
@@ -116,7 +141,7 @@ var Form = /** @class */ (function (_super) {
             _this.itemSchemas[itemSchema.name] = itemSchema;
         }
         _this.uiSchema = uiSchema;
-        _this.disposer = autorun(_this.watch);
+        _this.disposer = mobx_1.autorun(_this.watch);
         _this.data = {};
         return _this;
     }
@@ -125,7 +150,7 @@ var Form = /** @class */ (function (_super) {
         this.initData(this.props.formData);
         var children = this.props.children;
         if (children !== undefined) {
-            this.formContext = new FormContext(this, true);
+            this.formContext = new context_1.FormContext(this, true);
             return React.createElement(React.Fragment, null, children);
         }
         var Templet;
@@ -133,14 +158,14 @@ var Form = /** @class */ (function (_super) {
             Templet = this.uiSchema.Templet;
         }
         if (Templet !== undefined) {
-            this.formContext = new FormContext(this, true);
+            this.formContext = new context_1.FormContext(this, true);
             return typeof (Templet) === 'function' ? Templet(this.data) : Templet;
         }
         if (!this.formContext) {
-            this.formContext = new FormContext(this, false);
+            this.formContext = new context_1.FormContext(this, false);
         }
         return React.createElement(React.Fragment, null, this.schema.map(function (v, index) {
-            return React.createElement(React.Fragment, { key: index }, factory(_this.formContext, v, children));
+            return React.createElement(React.Fragment, { key: index }, widgets_1.factory(_this.formContext, v, children));
         }));
     };
     Form.prototype.initData = function (formData) {
@@ -204,7 +229,7 @@ var Form = /** @class */ (function (_super) {
         }
         // 如果没有observable，行删除标志点击不管用
         // 不知道这里为什么要去掉observable。有可能会有别的问题
-        data[name] = observable(arr);
+        data[name] = mobx_1.observable(arr);
         //data[name] = arr;
         return;
     };
@@ -250,7 +275,7 @@ var Form = /** @class */ (function (_super) {
     };
     Form.prototype.render = function () {
         var content = this.renderContent();
-        return React.createElement(ContextContainer.Provider, { value: this.formContext },
+        return React.createElement(context_1.ContextContainer.Provider, { value: this.formContext },
             React.createElement(this.formContext.renderErrors),
             this.Container(content));
     };
@@ -281,5 +306,5 @@ var Form = /** @class */ (function (_super) {
     };
     return Form;
 }(React.Component));
-export { Form };
+exports.Form = Form;
 //# sourceMappingURL=form.js.map

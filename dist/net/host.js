@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { env } from '../tool';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.host = exports.resUrlFromHost = void 0;
+var tool_1 = require("../tool");
 var centerHost = process.env['REACT_APP_CENTER_HOST'];
 var centerDebugHost = 'localhost:3000'; //'192.168.86.64';
 var resHost = process.env['REACT_APP_RES_HOST'] || centerHost;
@@ -93,12 +96,13 @@ function centerWsFromHost(host) {
     }
     return "ws://" + host + "/tv/";
 }
-export function resUrlFromHost(host) {
+function resUrlFromHost(host) {
     if (!host)
         return;
     var url = urlFromHost(host);
     return url + 'res/';
 }
+exports.resUrlFromHost = resUrlFromHost;
 var fetchOptions = {
     method: "GET",
     mode: "no-cors",
@@ -118,7 +122,7 @@ var Host = /** @class */ (function () {
                         if (!centerHost)
                             debugger;
                         this.testing = testing;
-                        if (!(env.isDevelopment === true)) return [3 /*break*/, 2];
+                        if (!(tool_1.env.isDevelopment === true)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.tryLocal()];
                     case 1:
                         _a.sent();
@@ -181,7 +185,7 @@ var Host = /** @class */ (function () {
         if (hash.includes('sheet_debug') === true) {
             return value;
         }
-        if (env.isDevelopment === true) {
+        if (tool_1.env.isDevelopment === true) {
             if (local === true)
                 return value;
         }
@@ -193,7 +197,7 @@ var Host = /** @class */ (function () {
         if (hash.includes('sheet_debug') === true) {
             return value;
         }
-        if (env.isDevelopment === true) {
+        if (tool_1.env.isDevelopment === true) {
             if (local === true)
                 return value;
         }
@@ -201,7 +205,7 @@ var Host = /** @class */ (function () {
     };
     Host.prototype.getUrlOrDebug = function (url, debugHost) {
         if (debugHost === void 0) { debugHost = 'uqhost'; }
-        if (env.isDevelopment === false)
+        if (tool_1.env.isDevelopment === false)
             return url;
         var host = hosts[debugHost];
         if (host === undefined)
@@ -250,7 +254,7 @@ var Host = /** @class */ (function () {
     };
     return Host;
 }());
-export var host = new Host();
+exports.host = new Host();
 // 因为测试的都是局域网服务器，甚至本机服务器，所以一秒足够了
 // 网上找了上面的fetch timeout代码。
 // 尽管timeout了，fetch仍然继续，没有cancel
@@ -265,7 +269,7 @@ function fetchLocalCheck(url) {
         })
             .catch(reject);
         var e = new Error("Connection timed out");
-        env.setTimeout('fetchLocalCheck', reject, timeout, e);
+        tool_1.env.setTimeout('fetchLocalCheck', reject, timeout, e);
     });
 }
 function localCheck(url) {

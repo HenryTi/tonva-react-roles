@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,14 +48,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { observable } from 'mobx';
-import { isNumber } from 'util';
-import _ from 'lodash';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.IdDivCache = exports.IdCache = void 0;
+var mobx_1 = require("mobx");
+var util_1 = require("util");
+var lodash_1 = __importDefault(require("lodash"));
 var maxCacheSize = 1000;
 var IdCache = /** @class */ (function () {
     function IdCache(tuidLocal) {
         this.queue = []; // 每次使用，都排到队头
-        this.cache = observable.map({}, { deep: false }); // 已经缓冲的
+        this.cache = mobx_1.observable.map({}, { deep: false }); // 已经缓冲的
         this.loading = false;
         this.waitingIds = []; // 等待loading的
         this.divName = undefined;
@@ -67,7 +73,7 @@ var IdCache = /** @class */ (function () {
     IdCache.prototype.useId = function (id, defer) {
         if (!id)
             return;
-        if (isNumber(id) === false)
+        if (util_1.isNumber(id) === false)
             return;
         if (this.cache.has(id) === true) {
             this.moveToHead(id);
@@ -282,7 +288,7 @@ var IdCache = /** @class */ (function () {
                             if (p < 0)
                                 p = row.length;
                             var id = Number(row.substr(0, p));
-                            _.remove(netIds, function (v) { return v === id; });
+                            lodash_1.default.remove(netIds, function (v) { return v === id; });
                             ret.push(row);
                             this_1.localArr.setItem(id, row);
                         };
@@ -302,7 +308,7 @@ var IdCache = /** @class */ (function () {
     };
     return IdCache;
 }());
-export { IdCache };
+exports.IdCache = IdCache;
 var IdDivCache = /** @class */ (function (_super) {
     __extends(IdDivCache, _super);
     function IdDivCache(tuidLocal, div) {
@@ -325,5 +331,5 @@ var IdDivCache = /** @class */ (function (_super) {
     };
     return IdDivCache;
 }(IdCache));
-export { IdDivCache };
+exports.IdDivCache = IdDivCache;
 //# sourceMappingURL=idCache.js.map

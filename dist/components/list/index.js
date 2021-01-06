@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,22 +12,46 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import * as React from 'react';
-import classNames from 'classnames';
-import { observer } from 'mobx-react';
-import _ from 'lodash';
-import { Clickable } from './clickable';
-import { Static } from './static';
-import { Selectable } from './selectable';
-import '../../css/va-list.css';
-import { resLang } from '../../res/res';
-import { listRes } from '../../res';
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.List = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var mobx_react_1 = require("mobx-react");
+var lodash_1 = __importDefault(require("lodash"));
+var clickable_1 = require("./clickable");
+var static_1 = require("./static");
+var selectable_1 = require("./selectable");
+require("../../css/va-list.css");
+var res_1 = require("../../res/res");
+var res_2 = require("../../res");
 var List = /** @class */ (function (_super) {
     __extends(List, _super);
     function List(props) {
@@ -42,14 +67,14 @@ var List = /** @class */ (function (_super) {
         var item = this.props.item;
         var onClick = item.onClick, onSelect = item.onSelect;
         if (onSelect !== undefined)
-            this.selectable = this.listBase = new Selectable(this);
+            this.selectable = this.listBase = new selectable_1.Selectable(this);
         else if (onClick !== undefined)
-            this.listBase = new Clickable(this);
+            this.listBase = new clickable_1.Clickable(this);
         else
-            this.listBase = new Static(this);
+            this.listBase = new static_1.Static(this);
     };
     List.prototype.componentDidUpdate = function (prevProps, prevState) {
-        if (_.isEqual(this.props.item, prevProps.item) === false) {
+        if (lodash_1.default.isEqual(this.props.item, prevProps.item) === false) {
             this.buildBase();
             this.forceUpdate();
         }
@@ -111,18 +136,18 @@ var List = /** @class */ (function (_super) {
         var tabIndex;
         if (onFocus !== undefined)
             tabIndex = -1;
-        return React.createElement("ul", { className: classNames('va-list', className), onFocus: onFocus, tabIndex: tabIndex },
+        return React.createElement("ul", { className: classnames_1.default('va-list', className), onFocus: onFocus, tabIndex: tabIndex },
             staticRow(header, 'header'),
             content,
             waitingMore,
             staticRow(footer, 'footer'));
     };
     var List_1;
-    List.res = resLang(listRes);
+    List.res = res_1.resLang(res_2.listRes);
     List = List_1 = __decorate([
-        observer
+        mobx_react_1.observer
     ], List);
     return List;
 }(React.Component));
-export { List };
+exports.List = List;
 //# sourceMappingURL=index.js.map

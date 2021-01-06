@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { env } from '../../tool';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TuidsCache = void 0;
+var tool_1 = require("../../tool");
 var TuidsCache = /** @class */ (function () {
     function TuidsCache(uq) {
         var _this = this;
@@ -50,12 +53,12 @@ var TuidsCache = /** @class */ (function () {
     }
     TuidsCache.prototype.cacheTuids = function (defer) {
         this.clearCacheTimer();
-        this.cacheTimer = env.setTimeout('TuidsCache.cacheTuids', this.loadIds, defer);
+        this.cacheTimer = tool_1.env.setTimeout('TuidsCache.cacheTuids', this.loadIds, defer);
     };
     TuidsCache.prototype.clearCacheTimer = function () {
         if (this.cacheTimer === undefined)
             return;
-        env.clearTimeout(this.cacheTimer);
+        tool_1.env.clearTimeout(this.cacheTimer);
         this.cacheTimer = undefined;
     };
     TuidsCache.prototype.pullModify = function (modifyMax) {
@@ -148,5 +151,5 @@ var TuidsCache = /** @class */ (function () {
     };
     return TuidsCache;
 }());
-export { TuidsCache };
+exports.TuidsCache = TuidsCache;
 //# sourceMappingURL=tuidsCache.js.map

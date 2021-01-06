@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,11 +67,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { nav, Page, Form, resLang, Ax } from '../components';
-import { userApi } from '../net';
-import { loginRes } from '../res';
-import { tonvaTop, getSender } from './tools';
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __importStar(require("react"));
+var components_1 = require("../components");
+var net_1 = require("../net");
+var res_1 = require("../res");
+var tools_1 = require("./tools");
 var schema = [
     { name: 'username', type: 'string', required: true, maxLength: 100 },
     { name: 'password', type: 'string', required: true, maxLength: 100 },
@@ -61,7 +82,7 @@ var Login = /** @class */ (function (_super) {
     __extends(Login, _super);
     function Login() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.res = resLang(loginRes);
+        _this.res = components_1.resLang(res_1.loginRes);
         _this.uiSchema = {
             items: {
                 username: { placeholder: '手机/邮箱/用户名', label: '登录账号' },
@@ -80,20 +101,20 @@ var Login = /** @class */ (function (_super) {
                         if (pwd === undefined) {
                             return [2 /*return*/, 'something wrong, pwd is undefined'];
                         }
-                        return [4 /*yield*/, userApi.login({
+                        return [4 /*yield*/, net_1.userApi.login({
                                 user: un,
                                 pwd: pwd,
-                                guest: nav.guest,
+                                guest: components_1.nav.guest,
                             })];
                     case 1:
                         user = _a.sent();
                         if (user === undefined) {
-                            sender = getSender(un);
+                            sender = tools_1.getSender(un);
                             type = sender !== undefined ? sender.caption : '用户名';
                             return [2 /*return*/, type + '或密码错！'];
                         }
                         console.log("onLoginSubmit: user=%s pwd:%s", user.name, user.token);
-                        return [4 /*yield*/, nav.userLogined(user, this.props.callback)];
+                        return [4 /*yield*/, components_1.nav.userLogined(user, this.props.callback)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
@@ -128,24 +149,24 @@ var Login = /** @class */ (function (_super) {
         var footer = React.createElement("div", null,
             React.createElement("div", { className: "d-block" },
                 React.createElement("div", { className: 'text-center' },
-                    React.createElement(Ax, { href: "/register", className: "btn btn-link", style: { margin: '0px auto' } }, "\u6CE8\u518C\u8D26\u53F7")),
-                nav.privacyEntry()));
+                    React.createElement(components_1.Ax, { href: "/register", className: "btn btn-link", style: { margin: '0px auto' } }, "\u6CE8\u518C\u8D26\u53F7")),
+                components_1.nav.privacyEntry()));
         var header = false;
         if (this.props.withBack === true) {
             header = '登录';
         }
-        return React.createElement(Page, { header: header, footer: footer },
+        return React.createElement(components_1.Page, { header: header, footer: footer },
             React.createElement("div", { className: "d-flex p-5 flex-column justify-content-center align-items-center" },
                 React.createElement("div", { className: "flex-fill" }),
                 React.createElement("div", { className: "w-20c" },
-                    tonvaTop(),
+                    tools_1.tonvaTop(),
                     React.createElement("div", { className: "h-2c" }),
-                    React.createElement(Form, { schema: schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
-                    React.createElement(Ax, { className: "btn btn-link btn-block", href: "/forget" }, "\u5FD8\u8BB0\u5BC6\u7801")),
+                    React.createElement(components_1.Form, { schema: schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
+                    React.createElement(components_1.Ax, { className: "btn btn-link btn-block", href: "/forget" }, "\u5FD8\u8BB0\u5BC6\u7801")),
                 React.createElement("div", { className: "flex-fill" }),
                 React.createElement("div", { className: "flex-fill" })));
     };
     return Login;
 }(React.Component));
-export default Login;
+exports.default = Login;
 //# sourceMappingURL=login.js.map

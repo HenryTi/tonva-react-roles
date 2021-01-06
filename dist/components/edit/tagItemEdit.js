@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,17 +67,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { nav } from '../nav';
-import { Page } from '../page/page';
-import { observer } from 'mobx-react';
-import { ItemEdit } from './itemEdit';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TagMultiItemEdit = exports.TagSingleItemEdit = void 0;
+var React = __importStar(require("react"));
+var nav_1 = require("../nav");
+var page_1 = require("../page/page");
+var mobx_react_1 = require("mobx-react");
+var itemEdit_1 = require("./itemEdit");
 var TagItemEdit = /** @class */ (function (_super) {
     __extends(TagItemEdit, _super);
     function TagItemEdit() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.inputs = {};
-        _this.page = observer(function (props) {
+        _this.page = mobx_react_1.observer(function (props) {
             var resolve = props.resolve;
             var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center", disabled: !_this.isChanged, onClick: function () {
                     _this.verifyValue();
@@ -77,7 +99,7 @@ var TagItemEdit = /** @class */ (function (_super) {
                 :
                 <>no list defined</>;
             */
-            return React.createElement(Page, { header: '更改' + _this.label, right: right },
+            return React.createElement(page_1.Page, { header: '更改' + _this.label, right: right },
                 React.createElement("div", { className: "p-3" }, _this.renderInputs()));
         });
         return _this;
@@ -99,7 +121,7 @@ var TagItemEdit = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         var element = React.createElement(_this.page, { resolve: resolve, reject: reject });
-                        nav.push(element, reject);
+                        nav_1.nav.push(element, reject);
                     })];
             });
         });
@@ -111,7 +133,7 @@ var TagItemEdit = /** @class */ (function (_super) {
         return valuesView.render(this.value);
     };
     return TagItemEdit;
-}(ItemEdit));
+}(itemEdit_1.ItemEdit));
 var TagSingleItemEdit = /** @class */ (function (_super) {
     __extends(TagSingleItemEdit, _super);
     function TagSingleItemEdit() {
@@ -137,7 +159,7 @@ var TagSingleItemEdit = /** @class */ (function (_super) {
     };
     return TagSingleItemEdit;
 }(TagItemEdit));
-export { TagSingleItemEdit };
+exports.TagSingleItemEdit = TagSingleItemEdit;
 var TagMultiItemEdit = /** @class */ (function (_super) {
     __extends(TagMultiItemEdit, _super);
     function TagMultiItemEdit() {
@@ -168,5 +190,5 @@ var TagMultiItemEdit = /** @class */ (function (_super) {
     };
     return TagMultiItemEdit;
 }(TagItemEdit));
-export { TagMultiItemEdit };
+exports.TagMultiItemEdit = TagMultiItemEdit;
 //# sourceMappingURL=tagItemEdit.js.map

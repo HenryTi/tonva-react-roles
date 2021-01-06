@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,9 +12,33 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import * as React from 'react';
-import classNames from 'classnames';
-import { Widget } from './widget';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TagMultiWidget = exports.TagSingleWidget = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var widget_1 = require("./widget");
 var TagWidget = /** @class */ (function (_super) {
     __extends(TagWidget, _super);
     function TagWidget() {
@@ -44,7 +69,7 @@ var TagWidget = /** @class */ (function (_super) {
             this.inputs[i].disabled = value;
     };
     return TagWidget;
-}(Widget));
+}(widget_1.Widget));
 var TagSingleWidget = /** @class */ (function (_super) {
     __extends(TagSingleWidget, _super);
     function TagSingleWidget() {
@@ -59,7 +84,7 @@ var TagSingleWidget = /** @class */ (function (_super) {
         if (isRow === true) {
             rowKey = this.context.rowKey;
         }
-        var cn = classNames(this.className, 'py-0');
+        var cn = classnames_1.default(this.className, 'py-0');
         var name = this.name;
         if (rowKey !== undefined)
             name += '-' + rowKey;
@@ -73,7 +98,7 @@ var TagSingleWidget = /** @class */ (function (_super) {
     };
     return TagSingleWidget;
 }(TagWidget));
-export { TagSingleWidget };
+exports.TagSingleWidget = TagSingleWidget;
 var TagMultiWidget = /** @class */ (function (_super) {
     __extends(TagMultiWidget, _super);
     function TagMultiWidget() {
@@ -105,7 +130,7 @@ var TagMultiWidget = /** @class */ (function (_super) {
         var _a = this.ui, valuesView = _a.valuesView, wrapClassName = _a.wrapClassName;
         if (valuesView === undefined)
             return React.createElement(React.Fragment, null, "valuesView must be defined");
-        var cn = classNames(this.className, 'py-0');
+        var cn = classnames_1.default(this.className, 'py-0');
         var options = {
             className: cn,
             inputs: this.inputs,
@@ -116,5 +141,5 @@ var TagMultiWidget = /** @class */ (function (_super) {
     };
     return TagMultiWidget;
 }(TagWidget));
-export { TagMultiWidget };
+exports.TagMultiWidget = TagMultiWidget;
 //# sourceMappingURL=tagWidget.js.map

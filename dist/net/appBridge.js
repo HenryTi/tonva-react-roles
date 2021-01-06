@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,18 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { nav } from '../components';
-import { uid } from '../tool/uid';
-import { uqTokenApi, callCenterapi, centerToken, setCenterToken } from './uqApi';
-import { setSubAppWindow } from './wsChannel';
-import { host } from './host';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.bridgeCenterApi = exports.appUq = exports.buildAppUq = exports.appUrl = exports.getExHash = exports.getExHashPos = exports.setAppInFrame = exports.isBridged = exports.appInFrame = exports.logoutUqTokens = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var components_1 = require("../components");
+var uid_1 = require("../tool/uid");
+var uqApi_1 = require("./uqApi");
+var wsChannel_1 = require("./wsChannel");
+var host_1 = require("./host");
 var uqTokens = {};
-export function logoutUqTokens() {
+function logoutUqTokens() {
     for (var i in uqTokens) {
         uqTokens[i] = undefined;
     }
 }
+exports.logoutUqTokens = logoutUqTokens;
 var appsInFrame = {};
 var AppInFrameClass = /** @class */ (function () {
     function AppInFrameClass() {
@@ -59,16 +66,17 @@ var AppInFrameClass = /** @class */ (function () {
     });
     return AppInFrameClass;
 }());
-export var appInFrame = new AppInFrameClass();
+exports.appInFrame = new AppInFrameClass();
 /* {
     hash: undefined,
     get unit():number {return } undefined, //debugUnitId,
     page: undefined;
     param: undefined,
 }*/
-export function isBridged() {
+function isBridged() {
     return window.self !== window.parent;
 }
+exports.isBridged = isBridged;
 window.addEventListener('message', function (evt) {
     var _a;
     return __awaiter(this, void 0, void 0, function () {
@@ -94,7 +102,7 @@ window.addEventListener('message', function (evt) {
                     return [3 /*break*/, 15];
                 case 2: 
                 //wsBridge.receive(message.msg);
-                return [4 /*yield*/, nav.onReceive(message.msg)];
+                return [4 /*yield*/, components_1.nav.onReceive(message.msg)];
                 case 3:
                     //wsBridge.receive(message.msg);
                     _c.sent();
@@ -105,7 +113,7 @@ window.addEventListener('message', function (evt) {
                     return [3 /*break*/, 15];
                 case 6:
                     window.console.log('///\\\\\\ pop-app');
-                    nav.navBack();
+                    components_1.nav.navBack();
                     return [3 /*break*/, 15];
                 case 7: return [4 /*yield*/, callCenterApiFromMessage(evt.source, message)];
                 case 8:
@@ -145,9 +153,9 @@ window.addEventListener('message', function (evt) {
 function subFrameStarted(evt) {
     var message = evt.data;
     var subWin = evt.source;
-    setSubAppWindow(subWin);
+    wsChannel_1.setSubAppWindow(subWin);
     hideFrameBack(message.hash);
-    var msg = _.clone(nav.user);
+    var msg = lodash_1.default.clone(components_1.nav.user);
     msg.type = 'init-sub-win';
     subWin.postMessage(msg, '*');
 }
@@ -163,9 +171,9 @@ function initSubWin(message) {
             switch (_a.label) {
                 case 0:
                     console.log('initSubWin: set nav.user', message);
-                    user = nav.user = message;
-                    setCenterToken(user.id, user.token);
-                    return [4 /*yield*/, nav.showAppView()];
+                    user = components_1.nav.user = message;
+                    uqApi_1.setCenterToken(user.id, user.token);
+                    return [4 /*yield*/, components_1.nav.showAppView()];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
@@ -190,7 +198,7 @@ function onReceiveAppApiMessage(hash, apiName) {
                     parts = apiName.split('/');
                     param = { unit: unit, uqOwner: parts[0], uqName: parts[1], appOwner: parts[2], appName: parts[3] };
                     console.log('uqTokenApi.uq onReceiveAppApiMessage', param);
-                    return [4 /*yield*/, uqTokenApi.uq(param)];
+                    return [4 /*yield*/, uqApi_1.uqTokenApi.uq(param)];
                 case 1:
                     ret = _a.sent();
                     db = ret.db, url = ret.url, token = ret.token;
@@ -209,7 +217,7 @@ function onAppApiReturn(message) {
                 throw new Error('error app api return');
                 //return;
             }
-            realUrl = host.getUrlOrTest(db, url, urlTest);
+            realUrl = host_1.host.getUrlOrTest(db, url, urlTest);
             console.log('onAppApiReturn(message:any): url=' + url + ', real=' + realUrl);
             //action.url = realUrl;
             //action.token = token;
@@ -223,24 +231,25 @@ function onAppApiReturn(message) {
         });
     });
 }
-export function setAppInFrame(appHash) {
+function setAppInFrame(appHash) {
     if (appHash) {
         var parts = appHash.split('-');
         var len = parts.length;
         if (len > 0) {
             var p = 1;
-            appInFrame.hash = parts[p++];
+            exports.appInFrame.hash = parts[p++];
             if (len > 0)
-                appInFrame.unit = Number(parts[p++]);
+                exports.appInFrame.unit = Number(parts[p++]);
             if (len > 1)
-                appInFrame.page = parts[p++];
+                exports.appInFrame.page = parts[p++];
             if (len > 2)
-                appInFrame.param = parts.slice(p++);
+                exports.appInFrame.param = parts.slice(p++);
         }
     }
-    return appInFrame;
+    return exports.appInFrame;
 }
-export function getExHashPos() {
+exports.setAppInFrame = setAppInFrame;
+function getExHashPos() {
     var hash = document.location.hash;
     if (hash !== undefined && hash.length > 0) {
         var pos = hash.lastIndexOf('#tv-');
@@ -250,16 +259,18 @@ export function getExHashPos() {
     }
     return -1;
 }
-export function getExHash() {
+exports.getExHashPos = getExHashPos;
+function getExHash() {
     var pos = getExHashPos();
     if (pos < 0)
         return undefined;
     return document.location.hash.substring(pos);
 }
-export function appUrl(url, unitId, page, param) {
+exports.getExHash = getExHash;
+function appUrl(url, unitId, page, param) {
     var u;
     for (;;) {
-        u = uid();
+        u = uid_1.uid();
         var a = appsInFrame[u];
         if (a === undefined) {
             appsInFrame[u] = { hash: u, unit: unitId };
@@ -277,8 +288,9 @@ export function appUrl(url, unitId, page, param) {
     }
     return { url: url, hash: u };
 }
+exports.appUrl = appUrl;
 function getUnit() {
-    var unit = appInFrame.unit, predefinedUnit = appInFrame.predefinedUnit;
+    var unit = exports.appInFrame.unit, predefinedUnit = exports.appInFrame.predefinedUnit;
     var realUnit = unit || predefinedUnit;
     if (realUnit === undefined) {
         throw new Error('no unit defined in unit.json or not logined in');
@@ -286,7 +298,7 @@ function getUnit() {
     return realUnit;
 }
 var uqTokenActions = {};
-export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
+function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
     return __awaiter(this, void 0, void 0, function () {
         var unit, uqToken, db, url, urlTest, realUrl, bp;
         var _this = this;
@@ -295,19 +307,19 @@ export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
                 case 0:
                     if (!!isBridged()) return [3 /*break*/, 2];
                     unit = getUnit();
-                    return [4 /*yield*/, uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName, appOwner: appOwner, appName: appName })];
+                    return [4 /*yield*/, uqApi_1.uqTokenApi.uq({ unit: unit, uqOwner: uqOwner, uqName: uqName, appOwner: appOwner, appName: appName })];
                 case 1:
                     uqToken = _a.sent();
                     if (uqToken.token === undefined)
-                        uqToken.token = centerToken;
+                        uqToken.token = uqApi_1.centerToken;
                     db = uqToken.db, url = uqToken.url, urlTest = uqToken.urlTest;
-                    realUrl = host.getUrlOrTest(db, url, urlTest);
+                    realUrl = host_1.host.getUrlOrTest(db, url, urlTest);
                     console.log('realUrl: %s', realUrl);
                     uqToken.url = realUrl;
                     uqTokens[uq] = uqToken;
                     return [2 /*return*/, uqToken];
                 case 2:
-                    console.log("**** before buildAppUq ****", appInFrame);
+                    console.log("**** before buildAppUq ****", exports.appInFrame);
                     bp = uqTokenActions[uq];
                     if (bp !== undefined)
                         return [2 /*return*/];
@@ -327,7 +339,7 @@ export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
                                                     token: token,
                                                 };
                                                 uqTokenActions[uq] = undefined;
-                                                console.log("**** after buildAppUq ****", appInFrame);
+                                                console.log("**** after buildAppUq ****", exports.appInFrame);
                                                 resolve();
                                                 return [2 /*return*/];
                                         }
@@ -338,19 +350,21 @@ export function buildAppUq(uq, uqOwner, uqName, appOwner, appName) {
                             (window.opener || window.parent).postMessage({
                                 type: 'app-api',
                                 apiName: uq,
-                                hash: appInFrame.hash,
+                                hash: exports.appInFrame.hash,
                             }, "*");
                         })];
             }
         });
     });
 }
-export function appUq(uq) {
+exports.buildAppUq = buildAppUq;
+function appUq(uq) {
     var uts = uqTokens;
     return uts[uq];
 }
+exports.appUq = appUq;
 var brideCenterApis = {};
-export function bridgeCenterApi(url, method, body) {
+function bridgeCenterApi(url, method, body) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
@@ -361,7 +375,7 @@ export function bridgeCenterApi(url, method, body) {
                             var callId, bca;
                             return __generator(this, function (_a) {
                                 for (;;) {
-                                    callId = uid();
+                                    callId = uid_1.uid();
                                     bca = brideCenterApis[callId];
                                     if (bca === undefined) {
                                         brideCenterApis[callId] = {
@@ -387,6 +401,7 @@ export function bridgeCenterApi(url, method, body) {
         });
     });
 }
+exports.bridgeCenterApi = bridgeCenterApi;
 function callCenterApiFromMessage(from, message) {
     return __awaiter(this, void 0, void 0, function () {
         var callId, url, method, body, result;
@@ -394,7 +409,7 @@ function callCenterApiFromMessage(from, message) {
             switch (_a.label) {
                 case 0:
                     callId = message.callId, url = message.url, method = message.method, body = message.body;
-                    return [4 /*yield*/, callCenterapi.directCall(url, method, body)];
+                    return [4 /*yield*/, uqApi_1.callCenterapi.directCall(url, method, body)];
                 case 1:
                     result = _a.sent();
                     from.postMessage({

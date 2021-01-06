@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -53,12 +54,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import React from 'react';
-import _ from 'lodash';
-import { FA, Page } from '../../components';
-import { Controller } from "../controller";
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CStringEdit = void 0;
+var react_1 = __importDefault(require("react"));
+var lodash_1 = __importDefault(require("lodash"));
+var components_1 = require("../../components");
+var controller_1 = require("../controller");
+var mobx_1 = require("mobx");
+var mobx_react_1 = require("mobx-react");
 var CStringEdit = /** @class */ (function (_super) {
     __extends(CStringEdit, _super);
     function CStringEdit() {
@@ -88,16 +94,16 @@ var CStringEdit = /** @class */ (function (_super) {
                         onValueChange(_this.value);
                 }
             };
-            var right = React.createElement(observer(function () { return React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !_this.isChanged, onClick: onSave }, "\u4FDD\u5B58"); }));
+            var right = react_1.default.createElement(mobx_react_1.observer(function () { return react_1.default.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !_this.isChanged, onClick: onSave }, "\u4FDD\u5B58"); }));
             var onKeyDown = function (evt) {
                 if (evt.keyCode === 13)
                     onSave();
             };
-            _this.openPage(React.createElement(Page, { header: label, right: right },
-                React.createElement("div", { className: "m-3" },
-                    React.createElement("input", { type: "text", onChange: _this.onChange, onKeyDown: onKeyDown, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value, maxLength: maxLength }),
-                    React.createElement(observer(function () { return placeholder && React.createElement("div", { className: "small muted m-2" }, placeholder); })),
-                    _this.error && React.createElement("div", { className: "text-danger" }, _this.error))));
+            _this.openPage(react_1.default.createElement(components_1.Page, { header: label, right: right },
+                react_1.default.createElement("div", { className: "m-3" },
+                    react_1.default.createElement("input", { type: "text", onChange: _this.onChange, onKeyDown: onKeyDown, onBlur: _this.onBlur, onFocus: _this.onFocus, className: "form-control", defaultValue: _this.value, maxLength: maxLength }),
+                    react_1.default.createElement(mobx_react_1.observer(function () { return placeholder && react_1.default.createElement("div", { className: "small muted m-2" }, placeholder); })),
+                    _this.error && react_1.default.createElement("div", { className: "text-danger" }, _this.error))));
         };
         return _this;
     }
@@ -110,32 +116,32 @@ var CStringEdit = /** @class */ (function (_super) {
         var _this = this;
         this.value = value;
         if (props)
-            _.merge(this.props, props);
-        return React.createElement(observer(function () { return React.createElement(React.Fragment, null,
+            lodash_1.default.merge(this.props, props);
+        return react_1.default.createElement(mobx_react_1.observer(function () { return react_1.default.createElement(react_1.default.Fragment, null,
             _this.renderValue(),
             _this.renderPencil()); }));
     };
-    CStringEdit.prototype.renderValue = function () { return React.createElement(React.Fragment, null, this.value); };
+    CStringEdit.prototype.renderValue = function () { return react_1.default.createElement(react_1.default.Fragment, null, this.value); };
     CStringEdit.prototype.renderPencil = function () {
-        return React.createElement("span", { onClick: this.onEdit, className: "cursor-pointer" },
+        return react_1.default.createElement("span", { onClick: this.onEdit, className: "cursor-pointer" },
             "\u00A0 ",
-            React.createElement(FA, { className: "text-info", name: "pencil-square-o" }),
+            react_1.default.createElement(components_1.FA, { className: "text-info", name: "pencil-square-o" }),
             " \u00A0");
     };
     CStringEdit.prototype.verifyValue = function () { };
     __decorate([
-        observable
+        mobx_1.observable
     ], CStringEdit.prototype, "value", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], CStringEdit.prototype, "newValue", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], CStringEdit.prototype, "isChanged", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], CStringEdit.prototype, "error", void 0);
     return CStringEdit;
-}(Controller));
-export { CStringEdit };
+}(controller_1.Controller));
+exports.CStringEdit = CStringEdit;
 //# sourceMappingURL=CStringEdit.js.map

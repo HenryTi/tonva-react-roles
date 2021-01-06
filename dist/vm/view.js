@@ -1,3 +1,23 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,9 +54,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { Page, Image, UserView } from '../components';
-import { env } from '../tool';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.View = void 0;
+var React = __importStar(require("react"));
+var components_1 = require("../components");
+var tool_1 = require("../tool");
 var View = /** @class */ (function () {
     function View(controller) {
         this.controller = controller;
@@ -45,7 +67,7 @@ var View = /** @class */ (function () {
         this.t = controller.t;
     }
     Object.defineProperty(View.prototype, "isDev", {
-        get: function () { return env.isDevelopment; },
+        get: function () { return tool_1.env.isDevelopment; },
         enumerable: false,
         configurable: true
     });
@@ -103,17 +125,17 @@ var View = /** @class */ (function () {
         var renderUser = function (user) {
             var name = user.name, nick = user.nick, icon = user.icon;
             return React.createElement(React.Fragment, null,
-                React.createElement(Image, { src: icon, className: imageClassName || 'w-1c h-1c mr-2' }),
+                React.createElement(components_1.Image, { src: icon, className: imageClassName || 'w-1c h-1c mr-2' }),
                 React.createElement("span", { className: textClassName }, nick || name));
         };
-        return React.createElement(UserView, { user: user, render: renderUser });
+        return React.createElement(components_1.UserView, { user: user, render: renderUser });
     };
     View.prototype.renderUserText = function (user) {
         var renderUser = function (user) {
             var name = user.name, nick = user.nick;
             return React.createElement(React.Fragment, null, nick || name);
         };
-        return React.createElement(UserView, { user: user, render: renderUser });
+        return React.createElement(components_1.UserView, { user: user, render: renderUser });
     };
     View.prototype.renderMe = function (imageClassName, textClassName) {
         var user = this.controller.user;
@@ -127,7 +149,7 @@ var View = /** @class */ (function () {
             this.controller.openPage(React.createElement(view, param), onClosePage);
         }
         else {
-            this.controller.openPage(React.createElement(Page, { header: "param type error" },
+            this.controller.openPage(React.createElement(components_1.Page, { header: "param type error" },
                 "View.openPage param must be object, but here is ",
                 type), onClosePage);
         }
@@ -161,5 +183,5 @@ var View = /** @class */ (function () {
     };
     return View;
 }());
-export { View };
+exports.View = View;
 //# sourceMappingURL=view.js.map

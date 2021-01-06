@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { getObjPropIgnoreCase } from '../tool';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Entity = void 0;
+var tool_1 = require("../tool");
 var tab = '\t';
 var ln = '\n';
 var chars = '\\ntbfvr';
@@ -300,7 +303,7 @@ var Entity = /** @class */ (function () {
             for (var _i = 0, arrs_2 = arrs; _i < arrs_2.length; _i++) {
                 var arr = arrs_2[_i];
                 var name_3 = arr.name, fields_4 = arr.fields;
-                var arrData = getObjPropIgnoreCase(data, name_3);
+                var arrData = tool_1.getObjPropIgnoreCase(data, name_3);
                 //if (!arrData) arrData = data[name.toLowerCase()];
                 this.packArr(ret, fields_4, arrData);
             }
@@ -606,5 +609,5 @@ var Entity = /** @class */ (function () {
     };
     return Entity;
 }());
-export { Entity };
+exports.Entity = Entity;
 //# sourceMappingURL=entity.js.map

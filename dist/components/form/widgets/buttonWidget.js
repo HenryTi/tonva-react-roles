@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,10 +67,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { Unknown } from './unknown';
-import { Widget } from './widget';
-import { observer } from 'mobx-react';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ButtonWidget = void 0;
+var React = __importStar(require("react"));
+var unknown_1 = require("./unknown");
+var widget_1 = require("./widget");
+var mobx_react_1 = require("mobx-react");
 var ButtonWidget = /** @class */ (function (_super) {
     __extends(ButtonWidget, _super);
     function ButtonWidget() {
@@ -72,13 +94,13 @@ var ButtonWidget = /** @class */ (function (_super) {
                 }
             });
         }); };
-        _this.observerRender = observer(function () {
+        _this.observerRender = mobx_react_1.observer(function () {
             var _a = _this.itemSchema, name = _a.name, type = _a.type;
             var Templet, cn, caption;
             if (_this.ui !== undefined) {
                 var widgetType = _this.ui.widget;
                 if (widgetType !== 'button')
-                    return Unknown(type, widgetType, ['button']);
+                    return unknown_1.Unknown(type, widgetType, ['button']);
                 Templet = _this.ui.Templet;
                 cn = _this.ui.className;
                 caption = _this.ui.label;
@@ -121,6 +143,6 @@ var ButtonWidget = /** @class */ (function (_super) {
         return React.createElement(this.observerRender);
     };
     return ButtonWidget;
-}(Widget));
-export { ButtonWidget };
+}(widget_1.Widget));
+exports.ButtonWidget = ButtonWidget;
 //# sourceMappingURL=buttonWidget.js.map

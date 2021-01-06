@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,15 +35,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import fs from 'fs';
-import { UQsMan } from './index';
-import { nav } from '../components';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.buildUqApp = exports.uqAppStart = void 0;
+var fs_1 = __importDefault(require("fs"));
+var index_1 = require("./index");
+var components_1 = require("../components");
 //import { env } from 'tonva/tool';
 //const uqAppPath = 'src/UqApp';
 var red = '\x1b[41m%s\x1b[0m';
 var lastBuildTime = 0;
 var gUqOwnerMap;
-export function uqAppStart(options) {
+function uqAppStart(options) {
     return __awaiter(this, void 0, void 0, function () {
         var uqAppName, appVersion, appUnitId;
         return __generator(this, function (_a) {
@@ -50,11 +56,11 @@ export function uqAppStart(options) {
                 case 0:
                     uqAppName = options.uqAppName, appVersion = options.uqAppVersion, appUnitId = options.uqAppUnitId;
                     process.env.REACT_APP_UNIT = String(appUnitId);
-                    nav.forceDevelopment = true;
-                    return [4 /*yield*/, nav.init()];
+                    components_1.nav.forceDevelopment = true;
+                    return [4 /*yield*/, components_1.nav.init()];
                 case 1:
                     _a.sent();
-                    return [4 /*yield*/, UQsMan.load(uqAppName, appVersion, undefined)];
+                    return [4 /*yield*/, index_1.UQsMan.load(uqAppName, appVersion, undefined)];
                 case 2:
                     _a.sent();
                     return [2 /*return*/];
@@ -62,7 +68,8 @@ export function uqAppStart(options) {
         });
     });
 }
-export function buildUqApp(options) {
+exports.uqAppStart = uqAppStart;
+function buildUqApp(options) {
     return __awaiter(this, void 0, void 0, function () {
         var uqAppSrcPath, uqOwnerMap, i, tsAppName, tsAppConfig, tsIndex, tsCApp, tsCBase, tsVMain;
         return __generator(this, function (_a) {
@@ -80,8 +87,8 @@ export function buildUqApp(options) {
                         console.log(red, 'quit !');
                         return [2 /*return*/];
                     }
-                    if (!fs.existsSync(uqAppSrcPath)) {
-                        fs.mkdirSync(uqAppSrcPath);
+                    if (!fs_1.default.existsSync(uqAppSrcPath)) {
+                        fs_1.default.mkdirSync(uqAppSrcPath);
                     }
                     tsAppName = buildTsAppName(options);
                     saveTsFile(uqAppSrcPath, 'appName', tsAppName);
@@ -96,7 +103,7 @@ export function buildUqApp(options) {
                     tsVMain = buildTsVMain();
                     saveTsFileIfNotExists(uqAppSrcPath, 'VMain', tsVMain, 'tsx');
                     saveTsFile(uqAppSrcPath, 'uqs', '');
-                    fs.unlinkSync(uqAppSrcPath + '/uqs.ts');
+                    fs_1.default.unlinkSync(uqAppSrcPath + '/uqs.ts');
                     return [4 /*yield*/, buildUqsFolder(uqAppSrcPath + '/uqs', options)];
                 case 1:
                     _a.sent();
@@ -105,11 +112,12 @@ export function buildUqApp(options) {
         });
     });
 }
+exports.buildUqApp = buildUqApp;
 ;
 function saveTsFileIfNotExists(uqAppSrcPath, fileName, content, suffix) {
     if (suffix === void 0) { suffix = 'ts'; }
     var tsFile = uqAppSrcPath + "/" + fileName + "." + suffix;
-    if (fs.existsSync(tsFile) === true)
+    if (fs_1.default.existsSync(tsFile) === true)
         return;
     saveTsFile(uqAppSrcPath, fileName, content, suffix);
 }
@@ -117,19 +125,19 @@ function saveTsFile(uqAppSrcPath, fileName, content, suffix) {
     if (suffix === void 0) { suffix = 'ts'; }
     var srcFile = uqAppSrcPath + "/" + fileName + "." + suffix + ".txt";
     var tsFile = uqAppSrcPath + "/" + fileName + "." + suffix;
-    if (!fs.existsSync(srcFile)) {
-        if (fs.existsSync(tsFile)) {
-            fs.renameSync(tsFile, srcFile);
+    if (!fs_1.default.existsSync(srcFile)) {
+        if (fs_1.default.existsSync(tsFile)) {
+            fs_1.default.renameSync(tsFile, srcFile);
         }
     }
-    fs.writeFileSync(tsFile, content);
+    fs_1.default.writeFileSync(tsFile, content);
     lastBuildTime = Date.now();
     console.log(red, tsFile + " is built");
 }
 function overrideTsFile(uqAppSrcPath, fileName, content, suffix) {
     if (suffix === void 0) { suffix = 'ts'; }
     var tsFile = uqAppSrcPath + "/" + fileName + "." + suffix;
-    fs.writeFileSync(tsFile, content);
+    fs_1.default.writeFileSync(tsFile, content);
     lastBuildTime = Date.now();
     console.log(red, tsFile + " is built");
 }
@@ -171,7 +179,7 @@ function buildUqsFolder(uqsFolder, options) {
                 case 0: return [4 /*yield*/, uqAppStart(options)];
                 case 1:
                     _d.sent();
-                    uqsMan = UQsMan.value;
+                    uqsMan = index_1.UQsMan.value;
                     coll = uqsMan.getUqCollection();
                     promiseArr = [];
                     uqs = [];
@@ -192,8 +200,8 @@ function buildUqsFolder(uqsFolder, options) {
                     return [4 /*yield*/, Promise.all(promiseArr)];
                 case 2:
                     _d.sent();
-                    if (!fs.existsSync(uqsFolder)) {
-                        fs.mkdirSync(uqsFolder);
+                    if (!fs_1.default.existsSync(uqsFolder)) {
+                        fs_1.default.mkdirSync(uqsFolder);
                     }
                     tsUqsIndexHeader = buildTsHeader();
                     tsUqsIndexContent = "\n\nexport interface UQs {";

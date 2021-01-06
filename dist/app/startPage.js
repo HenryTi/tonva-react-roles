@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { nav } from '../components';
-export function startPage(CApp, appConfig) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.startPage = void 0;
+var components_1 = require("../components");
+function startPage(CApp, appConfig) {
     return __awaiter(this, void 0, void 0, function () {
         var htmlTitle, html, html0, version, cApp;
         return __generator(this, function (_a) {
@@ -52,7 +55,7 @@ export function startPage(CApp, appConfig) {
                         if (version)
                             appConfig.version = version;
                     }
-                    nav.setSettings(appConfig);
+                    components_1.nav.setSettings(appConfig);
                     cApp = new CApp(appConfig);
                     cApp.init();
                     return [4 /*yield*/, cApp.start()];
@@ -63,4 +66,5 @@ export function startPage(CApp, appConfig) {
         });
     });
 }
+exports.startPage = startPage;
 //# sourceMappingURL=startPage.js.map

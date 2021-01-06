@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,11 +12,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -53,13 +73,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import classNames from 'classnames';
-import { Widget } from './widget';
-import { Image } from '../../image';
-import { ImageItemEdit } from '../../edit/imageItemEdit';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ImageWidget = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var widget_1 = require("./widget");
+var image_1 = require("../../image");
+var imageItemEdit_1 = require("../../edit/imageItemEdit");
+var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
 var ImageWidget = /** @class */ (function (_super) {
     __extends(ImageWidget, _super);
     function ImageWidget() {
@@ -69,7 +94,7 @@ var ImageWidget = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        edit = new ImageItemEdit(undefined, this.itemSchema, this.ui, this.ui.label, this.value);
+                        edit = new imageItemEdit_1.ImageItemEdit(undefined, this.itemSchema, this.ui, this.ui.label, this.value);
                         return [4 /*yield*/, edit.start()];
                     case 1:
                         ret = _a.sent();
@@ -84,7 +109,7 @@ var ImageWidget = /** @class */ (function (_super) {
                 }
             });
         }); };
-        _this.observerRender = observer(function () {
+        _this.observerRender = mobx_react_1.observer(function () {
             var cn = [
                 'bg-white p-1 d-flex justify-content-center',
             ];
@@ -93,8 +118,8 @@ var ImageWidget = /** @class */ (function (_super) {
                 cn.push('cursor-pointer');
                 onClick = _this.onClick;
             }
-            return React.createElement("div", { className: classNames(cn), onClick: onClick },
-                React.createElement(Image, { src: _this.imageSrc, className: "w-4c h-4c" }));
+            return React.createElement("div", { className: classnames_1.default(cn), onClick: onClick },
+                React.createElement(image_1.Image, { src: _this.imageSrc, className: "w-4c h-4c" }));
         });
         return _this;
     }
@@ -112,9 +137,9 @@ var ImageWidget = /** @class */ (function (_super) {
         return React.createElement(this.observerRender);
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageWidget.prototype, "imageSrc", void 0);
     return ImageWidget;
-}(Widget));
-export { ImageWidget };
+}(widget_1.Widget));
+exports.ImageWidget = ImageWidget;
 //# sourceMappingURL=imageWidget.js.map

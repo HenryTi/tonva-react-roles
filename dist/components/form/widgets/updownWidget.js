@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { NumberWidget } from './numberWidget';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdownWidget = void 0;
+var numberWidget_1 = require("./numberWidget");
 var UpdownWidget = /** @class */ (function (_super) {
     __extends(UpdownWidget, _super);
     function UpdownWidget() {
@@ -30,6 +33,6 @@ var UpdownWidget = /** @class */ (function (_super) {
         window.event.returnValue = this.isValidKey(key);
     };
     return UpdownWidget;
-}(NumberWidget));
-export { UpdownWidget };
+}(numberWidget_1.NumberWidget));
+exports.UpdownWidget = UpdownWidget;
 //# sourceMappingURL=updownWidget.js.map

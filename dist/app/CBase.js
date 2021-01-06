@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,8 +12,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import _ from 'lodash';
-import { Controller } from "../vm";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CSub = exports.CBase = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var vm_1 = require("../vm");
 var CBase = /** @class */ (function (_super) {
     __extends(CBase, _super);
     function CBase(cApp) {
@@ -56,13 +62,13 @@ var CBase = /** @class */ (function (_super) {
         var wn = (_a = this._cApp) === null || _a === void 0 ? void 0 : _a.getWebNav();
         if (wn === undefined)
             return;
-        var ret = _.clone(wn);
-        _.merge(ret, this.webNav);
+        var ret = lodash_1.default.clone(wn);
+        lodash_1.default.merge(ret, this.webNav);
         return ret;
     };
     return CBase;
-}(Controller));
-export { CBase };
+}(vm_1.Controller));
+exports.CBase = CBase;
 var CSub = /** @class */ (function (_super) {
     __extends(CSub, _super);
     function CSub(owner) {
@@ -90,17 +96,17 @@ var CSub = /** @class */ (function (_super) {
         for (var p = this.owner; p !== undefined; p = (_b = p) === null || _b === void 0 ? void 0 : _b.owner) {
             ownerWNs.push(p.webNav);
         }
-        var ret = _.clone(wn);
+        var ret = lodash_1.default.clone(wn);
         for (;;) {
             var own = ownerWNs.pop();
             if (own === undefined)
                 break;
-            _.merge(ret, own);
+            lodash_1.default.merge(ret, own);
         }
-        _.merge(ret, this.webNav);
+        lodash_1.default.merge(ret, this.webNav);
         return ret;
     };
     return CSub;
 }(CBase));
-export { CSub };
+exports.CSub = CSub;
 //# sourceMappingURL=CBase.js.map

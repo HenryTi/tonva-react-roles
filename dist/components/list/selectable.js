@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,11 +12,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
@@ -24,12 +44,17 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-import * as React from 'react';
-import { observable, isObservableArray, observe } from 'mobx';
-import classNames from 'classnames';
-import { ListBase } from './base';
-import { uid } from '../../tool/uid';
-import { observer } from 'mobx-react';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Selectable = void 0;
+var React = __importStar(require("react"));
+var mobx_1 = require("mobx");
+var classnames_1 = __importDefault(require("classnames"));
+var base_1 = require("./base");
+var uid_1 = require("../../tool/uid");
+var mobx_react_1 = require("mobx-react");
 var Selectable = /** @class */ (function (_super) {
     __extends(Selectable, _super);
     function Selectable(list) {
@@ -57,7 +82,7 @@ var Selectable = /** @class */ (function (_super) {
                     return {
                         selected: isItemSelected(v),
                         item: v,
-                        labelId: uid()
+                        labelId: uid_1.uid()
                     };
                 });
                 _this._items = retItems;
@@ -80,7 +105,7 @@ var Selectable = /** @class */ (function (_super) {
                     return {
                         selected: selected,
                         item: v,
-                        labelId: uid()
+                        labelId: uid_1.uid()
                     };
                 });
                 _this._items = retItems;
@@ -114,11 +139,11 @@ var Selectable = /** @class */ (function (_super) {
             var key = _this.list.props.item.key;
             return React.createElement(_this.row, { item: item, index: index, key: key === undefined ? index : key(item) });
         };
-        _this.row = observer(function (props) {
+        _this.row = mobx_react_1.observer(function (props) {
             var item = props.item, index = props.index;
             var className = _this.list.props.item.className;
             var labelId = item.labelId, selected = item.selected, obItem = item.item;
-            return React.createElement("li", { className: classNames(className) },
+            return React.createElement("li", { className: classnames_1.default(className) },
                 React.createElement("div", { className: "d-flex align-items-center px-3" },
                     React.createElement("input", { ref: function (input) { if (input)
                             _this.inputItems[labelId] = input; }, className: "", type: "checkbox", value: "", id: labelId, defaultChecked: selected, onChange: function (e) {
@@ -144,8 +169,8 @@ var Selectable = /** @class */ (function (_super) {
         else {
             itemsArray = items.items;
         }
-        if (isObservableArray(items) === true) {
-            observe(itemsArray, function (change) {
+        if (mobx_1.isObservableArray(items) === true) {
+            mobx_1.observe(itemsArray, function (change) {
                 var _a;
                 if (change.type === 'splice') {
                     var index = change.index, removedCount = change.removedCount, added = change.added;
@@ -153,7 +178,7 @@ var Selectable = /** @class */ (function (_super) {
                         return {
                             selected: false,
                             item: v,
-                            labelId: uid()
+                            labelId: uid_1.uid()
                         };
                     });
                     (_a = _this._items).splice.apply(_a, __spreadArrays([index, removedCount], _added));
@@ -212,9 +237,9 @@ var Selectable = /** @class */ (function (_super) {
         configurable: true
     });
     __decorate([
-        observable
+        mobx_1.observable
     ], Selectable.prototype, "_items", void 0);
     return Selectable;
-}(ListBase));
-export { Selectable };
+}(base_1.ListBase));
+exports.Selectable = Selectable;
 //# sourceMappingURL=selectable.js.map

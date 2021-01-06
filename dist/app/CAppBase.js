@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,17 +48,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { nav, t, setGlobalRes } from "../components";
-import { Controller } from '../vm';
-import { UQsMan } from "../uq";
-import { appInFrame } from "../net";
-import { centerApi } from "./centerApi";
-import { VUnitSelect, VErrorsPage, VStartError, VUnsupportedUnit } from "./vMain";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CAppBase = void 0;
+var components_1 = require("../components");
+var vm_1 = require("../vm");
+var uq_1 = require("../uq");
+var net_1 = require("../net");
+var centerApi_1 = require("./centerApi");
+var vMain_1 = require("./vMain");
 var CAppBase = /** @class */ (function (_super) {
     __extends(CAppBase, _super);
     function CAppBase(config) {
         var _this = _super.call(this, undefined) || this;
-        _this.appConfig = config || nav.navSettings;
+        _this.appConfig = config || components_1.nav.navSettings;
         if (_this.appConfig) {
             var _a = _this.appConfig, appName = _a.appName, noUnit = _a.noUnit;
             _this.name = appName;
@@ -74,10 +77,10 @@ var CAppBase = /** @class */ (function (_super) {
         configurable: true
     });
     CAppBase.prototype.internalT = function (str) {
-        return t(str);
+        return components_1.t(str);
     };
     CAppBase.prototype.setRes = function (res) {
-        setGlobalRes(res);
+        components_1.setGlobalRes(res);
     };
     CAppBase.prototype.hasRole = function (role) {
         var nRole;
@@ -115,15 +118,15 @@ var CAppBase = /** @class */ (function (_super) {
                         if (!this.appConfig)
                             return [2 /*return*/, true];
                         _a = this.appConfig, appName = _a.appName, version = _a.version, tvs = _a.tvs;
-                        return [4 /*yield*/, UQsMan.load(appName, version, tvs)];
+                        return [4 /*yield*/, uq_1.UQsMan.load(appName, version, tvs)];
                     case 1:
                         _b.sent();
-                        this._uqs = UQsMan._uqs;
-                        retErrors = UQsMan.errors;
-                        predefinedUnit_1 = appInFrame.predefinedUnit;
-                        user = nav.user;
+                        this._uqs = uq_1.UQsMan._uqs;
+                        retErrors = uq_1.UQsMan.errors;
+                        predefinedUnit_1 = net_1.appInFrame.predefinedUnit;
+                        user = components_1.nav.user;
                         if (!(user !== undefined && user.id > 0)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, centerApi.userAppUnits(UQsMan.value.id)];
+                        return [4 /*yield*/, centerApi_1.centerApi.userAppUnits(uq_1.UQsMan.value.id)];
                     case 2:
                         result = _b.sent();
                         this.appUnits = result;
@@ -162,26 +165,26 @@ var CAppBase = /** @class */ (function (_super) {
                                     this.showUnsupport(predefinedUnit_1);
                                     return [2 /*return*/, false];
                                 }
-                                appInFrame.unit = appUnitId;
+                                net_1.appInFrame.unit = appUnitId;
                                 break;
                             default:
                                 if (predefinedUnit_1 > 0 && this.appUnits.find(function (v) { return v.id === predefinedUnit_1; }) !== undefined) {
-                                    appInFrame.unit = predefinedUnit_1;
+                                    net_1.appInFrame.unit = predefinedUnit_1;
                                     break;
                                 }
-                                this.openVPage(VUnitSelect);
+                                this.openVPage(vMain_1.VUnitSelect);
                                 return [2 /*return*/, false];
                         }
                         _b.label = 3;
                     case 3:
                         if (retErrors !== undefined) {
-                            this.openVPage(VErrorsPage, retErrors);
+                            this.openVPage(vMain_1.VErrorsPage, retErrors);
                             return [2 /*return*/, false];
                         }
                         return [2 /*return*/, true];
                     case 4:
                         err_1 = _b.sent();
-                        this.openVPage(VStartError, err_1);
+                        this.openVPage(vMain_1.VStartError, err_1);
                         return [2 /*return*/, false];
                     case 5: return [2 /*return*/];
                 }
@@ -191,7 +194,7 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.afterStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                nav.resolveRoute();
+                components_1.nav.resolveRoute();
                 return [2 /*return*/];
             });
         });
@@ -200,7 +203,7 @@ var CAppBase = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, centerApi.userFromId(userId)];
+                    case 0: return [4 /*yield*/, centerApi_1.centerApi.userFromId(userId)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -211,14 +214,14 @@ var CAppBase = /** @class */ (function (_super) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return nav.on(args[0], args[1], args[2]);
+        return components_1.nav.on(args[0], args[1], args[2]);
     };
     CAppBase.prototype.onNavRoutes = function () { return; };
     CAppBase.prototype.showUnsupport = function (predefinedUnit) {
-        nav.clear();
-        this.openVPage(VUnsupportedUnit, predefinedUnit);
+        components_1.nav.clear();
+        this.openVPage(vMain_1.VUnsupportedUnit, predefinedUnit);
     };
     return CAppBase;
-}(Controller));
-export { CAppBase };
+}(vm_1.Controller));
+exports.CAppBase = CAppBase;
 //# sourceMappingURL=CAppBase.js.map

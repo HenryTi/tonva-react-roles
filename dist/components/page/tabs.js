@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,11 +12,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -53,12 +73,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
-import classNames from 'classnames';
-import '../../css/va-tab.css';
-import { ScrollView } from './scrollView';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RootTabs = exports.Tabs = exports.TabsView = exports.TabCaptionComponent = void 0;
+var React = __importStar(require("react"));
+var mobx_1 = require("mobx");
+var mobx_react_1 = require("mobx-react");
+var classnames_1 = __importDefault(require("classnames"));
+require("../../css/va-tab.css");
+var scrollView_1 = require("./scrollView");
 var Tab = /** @class */ (function () {
     function Tab() {
         this.loaded = false;
@@ -109,17 +134,18 @@ var Tab = /** @class */ (function () {
         });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], Tab.prototype, "loaded", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], Tab.prototype, "selected", void 0);
     return Tab;
 }());
-export var TabCaptionComponent = function (label, icon, color) { return React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
+var TabCaptionComponent = function (label, icon, color) { return React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
     React.createElement("div", null,
         React.createElement("i", { className: 'fa fa-lg fa-' + icon })),
     React.createElement("small", null, label)); };
+exports.TabCaptionComponent = TabCaptionComponent;
 //export const TabCaption = TabCaptionComponent;
 var TabsView = /** @class */ (function () {
     function TabsView(props) {
@@ -157,7 +183,7 @@ var TabsView = /** @class */ (function () {
             this.selectedTab = tab;
         }
         */
-        this.tabs = observer(function () {
+        this.tabs = mobx_react_1.observer(function () {
             var _a = _this.props, tabPosition = _a.tabPosition, borderColor = _a.borderColor;
             var bsCur, bsTab;
             if (borderColor) {
@@ -190,7 +216,7 @@ var TabsView = /** @class */ (function () {
                     bsTab.borderBottomWidth = 0;
                 }
             }
-            var cn = classNames('tv-tabs', _this.tabBg, _this.sep, 'tv-tabs-' + _this.size);
+            var cn = classnames_1.default('tv-tabs', _this.tabBg, _this.sep, 'tv-tabs-' + _this.size);
             var tabs = React.createElement("div", { className: cn }, _this.tabArr.map(function (v, index) {
                 var selected = v.selected, caption = v.caption, notify = v.notify;
                 var notifyCircle;
@@ -210,7 +236,7 @@ var TabsView = /** @class */ (function () {
             }));
             return tabs;
         });
-        this.content = observer(function () {
+        this.content = mobx_react_1.observer(function () {
             var displayNone = { visibility: 'hidden' };
             return React.createElement(React.Fragment, null, _this.tabArr.map(function (v, index) {
                 var tabPosition = _this.props.tabPosition;
@@ -258,7 +284,7 @@ var TabsView = /** @class */ (function () {
                 var style;
                 if (v.selected === false)
                     style = displayNone;
-                return React.createElement(ScrollView, { key: index, className: className, style: style, onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
+                return React.createElement(scrollView_1.ScrollView, { key: index, className: className, style: style, onScroll: onScroll, onScrollTop: onScrollTop, onScrollBottom: onScrollBottom },
                     header,
                     content,
                     footer);
@@ -317,19 +343,19 @@ var TabsView = /** @class */ (function () {
                 var style;
                 if (v.selected === false)
                     style = visibility;
-                return React.createElement("div", { key: index, className: classNames(v.className), style: style }, v.content);
+                return React.createElement("div", { key: index, className: classnames_1.default(v.className), style: style }, v.content);
             }),
             footer);
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], TabsView.prototype, "selectedTab", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], TabsView.prototype, "tabArr", void 0);
     return TabsView;
 }());
-export { TabsView };
+exports.TabsView = TabsView;
 ;
 var Tabs = /** @class */ (function (_super) {
     __extends(Tabs, _super);
@@ -345,11 +371,11 @@ var Tabs = /** @class */ (function (_super) {
         return this.tabsView.render();
     };
     Tabs = __decorate([
-        observer
+        mobx_react_1.observer
     ], Tabs);
     return Tabs;
 }(React.Component));
-export { Tabs };
+exports.Tabs = Tabs;
 ;
 var RootTabs = /** @class */ (function (_super) {
     __extends(RootTabs, _super);
@@ -365,10 +391,10 @@ var RootTabs = /** @class */ (function (_super) {
         return React.createElement(this.tabsView.content);
     };
     RootTabs = __decorate([
-        observer
+        mobx_react_1.observer
     ], RootTabs);
     return RootTabs;
 }(React.Component));
-export { RootTabs };
+exports.RootTabs = RootTabs;
 ;
 //# sourceMappingURL=tabs.js.map

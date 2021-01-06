@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,22 +48,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { CenterHttpChannel, UqHttpChannel } from './httpChannel';
-import { HttpChannelNavUI } from './httpChannelUI';
-import { appUq, logoutUqTokens, buildAppUq } from './appBridge';
-import { ApiBase } from './apiBase';
-import { host } from './host';
-import { env } from '../tool';
-import { decodeUserToken } from '../tool/user';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userApi = exports.UserApi = exports.loadAppUqs = exports.CenterAppApi = exports.callCenterapi = exports.CallCenterApi = exports.uqTokenApi = exports.UqTokenApi = exports.CenterApiBase = exports.setCenterToken = exports.centerToken = exports.setCenterUrl = exports.UnitxApi = exports.logoutUnitxApis = exports.UqApi = exports.logoutApis = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var httpChannel_1 = require("./httpChannel");
+var httpChannelUI_1 = require("./httpChannelUI");
+var appBridge_1 = require("./appBridge");
+var apiBase_1 = require("./apiBase");
+var host_1 = require("./host");
+var tool_1 = require("../tool");
+var user_1 = require("../tool/user");
 var channelUIs = {};
 var channelNoUIs = {};
-export function logoutApis() {
+function logoutApis() {
     channelUIs = {};
     channelNoUIs = {};
     logoutUnitxApis();
-    logoutUqTokens();
+    appBridge_1.logoutUqTokens();
 }
+exports.logoutApis = logoutApis;
 /*
 interface UqLocals {
     user: number;
@@ -174,7 +181,7 @@ var UqApi = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, buildAppUq(this.uq, this.uqOwner, this.uqName, this.appOwner, this.appName)];
+                    case 0: return [4 /*yield*/, appBridge_1.buildAppUq(this.uq, this.uqOwner, this.uqName, this.appOwner, this.appName)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -189,7 +196,7 @@ var UqApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 if (this.showWaiting === true || this.showWaiting === undefined) {
                     channels = channelUIs;
-                    channelUI = new HttpChannelNavUI();
+                    channelUI = new httpChannelUI_1.HttpChannelNavUI();
                 }
                 else {
                     channels = channelNoUIs;
@@ -211,19 +218,19 @@ var UqApi = /** @class */ (function (_super) {
                                     arr.push({ resolve: resolve, reject: reject });
                                     if (arr.length !== 1)
                                         return [2 /*return*/];
-                                    uqToken = appUq(this.uq);
+                                    uqToken = appBridge_1.appUq(this.uq);
                                     if (!!uqToken) return [3 /*break*/, 2];
                                     //debugger;
                                     return [4 /*yield*/, this.init()];
                                 case 1:
                                     //debugger;
                                     _a.sent();
-                                    uqToken = appUq(this.uq);
+                                    uqToken = appBridge_1.appUq(this.uq);
                                     _a.label = 2;
                                 case 2:
                                     url = uqToken.url, token = uqToken.token;
                                     this.token = token;
-                                    channel = new UqHttpChannel(url, token, channelUI);
+                                    channel = new httpChannel_1.UqHttpChannel(url, token, channelUI);
                                     channels[this.uq] = channel;
                                     for (_i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
                                         pv = arr_1[_i];
@@ -304,12 +311,13 @@ var UqApi = /** @class */ (function (_super) {
         });
     };
     return UqApi;
-}(ApiBase));
-export { UqApi };
+}(apiBase_1.ApiBase));
+exports.UqApi = UqApi;
 var channels = {};
-export function logoutUnitxApis() {
+function logoutUnitxApis() {
     channels = {};
 }
+exports.logoutUnitxApis = logoutUnitxApis;
 var UnitxApi = /** @class */ (function (_super) {
     __extends(UnitxApi, _super);
     function UnitxApi(unitId) {
@@ -340,50 +348,52 @@ var UnitxApi = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        channelUI = new HttpChannelNavUI();
+                        channelUI = new httpChannelUI_1.HttpChannelNavUI();
                         centerAppApi = new CenterAppApi('tv/', undefined);
                         return [4 /*yield*/, centerAppApi.unitxUq(this.unitId)];
                     case 1:
                         ret = _a.sent();
                         token = ret.token, db = ret.db, url = ret.url, urlTest = ret.urlTest;
-                        realUrl = host.getUrlOrTest(db, url, urlTest);
+                        realUrl = host_1.host.getUrlOrTest(db, url, urlTest);
                         this.token = token;
-                        return [2 /*return*/, new UqHttpChannel(realUrl, token, channelUI)];
+                        return [2 /*return*/, new httpChannel_1.UqHttpChannel(realUrl, token, channelUI)];
                 }
             });
         });
     };
     return UnitxApi;
 }(UqApi));
-export { UnitxApi };
+exports.UnitxApi = UnitxApi;
 var centerHost;
-export function setCenterUrl(url) {
+function setCenterUrl(url) {
     console.log('setCenterUrl %s', url);
     centerHost = url;
     //centerToken = undefined;
     centerChannel = undefined;
     centerChannelUI = undefined;
 }
-export var centerToken = undefined;
+exports.setCenterUrl = setCenterUrl;
+exports.centerToken = undefined;
 var loginedUserId = 0;
-export function setCenterToken(userId, t) {
+function setCenterToken(userId, t) {
     loginedUserId = userId;
-    centerToken = t;
+    exports.centerToken = t;
     console.log('setCenterToken %s', t);
     centerChannel = undefined;
     centerChannelUI = undefined;
 }
+exports.setCenterToken = setCenterToken;
 var centerChannelUI;
 var centerChannel;
 function getCenterChannelUI() {
     if (centerChannelUI !== undefined)
         return centerChannelUI;
-    return centerChannelUI = new CenterHttpChannel(centerHost, centerToken, new HttpChannelNavUI());
+    return centerChannelUI = new httpChannel_1.CenterHttpChannel(centerHost, exports.centerToken, new httpChannelUI_1.HttpChannelNavUI());
 }
 function getCenterChannel() {
     if (centerChannel !== undefined)
         return centerChannel;
-    return centerChannel = new CenterHttpChannel(centerHost, centerToken);
+    return centerChannel = new httpChannel_1.CenterHttpChannel(centerHost, exports.centerToken);
 }
 var CenterApiBase = /** @class */ (function (_super) {
     __extends(CenterApiBase, _super);
@@ -404,14 +414,14 @@ var CenterApiBase = /** @class */ (function (_super) {
         });
     };
     return CenterApiBase;
-}(ApiBase));
-export { CenterApiBase };
+}(apiBase_1.ApiBase));
+exports.CenterApiBase = CenterApiBase;
 var uqTokensName = 'uqTokens';
 var UqTokenApi = /** @class */ (function (_super) {
     __extends(UqTokenApi, _super);
     function UqTokenApi() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.localMap = env.localDb.map(uqTokensName);
+        _this.localMap = tool_1.env.localDb.map(uqTokensName);
         return _this;
     }
     UqTokenApi.prototype.uq = function (params) {
@@ -438,11 +448,11 @@ var UqTokenApi = /** @class */ (function (_super) {
                         if (uqToken !== undefined) {
                             tick = uqToken.tick, value = uqToken.value;
                             if (value !== undefined && (nowTick - tick) < 24 * 3600) {
-                                return [2 /*return*/, _.clone(value)];
+                                return [2 /*return*/, lodash_1.default.clone(value)];
                             }
                         }
-                        appUqParams = _.clone(params);
-                        appUqParams.testing = host.testing;
+                        appUqParams = lodash_1.default.clone(params);
+                        appUqParams.testing = host_1.host.testing;
                         return [4 /*yield*/, this.get('app-uq', appUqParams)];
                     case 2:
                         ret = _a.sent();
@@ -458,7 +468,7 @@ var UqTokenApi = /** @class */ (function (_super) {
                             value: ret,
                         };
                         localCache.set(uqToken);
-                        return [2 /*return*/, _.clone(ret)];
+                        return [2 /*return*/, lodash_1.default.clone(ret)];
                     case 3:
                         err_1 = _a.sent();
                         localCache.remove();
@@ -470,8 +480,8 @@ var UqTokenApi = /** @class */ (function (_super) {
     };
     return UqTokenApi;
 }(CenterApiBase));
-export { UqTokenApi };
-export var uqTokenApi = new UqTokenApi('tv/tie/', undefined);
+exports.UqTokenApi = UqTokenApi;
+exports.uqTokenApi = new UqTokenApi('tv/tie/', undefined);
 var CallCenterApi = /** @class */ (function (_super) {
     __extends(CallCenterApi, _super);
     function CallCenterApi() {
@@ -482,8 +492,8 @@ var CallCenterApi = /** @class */ (function (_super) {
     };
     return CallCenterApi;
 }(CenterApiBase));
-export { CallCenterApi };
-export var callCenterapi = new CallCenterApi('', undefined);
+exports.CallCenterApi = CallCenterApi;
+exports.callCenterapi = new CallCenterApi('', undefined);
 //const appUqsName = 'appUqs';
 var CenterAppApi = /** @class */ (function (_super) {
     __extends(CenterAppApi, _super);
@@ -559,8 +569,8 @@ var CenterAppApi = /** @class */ (function (_super) {
     };
     return CenterAppApi;
 }(CenterApiBase));
-export { CenterAppApi };
-export function loadAppUqs(appOwner, appName) {
+exports.CenterAppApi = CenterAppApi;
+function loadAppUqs(appOwner, appName) {
     return __awaiter(this, void 0, void 0, function () {
         var centerAppApi, ret;
         return __generator(this, function (_a) {
@@ -584,6 +594,7 @@ export function loadAppUqs(appOwner, appName) {
         });
     });
 }
+exports.loadAppUqs = loadAppUqs;
 ;
 var UserApi = /** @class */ (function (_super) {
     __extends(UserApi, _super);
@@ -600,10 +611,10 @@ var UserApi = /** @class */ (function (_super) {
                         ret = _a.sent();
                         switch (typeof ret) {
                             default: return [2 /*return*/];
-                            case 'string': return [2 /*return*/, decodeUserToken(ret)];
+                            case 'string': return [2 /*return*/, user_1.decodeUserToken(ret)];
                             case 'object':
                                 token = ret.token;
-                                user = decodeUserToken(token);
+                                user = user_1.decodeUserToken(token);
                                 nick = ret.nick, icon = ret.icon;
                                 if (nick)
                                     user.nick = nick;
@@ -710,6 +721,6 @@ var UserApi = /** @class */ (function (_super) {
     };
     return UserApi;
 }(CenterApiBase));
-export { UserApi };
-export var userApi = new UserApi('tv/', undefined);
+exports.UserApi = UserApi;
+exports.userApi = new UserApi('tv/', undefined);
 //# sourceMappingURL=uqApi.js.map

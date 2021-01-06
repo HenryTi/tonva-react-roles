@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,9 +48,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { Entity } from './entity';
-import { ActionSubmitCaller } from './action';
-import { EntityCaller, QueryPageCaller, QueryQueryCaller } from './caller';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Map = void 0;
+var entity_1 = require("./entity");
+var action_1 = require("./action");
+var caller_1 = require("./caller");
 var Map = /** @class */ (function (_super) {
     __extends(Map, _super);
     function Map() {
@@ -199,8 +202,8 @@ var Map = /** @class */ (function (_super) {
         });
     };
     return Map;
-}(Entity));
-export { Map };
+}(entity_1.Entity));
+exports.Map = Map;
 var MapCaller = /** @class */ (function (_super) {
     __extends(MapCaller, _super);
     function MapCaller() {
@@ -237,7 +240,7 @@ var MapCaller = /** @class */ (function (_super) {
         return p;
     };
     return MapCaller;
-}(EntityCaller));
+}(caller_1.EntityCaller));
 var AddCaller = /** @class */ (function (_super) {
     __extends(AddCaller, _super);
     function AddCaller() {
@@ -306,7 +309,7 @@ var MapAddCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return MapAddCaller;
-}(ActionSubmitCaller));
+}(action_1.ActionSubmitCaller));
 var MapDelCaller = /** @class */ (function (_super) {
     __extends(MapDelCaller, _super);
     function MapDelCaller(map, action, params) {
@@ -325,7 +328,7 @@ var MapDelCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return MapDelCaller;
-}(ActionSubmitCaller));
+}(action_1.ActionSubmitCaller));
 var MapAllCaller = /** @class */ (function (_super) {
     __extends(MapAllCaller, _super);
     function MapAllCaller(map, query, params) {
@@ -344,7 +347,7 @@ var MapAllCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return MapAllCaller;
-}(QueryPageCaller));
+}(caller_1.QueryPageCaller));
 var MapPageCaller = /** @class */ (function (_super) {
     __extends(MapPageCaller, _super);
     function MapPageCaller(map, query, params) {
@@ -363,7 +366,7 @@ var MapPageCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return MapPageCaller;
-}(QueryPageCaller));
+}(caller_1.QueryPageCaller));
 var MapQueryCaller = /** @class */ (function (_super) {
     __extends(MapQueryCaller, _super);
     function MapQueryCaller(map, query, params) {
@@ -382,5 +385,5 @@ var MapQueryCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return MapQueryCaller;
-}(QueryQueryCaller));
+}(caller_1.QueryQueryCaller));
 //# sourceMappingURL=map.js.map

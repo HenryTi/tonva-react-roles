@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,11 +67,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { Page, FA, nav, LMR, List } from "../components";
-import { VPage } from '../vm';
-import { appInFrame } from '../net';
-import { UQsMan } from '../uq';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VStartError = exports.VErrorsPage = exports.VUnitSelect = exports.VUnsupportedUnit = void 0;
+var React = __importStar(require("react"));
+var components_1 = require("../components");
+var vm_1 = require("../vm");
+var net_1 = require("../net");
+var uq_1 = require("../uq");
 /*
 export class VAppMain extends VPage<CMainBase> {
     async open(param?:any) {
@@ -90,10 +112,10 @@ var VUnsupportedUnit = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.page = function (_a) {
             var predefinedUnit = _a.predefinedUnit;
-            var user = nav.user;
+            var user = components_1.nav.user;
             var userName = user ? user.name : '[未登录]';
-            var _b = UQsMan.value, appOwner = _b.appOwner, appName = _b.appName;
-            return React.createElement(Page, { header: "APP\u65E0\u6CD5\u8FD0\u884C", logout: true },
+            var _b = uq_1.UQsMan.value, appOwner = _b.appOwner, appName = _b.appName;
+            return React.createElement(components_1.Page, { header: "APP\u65E0\u6CD5\u8FD0\u884C", logout: true },
                 React.createElement("div", { className: "m-3 text-danger container" },
                     React.createElement("div", { className: "form-group row" },
                         React.createElement("div", { className: "col-sm-3 font-weight-bold" }, "\u767B\u5F55\u7528\u6237"),
@@ -107,7 +129,7 @@ var VUnsupportedUnit = /** @class */ (function (_super) {
                     React.createElement("div", { className: "form-group row" },
                         React.createElement("div", { className: "col-sm-3 font-weight-bold" },
                             "\u53EF\u80FD\u539F\u56E0",
-                            React.createElement(FA, { name: "exclamation-triangle" })),
+                            React.createElement(components_1.FA, { name: "exclamation-triangle" })),
                         React.createElement("div", { className: "col-sm text-body" },
                             React.createElement("ul", { className: "p-0" },
                                 React.createElement("li", null,
@@ -145,22 +167,22 @@ var VUnsupportedUnit = /** @class */ (function (_super) {
         });
     };
     return VUnsupportedUnit;
-}(VPage));
-export { VUnsupportedUnit };
+}(vm_1.VPage));
+exports.VUnsupportedUnit = VUnsupportedUnit;
 var VUnitSelect = /** @class */ (function (_super) {
     __extends(VUnitSelect, _super);
     function VUnitSelect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.renderRow = function (item, index) {
             var id = item.id, nick = item.nick, name = item.name;
-            return React.createElement(LMR, { className: "px-3 py-2", right: 'id: ' + id },
+            return React.createElement(components_1.LMR, { className: "px-3 py-2", right: 'id: ' + id },
                 React.createElement("div", null, nick || name));
         };
         _this.onRowClick = function (appUnit) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        appInFrame.unit = appUnit.id; // 25;
+                        net_1.appInFrame.unit = appUnit.id; // 25;
                         this.controller.setAppUnit(appUnit);
                         return [4 /*yield*/, this.controller.start()];
                     case 1:
@@ -170,8 +192,8 @@ var VUnitSelect = /** @class */ (function (_super) {
             });
         }); };
         _this.page = function () {
-            return React.createElement(Page, { header: "\u9009\u62E9\u5C0F\u53F7", logout: true },
-                React.createElement(List, { items: _this.controller.appUnits, item: { render: _this.renderRow, onClick: _this.onRowClick } }));
+            return React.createElement(components_1.Page, { header: "\u9009\u62E9\u5C0F\u53F7", logout: true },
+                React.createElement(components_1.List, { items: _this.controller.appUnits, item: { render: _this.renderRow, onClick: _this.onRowClick } }));
         };
         return _this;
     }
@@ -184,17 +206,17 @@ var VUnitSelect = /** @class */ (function (_super) {
         });
     };
     return VUnitSelect;
-}(VPage));
-export { VUnitSelect };
+}(vm_1.VPage));
+exports.VUnitSelect = VUnitSelect;
 var VErrorsPage = /** @class */ (function (_super) {
     __extends(VErrorsPage, _super);
     function VErrorsPage() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.page = function (errors) {
-            return React.createElement(Page, { header: "ERROR" },
+            return React.createElement(components_1.Page, { header: "ERROR" },
                 React.createElement("div", { className: "m-3" },
                     React.createElement("div", { className: "p-3 d-flex justify-content-center align-items-center" },
-                        React.createElement("button", { className: "btn btn-danger", onClick: nav.resetAll }, "\u91CD\u542F\u7F51\u9875")),
+                        React.createElement("button", { className: "btn btn-danger", onClick: components_1.nav.resetAll }, "\u91CD\u542F\u7F51\u9875")),
                     React.createElement("div", null, "Load Uqs \u53D1\u751F\u9519\u8BEF\uFF1A"),
                     errors.errors.map(function (r, i) { return React.createElement("div", { key: i }, r); })));
         };
@@ -209,15 +231,15 @@ var VErrorsPage = /** @class */ (function (_super) {
         });
     };
     return VErrorsPage;
-}(VPage));
-export { VErrorsPage };
+}(vm_1.VPage));
+exports.VErrorsPage = VErrorsPage;
 var VStartError = /** @class */ (function (_super) {
     __extends(VStartError, _super);
     function VStartError() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.page = function (_a) {
             var error = _a.error;
-            return React.createElement(Page, { header: "App start error!" },
+            return React.createElement(components_1.Page, { header: "App start error!" },
                 React.createElement("pre", null, typeof error === 'string' ? error : error.message));
         };
         return _this;
@@ -231,6 +253,6 @@ var VStartError = /** @class */ (function (_super) {
         });
     };
     return VStartError;
-}(VPage));
-export { VStartError };
+}(vm_1.VPage));
+exports.VStartError = VStartError;
 //# sourceMappingURL=vMain.js.map

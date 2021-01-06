@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,10 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { env } from '../tool';
-import { loadAppUqs } from '../net';
-import { UqMan } from './uqMan';
-import { nav } from '../components';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UQsMan = void 0;
+var tool_1 = require("../tool");
+var net_1 = require("../net");
+var uqMan_1 = require("./uqMan");
+var components_1 = require("../components");
 var UQsMan = /** @class */ (function () {
     function UQsMan(tonvaAppName, tvs) {
         this.tvs = tvs || {};
@@ -49,7 +52,7 @@ var UQsMan = /** @class */ (function () {
         }
         this.appOwner = parts[0];
         this.appName = parts[1];
-        this.localMap = env.localDb.map(tonvaAppName);
+        this.localMap = tool_1.env.localDb.map(tonvaAppName);
         this.localData = this.localMap.child('uqData');
     }
     UQsMan.load = function (tonvaAppName, version, tvs) {
@@ -63,7 +66,7 @@ var UQsMan = /** @class */ (function () {
                         localData = uqsMan.localData;
                         uqAppData = localData.get();
                         if (!(!uqAppData || uqAppData.version !== version)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, loadAppUqs(appOwner, appName)];
+                        return [4 /*yield*/, net_1.loadAppUqs(appOwner, appName)];
                     case 1:
                         uqAppData = _b.sent();
                         if (!uqAppData.id) {
@@ -139,7 +142,7 @@ var UQsMan = /** @class */ (function () {
                             //let cUq = this.newCUq(uqData, uqUI);
                             //this.cUqCollection[uqFullName] = cUq;
                             //this.uqs.addUq(cUq.uq);
-                            var uq = new UqMan(_this, uqData, undefined, _this.tvs[uqFullName] || _this.tvs[uqName]);
+                            var uq = new uqMan_1.UqMan(_this, uqData, undefined, _this.tvs[uqFullName] || _this.tvs[uqName]);
                             _this.collection[uqFullName] = uq;
                             var lower = uqFullName.toLowerCase();
                             if (lower !== uqFullName) {
@@ -245,7 +248,7 @@ var UQsMan = /** @class */ (function () {
     };
     UQsMan.prototype.showReload = function (msg) {
         this.localMap.removeAll();
-        nav.showReloadPage(msg);
+        components_1.nav.showReloadPage(msg);
     };
     UQsMan.prototype.setTuidImportsLocal = function () {
         var ret = [];
@@ -284,5 +287,5 @@ var UQsMan = /** @class */ (function () {
     };
     return UQsMan;
 }());
-export { UQsMan };
+exports.UQsMan = UQsMan;
 //# sourceMappingURL=uqsMan.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,8 +12,10 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailWidget = exports.UrlWidget = exports.PasswordWidget = void 0;
 //import * as React from 'react';
-import { TextWidget } from './textWidget';
+var textWidget_1 = require("./textWidget");
 var PasswordWidget = /** @class */ (function (_super) {
     __extends(PasswordWidget, _super);
     function PasswordWidget() {
@@ -21,8 +24,8 @@ var PasswordWidget = /** @class */ (function (_super) {
         return _this;
     }
     return PasswordWidget;
-}(TextWidget));
-export { PasswordWidget };
+}(textWidget_1.TextWidget));
+exports.PasswordWidget = PasswordWidget;
 var UrlWidget = /** @class */ (function (_super) {
     __extends(UrlWidget, _super);
     function UrlWidget() {
@@ -31,8 +34,8 @@ var UrlWidget = /** @class */ (function (_super) {
         return _this;
     }
     return UrlWidget;
-}(TextWidget));
-export { UrlWidget };
+}(textWidget_1.TextWidget));
+exports.UrlWidget = UrlWidget;
 var EmailWidget = /** @class */ (function (_super) {
     __extends(EmailWidget, _super);
     function EmailWidget() {
@@ -41,6 +44,6 @@ var EmailWidget = /** @class */ (function (_super) {
         return _this;
     }
     return EmailWidget;
-}(TextWidget));
-export { EmailWidget };
+}(textWidget_1.TextWidget));
+exports.EmailWidget = EmailWidget;
 //# sourceMappingURL=passwordWidget.js.map

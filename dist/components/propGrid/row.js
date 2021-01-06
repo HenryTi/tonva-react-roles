@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,15 +12,39 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import * as React from 'react';
-import className from 'classnames';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ComponentPropRow = exports.ListPropRow = exports.NumberPropRow = exports.StringPropRow = exports.LabeledPropRow = exports.PropGap = exports.PropBorder = exports.PropRow = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
 var PropRow = /** @class */ (function () {
     function PropRow() {
     }
     PropRow.prototype.setValues = function (values) { };
     return PropRow;
 }());
-export { PropRow };
+exports.PropRow = PropRow;
 var PropBorder = /** @class */ (function (_super) {
     __extends(PropBorder, _super);
     function PropBorder() {
@@ -32,7 +57,7 @@ var PropBorder = /** @class */ (function (_super) {
     };
     return PropBorder;
 }(PropRow));
-export { PropBorder };
+exports.PropBorder = PropBorder;
 var PropGap = /** @class */ (function (_super) {
     __extends(PropGap, _super);
     function PropGap(param) {
@@ -53,12 +78,12 @@ var PropGap = /** @class */ (function (_super) {
                 w = 'pb-1';
                 break;
         }
-        var cn = className(w);
+        var cn = classnames_1.default(w);
         return React.createElement("div", { key: '_g_' + key, className: cn });
     };
     return PropGap;
 }(PropRow));
-export { PropGap };
+exports.PropGap = PropGap;
 var valueAlignStart = 'justify-content-start';
 var valueAlignCenter = 'justify-content-center';
 var valueAlignEnd = 'justify-content-end';
@@ -80,7 +105,7 @@ var LabeledPropRow = /** @class */ (function (_super) {
     });
     LabeledPropRow.prototype.render = function (key) {
         var _a = this.prop, onClick = _a.onClick, bk = _a.bk;
-        var cn = className({
+        var cn = classnames_1.default({
             "cursor-pointer": onClick !== undefined,
             "bg-white": bk === undefined,
             "row": true
@@ -125,7 +150,7 @@ var LabeledPropRow = /** @class */ (function (_super) {
                 break;
         }
         var col = this.col + (label === undefined ? '-12' : '-9');
-        var cn = className(align, vAlign, col, 'd-flex');
+        var cn = classnames_1.default(align, vAlign, col, 'd-flex');
         return React.createElement("div", { className: cn }, this.renderPropBody());
     };
     LabeledPropRow.prototype.renderPropBody = function () {
@@ -136,7 +161,7 @@ var LabeledPropRow = /** @class */ (function (_super) {
     };
     return LabeledPropRow;
 }(PropRow));
-export { LabeledPropRow };
+exports.LabeledPropRow = LabeledPropRow;
 var StringPropRow = /** @class */ (function (_super) {
     __extends(StringPropRow, _super);
     function StringPropRow() {
@@ -155,7 +180,7 @@ var StringPropRow = /** @class */ (function (_super) {
     };
     return StringPropRow;
 }(LabeledPropRow));
-export { StringPropRow };
+exports.StringPropRow = StringPropRow;
 var NumberPropRow = /** @class */ (function (_super) {
     __extends(NumberPropRow, _super);
     function NumberPropRow() {
@@ -174,7 +199,7 @@ var NumberPropRow = /** @class */ (function (_super) {
     };
     return NumberPropRow;
 }(LabeledPropRow));
-export { NumberPropRow };
+exports.NumberPropRow = NumberPropRow;
 var ListPropRow = /** @class */ (function (_super) {
     __extends(ListPropRow, _super);
     function ListPropRow() {
@@ -208,7 +233,7 @@ var ListPropRow = /** @class */ (function (_super) {
     };
     return ListPropRow;
 }(LabeledPropRow));
-export { ListPropRow };
+exports.ListPropRow = ListPropRow;
 var ComponentPropRow = /** @class */ (function (_super) {
     __extends(ComponentPropRow, _super);
     function ComponentPropRow() {
@@ -257,10 +282,10 @@ var ComponentPropRow = /** @class */ (function (_super) {
             col = this.col + (label === undefined ? '-12' : '-9');
         else
             col = 'w-100';
-        var cn = className(align, vAlign, col, 'd-flex');
+        var cn = classnames_1.default(align, vAlign, col, 'd-flex');
         return React.createElement("div", { className: cn }, this.renderPropBody());
     };
     return ComponentPropRow;
 }(LabeledPropRow));
-export { ComponentPropRow };
+exports.ComponentPropRow = ComponentPropRow;
 //# sourceMappingURL=row.js.map

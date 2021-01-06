@@ -1,4 +1,7 @@
-export function getObjPropIgnoreCase(obj, prop) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getObjPropIgnoreCase = void 0;
+function getObjPropIgnoreCase(obj, prop) {
     if (!obj)
         return;
     if (!prop)
@@ -12,4 +15,5 @@ export function getObjPropIgnoreCase(obj, prop) {
     }
     return;
 }
+exports.getObjPropIgnoreCase = getObjPropIgnoreCase;
 //# sourceMappingURL=getObjPropIgnoreCase.js.map

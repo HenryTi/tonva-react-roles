@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,22 +35,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { nav } from '../components/nav';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.HttpChannelNavUI = void 0;
+var nav_1 = require("../components/nav");
 var HttpChannelNavUI = /** @class */ (function () {
     function HttpChannelNavUI() {
     }
     HttpChannelNavUI.prototype.startWait = function () {
-        nav.startWait();
+        nav_1.nav.startWait();
     };
     HttpChannelNavUI.prototype.endWait = function () {
-        nav.endWait();
+        nav_1.nav.endWait();
     };
     HttpChannelNavUI.prototype.showError = function (error) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        nav.endWait();
+                        nav_1.nav.endWait();
                         /*
                         if (error.name === 'SyntaxError') {
                             error = {
@@ -57,7 +60,7 @@ var HttpChannelNavUI = /** @class */ (function () {
                                 message: error.message,
                             }
                         }*/
-                        return [4 /*yield*/, nav.onError(error)];
+                        return [4 /*yield*/, nav_1.nav.onError(error)];
                     case 1:
                         /*
                         if (error.name === 'SyntaxError') {
@@ -76,7 +79,7 @@ var HttpChannelNavUI = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, nav.showUpgradeUq(uq, version)];
+                    case 0: return [4 /*yield*/, nav_1.nav.showUpgradeUq(uq, version)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -86,5 +89,5 @@ var HttpChannelNavUI = /** @class */ (function () {
     };
     return HttpChannelNavUI;
 }());
-export { HttpChannelNavUI };
+exports.HttpChannelNavUI = HttpChannelNavUI;
 //# sourceMappingURL=httpChannelUI.js.map

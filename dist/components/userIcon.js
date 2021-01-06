@@ -1,14 +1,39 @@
-import * as React from 'react';
-import classNames from 'classnames';
-import { nav } from './nav';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { userApi } from '../net';
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useUser = exports.UserView = exports.UserIcon = exports.UserCache = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var nav_1 = require("./nav");
+var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
+var net_1 = require("../net");
 var UserCache = /** @class */ (function () {
     function UserCache(loader) {
-        this.map = observable(new Map());
+        this.map = mobx_1.observable(new Map());
         if (loader === undefined)
-            loader = function (userId) { return userApi.user(userId); };
+            loader = function (userId) { return net_1.userApi.user(userId); };
         this.loader = loader;
     }
     UserCache.prototype.use = function (id, onLoaded) {
@@ -60,23 +85,23 @@ var UserCache = /** @class */ (function () {
     };
     return UserCache;
 }());
-export { UserCache };
+exports.UserCache = UserCache;
 var userCache = new UserCache(undefined);
-export var UserIcon = observer(function (props) {
+exports.UserIcon = mobx_react_1.observer(function (props) {
     var className = props.className, style = props.style, id = props.id, altImage = props.altImage, noneImage = props.noneImage;
     var user = userCache.getValue(id);
     switch (typeof user) {
         case 'undefined':
         case 'number':
-            return React.createElement("div", { className: classNames(className, 'image-none'), style: style }, noneImage || React.createElement("i", { className: "fa fa-file-o" }));
+            return React.createElement("div", { className: classnames_1.default(className, 'image-none'), style: style }, noneImage || React.createElement("i", { className: "fa fa-file-o" }));
     }
     var icon = user.icon;
     if (!icon) {
-        return React.createElement("div", { className: classNames(className, 'image-none'), style: style },
+        return React.createElement("div", { className: classnames_1.default(className, 'image-none'), style: style },
             React.createElement("i", { className: "fa fa-file-o" }));
     }
     if (icon.startsWith(':') === true) {
-        icon = nav.resUrl + icon.substr(1);
+        icon = nav_1.nav.resUrl + icon.substr(1);
     }
     return React.createElement("img", { src: icon, className: className, alt: "img", style: style, onError: function (evt) {
             if (altImage)
@@ -85,7 +110,7 @@ export var UserIcon = observer(function (props) {
                 evt.currentTarget.src = 'https://tv.jkchemical.com/imgs/0001.png';
         } });
 });
-export var UserView = observer(function (props) {
+exports.UserView = mobx_react_1.observer(function (props) {
     var idProp = props.id, user = props.user, render = props.render, onLoaded = props.onLoaded;
     if (user === null)
         return React.createElement(React.Fragment, null, "null");
@@ -119,7 +144,7 @@ export var UserView = observer(function (props) {
     }
     return render(user);
 });
-export function useUser(id, onLoaded) {
+function useUser(id, onLoaded) {
     if (!id)
         return;
     if (typeof (id) === 'object') {
@@ -127,4 +152,5 @@ export function useUser(id, onLoaded) {
     }
     userCache.use(id, onLoaded);
 }
+exports.useUser = useUser;
 //# sourceMappingURL=userIcon.js.map

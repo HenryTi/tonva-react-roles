@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,13 +67,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { nav, Page, Form, resLang, Ax } from '../components';
-import { Controller, VPage } from '../vm';
-import { userApi } from '../net';
-import '../css/va-form.css';
-import { registerRes } from '../res';
-import { tonvaTop, getSender } from './tools';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ForgetController = exports.RegisterController = void 0;
+var React = __importStar(require("react"));
+var components_1 = require("../components");
+var vm_1 = require("../vm");
+var net_1 = require("../net");
+require("../css/va-form.css");
+var res_1 = require("../res");
+var tools_1 = require("./tools");
 var RegisterController = /** @class */ (function (_super) {
     __extends(RegisterController, _super);
     function RegisterController() {
@@ -68,14 +90,14 @@ var RegisterController = /** @class */ (function (_super) {
             var retUser;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userApi.login({ user: account || this.account, pwd: this.password, guest: nav.guest })];
+                    case 0: return [4 /*yield*/, net_1.userApi.login({ user: account || this.account, pwd: this.password, guest: components_1.nav.guest })];
                     case 1:
                         retUser = _a.sent();
                         if (retUser === undefined) {
                             alert('something wrong!');
                             return [2 /*return*/];
                         }
-                        return [4 /*yield*/, nav.userLogined(retUser)];
+                        return [4 /*yield*/, components_1.nav.userLogined(retUser)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
@@ -128,13 +150,13 @@ var RegisterController = /** @class */ (function (_super) {
             var ret, error;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userApi.isExists(this.account)];
+                    case 0: return [4 /*yield*/, net_1.userApi.isExists(this.account)];
                     case 1:
                         ret = _a.sent();
                         error = this.accountError(ret);
                         if (error !== undefined)
                             return [2 /*return*/, error];
-                        return [4 /*yield*/, userApi.sendVerify(this.account, this.type, nav.oem)];
+                        return [4 /*yield*/, net_1.userApi.sendVerify(this.account, this.type, components_1.nav.oem)];
                     case 2:
                         ret = _a.sent();
                         this.toVerify(this.account);
@@ -172,11 +194,11 @@ var RegisterController = /** @class */ (function (_super) {
                                 params.email = this.account;
                                 break;
                         }
-                        return [4 /*yield*/, userApi.register(params)];
+                        return [4 /*yield*/, net_1.userApi.register(params)];
                     case 1:
                         ret = _a.sent();
                         if (ret === 0) {
-                            nav.clear();
+                            components_1.nav.clear();
                             this.toSuccess();
                             return [2 /*return*/];
                         }
@@ -187,8 +209,8 @@ var RegisterController = /** @class */ (function (_super) {
         });
     };
     return RegisterController;
-}(Controller));
-export { RegisterController };
+}(vm_1.Controller));
+exports.RegisterController = RegisterController;
 var ForgetController = /** @class */ (function (_super) {
     __extends(ForgetController, _super);
     function ForgetController() {
@@ -206,10 +228,10 @@ var ForgetController = /** @class */ (function (_super) {
             var ret;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userApi.resetPassword(this.account, this.password, this.verify, this.type)];
+                    case 0: return [4 /*yield*/, net_1.userApi.resetPassword(this.account, this.password, this.verify, this.type)];
                     case 1:
                         ret = _a.sent();
-                        nav.clear();
+                        components_1.nav.clear();
                         this.toSuccess(ret);
                         return [2 /*return*/, undefined];
                 }
@@ -222,7 +244,7 @@ var ForgetController = /** @class */ (function (_super) {
     };
     return ForgetController;
 }(RegisterController));
-export { ForgetController };
+exports.ForgetController = ForgetController;
 var VAccount = /** @class */ (function (_super) {
     __extends(VAccount, _super);
     function VAccount() {
@@ -231,7 +253,7 @@ var VAccount = /** @class */ (function (_super) {
             { name: 'user', type: 'string', required: true, maxLength: 100 },
             { name: 'verify', type: 'submit' },
         ];
-        _this.res = resLang(registerRes);
+        _this.res = components_1.resLang(res_1.registerRes);
         _this.onSubmit = function (name, context) { return __awaiter(_this, void 0, void 0, function () {
             var user, value, sender, type, ret;
             return __generator(this, function (_a) {
@@ -240,7 +262,7 @@ var VAccount = /** @class */ (function (_super) {
                         context.clearContextErrors();
                         user = 'user';
                         value = context.getValue(user);
-                        sender = getSender(value);
+                        sender = tools_1.getSender(value);
                         if (sender === undefined) {
                             context.setError(user, '必须是手机号或邮箱');
                             return [2 /*return*/];
@@ -290,18 +312,18 @@ var VAccount = /** @class */ (function (_super) {
     };
     VAccount.prototype.header = function () { return this.controller.accountPageCaption; };
     VAccount.prototype.footer = function () {
-        return React.createElement(Ax, { href: "/login" }, "\u767B\u5F55");
+        return React.createElement(components_1.Ax, { href: "/login" }, "\u767B\u5F55");
     };
     VAccount.prototype.content = function () {
         return React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
-            tonvaTop(),
+            tools_1.tonvaTop(),
             React.createElement("div", { className: "h-3c" }),
-            React.createElement(Ax, { href: "/login" }, "\u767B\u5F55"),
-            React.createElement(Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
-            nav.privacyEntry());
+            React.createElement(components_1.Ax, { href: "/login" }, "\u767B\u5F55"),
+            React.createElement(components_1.Form, { schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, onEnter: this.onEnter, requiredFlag: false }),
+            components_1.nav.privacyEntry());
     };
     return VAccount;
-}(VPage));
+}(vm_1.VPage));
 var VerifyPage = /** @class */ (function (_super) {
     __extends(VerifyPage, _super);
     function VerifyPage() {
@@ -335,7 +357,7 @@ var VerifyPage = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         verify = this.controller.verify = context.getValue('verify');
-                        return [4 /*yield*/, userApi.checkVerify(this.controller.account, verify)];
+                        return [4 /*yield*/, net_1.userApi.checkVerify(this.controller.account, verify)];
                     case 1:
                         ret = _a.sent();
                         if (ret === 0) {
@@ -372,7 +394,7 @@ var VerifyPage = /** @class */ (function (_super) {
                         React.createElement("br", null));
                     break;
             }
-            return React.createElement(Page, { header: "\u9A8C\u8BC1\u7801" },
+            return React.createElement(components_1.Page, { header: "\u9A8C\u8BC1\u7801" },
                 React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
                     "\u9A8C\u8BC1\u7801\u5DF2\u7ECF\u53D1\u9001\u5230",
                     typeText,
@@ -381,7 +403,7 @@ var VerifyPage = /** @class */ (function (_super) {
                         React.createElement("b", null, _this.controller.account)),
                     extra,
                     React.createElement("div", { className: "h-1c" }),
-                    React.createElement(Form, { schema: _this.schema, uiSchema: _this.uiSchema, onButtonClick: _this.onSubmit, onEnter: _this.onEnter, requiredFlag: false })));
+                    React.createElement(components_1.Form, { schema: _this.schema, uiSchema: _this.uiSchema, onButtonClick: _this.onSubmit, onEnter: _this.onEnter, requiredFlag: false })));
         };
         return _this;
     }
@@ -394,7 +416,7 @@ var VerifyPage = /** @class */ (function (_super) {
         });
     };
     return VerifyPage;
-}(VPage));
+}(vm_1.VPage));
 var PasswordPage = /** @class */ (function (_super) {
     __extends(PasswordPage, _super);
     function PasswordPage() {
@@ -423,7 +445,7 @@ var PasswordPage = /** @class */ (function (_super) {
                     case 2:
                         error = _a.sent();
                         if (error !== undefined) {
-                            nav.push(React.createElement(Page, { header: "\u6CE8\u518C\u4E0D\u6210\u529F" },
+                            components_1.nav.push(React.createElement(components_1.Page, { header: "\u6CE8\u518C\u4E0D\u6210\u529F" },
                                 React.createElement("div", { className: "p-5 text-danger" }, error)));
                         }
                         _a.label = 3;
@@ -443,14 +465,14 @@ var PasswordPage = /** @class */ (function (_super) {
             });
         }); };
         _this.page = function () {
-            return React.createElement(Page, { header: _this.controller.passwordPageCaption },
+            return React.createElement(components_1.Page, { header: _this.controller.passwordPageCaption },
                 React.createElement("div", { className: "w-max-20c my-5 py-5", style: { marginLeft: 'auto', marginRight: 'auto' } },
                     "\u6CE8\u518C\u8D26\u53F7",
                     React.createElement("br", null),
                     React.createElement("div", { className: "py-2 px-3 my-2 text-primary bg-light" },
                         React.createElement("b", null, _this.controller.account)),
                     React.createElement("div", { className: "h-1c" }),
-                    React.createElement(Form, { schema: _this.schema, uiSchema: _this.uiSchema, onButtonClick: _this.onSubmit, onEnter: _this.onEnter, requiredFlag: false })));
+                    React.createElement(components_1.Form, { schema: _this.schema, uiSchema: _this.uiSchema, onButtonClick: _this.onSubmit, onEnter: _this.onEnter, requiredFlag: false })));
         };
         return _this;
     }
@@ -470,7 +492,7 @@ var PasswordPage = /** @class */ (function (_super) {
         });
     };
     return PasswordPage;
-}(VPage));
+}(vm_1.VPage));
 var RegSuccess = /** @class */ (function (_super) {
     __extends(RegSuccess, _super);
     function RegSuccess() {
@@ -479,7 +501,7 @@ var RegSuccess = /** @class */ (function (_super) {
             var users = _a.users;
             var _b = _this.controller, account = _b.account, successText = _b.successText, login = _b.login;
             if (users === undefined) {
-                return React.createElement(Page, { header: false },
+                return React.createElement(components_1.Page, { header: false },
                     React.createElement("div", { className: "container w-max-30c" },
                         React.createElement("div", { className: "my-5" },
                             React.createElement("div", { className: "py-5" },
@@ -493,7 +515,7 @@ var RegSuccess = /** @class */ (function (_super) {
                             React.createElement("button", { className: "btn btn-success btn-block", type: "button", onClick: function () { return login(undefined); } }, "\u76F4\u63A5\u767B\u5F55"))));
             }
             else {
-                return React.createElement(Page, { header: false },
+                return React.createElement(components_1.Page, { header: false },
                     React.createElement("div", { className: "container w-max-30c" },
                         React.createElement("div", { className: "my-5" },
                             React.createElement("div", { className: "py-5 text-success" }, successText),
@@ -518,5 +540,5 @@ var RegSuccess = /** @class */ (function (_super) {
         });
     };
     return RegSuccess;
-}(VPage));
+}(vm_1.VPage));
 //# sourceMappingURL=register.js.map

@@ -1,8 +1,14 @@
-import React from 'react';
-import { observer } from "mobx-react";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.autoHideTips = void 0;
+var react_1 = __importDefault(require("react"));
+var mobx_react_1 = require("mobx-react");
 //export function autoHideTips(visible: IObservableValue<boolean>, tips:string|JSX.Element, timeout?:number):React.FunctionComponentElement<any>;
 //export function autoHideTips(tips: IObservableValue<string>, tips:string|JSX.Element, timeout?:number):React.FunctionComponentElement<any>;
-export function autoHideTips(tips, templet, timeout) {
+function autoHideTips(tips, templet, timeout) {
     /*
     export function autoHideTips(tips: IObservableValue<boolean|string|JSX.Element>, timeout?:number):React.FunctionComponentElement<any>;
     export function autoHideTips(tips: IObservableValue<boolean|string|JSX.Element>, templet:(tips: boolean|string|JSX.Element) => JSX.Element, timeout?:number):React.FunctionComponentElement<any>;
@@ -10,7 +16,7 @@ export function autoHideTips(tips, templet, timeout) {
     export function autoHideTips(tips: IObservableValue<boolean|string|JSX.Element>, ...params:any[]) {
     */
     var timer;
-    return React.createElement(observer(function () {
+    return react_1.default.createElement(mobx_react_1.observer(function () {
         if (timer) {
             clearTimeout(timer);
             timer = undefined;
@@ -43,12 +49,13 @@ export function autoHideTips(tips, templet, timeout) {
             }, timeout);
         }
         switch (typeof templet) {
-            case 'undefined': return React.createElement(React.Fragment, null, t);
+            case 'undefined': return react_1.default.createElement(react_1.default.Fragment, null, t);
             case 'function': return templet(t);
-            case 'string': return React.createElement(React.Fragment, null, templet);
+            case 'string': return react_1.default.createElement(react_1.default.Fragment, null, templet);
             default: return templet;
         }
     }));
 }
+exports.autoHideTips = autoHideTips;
 ;
 //# sourceMappingURL=autoHideTips.js.map

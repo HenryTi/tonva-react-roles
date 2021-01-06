@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,9 +12,11 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NumberWidget = void 0;
 //import * as React from 'react';
-import { TextWidget } from './textWidget';
-import { RuleNum, RuleInt } from '../rules';
+var textWidget_1 = require("./textWidget");
+var rules_1 = require("../rules");
 var NumberWidget = /** @class */ (function (_super) {
     __extends(NumberWidget, _super);
     function NumberWidget() {
@@ -32,8 +35,8 @@ var NumberWidget = /** @class */ (function (_super) {
         var res = this.context.form.res;
         var _a = this.itemSchema, min = _a.min, max = _a.max;
         this.rules.push(this.itemSchema.type === 'integer' ?
-            new RuleNum(res, min, max) :
-            new RuleInt(res, min, max));
+            new rules_1.RuleNum(res, min, max) :
+            new rules_1.RuleInt(res, min, max));
         /*
         if (this.itemSchema.type === 'integer') {
             this.rules.push(new RuleInt);
@@ -49,6 +52,6 @@ var NumberWidget = /** @class */ (function (_super) {
         return Number(value);
     };
     return NumberWidget;
-}(TextWidget));
-export { NumberWidget };
+}(textWidget_1.TextWidget));
+exports.NumberWidget = NumberWidget;
 //# sourceMappingURL=numberWidget.js.map

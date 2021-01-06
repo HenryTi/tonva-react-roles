@@ -1,4 +1,7 @@
-import { PropBorder, PropGap, StringPropRow, NumberPropRow, ListPropRow, ComponentPropRow } from './row';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PropView = void 0;
+var row_1 = require("./row");
 var PropView = /** @class */ (function () {
     function PropView(gridProps, props) {
         this.gridProps = gridProps;
@@ -12,26 +15,26 @@ var PropView = /** @class */ (function () {
         for (var _i = 0, _a = this.props; _i < _a.length; _i++) {
             var prop = _a[_i];
             if (typeof prop === 'string') {
-                this.rows.push(new PropGap(prop));
+                this.rows.push(new row_1.PropGap(prop));
                 isGap = true;
             }
             else {
                 if (!isGap)
-                    this.rows.push(new PropBorder());
+                    this.rows.push(new row_1.PropBorder());
                 var row = void 0;
                 switch (prop.type) {
                     default: continue;
                     case 'string':
-                        row = new StringPropRow(this.gridProps, prop);
+                        row = new row_1.StringPropRow(this.gridProps, prop);
                         break;
                     case 'number':
-                        row = new NumberPropRow(this.gridProps, prop);
+                        row = new row_1.NumberPropRow(this.gridProps, prop);
                         break;
                     case 'list':
-                        row = new ListPropRow(this.gridProps, prop);
+                        row = new row_1.ListPropRow(this.gridProps, prop);
                         break;
                     case 'component':
-                        row = new ComponentPropRow(this.gridProps, prop);
+                        row = new row_1.ComponentPropRow(this.gridProps, prop);
                         break;
                 }
                 this.rows.push(row);
@@ -50,5 +53,5 @@ var PropView = /** @class */ (function () {
     };
     return PropView;
 }());
-export { PropView };
+exports.PropView = PropView;
 //# sourceMappingURL=propView.js.map

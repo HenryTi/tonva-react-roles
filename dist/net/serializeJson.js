@@ -1,4 +1,7 @@
-export function serializeJson(obj) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deserializeJson = exports.serializeJson = void 0;
+function serializeJson(obj) {
     var source = [];
     var result = [];
     function serialize(obj) {
@@ -46,7 +49,8 @@ export function serializeJson(obj) {
         debugger;
     }
 }
-export function deserializeJson(str) {
+exports.serializeJson = serializeJson;
+function deserializeJson(str) {
     var arr = JSON.parse(str);
     var obj = arr[0];
     deserialize(obj);
@@ -82,4 +86,5 @@ export function deserializeJson(str) {
         return obj;
     }
 }
+exports.deserializeJson = deserializeJson;
 //# sourceMappingURL=serializeJson.js.map

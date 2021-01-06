@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,6 +12,25 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -47,9 +67,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { Page, Form, nav } from '../components';
-import { CenterAppApi } from '../net';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ChangePasswordPage = void 0;
+var React = __importStar(require("react"));
+var components_1 = require("../components");
+var net_1 = require("../net");
 var ChangePasswordPage = /** @class */ (function (_super) {
     __extends(ChangePasswordPage, _super);
     function ChangePasswordPage() {
@@ -94,7 +116,7 @@ var ChangePasswordPage = /** @class */ (function (_super) {
                             context.setError('newPassword1', '新密码错误，请重新输入');
                             return [2 /*return*/];
                         }
-                        centerAppApi = new CenterAppApi('tv/', undefined);
+                        centerAppApi = new net_1.CenterAppApi('tv/', undefined);
                         return [4 /*yield*/, centerAppApi.changePassword({ orgPassword: orgPassword, newPassword: newPassword })];
                     case 1:
                         ret = _b.sent();
@@ -102,7 +124,7 @@ var ChangePasswordPage = /** @class */ (function (_super) {
                             context.setError('orgPassword', '原密码错误');
                             return [2 /*return*/];
                         }
-                        nav.replace(React.createElement(Page, { header: "\u4FEE\u6539\u5BC6\u7801", back: "close" },
+                        components_1.nav.replace(React.createElement(components_1.Page, { header: "\u4FEE\u6539\u5BC6\u7801", back: "close" },
                             React.createElement("div", { className: "m-3  text-success" }, "\u5BC6\u7801\u4FEE\u6539\u6210\u529F\uFF01")));
                         return [2 /*return*/];
                 }
@@ -111,10 +133,10 @@ var ChangePasswordPage = /** @class */ (function (_super) {
         return _this;
     }
     ChangePasswordPage.prototype.render = function () {
-        return React.createElement(Page, { header: "\u4FEE\u6539\u5BC6\u7801" },
-            React.createElement(Form, { className: "m-3", schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, fieldLabelSize: 2 }));
+        return React.createElement(components_1.Page, { header: "\u4FEE\u6539\u5BC6\u7801" },
+            React.createElement(components_1.Form, { className: "m-3", schema: this.schema, uiSchema: this.uiSchema, onButtonClick: this.onSubmit, fieldLabelSize: 2 }));
     };
     return ChangePasswordPage;
 }(React.Component));
-export { ChangePasswordPage };
+exports.ChangePasswordPage = ChangePasswordPage;
 //# sourceMappingURL=changePassword.js.map

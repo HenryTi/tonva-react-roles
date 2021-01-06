@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,9 +12,33 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import * as React from 'react';
-import classNames from 'classnames';
-import { Widget } from './widget';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CheckBoxWidget = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var widget_1 = require("./widget");
 var CheckBoxWidget = /** @class */ (function (_super) {
     __extends(CheckBoxWidget, _super);
     function CheckBoxWidget() {
@@ -58,7 +83,7 @@ var CheckBoxWidget = /** @class */ (function (_super) {
     CheckBoxWidget.prototype.setDisabled = function (value) { this.input.disabled = this.disabled = value; };
     CheckBoxWidget.prototype.render = function () {
         var _this = this;
-        var cn = classNames(this.className, 'form-check-inline p-0');
+        var cn = classnames_1.default(this.className, 'form-check-inline p-0');
         var input = React.createElement("input", { ref: function (input) { return _this.input = input; }, className: 'align-self-center', type: "checkbox", defaultChecked: this.defaultValue, onChange: this.onInputChange, onClick: this.onClick });
         if (this.context.inNode === true) {
             return React.createElement("label", { className: cn },
@@ -72,6 +97,6 @@ var CheckBoxWidget = /** @class */ (function (_super) {
         }
     };
     return CheckBoxWidget;
-}(Widget));
-export { CheckBoxWidget };
+}(widget_1.Widget));
+exports.CheckBoxWidget = CheckBoxWidget;
 //# sourceMappingURL=checkBoxWidget.js.map

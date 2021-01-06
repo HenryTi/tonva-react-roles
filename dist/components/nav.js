@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -22,11 +23,30 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -64,26 +84,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { observable } from 'mobx';
-import _ from 'lodash';
-import { Page } from './page/page';
-import { netToken } from '../net/netToken';
-import FetchErrorView, { SystemNotifyPage } from './fetchErrorView';
-import { appUrl, setAppInFrame, getExHash, getExHashPos } from '../net/appBridge';
-import { LocalData, env } from '../tool';
-import { guestApi, logoutApis, setCenterUrl, setCenterToken, appInFrame, host, resUrlFromHost, messageHub } from '../net';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TonvaView = exports.nav = exports.Nav = exports.NavView = void 0;
+var React = __importStar(require("react"));
+var mobx_1 = require("mobx");
+var lodash_1 = __importDefault(require("lodash"));
+var page_1 = require("./page/page");
+var netToken_1 = require("../net/netToken");
+var fetchErrorView_1 = __importStar(require("./fetchErrorView"));
+var appBridge_1 = require("../net/appBridge");
+var tool_1 = require("../tool");
+var net_1 = require("../net");
 //import { WsBase, wsBridge } from '../net/wsChannel';
-import { resOptions } from '../res/res';
-import { Loading } from './loading';
-import { Navigo } from './navigo';
-import 'font-awesome/css/font-awesome.min.css';
-import '../css/va-form.css';
-import '../css/va.css';
-import '../css/animation.css';
-import { FA } from './simple';
-import { userApi } from '../net';
-import { ReloadPage, ConfirmReloadPage } from './reloadPage';
+var res_1 = require("../res/res");
+var loading_1 = require("./loading");
+var navigo_1 = require("./navigo");
+require("font-awesome/css/font-awesome.min.css");
+require("../css/va-form.css");
+require("../css/va.css");
+require("../css/animation.css");
+var simple_1 = require("./simple");
+var net_2 = require("../net");
+var reloadPage_1 = require("./reloadPage");
 var regEx = new RegExp('Android|webOS|iPhone|iPad|' +
     'BlackBerry|Windows Phone|' +
     'Opera Mini|IEMobile|Mobile', 'i');
@@ -104,7 +129,7 @@ var NavView = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.waitCount = 0;
         _this.upgradeUq = function () {
-            nav.start();
+            exports.nav.start();
         };
         _this.isHistoryBack = false;
         _this.navBack = function () {
@@ -156,7 +181,7 @@ var NavView = /** @class */ (function (_super) {
             wait: 0,
             fetchError: undefined
         };
-        nav.set(_this);
+        exports.nav.set(_this);
         return _this;
     }
     NavView.prototype.componentDidMount = function () {
@@ -166,12 +191,12 @@ var NavView = /** @class */ (function (_super) {
                     case 0:
                         window.addEventListener('popstate', this.navBack);
                         //if (nav.isRouting === false) {
-                        return [4 /*yield*/, nav.init()];
+                        return [4 /*yield*/, exports.nav.init()];
                     case 1:
                         //if (nav.isRouting === false) {
                         _a.sent();
                         //}
-                        return [4 /*yield*/, nav.start()];
+                        return [4 /*yield*/, exports.nav.start()];
                     case 2:
                         //}
                         _a.sent();
@@ -191,7 +216,7 @@ var NavView = /** @class */ (function (_super) {
         var _this = this;
         if (this.waitCount === 0) {
             this.setState({ wait: 1 });
-            this.waitTimeHandler = env.setTimeout('NavView.startWait', function () {
+            this.waitTimeHandler = tool_1.env.setTimeout('NavView.startWait', function () {
                 _this.waitTimeHandler = undefined;
                 _this.setState({ wait: 2 });
             }, 1000);
@@ -203,7 +228,7 @@ var NavView = /** @class */ (function (_super) {
     };
     NavView.prototype.endWait = function () {
         var _this = this;
-        env.setTimeout(undefined, //'NavView.endWait',
+        tool_1.env.setTimeout(undefined, //'NavView.endWait',
         function () {
             /*
             this.setState({
@@ -212,7 +237,7 @@ var NavView = /** @class */ (function (_super) {
             --_this.waitCount;
             if (_this.waitCount === 0) {
                 if (_this.waitTimeHandler !== undefined) {
-                    env.clearTimeout(_this.waitTimeHandler);
+                    tool_1.env.clearTimeout(_this.waitTimeHandler);
                     _this.waitTimeHandler = undefined;
                 }
                 _this.setState({ wait: 0 });
@@ -228,7 +253,7 @@ var NavView = /** @class */ (function (_super) {
                         err = fetchError.error;
                         if (!(err !== undefined)) return [3 /*break*/, 6];
                         if (!(err.unauthorized === true)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, nav.showLogin(undefined)];
+                        return [4 /*yield*/, exports.nav.showLogin(undefined)];
                     case 1:
                         _b.sent();
                         //nav.navigateToLogin();
@@ -240,13 +265,13 @@ var NavView = /** @class */ (function (_super) {
                             case 'sheet-processing': return [3 /*break*/, 5];
                         }
                         return [3 /*break*/, 6];
-                    case 3: return [4 /*yield*/, nav.showLogin(undefined)];
+                    case 3: return [4 /*yield*/, exports.nav.showLogin(undefined)];
                     case 4:
                         _b.sent();
                         //nav.navigateToLogin();
                         return [2 /*return*/];
                     case 5:
-                        nav.push(React.createElement(SystemNotifyPage, { message: "\u5355\u636E\u6B63\u5728\u5904\u7406\u4E2D\u3002\u8BF7\u91CD\u65B0\u64CD\u4F5C\uFF01" }));
+                        exports.nav.push(React.createElement(fetchErrorView_1.SystemNotifyPage, { message: "\u5355\u636E\u6B63\u5728\u5904\u7406\u4E2D\u3002\u8BF7\u91CD\u65B0\u64CD\u4F5C\uFF01" }));
                         return [2 /*return*/];
                     case 6:
                         this.setState({
@@ -260,7 +285,7 @@ var NavView = /** @class */ (function (_super) {
     NavView.prototype.showUpgradeUq = function (uq, version) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.show(React.createElement(Page, { header: false },
+                this.show(React.createElement(page_1.Page, { header: false },
                     React.createElement("div", null,
                         "UQ\u5347\u7EA7\u4E86\uFF0C\u8BF7\u70B9\u51FB\u6309\u94AE\u5347\u7EA7 ",
                         React.createElement("br", null),
@@ -436,14 +461,14 @@ var NavView = /** @class */ (function (_super) {
                 break;
             case 2:
                 elWait = React.createElement("div", { className: "va-wait va-wait2" },
-                    React.createElement(Loading, null));
+                    React.createElement(loading_1.Loading, null));
                 break;
         }
         if (fetchError)
-            elError = React.createElement(FetchErrorView, __assign({ clearError: this.clearError }, fetchError));
-        var test = nav.testing === true &&
+            elError = React.createElement(fetchErrorView_1.default, __assign({ clearError: this.clearError }, fetchError));
+        var test = exports.nav.testing === true &&
             React.createElement("span", { className: "cursor-pointer position-fixed", style: { top: 0, left: '0.2rem', zIndex: 90001 } },
-                React.createElement(FA, { className: "text-warning", name: "info-circle" }));
+                React.createElement(simple_1.FA, { className: "text-warning", name: "info-circle" }));
         return React.createElement(React.Fragment, null,
             stack.map(function (item, index) {
                 var key = item.key, view = item.view;
@@ -458,11 +483,11 @@ var NavView = /** @class */ (function (_super) {
     };
     return NavView;
 }(React.Component));
-export { NavView };
+exports.NavView = NavView;
 var Nav = /** @class */ (function () {
     function Nav() {
         var _this = this;
-        this.local = new LocalData();
+        this.local = new tool_1.LocalData();
         this.user = undefined;
         this.arrs = ['/test', '/test/'];
         this.windowOnError = function (event, source, lineno, colno, error) {
@@ -488,7 +513,7 @@ var Nav = /** @class */ (function () {
         this.navLogin = function (params) { return __awaiter(_this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                nav.showLogin(function (user) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                exports.nav.showLogin(function (user) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                     return [2 /*return*/, window.history.back()];
                 }); }); }, false);
                 return [2 /*return*/];
@@ -497,7 +522,7 @@ var Nav = /** @class */ (function () {
         this.navLogout = function (params) { return __awaiter(_this, void 0, void 0, function () {
             var _this = this;
             return __generator(this, function (_a) {
-                nav.showLogout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                exports.nav.showLogout(function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
                     return [2 /*return*/, window.history.back()];
                 }); }); });
                 return [2 /*return*/];
@@ -505,13 +530,13 @@ var Nav = /** @class */ (function () {
         }); };
         this.navRegister = function (params) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                nav.showRegister();
+                exports.nav.showRegister();
                 return [2 /*return*/];
             });
         }); };
         this.navForget = function (params) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                nav.showForget();
+                exports.nav.showForget();
                 return [2 /*return*/];
             });
         }); };
@@ -536,7 +561,7 @@ var Nav = /** @class */ (function () {
                 _this.privacyPage(privacy);
             }
             else {
-                nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
+                exports.nav.push(React.createElement(page_1.Page, { header: "\u9690\u79C1\u653F\u7B56" },
                     React.createElement("div", { className: "p-3" }, "AppConfig \u4E2D\u6CA1\u6709\u5B9A\u4E49 privacy\u3002\u53EF\u4EE5\u5B9A\u4E49\u4E3A\u5B57\u7B26\u4E32\uFF0C\u6216\u8005url\u3002markdown\u683C\u5F0F")));
             }
         };
@@ -544,7 +569,7 @@ var Nav = /** @class */ (function () {
             var content;
             return __generator(this, function (_a) {
                 content = { __html: htmlString };
-                nav.push(React.createElement(Page, { header: "\u9690\u79C1\u653F\u7B56" },
+                exports.nav.push(React.createElement(page_1.Page, { header: "\u9690\u79C1\u653F\u7B56" },
                     React.createElement("div", { className: "p-3", dangerouslySetInnerHTML: content })));
                 return [2 /*return*/];
             });
@@ -587,7 +612,7 @@ var Nav = /** @class */ (function () {
             });
         }); };
         this.resetAll = function () {
-            _this.push(React.createElement(ConfirmReloadPage, { confirm: function (ok) {
+            _this.push(React.createElement(reloadPage_1.ConfirmReloadPage, { confirm: function (ok) {
                     if (ok === true) {
                         _this.showReloadPage('彻底升级');
                         localStorage.clear();
@@ -603,7 +628,7 @@ var Nav = /** @class */ (function () {
                     return;
                 } }));
         };
-        var lang = resOptions.lang, district = resOptions.district;
+        var lang = res_1.resOptions.lang, district = res_1.resOptions.district;
         this.language = lang;
         this.culture = district;
         this.testing = false;
@@ -643,7 +668,7 @@ var Nav = /** @class */ (function () {
                 switch (_a.label) {
                     case 0: 
                     //if (this.ws === undefined) return;
-                    return [4 /*yield*/, messageHub.dispatch(msg)];
+                    return [4 /*yield*/, net_1.messageHub.dispatch(msg)];
                     case 1:
                         //if (this.ws === undefined) return;
                         _a.sent();
@@ -716,7 +741,7 @@ var Nav = /** @class */ (function () {
                         }
                         unit = this.local.unit.get();
                         if (!(unit !== undefined)) return [3 /*break*/, 2];
-                        if (env.isDevelopment !== true)
+                        if (tool_1.env.isDevelopment !== true)
                             return [2 /*return*/, unit.id];
                         return [4 /*yield*/, this.getPredefinedUnitName()];
                     case 1:
@@ -732,7 +757,7 @@ var Nav = /** @class */ (function () {
                         if (unitName === undefined)
                             return [2 /*return*/];
                         _a.label = 4;
-                    case 4: return [4 /*yield*/, guestApi.unitFromName(unitName)];
+                    case 4: return [4 /*yield*/, net_1.guestApi.unitFromName(unitName)];
                     case 5:
                         unitId = _a.sent();
                         if (unitId !== undefined) {
@@ -774,28 +799,28 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.testing = env.testing;
+                        this.testing = tool_1.env.testing;
                         if (this.forceDevelopment === true) {
-                            env.isDevelopment = true;
+                            tool_1.env.isDevelopment = true;
                         }
-                        return [4 /*yield*/, host.start(this.testing)];
+                        return [4 /*yield*/, net_1.host.start(this.testing)];
                     case 1:
                         _a.sent();
                         hash = document.location.hash;
                         if (hash !== undefined && hash.length > 0) {
-                            pos = getExHashPos();
+                            pos = appBridge_1.getExHashPos();
                             if (pos < 0)
                                 pos = undefined;
                             this.hashParam = hash.substring(1, pos);
                         }
-                        url = host.url, ws = host.ws, resHost = host.resHost;
+                        url = net_1.host.url, ws = net_1.host.ws, resHost = net_1.host.resHost;
                         this.centerHost = url;
-                        this.resUrl = resUrlFromHost(resHost);
+                        this.resUrl = net_1.resUrlFromHost(resHost);
                         this.wsHost = ws;
-                        setCenterUrl(url);
+                        net_1.setCenterUrl(url);
                         guest = this.local.guest.get();
                         if (!(guest === undefined)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, guestApi.guest()];
+                        return [4 /*yield*/, net_1.guestApi.guest()];
                     case 2:
                         guest = _a.sent();
                         _a.label = 3;
@@ -804,9 +829,9 @@ var Nav = /** @class */ (function () {
                             debugger;
                             throw Error('guest can not be undefined');
                         }
-                        nav.setGuest(guest);
-                        exHash = getExHash();
-                        appInFrame = setAppInFrame(exHash);
+                        exports.nav.setGuest(guest);
+                        exHash = appBridge_1.getExHash();
+                        appInFrame = appBridge_1.setAppInFrame(exHash);
                         if (exHash !== undefined && window !== window.parent) {
                             // is in frame
                             if (appInFrame !== undefined) {
@@ -848,8 +873,8 @@ var Nav = /** @class */ (function () {
                             document.oncontextmenu = function () { return false; };
                         }
                         //window.setInterval(()=>console.error('tick every 5 seconds'), 5000);
-                        nav.clear();
-                        nav.onSysNavRoutes();
+                        exports.nav.clear();
+                        exports.nav.onSysNavRoutes();
                         this.startWait();
                         user = this.local.user.get();
                         if (!(user === undefined)) return [3 /*break*/, 5];
@@ -859,12 +884,12 @@ var Nav = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 4];
-                    case 2: return [4 /*yield*/, nav.showLogin(undefined)];
+                    case 2: return [4 /*yield*/, exports.nav.showLogin(undefined)];
                     case 3:
                         _a.sent();
                         _a.label = 4;
                     case 4: return [2 /*return*/];
-                    case 5: return [4 /*yield*/, nav.logined(user)];
+                    case 5: return [4 /*yield*/, exports.nav.logined(user)];
                     case 6:
                         _a.sent();
                         return [3 /*break*/, 9];
@@ -893,7 +918,7 @@ var Nav = /** @class */ (function () {
             args[_i] = arguments[_i];
         }
         if (this.navigo === undefined) {
-            this.navigo = new Navigo();
+            this.navigo = new navigo_1.Navigo();
             if (this.isWebNav !== true)
                 this.navigo.historyAPIUpdateMethod('replaceState');
         }
@@ -903,7 +928,7 @@ var Nav = /** @class */ (function () {
         this.onNavRoutes(this.sysRoutes);
     };
     Nav.prototype.navigateToLogin = function () {
-        nav.navigate('/login');
+        exports.nav.navigate('/login');
     };
     Nav.prototype.openSysPage = function (url) {
         var navPage = this.sysRoutes[url];
@@ -918,7 +943,7 @@ var Nav = /** @class */ (function () {
         return function (params, queryStr) {
             if (navPage) {
                 if (_this.isWebNav)
-                    nav.clear();
+                    exports.nav.clear();
                 navPage(params);
             }
         };
@@ -929,7 +954,7 @@ var Nav = /** @class */ (function () {
     Nav.prototype.onNavRoutes = function (navPageRoutes) {
         if (!navPageRoutes)
             return;
-        this.navPageRoutes = _.merge(this.navPageRoutes, navPageRoutes);
+        this.navPageRoutes = lodash_1.default.merge(this.navPageRoutes, navPageRoutes);
         var navOns = {};
         for (var route in navPageRoutes) {
             var navPage = navPageRoutes[route];
@@ -972,10 +997,10 @@ var Nav = /** @class */ (function () {
                     case 0:
                         onLogined = this.navView.props.onLogined;
                         if (onLogined === undefined) {
-                            nav.push(React.createElement("div", null, "NavView has no prop onLogined"));
+                            exports.nav.push(React.createElement("div", null, "NavView has no prop onLogined"));
                             return [2 /*return*/];
                         }
-                        nav.clear();
+                        exports.nav.clear();
                         return [4 /*yield*/, onLogined(isUserLogin)];
                     case 1:
                         _a.sent();
@@ -986,7 +1011,7 @@ var Nav = /** @class */ (function () {
     };
     Nav.prototype.setGuest = function (guest) {
         this.local.guest.set(guest);
-        netToken.set(0, guest.token);
+        netToken_1.netToken.set(0, guest.token);
     };
     Nav.prototype.saveLocalUser = function () {
         this.local.user.set(this.user);
@@ -996,7 +1021,7 @@ var Nav = /** @class */ (function () {
             var me;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userApi.me()];
+                    case 0: return [4 /*yield*/, net_2.userApi.me()];
                     case 1:
                         me = _a.sent();
                         this.user.icon = me.icon;
@@ -1011,12 +1036,12 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        logoutApis();
+                        net_1.logoutApis();
                         console.log("logined: %s", JSON.stringify(user));
                         this.user = user;
                         this.saveLocalUser();
-                        netToken.set(user.id, user.token);
-                        nav.clear();
+                        netToken_1.netToken.set(user.id, user.token);
+                        exports.nav.clear();
                         if (!(callback !== undefined)) return [3 /*break*/, 1];
                         callback(user);
                         return [3 /*break*/, 3];
@@ -1105,7 +1130,7 @@ var Nav = /** @class */ (function () {
             var lv, loginView;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, import('../entry/login')];
+                    case 0: return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require('../entry/login')); })];
                     case 1:
                         lv = _a.sent();
                         loginView = React.createElement(lv.default, { withBack: withBack, callback: callback });
@@ -1126,7 +1151,7 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 footer = React.createElement("div", { className: "text-center justify-content-center" },
                     React.createElement("button", { className: "btn btn-outline-danger", onClick: this.resetAll }, "\u5347\u7EA7\u8F6F\u4EF6"));
-                nav.push(React.createElement(Page, { header: "\u5B89\u5168\u9000\u51FA", back: "close", footer: footer },
+                exports.nav.push(React.createElement(page_1.Page, { header: "\u5B89\u5168\u9000\u51FA", back: "close", footer: footer },
                     React.createElement("div", { className: "my-5 mx-1 border border-info bg-white rounded p-3 text-center" },
                         React.createElement("div", null, "\u9000\u51FA\u5F53\u524D\u8D26\u53F7\u4E0D\u4F1A\u5220\u9664\u4EFB\u4F55\u5386\u53F2\u6570\u636E\uFF0C\u4E0B\u6B21\u767B\u5F55\u4F9D\u7136\u53EF\u4EE5\u4F7F\u7528\u672C\u8D26\u53F7"),
                         React.createElement("div", { className: "mt-3 text-center" },
@@ -1140,7 +1165,7 @@ var Nav = /** @class */ (function () {
             var lv, c;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, import('../entry/register')];
+                    case 0: return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require('../entry/register')); })];
                     case 1:
                         lv = _a.sent();
                         c = new lv.RegisterController(undefined);
@@ -1157,7 +1182,7 @@ var Nav = /** @class */ (function () {
             var lv, c;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, import('../entry/register')];
+                    case 0: return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require('../entry/register')); })];
                     case 1:
                         lv = _a.sent();
                         c = new lv.ForgetController(undefined);
@@ -1175,16 +1200,16 @@ var Nav = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        appInFrame.unit = undefined;
+                        net_1.appInFrame.unit = undefined;
                         this.local.logoutClear();
                         this.user = undefined; //{} as User;
-                        logoutApis();
+                        net_1.logoutApis();
                         guest = this.local.guest.get();
-                        setCenterToken(0, guest && guest.token);
+                        net_1.setCenterToken(0, guest && guest.token);
                         //this.ws = undefined;
                         this.clear();
                         if (!(callback === undefined)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, nav.start()];
+                        return [4 /*yield*/, exports.nav.start()];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 4];
@@ -1202,10 +1227,10 @@ var Nav = /** @class */ (function () {
             var cp;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, import('../entry/changePassword')];
+                    case 0: return [4 /*yield*/, Promise.resolve().then(function () { return __importStar(require('../entry/changePassword')); })];
                     case 1:
                         cp = _a.sent();
-                        nav.push(React.createElement(cp.ChangePasswordPage, null));
+                        exports.nav.push(React.createElement(cp.ChangePasswordPage, null));
                         return [2 /*return*/];
                 }
             });
@@ -1308,10 +1333,10 @@ var Nav = /** @class */ (function () {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         var sheet = _this.centerHost.includes('http://localhost:') === true ? 'sheet_debug' : 'sheet';
                         var uh = sheetId === undefined ?
-                            appUrl(url, unitId) :
-                            appUrl(url, unitId, sheet, [apiId, sheetType, sheetId]);
+                            appBridge_1.appUrl(url, unitId) :
+                            appBridge_1.appUrl(url, unitId, sheet, [apiId, sheetType, sheetId]);
                         console.log('navToApp: %s', JSON.stringify(uh));
-                        nav.push(React.createElement("article", { className: 'app-container' },
+                        exports.nav.push(React.createElement("article", { className: 'app-container' },
                             React.createElement("span", { id: uh.hash, onClick: function () { return _this.back(); } },
                                 React.createElement("i", { className: "fa fa-arrow-left" })),
                             // eslint-disable-next-line 
@@ -1345,7 +1370,7 @@ var Nav = /** @class */ (function () {
     };
     Nav.prototype.showReloadPage = function (msg) {
         var seconds = -1;
-        this.push(React.createElement(ReloadPage, { message: msg, seconds: seconds }));
+        this.push(React.createElement(reloadPage_1.ReloadPage, { message: msg, seconds: seconds }));
         /*
         if (seconds > 0) {
             env.setTimeout(undefined, this.reload, seconds*1000);
@@ -1376,12 +1401,12 @@ var Nav = /** @class */ (function () {
         });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], Nav.prototype, "user", void 0);
     return Nav;
 }());
-export { Nav };
-export var nav = new Nav();
+exports.Nav = Nav;
+exports.nav = new Nav();
 var TonvaView = /** @class */ (function (_super) {
     __extends(TonvaView, _super);
     function TonvaView() {
@@ -1389,5 +1414,5 @@ var TonvaView = /** @class */ (function (_super) {
     }
     return TonvaView;
 }(NavView));
-export { TonvaView };
+exports.TonvaView = TonvaView;
 //# sourceMappingURL=nav.js.map

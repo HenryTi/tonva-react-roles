@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,20 +35,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import _ from 'lodash';
-import { UqApi, UnitxApi, appInFrame } from '../net';
-import { TuidImport, TuidInner, TuidsCache } from './tuid';
-import { Action } from './action';
-import { Sheet } from './sheet';
-import { Query } from './query';
-import { Book } from './book';
-import { History } from './history';
-import { Map } from './map';
-import { Pending } from './pending';
-import { ReactBoxId } from './tuid/reactBoxId';
-import { Tag } from './tag/tag';
-import { UqEnum } from './enum';
-export function fieldDefaultValue(type) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UqMan = exports.fieldDefaultValue = void 0;
+var lodash_1 = __importDefault(require("lodash"));
+var net_1 = require("../net");
+var tuid_1 = require("./tuid");
+var action_1 = require("./action");
+var sheet_1 = require("./sheet");
+var query_1 = require("./query");
+var book_1 = require("./book");
+var history_1 = require("./history");
+var map_1 = require("./map");
+var pending_1 = require("./pending");
+var reactBoxId_1 = require("./tuid/reactBoxId");
+var tag_1 = require("./tag/tag");
+var enum_1 = require("./enum");
+function fieldDefaultValue(type) {
     switch (type) {
         case 'tinyint':
         case 'smallint':
@@ -65,6 +71,7 @@ export function fieldDefaultValue(type) {
             return '0:00';
     }
 }
+exports.fieldDefaultValue = fieldDefaultValue;
 var UqMan = /** @class */ (function () {
     function UqMan(uqs, uqData, createBoxId, tvs) {
         var _this = this;
@@ -87,7 +94,7 @@ var UqMan = /** @class */ (function () {
                 this.tuidURs[name] = tuidUR = new TuidWithUIRes(tuid, ui, res);
             }
             */
-            return new ReactBoxId(id, tuid, _this.tvs[name]);
+            return new reactBoxId_1.ReactBoxId(id, tuid, _this.tvs[name]);
         };
         this.tuidArr = [];
         this.actionArr = [];
@@ -126,17 +133,17 @@ var UqMan = /** @class */ (function () {
         if (this.name === '$$$/$unitx') {
             // 这里假定，点击home link之后，已经设置unit了
             // 调用 UnitxApi会自动搜索绑定 unitx service
-            this.uqApi = new UnitxApi(appInFrame.unit);
+            this.uqApi = new net_1.UnitxApi(net_1.appInFrame.unit);
         }
         else {
             var appOwner = uqs.appOwner, appName = uqs.appName;
-            this.uqApi = new UqApi(baseUrl, appOwner, appName, uqOwner, uqName, acc, true);
+            this.uqApi = new net_1.UqApi(baseUrl, appOwner, appName, uqOwner, uqName, acc, true);
         }
-        this.tuidsCache = new TuidsCache(this);
+        this.tuidsCache = new tuid_1.TuidsCache(this);
     }
     Object.defineProperty(UqMan.prototype, "entities", {
         get: function () {
-            return _.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids, this.tags);
+            return lodash_1.default.merge({}, this.actions, this.sheets, this.queries, this.books, this.maps, this.histories, this.pendings, this.tuids, this.tags);
         },
         enumerable: false,
         configurable: true
@@ -293,7 +300,7 @@ var UqMan = /** @class */ (function () {
         var enm = this.enums[name];
         if (enm !== undefined)
             return enm;
-        enm = this.enums[name] = new UqEnum(this, name, id);
+        enm = this.enums[name] = new enum_1.UqEnum(this, name, id);
         this.enumArr.push(enm);
         return enm;
     };
@@ -301,7 +308,7 @@ var UqMan = /** @class */ (function () {
         var action = this.actions[name];
         if (action !== undefined)
             return action;
-        action = this.actions[name] = new Action(this, name, id);
+        action = this.actions[name] = new action_1.Action(this, name, id);
         this.actionArr.push(action);
         return action;
     };
@@ -310,9 +317,9 @@ var UqMan = /** @class */ (function () {
         if (tuid !== undefined)
             return tuid;
         if (from !== undefined)
-            tuid = new TuidImport(this, name, id, from);
+            tuid = new tuid_1.TuidImport(this, name, id, from);
         else
-            tuid = new TuidInner(this, name, id);
+            tuid = new tuid_1.TuidInner(this, name, id);
         this.tuids[name] = tuid;
         this.tuidArr.push(tuid);
         return tuid;
@@ -321,7 +328,7 @@ var UqMan = /** @class */ (function () {
         var query = this.queries[name];
         if (query !== undefined)
             return query;
-        query = this.queries[name] = new Query(this, name, id);
+        query = this.queries[name] = new query_1.Query(this, name, id);
         this.queryArr.push(query);
         return query;
     };
@@ -329,7 +336,7 @@ var UqMan = /** @class */ (function () {
         var book = this.books[name];
         if (book !== undefined)
             return book;
-        book = this.books[name] = new Book(this, name, id);
+        book = this.books[name] = new book_1.Book(this, name, id);
         this.bookArr.push(book);
         return book;
     };
@@ -337,7 +344,7 @@ var UqMan = /** @class */ (function () {
         var map = this.maps[name];
         if (map !== undefined)
             return map;
-        map = this.maps[name] = new Map(this, name, id);
+        map = this.maps[name] = new map_1.Map(this, name, id);
         this.mapArr.push(map);
         return map;
     };
@@ -345,7 +352,7 @@ var UqMan = /** @class */ (function () {
         var tag = this.tags[name];
         if (tag !== undefined)
             return tag;
-        tag = this.tags[name] = new Tag(this, name, id);
+        tag = this.tags[name] = new tag_1.Tag(this, name, id);
         this.tagArr.push(tag);
         return tag;
     };
@@ -353,7 +360,7 @@ var UqMan = /** @class */ (function () {
         var history = this.histories[name];
         if (history !== undefined)
             return;
-        history = this.histories[name] = new History(this, name, id);
+        history = this.histories[name] = new history_1.History(this, name, id);
         this.historyArr.push(history);
         return history;
     };
@@ -361,7 +368,7 @@ var UqMan = /** @class */ (function () {
         var pending = this.pendings[name];
         if (pending !== undefined)
             return;
-        pending = this.pendings[name] = new Pending(this, name, id);
+        pending = this.pendings[name] = new pending_1.Pending(this, name, id);
         this.pendingArr.push(pending);
         return pending;
     };
@@ -369,7 +376,7 @@ var UqMan = /** @class */ (function () {
         var sheet = this.sheets[name];
         if (sheet !== undefined)
             return sheet;
-        sheet = this.sheets[name] = new Sheet(this, name, id);
+        sheet = this.sheets[name] = new sheet_1.Sheet(this, name, id);
         this.sheetArr.push(sheet);
         return sheet;
     };
@@ -486,5 +493,5 @@ var UqMan = /** @class */ (function () {
     };
     return UqMan;
 }());
-export { UqMan };
+exports.UqMan = UqMan;
 //# sourceMappingURL=uqMan.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,9 +48,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { Entity } from './entity';
-import { PageItems } from '../tool/pageItems';
-import { EntityCaller } from './caller';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageStateItems = exports.Sheet = exports.UqSheet = void 0;
+var entity_1 = require("./entity");
+var pageItems_1 = require("../tool/pageItems");
+var caller_1 = require("./caller");
 var UqSheet = /** @class */ (function (_super) {
     __extends(UqSheet, _super);
     function UqSheet() {
@@ -259,8 +262,8 @@ var UqSheet = /** @class */ (function (_super) {
         });
     };
     return UqSheet;
-}(Entity));
-export { UqSheet };
+}(entity_1.Entity));
+exports.UqSheet = UqSheet;
 var Sheet = /** @class */ (function (_super) {
     __extends(Sheet, _super);
     function Sheet() {
@@ -268,7 +271,7 @@ var Sheet = /** @class */ (function (_super) {
     }
     return Sheet;
 }(UqSheet));
-export { Sheet };
+exports.Sheet = Sheet;
 var SheetCaller = /** @class */ (function (_super) {
     __extends(SheetCaller, _super);
     function SheetCaller() {
@@ -285,7 +288,7 @@ var SheetCaller = /** @class */ (function (_super) {
         configurable: true
     });
     return SheetCaller;
-}(EntityCaller));
+}(caller_1.EntityCaller));
 var SaveCaller = /** @class */ (function (_super) {
     __extends(SaveCaller, _super);
     function SaveCaller() {
@@ -485,6 +488,6 @@ var PageStateItems = /** @class */ (function (_super) {
         return item === undefined ? 0 : item.id;
     };
     return PageStateItems;
-}(PageItems));
-export { PageStateItems };
+}(pageItems_1.PageItems));
+exports.PageStateItems = PageStateItems;
 //# sourceMappingURL=sheet.js.map

@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Caller = void 0;
 var Caller = /** @class */ (function () {
     function Caller(params, waiting) {
         this.method = 'POST';
@@ -17,5 +20,5 @@ var Caller = /** @class */ (function () {
     });
     return Caller;
 }());
-export { Caller };
+exports.Caller = Caller;
 //# sourceMappingURL=caller.js.map

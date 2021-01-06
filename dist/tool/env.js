@@ -1,3 +1,4 @@
+"use strict";
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -5,15 +6,17 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-import { LocalMap } from './localDb';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.env = void 0;
+var localDb_1 = require("./localDb");
 // 如果路径上有独立的test单词，则是test环境
 function isTesting() {
     var ret = /(\btest\b)/i.test(document.location.href);
     return ret;
 }
-export var env = (function () {
+exports.env = (function () {
     var testing = isTesting();
-    var localDb = new LocalMap(testing === true ? '$$' : '$');
+    var localDb = new localDb_1.LocalMap(testing === true ? '$$' : '$');
     return {
         testing: testing,
         isDevelopment: process.env.NODE_ENV === 'development',

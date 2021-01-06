@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,11 +12,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -53,14 +73,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { nav } from './nav';
-import { Loading } from './loading';
-import { Image as ImageControl } from './image';
-import { Page } from './page/page';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { LMR } from './simple';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AudioUploader = exports.ImageUploader = exports.ResUploader = void 0;
+var React = __importStar(require("react"));
+var nav_1 = require("./nav");
+var loading_1 = require("./loading");
+var image_1 = require("./image");
+var page_1 = require("./page/page");
+var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
+var simple_1 = require("./simple");
 var ResUploader = /** @class */ (function (_super) {
     __extends(ResUploader, _super);
     function ResUploader() {
@@ -70,13 +92,13 @@ var ResUploader = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        resUrl = nav.resUrl + 'upload';
+                        resUrl = nav_1.nav.resUrl + 'upload';
                         if (!formData)
                             formData = this.buildFormData();
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 4, 5, 6]);
-                        nav.startWait();
+                        nav_1.nav.startWait();
                         headers = new Headers();
                         headers.append('Access-Control-Allow-Origin', '*');
                         return [4 /*yield*/, fetch(resUrl, {
@@ -95,7 +117,7 @@ var ResUploader = /** @class */ (function (_super) {
                         console.error('%s %s', resUrl, err_1);
                         return [2 /*return*/, { error: err_1 }];
                     case 5:
-                        nav.endWait();
+                        nav_1.nav.endWait();
                         return [7 /*endfinally*/];
                     case 6: return [2 /*return*/];
                 }
@@ -145,14 +167,14 @@ var ResUploader = /** @class */ (function (_super) {
             this.fileName);
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], ResUploader.prototype, "fileName", void 0);
     ResUploader = __decorate([
-        observer
+        mobx_react_1.observer
     ], ResUploader);
     return ResUploader;
 }(React.Component));
-export { ResUploader };
+exports.ResUploader = ResUploader;
 function formatSize(size, pointLength, units) {
     if (pointLength === void 0) { pointLength = 2; }
     var unit;
@@ -314,9 +336,9 @@ var ImageUploader = /** @class */ (function (_super) {
             return;
         };
         _this.showOrgImage = function () {
-            nav.push(React.createElement(Page, { header: "\u539F\u56FE" },
+            nav_1.nav.push(React.createElement(page_1.Page, { header: "\u539F\u56FE" },
                 React.createElement("div", { className: "p-3 text-center" },
-                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: _this.srcImage }))));
+                    React.createElement(image_1.Image, { className: "h-min-4c", style: { maxWidth: '100%' }, src: _this.srcImage }))));
         };
         _this.resId = props.id;
         _this.imageTypes = props.imageTypes || ImageUploader_1.imageTypes;
@@ -396,7 +418,7 @@ var ImageUploader = /** @class */ (function (_super) {
         var _this = this;
         var label = this.props.label;
         var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !this.isChanged, onClick: this.onSaved }, "\u4FDD\u5B58");
-        return React.createElement(Page, { header: label || '更改图片', right: right },
+        return React.createElement(page_1.Page, { header: label || '更改图片', right: right },
             React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
                 React.createElement("div", null,
                     React.createElement("div", { className: "mb-3" },
@@ -406,7 +428,7 @@ var ImageUploader = /** @class */ (function (_super) {
                             this.imageTypes.join(', '),
                             " \u683C\u5F0F\u56FE\u7247\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)),
-                    React.createElement(LMR, { left: this.uploaded === true ?
+                    React.createElement(simple_1.LMR, { left: this.uploaded === true ?
                             React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
                             :
                                 this.file && this.desImgSize > 0 && React.createElement("div", { className: "mb-3 d-flex align-items-end" },
@@ -432,55 +454,55 @@ var ImageUploader = /** @class */ (function (_super) {
                         border: (this.uploaded === true ? '2px solid green' : '1px dotted gray'),
                         padding: '8px'
                     } },
-                    React.createElement(ImageControl, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
+                    React.createElement(image_1.Image, { className: "h-min-4c", style: { maxWidth: '100%' }, src: this.desImage }))));
     };
     var ImageUploader_1;
     ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'apng', 'bmp', 'ico', 'cur', 'tiff', 'tif', 'webp'];
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "file", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "desImgWidth", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "desImgHeight", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "desImgSize", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "srcImgWidth", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "srcImgHeight", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "isChanged", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "resId", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "enableUploadButton", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "srcImage", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "desImage", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "fileError", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageUploader.prototype, "uploaded", void 0);
     ImageUploader = ImageUploader_1 = __decorate([
-        observer
+        mobx_react_1.observer
     ], ImageUploader);
     return ImageUploader;
 }(React.Component));
-export { ImageUploader };
+exports.ImageUploader = ImageUploader;
 var AudioUploader = /** @class */ (function (_super) {
     __extends(AudioUploader, _super);
     function AudioUploader(props) {
@@ -579,7 +601,7 @@ var AudioUploader = /** @class */ (function (_super) {
         var _this = this;
         var label = this.props.label;
         var right = React.createElement("button", { className: "btn btn-sm btn-success align-self-center mr-2", disabled: !this.isChanged, onClick: this.onSaved }, "\u4FDD\u5B58");
-        return React.createElement(Page, { header: label || '更改文件', right: right },
+        return React.createElement(page_1.Page, { header: label || '更改文件', right: right },
             React.createElement("div", { className: "my-3 px-3 py-3 bg-white" },
                 React.createElement("div", null,
                     React.createElement("div", { className: "mb-3" },
@@ -589,12 +611,12 @@ var AudioUploader = /** @class */ (function (_super) {
                             AudioUploader_1.audioTypes.join(', '),
                             " \u683C\u5F0F\u3002"),
                         this.fileError && React.createElement("div", { className: "text-danger" }, this.fileError)))),
-            React.createElement(LMR, { left: this.uploaded === true ?
+            React.createElement(simple_1.LMR, { left: this.uploaded === true ?
                     React.createElement("div", { className: "text-success p-2" }, "\u4E0A\u4F20\u6210\u529F\uFF01")
                     :
                         this.uploading === true ?
                             React.createElement("div", { className: "m-3" },
-                                React.createElement(Loading, null))
+                                React.createElement(loading_1.Loading, null))
                             :
                                 this.file && this.content && React.createElement("div", { className: "m-3" },
                                     React.createElement("div", { className: "mb-3" },
@@ -605,36 +627,36 @@ var AudioUploader = /** @class */ (function (_super) {
     var AudioUploader_1;
     AudioUploader.audioTypes = ['mp3', 'wav'];
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "content", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "file", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "fileSize", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "isChanged", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "resId", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "enableUploadButton", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "fileError", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "uploaded", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], AudioUploader.prototype, "uploading", void 0);
     AudioUploader = AudioUploader_1 = __decorate([
-        observer
+        mobx_react_1.observer
     ], AudioUploader);
     return AudioUploader;
 }(React.Component));
-export { AudioUploader };
+exports.AudioUploader = AudioUploader;
 //# sourceMappingURL=resUploader.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,7 +48,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import React from 'react';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WebNavScrollView = exports.ScrollView = exports.Scroller = void 0;
+var react_1 = __importDefault(require("react"));
 var scrollAfter = 20; // 20ms之后，scroll执行
 var Scroller = /** @class */ (function () {
     function Scroller(el) {
@@ -63,7 +69,7 @@ var Scroller = /** @class */ (function () {
     };
     return Scroller;
 }());
-export { Scroller };
+exports.Scroller = Scroller;
 var scrollTimeGap = 100;
 var ScrollViewBase = /** @class */ (function (_super) {
     __extends(ScrollViewBase, _super);
@@ -133,7 +139,7 @@ var ScrollViewBase = /** @class */ (function (_super) {
         var children = props.children;
         if (children === undefined)
             return;
-        React.Children.forEach(children, function (child, index) {
+        react_1.default.Children.forEach(children, function (child, index) {
             var _$scroll = child._$scroll;
             if (_$scroll)
                 _$scroll(direct);
@@ -142,7 +148,7 @@ var ScrollViewBase = /** @class */ (function (_super) {
         });
     };
     return ScrollViewBase;
-}(React.Component));
+}(react_1.default.Component));
 var ScrollView = /** @class */ (function (_super) {
     __extends(ScrollView, _super);
     function ScrollView() {
@@ -150,12 +156,12 @@ var ScrollView = /** @class */ (function (_super) {
     }
     ScrollView.prototype.render = function () {
         var _a = this.props, className = _a.className, style = _a.style;
-        return React.createElement("div", { ref: this.refDiv, className: "tv-page", onScroll: this.onScroll, style: style },
-            React.createElement("article", { className: className }, this.props.children));
+        return react_1.default.createElement("div", { ref: this.refDiv, className: "tv-page", onScroll: this.onScroll, style: style },
+            react_1.default.createElement("article", { className: className }, this.props.children));
     };
     return ScrollView;
 }(ScrollViewBase));
-export { ScrollView };
+exports.ScrollView = ScrollView;
 var WebNavScrollView = /** @class */ (function (_super) {
     __extends(WebNavScrollView, _super);
     function WebNavScrollView() {
@@ -168,19 +174,19 @@ var WebNavScrollView = /** @class */ (function (_super) {
         if (navRawHeader)
             vHeader = navRawHeader;
         else if (navHeader)
-            vHeader = React.createElement("header", null,
-                React.createElement("main", null, navHeader));
+            vHeader = react_1.default.createElement("header", null,
+                react_1.default.createElement("main", null, navHeader));
         if (navRawFooter)
             vFooter = navRawFooter;
         else if (navFooter)
-            vFooter = React.createElement("footer", null,
-                React.createElement("main", null, navFooter));
-        return React.createElement("div", { ref: this.refDiv, className: "tv-page-webnav", onScroll: this.onScroll, style: style },
+            vFooter = react_1.default.createElement("footer", null,
+                react_1.default.createElement("main", null, navFooter));
+        return react_1.default.createElement("div", { ref: this.refDiv, className: "tv-page-webnav", onScroll: this.onScroll, style: style },
             vHeader,
-            React.createElement("article", { className: className }, this.props.children),
+            react_1.default.createElement("article", { className: className }, this.props.children),
             vFooter);
     };
     return WebNavScrollView;
 }(ScrollViewBase));
-export { WebNavScrollView };
+exports.WebNavScrollView = WebNavScrollView;
 //# sourceMappingURL=scrollView.js.map

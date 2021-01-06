@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listRes = void 0;
 /*eslint no-template-curly-in-string: 0*/
-export var listRes = {
+exports.listRes = {
     _: {
         none: '[none]',
     },

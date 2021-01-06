@@ -1,8 +1,28 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
@@ -11,11 +31,16 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-import * as React from 'react';
-import classNames from 'classnames';
-import { RuleRequired, RuleCustom } from '../rules';
-import { computed, observable } from 'mobx';
-import { observer } from 'mobx-react';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Widget = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var rules_1 = require("../rules");
+var mobx_1 = require("mobx");
+var mobx_react_1 = require("mobx-react");
 var Widget = /** @class */ (function () {
     function Widget(context, itemSchema, fieldProps, children) {
         var _this = this;
@@ -24,7 +49,7 @@ var Widget = /** @class */ (function () {
         this.onInputChange = function (evt) {
             _this.changeValue(evt.target.value, true);
         };
-        this.container = observer(function () {
+        this.container = mobx_react_1.observer(function () {
             if (_this.visible === false)
                 return null;
             var _a = _this.context, form = _a.form, inNode = _a.inNode;
@@ -81,7 +106,7 @@ var Widget = /** @class */ (function () {
     Widget.prototype.init = function () {
         this.rules = [];
         if (this.itemSchema.required === true) {
-            this.rules.push(new RuleRequired(this.context.form.res));
+            this.rules.push(new rules_1.RuleRequired(this.context.form.res));
         }
         this.buildRules();
         if (this.ui === undefined)
@@ -90,12 +115,12 @@ var Widget = /** @class */ (function () {
         if (rules === undefined)
             return;
         if (Array.isArray(rules) === false) {
-            this.rules.push(new RuleCustom(rules));
+            this.rules.push(new rules_1.RuleCustom(rules));
             return;
         }
         for (var _i = 0, _a = rules; _i < _a.length; _i++) {
             var rule = _a[_i];
-            this.rules.push(new RuleCustom(rule));
+            this.rules.push(new rules_1.RuleCustom(rule));
         }
     };
     Widget.prototype.buildRules = function () {
@@ -199,7 +224,7 @@ var Widget = /** @class */ (function () {
             var fieldClass;
             if (this.context.inNode === false)
                 fieldClass = 'form-control';
-            return classNames(fieldClass, this.context.form.FieldClass, this.ui && this.ui.className);
+            return classnames_1.default(fieldClass, this.context.form.FieldClass, this.ui && this.ui.className);
         },
         enumerable: false,
         configurable: true
@@ -260,21 +285,21 @@ var Widget = /** @class */ (function () {
             err)); });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], Widget.prototype, "errors", void 0);
     __decorate([
-        observable
+        mobx_1.observable
     ], Widget.prototype, "contextErrors", void 0);
     __decorate([
-        computed
+        mobx_1.computed
     ], Widget.prototype, "hasError", null);
     __decorate([
-        observable
+        mobx_1.observable
     ], Widget.prototype, "visible", void 0);
     __decorate([
-        computed
+        mobx_1.computed
     ], Widget.prototype, "isOk", null);
     return Widget;
 }());
-export { Widget };
+exports.Widget = Widget;
 //# sourceMappingURL=widget.js.map

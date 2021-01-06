@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,11 +12,30 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -53,12 +73,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { ImageUploader } from '../resUploader';
-import { nav } from '../nav';
-import { ItemEdit } from './itemEdit';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ImageItemEdit = void 0;
+var React = __importStar(require("react"));
+var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
+var resUploader_1 = require("../resUploader");
+var nav_1 = require("../nav");
+var itemEdit_1 = require("./itemEdit");
 var ImageItemEdit = /** @class */ (function (_super) {
     __extends(ImageItemEdit, _super);
     function ImageItemEdit() {
@@ -76,7 +98,7 @@ var ImageItemEdit = /** @class */ (function (_super) {
             this.isChanged = (this.resId !== this.value);
         }
         */
-        _this.page = observer(function (props) {
+        _this.page = mobx_react_1.observer(function (props) {
             var resolve = props.resolve;
             var size = _this.uiItem && _this.uiItem.size;
             /*
@@ -91,7 +113,7 @@ var ImageItemEdit = /** @class */ (function (_super) {
                 </div>;
             }
             */
-            return React.createElement(ImageUploader, { label: '更改' + _this.label, id: _this.resId, size: size, onSaved: function (resId) { resolve(resId); return; } });
+            return React.createElement(resUploader_1.ImageUploader, { label: '更改' + _this.label, id: _this.resId, size: size, onSaved: function (resId) { resolve(resId); return; } });
             /*
             return <Page header={'更改' + this.label} right={right}>
                 <div className="my-3 px-3 py-3 bg-white">
@@ -133,15 +155,15 @@ var ImageItemEdit = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 this.resId = this.value;
                 return [2 /*return*/, new Promise(function (resolve, reject) {
-                        nav.push(React.createElement(_this.page, { resolve: resolve, reject: reject }), function () { return reject(); });
+                        nav_1.nav.push(React.createElement(_this.page, { resolve: resolve, reject: reject }), function () { return reject(); });
                     })];
             });
         });
     };
     __decorate([
-        observable
+        mobx_1.observable
     ], ImageItemEdit.prototype, "resId", void 0);
     return ImageItemEdit;
-}(ItemEdit));
-export { ImageItemEdit };
+}(itemEdit_1.ItemEdit));
+exports.ImageItemEdit = ImageItemEdit;
 //# sourceMappingURL=imageItemEdit.js.map

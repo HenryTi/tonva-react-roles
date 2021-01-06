@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,7 +48,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { messageHub } from "./messageHub";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WSChannel = exports.wsBridge = exports.WsBridge = exports.WsBase = exports.postWsToTop = exports.setSubAppWindow = void 0;
+var messageHub_1 = require("./messageHub");
 var subAppWindow;
 function postWsToSubApp(msg) {
     if (subAppWindow === undefined)
@@ -57,18 +60,20 @@ function postWsToSubApp(msg) {
         msg: msg
     }, '*');
 }
-export function setSubAppWindow(win) {
+function setSubAppWindow(win) {
     subAppWindow = win;
 }
-export function postWsToTop(msg) {
+exports.setSubAppWindow = setSubAppWindow;
+function postWsToTop(msg) {
     window.top.postMessage({
         type: 'ws',
         msg: msg
     }, '*');
 }
+exports.postWsToTop = postWsToTop;
 var WsBase = /** @class */ (function () {
     function WsBase() {
-        this.messageHub = messageHub;
+        this.messageHub = messageHub_1.messageHub;
     }
     /*
     wsBaseId:string;
@@ -102,7 +107,7 @@ var WsBase = /** @class */ (function () {
     };
     return WsBase;
 }());
-export { WsBase };
+exports.WsBase = WsBase;
 var wsBaseSeed = 1;
 var WsBridge = /** @class */ (function (_super) {
     __extends(WsBridge, _super);
@@ -113,8 +118,8 @@ var WsBridge = /** @class */ (function (_super) {
     }
     return WsBridge;
 }(WsBase));
-export { WsBridge };
-export var wsBridge = new WsBridge();
+exports.WsBridge = WsBridge;
+exports.wsBridge = new WsBridge();
 var WSChannel = /** @class */ (function (_super) {
     __extends(WSChannel, _super);
     function WSChannel(wsHost, token) {
@@ -194,5 +199,5 @@ var WSChannel = /** @class */ (function (_super) {
     };
     return WSChannel;
 }(WsBase));
-export { WSChannel };
+exports.WSChannel = WSChannel;
 //# sourceMappingURL=wsChannel.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,10 +12,34 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import * as React from 'react';
-import classNames from 'classnames';
-import { ListBase } from './base';
-import { uid } from '../../tool/uid';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Static = void 0;
+var React = __importStar(require("react"));
+var classnames_1 = __importDefault(require("classnames"));
+var base_1 = require("./base");
+var uid_1 = require("../../tool/uid");
 var Static = /** @class */ (function (_super) {
     __extends(Static, _super);
     function Static() {
@@ -22,14 +47,14 @@ var Static = /** @class */ (function (_super) {
         _this.render = function (item, index) {
             var _a = _this.list.props.item, className = _a.className, key = _a.key;
             if (typeof item === 'string') {
-                var cn = classNames('va-list-gap', 'px-3', 'pt-1');
-                return React.createElement("li", { key: uid(), className: cn }, item);
+                var cn = classnames_1.default('va-list-gap', 'px-3', 'pt-1');
+                return React.createElement("li", { key: uid_1.uid(), className: cn }, item);
             }
-            return React.createElement("li", { key: key === undefined ? index : key(item), className: classNames(className) }, _this.renderContent(item, index));
+            return React.createElement("li", { key: key === undefined ? index : key(item), className: classnames_1.default(className) }, _this.renderContent(item, index));
         };
         return _this;
     }
     return Static;
-}(ListBase));
-export { Static };
+}(base_1.ListBase));
+exports.Static = Static;
 //# sourceMappingURL=static.js.map

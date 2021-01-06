@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Widget } from './widget';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SelectBaseWidget = void 0;
+var widget_1 = require("./widget");
 var SelectBaseWidget = /** @class */ (function (_super) {
     __extends(SelectBaseWidget, _super);
     function SelectBaseWidget() {
@@ -24,6 +27,6 @@ var SelectBaseWidget = /** @class */ (function (_super) {
     });
     ;
     return SelectBaseWidget;
-}(Widget));
-export { SelectBaseWidget };
+}(widget_1.Widget));
+exports.SelectBaseWidget = SelectBaseWidget;
 //# sourceMappingURL=selectBaseWidget.js.map

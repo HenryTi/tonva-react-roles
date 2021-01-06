@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,8 +48,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.QueryPageCaller = exports.QueryQueryCaller = exports.ActionCaller = exports.EntityCaller = void 0;
 //import _ from 'lodash';
-import { Caller } from '../net';
+var net_1 = require("../net");
 var EntityCaller = /** @class */ (function (_super) {
     __extends(EntityCaller, _super);
     function EntityCaller(entity, params, waiting) {
@@ -150,8 +153,8 @@ var EntityCaller = /** @class */ (function (_super) {
         }
     };
     return EntityCaller;
-}(Caller));
-export { EntityCaller };
+}(net_1.Caller));
+exports.EntityCaller = EntityCaller;
 var ActionCaller = /** @class */ (function (_super) {
     __extends(ActionCaller, _super);
     function ActionCaller() {
@@ -164,7 +167,7 @@ var ActionCaller = /** @class */ (function (_super) {
     });
     return ActionCaller;
 }(EntityCaller));
-export { ActionCaller };
+exports.ActionCaller = ActionCaller;
 var QueryQueryCaller = /** @class */ (function (_super) {
     __extends(QueryQueryCaller, _super);
     function QueryQueryCaller() {
@@ -188,7 +191,7 @@ var QueryQueryCaller = /** @class */ (function (_super) {
     QueryQueryCaller.prototype.buildParams = function () { return this.entity.buildParams(this.params); };
     return QueryQueryCaller;
 }(EntityCaller));
-export { QueryQueryCaller };
+exports.QueryQueryCaller = QueryQueryCaller;
 var QueryPageCaller = /** @class */ (function (_super) {
     __extends(QueryPageCaller, _super);
     function QueryPageCaller() {
@@ -239,5 +242,5 @@ var QueryPageCaller = /** @class */ (function (_super) {
     };
     return QueryPageCaller;
 }(EntityCaller));
-export { QueryPageCaller };
+exports.QueryPageCaller = QueryPageCaller;
 //# sourceMappingURL=caller.js.map

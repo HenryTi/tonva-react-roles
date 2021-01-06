@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import { Query } from './query';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Pending = void 0;
+var query_1 = require("./query");
 var Pending = /** @class */ (function (_super) {
     __extends(Pending, _super);
     function Pending() {
@@ -25,6 +28,6 @@ var Pending = /** @class */ (function (_super) {
         configurable: true
     });
     return Pending;
-}(Query));
-export { Pending };
+}(query_1.Query));
+exports.Pending = Pending;
 //# sourceMappingURL=pending.js.map

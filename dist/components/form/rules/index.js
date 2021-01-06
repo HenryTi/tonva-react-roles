@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,13 +12,18 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import _ from 'lodash';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RuleInt = exports.RuleNum = exports.RuleRequired = exports.RulePredefined = exports.RuleCustom = exports.Rule = void 0;
+var lodash_1 = __importDefault(require("lodash"));
 var Rule = /** @class */ (function () {
     function Rule() {
     }
     return Rule;
 }());
-export { Rule };
+exports.Rule = Rule;
 var RuleCustom = /** @class */ (function (_super) {
     __extends(RuleCustom, _super);
     function RuleCustom(func) {
@@ -41,7 +47,7 @@ var RuleCustom = /** @class */ (function (_super) {
     };
     return RuleCustom;
 }(Rule));
-export { RuleCustom };
+exports.RuleCustom = RuleCustom;
 var RulePredefined = /** @class */ (function (_super) {
     __extends(RulePredefined, _super);
     function RulePredefined(res) {
@@ -51,7 +57,7 @@ var RulePredefined = /** @class */ (function (_super) {
     }
     return RulePredefined;
 }(Rule));
-export { RulePredefined };
+exports.RulePredefined = RulePredefined;
 var RuleRequired = /** @class */ (function (_super) {
     __extends(RuleRequired, _super);
     function RuleRequired() {
@@ -80,13 +86,13 @@ var RuleRequired = /** @class */ (function (_super) {
     };
     return RuleRequired;
 }(RulePredefined));
-export { RuleRequired };
+exports.RuleRequired = RuleRequired;
 var RuleNum = /** @class */ (function (_super) {
     __extends(RuleNum, _super);
     function RuleNum(res, min, max) {
         var _this = _super.call(this, res) || this;
-        _this.minMsg = _.template(res.min);
-        _this.maxMsg = _.template(res.max);
+        _this.minMsg = lodash_1.default.template(res.min);
+        _this.maxMsg = lodash_1.default.template(res.max);
         _this.min = min;
         _this.max = max;
         return _this;
@@ -112,7 +118,7 @@ var RuleNum = /** @class */ (function (_super) {
     };
     return RuleNum;
 }(RulePredefined));
-export { RuleNum };
+exports.RuleNum = RuleNum;
 var RuleInt = /** @class */ (function (_super) {
     __extends(RuleInt, _super);
     function RuleInt() {
@@ -126,5 +132,5 @@ var RuleInt = /** @class */ (function (_super) {
     };
     return RuleInt;
 }(RuleNum));
-export { RuleInt };
+exports.RuleInt = RuleInt;
 //# sourceMappingURL=index.js.map

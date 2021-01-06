@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -11,7 +12,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-import _ from 'lodash';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LocalMap = exports.LocalArr = exports.LocalCache = void 0;
+var lodash_1 = __importDefault(require("lodash"));
 var _LocalStorage = /** @class */ (function () {
     function _LocalStorage() {
     }
@@ -75,7 +81,7 @@ var LocalCache = /** @class */ (function () {
     };
     return LocalCache;
 }());
-export { LocalCache };
+exports.LocalCache = LocalCache;
 var Local = /** @class */ (function () {
     function Local(name) {
         this.name = name;
@@ -150,13 +156,13 @@ var LocalArr = /** @class */ (function (_super) {
         __ls.setItem(this.name, this.index.join('\n'));
     };
     LocalArr.prototype.keyForGet = function (key) {
-        var i = _.indexOf(this.index, key);
+        var i = lodash_1.default.indexOf(this.index, key);
         if (i < 0)
             return undefined;
         return this.name + "." + key;
     };
     LocalArr.prototype.keyForSet = function (key) {
-        var i = _.indexOf(this.index, key);
+        var i = lodash_1.default.indexOf(this.index, key);
         if (i < 0) {
             this.index.unshift(key);
             if (this.index.length > maxArrSize)
@@ -170,7 +176,7 @@ var LocalArr = /** @class */ (function (_super) {
         return this.name + "." + key;
     };
     LocalArr.prototype.keyForRemove = function (key) {
-        var i = _.indexOf(this.index, key);
+        var i = lodash_1.default.indexOf(this.index, key);
         if (i < 0)
             return;
         this.index.splice(i, 1);
@@ -190,7 +196,7 @@ var LocalArr = /** @class */ (function (_super) {
     };
     return LocalArr;
 }(Local));
-export { LocalArr };
+exports.LocalArr = LocalArr;
 var LocalMap = /** @class */ (function (_super) {
     __extends(LocalMap, _super);
     function LocalMap(name) {
@@ -262,5 +268,5 @@ var LocalMap = /** @class */ (function (_super) {
     };
     return LocalMap;
 }(Local));
-export { LocalMap };
+exports.LocalMap = LocalMap;
 //# sourceMappingURL=localDb.js.map

@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -47,9 +48,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { bridgeCenterApi, isBridged } from './appBridge';
-import { nav } from '../components/nav';
-import { env } from '../tool';
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UqHttpChannel = exports.CenterHttpChannel = exports.HttpChannel = void 0;
+var appBridge_1 = require("./appBridge");
+var nav_1 = require("../components/nav");
+var tool_1 = require("../tool");
 /*
 export async function httpGet(url:string, params?:any):Promise<any> {
     let channel = new HttpChannel(false, url, undefined, undefined);
@@ -95,7 +98,7 @@ var HttpChannel = /** @class */ (function () {
         this.hostUrl = hostUrl;
         this.apiToken = apiToken;
         this.ui = ui;
-        this.timeout = env.isDevelopment === true ? 500000 : 50000;
+        this.timeout = tool_1.env.isDevelopment === true ? 500000 : 50000;
     }
     HttpChannel.prototype.used = function () {
         this.post('', {});
@@ -255,7 +258,7 @@ var HttpChannel = /** @class */ (function () {
                         _a.trys.push([1, 6, , 7]);
                         console.log('%s-%s %s', options.method, path, options.body || '');
                         now_1 = Date.now();
-                        timeOutHandler_1 = env.setTimeout(undefined, //'httpChannel.fetch',
+                        timeOutHandler_1 = tool_1.env.setTimeout(undefined, //'httpChannel.fetch',
                         function () {
                             that.endWait(url + ' timeout endWait: ' + (Date.now() - now_1) + 'ms', reject);
                         }, this.timeout);
@@ -263,7 +266,7 @@ var HttpChannel = /** @class */ (function () {
                     case 2:
                         res = _a.sent();
                         if (res.ok === false) {
-                            env.clearTimeout(timeOutHandler_1);
+                            tool_1.env.clearTimeout(timeOutHandler_1);
                             console.log('ok false endWait');
                             that.endWait();
                             console.log('call error %s', res.statusText);
@@ -276,7 +279,7 @@ var HttpChannel = /** @class */ (function () {
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0:
-                                            env.clearTimeout(timeOutHandler_1);
+                                            tool_1.env.clearTimeout(timeOutHandler_1);
                                             that.endWait();
                                             if (retJson.ok === true) {
                                                 if (typeof retJson !== 'object') {
@@ -314,7 +317,7 @@ var HttpChannel = /** @class */ (function () {
                     case 3: return [4 /*yield*/, res.text()];
                     case 4:
                         text = _a.sent();
-                        env.clearTimeout(timeOutHandler_1);
+                        tool_1.env.clearTimeout(timeOutHandler_1);
                         console.log('text endWait');
                         that.endWait();
                         resolve(text);
@@ -326,7 +329,7 @@ var HttpChannel = /** @class */ (function () {
                         if (typeof error_1 === 'string') {
                             err = error_1.toLowerCase();
                             if (err.startsWith('unauthorized') === true) {
-                                nav.logout();
+                                nav_1.nav.logout();
                                 return [2 /*return*/];
                             }
                         }
@@ -390,7 +393,7 @@ var HttpChannel = /** @class */ (function () {
     }
     */
     HttpChannel.prototype.buildHeaders = function () {
-        var language = nav.language, culture = nav.culture;
+        var language = nav_1.nav.language, culture = nav_1.nav.culture;
         var headers = {}; //new Headers();
         //headers.append('Access-Control-Allow-Origin', '*');
         //headers.append('Content-Type', 'application/json;charset=UTF-8');
@@ -408,7 +411,7 @@ var HttpChannel = /** @class */ (function () {
     };
     return HttpChannel;
 }());
-export { HttpChannel };
+exports.HttpChannel = HttpChannel;
 var CenterHttpChannel = /** @class */ (function (_super) {
     __extends(CenterHttpChannel, _super);
     function CenterHttpChannel() {
@@ -422,8 +425,8 @@ var CenterHttpChannel = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         u = this.hostUrl + url;
-                        if (!(this.apiToken === undefined && isBridged())) return [3 /*break*/, 2];
-                        return [4 /*yield*/, bridgeCenterApi(u, options.method, options.body)];
+                        if (!(this.apiToken === undefined && appBridge_1.isBridged())) return [3 /*break*/, 2];
+                        return [4 /*yield*/, appBridge_1.bridgeCenterApi(u, options.method, options.body)];
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2: return [4 /*yield*/, new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
                             return __generator(this, function (_a) {
@@ -442,7 +445,7 @@ var CenterHttpChannel = /** @class */ (function (_super) {
     };
     return CenterHttpChannel;
 }(HttpChannel));
-export { CenterHttpChannel };
+exports.CenterHttpChannel = CenterHttpChannel;
 var UqHttpChannel = /** @class */ (function (_super) {
     __extends(UqHttpChannel, _super);
     function UqHttpChannel() {
@@ -473,5 +476,5 @@ var UqHttpChannel = /** @class */ (function (_super) {
     };
     return UqHttpChannel;
 }(HttpChannel));
-export { UqHttpChannel };
+exports.UqHttpChannel = UqHttpChannel;
 //# sourceMappingURL=httpChannel.js.map
