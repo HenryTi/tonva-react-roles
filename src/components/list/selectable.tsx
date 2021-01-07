@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {observable, IObservableArray, isObservableArray, observe} from 'mobx';
+import {observable, IObservableArray, isObservableArray, observe, makeObservable} from 'mobx';
 import classNames from 'classnames';
 import {ListBase} from './base';
 import {uid} from '../../tool/uid';
@@ -14,11 +14,14 @@ export interface SelectableItem {
 }
 
 export class Selectable extends ListBase {
-    @observable private _items: SelectableItem[];
+    _items: SelectableItem[];
     private inputItems:{[uid:string]: HTMLInputElement} = {};
 
     constructor(list: List) {
-        super(list);
+		super(list);
+		makeObservable(this, {
+			_items: observable
+		})
         this.buildItems();
         this.listenArraySplice();
     }    

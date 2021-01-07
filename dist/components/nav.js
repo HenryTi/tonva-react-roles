@@ -35,12 +35,6 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -628,6 +622,9 @@ var Nav = /** @class */ (function () {
                     return;
                 } }));
         };
+        mobx_1.makeObservable(this, {
+            user: mobx_1.observable
+        });
         var lang = res_1.resOptions.lang, district = res_1.resOptions.district;
         this.language = lang;
         this.culture = district;
@@ -1400,9 +1397,6 @@ var Nav = /** @class */ (function () {
             });
         });
     };
-    __decorate([
-        mobx_1.observable
-    ], Nav.prototype, "user", void 0);
     return Nav;
 }());
 exports.Nav = Nav;

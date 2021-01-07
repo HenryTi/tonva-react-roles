@@ -85,8 +85,8 @@ var mobx_1 = require("mobx");
 var simple_1 = require("./simple");
 var ResUploader = /** @class */ (function (_super) {
     __extends(ResUploader, _super);
-    function ResUploader() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function ResUploader(props) {
+        var _this = _super.call(this, props) || this;
         _this.upload = function (formData) { return __awaiter(_this, void 0, void 0, function () {
             var resUrl, headers, res, json, err_1;
             return __generator(this, function (_a) {
@@ -135,6 +135,9 @@ var ResUploader = /** @class */ (function (_super) {
             }
             _this.fileName = names.join(', ');
         };
+        mobx_1.makeObservable(_this, {
+            fileName: mobx_1.observable,
+        });
         return _this;
     }
     ResUploader.prototype.buildFormData = function () {
@@ -166,9 +169,6 @@ var ResUploader = /** @class */ (function (_super) {
             "\u00A0",
             this.fileName);
     };
-    __decorate([
-        mobx_1.observable
-    ], ResUploader.prototype, "fileName", void 0);
     ResUploader = __decorate([
         mobx_react_1.observer
     ], ResUploader);
@@ -340,6 +340,21 @@ var ImageUploader = /** @class */ (function (_super) {
                 React.createElement("div", { className: "p-3 text-center" },
                     React.createElement(image_1.Image, { className: "h-min-4c", style: { maxWidth: '100%' }, src: _this.srcImage }))));
         };
+        mobx_1.makeObservable(_this, {
+            file: mobx_1.observable,
+            desImgWidth: mobx_1.observable,
+            desImgHeight: mobx_1.observable,
+            desImgSize: mobx_1.observable,
+            srcImgWidth: mobx_1.observable,
+            srcImgHeight: mobx_1.observable,
+            isChanged: mobx_1.observable,
+            resId: mobx_1.observable,
+            enableUploadButton: mobx_1.observable,
+            srcImage: mobx_1.observable,
+            desImage: mobx_1.observable,
+            fileError: mobx_1.observable,
+            uploaded: mobx_1.observable,
+        });
         _this.resId = props.id;
         _this.imageTypes = props.imageTypes || ImageUploader_1.imageTypes;
         return _this;
@@ -458,45 +473,6 @@ var ImageUploader = /** @class */ (function (_super) {
     };
     var ImageUploader_1;
     ImageUploader.imageTypes = ['gif', 'jpg', 'jpeg', 'png', 'svg', 'apng', 'bmp', 'ico', 'cur', 'tiff', 'tif', 'webp'];
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "file", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "desImgWidth", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "desImgHeight", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "desImgSize", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "srcImgWidth", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "srcImgHeight", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "isChanged", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "resId", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "enableUploadButton", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "srcImage", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "desImage", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "fileError", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ImageUploader.prototype, "uploaded", void 0);
     ImageUploader = ImageUploader_1 = __decorate([
         mobx_react_1.observer
     ], ImageUploader);
@@ -582,6 +558,17 @@ var AudioUploader = /** @class */ (function (_super) {
             onSaved && onSaved(_this.resId);
             return;
         };
+        mobx_1.makeObservable(_this, {
+            content: mobx_1.observable,
+            file: mobx_1.observable,
+            fileSize: mobx_1.observable,
+            isChanged: mobx_1.observable,
+            resId: mobx_1.observable,
+            enableUploadButton: mobx_1.observable,
+            fileError: mobx_1.observable,
+            uploaded: mobx_1.observable,
+            uploading: mobx_1.observable,
+        });
         _this.resId = props.id;
         return _this;
     }
@@ -626,33 +613,6 @@ var AudioUploader = /** @class */ (function (_super) {
     };
     var AudioUploader_1;
     AudioUploader.audioTypes = ['mp3', 'wav'];
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "content", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "file", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "fileSize", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "isChanged", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "resId", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "enableUploadButton", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "fileError", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "uploaded", void 0);
-    __decorate([
-        mobx_1.observable
-    ], AudioUploader.prototype, "uploading", void 0);
     AudioUploader = AudioUploader_1 = __decorate([
         mobx_react_1.observer
     ], AudioUploader);

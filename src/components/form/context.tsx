@@ -4,7 +4,7 @@ import { UiSchema, UiArr, UiItem } from '../schema';
 import { ArrSchema, ItemSchema } from '../schema';
 import { Widget } from './widgets/widget';
 //import { ArrRow } from './arrRow';
-import { observable, computed } from 'mobx';
+import { observable, computed, makeObservable } from 'mobx';
 import { ContextRule } from './rules';
 import { observer } from 'mobx-react';
 
@@ -16,11 +16,16 @@ export abstract class Context {
     readonly inNode: boolean;           // true: 在</> 流中定义Field
     readonly widgets: {[name:string]: Widget} = {};
     readonly rules: ContextRule[];
-    readonly isRow: boolean;
-    @observable errors: string[] = [];
-    @observable errorWidgets:Widget[] = [];
+	readonly isRow: boolean;
+	
+    errors: string[] = [];
+    errorWidgets:Widget[] = [];
 
     constructor(form: Form, uiSchema: UiSchema, data: any, inNode: boolean, isRow: boolean) {
+		makeObservable(this, {
+			errors: observable,
+			errorWidgets: observable,
+		});
         this.form = form;
         this.uiSchema = uiSchema;
         this.initData = data;

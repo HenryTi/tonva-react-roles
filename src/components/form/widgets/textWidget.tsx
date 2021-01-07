@@ -1,14 +1,23 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-import { UiTextItem, StringSchema } from '../../schema';
-import { observable } from 'mobx';
+import { UiTextItem, StringSchema, ItemSchema } from '../../schema';
+import { makeObservable, observable } from 'mobx';
+import { Context } from '../context';
+import { FieldProps } from '../field';
 
 export class TextWidget extends Widget {
     protected inputType = 'text';
     protected get ui(): UiTextItem {return this._ui as UiTextItem};
     protected input: HTMLInputElement;
-    @observable protected hasFocus: boolean;
+    hasFocus: boolean;
+
+	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
+		super(context, itemSchema, fieldProps, children);
+		makeObservable(this, {
+			hasFocus: observable,
+		})
+	}
 
     protected setElementValue(value:any) {
         if (this.input === null) return;

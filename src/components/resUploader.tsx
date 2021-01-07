@@ -4,7 +4,7 @@ import { Loading } from './loading';
 import { Image as ImageControl } from './image';
 import { Page } from './page/page';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { LMR } from './simple';
 
 export interface ResUploaderProps {
@@ -18,7 +18,14 @@ export interface ResUploaderProps {
 @observer
 export class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput: HTMLInputElement;
-    @observable private fileName: string;
+	fileName: string;
+	
+	constructor(props: ResUploaderProps) {
+		super(props);
+		makeObservable(this, {
+			fileName: observable,
+		});
+	}
 
     buildFormData():FormData {
         let {maxSize} = this.props;
@@ -125,23 +132,39 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
 	private imgBaseSize: number;
 	private imageTypes: string[];
     private suffix: string;
-    private resUploader: ResUploader;
-    @observable private file: File;    
-    @observable private desImgWidth: number;
-    @observable private desImgHeight: number;
-    @observable private desImgSize: number;
-    @observable private srcImgWidth: number;
-    @observable private srcImgHeight: number;
-    @observable private isChanged: boolean = false;
-    @observable private resId: string;
-    @observable private enableUploadButton: boolean = false;
-    @observable private srcImage: string;
-    @observable private desImage: string;
-    @observable private fileError: string;
-    @observable private uploaded: boolean = false;
+	private resUploader: ResUploader;
+	
+    file: File;    
+    desImgWidth: number;
+    desImgHeight: number;
+    desImgSize: number;
+    srcImgWidth: number;
+    srcImgHeight: number;
+    isChanged: boolean = false;
+    resId: string;
+    enableUploadButton: boolean = false;
+    srcImage: string;
+    desImage: string;
+    fileError: string;
+    uploaded: boolean = false;
 
     constructor(props: ImageUploaderProps) {
-        super(props);
+		super(props);
+		makeObservable(this, {
+			file: observable,
+			desImgWidth: observable,
+			desImgHeight: observable,
+			desImgSize: observable,
+			srcImgWidth: observable,
+			srcImgHeight: observable,
+			isChanged: observable,
+			resId: observable,
+			enableUploadButton: observable,
+			srcImage: observable,
+			desImage: observable,
+			fileError: observable,
+			uploaded: observable,
+		});
 		this.resId = props.id;
 		this.imageTypes = props.imageTypes || ImageUploader.imageTypes;
     }
@@ -386,19 +409,31 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
 
     private suffix: string;
 	private resUploader: ResUploader;
-	@observable private content: string;
-	@observable private file: File;    
-	@observable private fileSize: number;
 
-    @observable private isChanged: boolean = false;
-    @observable private resId: string;
-    @observable private enableUploadButton: boolean = false;
-    @observable private fileError: string;
-	@observable private uploaded: boolean = false;
-	@observable private uploading: boolean = false;
+	content: string;
+	file: File;    
+	fileSize: number;
+    isChanged: boolean = false;
+    resId: string;
+    enableUploadButton: boolean = false;
+    fileError: string;
+	uploaded: boolean = false;
+	uploading: boolean = false;
 
     constructor(props: AudioUploaderProps) {
-        super(props);
+		super(props);
+		makeObservable(this, {
+			content: observable,
+			file: observable,
+			fileSize: observable,
+		
+			isChanged: observable,
+			resId: observable,
+			enableUploadButton: observable,
+			fileError: observable,
+			uploaded: observable,
+			uploading: observable,
+		});
         this.resId = props.id;
     }
 

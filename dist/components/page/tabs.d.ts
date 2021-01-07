@@ -29,9 +29,9 @@ export interface TabsProps {
     borderWidth?: string;
 }
 declare class Tab {
-    private loaded;
-    name: string;
+    loaded: boolean;
     selected: boolean;
+    name: string;
     caption: TabCaption;
     contentBuilder: () => JSX.Element;
     page: IVPage;
@@ -43,6 +43,7 @@ declare class Tab {
     onScrollBottom?: () => Promise<void>;
     className?: string;
     private _content;
+    constructor();
     get content(): JSX.Element;
     shown(): Promise<void>;
 }
@@ -52,8 +53,8 @@ export declare class TabsView {
     private size;
     private tabBg;
     private sep;
-    private selectedTab;
-    private tabArr;
+    selectedTab: Tab;
+    tabArr: Tab[];
     constructor(props: TabsProps);
     tabClick: (tab: Tab) => Promise<void>;
     private tabs;

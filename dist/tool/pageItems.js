@@ -1,10 +1,4 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -52,13 +46,13 @@ var PageItems = /** @class */ (function () {
     function PageItems(itemObservable) {
         var _this = this;
         if (itemObservable === void 0) { itemObservable = false; }
-        this.isFirst = true;
         this.loading = false;
         this.beforeLoad = true;
         this.loaded = false;
         this.allLoaded = false;
         this.topDiv = '$$top';
         this.bottomDiv = '$$bottom';
+        this.isFirst = true;
         this.scrollToTop = function () {
             _this.scrollIntoView(_this.topDiv);
             //let id = '$$top'+uid();
@@ -86,6 +80,16 @@ var PageItems = /** @class */ (function () {
         this.pageSize = 30;
         this.appendPosition = 'tail';
         this.changing = false;
+        mobx_1.makeObservable(this, {
+            loading: mobx_1.observable,
+            beforeLoad: mobx_1.observable,
+            loaded: mobx_1.observable,
+            _items: mobx_1.observable,
+            allLoaded: mobx_1.observable,
+            items: mobx_1.computed,
+            topDiv: mobx_1.observable,
+            bottomDiv: mobx_1.observable,
+        });
         if (itemObservable === undefined)
             itemObservable = false;
         this._items = mobx_1.observable.array([], { deep: itemObservable });
@@ -399,27 +403,6 @@ var PageItems = /** @class */ (function () {
         //let oid = this.getPageId(oldItem);
         //if (pid === oid) return oldItem;
     };
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "loading", void 0);
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "beforeLoad", void 0);
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "loaded", void 0);
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "allLoaded", void 0);
-    __decorate([
-        mobx_1.computed
-    ], PageItems.prototype, "items", null);
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "topDiv", void 0);
-    __decorate([
-        mobx_1.observable
-    ], PageItems.prototype, "bottomDiv", void 0);
     return PageItems;
 }());
 exports.PageItems = PageItems;

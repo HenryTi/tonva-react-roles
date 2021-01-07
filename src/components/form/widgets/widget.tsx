@@ -5,7 +5,7 @@ import { FieldProps } from '../field';
 import { Context } from '../context';
 import { ItemSchema } from '../../schema';
 import { Rule, RuleRequired, RuleCustom, FieldRule } from '../rules';
-import { computed, observable } from 'mobx';
+import { computed, makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 export abstract class Widget {
@@ -18,14 +18,21 @@ export abstract class Widget {
 	protected defaultValue: any;
 	protected value: any;
     protected rules: Rule[];
-    @observable errors: string[] = [];
-    @observable protected contextErrors: string[] = [];
-    @computed protected get hasError():boolean {return (this.errors.length + this.contextErrors.length)>0}
     protected readOnly:boolean;
-    protected disabled:boolean;
-    @observable visible:boolean;
+	protected disabled:boolean;
+	
+    errors: string[] = [];
+    contextErrors: string[] = [];
+    get hasError():boolean {return (this.errors.length + this.contextErrors.length)>0}
+    visible:boolean;
 
     constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
+		makeObservable(this, {
+			errors: observable,
+			contextErrors: observable,
+			hasError: computed,
+			visible: observable,
+		});
         this.context = context;
         let {name} = itemSchema;
         this.name = name;

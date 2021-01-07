@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import {observable, IObservableArray} from 'mobx';
+import {observable, IObservableArray, makeObservable} from 'mobx';
 import { PageItems } from '../tool';
-import {Field, ArrFields} from './uqMan';
+import {Field, ArrFields, UqMan} from './uqMan';
 import {Entity} from './entity';
 import { QueryQueryCaller, QueryPageCaller } from './caller';
 
@@ -103,9 +103,16 @@ export class UqQuery<P, R> extends Entity {
     private params:any;
     private more: boolean;
     private startField: Field;
-    @observable list:IObservableArray; // = observable.array([], {deep: false});
+    list:IObservableArray; // = observable.array([], {deep: false});
     returns: ArrFields[];
-    isPaged: boolean;
+	isPaged: boolean;
+	
+	constructor(uq:UqMan, name:string, typeId:number) {
+		super(uq, name, typeId);
+		makeObservable(this, {
+			list: observable,
+		})
+	}
 
     setSchema(schema:any) {
         super.setSchema(schema);

@@ -87,6 +87,10 @@ var scrollView_1 = require("./scrollView");
 var Tab = /** @class */ (function () {
     function Tab() {
         this.loaded = false;
+        mobx_1.makeObservable(this, {
+            loaded: mobx_1.observable,
+            selected: mobx_1.observable,
+        });
     }
     Object.defineProperty(Tab.prototype, "content", {
         get: function () {
@@ -133,12 +137,6 @@ var Tab = /** @class */ (function () {
             });
         });
     };
-    __decorate([
-        mobx_1.observable
-    ], Tab.prototype, "loaded", void 0);
-    __decorate([
-        mobx_1.observable
-    ], Tab.prototype, "selected", void 0);
     return Tab;
 }());
 var TabCaptionComponent = function (label, icon, color) { return React.createElement("div", { className: 'd-flex justify-content-center align-items-center flex-column cursor-pointer ' + color },
@@ -290,6 +288,10 @@ var TabsView = /** @class */ (function () {
                     footer);
             }));
         });
+        mobx_1.makeObservable(this, {
+            selectedTab: mobx_1.observable,
+            tabArr: mobx_1.observable,
+        });
         this.props = props;
         var size = props.size, tabs = props.tabs, tabBack = props.tabBg, sep = props.sep, selected = props.selected;
         this.size = size || 'md';
@@ -347,12 +349,6 @@ var TabsView = /** @class */ (function () {
             }),
             footer);
     };
-    __decorate([
-        mobx_1.observable
-    ], TabsView.prototype, "selectedTab", void 0);
-    __decorate([
-        mobx_1.observable
-    ], TabsView.prototype, "tabArr", void 0);
     return TabsView;
 }());
 exports.TabsView = TabsView;

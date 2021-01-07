@@ -9,9 +9,10 @@ export interface CStringEditProps {
 export declare class CStringEdit extends Controller {
     private props;
     value: string;
-    private newValue;
-    private isChanged;
-    private error;
+    newValue: string;
+    isChanged: boolean;
+    error: string;
+    constructor(res: any);
     protected internalStart(): Promise<void>;
     render(value: string, props?: CStringEditProps): React.FunctionComponentElement<{}>;
     protected renderValue(): JSX.Element;

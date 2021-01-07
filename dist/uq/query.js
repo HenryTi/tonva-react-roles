@@ -12,12 +12,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -202,8 +196,12 @@ var QueryPager = /** @class */ (function (_super) {
 exports.QueryPager = QueryPager;
 var UqQuery = /** @class */ (function (_super) {
     __extends(UqQuery, _super);
-    function UqQuery() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function UqQuery(uq, name, typeId) {
+        var _this = _super.call(this, uq, name, typeId) || this;
+        mobx_1.makeObservable(_this, {
+            list: mobx_1.observable,
+        });
+        return _this;
     }
     Object.defineProperty(UqQuery.prototype, "typeName", {
         get: function () { return 'query'; },
@@ -366,9 +364,6 @@ var UqQuery = /** @class */ (function (_super) {
             });
         });
     };
-    __decorate([
-        mobx_1.observable
-    ], UqQuery.prototype, "list", void 0);
     return UqQuery;
 }(entity_1.Entity));
 exports.UqQuery = UqQuery;

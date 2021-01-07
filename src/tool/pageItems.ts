@@ -1,25 +1,38 @@
 import _ from 'lodash';
-import {observable, IObservableArray, computed} from 'mobx';
+import {observable, IObservableArray, computed, makeObservable} from 'mobx';
 
 export abstract class PageItems<T> {
+    loading: boolean = false;
+    beforeLoad: boolean = true;
+    loaded: boolean = false;
+    _items:IObservableArray<T>;
+    allLoaded: boolean = false;
+    get items():IObservableArray<T> {
+        if (this.beforeLoad === true) return null;
+        if (this.loaded === false) return undefined;
+        return this._items;
+	}
+    topDiv:string = '$$top';
+	bottomDiv:string = '$$bottom';
+
     constructor(itemObservable:boolean = false) {
+		makeObservable(this, {
+			loading: observable,
+			beforeLoad: observable,
+			loaded: observable,
+			_items: observable,
+			allLoaded: observable,
+			items: computed,
+			topDiv: observable,
+			bottomDiv: observable,
+		});
 		if (itemObservable === undefined) itemObservable = false;
         this._items = observable.array<T>([], {deep:itemObservable});
     }
 	private isFirst: boolean = true;
 	private pageItemAction: (item:T, results:{[name:string]:any[]}) => void;
 	private itemConverter: (item:any, queryResults:{[name:string]:any[]}) => T;
-    @observable loading: boolean = false;
-    @observable private beforeLoad: boolean = true;
-    @observable protected loaded: boolean = false;
-    protected _items:IObservableArray<T>;
-    @observable allLoaded: boolean = false;
-    @computed get items():IObservableArray<T> {
-        if (this.beforeLoad === true) return null;
-        if (this.loaded === false) return undefined;
-        return this._items;
-	}
-	
+		
 	setEachPageItem(pageItemAction: (item:T, results:{[name:string]:any[]}) => void) {
 		this.pageItemAction = pageItemAction;
 	}
@@ -28,8 +41,6 @@ export abstract class PageItems<T> {
 		this.itemConverter = itemConverter;
 	}
 
-    @observable topDiv:string = '$$top';
-    @observable bottomDiv:string = '$$bottom';
     scrollToTop = () => {
 		this.scrollIntoView(this.topDiv);
 		//let id = '$$top'+uid();

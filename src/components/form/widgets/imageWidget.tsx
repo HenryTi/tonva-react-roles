@@ -1,16 +1,26 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Widget } from './widget';
-import { UiImageItem } from '../../schema';
+import { ItemSchema, UiImageItem } from '../../schema';
 import { Image } from '../../image';
 import { ImageItemEdit } from '../../edit/imageItemEdit';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
+import { Context } from '../context';
+import { FieldProps } from '../field';
 
 export class ImageWidget extends Widget {
     protected input: HTMLInputElement;
     protected get ui(): UiImageItem {return this._ui as UiImageItem};
-    @observable private imageSrc: string;
+
+	imageSrc: string;
+
+	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
+		super(context, itemSchema, fieldProps, children);
+		makeObservable(this, {
+			imageSrc: observable,
+		})
+	}
 
     init() {
         super.init();

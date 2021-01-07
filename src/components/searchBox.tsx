@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 
 export interface SearchBoxProps {
     className?: string;
@@ -24,7 +24,14 @@ export interface SearchBoxState {
 export class SearchBox extends React.Component<SearchBoxProps> { //}, SearchBoxState> {
     private input: HTMLInputElement;
     private key: string = null;
-    @observable private disabled: boolean;
+	disabled: boolean;
+	
+	constructor(props: SearchBoxProps) {
+		super(props);
+		makeObservable(this, {
+			disabled: observable
+		});
+	}
 
     private onChange = (evt: React.ChangeEvent<any>) => {
         this.key = evt.target.value;

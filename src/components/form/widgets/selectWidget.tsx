@@ -1,13 +1,22 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { Widget } from './widget';
-import { UiSelect } from '../../schema';
+import { ItemSchema, UiSelect } from '../../schema';
+import { Context } from '../context';
+import { FieldProps } from '../field';
 
 export class SelectWidget extends Widget {
     protected select: HTMLSelectElement;
     protected get ui(): UiSelect {return this._ui as UiSelect};
-    @observable protected readOnly: boolean;
+    readOnly: boolean;
+
+	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
+		super(context, itemSchema, fieldProps, children);
+		makeObservable(this, {
+			readOnly: observable,
+		})
+	}
 
     protected setElementValue(value:any) {this.select.value = value}
     protected onInputChange = (evt:React.ChangeEvent<HTMLSelectElement>) => {

@@ -43,7 +43,6 @@ exports.buildUqApp = exports.uqAppStart = void 0;
 var fs_1 = __importDefault(require("fs"));
 var index_1 = require("./index");
 var components_1 = require("../components");
-//import { env } from 'tonva/tool';
 //const uqAppPath = 'src/UqApp';
 var red = '\x1b[41m%s\x1b[0m';
 var lastBuildTime = 0;
@@ -93,7 +92,7 @@ function buildUqApp(options) {
                     tsAppName = buildTsAppName(options);
                     saveTsFile(uqAppSrcPath, 'appName', tsAppName);
                     tsAppConfig = buildTsAppConfig(options);
-                    saveTsFileIfNotExists(uqAppSrcPath, 'appConfig', tsAppConfig);
+                    saveTsFile(uqAppSrcPath, 'appConfig', tsAppConfig);
                     tsIndex = buildTsIndex();
                     saveTsFile(uqAppSrcPath, 'index', tsIndex);
                     tsCApp = buildTsCApp();
@@ -166,10 +165,10 @@ function buildTsCApp() {
     return buildTsHeader() + "\nimport { CUqApp } from \"./CBase\";\nimport { VMain } from \"./VMain\";\n\nexport class CApp extends CUqApp {\n\tprotected async internalStart(isUserLogin: boolean) {\n\t\tthis.openVPage(VMain, undefined, this.dispose);\n\t}\n}\n";
 }
 function buildTsCBase() {
-    return buildTsHeader() + "\nimport { CSub, CBase, CAppBase, IConstructor } from 'tonva';\nimport { UQs } from './uqs';\nimport { CApp } from './CApp';\n\nexport abstract class CUqBase extends CBase {\n\tget cApp(): CApp { return this._cApp; }\n\tprotected get uqs(): UQs { return this._uqs as UQs };\n}\n\nexport abstract class CUqSub<T extends CUqBase> extends CSub<T> {\n\tget cApp(): CApp { return this._cApp; }\n\tprotected get uqs(): UQs { return this._uqs as UQs };\n\tget owner(): T { return this._owner as T }\n}\n\nexport abstract class CUqApp extends CAppBase {\n\tget uqs(): UQs { return this._uqs };\n\n\tprotected newC<T extends CUqBase>(type: IConstructor<T>): T {\n\t\tlet c = new type(this);\n\t\tc.init();\n\t\treturn c;\n\t}\n}\n";
+    return buildTsHeader() + "\nimport { CSub, CBase, CAppBase, IConstructor } from 'tonva-react';\nimport { UQs } from './uqs';\nimport { CApp } from './CApp';\n\nexport abstract class CUqBase extends CBase {\n\tget cApp(): CApp { return this._cApp; }\n\tprotected get uqs(): UQs { return this._uqs as UQs };\n}\n\nexport abstract class CUqSub<T extends CUqBase> extends CSub<T> {\n\tget cApp(): CApp { return this._cApp; }\n\tprotected get uqs(): UQs { return this._uqs as UQs };\n\tget owner(): T { return this._owner as T }\n}\n\nexport abstract class CUqApp extends CAppBase {\n\tget uqs(): UQs { return this._uqs };\n\n\tprotected newC<T extends CUqBase>(type: IConstructor<T>): T {\n\t\tlet c = new type(this);\n\t\tc.init();\n\t\treturn c;\n\t}\n}\n";
 }
 function buildTsVMain() {
-    return buildTsHeader() + "\nimport { VPage, Page } from 'tonva';\nimport { CApp } from './CApp';\n\nexport class VMain extends VPage<CApp> {\n\tasync open(param?: any, onClosePage?: (ret:any)=>void) {\n\t\tthis.openPage(this.render, param, onClosePage);\n\t}\n\n\trender = (param?: any): JSX.Element => {\n\t\treturn <Page header=\"TEST\">\n\t\t\t<div className=\"m-3\">\n\t\t\t\t<div>{this.renderMe()}</div>\n\t\t\t\t<div className=\"mb-5\">\u540C\u82B1\u6837\u4F8B\u4E3B\u9875\u9762</div>\n\t\t\t</div>\n\t\t</Page>;\n\t}\n}\n";
+    return buildTsHeader() + "\nimport { VPage, Page } from 'tonva-react';\nimport { CApp } from './CApp';\n\nexport class VMain extends VPage<CApp> {\n\tasync open(param?: any, onClosePage?: (ret:any)=>void) {\n\t\tthis.openPage(this.render, param, onClosePage);\n\t}\n\n\trender = (param?: any): JSX.Element => {\n\t\treturn <Page header=\"TEST\">\n\t\t\t<div className=\"m-3\">\n\t\t\t\t<div>{this.renderMe()}</div>\n\t\t\t\t<div className=\"mb-5\">\u540C\u82B1\u6837\u4F8B\u4E3B\u9875\u9762</div>\n\t\t\t</div>\n\t\t</Page>;\n\t}\n}\n";
 }
 function buildUqsFolder(uqsFolder, options) {
     return __awaiter(this, void 0, void 0, function () {

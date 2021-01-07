@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ItemSchema, UiItem, UiSelectBase } from '../schema';
 import { nav } from '../nav';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { FieldRule } from '../form/rules';
 import { Image } from '../image';
 import { Edit } from './edit';
@@ -16,12 +16,16 @@ export abstract class ItemEdit {
     value: any;
 	label: string;
 	get editInRow(): boolean {return false;}
-
-    @observable protected error: string;
-    @observable protected isChanged: boolean = false;
     protected newValue: any;
 
+    error: string;
+    isChanged: boolean = false;
+
     constructor(edit:Edit, itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {
+		makeObservable(this, {
+			error: observable,
+			isChanged: observable,
+		});
 		this.edit = edit;
         this._itemSchema = itemSchema;
         this._uiItem = uiItem

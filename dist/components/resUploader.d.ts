@@ -8,7 +8,8 @@ export interface ResUploaderProps {
 }
 export declare class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput;
-    private fileName;
+    fileName: string;
+    constructor(props: ResUploaderProps);
     buildFormData(): FormData;
     getFile0(): File;
     upload: (formData?: FormData) => Promise<string | {
@@ -30,19 +31,19 @@ export declare class ImageUploader extends React.Component<ImageUploaderProps> {
     private imageTypes;
     private suffix;
     private resUploader;
-    private file;
-    private desImgWidth;
-    private desImgHeight;
-    private desImgSize;
-    private srcImgWidth;
-    private srcImgHeight;
-    private isChanged;
-    private resId;
-    private enableUploadButton;
-    private srcImage;
-    private desImage;
-    private fileError;
-    private uploaded;
+    file: File;
+    desImgWidth: number;
+    desImgHeight: number;
+    desImgSize: number;
+    srcImgWidth: number;
+    srcImgHeight: number;
+    isChanged: boolean;
+    resId: string;
+    enableUploadButton: boolean;
+    srcImage: string;
+    desImage: string;
+    fileError: string;
+    uploaded: boolean;
     constructor(props: ImageUploaderProps);
     private onFileChange;
     private setSize;
@@ -63,15 +64,15 @@ export declare class AudioUploader extends React.Component<AudioUploaderProps> {
     private static audioTypes;
     private suffix;
     private resUploader;
-    private content;
-    private file;
-    private fileSize;
-    private isChanged;
-    private resId;
-    private enableUploadButton;
-    private fileError;
-    private uploaded;
-    private uploading;
+    content: string;
+    file: File;
+    fileSize: number;
+    isChanged: boolean;
+    resId: string;
+    enableUploadButton: boolean;
+    fileError: string;
+    uploaded: boolean;
+    uploading: boolean;
     constructor(props: AudioUploaderProps);
     private onFileChange;
     private convertBase64UrlToBlob;

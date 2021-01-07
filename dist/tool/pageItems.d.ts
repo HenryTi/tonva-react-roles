@@ -1,23 +1,23 @@
 import { IObservableArray } from 'mobx';
 export declare abstract class PageItems<T> {
+    loading: boolean;
+    beforeLoad: boolean;
+    loaded: boolean;
+    _items: IObservableArray<T>;
+    allLoaded: boolean;
+    get items(): IObservableArray<T>;
+    topDiv: string;
+    bottomDiv: string;
     constructor(itemObservable?: boolean);
     private isFirst;
     private pageItemAction;
     private itemConverter;
-    loading: boolean;
-    private beforeLoad;
-    protected loaded: boolean;
-    protected _items: IObservableArray<T>;
-    allLoaded: boolean;
-    get items(): IObservableArray<T>;
     setEachPageItem(pageItemAction: (item: T, results: {
         [name: string]: any[];
     }) => void): void;
     setItemConverter(itemConverter: (item: any, queryResults: {
         [name: string]: any[];
     }) => T): void;
-    topDiv: string;
-    bottomDiv: string;
     scrollToTop: () => void;
     scrollToBottom: () => void;
     private scrollIntoView;

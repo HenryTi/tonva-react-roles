@@ -10,9 +10,9 @@ export declare abstract class ItemEdit {
     value: any;
     label: string;
     get editInRow(): boolean;
-    protected error: string;
-    protected isChanged: boolean;
     protected newValue: any;
+    error: string;
+    isChanged: boolean;
     constructor(edit: Edit, itemSchema: ItemSchema, uiItem: UiItem, label: string, value: any);
     init(): void;
     start(): Promise<any>;

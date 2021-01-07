@@ -2,7 +2,6 @@ import fs from 'fs';
 import { Action, Book, Query, Sheet, Tuid, UqEnum, UqMan, UQsMan, Map, History, Tag, Pending, Entity, ArrFields, Field } from './index';
 import { nav } from '../components';
 import { AppConfig } from '../app';
-//import { env } from 'tonva/tool';
 
 //const uqAppPath = 'src/UqApp';
 const red = '\x1b[41m%s\x1b[0m';
@@ -42,7 +41,7 @@ export async function buildUqApp(options: UqAppOptions) {
 	let tsAppName = buildTsAppName(options);
 	saveTsFile(uqAppSrcPath, 'appName', tsAppName);
 	let tsAppConfig = buildTsAppConfig(options);
-	saveTsFileIfNotExists(uqAppSrcPath, 'appConfig', tsAppConfig);
+	saveTsFile(uqAppSrcPath, 'appConfig', tsAppConfig);
 	let tsIndex = buildTsIndex();
 	saveTsFile(uqAppSrcPath, 'index', tsIndex);
 	let tsCApp = buildTsCApp();
@@ -132,7 +131,7 @@ export class CApp extends CUqApp {
 }
 function buildTsCBase():string {
 	return `${buildTsHeader()}
-import { CSub, CBase, CAppBase, IConstructor } from 'tonva';
+import { CSub, CBase, CAppBase, IConstructor } from 'tonva-react';
 import { UQs } from './uqs';
 import { CApp } from './CApp';
 
@@ -160,7 +159,7 @@ export abstract class CUqApp extends CAppBase {
 }
 function buildTsVMain() {
 	return `${buildTsHeader()}
-import { VPage, Page } from 'tonva';
+import { VPage, Page } from 'tonva-react';
 import { CApp } from './CApp';
 
 export class VMain extends VPage<CApp> {

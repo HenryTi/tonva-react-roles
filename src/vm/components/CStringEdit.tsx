@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { FA, Page } from '../../components';
 import { Controller } from "../controller";
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 
 export interface CStringEditProps {
@@ -16,10 +16,20 @@ export class CStringEdit extends Controller {
 	private props: CStringEditProps = {
 		label: '编辑'
 	}
-	@observable value: string;
-	@observable private newValue: string;
-	@observable private isChanged: boolean;
-	@observable private error: string;
+	value: string;
+	newValue: string;
+	isChanged: boolean;
+	error: string;
+
+	constructor(res:any) {
+		super(res);
+		makeObservable(this, {
+			value: observable,
+			newValue: observable,
+			isChanged: observable,
+			error: observable,
+		});
+	}
 
 	protected async internalStart() {}
 	render(value:string, props?:CStringEditProps) {

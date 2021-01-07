@@ -11,12 +11,6 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -69,6 +63,10 @@ var image_1 = require("../image");
 var ItemEdit = /** @class */ (function () {
     function ItemEdit(edit, itemSchema, uiItem, label, value) {
         this.isChanged = false;
+        mobx_1.makeObservable(this, {
+            error: mobx_1.observable,
+            isChanged: mobx_1.observable,
+        });
         this.edit = edit;
         this._itemSchema = itemSchema;
         this._uiItem = uiItem;
@@ -209,12 +207,6 @@ var ItemEdit = /** @class */ (function () {
             this.error = verifyRule(rules, nv);
         }
     };
-    __decorate([
-        mobx_1.observable
-    ], ItemEdit.prototype, "error", void 0);
-    __decorate([
-        mobx_1.observable
-    ], ItemEdit.prototype, "isChanged", void 0);
     return ItemEdit;
 }());
 exports.ItemEdit = ItemEdit;

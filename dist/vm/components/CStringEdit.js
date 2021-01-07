@@ -12,12 +12,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -67,8 +61,8 @@ var mobx_1 = require("mobx");
 var mobx_react_1 = require("mobx-react");
 var CStringEdit = /** @class */ (function (_super) {
     __extends(CStringEdit, _super);
-    function CStringEdit() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function CStringEdit(res) {
+        var _this = _super.call(this, res) || this;
         _this.props = {
             label: '编辑'
         };
@@ -105,6 +99,12 @@ var CStringEdit = /** @class */ (function (_super) {
                     react_1.default.createElement(mobx_react_1.observer(function () { return placeholder && react_1.default.createElement("div", { className: "small muted m-2" }, placeholder); })),
                     _this.error && react_1.default.createElement("div", { className: "text-danger" }, _this.error))));
         };
+        mobx_1.makeObservable(_this, {
+            value: mobx_1.observable,
+            newValue: mobx_1.observable,
+            isChanged: mobx_1.observable,
+            error: mobx_1.observable,
+        });
         return _this;
     }
     CStringEdit.prototype.internalStart = function () {
@@ -129,18 +129,6 @@ var CStringEdit = /** @class */ (function (_super) {
             " \u00A0");
     };
     CStringEdit.prototype.verifyValue = function () { };
-    __decorate([
-        mobx_1.observable
-    ], CStringEdit.prototype, "value", void 0);
-    __decorate([
-        mobx_1.observable
-    ], CStringEdit.prototype, "newValue", void 0);
-    __decorate([
-        mobx_1.observable
-    ], CStringEdit.prototype, "isChanged", void 0);
-    __decorate([
-        mobx_1.observable
-    ], CStringEdit.prototype, "error", void 0);
     return CStringEdit;
 }(controller_1.Controller));
 exports.CStringEdit = CStringEdit;

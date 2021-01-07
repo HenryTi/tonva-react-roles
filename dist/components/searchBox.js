@@ -24,12 +24,6 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -87,8 +81,8 @@ export interface SearchBoxState {
 }*/
 var SearchBox = /** @class */ (function (_super) {
     __extends(SearchBox, _super);
-    function SearchBox() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function SearchBox(props) {
+        var _this = _super.call(this, props) || this;
         _this.key = null;
         _this.onChange = function (evt) {
             _this.key = evt.target.value;
@@ -123,6 +117,9 @@ var SearchBox = /** @class */ (function (_super) {
                 }
             });
         }); };
+        mobx_1.makeObservable(_this, {
+            disabled: mobx_1.observable
+        });
         return _this;
     }
     SearchBox.prototype.clear = function () {
@@ -155,9 +152,6 @@ var SearchBox = /** @class */ (function (_super) {
                         React.createElement("i", { className: "fa" }),
                         buttonText))));
     };
-    __decorate([
-        mobx_1.observable
-    ], SearchBox.prototype, "disabled", void 0);
     return SearchBox;
 }(React.Component));
 exports.SearchBox = SearchBox;

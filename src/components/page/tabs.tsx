@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { observable } from 'mobx';
+import { makeObservable, observable } from 'mobx';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import { IVPage } from './page';
@@ -37,9 +37,10 @@ export interface TabsProps {
 }
 
 class Tab {
-	@observable private loaded: boolean = false;
+	loaded: boolean = false;
+	selected: boolean;
+	
     name: string;
-    @observable selected: boolean;
     caption: TabCaption;
 	contentBuilder: ()=>JSX.Element;
 	page: IVPage;
@@ -51,7 +52,14 @@ class Tab {
 	onScrollBottom?: () => Promise<void>;
 	className?: string;
 
-    private _content: JSX.Element;
+	private _content: JSX.Element;
+	
+	constructor() {
+		makeObservable(this, {
+			loaded: observable, 
+			selected: observable, 
+		});
+	}
     
     get content(): JSX.Element {
 		if (this.load && this.loaded === false) return null;
@@ -95,12 +103,15 @@ export class TabsView {
 	private props: TabsProps;
     private size: string;
     private tabBg: string;
-    //private contentBg: string;
     private sep: string;
-    @observable private selectedTab: Tab;
-    @observable private tabArr: Tab[];
+    selectedTab: Tab;
+    tabArr: Tab[];
 
     constructor(props: TabsProps) {
+		makeObservable(this, {
+			selectedTab: observable, 
+			tabArr: observable,
+		});
 		this.props = props;
 		let {size, tabs, tabBg: tabBack, sep, selected} = props;
 		this.size = size || 'md';

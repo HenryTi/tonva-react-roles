@@ -1,14 +1,22 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { UiImageItem } from '../schema';
+import { makeObservable, observable } from 'mobx';
+import { ItemSchema, UiImageItem, UiItem } from '../schema';
 import { ImageUploader } from '../resUploader';
 import { nav } from '../nav';
 import { ItemEdit } from './itemEdit';
+import { Edit } from './edit';
 
 export class ImageItemEdit extends ItemEdit {
     get uiItem(): UiImageItem {return this._uiItem as UiImageItem}
-    @observable private resId: string;
+	resId: string;
+	
+	constructor(edit:Edit, itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {
+		super(edit, itemSchema, uiItem, label, value);
+		makeObservable(this, {
+			resId: observable
+		})
+	}
 
     protected async internalStart():Promise<any> {
         this.resId = this.value;

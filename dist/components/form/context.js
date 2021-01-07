@@ -95,6 +95,10 @@ var Context = /** @class */ (function () {
                 " \u00A0",
                 err); }));
         });
+        mobx_1.makeObservable(this, {
+            errors: mobx_1.observable,
+            errorWidgets: mobx_1.observable,
+        });
         this.form = form;
         this.uiSchema = uiSchema;
         this.initData = data;
@@ -310,12 +314,6 @@ var Context = /** @class */ (function () {
         this.errorWidgets.splice(0);
         this.clearContextErrors();
     };
-    __decorate([
-        mobx_1.observable
-    ], Context.prototype, "errors", void 0);
-    __decorate([
-        mobx_1.observable
-    ], Context.prototype, "errorWidgets", void 0);
     __decorate([
         mobx_1.computed
     ], Context.prototype, "hasError", null);

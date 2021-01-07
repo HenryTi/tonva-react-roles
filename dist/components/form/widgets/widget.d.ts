@@ -14,11 +14,11 @@ export declare abstract class Widget {
     protected defaultValue: any;
     protected value: any;
     protected rules: Rule[];
-    errors: string[];
-    protected contextErrors: string[];
-    protected get hasError(): boolean;
     protected readOnly: boolean;
     protected disabled: boolean;
+    errors: string[];
+    contextErrors: string[];
+    get hasError(): boolean;
     visible: boolean;
     constructor(context: Context, itemSchema: ItemSchema, fieldProps: FieldProps, children: React.ReactNode);
     protected get itemSchema(): ItemSchema;

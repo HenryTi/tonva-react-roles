@@ -7,7 +7,7 @@ export interface SelectableItem {
     labelId: string;
 }
 export declare class Selectable extends ListBase {
-    private _items;
+    _items: SelectableItem[];
     private inputItems;
     constructor(list: List);
     private listenArraySplice;

@@ -65,6 +65,12 @@ var Widget = /** @class */ (function () {
             }
             return form.FieldContainer(label, _this.renderBody());
         });
+        mobx_1.makeObservable(this, {
+            errors: mobx_1.observable,
+            contextErrors: mobx_1.observable,
+            hasError: mobx_1.computed,
+            visible: mobx_1.observable,
+        });
         this.context = context;
         var name = itemSchema.name;
         this.name = name;
@@ -284,18 +290,6 @@ var Widget = /** @class */ (function () {
             " \u00A0",
             err)); });
     };
-    __decorate([
-        mobx_1.observable
-    ], Widget.prototype, "errors", void 0);
-    __decorate([
-        mobx_1.observable
-    ], Widget.prototype, "contextErrors", void 0);
-    __decorate([
-        mobx_1.computed
-    ], Widget.prototype, "hasError", null);
-    __decorate([
-        mobx_1.observable
-    ], Widget.prototype, "visible", void 0);
     __decorate([
         mobx_1.computed
     ], Widget.prototype, "isOk", null);

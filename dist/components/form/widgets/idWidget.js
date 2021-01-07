@@ -24,12 +24,6 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -85,8 +79,8 @@ var mobx_1 = require("mobx");
 var none = React.createElement("small", { className: "text-muted" }, "[\u65E0]");
 var IdWidget = /** @class */ (function (_super) {
     __extends(IdWidget, _super);
-    function IdWidget() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+    function IdWidget(context, itemSchema, fieldProps, children) {
+        var _this = _super.call(this, context, itemSchema, fieldProps, children) || this;
         _this.onClick = function () { return __awaiter(_this, void 0, void 0, function () {
             var pickId, id;
             return __generator(this, function (_a) {
@@ -108,6 +102,9 @@ var IdWidget = /** @class */ (function (_super) {
                 }
             });
         }); };
+        mobx_1.makeObservable(_this, {
+            value: mobx_1.observable,
+        });
         return _this;
     }
     Object.defineProperty(IdWidget.prototype, "ui", {
@@ -165,9 +162,6 @@ var IdWidget = /** @class */ (function (_super) {
             React.createElement("div", { className: classnames_1.default(cn), onClick: this.onClick }, content),
             this.renderErrors());
     };
-    __decorate([
-        mobx_1.observable
-    ], IdWidget.prototype, "value", void 0);
     return IdWidget;
 }(widget_1.Widget));
 exports.IdWidget = IdWidget;

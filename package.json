@@ -1,6 +1,6 @@
 {
   "name": "tonva-react",
-  "version": "1.9.11",
+  "version": "1.9.15",
   "description": "tonva react client libs",
   "private": false,
   "main": "dist/index.js",
@@ -20,27 +20,21 @@
   "author": "Henry",
   "license": "ISC",
   "dependencies": {
-    "classnames": "^2.2.6",
-    "font-awesome": "^4.7.0",
-    "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.20",
-    "mobx": "^5.13.0",
-    "mobx-react": "^6.1.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "typescript": "^3.9.7"
-  },
-  "peerDependencies": {
-    "mobx": "^5.5.2",
-    "mobx-react": "^5.3.6"
-  },
-  "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/jwt-decode": "^2.2.1",
     "@types/lodash": "^4.14.87",
     "@types/node": "^8.10.62",
     "@types/node-fetch": "^2.1.2",
     "@types/react": "^16.14.2",
-    "@types/react-dom": "^16.9.10"
+    "@types/react-dom": "^16.9.10",
+    "classnames": "^2.2.6",
+    "font-awesome": "^4.7.0",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.20",
+    "mobx": "^6.0.4",
+    "mobx-react": "^7.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "typescript": "^3.9.7"
   }
 }

@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import {makeObservable, observable} from 'mobx';
 
 export interface Id {
     id: number;
@@ -6,11 +6,14 @@ export interface Id {
 
 export abstract class CacheIds<T extends Id> {
     constructor(maxCount:number = 100) {
+		makeObservable(this, {
+			dict: observable,
+		})
         this.maxCount = maxCount;
     }
     private maxCount:number;
     private arr:T[] = [];
-    @observable dict = new Map<number, T>();
+    dict = new Map<number, T>();
 
     loadIds(ids:number[]) {
         let arr:number[] = [];
