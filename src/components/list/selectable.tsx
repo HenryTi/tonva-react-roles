@@ -14,7 +14,7 @@ export interface SelectableItem {
 }
 
 export class Selectable extends ListBase {
-    _items: SelectableItem[];
+    _items: SelectableItem[] = null;
     private inputItems:{[uid:string]: HTMLInputElement} = {};
 
     constructor(list: List) {

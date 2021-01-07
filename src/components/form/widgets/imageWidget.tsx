@@ -13,7 +13,7 @@ export class ImageWidget extends Widget {
     protected input: HTMLInputElement;
     protected get ui(): UiImageItem {return this._ui as UiImageItem};
 
-	imageSrc: string;
+	imageSrc: string = null;
 
 	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
 		super(context, itemSchema, fieldProps, children);

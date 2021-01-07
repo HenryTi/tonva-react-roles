@@ -49,6 +49,7 @@ var PageItems = /** @class */ (function () {
         this.loading = false;
         this.beforeLoad = true;
         this.loaded = false;
+        this._items = null;
         this.allLoaded = false;
         this.topDiv = '$$top';
         this.bottomDiv = '$$bottom';

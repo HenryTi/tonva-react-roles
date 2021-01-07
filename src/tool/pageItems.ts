@@ -5,7 +5,7 @@ export abstract class PageItems<T> {
     loading: boolean = false;
     beforeLoad: boolean = true;
     loaded: boolean = false;
-    _items:IObservableArray<T>;
+    _items:IObservableArray<T> = null;
     allLoaded: boolean = false;
     get items():IObservableArray<T> {
         if (this.beforeLoad === true) return null;

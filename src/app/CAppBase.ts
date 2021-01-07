@@ -90,7 +90,7 @@ export abstract class CAppBase extends Controller {
 			if (!this.appConfig) return true;
 			let {appName, version, tvs} = this.appConfig;
 			await UQsMan.load(appName, version, tvs);
-			this._uqs = UQsMan._uqs;			
+			this._uqs = UQsMan._uqs;
             //let retErrors = await this.load();
             //let app = await loadAppUqs(this.appOwner, this.appName);
             // if (isDevelopment === true) {

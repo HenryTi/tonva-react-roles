@@ -187,12 +187,13 @@ export class UqMan {
 
     async loadEntities(): Promise<string> {
         try {
-            let accesses = this.localAccess.get();
-            if (!accesses) {
-                accesses = await this.uqApi.loadAccess();
-            }
-            if (!accesses) return;
-            this.buildEntities(accesses);
+            let entities = this.localAccess.get();
+            if (!entities) {
+                entities = await this.uqApi.loadAccess();
+			}
+			console.error('loadEntities: ', entities);
+            if (!entities) return;
+            this.buildEntities(entities);
         }
         catch (err) {
             return err;

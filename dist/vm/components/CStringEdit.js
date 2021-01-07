@@ -66,6 +66,10 @@ var CStringEdit = /** @class */ (function (_super) {
         _this.props = {
             label: '编辑'
         };
+        _this.value = null;
+        _this.newValue = null;
+        _this.isChanged = null;
+        _this.error = null;
         _this.onChange = function (evt) {
             _this.newValue = evt.target.value;
             var preValue = _this.value;

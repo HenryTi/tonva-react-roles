@@ -196,18 +196,22 @@ var QueryPager = /** @class */ (function (_super) {
 exports.QueryPager = QueryPager;
 var UqQuery = /** @class */ (function (_super) {
     __extends(UqQuery, _super);
-    function UqQuery(uq, name, typeId) {
-        var _this = _super.call(this, uq, name, typeId) || this;
-        mobx_1.makeObservable(_this, {
-            list: mobx_1.observable,
-        });
-        return _this;
+    function UqQuery() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Object.defineProperty(UqQuery.prototype, "typeName", {
         get: function () { return 'query'; },
         enumerable: false,
         configurable: true
     });
+    /*
+    constructor(uq:UqMan, name:string, typeId:number) {
+        super(uq, name, typeId);
+        makeObservable(this, {
+            list: observable,
+        })
+    }
+    */
     UqQuery.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         var returns = schema.returns;

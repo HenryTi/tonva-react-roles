@@ -79,6 +79,7 @@ var ImageItemEdit = /** @class */ (function (_super) {
     __extends(ImageItemEdit, _super);
     function ImageItemEdit(edit, itemSchema, uiItem, label, value) {
         var _this = _super.call(this, edit, itemSchema, uiItem, label, value) || this;
+        _this.resId = null;
         /*
         private upload = async () => {
             if (!this.resUploader) return;

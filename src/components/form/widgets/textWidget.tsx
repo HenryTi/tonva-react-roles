@@ -10,7 +10,7 @@ export class TextWidget extends Widget {
     protected inputType = 'text';
     protected get ui(): UiTextItem {return this._ui as UiTextItem};
     protected input: HTMLInputElement;
-    hasFocus: boolean;
+    hasFocus: boolean = false;
 
 	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
 		super(context, itemSchema, fieldProps, children);

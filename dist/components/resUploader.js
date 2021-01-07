@@ -87,6 +87,7 @@ var ResUploader = /** @class */ (function (_super) {
     __extends(ResUploader, _super);
     function ResUploader(props) {
         var _this = _super.call(this, props) || this;
+        _this.fileName = null;
         _this.upload = function (formData) { return __awaiter(_this, void 0, void 0, function () {
             var resUrl, headers, res, json, err_1;
             return __generator(this, function (_a) {
@@ -192,8 +193,18 @@ var ImageUploader = /** @class */ (function (_super) {
     __extends(ImageUploader, _super);
     function ImageUploader(props) {
         var _this = _super.call(this, props) || this;
+        _this.file = null;
+        _this.desImgWidth = null;
+        _this.desImgHeight = null;
+        _this.desImgSize = null;
+        _this.srcImgWidth = null;
+        _this.srcImgHeight = null;
         _this.isChanged = false;
+        _this.resId = null;
         _this.enableUploadButton = false;
+        _this.srcImage = null;
+        _this.desImage = null;
+        _this.fileError = null;
         _this.uploaded = false;
         _this.onFileChange = function (evt) {
             _this.fileError = undefined;
@@ -483,8 +494,13 @@ var AudioUploader = /** @class */ (function (_super) {
     __extends(AudioUploader, _super);
     function AudioUploader(props) {
         var _this = _super.call(this, props) || this;
+        _this.content = null;
+        _this.file = null;
+        _this.fileSize = null;
         _this.isChanged = false;
+        _this.resId = null;
         _this.enableUploadButton = false;
+        _this.fileError = null;
         _this.uploaded = false;
         _this.uploading = false;
         _this.onFileChange = function (evt) {

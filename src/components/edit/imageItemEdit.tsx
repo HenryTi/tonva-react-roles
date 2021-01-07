@@ -9,7 +9,7 @@ import { Edit } from './edit';
 
 export class ImageItemEdit extends ItemEdit {
     get uiItem(): UiImageItem {return this._uiItem as UiImageItem}
-	resId: string;
+	resId: string = null;
 	
 	constructor(edit:Edit, itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {
 		super(edit, itemSchema, uiItem, label, value);

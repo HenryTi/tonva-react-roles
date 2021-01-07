@@ -33,7 +33,8 @@ export class UQsMan {
             for (let uq of uqAppData.uqs) uq.newVersion = true;
         }
         let {id, uqs} = uqAppData;
-        uqsMan.id = id;
+		uqsMan.id = id;
+		console.error(uqAppData);
         await uqsMan.init(uqs);
         let retErrors = await uqsMan.load();
         if (retErrors.length === 0) {
@@ -117,7 +118,8 @@ export class UQsMan {
             let uq = this.collection[i];
             promises.push(uq.loadEntities());
 		}
-        let results = await Promise.all(promises);
+		let results = await Promise.all(promises);
+		console.log('uqsMan.load ', results);
         for (let result of results)
         {
             let retError = result; // await cUq.loadSchema();

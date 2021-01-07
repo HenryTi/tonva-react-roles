@@ -44,6 +44,7 @@ var SelectWidget = /** @class */ (function (_super) {
     __extends(SelectWidget, _super);
     function SelectWidget(context, itemSchema, fieldProps, children) {
         var _this = _super.call(this, context, itemSchema, fieldProps, children) || this;
+        _this.readOnly = false;
         _this.onInputChange = function (evt) {
             _this.setDataValue(evt.target.value);
         };

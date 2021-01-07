@@ -84,6 +84,7 @@ var SearchBox = /** @class */ (function (_super) {
     function SearchBox(props) {
         var _this = _super.call(this, props) || this;
         _this.key = null;
+        _this.disabled = true;
         _this.onChange = function (evt) {
             _this.key = evt.target.value;
             if (_this.key !== undefined) {

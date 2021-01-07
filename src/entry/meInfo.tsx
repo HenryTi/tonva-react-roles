@@ -14,7 +14,7 @@ export class EditMeInfo extends React.Component {
             icon: {widget:'image', label:'头像'} as UiImageItem,
         }
     }
-    data:any;
+    data:any = null;
 
     constructor(props:any) {
 		super(props);

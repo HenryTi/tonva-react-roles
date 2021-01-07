@@ -38,7 +38,7 @@ export interface TabsProps {
 
 class Tab {
 	loaded: boolean = false;
-	selected: boolean;
+	selected: boolean = false;
 	
     name: string;
     caption: TabCaption;
@@ -108,10 +108,6 @@ export class TabsView {
     tabArr: Tab[];
 
     constructor(props: TabsProps) {
-		makeObservable(this, {
-			selectedTab: observable, 
-			tabArr: observable,
-		});
 		this.props = props;
 		let {size, tabs, tabBg: tabBack, sep, selected} = props;
 		this.size = size || 'md';
@@ -147,6 +143,10 @@ export class TabsView {
 			this.selectedTab = this.tabArr[0];
 		}
         this.selectedTab.selected = true;
+		makeObservable(this, {
+			selectedTab: observable, 
+			tabArr: observable,
+		});
     }
 
     tabClick = async (tab:Tab) => {

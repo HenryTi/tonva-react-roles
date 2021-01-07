@@ -83,6 +83,7 @@ var ImageWidget = /** @class */ (function (_super) {
     __extends(ImageWidget, _super);
     function ImageWidget(context, itemSchema, fieldProps, children) {
         var _this = _super.call(this, context, itemSchema, fieldProps, children) || this;
+        _this.imageSrc = null;
         _this.onClick = function () { return __awaiter(_this, void 0, void 0, function () {
             var edit, ret;
             return __generator(this, function (_a) {

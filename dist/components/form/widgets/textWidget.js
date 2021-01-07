@@ -81,6 +81,7 @@ var TextWidget = /** @class */ (function (_super) {
     function TextWidget(context, itemSchema, fieldProps, children) {
         var _this = _super.call(this, context, itemSchema, fieldProps, children) || this;
         _this.inputType = 'text';
+        _this.hasFocus = false;
         _this.onKeyDown = function (evt) { return __awaiter(_this, void 0, void 0, function () {
             var onEnter, ret;
             return __generator(this, function (_a) {

@@ -181,21 +181,22 @@ var UqMan = /** @class */ (function () {
     };
     UqMan.prototype.loadEntities = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var accesses, err_1;
+            var entities, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        accesses = this.localAccess.get();
-                        if (!!accesses) return [3 /*break*/, 2];
+                        entities = this.localAccess.get();
+                        if (!!entities) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.uqApi.loadAccess()];
                     case 1:
-                        accesses = _a.sent();
+                        entities = _a.sent();
                         _a.label = 2;
                     case 2:
-                        if (!accesses)
+                        console.error('loadEntities: ', entities);
+                        if (!entities)
                             return [2 /*return*/];
-                        this.buildEntities(accesses);
+                        this.buildEntities(entities);
                         return [3 /*break*/, 4];
                     case 3:
                         err_1 = _a.sent();

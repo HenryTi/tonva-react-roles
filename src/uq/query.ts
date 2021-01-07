@@ -107,12 +107,14 @@ export class UqQuery<P, R> extends Entity {
     returns: ArrFields[];
 	isPaged: boolean;
 	
+	/*
 	constructor(uq:UqMan, name:string, typeId:number) {
 		super(uq, name, typeId);
 		makeObservable(this, {
 			list: observable,
 		})
 	}
+	*/
 
     setSchema(schema:any) {
         super.setSchema(schema);

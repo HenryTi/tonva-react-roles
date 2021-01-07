@@ -24,7 +24,7 @@ export abstract class Widget {
     errors: string[] = [];
     contextErrors: string[] = [];
     get hasError():boolean {return (this.errors.length + this.contextErrors.length)>0}
-    visible:boolean;
+    visible:boolean = null;
 
     constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
 		makeObservable(this, {

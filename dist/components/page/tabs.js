@@ -87,6 +87,7 @@ var scrollView_1 = require("./scrollView");
 var Tab = /** @class */ (function () {
     function Tab() {
         this.loaded = false;
+        this.selected = false;
         mobx_1.makeObservable(this, {
             loaded: mobx_1.observable,
             selected: mobx_1.observable,
@@ -288,10 +289,6 @@ var TabsView = /** @class */ (function () {
                     footer);
             }));
         });
-        mobx_1.makeObservable(this, {
-            selectedTab: mobx_1.observable,
-            tabArr: mobx_1.observable,
-        });
         this.props = props;
         var size = props.size, tabs = props.tabs, tabBack = props.tabBg, sep = props.sep, selected = props.selected;
         this.size = size || 'md';
@@ -327,6 +324,10 @@ var TabsView = /** @class */ (function () {
             this.selectedTab = this.tabArr[0];
         }
         this.selectedTab.selected = true;
+        mobx_1.makeObservable(this, {
+            selectedTab: mobx_1.observable,
+            tabArr: mobx_1.observable,
+        });
     }
     TabsView.prototype.render = function () {
         var tabPosition = this.props.tabPosition;

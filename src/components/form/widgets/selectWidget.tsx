@@ -9,7 +9,7 @@ import { FieldProps } from '../field';
 export class SelectWidget extends Widget {
     protected select: HTMLSelectElement;
     protected get ui(): UiSelect {return this._ui as UiSelect};
-    readOnly: boolean;
+    readOnly: boolean = false;
 
 	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
 		super(context, itemSchema, fieldProps, children);

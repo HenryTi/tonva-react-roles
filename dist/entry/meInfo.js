@@ -87,6 +87,7 @@ var EditMeInfo = /** @class */ (function (_super) {
                 icon: { widget: 'image', label: '头像' },
             }
         };
+        _this.data = null;
         _this.onItemChanged = function (itemSchema, newValue, preValue) { return __awaiter(_this, void 0, void 0, function () {
             var name, user;
             return __generator(this, function (_a) {

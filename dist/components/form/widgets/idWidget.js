@@ -81,6 +81,7 @@ var IdWidget = /** @class */ (function (_super) {
     __extends(IdWidget, _super);
     function IdWidget(context, itemSchema, fieldProps, children) {
         var _this = _super.call(this, context, itemSchema, fieldProps, children) || this;
+        _this.value = null;
         _this.onClick = function () { return __awaiter(_this, void 0, void 0, function () {
             var pickId, id;
             return __generator(this, function (_a) {

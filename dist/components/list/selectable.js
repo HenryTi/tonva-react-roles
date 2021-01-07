@@ -53,6 +53,7 @@ var Selectable = /** @class */ (function (_super) {
     __extends(Selectable, _super);
     function Selectable(list) {
         var _this = _super.call(this, list) || this;
+        _this._items = null;
         _this.inputItems = {};
         _this.buildItems = function () {
             var _a = _this.list.props, items = _a.items, isItemSelected = _a.isItemSelected, selectedItems = _a.selectedItems, compare = _a.compare;

@@ -392,7 +392,7 @@ export class Nav {
 	private navigo: Navigo;
 	//isRouting: boolean = false;
 	navSettings: NavSettings;
-    user: User/*InNav*/ = undefined;
+    user: User/*InNav*/ = null;
     testing: boolean;
     language: string;
     culture: string;

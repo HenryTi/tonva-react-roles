@@ -18,7 +18,7 @@ export interface ResUploaderProps {
 @observer
 export class ResUploader extends React.Component<ResUploaderProps> {
     private fileInput: HTMLInputElement;
-	fileName: string;
+	fileName: string = null;
 	
 	constructor(props: ResUploaderProps) {
 		super(props);
@@ -134,18 +134,18 @@ export class ImageUploader extends React.Component<ImageUploaderProps> {
     private suffix: string;
 	private resUploader: ResUploader;
 	
-    file: File;    
-    desImgWidth: number;
-    desImgHeight: number;
-    desImgSize: number;
-    srcImgWidth: number;
-    srcImgHeight: number;
+    file: File = null;
+    desImgWidth: number = null;
+    desImgHeight: number = null;
+    desImgSize: number = null;
+    srcImgWidth: number = null;
+    srcImgHeight: number = null;
     isChanged: boolean = false;
-    resId: string;
+    resId: string = null;
     enableUploadButton: boolean = false;
-    srcImage: string;
-    desImage: string;
-    fileError: string;
+    srcImage: string = null;
+    desImage: string = null;
+    fileError: string = null;
     uploaded: boolean = false;
 
     constructor(props: ImageUploaderProps) {
@@ -410,13 +410,13 @@ export class AudioUploader extends React.Component<AudioUploaderProps> {
     private suffix: string;
 	private resUploader: ResUploader;
 
-	content: string;
-	file: File;    
-	fileSize: number;
+	content: string = null;
+	file: File = null;
+	fileSize: number = null;
     isChanged: boolean = false;
-    resId: string;
+    resId: string = null;
     enableUploadButton: boolean = false;
-    fileError: string;
+    fileError: string = null;
 	uploaded: boolean = false;
 	uploading: boolean = false;
 

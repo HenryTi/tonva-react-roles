@@ -1,6 +1,6 @@
 import { IObservableArray } from 'mobx';
 import { PageItems } from '../tool';
-import { ArrFields, UqMan } from './uqMan';
+import { ArrFields } from './uqMan';
 import { Entity } from './entity';
 import { QueryQueryCaller, QueryPageCaller } from './caller';
 export declare type QueryPageApi = (name: string, pageStart: any, pageSize: number, params: any) => Promise<string>;
@@ -27,7 +27,6 @@ export declare class UqQuery<P, R> extends Entity {
     list: IObservableArray;
     returns: ArrFields[];
     isPaged: boolean;
-    constructor(uq: UqMan, name: string, typeId: number);
     setSchema(schema: any): void;
     resetPage(size: number, params: any): void;
     get hasMore(): boolean;

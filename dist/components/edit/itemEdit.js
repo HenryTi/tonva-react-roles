@@ -62,6 +62,7 @@ var mobx_1 = require("mobx");
 var image_1 = require("../image");
 var ItemEdit = /** @class */ (function () {
     function ItemEdit(edit, itemSchema, uiItem, label, value) {
+        this.error = null;
         this.isChanged = false;
         mobx_1.makeObservable(this, {
             error: mobx_1.observable,

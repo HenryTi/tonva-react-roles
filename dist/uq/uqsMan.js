@@ -85,6 +85,7 @@ var UQsMan = /** @class */ (function () {
                     case 2:
                         id = uqAppData.id, uqs = uqAppData.uqs;
                         uqsMan.id = id;
+                        console.error(uqAppData);
                         return [4 /*yield*/, uqsMan.init(uqs)];
                     case 3:
                         _b.sent();
@@ -173,6 +174,7 @@ var UQsMan = /** @class */ (function () {
                         return [4 /*yield*/, Promise.all(promises)];
                     case 1:
                         results = _a.sent();
+                        console.log('uqsMan.load ', results);
                         for (_i = 0, results_1 = results; _i < results_1.length; _i++) {
                             result = results_1[_i];
                             retError = result;

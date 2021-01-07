@@ -24,7 +24,7 @@ export interface SearchBoxState {
 export class SearchBox extends React.Component<SearchBoxProps> { //}, SearchBoxState> {
     private input: HTMLInputElement;
     private key: string = null;
-	disabled: boolean;
+	disabled: boolean = true;
 	
 	constructor(props: SearchBoxProps) {
 		super(props);

@@ -10,7 +10,7 @@ const none = <small className="text-muted">[无]</small>;
 
 export class IdWidget extends Widget {
     protected get ui(): UiIdItem {return this._ui as UiIdItem};
-	value:number;
+	value:number = null;
 
 	constructor(context:Context, itemSchema:ItemSchema, fieldProps:FieldProps, children: React.ReactNode) {
 		super(context, itemSchema, fieldProps, children);

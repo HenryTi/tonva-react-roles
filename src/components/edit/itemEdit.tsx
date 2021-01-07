@@ -18,7 +18,7 @@ export abstract class ItemEdit {
 	get editInRow(): boolean {return false;}
     protected newValue: any;
 
-    error: string;
+    error: string = null;
     isChanged: boolean = false;
 
     constructor(edit:Edit, itemSchema: ItemSchema, uiItem:UiItem, label:string, value: any) {

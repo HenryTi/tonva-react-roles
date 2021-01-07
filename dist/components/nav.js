@@ -482,7 +482,7 @@ var Nav = /** @class */ (function () {
     function Nav() {
         var _this = this;
         this.local = new tool_1.LocalData();
-        this.user = undefined;
+        this.user = null;
         this.arrs = ['/test', '/test/'];
         this.windowOnError = function (event, source, lineno, colno, error) {
             debugger;

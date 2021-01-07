@@ -16,10 +16,10 @@ export class CStringEdit extends Controller {
 	private props: CStringEditProps = {
 		label: '编辑'
 	}
-	value: string;
-	newValue: string;
-	isChanged: boolean;
-	error: string;
+	value: string = null;
+	newValue: string = null;
+	isChanged: boolean = null;
+	error: string = null;
 
 	constructor(res:any) {
 		super(res);
