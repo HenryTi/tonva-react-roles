@@ -231,30 +231,7 @@ function buildUqsFolder(uqsFolder, options) {
 }
 function buildTsUq(uq) {
     var ret = buildTsHeader();
-    ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva-react";';
-    //for (let uq of uqs) {
-    ret += '\n';
-    ret += '\n//===============================';
-    ret += "\n//======= UQ " + uq.name + " ========";
-    ret += '\n//===============================';
-    ret += '\n';
     ret += buildUQ(uq);
-    ret += '\n';
-    ret += '\n';
-    //}
-    /*
-    ret += '\n//===============================';
-    ret += `\n//============= UQs =============`;
-    ret += '\n//===============================';
-    ret += '\nexport interface UQs {';
-    for (let uq of uqs) {
-        let {uqOwner, uqName} = uq;
-        let o1 = getUqOwnerName(uqOwner);
-        let n1 = getUqName(uqName);
-        ret += `\n\t${o1}${n1}: ${o1}${n1}.Uq;`;
-    }
-    ret += '\n}\n';
-    */
     return ret;
 }
 function capitalCaseString(s) {
@@ -339,7 +316,14 @@ function loadUqEntities(uq) {
 }
 function buildUQ(uq) {
     var uqOwner = uq.uqOwner, uqName = uq.uqName;
-    var ts = "";
+    var tsImport = '\nimport { ';
+    var importFirst = true;
+    //UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/
+    var ts = "\n\n";
+    ts += '\n//===============================';
+    ts += "\n//======= UQ " + uq.name + " ========";
+    ts += '\n//===============================';
+    ts += '\n';
     uq.enumArr.forEach(function (v) { return ts += uqEntityInterface(v, buildEnumInterface); });
     ts += "\nexport declare namespace " + getUqOwnerName(uqOwner) + getUqName(uqName) + " {";
     uq.tuidArr.forEach(function (v) { return ts += uqEntityInterface(v, buildTuidInterface); });
@@ -352,18 +336,34 @@ function buildUQ(uq) {
     uq.pendingArr.forEach(function (v) { return ts += uqEntityInterface(v, buildPendingInterface); });
     uq.tagArr.forEach(function (v) { return ts += uqEntityInterface(v, buildTagInterface); });
     ts += "\n\nexport interface Uq" + getUqOwnerName(uqOwner) + getUqName(uqName) + " {";
-    uq.tuidArr.forEach(function (v) { return ts += uqBlock(v, buildTuid); });
-    uq.actionArr.forEach(function (v) { return ts += uqBlock(v, buildAction); });
-    //uq.enumArr.forEach(v => ts += uqBlock<UqEnum>(v, buildEnum));
-    uq.sheetArr.forEach(function (v) { return ts += uqBlock(v, buildSheet); });
-    uq.queryArr.forEach(function (v) { return ts += uqBlock(v, buildQuery); });
-    uq.bookArr.forEach(function (v) { return ts += uqBlock(v, buildBook); });
-    uq.mapArr.forEach(function (v) { return ts += uqBlock(v, buildMap); });
-    uq.historyArr.forEach(function (v) { return ts += uqBlock(v, buildHistory); });
-    uq.pendingArr.forEach(function (v) { return ts += uqBlock(v, buildPending); });
-    uq.tagArr.forEach(function (v) { return ts += uqBlock(v, buildTag); });
-    ts += '\n}\n}\n';
-    return ts;
+    function appendArr(arr, type, tsBuild) {
+        if (importFirst === true) {
+            importFirst = false;
+        }
+        else {
+            tsImport += ', ';
+        }
+        tsImport += 'Uq' + type;
+        arr.forEach(function (v) { return tsBuild(v); });
+    }
+    appendArr(uq.tuidArr, 'Tuid', function (v) { return uqBlock(v, buildTuid); });
+    /*
+    uq.tuidArr.forEach(v => {
+        tsImport += 'UqTuid, ';
+        ts += uqBlock<Tuid>(v, buildTuid);
+    });
+    */
+    appendArr(uq.actionArr, 'Action', function (v) { return uqBlock(v, buildAction); });
+    appendArr(uq.sheetArr, 'Sheet', function (v) { return uqBlock(v, buildSheet); });
+    appendArr(uq.bookArr, 'Book', function (v) { return uqBlock(v, buildBook); });
+    appendArr(uq.queryArr, 'Query', function (v) { return uqBlock(v, buildQuery); });
+    appendArr(uq.mapArr, 'Map', function (v) { return uqBlock(v, buildMap); });
+    appendArr(uq.historyArr, 'History', function (v) { return uqBlock(v, buildHistory); });
+    appendArr(uq.pendingArr, 'Pending', function (v) { return uqBlock(v, buildPending); });
+    appendArr(uq.tagArr, 'Tag', function (v) { return uqBlock(v, buildTag); });
+    ts += '\n\n}\n}\n';
+    tsImport += ' } from "tonva-react";';
+    return tsImport + ts;
 }
 function buildFields(fields, indent) {
     if (indent === void 0) { indent = 1; }

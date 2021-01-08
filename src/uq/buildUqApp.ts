@@ -233,31 +233,7 @@ async function buildUqsFolder(uqsFolder:string, options: UqAppOptions) {
 
 function buildTsUq(uq: UqMan) {
 	let ret = buildTsHeader();
-	ret += '\nimport { UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/ } from "tonva-react";';
-
-	//for (let uq of uqs) {
-		ret += '\n';
-		ret += '\n//===============================';
-		ret += `\n//======= UQ ${uq.name} ========`;
-		ret += '\n//===============================';
-		ret += '\n';
-		ret += buildUQ(uq);
-		ret += '\n';
-		ret += '\n';
-	//}
-	/*
-	ret += '\n//===============================';
-	ret += `\n//============= UQs =============`;
-	ret += '\n//===============================';
-	ret += '\nexport interface UQs {';
-	for (let uq of uqs) {
-		let {uqOwner, uqName} = uq;
-		let o1 = getUqOwnerName(uqOwner);
-		let n1 = getUqName(uqName);
-		ret += `\n\t${o1}${n1}: ${o1}${n1}.Uq;`;
-	}
-	ret += '\n}\n';
-	*/
+	ret += buildUQ(uq);
 	return ret;
 }
 
@@ -347,7 +323,14 @@ async function loadUqEntities(uq:UqMan):Promise<void> {
 
 function buildUQ(uq:UqMan) {
 	let {uqOwner, uqName} = uq;
-	let ts:string = ``;
+	let tsImport = '\nimport { ';
+	let importFirst = true;
+	//UqTuid, UqQuery, UqAction, UqSheet/*, Map, Tag*/
+	let ts:string = `\n\n`;
+	ts += '\n//===============================';
+	ts += `\n//======= UQ ${uq.name} ========`;
+	ts += '\n//===============================';
+	ts += '\n';
 	uq.enumArr.forEach(v => ts += uqEntityInterface<UqEnum>(v, buildEnumInterface));
 	
 	ts += `\nexport declare namespace ${getUqOwnerName(uqOwner)}${getUqName(uqName)} {`;
@@ -362,18 +345,35 @@ function buildUQ(uq:UqMan) {
 	uq.tagArr.forEach(v => ts += uqEntityInterface<Tag>(v, buildTagInterface));
 
 	ts += `\n\nexport interface Uq${getUqOwnerName(uqOwner)}${getUqName(uqName)} {`;
-	uq.tuidArr.forEach(v => ts += uqBlock<Tuid>(v, buildTuid));
-    uq.actionArr.forEach(v => ts += uqBlock<Action>(v, buildAction));
-    //uq.enumArr.forEach(v => ts += uqBlock<UqEnum>(v, buildEnum));
-    uq.sheetArr.forEach(v => ts += uqBlock<Sheet>(v, buildSheet));
-    uq.queryArr.forEach(v => ts += uqBlock<Query>(v, buildQuery));
-    uq.bookArr.forEach(v => ts += uqBlock<Book>(v, buildBook));
-    uq.mapArr.forEach(v => ts += uqBlock<Map>(v, buildMap));
-    uq.historyArr.forEach(v => ts += uqBlock<History>(v, buildHistory));
-    uq.pendingArr.forEach(v => ts += uqBlock<Pending>(v, buildPending));
-	uq.tagArr.forEach(v => ts += uqBlock<Tag>(v, buildTag));
-	ts += '\n}\n}\n';
-	return ts;
+	function appendArr<T extends Entity>(arr:T[], type:string, tsBuild: (v:T) => string) {
+		if (arr.length === 0) return;
+		if (importFirst === true) {
+			importFirst = false;
+		}
+		else {
+			tsImport += ', ';
+		}
+		tsImport += 'Uq' + type;
+		arr.forEach(v => tsBuild(v))
+	}
+	appendArr<Tuid>(uq.tuidArr, 'Tuid', v => uqBlock<Tuid>(v, buildTuid));
+	/*
+	uq.tuidArr.forEach(v => {
+		tsImport += 'UqTuid, ';
+		ts += uqBlock<Tuid>(v, buildTuid);
+	});
+	*/
+	appendArr<Action>(uq.actionArr, 'Action', v => uqBlock<Action>(v, buildAction));
+	appendArr<Sheet>(uq.sheetArr, 'Sheet', v => uqBlock<Sheet>(v, buildSheet));
+	appendArr<Book>(uq.bookArr, 'Book', v => uqBlock<Book>(v, buildBook));
+	appendArr<Query>(uq.queryArr, 'Query', v => uqBlock<Query>(v, buildQuery));
+	appendArr<Map>(uq.mapArr, 'Map', v => uqBlock<Map>(v, buildMap));
+	appendArr<History>(uq.historyArr, 'History', v => uqBlock<History>(v, buildHistory));
+	appendArr<Pending>(uq.pendingArr, 'Pending', v => uqBlock<Pending>(v, buildPending));
+	appendArr<Tag>(uq.tagArr, 'Tag', v => uqBlock<Tag>(v, buildTag));
+	ts += '\n\n}\n}\n';
+	tsImport += ' } from "tonva-react";';
+	return tsImport + ts;
 }
 
 function buildFields(fields: Field[], indent:number = 1) {

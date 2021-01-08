@@ -7,7 +7,7 @@ export interface TagValue {
 	ext: string;
 }
 
-export class Tag extends Entity {
+export class UqTag extends Entity {
     get typeName(): string { return 'tag';}
 	values: TagValue[];
 	private coll: {[id:number]: TagValue} = {};
@@ -53,4 +53,7 @@ export class Tag extends Entity {
 		}
 		return this.values;
 	}
+}
+
+export class Tag extends UqTag {
 }

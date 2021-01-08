@@ -14,7 +14,7 @@ interface MapQueries {
     query: Query;
 }
 
-export class Map extends Entity {
+export class UqMap extends Entity {
     get typeName(): string { return 'map';}
     keys: Field[];
     actions: MapActions = {} as any;
@@ -83,6 +83,9 @@ export class Map extends Entity {
         let ret = await this.obj(params);
         for (let i in ret) return ret[i];
     }
+}
+
+export class Map extends UqMap {
 }
 
 abstract class MapCaller extends EntityCaller<any> {

@@ -4,7 +4,7 @@ import { Tuid, TuidDiv, TuidImport, TuidInner, TuidBox, TuidsCache } from './tui
 import { Action } from './action';
 import { Sheet } from './sheet';
 import { Query } from './query';
-import { Book } from './book';
+import { UqBook } from './book';
 import { History } from './history';
 import { Map } from './map';
 import { Pending } from './pending';
@@ -71,7 +71,7 @@ export class UqMan {
     private readonly actions: {[name:string]: Action} = {};
     private readonly sheets: {[name:string]: Sheet} = {};
     private readonly queries: {[name:string]: Query} = {};
-    private readonly books: {[name:string]: Book} = {};
+    private readonly books: {[name:string]: UqBook} = {};
     private readonly maps: {[name:string]: Map} = {};
     private readonly histories: {[name:string]: History} = {};
 	private readonly pendings: {[name:string]: Pending} = {};
@@ -158,7 +158,7 @@ export class UqMan {
     action(name:string):Action {return this.actions[name.toLowerCase()]}
     sheet(name:string):Sheet {return this.sheets[name.toLowerCase()]}
     query(name:string):Query {return this.queries[name.toLowerCase()]}
-    book(name:string):Book {return this.books[name.toLowerCase()]}
+    book(name:string):UqBook {return this.books[name.toLowerCase()]}
     map(name:string):Map {return this.maps[name.toLowerCase()]}
     history(name:string):History {return this.histories[name.toLowerCase()]}
     pending(name:string):Pending {return this.pendings[name.toLowerCase()]}
@@ -175,7 +175,7 @@ export class UqMan {
     readonly enumArr: UqEnum[] = [];
     readonly sheetArr: Sheet[] = [];
     readonly queryArr: Query[] = [];
-    readonly bookArr: Book[] = [];
+    readonly bookArr: UqBook[] = [];
     readonly mapArr: Map[] = [];
     readonly historyArr: History[] = [];
     readonly pendingArr: Pending[] = [];
@@ -307,10 +307,10 @@ export class UqMan {
         this.queryArr.push(query);
         return query;
     }
-    private newBook(name:string, id:number):Book {
+    private newBook(name:string, id:number):UqBook {
         let book = this.books[name];
         if (book !== undefined) return book;
-        book = this.books[name] = new Book(this, name, id);
+        book = this.books[name] = new UqBook(this, name, id);
         this.bookArr.push(book);
         return book;
     }
