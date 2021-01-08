@@ -346,7 +346,7 @@ function buildUQ(uq) {
             tsImport += ', ';
         }
         tsImport += 'Uq' + type;
-        arr.forEach(function (v) { return tsBuild(v); });
+        arr.forEach(function (v) { return ts += tsBuild(v); });
     }
     appendArr(uq.tuidArr, 'Tuid', function (v) { return uqBlock(v, buildTuid); });
     /*

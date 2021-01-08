@@ -354,7 +354,7 @@ function buildUQ(uq:UqMan) {
 			tsImport += ', ';
 		}
 		tsImport += 'Uq' + type;
-		arr.forEach(v => tsBuild(v))
+		arr.forEach(v => ts += tsBuild(v));
 	}
 	appendArr<Tuid>(uq.tuidArr, 'Tuid', v => uqBlock<Tuid>(v, buildTuid));
 	/*

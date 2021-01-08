@@ -1342,7 +1342,7 @@
         "affectsGlobalScope": false
       },
       "./src/uq/builduqapp.ts": {
-        "version": "3626ba0ab01338b0cb7a85383108ab491751b3eb1b6481f0a2f287afca8cc721",
+        "version": "f92baac4aa24c83170dc632c34830c8272b4d5aa87ba6e1614a1f5ee57cabbfb",
         "signature": "b3aa263046dee6779c418a2adaa441846f1ef94446a2aae89d68cb386e9ff8fe",
         "affectsGlobalScope": false
       },
