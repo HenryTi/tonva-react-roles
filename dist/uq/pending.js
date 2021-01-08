@@ -13,21 +13,29 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Pending = void 0;
+exports.Pending = exports.UqPending = void 0;
 var query_1 = require("./query");
-var Pending = /** @class */ (function (_super) {
-    __extends(Pending, _super);
-    function Pending() {
+var UqPending = /** @class */ (function (_super) {
+    __extends(UqPending, _super);
+    function UqPending() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.queryApiName = 'pending';
         return _this;
     }
-    Object.defineProperty(Pending.prototype, "typeName", {
+    Object.defineProperty(UqPending.prototype, "typeName", {
         get: function () { return 'pending'; },
         enumerable: false,
         configurable: true
     });
+    return UqPending;
+}(query_1.UqQuery));
+exports.UqPending = UqPending;
+var Pending = /** @class */ (function (_super) {
+    __extends(Pending, _super);
+    function Pending() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     return Pending;
-}(query_1.Query));
+}(UqPending));
 exports.Pending = Pending;
 //# sourceMappingURL=pending.js.map

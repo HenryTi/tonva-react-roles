@@ -5,7 +5,7 @@ export interface TagValue {
     name: string;
     ext: string;
 }
-export declare class Tag extends Entity {
+export declare class UqTag extends Entity {
     get typeName(): string;
     values: TagValue[];
     private coll;
@@ -14,4 +14,6 @@ export declare class Tag extends Entity {
     nameFromId(id: number): string;
     namesFromIds(ids: string): string[];
     loadValues(): Promise<TagValue[]>;
+}
+export declare class Tag extends UqTag {
 }

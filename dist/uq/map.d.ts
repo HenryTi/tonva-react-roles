@@ -11,7 +11,7 @@ interface MapQueries {
     page: Query;
     query: Query;
 }
-export declare class Map extends Entity {
+export declare class UqMap extends Entity {
     get typeName(): string;
     keys: Field[];
     actions: MapActions;
@@ -29,5 +29,7 @@ export declare class Map extends Entity {
     table(params: any): Promise<any[]>;
     obj(params: any): Promise<any>;
     scalar(params: any): Promise<any>;
+}
+export declare class Map extends UqMap {
 }
 export {};

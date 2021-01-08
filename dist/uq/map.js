@@ -49,24 +49,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Map = void 0;
+exports.Map = exports.UqMap = void 0;
 var entity_1 = require("./entity");
 var action_1 = require("./action");
 var caller_1 = require("./caller");
-var Map = /** @class */ (function (_super) {
-    __extends(Map, _super);
-    function Map() {
+var UqMap = /** @class */ (function (_super) {
+    __extends(UqMap, _super);
+    function UqMap() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.actions = {};
         _this.queries = {};
         return _this;
     }
-    Object.defineProperty(Map.prototype, "typeName", {
+    Object.defineProperty(UqMap.prototype, "typeName", {
         get: function () { return 'map'; },
         enumerable: false,
         configurable: true
     });
-    Map.prototype.setSchema = function (schema) {
+    UqMap.prototype.setSchema = function (schema) {
         _super.prototype.setSchema.call(this, schema);
         this.schemaFrom = this.schema.from;
         var actions = schema.actions, queries = schema.queries, keys = schema.keys;
@@ -88,7 +88,7 @@ var Map = /** @class */ (function (_super) {
             this.queries[i] = query;
         }
     };
-    Map.prototype.add = function (param) {
+    UqMap.prototype.add = function (param) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -101,7 +101,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.del = function (param) {
+    UqMap.prototype.del = function (param) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -114,7 +114,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.all = function () {
+    UqMap.prototype.all = function () {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -127,7 +127,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.page = function (param, pageStart, pageSize) {
+    UqMap.prototype.page = function (param, pageStart, pageSize) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -140,7 +140,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.query = function (param) {
+    UqMap.prototype.query = function (param) {
         return __awaiter(this, void 0, void 0, function () {
             var qc, ret;
             return __generator(this, function (_a) {
@@ -155,7 +155,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.table = function (params) {
+    UqMap.prototype.table = function (params) {
         return __awaiter(this, void 0, void 0, function () {
             var ret, i;
             return __generator(this, function (_a) {
@@ -171,7 +171,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.obj = function (params) {
+    UqMap.prototype.obj = function (params) {
         return __awaiter(this, void 0, void 0, function () {
             var ret;
             return __generator(this, function (_a) {
@@ -186,7 +186,7 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    Map.prototype.scalar = function (params) {
+    UqMap.prototype.scalar = function (params) {
         return __awaiter(this, void 0, void 0, function () {
             var ret, i;
             return __generator(this, function (_a) {
@@ -201,8 +201,16 @@ var Map = /** @class */ (function (_super) {
             });
         });
     };
-    return Map;
+    return UqMap;
 }(entity_1.Entity));
+exports.UqMap = UqMap;
+var Map = /** @class */ (function (_super) {
+    __extends(Map, _super);
+    function Map() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Map;
+}(UqMap));
 exports.Map = Map;
 var MapCaller = /** @class */ (function (_super) {
     __extends(MapCaller, _super);

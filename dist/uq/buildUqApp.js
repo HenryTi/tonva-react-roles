@@ -337,6 +337,8 @@ function buildUQ(uq) {
     uq.tagArr.forEach(function (v) { return ts += uqEntityInterface(v, buildTagInterface); });
     ts += "\n\nexport interface Uq" + getUqOwnerName(uqOwner) + getUqName(uqName) + " {";
     function appendArr(arr, type, tsBuild) {
+        if (arr.length === 0)
+            return;
         if (importFirst === true) {
             importFirst = false;
         }

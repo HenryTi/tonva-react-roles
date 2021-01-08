@@ -13,21 +13,29 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.History = void 0;
+exports.History = exports.UqHistory = void 0;
 var query_1 = require("./query");
-var History = /** @class */ (function (_super) {
-    __extends(History, _super);
-    function History() {
+var UqHistory = /** @class */ (function (_super) {
+    __extends(UqHistory, _super);
+    function UqHistory() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.queryApiName = 'history';
         return _this;
     }
-    Object.defineProperty(History.prototype, "typeName", {
+    Object.defineProperty(UqHistory.prototype, "typeName", {
         get: function () { return 'history'; },
         enumerable: false,
         configurable: true
     });
+    return UqHistory;
+}(query_1.UqQuery));
+exports.UqHistory = UqHistory;
+var History = /** @class */ (function (_super) {
+    __extends(History, _super);
+    function History() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     return History;
-}(query_1.Query));
+}(UqHistory));
 exports.History = History;
 //# sourceMappingURL=history.js.map

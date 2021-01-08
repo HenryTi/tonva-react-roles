@@ -49,22 +49,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tag = void 0;
+exports.Tag = exports.UqTag = void 0;
 var entity_1 = require("../entity");
 var tagView_1 = require("./tagView");
-var Tag = /** @class */ (function (_super) {
-    __extends(Tag, _super);
-    function Tag() {
+var UqTag = /** @class */ (function (_super) {
+    __extends(UqTag, _super);
+    function UqTag() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.coll = {};
         return _this;
     }
-    Object.defineProperty(Tag.prototype, "typeName", {
+    Object.defineProperty(UqTag.prototype, "typeName", {
         get: function () { return 'tag'; },
         enumerable: false,
         configurable: true
     });
-    Object.defineProperty(Tag.prototype, "view", {
+    Object.defineProperty(UqTag.prototype, "view", {
         get: function () {
             if (this._view !== undefined)
                 return this._view;
@@ -73,11 +73,11 @@ var Tag = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
-    Tag.prototype.nameFromId = function (id) {
+    UqTag.prototype.nameFromId = function (id) {
         var c = this.coll[id];
         return c === undefined ? undefined : c.name;
     };
-    Tag.prototype.namesFromIds = function (ids) {
+    UqTag.prototype.namesFromIds = function (ids) {
         var ret = [];
         for (var _i = 0, _a = ids.split('|'); _i < _a.length; _i++) {
             var id = _a[_i];
@@ -88,7 +88,7 @@ var Tag = /** @class */ (function (_super) {
         }
         return ret;
     };
-    Tag.prototype.loadValues = function () {
+    UqTag.prototype.loadValues = function () {
         return __awaiter(this, void 0, void 0, function () {
             var ret, lines, _i, lines_1, line, parts, id, val;
             return __generator(this, function (_a) {
@@ -122,7 +122,15 @@ var Tag = /** @class */ (function (_super) {
             });
         });
     };
-    return Tag;
+    return UqTag;
 }(entity_1.Entity));
+exports.UqTag = UqTag;
+var Tag = /** @class */ (function (_super) {
+    __extends(Tag, _super);
+    function Tag() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return Tag;
+}(UqTag));
 exports.Tag = Tag;
 //# sourceMappingURL=tag.js.map

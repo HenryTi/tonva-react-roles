@@ -13,26 +13,34 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BookQueryCaller = exports.Book = void 0;
+exports.BookQueryCaller = exports.Book = exports.UqBook = void 0;
 var query_1 = require("./query");
 var caller_1 = require("./caller");
-var Book = /** @class */ (function (_super) {
-    __extends(Book, _super);
-    function Book() {
+var UqBook = /** @class */ (function (_super) {
+    __extends(UqBook, _super);
+    function UqBook() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.queryApiName = 'book';
         return _this;
     }
-    Object.defineProperty(Book.prototype, "typeName", {
+    Object.defineProperty(UqBook.prototype, "typeName", {
         get: function () { return 'book'; },
         enumerable: false,
         configurable: true
     });
-    Book.prototype.queryCaller = function (params) {
+    UqBook.prototype.queryCaller = function (params) {
         return new BookQueryCaller(this, params);
     };
+    return UqBook;
+}(query_1.UqQuery));
+exports.UqBook = UqBook;
+var Book = /** @class */ (function (_super) {
+    __extends(Book, _super);
+    function Book() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     return Book;
-}(query_1.Query));
+}(UqBook));
 exports.Book = Book;
 var BookQueryCaller = /** @class */ (function (_super) {
     __extends(BookQueryCaller, _super);

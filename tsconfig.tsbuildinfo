@@ -1262,23 +1262,23 @@
         "affectsGlobalScope": false
       },
       "./src/uq/book.ts": {
-        "version": "4bef3c60493a067580ada5ff89bc97dae27a93d549aa8f5d8284dd32c640c1b6",
-        "signature": "ce7715b20ca9d4ef34d5ad149c4cd94cf93829ee2486085ed8cd8c25511a47d9",
+        "version": "76393a4714c86641477d8f062b6961aad853c85c6baf4c585c9da67b1ef9e482",
+        "signature": "2f3a905b6ee6d3f16ae8cbc3f09c84979a8858876e955fc2091b3dd4ba8b632a",
         "affectsGlobalScope": false
       },
       "./src/uq/history.ts": {
-        "version": "0e285f01c204b60a1906b3b0d14591d39143e34cc69582a76f0cabc22a8b943a",
-        "signature": "2e42b1ae909cb87463cab2d57952e5d527218ad991f400a47d6763f79c4c0e79",
+        "version": "6cd33cf43af4acc5e38490ecedf7264ff844eb57061debca66cea430791054c1",
+        "signature": "57c7cbe73ea16101464261a1be96e2be41aac54054d41b2105da6d45095b47ad",
         "affectsGlobalScope": false
       },
       "./src/uq/map.ts": {
-        "version": "45541409a4eb207eb677185d2608b4fe4d1e5d45fb02c804df533e03ba8f7b2e",
-        "signature": "1d755dc7e0950f439918c40269d54ddf0ff6582d5073ebdc32d6e1fb5425e2b9",
+        "version": "e51268005b7ca138fa636d1328d37705785ed51ba6f3c395b593ceaa1e306247",
+        "signature": "f5df2bab5396d03c86878920145c96e3ab1484fb97f3ceaf58a403ae6563cb0c",
         "affectsGlobalScope": false
       },
       "./src/uq/pending.ts": {
-        "version": "ed6219bf513b37ecbfe97e2cac4e38659f24489f5eb01e0df6376d0b68704b95",
-        "signature": "45d6fe0da02ead28513ab0a78f5db893488c3a7deba11f81c17b15e79c35df57",
+        "version": "752ab914418fde0b25cb60b4b40dba5c9e86699fff18e48d2a5f8cef18453e5e",
+        "signature": "a6ce50af3eb5e3543c4f015535a9d1931d78130b69fa3c2ba761c9ac39b56b8e",
         "affectsGlobalScope": false
       },
       "./src/uq/uqsman.ts": {
@@ -1292,8 +1292,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/tag/tag.ts": {
-        "version": "6bfdcbaed7579ddcf7e52281da9836773289f5abb7618c0d8698318117131c01",
-        "signature": "bef3fe95b16f362a2a20434b2726d2091cc48bfe4fe5be4057cd62e721b544d8",
+        "version": "f7140b804341e83cc329810f1ef6cf48c197c639dd8440dea01f6dbb1efd02cf",
+        "signature": "627d3a4ff90bc03655927584aa9347f5d5f55428f445acaf354cdbddd63969cc",
         "affectsGlobalScope": false
       },
       "./src/uq/enum.ts": {
@@ -1342,7 +1342,7 @@
         "affectsGlobalScope": false
       },
       "./src/uq/builduqapp.ts": {
-        "version": "f8a7dfe99a919457f23d550f4226fc110f2f695be8b2d51db5864482aeb3138b",
+        "version": "3626ba0ab01338b0cb7a85383108ab491751b3eb1b6481f0a2f287afca8cc721",
         "signature": "b3aa263046dee6779c418a2adaa441846f1ef94446a2aae89d68cb386e9ff8fe",
         "affectsGlobalScope": false
       },
