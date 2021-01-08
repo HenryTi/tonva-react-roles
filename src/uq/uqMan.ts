@@ -191,7 +191,6 @@ export class UqMan {
             if (!entities) {
                 entities = await this.uqApi.loadAccess();
 			}
-			console.error('loadEntities: ', entities);
             if (!entities) return;
             this.buildEntities(entities);
         }

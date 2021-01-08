@@ -193,7 +193,6 @@ var UqMan = /** @class */ (function () {
                         entities = _a.sent();
                         _a.label = 2;
                     case 2:
-                        console.error('loadEntities: ', entities);
                         if (!entities)
                             return [2 /*return*/];
                         this.buildEntities(entities);
