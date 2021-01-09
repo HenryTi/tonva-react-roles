@@ -14,8 +14,8 @@ export abstract class CBase extends Controller {
 
     protected get uqs(): any {return this._uqs}
 	get cApp(): any {return this._cApp}
-	hasRole(role:string|number):boolean {
-		return this._cApp?.hasRole(role);
+	async getUqRoles(uqName:string):Promise<string[]> {
+		return this._cApp?.getUqRoles(uqName);
 	}
 
 	internalT(str:string):any {

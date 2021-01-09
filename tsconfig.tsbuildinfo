@@ -232,8 +232,8 @@
         "affectsGlobalScope": false
       },
       "./src/tool/user.ts": {
-        "version": "a3200efe96ff6a17f84d52108478ec4433fb5fbef1dc7347eb0bcf75703d64fc",
-        "signature": "4b91b022d70c43e6e62774b795a87009fe9fbb37ae77048fdd9a06058c52f243",
+        "version": "79bc1b26edf76e82ef7ebd7fa364bc49ad36d96bcb3c1ac20a469e566d6919a1",
+        "signature": "e98c18724fc180c2e02eeedf967694ec6f9e18d4ea995c2449801d28983f38cc",
         "affectsGlobalScope": false
       },
       "./src/tool/uid.ts": {
@@ -712,8 +712,8 @@
         "affectsGlobalScope": false
       },
       "./src/net/uqapi.ts": {
-        "version": "8d19df5683a287b0c63f6c00f197d5607e69f55e092fdf256a5d35ce9ebb024e",
-        "signature": "6f32e53940e0c99e830d7963dea63a7f0c6cde67f746c426d082a70f2653bbe5",
+        "version": "c4132995213b641f71aa584c43e7b515876b52f677ec7fff6ba2691dafc0a55b",
+        "signature": "9b8a8954a6be343ed51180f6db6e54cb5ec9e4f5f66ccbfca1ef921575fc43c5",
         "affectsGlobalScope": false
       },
       "./src/net/nettoken.ts": {
@@ -852,8 +852,8 @@
         "affectsGlobalScope": false
       },
       "./src/components/nav.tsx": {
-        "version": "e3b3f0cbdfb565b7ba29dd43844f3f97a309ae38da91f34b301aa7de0191a221",
-        "signature": "1443794da06ad3c14a7126d05c6549346967aa9d760b9a255f6efb7f868015b1",
+        "version": "e13c0be7caaa6ef3dac0a1d7eb7d91f5be5a279d5e965c3d1342daa62376b5e3",
+        "signature": "0d5142a4f2f33437506a355c4f776859505baf54198dba5e8723c1b38002d5c4",
         "affectsGlobalScope": false
       },
       "./src/components/schema/schema.ts": {
@@ -1177,7 +1177,7 @@
         "affectsGlobalScope": false
       },
       "./src/net/httpchannel.ts": {
-        "version": "926a5a4a75e2dc8a94795e55501ed73907b04d03d43ad05d2bfb8f87e07afcac",
+        "version": "c96ebad181d86b8f293d66997cf7b1e4db0d4eeb8e2db521b676bcba8fed67c1",
         "signature": "d125da73ca83240d376595f71a9a5b7eec83020f9010ab93edebfbe9d7aee0e1",
         "affectsGlobalScope": false
       },
@@ -1282,8 +1282,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/uqsman.ts": {
-        "version": "423493ce3744243237384a24c3588a1833e884c48f71366746d3a5fe89caee63",
-        "signature": "6efcdd0466aaae7cf1dca8e9a58a1bc5b04a14be87233b299c0587b6fc9c6b42",
+        "version": "1c488d98cbea3b48ccd297f3bc40a68167687ccb0e0858daed7c6b1c67d743e4",
+        "signature": "d3e302c3aac23c3f11cf8be80bad6e502b7225d77316701a2038eb2065dce7ec",
         "affectsGlobalScope": false
       },
       "./src/uq/tag/tagview.tsx": {
@@ -1302,8 +1302,8 @@
         "affectsGlobalScope": false
       },
       "./src/uq/uqman.ts": {
-        "version": "8bb10a85a37251f10ed7bf47a694b8aed877ec2a373b525b095b31c95b589697",
-        "signature": "4d79545745128623191db6352524590da4fdff0e742bf9743cfc4c2143a431b1",
+        "version": "d09dd4ab0b179a489fbd5b068077088325bb3481be80a0cb270cd4ed785b0af1",
+        "signature": "4f17d8c941f73f7c5096220412c0ea03b51459f5b3d9d852ffebc3f8d2c3ef92",
         "affectsGlobalScope": false
       },
       "./src/app/centerapi.ts": {
@@ -1312,13 +1312,13 @@
         "affectsGlobalScope": false
       },
       "./src/app/vmain.tsx": {
-        "version": "0cf9cf033126f7cf70aa6e612aefafe605eb9d430422383af934111c86520ac3",
+        "version": "e12600e2ccb799791e4254813c4a68bd9e88b38a61a862c687aa230b1774c56b",
         "signature": "fa93eb1c42ca45d7a6098921cf1d78b8d26e7b69d26e5c5e1dba36acbcaaae83",
         "affectsGlobalScope": false
       },
       "./src/app/cappbase.ts": {
-        "version": "a577103f554888989952dbf05371db28da372a5cd089fab6a788ef5f722859fa",
-        "signature": "36e749d8d049643a1daf1bdf017159baf1afaac8b7c2419582ec593d1fabf293",
+        "version": "276936c668542e906c715677d3a15de09e4f8666ebe1e007c64b4b1b5f307a58",
+        "signature": "4a587ed981569593ba5ae6c29c8139389a72a41ff5327c0f5d26f6348b5a09cf",
         "affectsGlobalScope": false
       },
       "./src/app/start.ts": {
@@ -1327,8 +1327,8 @@
         "affectsGlobalScope": false
       },
       "./src/app/cbase.ts": {
-        "version": "281a24b5302f6cb2a8274ffda4bafe91ce40b81fb191865d6efdc1ce612c8135",
-        "signature": "8461b4e74cae0b486c5efaee89baaab0f68834fd190d724bc3430cfdbf6809b8",
+        "version": "5eea792bd2bfae0b47817616c50c0f685b7956fd7b89a80fb943dd299ba61727",
+        "signature": "0da7e2eadc3a4207cc403f280d18ea60c4f79727093d6f074be5f79ab96ef940",
         "affectsGlobalScope": false
       },
       "./src/app/startpage.tsx": {

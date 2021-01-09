@@ -198,13 +198,12 @@ export abstract class HttpChannel {
             this.endWait(url, reject);
             if (typeof error === 'string') {
                 let err = error.toLowerCase();
-                if (err.startsWith('unauthorized') === true) {
+                if (err.startsWith('unauthorized') === true || err.startsWith('$roles') === true) {
                     nav.logout();
                     return;
                 }
             }
             console.error('fecth error (no nav.showError): ' + url);
-            // await this.showError(buildError(error, 'catch outmost'));
         };
     }
 

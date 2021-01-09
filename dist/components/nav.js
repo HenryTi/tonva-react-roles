@@ -1013,6 +1013,14 @@ var Nav = /** @class */ (function () {
     Nav.prototype.saveLocalUser = function () {
         this.local.user.set(this.user);
     };
+    Nav.prototype.setUqRoles = function (uq, roles) {
+        var userRoles = this.user.roles;
+        if (!userRoles) {
+            this.user.roles = {};
+        }
+        this.user.roles[uq] = roles;
+        this.local.user.set(this.user);
+    };
     Nav.prototype.loadMe = function () {
         return __awaiter(this, void 0, void 0, function () {
             var me;

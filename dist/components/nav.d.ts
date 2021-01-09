@@ -125,6 +125,7 @@ export declare class Nav {
     showAppView(isUserLogin?: boolean): Promise<void>;
     setGuest(guest: Guest): void;
     saveLocalUser(): void;
+    setUqRoles(uq: string, roles: string[]): void;
     loadMe(): Promise<void>;
     private internalLogined;
     logined(user: User, callback?: (user: User) => Promise<void>): Promise<void>;

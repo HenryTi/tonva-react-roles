@@ -328,7 +328,7 @@ var HttpChannel = /** @class */ (function () {
                         this.endWait(url, reject);
                         if (typeof error_1 === 'string') {
                             err = error_1.toLowerCase();
-                            if (err.startsWith('unauthorized') === true) {
+                            if (err.startsWith('unauthorized') === true || err.startsWith('$roles') === true) {
                                 nav_1.nav.logout();
                                 return [2 /*return*/];
                             }

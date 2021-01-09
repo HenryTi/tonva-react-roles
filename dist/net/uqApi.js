@@ -272,6 +272,32 @@ var UqApi = /** @class */ (function (_super) {
             });
         });
     };
+    UqApi.prototype.roles = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret, parts, s, _i, parts_1, p;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.get('roles')];
+                    case 1:
+                        ret = _a.sent();
+                        if (!ret)
+                            return [2 /*return*/, null];
+                        parts = ret.split('|');
+                        s = [];
+                        for (_i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+                            p = parts_1[_i];
+                            p = p.trim();
+                            if (!p)
+                                continue;
+                            s.push(p);
+                        }
+                        if (s.length === 0)
+                            return [2 /*return*/, null];
+                        return [2 /*return*/, s];
+                }
+            });
+        });
+    };
     /*async loadEntities():Promise<any> {
         return await this.get('entities');
     }*/

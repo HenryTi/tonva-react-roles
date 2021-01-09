@@ -148,6 +148,24 @@ var UqMan = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    UqMan.prototype.getUserRoles = function (userId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (userId === this.userId)
+                            return [2 /*return*/, this.roles];
+                        _a = this;
+                        return [4 /*yield*/, this.uqApi.roles()];
+                    case 1:
+                        _a.roles = _b.sent();
+                        this.userId = userId;
+                        return [2 /*return*/, this.roles];
+                }
+            });
+        });
+    };
     UqMan.prototype.tuid = function (name) { return this.tuids[name.toLowerCase()]; };
     UqMan.prototype.tuidDiv = function (name, div) {
         var tuid = this.tuids[name.toLowerCase()];

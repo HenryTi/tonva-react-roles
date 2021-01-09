@@ -204,7 +204,20 @@ export class UqApi extends ApiBase {
             this.access.join('|');
         let ret = await this.get('access', {acc:acc});
         return ret;
-    }
+	}
+	async roles():Promise<string[]> {
+		let ret = await this.get('roles');
+		if (!ret) return null;
+		let parts:string[] = (ret as string).split('|');
+		let s:string[] = [];
+		for (let p of parts) {
+			p = p.trim();
+			if (!p) continue;
+			s.push(p);
+		}
+		if (s.length === 0) return null;
+		return s;
+	}
 
     /*async loadEntities():Promise<any> {
         return await this.get('entities');

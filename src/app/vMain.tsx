@@ -102,7 +102,7 @@ export class VUnitSelect extends VPage<CAppBase> {
     }
     private onRowClick = async (appUnit: any) => {
 		appInFrame.unit = appUnit.id; // 25;
-		this.controller.setAppUnit(appUnit);
+		//this.controller.setAppUnit(appUnit);
         await this.controller.start();
     }
 

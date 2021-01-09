@@ -31,10 +31,6 @@ export declare abstract class CAppBase extends Controller {
     get uqs(): any;
     internalT(str: string): any;
     protected setRes(res: any): void;
-    private appUnit;
-    private roleDefines;
-    hasRole(role: string | number): boolean;
-    setAppUnit(appUnit: any): void;
     protected beforeStart(): Promise<boolean>;
     protected afterStart(): Promise<void>;
     userFromId(userId: number): Promise<any>;
@@ -46,4 +42,5 @@ export declare abstract class CAppBase extends Controller {
     }): Navigo;
     protected onNavRoutes(): void;
     private showUnsupport;
+    getUqRoles(uqName: string): Promise<string[]>;
 }

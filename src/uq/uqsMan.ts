@@ -73,7 +73,14 @@ export class UQsMan {
     // to be removed in the future
     addUq(uq: UqMan) {
         this.collection[uq.name] = uq;
-    }
+	}
+	
+	static async getUqUserRoles(uqLower:string, userId:number):Promise<string[]> {
+		let uqMan = UQsMan.value.collection[uqLower];
+		if (uqMan === undefined) return null;
+		let roles = await uqMan.getUserRoles(userId);
+		return roles;
+	}
 
     private buildTVs() {
         for (let i in this.tvs) {

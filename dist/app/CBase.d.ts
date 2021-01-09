@@ -6,7 +6,7 @@ export declare abstract class CBase extends Controller {
     constructor(cApp: any);
     protected get uqs(): any;
     get cApp(): any;
-    hasRole(role: string | number): boolean;
+    getUqRoles(uqName: string): Promise<string[]>;
     internalT(str: string): any;
     protected newC<T extends CBase>(type: IConstructor<T>, param?: any): T;
     protected newSub<O extends CBase, T extends CSub<O>>(type: IConstructor<T>, param?: any): T;

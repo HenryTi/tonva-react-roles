@@ -57,7 +57,8 @@ export abstract class CAppBase extends Controller {
 		setGlobalRes(res);
 	}
 
-	private appUnit:any;
+	//private appUnit:any;
+	/*
 	private roleDefines: string[];
 	hasRole(role: string|number):boolean {
 		let nRole:number;
@@ -72,9 +73,10 @@ export abstract class CAppBase extends Controller {
 		}
 		return (this.appUnit.roles & nRole) !== 0;
 	}
-
-	setAppUnit(appUnit:any) {
-		this.appUnit = appUnit;
+	*/
+	//setAppUnit(appUnit:any) {
+	//	this.appUnit = appUnit;
+		/*
 		let {roleDefs} = appUnit;
 		if (roleDefs) {
 			this.roleDefines = roleDefs.split('\t');
@@ -82,7 +84,8 @@ export abstract class CAppBase extends Controller {
 		else {
 			this.roleDefines = [];
 		}
-}
+		*/
+	//}
 	
     protected async beforeStart():Promise<boolean> {
         try {
@@ -127,7 +130,7 @@ export abstract class CAppBase extends Controller {
 						return false;
                     case 1:
 						let appUnit = this.appUnits[0];
-						this.setAppUnit(appUnit);
+						//this.setAppUnit(appUnit);
 						let {id} = appUnit;
                         let appUnitId = id;
                         if (appUnitId === undefined || appUnitId < 0 || 
@@ -179,5 +182,22 @@ export abstract class CAppBase extends Controller {
     private showUnsupport(predefinedUnit: number) {
         nav.clear();
         this.openVPage(VUnsupportedUnit, predefinedUnit);
-    }
+	}
+	
+	async getUqRoles(uqName:string):Promise<string[]> {
+		let {user} = nav;
+		if (!user) return null;
+		let {roles:userRoles} = nav.user;
+		let uq = uqName.toLowerCase();
+		let roles:string[];
+		if (userRoles) {
+			roles = userRoles[uq];
+		}
+		if (roles) return roles;
+
+		roles = await UQsMan.getUqUserRoles(uq, nav.user.id);
+		if (!roles) roles = null;
+		nav.setUqRoles(uq, roles);
+		return roles;
+	}
 }

@@ -109,6 +109,23 @@ var UQsMan = /** @class */ (function () {
     UQsMan.prototype.addUq = function (uq) {
         this.collection[uq.name] = uq;
     };
+    UQsMan.getUqUserRoles = function (uqLower, userId) {
+        return __awaiter(this, void 0, void 0, function () {
+            var uqMan, roles;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        uqMan = UQsMan.value.collection[uqLower];
+                        if (uqMan === undefined)
+                            return [2 /*return*/, null];
+                        return [4 /*yield*/, uqMan.getUserRoles(userId)];
+                    case 1:
+                        roles = _a.sent();
+                        return [2 /*return*/, roles];
+                }
+            });
+        });
+    };
     UQsMan.prototype.buildTVs = function () {
         for (var i in this.tvs) {
             var uqTVs = this.tvs[i];

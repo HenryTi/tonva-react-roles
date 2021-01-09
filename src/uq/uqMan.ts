@@ -148,7 +148,16 @@ export class UqMan {
         }
         */
         return new ReactBoxId(id, tuid, this.tvs[name]);
-    }
+	}
+	
+	private userId:number;
+	private roles:string[];
+	async getUserRoles(userId:number):Promise<string[]> {
+		if (userId === this.userId) return this.roles;
+		this.roles = await this.uqApi.roles();
+		this.userId = userId;
+		return this.roles;
+	}
 
     tuid(name:string):Tuid {return this.tuids[name.toLowerCase()]}
     tuidDiv(name:string, div:string):TuidDiv {

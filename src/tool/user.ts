@@ -15,7 +15,8 @@ export interface User extends Guest {
     id: number;
     name: string;
     nick?: string;
-    icon?: string;
+	icon?: string;
+	roles?: {[uq:string]: string[]}
 }
 
 export function decodeUserToken(token: string): User {

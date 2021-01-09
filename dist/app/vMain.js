@@ -183,9 +183,10 @@ var VUnitSelect = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         net_1.appInFrame.unit = appUnit.id; // 25;
-                        this.controller.setAppUnit(appUnit);
+                        //this.controller.setAppUnit(appUnit);
                         return [4 /*yield*/, this.controller.start()];
                     case 1:
+                        //this.controller.setAppUnit(appUnit);
                         _a.sent();
                         return [2 /*return*/];
                 }

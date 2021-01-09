@@ -82,31 +82,35 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.setRes = function (res) {
         components_1.setGlobalRes(res);
     };
-    CAppBase.prototype.hasRole = function (role) {
-        var nRole;
+    //private appUnit:any;
+    /*
+    private roleDefines: string[];
+    hasRole(role: string|number):boolean {
+        let nRole:number;
         if (typeof role === 'string') {
-            if (role.length === 0)
-                return false;
-            var index = this.roleDefines.findIndex(function (v) { return v === role; });
-            if (index < 0)
-                return false;
-            nRole = 1 << index;
+            if (role.length === 0) return false;
+            let index = this.roleDefines.findIndex(v => v === role);
+            if (index < 0) return false;
+            nRole = 1<<index;
         }
         else {
             nRole = role;
         }
         return (this.appUnit.roles & nRole) !== 0;
-    };
-    CAppBase.prototype.setAppUnit = function (appUnit) {
-        this.appUnit = appUnit;
-        var roleDefs = appUnit.roleDefs;
-        if (roleDefs) {
-            this.roleDefines = roleDefs.split('\t');
-        }
-        else {
-            this.roleDefines = [];
-        }
-    };
+    }
+    */
+    //setAppUnit(appUnit:any) {
+    //	this.appUnit = appUnit;
+    /*
+    let {roleDefs} = appUnit;
+    if (roleDefs) {
+        this.roleDefines = roleDefs.split('\t');
+    }
+    else {
+        this.roleDefines = [];
+    }
+    */
+    //}
     CAppBase.prototype.beforeStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a, appName, version, tvs, retErrors, predefinedUnit_1, user, result, appUnit, id, appUnitId, err_1;
@@ -157,7 +161,6 @@ var CAppBase = /** @class */ (function (_super) {
                                 return [2 /*return*/, false];
                             case 1:
                                 appUnit = this.appUnits[0];
-                                this.setAppUnit(appUnit);
                                 id = appUnit.id;
                                 appUnitId = id;
                                 if (appUnitId === undefined || appUnitId < 0 ||
@@ -220,6 +223,33 @@ var CAppBase = /** @class */ (function (_super) {
     CAppBase.prototype.showUnsupport = function (predefinedUnit) {
         components_1.nav.clear();
         this.openVPage(vMain_1.VUnsupportedUnit, predefinedUnit);
+    };
+    CAppBase.prototype.getUqRoles = function (uqName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, userRoles, uq, roles;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = components_1.nav.user;
+                        if (!user)
+                            return [2 /*return*/, null];
+                        userRoles = components_1.nav.user.roles;
+                        uq = uqName.toLowerCase();
+                        if (userRoles) {
+                            roles = userRoles[uq];
+                        }
+                        if (roles)
+                            return [2 /*return*/, roles];
+                        return [4 /*yield*/, uq_1.UQsMan.getUqUserRoles(uq, components_1.nav.user.id)];
+                    case 1:
+                        roles = _a.sent();
+                        if (!roles)
+                            roles = null;
+                        components_1.nav.setUqRoles(uq, roles);
+                        return [2 /*return*/, roles];
+                }
+            });
+        });
     };
     return CAppBase;
 }(vm_1.Controller));

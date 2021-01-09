@@ -766,7 +766,16 @@ export class Nav {
 
     saveLocalUser() {
         this.local.user.set(this.user);
-    }
+	}
+	
+	setUqRoles(uq:string, roles:string[]) {
+		let {roles:userRoles} = this.user;
+		if (!userRoles) {
+			this.user.roles = {};
+		}
+		this.user.roles[uq] = roles;
+		this.local.user.set(this.user);
+	}
 
     async loadMe() {
         let me = await userApi.me();
