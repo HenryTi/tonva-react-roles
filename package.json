@@ -1,7 +1,7 @@
 {
-  "name": "tonva-react",
-  "version": "1.9.32",
-  "description": "tonva react client libs",
+  "name": "tonva-react-uq-roles",
+  "version": "0.1.0",
+  "description": "tonva react uq roles component",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/henryti/tonva-react"
+    "url": "https://github.com/henryti/tonva-react-uq-roles"
   },
   "scripts": {
-    "start": "set PORT=3200 && react-scripts-ts start",
+    "start": "set PORT=3201 && react-scripts-ts start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
@@ -29,12 +29,12 @@
     "@types/react-dom": "^16.9.10",
     "classnames": "^2.2.6",
     "font-awesome": "^4.7.0",
-    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.20",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "tonva-react": "^1.9.33",
     "typescript": "^3.9.7"
   }
 }

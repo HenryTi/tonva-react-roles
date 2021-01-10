@@ -24,7 +24,7 @@
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": false,
-        "jsx": "react",
+        "jsx": "react-jsx",
         "strictNullChecks": false,
         "experimentalDecorators": true,
         "baseUrl": "src/",
