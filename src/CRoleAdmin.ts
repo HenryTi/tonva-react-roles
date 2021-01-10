@@ -1,4 +1,5 @@
-import { Controller, UqApi, UqMan } from "tonva-react";
+import { makeObservable, observable } from "mobx";
+import { centerApi, Controller, UqApi, UqMan } from "tonva-react";
 import { VRoleAdmin } from "./VRoleAdmin";
 
 export interface UserRole {
@@ -6,19 +7,21 @@ export interface UserRole {
 	admin:number; 
 	roles:boolean[];
 	isMe?: boolean;
+	isDeleted?: boolean;
 }
 
 export class CRoleAdmin extends Controller {
-	private readonly uq: UqMan;
 	private readonly uqApi: UqApi;
 	readonly allRoles: string[];
 	readonly roleCaptions: string[];
-	admins: UserRole[];
-	userRoles: UserRole[];
+	admins: UserRole[] = null;
+	userRoles: UserRole[] = null;
 
 	constructor(res:any, uq:UqMan, roleCaptionMap?:{[role:string]:string}) {
 		super(res);
-		this.uq = uq;
+		makeObservable(this, {
+			userRoles: observable
+		});
 		this.uqApi = uq.uqApi;
 		this.allRoles = uq.allRoles;
 		if (roleCaptionMap) {
@@ -64,5 +67,62 @@ export class CRoleAdmin extends Controller {
 		text += '|';
 		await this.uqApi.setUserRoles(user, 0, text);
 		roles[iRole] = checked;
+	}
+
+	/*
+	async getUserId(user: string): Promise<any> {
+		let ret = await centerApi.userFromKey(user);
+		return ret;
+	}
+	*/
+
+	private buildRolesText(userRole:UserRole) {
+		let ret = userRole.roles.map((v, index) => v===true? this.allRoles[index]:'').join('|');
+		return `|${ret}|`;
+	}
+
+	async newUser(userName: string): Promise<string> {
+		let ret = await centerApi.userFromKey(userName);
+		if (!ret) {
+			return '这个用户名没有注册';
+		}
+		let user = ret.id;
+		if (this.admins.find(v => v.user === user) !== undefined) {
+			return '这个用户已经是管理员';
+		}
+		let roles: string;
+		let userRole = this.userRoles.find(v => v.user === user);
+		if (userRole) {
+			if (userRole.isDeleted === true) {
+				userRole.isDeleted = false;
+				roles = this.buildRolesText(userRole);
+			}
+			else {
+				return '这个用户已经是角色用户了';
+			}
+		}
+		else {
+			userRole = {
+				user,
+				admin: 0,
+				roles: this.allRoles.map(v => false),
+			};
+			this.userRoles.push(userRole);
+			roles = '';
+		}
+		await this.uqApi.setUserRoles(user, 0, roles);
+	}
+
+	async deleteUser(userRole: UserRole) {
+		let {user} = userRole;
+		userRole.isDeleted = true; 
+		await this.uqApi.deleteUserRoles(user);
+	}
+
+	async restoreUser(userRole: UserRole) {
+		let {user} = userRole;
+		userRole.isDeleted = false; 
+		let roles = this.buildRolesText(userRole)
+		await this.uqApi.setUserRoles(user, 0, roles);
 	}
 }
