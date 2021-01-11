@@ -1,20 +1,23 @@
 import { Controller, UqMan } from "tonva-react";
 export interface UserRole {
     user: number;
-    admin: number;
     roles: boolean[];
-    isMe?: boolean;
+    isDeleted?: boolean;
 }
 export declare class CRoleAdmin extends Controller {
-    private readonly uq;
     private readonly uqApi;
     readonly allRoles: string[];
     readonly roleCaptions: string[];
-    admins: UserRole[];
+    meRoles: UserRole;
     userRoles: UserRole[];
-    constructor(res: any, uq: UqMan, roleCaptionMap?: {
+    private myRolesChanged;
+    constructor(res: any, uq: UqMan, myRolesChanged?: (roles: string[]) => void, roleCaptionMap?: {
         [role: string]: string;
     });
     protected internalStart(): Promise<void>;
-    setUserRole(checked: boolean, iRole: number, user: number): Promise<void>;
+    setUserRole(checked: boolean, iRole: number, userRole: UserRole): Promise<void>;
+    private buildRolesText;
+    newUser(userName: string): Promise<string>;
+    deleteUser(userRole: UserRole): Promise<void>;
+    restoreUser(userRole: UserRole): Promise<void>;
 }

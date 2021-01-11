@@ -62,27 +62,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VRoleAdmin = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
+var mobx_react_1 = require("mobx-react");
 var tonva_react_1 = require("tonva-react");
+var VAddUser_1 = require("./VAddUser");
 var VRoleAdmin = /** @class */ (function (_super) {
     __extends(VRoleAdmin, _super);
     function VRoleAdmin() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.renderItem = function (_a) {
-            var user = _a.user, roles = _a.roles;
+        _this.renderItem = function (userRole, isMe) {
+            if (!userRole)
+                return null;
+            var user = userRole.user, roles = userRole.roles, isDeleted = userRole.isDeleted;
             var roleCaptions = _this.controller.roleCaptions;
-            return jsx_runtime_1.jsxs("div", __assign({ className: "d-flex bg-white border-top" }, { children: [jsx_runtime_1.jsx("div", __assign({ className: "p-3 w-12c" }, { children: _this.renderUser(user) }), void 0),
-                    jsx_runtime_1.jsx("div", __assign({ className: "d-flex flex-wrap" }, { children: roles.map(function (v, i) {
-                            return jsx_runtime_1.jsxs("label", __assign({ className: "m-3" }, { children: [jsx_runtime_1.jsx("input", { className: "mr-2", type: 'checkbox', defaultChecked: v, onChange: function (e) { return _this.onRoleChange(e, i, user); } }, void 0), roleCaptions[i]] }), void 0);
-                        }) }), void 0)] }), user);
-        };
-        _this.renderAdmin = function (_a) {
-            var user = _a.user, roles = _a.roles, isMe = _a.isMe;
-            var color = '', meText;
+            var onUndo = function () { return _this.controller.restoreUser(userRole); };
+            var onDelete = function () { return _this.controller.deleteUser(userRole); };
+            var onRightClick;
+            var rightIcon;
+            var vUser = _this.renderUser(user);
+            var cn = 'bg-white border-top ';
             if (isMe === true) {
-                color = 'text-primary';
-                meText = jsx_runtime_1.jsx("small", __assign({ className: "text-muted ml-1" }, { children: "[\u81EA\u5DF1]" }), void 0);
+                cn += 'mb-1';
+                vUser = jsx_runtime_1.jsxs(jsx_runtime_1.Fragment, { children: [vUser, jsx_runtime_1.jsx("small", __assign({ className: "ml-1 text-success" }, { children: "[\u81EA\u5DF1]" }), void 0)] }, void 0);
             }
-            return jsx_runtime_1.jsxs("div", __assign({ className: 'm-3 p-2 d-flex border rounded align-items-center ' + color }, { children: [_this.renderUser(user), " ", meText] }), void 0);
+            if (isDeleted === true) {
+                onRightClick = onUndo;
+                rightIcon = 'undo';
+                vUser = jsx_runtime_1.jsx("del", { children: vUser }, void 0);
+            }
+            else {
+                onRightClick = onDelete;
+                rightIcon = 'times';
+            }
+            var right = jsx_runtime_1.jsx("div", __assign({ className: "p-3 cursor-pointer text-info", onClick: onRightClick }, { children: jsx_runtime_1.jsx(tonva_react_1.FA, { name: rightIcon }, void 0) }), void 0);
+            return jsx_runtime_1.jsx(tonva_react_1.LMR, __assign({ className: cn, left: jsx_runtime_1.jsx("div", __assign({ className: "p-3 w-12c" }, { children: vUser }), void 0), right: right }, { children: jsx_runtime_1.jsx("div", __assign({ className: "d-flex flex-wrap" }, { children: roles.map(function (v, i) {
+                        var vCap = roleCaptions[i];
+                        if (isDeleted === true)
+                            vCap = jsx_runtime_1.jsx("del", { children: vCap }, void 0);
+                        return jsx_runtime_1.jsxs("label", __assign({ className: "m-3" }, { children: [jsx_runtime_1.jsx("input", { className: "mr-2", type: 'checkbox', disabled: isDeleted, defaultChecked: v, onChange: function (e) { return _this.onRoleChange(e, i, userRole); } }, void 0), vCap] }), i);
+                    }) }), void 0) }), user);
         };
         return _this;
         /*
@@ -95,13 +112,36 @@ var VRoleAdmin = /** @class */ (function (_super) {
     VRoleAdmin.prototype.header = function () { return '设置用户角色'; };
     VRoleAdmin.prototype.content = function () {
         var _this = this;
-        var _a = this.controller, admins = _a.admins, userRoles = _a.userRoles;
-        return jsx_runtime_1.jsxs("div", { children: [jsx_runtime_1.jsx("div", __assign({ className: "mx-3 mt-3 mb-1" }, { children: "\u7BA1\u7406\u5458" }), void 0),
-                jsx_runtime_1.jsx("div", __assign({ className: "d-flex bg-white border-top flex-wrap" }, { children: admins.map(function (v) { return _this.renderAdmin(v); }) }), void 0),
-                jsx_runtime_1.jsx("div", __assign({ className: "mx-3 mt-3 mb-1" }, { children: "\u7528\u6237" }), void 0),
-                userRoles.map(function (v) { return _this.renderItem(v); })] }, void 0);
+        var userRoles = this.controller.userRoles;
+        var VItem = mobx_react_1.observer(function (v) { return _this.renderItem(v.userRole, v.isMe); });
+        var VUserRoles = mobx_react_1.observer(function () { return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, { children: userRoles.map(function (v) {
+                return jsx_runtime_1.jsx(VItem, { userRole: v, isMe: false }, void 0);
+            }) }, void 0); });
+        /*
+        <div className="mx-3 mt-3 mb-1">管理员</div>
+        <div className="d-flex bg-white border-top flex-wrap">
+            {admins.map(v => this.renderAdmin(v))}
+        </div>
+        */
+        var MeItem = mobx_react_1.observer(function () { return jsx_runtime_1.jsx(VItem, { userRole: _this.controller.meRoles, isMe: true }, void 0); });
+        return jsx_runtime_1.jsxs("div", { children: [jsx_runtime_1.jsxs("div", __assign({ className: "mx-3 mt-3 mb-1 d-flex align-items-end" }, { children: [jsx_runtime_1.jsx("div", __assign({ className: "mr-auto" }, { children: "\u7528\u6237\u89D2\u8272" }), void 0),
+                        jsx_runtime_1.jsxs("button", __assign({ className: "btn btn-sm btn-outline-primary", onClick: function () { return _this.openVPage(VAddUser_1.VAddUser); } }, { children: [jsx_runtime_1.jsx(tonva_react_1.FA, { name: "plus" }, void 0), " \u589E\u52A0"] }), void 0)] }), void 0),
+                jsx_runtime_1.jsx(MeItem, {}, void 0),
+                jsx_runtime_1.jsx(VUserRoles, {}, void 0)] }, void 0);
     };
-    VRoleAdmin.prototype.onRoleChange = function (event, iRole, user) {
+    /*
+    private renderAdmin = ({user, roles, isMe}:UserRole) => {
+        let color = '', meText:any;
+        if (isMe === true) {
+            color = 'text-primary';
+            meText = <small className="text-muted ml-1">[自己]</small>;
+        }
+        return <div key={user} className={'m-3 p-2 d-flex border rounded align-items-center ' + color}>
+            {this.renderUser(user)} {meText}
+        </div>
+    }
+    */
+    VRoleAdmin.prototype.onRoleChange = function (event, iRole, userRole) {
         return __awaiter(this, void 0, void 0, function () {
             var target;
             return __generator(this, function (_a) {
@@ -109,7 +149,7 @@ var VRoleAdmin = /** @class */ (function (_super) {
                     case 0:
                         target = event.target;
                         target.disabled = true;
-                        return [4 /*yield*/, this.controller.setUserRole(target.checked, iRole, user)];
+                        return [4 /*yield*/, this.controller.setUserRole(target.checked, iRole, userRole)];
                     case 1:
                         _a.sent();
                         target.disabled = false;

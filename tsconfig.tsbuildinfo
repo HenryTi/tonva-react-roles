@@ -246,21 +246,6 @@
         "signature": "af7fd2870746deed40e130fc0a3966de74e8f52a97ec114d0fbb35876ab05ca9",
         "affectsGlobalScope": false
       },
-      "./node_modules/tonva-react/dist/tool/left0.d.ts": {
-        "version": "fe5c5087e3ac0289381873958bad53d5033efca900e668e779dbcb5de27d96d4",
-        "signature": "fe5c5087e3ac0289381873958bad53d5033efca900e668e779dbcb5de27d96d4",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/tonva-react/dist/tool/user.d.ts": {
-        "version": "e98c18724fc180c2e02eeedf967694ec6f9e18d4ea995c2449801d28983f38cc",
-        "signature": "e98c18724fc180c2e02eeedf967694ec6f9e18d4ea995c2449801d28983f38cc",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/tonva-react/dist/tool/uid.d.ts": {
-        "version": "68b62e936b06e6357b02ec91948d6404dc1c86d67608df34ca8e7bac75e5b9e8",
-        "signature": "68b62e936b06e6357b02ec91948d6404dc1c86d67608df34ca8e7bac75e5b9e8",
-        "affectsGlobalScope": false
-      },
       "./node_modules/mobx/dist/utils/global.d.ts": {
         "version": "309826fb90e96f68a9939d92fdbf9393b9d18733ccfa4a963da9978ff268806f",
         "signature": "309826fb90e96f68a9939d92fdbf9393b9d18733ccfa4a963da9978ff268806f",
@@ -506,6 +491,21 @@
         "signature": "a67a0b84674dbc0d33f0086ff321e5310d7e172e1e64df34be113cdfe8939db4",
         "affectsGlobalScope": false
       },
+      "./node_modules/tonva-react/dist/tool/left0.d.ts": {
+        "version": "fe5c5087e3ac0289381873958bad53d5033efca900e668e779dbcb5de27d96d4",
+        "signature": "fe5c5087e3ac0289381873958bad53d5033efca900e668e779dbcb5de27d96d4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/tonva-react/dist/tool/user.d.ts": {
+        "version": "e98c18724fc180c2e02eeedf967694ec6f9e18d4ea995c2449801d28983f38cc",
+        "signature": "e98c18724fc180c2e02eeedf967694ec6f9e18d4ea995c2449801d28983f38cc",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/tonva-react/dist/tool/uid.d.ts": {
+        "version": "68b62e936b06e6357b02ec91948d6404dc1c86d67608df34ca8e7bac75e5b9e8",
+        "signature": "68b62e936b06e6357b02ec91948d6404dc1c86d67608df34ca8e7bac75e5b9e8",
+        "affectsGlobalScope": false
+      },
       "./node_modules/tonva-react/dist/tool/pageitems.d.ts": {
         "version": "c4d3cde769fb4ca03b641a07a492d87826279e8af1281b478ee49c1fac802e83",
         "signature": "c4d3cde769fb4ca03b641a07a492d87826279e8af1281b478ee49c1fac802e83",
@@ -592,8 +592,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/tonva-react/dist/net/uqapi.d.ts": {
-        "version": "05d433f639326ecb6f83051bcef93ac6ffaa54c73f5bfbce673ad9edff35296b",
-        "signature": "05d433f639326ecb6f83051bcef93ac6ffaa54c73f5bfbce673ad9edff35296b",
+        "version": "7ec0f0a889942962d8db2298b58d8da6a546cb92597bfe1fd5024c842181d80a",
+        "signature": "7ec0f0a889942962d8db2298b58d8da6a546cb92597bfe1fd5024c842181d80a",
         "affectsGlobalScope": false
       },
       "./node_modules/tonva-react/dist/net/guestapi.d.ts": {
@@ -1062,8 +1062,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/tonva-react/dist/uq/uqman.d.ts": {
-        "version": "978a0834f1ea8afbbcb9ca38d8aeb86f983add0be26b536e38e24b48eaac29ce",
-        "signature": "978a0834f1ea8afbbcb9ca38d8aeb86f983add0be26b536e38e24b48eaac29ce",
+        "version": "7158835f2ec2e8623e89778a3d865f55758f9daacbda061f2ff48ad4571ee51d",
+        "signature": "7158835f2ec2e8623e89778a3d865f55758f9daacbda061f2ff48ad4571ee51d",
         "affectsGlobalScope": false
       },
       "./node_modules/tonva-react/dist/vm/view.d.ts": {
@@ -1136,14 +1136,124 @@
         "signature": "916460955732d4ac368205c4ca2e286dc8fe6fd04406dbc3e0779a9635770dcb",
         "affectsGlobalScope": false
       },
+      "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts": {
+        "version": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/staticrendering.d.ts": {
+        "version": "1db6a435c0cfb936944372b5f9484faa0f3476470b9b23e60cd9c7b8fdd5a132",
+        "signature": "1db6a435c0cfb936944372b5f9484faa0f3476470b9b23e60cd9c7b8fdd5a132",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": {
+        "version": "20423b338529dc6c08091a31dfd4c8eb59c43618add12be380bc5c2c1defdefa",
+        "signature": "20423b338529dc6c08091a31dfd4c8eb59c43618add12be380bc5c2c1defdefa",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": {
+        "version": "32a6a915cfd763b55a3fdd52a1be4c33d0d6ff2b8b4e31477e522f983c168c32",
+        "signature": "32a6a915cfd763b55a3fdd52a1be4c33d0d6ff2b8b4e31477e522f983c168c32",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts": {
+        "version": "5ebc553ddec8b782a007d18a2b42fdc7085b59561237809c84ec27d05edf49b8",
+        "signature": "5ebc553ddec8b782a007d18a2b42fdc7085b59561237809c84ec27d05edf49b8",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts": {
+        "version": "c1fc7bc6a2c8ed40e9d17abba1c515923a7d860916611171b1f78019e4c75ec5",
+        "signature": "c1fc7bc6a2c8ed40e9d17abba1c515923a7d860916611171b1f78019e4c75ec5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts": {
+        "version": "aec76adba68059b458647e2c3ee8074c196b50a610fd94d55bec42ae77738668",
+        "signature": "aec76adba68059b458647e2c3ee8074c196b50a610fd94d55bec42ae77738668",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts": {
+        "version": "cb788c56ae792e38fcc86b80c835754eb5f95f0bc5a3a78e471638c373608fdb",
+        "signature": "cb788c56ae792e38fcc86b80c835754eb5f95f0bc5a3a78e471638c373608fdb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts": {
+        "version": "ab12531c4382661ecb6922afe83b2a2d149abe7e673f852f3ab3cf277c455bdb",
+        "signature": "ab12531c4382661ecb6922afe83b2a2d149abe7e673f852f3ab3cf277c455bdb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts": {
+        "version": "960e9a6f3844831c0b827ad4c116c1d5ae2eb4ee6a364f55650ecf0f4b358254",
+        "signature": "960e9a6f3844831c0b827ad4c116c1d5ae2eb4ee6a364f55650ecf0f4b358254",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/index.d.ts": {
+        "version": "41003a0471701f454ce62b878ab8235285641917da7ada6226baf62aa79c1284",
+        "signature": "41003a0471701f454ce62b878ab8235285641917da7ada6226baf62aa79c1284",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts": {
+        "version": "bfdcbaa21d9ceeb25394c1d67836a3355660a9cc38dd790fb138c801ecfc10a6",
+        "signature": "bfdcbaa21d9ceeb25394c1d67836a3355660a9cc38dd790fb138c801ecfc10a6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/observer.d.ts": {
+        "version": "3dda11e0c7b1da55fb3576a8c863d1e8067004060d844b6e3ab9cbb2522ee6d4",
+        "signature": "3dda11e0c7b1da55fb3576a8c863d1e8067004060d844b6e3ab9cbb2522ee6d4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/types/ivaluemap.d.ts": {
+        "version": "be6b8e95eaad887b3e26da22215f188ac01ec13d8e6fe89c57d671a04f241e09",
+        "signature": "be6b8e95eaad887b3e26da22215f188ac01ec13d8e6fe89c57d671a04f241e09",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/provider.d.ts": {
+        "version": "a0772a49c68c8ad09fd9b41f73fe542e52535e14f7825db9d605c3c99166c377",
+        "signature": "a0772a49c68c8ad09fd9b41f73fe542e52535e14f7825db9d605c3c99166c377",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts": {
+        "version": "9e7a6963251629b917820b5c2ed4e3d78a20e9918efe2b6615fd484fa0cb6523",
+        "signature": "9e7a6963251629b917820b5c2ed4e3d78a20e9918efe2b6615fd484fa0cb6523",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/types/istorestoprops.d.ts": {
+        "version": "55447554cf27022611a95091556b48ba78e962b8e2a5ef0572f3dbaef1c9ec8d",
+        "signature": "55447554cf27022611a95091556b48ba78e962b8e2a5ef0572f3dbaef1c9ec8d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/inject.d.ts": {
+        "version": "ed1d1e789510fb8a6956f82b0160c069846c35e23ee3bb65f3cdbfcda319742d",
+        "signature": "ed1d1e789510fb8a6956f82b0160c069846c35e23ee3bb65f3cdbfcda319742d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/disposeonunmount.d.ts": {
+        "version": "26851ae9962b794c44cb4d3c7ac2abf88e7c09104011c0158613358fcc6949e6",
+        "signature": "26851ae9962b794c44cb4d3c7ac2abf88e7c09104011c0158613358fcc6949e6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/proptypes.d.ts": {
+        "version": "6d13ddfedb26a0ebe0ab867e22db3064640b350edd7f29e4736475ec273c21eb",
+        "signature": "6d13ddfedb26a0ebe0ab867e22db3064640b350edd7f29e4736475ec273c21eb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react/dist/index.d.ts": {
+        "version": "4ae692fe8cb895c1852a58a09f34e1e9f236d1768cb256c4944fb5903441066e",
+        "signature": "4ae692fe8cb895c1852a58a09f34e1e9f236d1768cb256c4944fb5903441066e",
+        "affectsGlobalScope": false
+      },
+      "./src/vadduser.tsx": {
+        "version": "88f8ad2c98c9f9c5b94ce9a098ff82ed3af250334aca62f5a85c65ff2b89a46e",
+        "signature": "5e9c622f673593355694c1ba1e078bcbb5fe123731cbf720ebe7d516d13981b2",
+        "affectsGlobalScope": false
+      },
       "./src/vroleadmin.tsx": {
-        "version": "7aaaa8c1fb34af854c2992bdb27f0813509bda392a5dd0e2de2551af34c12266",
-        "signature": "1349295e18386772b44ab0d968a7ea7ef5184872292858918634d9902505fe76",
+        "version": "938d858ca07ce52f1ff8fb05380b50d13046ff5cd555f1bbd1021dd8af48aac6",
+        "signature": "7234e3b4ef0a0449819e87ba5abea35ceeef4b129f61dd3130292d74c0b67bf9",
         "affectsGlobalScope": false
       },
       "./src/croleadmin.ts": {
-        "version": "f139143e50699162c3f3332cecfa8f8a074787878f0e3c8a2106b5a00518bdfd",
-        "signature": "9df53e2f52ddbe5c4cfd7368798e5b99f3b834c6e42745e074266cf86eef18fd",
+        "version": "0fb6334d3e667c8721cd99cbb6329726df11b00be910fcd6c231b264a59fb809",
+        "signature": "774b7151b9fff0a4ed5d03066ae9d1267aade94b4a6cb8fd85a849e1884ac0c1",
         "affectsGlobalScope": false
       },
       "./src/index.ts": {
@@ -1445,6 +1555,125 @@
       "./node_modules/csstype/index.d.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/observer.d.ts",
+        "./node_modules/mobx-react-lite/dist/observercomponent.d.ts",
+        "./node_modules/mobx-react-lite/dist/staticrendering.d.ts",
+        "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts",
+        "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts",
+        "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/staticrendering.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/disposeonunmount.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/index.d.ts",
+        "./node_modules/mobx-react/dist/disposeonunmount.d.ts",
+        "./node_modules/mobx-react/dist/inject.d.ts",
+        "./node_modules/mobx-react/dist/observer.d.ts",
+        "./node_modules/mobx-react/dist/proptypes.d.ts",
+        "./node_modules/mobx-react/dist/provider.d.ts",
+        "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/inject.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts",
+        "./node_modules/mobx-react/dist/types/istorestoprops.d.ts",
+        "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/observer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/proptypes.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/provider.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ivaluemap.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/istorestoprops.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ivaluemap.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/ivaluemap.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts"
       ],
       "./node_modules/mobx/dist/api/action.d.ts": [
         "./node_modules/@types/node/base.d.ts",
@@ -2576,6 +2805,7 @@
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts",
         "./node_modules/tonva-react/dist/index.d.ts",
         "./src/vroleadmin.tsx"
       ],
@@ -2585,12 +2815,21 @@
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./src/croleadmin.ts"
       ],
-      "./src/vroleadmin.tsx": [
+      "./src/vadduser.tsx": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
         "./node_modules/@types/react/jsx-runtime.d.ts",
         "./node_modules/tonva-react/dist/index.d.ts",
         "./src/croleadmin.ts"
+      ],
+      "./src/vroleadmin.tsx": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/jsx-runtime.d.ts",
+        "./node_modules/mobx-react/dist/index.d.ts",
+        "./node_modules/tonva-react/dist/index.d.ts",
+        "./src/croleadmin.ts",
+        "./src/vadduser.tsx"
       ]
     },
     "exportedModulesMap": {
@@ -2826,6 +3065,125 @@
       "./node_modules/csstype/index.d.ts": [
         "./node_modules/@types/node/base.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/observer.d.ts",
+        "./node_modules/mobx-react-lite/dist/observercomponent.d.ts",
+        "./node_modules/mobx-react-lite/dist/staticrendering.d.ts",
+        "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts",
+        "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts",
+        "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observercomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/staticrendering.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx/dist/mobx.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/disposeonunmount.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/index.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/index.d.ts",
+        "./node_modules/mobx-react/dist/disposeonunmount.d.ts",
+        "./node_modules/mobx-react/dist/inject.d.ts",
+        "./node_modules/mobx-react/dist/observer.d.ts",
+        "./node_modules/mobx-react/dist/proptypes.d.ts",
+        "./node_modules/mobx-react/dist/provider.d.ts",
+        "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/inject.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts",
+        "./node_modules/mobx-react/dist/types/istorestoprops.d.ts",
+        "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/observer.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/proptypes.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/provider.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ivaluemap.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/istorestoprops.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ivaluemap.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/ivaluemap.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts"
+      ],
+      "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts": [
+        "./node_modules/@types/node/base.d.ts",
+        "./node_modules/@types/node/ts3.2/index.d.ts",
+        "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts"
       ],
       "./node_modules/mobx/dist/api/action.d.ts": [
         "./node_modules/@types/node/base.d.ts",
@@ -3959,6 +4317,10 @@
       "./src/index.ts": [
         "./src/croleadmin.ts"
       ],
+      "./src/vadduser.tsx": [
+        "./node_modules/tonva-react/dist/index.d.ts",
+        "./src/croleadmin.ts"
+      ],
       "./src/vroleadmin.tsx": [
         "./node_modules/tonva-react/dist/index.d.ts",
         "./src/croleadmin.ts"
@@ -4022,6 +4384,27 @@
       "./node_modules/@types/react/index.d.ts",
       "./node_modules/@types/react/jsx-runtime.d.ts",
       "./node_modules/csstype/index.d.ts",
+      "./node_modules/mobx-react-lite/dist/index.d.ts",
+      "./node_modules/mobx-react-lite/dist/observer.d.ts",
+      "./node_modules/mobx-react-lite/dist/observercomponent.d.ts",
+      "./node_modules/mobx-react-lite/dist/staticrendering.d.ts",
+      "./node_modules/mobx-react-lite/dist/useasobservablesource.d.ts",
+      "./node_modules/mobx-react-lite/dist/uselocalobservable.d.ts",
+      "./node_modules/mobx-react-lite/dist/uselocalstore.d.ts",
+      "./node_modules/mobx-react-lite/dist/utils/assertenvironment.d.ts",
+      "./node_modules/mobx-react-lite/dist/utils/observerbatching.d.ts",
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptracking.d.ts",
+      "./node_modules/mobx-react-lite/dist/utils/reactioncleanuptrackingcommon.d.ts",
+      "./node_modules/mobx-react/dist/disposeonunmount.d.ts",
+      "./node_modules/mobx-react/dist/index.d.ts",
+      "./node_modules/mobx-react/dist/inject.d.ts",
+      "./node_modules/mobx-react/dist/observer.d.ts",
+      "./node_modules/mobx-react/dist/proptypes.d.ts",
+      "./node_modules/mobx-react/dist/provider.d.ts",
+      "./node_modules/mobx-react/dist/types/ireactcomponent.d.ts",
+      "./node_modules/mobx-react/dist/types/istorestoprops.d.ts",
+      "./node_modules/mobx-react/dist/types/ivaluemap.d.ts",
+      "./node_modules/mobx-react/dist/types/iwrappedcomponent.d.ts",
       "./node_modules/mobx/dist/api/action.d.ts",
       "./node_modules/mobx/dist/api/annotation.d.ts",
       "./node_modules/mobx/dist/api/autorun.d.ts",
@@ -4199,6 +4582,7 @@
       "./node_modules/tonva-react/dist/vm/vpage.d.ts",
       "./src/croleadmin.ts",
       "./src/index.ts",
+      "./src/vadduser.tsx",
       "./src/vroleadmin.tsx"
     ]
   },

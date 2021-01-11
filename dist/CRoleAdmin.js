@@ -50,15 +50,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CRoleAdmin = void 0;
+var mobx_1 = require("mobx");
 var tonva_react_1 = require("tonva-react");
 var VRoleAdmin_1 = require("./VRoleAdmin");
 var CRoleAdmin = /** @class */ (function (_super) {
     __extends(CRoleAdmin, _super);
-    function CRoleAdmin(res, uq, roleCaptionMap) {
+    function CRoleAdmin(res, uq, myRolesChanged, roleCaptionMap) {
         var _this = _super.call(this, res) || this;
-        _this.uq = uq;
+        //admins: UserRole[] = null;
+        _this.meRoles = null;
+        _this.userRoles = null;
+        mobx_1.makeObservable(_this, {
+            meRoles: mobx_1.observable,
+            userRoles: mobx_1.observable,
+        });
         _this.uqApi = uq.uqApi;
         _this.allRoles = uq.allRoles;
+        _this.myRolesChanged = myRolesChanged;
         if (roleCaptionMap) {
             _this.roleCaptions = _this.allRoles.map(function (v) { return roleCaptionMap[v] || v; });
         }
@@ -70,30 +78,28 @@ var CRoleAdmin = /** @class */ (function (_super) {
     CRoleAdmin.prototype.internalStart = function () {
         return __awaiter(this, void 0, void 0, function () {
             function rolesBool(t) {
+                if (!t)
+                    return arr.map(function (v) { return false; });
                 return arr.map(function (v) { return t.indexOf(v) >= 0; });
             }
-            var allUserRoles, arr, _i, allUserRoles_1, ur, admin, roles, item, item;
+            var allUserRoles, arr, meId, _i, allUserRoles_1, ur, user, roles, item;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.uqApi.getAllRoleUsers()];
                     case 1:
                         allUserRoles = _a.sent();
-                        this.admins = [];
-                        this.userRoles = [];
                         arr = this.allRoles.map(function (v) { return "|" + v + "|"; });
+                        this.userRoles = [];
+                        meId = this.user.id;
                         for (_i = 0, allUserRoles_1 = allUserRoles; _i < allUserRoles_1.length; _i++) {
                             ur = allUserRoles_1[_i];
-                            admin = ur.admin, roles = ur.roles;
-                            if (admin === 0) {
-                                item = ur;
-                                item.roles = rolesBool(roles);
+                            user = ur.user, roles = ur.roles;
+                            item = ur;
+                            item.roles = rolesBool(roles);
+                            if (user === meId)
+                                this.meRoles = item;
+                            else
                                 this.userRoles.push(item);
-                            }
-                            else {
-                                ur.isMe = ur.user === this.user.id;
-                                item = ur;
-                                this.admins.push(item);
-                            }
                         }
                         this.openVPage(VRoleAdmin_1.VRoleAdmin);
                         return [2 /*return*/];
@@ -101,13 +107,12 @@ var CRoleAdmin = /** @class */ (function (_super) {
             });
         });
     };
-    CRoleAdmin.prototype.setUserRole = function (checked, iRole, user) {
+    CRoleAdmin.prototype.setUserRole = function (checked, iRole, userRole) {
         return __awaiter(this, void 0, void 0, function () {
-            var userRole, roles, len, text, i, yes;
+            var roles, len, text, i, yes, roleNames, i;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        userRole = this.userRoles.find(function (v) { return v.user === user; });
                         roles = userRole.roles;
                         len = roles.length;
                         text = '';
@@ -117,10 +122,109 @@ var CRoleAdmin = /** @class */ (function (_super) {
                                 text += '|' + this.allRoles[i];
                         }
                         text += '|';
-                        return [4 /*yield*/, this.uqApi.setUserRoles(user, 0, text)];
+                        return [4 /*yield*/, this.uqApi.setUserRoles(userRole.user, text)];
                     case 1:
                         _a.sent();
                         roles[iRole] = checked;
+                        if (this.myRolesChanged) {
+                            if (userRole === this.meRoles) {
+                                roleNames = ['$'];
+                                for (i = 0; i < roles.length; i++) {
+                                    if (roles[i] === true)
+                                        roleNames.push(this.allRoles[i]);
+                                }
+                                this.myRolesChanged(roleNames);
+                            }
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CRoleAdmin.prototype.buildRolesText = function (userRole) {
+        var _this = this;
+        var ret = userRole.roles.map(function (v, index) { return v === true ? _this.allRoles[index] : ''; }).join('|');
+        return "|" + ret + "|";
+    };
+    CRoleAdmin.prototype.newUser = function (userName) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ret, user, roles, userRole;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, tonva_react_1.centerApi.userFromKey(userName)];
+                    case 1:
+                        ret = _a.sent();
+                        if (!ret) {
+                            return [2 /*return*/, '这个用户名没有注册'];
+                        }
+                        user = ret.id;
+                        if (this.isMe(user) === true) {
+                            if (this.meRoles) {
+                                this.meRoles.isDeleted = false;
+                            }
+                            else {
+                                this.meRoles = {
+                                    user: user,
+                                    roles: this.allRoles.map(function (v) { return false; })
+                                };
+                            }
+                        }
+                        else {
+                            userRole = this.userRoles.find(function (v) { return v.user === user; });
+                            if (userRole) {
+                                if (userRole.isDeleted === true) {
+                                    userRole.isDeleted = false;
+                                    roles = this.buildRolesText(userRole);
+                                }
+                                else {
+                                    return [2 /*return*/, '这个用户已经是角色用户了'];
+                                }
+                            }
+                            else {
+                                userRole = {
+                                    user: user,
+                                    roles: this.allRoles.map(function (v) { return false; }),
+                                };
+                                this.userRoles.push(userRole);
+                                roles = '';
+                            }
+                        }
+                        return [4 /*yield*/, this.uqApi.setUserRoles(user, roles)];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CRoleAdmin.prototype.deleteUser = function (userRole) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = userRole.user;
+                        userRole.isDeleted = true;
+                        return [4 /*yield*/, this.uqApi.deleteUserRoles(user)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CRoleAdmin.prototype.restoreUser = function (userRole) {
+        return __awaiter(this, void 0, void 0, function () {
+            var user, roles;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        user = userRole.user;
+                        userRole.isDeleted = false;
+                        roles = this.buildRolesText(userRole);
+                        return [4 /*yield*/, this.uqApi.setUserRoles(user, roles)];
+                    case 1:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

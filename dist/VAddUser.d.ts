@@ -1,9 +1,9 @@
 /// <reference types="react" />
 import { VPage } from "tonva-react";
 import { CRoleAdmin } from "./CRoleAdmin";
-export declare class VRoleAdmin extends VPage<CRoleAdmin> {
+export declare class VAddUser extends VPage<CRoleAdmin> {
     header(): string;
     content(): JSX.Element;
-    private renderItem;
-    private onRoleChange;
+    private onClick;
+    private onEnter;
 }
